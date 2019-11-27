@@ -11,6 +11,7 @@ import UIKit
 class AnnouncementsViewController: UIViewController {
 
     var selectedItem: Post!
+    var posts: [Post]!
     
     @IBOutlet weak var searchField: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
@@ -20,6 +21,8 @@ class AnnouncementsViewController: UIViewController {
         // Hide navigation controller
         // Navigation controller is only used for segue animations
         self.navigationController?.navigationBar.isHidden = true
+        
+        posts = fetchBlogPosts()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

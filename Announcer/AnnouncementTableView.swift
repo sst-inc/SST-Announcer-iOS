@@ -16,21 +16,15 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         return 2
     }
 
+    #warning("haven't gotten around to fixing pinned items")
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return posts.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "announcements", for: indexPath) as! AnnouncementTableViewCell
         
-        #warning("Dummy Data")
-        // TODO: Make network call
-        cell.post = Post(title: "Go and die vgfdrftghjnhbgfrd aduygfreh hfweruyhj uhaey aidytfyhuewfr ewfwfwsdfcwjhdfujkmjnbhvtfy",
-                         content: "oh nbhjjgvcfdxcfvgbhnjhbgvcfdrfvghnbgvfcrdgvhnbjgvcfrvghbn bhgvfrghbjnbhgyftdrfghjmnhbvyftcdrvmjnhbgfvtcdrcfvbhnjmnhbgvyftcdrfvgbhnjmnhbgvyftcdfvgbhj,kmojnhbgvfcdxrsdcfvgbhnjhbgvfctdrxcfvgbhugvyfctdxrsezxdcfvgbhgvcfdrxcfvgbhnbgvfctdrfcggfghjjhgfdfghjhgcvhgfdfhbvcfhjnbvfdery",
-                         date: Date())
-        
-        
-        
+        cell.post = posts[indexPath.row]
         return cell
     }
     
@@ -55,7 +49,6 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        print(scrollView.contentOffset.y)
         if !searchField.isFirstResponder {
             if scrollView.contentOffset.y <= -150 {
                 let offset = (scrollView.contentOffset.y * -1 - 100) / 100
