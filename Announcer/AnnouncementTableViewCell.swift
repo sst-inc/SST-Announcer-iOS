@@ -23,6 +23,8 @@ class AnnouncementTableViewCell: UITableViewCell {
             
             announcementDateLabel.text = "Posted on \(dateFormatter.string(from: post.date))"
             setTitleLabelText()
+            
+            // Hide all the loaders
             endLoader()
         }
     }
@@ -71,15 +73,21 @@ class AnnouncementTableViewCell: UITableViewCell {
         announcementTitleLabel.attributedText = attrTitle
     }
     
+    // Using the KALoader for loading animations
+    // Similar to YouTube
+    // Set text as " " so as to maintain proper constraints
     func startLoader() {
         announcementTitleLabel.showLoader()
         announcementTitleLabel.text = " "
+        
         announcementContentLabel.showLoader()
         announcementContentLabel.text = " "
+        
         announcementDateLabel.showLoader()
         announcementDateLabel.text = " "
     }
     
+    // Hide all loaders when content is present for user
     func endLoader() {
         announcementTitleLabel.hideLoader()
         announcementContentLabel.hideLoader()
