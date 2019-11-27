@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>577489847479-cppi1n8cv772k5qrp4uv0v60o3a1gsil.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.577489847479-cppi1n8cv772k5qrp4uv0v60o3a1gsil</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDmpc0ha49HrQbREzAmKRVCbUKgRqpMqKQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>577489847479</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>sg.edu.sst.panziyue.Announcer</string>
+	<key>PROJECT_ID</key>
+	<string>sstannouncer</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sstannouncer.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:577489847479:ios:5113c947f810cba7d07932</string>
+	<key>DATABASE_URL</key>
+	<string>https://sstannouncer.firebaseio.com</string>
+</dict>
+</plist>
