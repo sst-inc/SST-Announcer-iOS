@@ -12,6 +12,8 @@
 		324576F9238D8E0E00730F17 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Globals.swift */; };
 		324576FB238E063500730F17 /* AnnouncementTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576FA238E063500730F17 /* AnnouncementTableView.swift */; };
 		324576FD238E0FB300730F17 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576FC238E0FB300730F17 /* ContentViewController.swift */; };
+		32457703238E213B00730F17 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576FF238E213B00730F17 /* UIView+Extensions.swift */; };
+		32457704238E213B00730F17 /* KALoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457700238E213B00730F17 /* KALoader.swift */; };
 		32D99536238C068D00208D25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99535238C068D00208D25 /* AppDelegate.swift */; };
 		32D99538238C068D00208D25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99537238C068D00208D25 /* SceneDelegate.swift */; };
 		32D9953D238C068D00208D25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953B238C068D00208D25 /* Main.storyboard */; };
@@ -27,6 +29,9 @@
 		324576F8238D8E0E00730F17 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		324576FA238E063500730F17 /* AnnouncementTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableView.swift; sourceTree = "<group>"; };
 		324576FC238E0FB300730F17 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		324576FF238E213B00730F17 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		32457700238E213B00730F17 /* KALoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KALoader.swift; sourceTree = "<group>"; };
+		32457701238E213B00730F17 /* KALoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KALoader.h; sourceTree = "<group>"; };
 		32D99532238C068D00208D25 /* SST Announcer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SST Announcer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D99535238C068D00208D25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32D99537238C068D00208D25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +59,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		324576FE238E213B00730F17 /* KALoader */ = {
+			isa = PBXGroup;
+			children = (
+				324576FF238E213B00730F17 /* UIView+Extensions.swift */,
+				32457700238E213B00730F17 /* KALoader.swift */,
+				32457701238E213B00730F17 /* KALoader.h */,
+			);
+			path = KALoader;
+			sourceTree = "<group>";
+		};
 		32D99529238C068D00208D25 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +97,7 @@
 				324576FC238E0FB300730F17 /* ContentViewController.swift */,
 				324576F8238D8E0E00730F17 /* Globals.swift */,
 				32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */,
+				324576FE238E213B00730F17 /* KALoader */,
 				32D9954B238D865600208D25 /* AnnouncementsTableViewController.swift */,
 				324576FA238E063500730F17 /* AnnouncementTableView.swift */,
 				32D9953E238C068F00208D25 /* Assets.xcassets */,
@@ -234,8 +250,10 @@
 				324576F9238D8E0E00730F17 /* Globals.swift in Sources */,
 				324576FB238E063500730F17 /* AnnouncementTableView.swift in Sources */,
 				32D9954C238D865600208D25 /* AnnouncementsTableViewController.swift in Sources */,
+				32457704238E213B00730F17 /* KALoader.swift in Sources */,
 				32D99536238C068D00208D25 /* AppDelegate.swift in Sources */,
 				32D99538238C068D00208D25 /* SceneDelegate.swift in Sources */,
+				32457703238E213B00730F17 /* UIView+Extensions.swift in Sources */,
 				324576FD238E0FB300730F17 /* ContentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

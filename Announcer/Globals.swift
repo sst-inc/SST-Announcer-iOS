@@ -21,6 +21,13 @@ let rssURL = URL(string: "\(blogURL)/feeds/posts/default")!
 // http://studentsblog.sst.edu.sg/feeds/posts/summary?alt=json&max-results=0&callback=cat
 let jsonCallback = URL(string: "http://studentsblog.sst.edu.sg/feeds/posts/summary?alt=json&max-results")!
 
+// Struct that contains the date, content and title of each post
+struct Post {
+    var title: String
+    var content: String // This content will be a HTML as a String
+    var date: Date
+}
+
 // JSON Callback to get all the labels for the blog posts
 func getLabels() -> [String] {
     do {
