@@ -14,6 +14,100 @@
 		324576FD238E0FB300730F17 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576FC238E0FB300730F17 /* ContentViewController.swift */; };
 		32457703238E213B00730F17 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576FF238E213B00730F17 /* UIView+Extensions.swift */; };
 		32457704238E213B00730F17 /* KALoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457700238E213B00730F17 /* KALoader.swift */; };
+		32457775238E53A100730F17 /* DateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457709238E53A100730F17 /* DateSpec.swift */; };
+		32457776238E53A100730F17 /* RFC3339DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245770A238E53A100730F17 /* RFC3339DateFormatter.swift */; };
+		32457777238E53A100730F17 /* RFC822DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245770B238E53A100730F17 /* RFC822DateFormatter.swift */; };
+		32457778238E53A100730F17 /* ISO8601DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245770C238E53A100730F17 /* ISO8601DateFormatter.swift */; };
+		32457779238E53A100730F17 /* AtomFeedGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245770F238E53A100730F17 /* AtomFeedGenerator.swift */; };
+		3245777A238E53A100730F17 /* AtomFeedEntryContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457710238E53A100730F17 /* AtomFeedEntryContent.swift */; };
+		3245777B238E53A100730F17 /* AtomFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457711238E53A100730F17 /* AtomFeed.swift */; };
+		3245777C238E53A100730F17 /* AtomFeedEntryContributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457712238E53A100730F17 /* AtomFeedEntryContributor.swift */; };
+		3245777D238E53A100730F17 /* AtomFeedEntryCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457713238E53A100730F17 /* AtomFeedEntryCategory.swift */; };
+		3245777E238E53A100730F17 /* AtomFeedContributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457714238E53A100730F17 /* AtomFeedContributor.swift */; };
+		3245777F238E53A100730F17 /* AtomFeedCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457715238E53A100730F17 /* AtomFeedCategory.swift */; };
+		32457780238E53A100730F17 /* AtomFeedEntrySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457716238E53A100730F17 /* AtomFeedEntrySummary.swift */; };
+		32457781238E53A100730F17 /* AtomPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457717238E53A100730F17 /* AtomPath.swift */; };
+		32457782238E53A100730F17 /* AtomFeedAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457718238E53A100730F17 /* AtomFeedAuthor.swift */; };
+		32457783238E53A100730F17 /* AtomFeed + mapCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457719238E53A100730F17 /* AtomFeed + mapCharacters.swift */; };
+		32457784238E53A100730F17 /* AtomFeedEntrySource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245771A238E53A100730F17 /* AtomFeedEntrySource.swift */; };
+		32457785238E53A100730F17 /* AtomFeedLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245771B238E53A100730F17 /* AtomFeedLink.swift */; };
+		32457786238E53A100730F17 /* AtomFeedEntryAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245771C238E53A100730F17 /* AtomFeedEntryAuthor.swift */; };
+		32457787238E53A100730F17 /* AtomFeedEntryLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245771D238E53A100730F17 /* AtomFeedEntryLink.swift */; };
+		32457788238E53A100730F17 /* AtomFeed + mapAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245771E238E53A100730F17 /* AtomFeed + mapAttributes.swift */; };
+		32457789238E53A100730F17 /* AtomFeedSubtitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245771F238E53A100730F17 /* AtomFeedSubtitle.swift */; };
+		3245778A238E53A100730F17 /* AtomFeedEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457720238E53A100730F17 /* AtomFeedEntry.swift */; };
+		3245778B238E53A100730F17 /* RSSFeed + mapCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457722238E53A100730F17 /* RSSFeed + mapCharacters.swift */; };
+		3245778C238E53A100730F17 /* RSSFeedCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457723238E53A100730F17 /* RSSFeedCategory.swift */; };
+		3245778D238E53A100730F17 /* RDFPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457724238E53A100730F17 /* RDFPath.swift */; };
+		3245778E238E53A100730F17 /* RSSFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457725238E53A100730F17 /* RSSFeedItem.swift */; };
+		3245778F238E53A100730F17 /* RSSFeed + mapAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457726238E53A100730F17 /* RSSFeed + mapAttributes.swift */; };
+		32457790238E53A100730F17 /* RSSFeedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457727238E53A100730F17 /* RSSFeedImage.swift */; };
+		32457791238E53A100730F17 /* RSSFeedSkipDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457728238E53A100730F17 /* RSSFeedSkipDay.swift */; };
+		32457792238E53A100730F17 /* RSSFeedItemGUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457729238E53A100730F17 /* RSSFeedItemGUID.swift */; };
+		32457793238E53A100730F17 /* RSSFeedSkipHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245772A238E53A100730F17 /* RSSFeedSkipHour.swift */; };
+		32457794238E53A100730F17 /* RSSFeedCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245772B238E53A100730F17 /* RSSFeedCloud.swift */; };
+		32457795238E53A100730F17 /* RSSFeedItemCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245772C238E53A100730F17 /* RSSFeedItemCategory.swift */; };
+		32457796238E53A100730F17 /* RSSPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245772D238E53A100730F17 /* RSSPath.swift */; };
+		32457797238E53A100730F17 /* RSSFeedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245772E238E53A100730F17 /* RSSFeedTextInput.swift */; };
+		32457798238E53A100730F17 /* RSSFeedItemEnclosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245772F238E53A100730F17 /* RSSFeedItemEnclosure.swift */; };
+		32457799238E53A100730F17 /* RSSFeedItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457730238E53A100730F17 /* RSSFeedItemSource.swift */; };
+		3245779A238E53A100730F17 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457731238E53A100730F17 /* RSSFeed.swift */; };
+		3245779B238E53A100730F17 /* SyndicationUpdatePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457734238E53A100730F17 /* SyndicationUpdatePeriod.swift */; };
+		3245779C238E53A100730F17 /* SyndicationNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457735238E53A100730F17 /* SyndicationNamespace.swift */; };
+		3245779D238E53A100730F17 /* iTunesCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457737238E53A100730F17 /* iTunesCategory.swift */; };
+		3245779E238E53A100730F17 /* iTunesImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457738238E53A100730F17 /* iTunesImage.swift */; };
+		3245779F238E53A100730F17 /* iTunesNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457739238E53A100730F17 /* iTunesNamespace.swift */; };
+		324577A0238E53A100730F17 /* iTunesSubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245773A238E53A100730F17 /* iTunesSubCategory.swift */; };
+		324577A1238E53A100730F17 /* iTunesOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245773B238E53A100730F17 /* iTunesOwner.swift */; };
+		324577A2238E53A100730F17 /* ContentNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245773D238E53A100730F17 /* ContentNamespace.swift */; };
+		324577A3238E53A100730F17 /* DublinCoreNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245773F238E53A100730F17 /* DublinCoreNamespace.swift */; };
+		324577A4238E53A100730F17 /* MediaLicence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457741238E53A100730F17 /* MediaLicence.swift */; };
+		324577A5238E53A100730F17 /* MediaCredit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457742238E53A100730F17 /* MediaCredit.swift */; };
+		324577A6238E53A100730F17 /* MediaHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457743238E53A100730F17 /* MediaHash.swift */; };
+		324577A7238E53A100730F17 /* MediaTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457744238E53A100730F17 /* MediaTitle.swift */; };
+		324577A8238E53A100730F17 /* MediaNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457745238E53A100730F17 /* MediaNamespace.swift */; };
+		324577A9238E53A100730F17 /* MediaRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457746238E53A100730F17 /* MediaRating.swift */; };
+		324577AA238E53A100730F17 /* MediaRights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457747238E53A100730F17 /* MediaRights.swift */; };
+		324577AB238E53A100730F17 /* MediaContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457748238E53A100730F17 /* MediaContent.swift */; };
+		324577AC238E53A100730F17 /* MediaTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457749238E53A100730F17 /* MediaTag.swift */; };
+		324577AD238E53A100730F17 /* MediaSubTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245774A238E53A100730F17 /* MediaSubTitle.swift */; };
+		324577AE238E53A100730F17 /* MediaLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245774B238E53A100730F17 /* MediaLocation.swift */; };
+		324577AF238E53A100730F17 /* MediaGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245774C238E53A100730F17 /* MediaGroup.swift */; };
+		324577B0238E53A100730F17 /* MediaCommunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245774D238E53A100730F17 /* MediaCommunity.swift */; };
+		324577B1238E53A200730F17 /* MediaPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245774E238E53A100730F17 /* MediaPrice.swift */; };
+		324577B2238E53A200730F17 /* MediaPeerLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245774F238E53A100730F17 /* MediaPeerLink.swift */; };
+		324577B3238E53A200730F17 /* MediaCopyright.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457750238E53A100730F17 /* MediaCopyright.swift */; };
+		324577B4238E53A200730F17 /* MediaRestriction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457751238E53A100730F17 /* MediaRestriction.swift */; };
+		324577B5238E53A200730F17 /* MediaDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457752238E53A100730F17 /* MediaDescription.swift */; };
+		324577B6238E53A200730F17 /* MediaParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457753238E53A100730F17 /* MediaParam.swift */; };
+		324577B7238E53A200730F17 /* MediaScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457754238E53A100730F17 /* MediaScene.swift */; };
+		324577B8238E53A200730F17 /* MediaStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457755238E53A100730F17 /* MediaStatistics.swift */; };
+		324577B9238E53A200730F17 /* MediaEmbed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457756238E53A100730F17 /* MediaEmbed.swift */; };
+		324577BA238E53A200730F17 /* MediaText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457757238E53A100730F17 /* MediaText.swift */; };
+		324577BB238E53A200730F17 /* MediaCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457758238E53A100730F17 /* MediaCategory.swift */; };
+		324577BC238E53A200730F17 /* MediaStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457759238E53A100730F17 /* MediaStatus.swift */; };
+		324577BD238E53A200730F17 /* MediaStarRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245775A238E53A100730F17 /* MediaStarRating.swift */; };
+		324577BE238E53A200730F17 /* MediaThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245775B238E53A100730F17 /* MediaThumbnail.swift */; };
+		324577BF238E53A200730F17 /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245775C238E53A100730F17 /* MediaPlayer.swift */; };
+		324577C0238E53A200730F17 /* JSONFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245775E238E53A100730F17 /* JSONFeed.swift */; };
+		324577C1238E53A200730F17 /* JSONFeedAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245775F238E53A100730F17 /* JSONFeedAttachment.swift */; };
+		324577C2238E53A200730F17 /* JSONFeedHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457760238E53A100730F17 /* JSONFeedHub.swift */; };
+		324577C3238E53A200730F17 /* JSONFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457761238E53A100730F17 /* JSONFeedItem.swift */; };
+		324577C4238E53A200730F17 /* JSONFeedAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457762238E53A100730F17 /* JSONFeedAuthor.swift */; };
+		324577C5238E53A200730F17 /* FeedDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457764238E53A100730F17 /* FeedDataType.swift */; };
+		324577C6238E53A200730F17 /* XMLFeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457765238E53A100730F17 /* XMLFeedType.swift */; };
+		324577C7238E53A200730F17 /* ParserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457766238E53A100730F17 /* ParserError.swift */; };
+		324577C8238E53A200730F17 /* JSONFeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457767238E53A100730F17 /* JSONFeedParser.swift */; };
+		324577C9238E53A200730F17 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457768238E53A100730F17 /* FeedParser.swift */; };
+		324577CA238E53A200730F17 /* XMLFeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457769238E53A100730F17 /* XMLFeedParser.swift */; };
+		324577CB238E53A200730F17 /* FeedParserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245776A238E53A100730F17 /* FeedParserProtocol.swift */; };
+		324577CC238E53A200730F17 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245776B238E53A100730F17 /* Feed.swift */; };
+		324577CD238E53A200730F17 /* URL + replacingScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245776D238E53A100730F17 /* URL + replacingScheme.swift */; };
+		324577CE238E53A200730F17 /* String + toDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245776E238E53A100730F17 /* String + toDuration.swift */; };
+		324577CF238E53A200730F17 /* Array + Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245776F238E53A100730F17 /* Array + Equatable.swift */; };
+		324577D0238E53A200730F17 /* Date + codingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457770238E53A100730F17 /* Date + codingStrategy.swift */; };
+		324577D1238E53A200730F17 /* String + toDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457771238E53A100730F17 /* String + toDate.swift */; };
+		324577D2238E53A200730F17 /* String + toBool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457772238E53A100730F17 /* String + toBool.swift */; };
 		32D99536238C068D00208D25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99535238C068D00208D25 /* AppDelegate.swift */; };
 		32D99538238C068D00208D25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99537238C068D00208D25 /* SceneDelegate.swift */; };
 		32D9953D238C068D00208D25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953B238C068D00208D25 /* Main.storyboard */; };
@@ -32,6 +126,100 @@
 		324576FF238E213B00730F17 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		32457700238E213B00730F17 /* KALoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KALoader.swift; sourceTree = "<group>"; };
 		32457701238E213B00730F17 /* KALoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KALoader.h; sourceTree = "<group>"; };
+		32457709238E53A100730F17 /* DateSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSpec.swift; sourceTree = "<group>"; };
+		3245770A238E53A100730F17 /* RFC3339DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFC3339DateFormatter.swift; sourceTree = "<group>"; };
+		3245770B238E53A100730F17 /* RFC822DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFC822DateFormatter.swift; sourceTree = "<group>"; };
+		3245770C238E53A100730F17 /* ISO8601DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO8601DateFormatter.swift; sourceTree = "<group>"; };
+		3245770F238E53A100730F17 /* AtomFeedGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeedGenerator.swift; sourceTree = "<group>"; };
+		32457710238E53A100730F17 /* AtomFeedEntryContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeedEntryContent.swift; sourceTree = "<group>"; };
+		32457711238E53A100730F17 /* AtomFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeed.swift; sourceTree = "<group>"; };
+		32457712238E53A100730F17 /* AtomFeedEntryContributor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeedEntryContributor.swift; sourceTree = "<group>"; };
+		32457713238E53A100730F17 /* AtomFeedEntryCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeedEntryCategory.swift; sourceTree = "<group>"; };
+		32457714238E53A100730F17 /* AtomFeedContributor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeedContributor.swift; sourceTree = "<group>"; };
+		32457715238E53A100730F17 /* AtomFeedCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeedCategory.swift; sourceTree = "<group>"; };
+		32457716238E53A100730F17 /* AtomFeedEntrySummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeedEntrySummary.swift; sourceTree = "<group>"; };
+		32457717238E53A100730F17 /* AtomPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomPath.swift; sourceTree = "<group>"; };
+		32457718238E53A100730F17 /* AtomFeedAuthor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeedAuthor.swift; sourceTree = "<group>"; };
+		32457719238E53A100730F17 /* AtomFeed + mapCharacters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AtomFeed + mapCharacters.swift"; sourceTree = "<group>"; };
+		3245771A238E53A100730F17 /* AtomFeedEntrySource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeedEntrySource.swift; sourceTree = "<group>"; };
+		3245771B238E53A100730F17 /* AtomFeedLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeedLink.swift; sourceTree = "<group>"; };
+		3245771C238E53A100730F17 /* AtomFeedEntryAuthor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeedEntryAuthor.swift; sourceTree = "<group>"; };
+		3245771D238E53A100730F17 /* AtomFeedEntryLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeedEntryLink.swift; sourceTree = "<group>"; };
+		3245771E238E53A100730F17 /* AtomFeed + mapAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AtomFeed + mapAttributes.swift"; sourceTree = "<group>"; };
+		3245771F238E53A100730F17 /* AtomFeedSubtitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeedSubtitle.swift; sourceTree = "<group>"; };
+		32457720238E53A100730F17 /* AtomFeedEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomFeedEntry.swift; sourceTree = "<group>"; };
+		32457722238E53A100730F17 /* RSSFeed + mapCharacters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RSSFeed + mapCharacters.swift"; sourceTree = "<group>"; };
+		32457723238E53A100730F17 /* RSSFeedCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeedCategory.swift; sourceTree = "<group>"; };
+		32457724238E53A100730F17 /* RDFPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDFPath.swift; sourceTree = "<group>"; };
+		32457725238E53A100730F17 /* RSSFeedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeedItem.swift; sourceTree = "<group>"; };
+		32457726238E53A100730F17 /* RSSFeed + mapAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RSSFeed + mapAttributes.swift"; sourceTree = "<group>"; };
+		32457727238E53A100730F17 /* RSSFeedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeedImage.swift; sourceTree = "<group>"; };
+		32457728238E53A100730F17 /* RSSFeedSkipDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeedSkipDay.swift; sourceTree = "<group>"; };
+		32457729238E53A100730F17 /* RSSFeedItemGUID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeedItemGUID.swift; sourceTree = "<group>"; };
+		3245772A238E53A100730F17 /* RSSFeedSkipHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeedSkipHour.swift; sourceTree = "<group>"; };
+		3245772B238E53A100730F17 /* RSSFeedCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeedCloud.swift; sourceTree = "<group>"; };
+		3245772C238E53A100730F17 /* RSSFeedItemCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeedItemCategory.swift; sourceTree = "<group>"; };
+		3245772D238E53A100730F17 /* RSSPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSPath.swift; sourceTree = "<group>"; };
+		3245772E238E53A100730F17 /* RSSFeedTextInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeedTextInput.swift; sourceTree = "<group>"; };
+		3245772F238E53A100730F17 /* RSSFeedItemEnclosure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeedItemEnclosure.swift; sourceTree = "<group>"; };
+		32457730238E53A100730F17 /* RSSFeedItemSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeedItemSource.swift; sourceTree = "<group>"; };
+		32457731238E53A100730F17 /* RSSFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeed.swift; sourceTree = "<group>"; };
+		32457734238E53A100730F17 /* SyndicationUpdatePeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyndicationUpdatePeriod.swift; sourceTree = "<group>"; };
+		32457735238E53A100730F17 /* SyndicationNamespace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyndicationNamespace.swift; sourceTree = "<group>"; };
+		32457737238E53A100730F17 /* iTunesCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesCategory.swift; sourceTree = "<group>"; };
+		32457738238E53A100730F17 /* iTunesImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesImage.swift; sourceTree = "<group>"; };
+		32457739238E53A100730F17 /* iTunesNamespace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesNamespace.swift; sourceTree = "<group>"; };
+		3245773A238E53A100730F17 /* iTunesSubCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesSubCategory.swift; sourceTree = "<group>"; };
+		3245773B238E53A100730F17 /* iTunesOwner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunesOwner.swift; sourceTree = "<group>"; };
+		3245773D238E53A100730F17 /* ContentNamespace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentNamespace.swift; sourceTree = "<group>"; };
+		3245773F238E53A100730F17 /* DublinCoreNamespace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DublinCoreNamespace.swift; sourceTree = "<group>"; };
+		32457741238E53A100730F17 /* MediaLicence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLicence.swift; sourceTree = "<group>"; };
+		32457742238E53A100730F17 /* MediaCredit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCredit.swift; sourceTree = "<group>"; };
+		32457743238E53A100730F17 /* MediaHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaHash.swift; sourceTree = "<group>"; };
+		32457744238E53A100730F17 /* MediaTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaTitle.swift; sourceTree = "<group>"; };
+		32457745238E53A100730F17 /* MediaNamespace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaNamespace.swift; sourceTree = "<group>"; };
+		32457746238E53A100730F17 /* MediaRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaRating.swift; sourceTree = "<group>"; };
+		32457747238E53A100730F17 /* MediaRights.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaRights.swift; sourceTree = "<group>"; };
+		32457748238E53A100730F17 /* MediaContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaContent.swift; sourceTree = "<group>"; };
+		32457749238E53A100730F17 /* MediaTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaTag.swift; sourceTree = "<group>"; };
+		3245774A238E53A100730F17 /* MediaSubTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaSubTitle.swift; sourceTree = "<group>"; };
+		3245774B238E53A100730F17 /* MediaLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLocation.swift; sourceTree = "<group>"; };
+		3245774C238E53A100730F17 /* MediaGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaGroup.swift; sourceTree = "<group>"; };
+		3245774D238E53A100730F17 /* MediaCommunity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCommunity.swift; sourceTree = "<group>"; };
+		3245774E238E53A100730F17 /* MediaPrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPrice.swift; sourceTree = "<group>"; };
+		3245774F238E53A100730F17 /* MediaPeerLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPeerLink.swift; sourceTree = "<group>"; };
+		32457750238E53A100730F17 /* MediaCopyright.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCopyright.swift; sourceTree = "<group>"; };
+		32457751238E53A100730F17 /* MediaRestriction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaRestriction.swift; sourceTree = "<group>"; };
+		32457752238E53A100730F17 /* MediaDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaDescription.swift; sourceTree = "<group>"; };
+		32457753238E53A100730F17 /* MediaParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaParam.swift; sourceTree = "<group>"; };
+		32457754238E53A100730F17 /* MediaScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaScene.swift; sourceTree = "<group>"; };
+		32457755238E53A100730F17 /* MediaStatistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaStatistics.swift; sourceTree = "<group>"; };
+		32457756238E53A100730F17 /* MediaEmbed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaEmbed.swift; sourceTree = "<group>"; };
+		32457757238E53A100730F17 /* MediaText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaText.swift; sourceTree = "<group>"; };
+		32457758238E53A100730F17 /* MediaCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCategory.swift; sourceTree = "<group>"; };
+		32457759238E53A100730F17 /* MediaStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaStatus.swift; sourceTree = "<group>"; };
+		3245775A238E53A100730F17 /* MediaStarRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaStarRating.swift; sourceTree = "<group>"; };
+		3245775B238E53A100730F17 /* MediaThumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaThumbnail.swift; sourceTree = "<group>"; };
+		3245775C238E53A100730F17 /* MediaPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayer.swift; sourceTree = "<group>"; };
+		3245775E238E53A100730F17 /* JSONFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONFeed.swift; sourceTree = "<group>"; };
+		3245775F238E53A100730F17 /* JSONFeedAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONFeedAttachment.swift; sourceTree = "<group>"; };
+		32457760238E53A100730F17 /* JSONFeedHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONFeedHub.swift; sourceTree = "<group>"; };
+		32457761238E53A100730F17 /* JSONFeedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONFeedItem.swift; sourceTree = "<group>"; };
+		32457762238E53A100730F17 /* JSONFeedAuthor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONFeedAuthor.swift; sourceTree = "<group>"; };
+		32457764238E53A100730F17 /* FeedDataType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedDataType.swift; sourceTree = "<group>"; };
+		32457765238E53A100730F17 /* XMLFeedType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLFeedType.swift; sourceTree = "<group>"; };
+		32457766238E53A100730F17 /* ParserError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserError.swift; sourceTree = "<group>"; };
+		32457767238E53A100730F17 /* JSONFeedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONFeedParser.swift; sourceTree = "<group>"; };
+		32457768238E53A100730F17 /* FeedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
+		32457769238E53A100730F17 /* XMLFeedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLFeedParser.swift; sourceTree = "<group>"; };
+		3245776A238E53A100730F17 /* FeedParserProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedParserProtocol.swift; sourceTree = "<group>"; };
+		3245776B238E53A100730F17 /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		3245776D238E53A100730F17 /* URL + replacingScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL + replacingScheme.swift"; sourceTree = "<group>"; };
+		3245776E238E53A100730F17 /* String + toDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + toDuration.swift"; sourceTree = "<group>"; };
+		3245776F238E53A100730F17 /* Array + Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array + Equatable.swift"; sourceTree = "<group>"; };
+		32457770238E53A100730F17 /* Date + codingStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date + codingStrategy.swift"; sourceTree = "<group>"; };
+		32457771238E53A100730F17 /* String + toDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + toDate.swift"; sourceTree = "<group>"; };
+		32457772238E53A100730F17 /* String + toBool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + toBool.swift"; sourceTree = "<group>"; };
 		32D99532238C068D00208D25 /* SST Announcer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SST Announcer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D99535238C068D00208D25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32D99537238C068D00208D25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +257,211 @@
 			path = KALoader;
 			sourceTree = "<group>";
 		};
+		32457707238E53A100730F17 /* FeedKit */ = {
+			isa = PBXGroup;
+			children = (
+				32457708238E53A100730F17 /* Dates */,
+				3245770D238E53A100730F17 /* Models */,
+				32457763238E53A100730F17 /* Parser */,
+				3245776C238E53A100730F17 /* Extensions */,
+			);
+			path = FeedKit;
+			sourceTree = "<group>";
+		};
+		32457708238E53A100730F17 /* Dates */ = {
+			isa = PBXGroup;
+			children = (
+				32457709238E53A100730F17 /* DateSpec.swift */,
+				3245770A238E53A100730F17 /* RFC3339DateFormatter.swift */,
+				3245770B238E53A100730F17 /* RFC822DateFormatter.swift */,
+				3245770C238E53A100730F17 /* ISO8601DateFormatter.swift */,
+			);
+			path = Dates;
+			sourceTree = "<group>";
+		};
+		3245770D238E53A100730F17 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3245770E238E53A100730F17 /* Atom */,
+				32457721238E53A100730F17 /* RSS */,
+				32457732238E53A100730F17 /* Namespaces */,
+				3245775D238E53A100730F17 /* JSON */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3245770E238E53A100730F17 /* Atom */ = {
+			isa = PBXGroup;
+			children = (
+				3245770F238E53A100730F17 /* AtomFeedGenerator.swift */,
+				32457710238E53A100730F17 /* AtomFeedEntryContent.swift */,
+				32457711238E53A100730F17 /* AtomFeed.swift */,
+				32457712238E53A100730F17 /* AtomFeedEntryContributor.swift */,
+				32457713238E53A100730F17 /* AtomFeedEntryCategory.swift */,
+				32457714238E53A100730F17 /* AtomFeedContributor.swift */,
+				32457715238E53A100730F17 /* AtomFeedCategory.swift */,
+				32457716238E53A100730F17 /* AtomFeedEntrySummary.swift */,
+				32457717238E53A100730F17 /* AtomPath.swift */,
+				32457718238E53A100730F17 /* AtomFeedAuthor.swift */,
+				32457719238E53A100730F17 /* AtomFeed + mapCharacters.swift */,
+				3245771A238E53A100730F17 /* AtomFeedEntrySource.swift */,
+				3245771B238E53A100730F17 /* AtomFeedLink.swift */,
+				3245771C238E53A100730F17 /* AtomFeedEntryAuthor.swift */,
+				3245771D238E53A100730F17 /* AtomFeedEntryLink.swift */,
+				3245771E238E53A100730F17 /* AtomFeed + mapAttributes.swift */,
+				3245771F238E53A100730F17 /* AtomFeedSubtitle.swift */,
+				32457720238E53A100730F17 /* AtomFeedEntry.swift */,
+			);
+			path = Atom;
+			sourceTree = "<group>";
+		};
+		32457721238E53A100730F17 /* RSS */ = {
+			isa = PBXGroup;
+			children = (
+				32457722238E53A100730F17 /* RSSFeed + mapCharacters.swift */,
+				32457723238E53A100730F17 /* RSSFeedCategory.swift */,
+				32457724238E53A100730F17 /* RDFPath.swift */,
+				32457725238E53A100730F17 /* RSSFeedItem.swift */,
+				32457726238E53A100730F17 /* RSSFeed + mapAttributes.swift */,
+				32457727238E53A100730F17 /* RSSFeedImage.swift */,
+				32457728238E53A100730F17 /* RSSFeedSkipDay.swift */,
+				32457729238E53A100730F17 /* RSSFeedItemGUID.swift */,
+				3245772A238E53A100730F17 /* RSSFeedSkipHour.swift */,
+				3245772B238E53A100730F17 /* RSSFeedCloud.swift */,
+				3245772C238E53A100730F17 /* RSSFeedItemCategory.swift */,
+				3245772D238E53A100730F17 /* RSSPath.swift */,
+				3245772E238E53A100730F17 /* RSSFeedTextInput.swift */,
+				3245772F238E53A100730F17 /* RSSFeedItemEnclosure.swift */,
+				32457730238E53A100730F17 /* RSSFeedItemSource.swift */,
+				32457731238E53A100730F17 /* RSSFeed.swift */,
+			);
+			path = RSS;
+			sourceTree = "<group>";
+		};
+		32457732238E53A100730F17 /* Namespaces */ = {
+			isa = PBXGroup;
+			children = (
+				32457733238E53A100730F17 /* Syndication */,
+				32457736238E53A100730F17 /* iTunes */,
+				3245773C238E53A100730F17 /* Content */,
+				3245773E238E53A100730F17 /* Dublin Core */,
+				32457740238E53A100730F17 /* Media */,
+			);
+			path = Namespaces;
+			sourceTree = "<group>";
+		};
+		32457733238E53A100730F17 /* Syndication */ = {
+			isa = PBXGroup;
+			children = (
+				32457734238E53A100730F17 /* SyndicationUpdatePeriod.swift */,
+				32457735238E53A100730F17 /* SyndicationNamespace.swift */,
+			);
+			path = Syndication;
+			sourceTree = "<group>";
+		};
+		32457736238E53A100730F17 /* iTunes */ = {
+			isa = PBXGroup;
+			children = (
+				32457737238E53A100730F17 /* iTunesCategory.swift */,
+				32457738238E53A100730F17 /* iTunesImage.swift */,
+				32457739238E53A100730F17 /* iTunesNamespace.swift */,
+				3245773A238E53A100730F17 /* iTunesSubCategory.swift */,
+				3245773B238E53A100730F17 /* iTunesOwner.swift */,
+			);
+			path = iTunes;
+			sourceTree = "<group>";
+		};
+		3245773C238E53A100730F17 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				3245773D238E53A100730F17 /* ContentNamespace.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		3245773E238E53A100730F17 /* Dublin Core */ = {
+			isa = PBXGroup;
+			children = (
+				3245773F238E53A100730F17 /* DublinCoreNamespace.swift */,
+			);
+			path = "Dublin Core";
+			sourceTree = "<group>";
+		};
+		32457740238E53A100730F17 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				32457741238E53A100730F17 /* MediaLicence.swift */,
+				32457742238E53A100730F17 /* MediaCredit.swift */,
+				32457743238E53A100730F17 /* MediaHash.swift */,
+				32457744238E53A100730F17 /* MediaTitle.swift */,
+				32457745238E53A100730F17 /* MediaNamespace.swift */,
+				32457746238E53A100730F17 /* MediaRating.swift */,
+				32457747238E53A100730F17 /* MediaRights.swift */,
+				32457748238E53A100730F17 /* MediaContent.swift */,
+				32457749238E53A100730F17 /* MediaTag.swift */,
+				3245774A238E53A100730F17 /* MediaSubTitle.swift */,
+				3245774B238E53A100730F17 /* MediaLocation.swift */,
+				3245774C238E53A100730F17 /* MediaGroup.swift */,
+				3245774D238E53A100730F17 /* MediaCommunity.swift */,
+				3245774E238E53A100730F17 /* MediaPrice.swift */,
+				3245774F238E53A100730F17 /* MediaPeerLink.swift */,
+				32457750238E53A100730F17 /* MediaCopyright.swift */,
+				32457751238E53A100730F17 /* MediaRestriction.swift */,
+				32457752238E53A100730F17 /* MediaDescription.swift */,
+				32457753238E53A100730F17 /* MediaParam.swift */,
+				32457754238E53A100730F17 /* MediaScene.swift */,
+				32457755238E53A100730F17 /* MediaStatistics.swift */,
+				32457756238E53A100730F17 /* MediaEmbed.swift */,
+				32457757238E53A100730F17 /* MediaText.swift */,
+				32457758238E53A100730F17 /* MediaCategory.swift */,
+				32457759238E53A100730F17 /* MediaStatus.swift */,
+				3245775A238E53A100730F17 /* MediaStarRating.swift */,
+				3245775B238E53A100730F17 /* MediaThumbnail.swift */,
+				3245775C238E53A100730F17 /* MediaPlayer.swift */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		3245775D238E53A100730F17 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				3245775E238E53A100730F17 /* JSONFeed.swift */,
+				3245775F238E53A100730F17 /* JSONFeedAttachment.swift */,
+				32457760238E53A100730F17 /* JSONFeedHub.swift */,
+				32457761238E53A100730F17 /* JSONFeedItem.swift */,
+				32457762238E53A100730F17 /* JSONFeedAuthor.swift */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		32457763238E53A100730F17 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				32457764238E53A100730F17 /* FeedDataType.swift */,
+				32457765238E53A100730F17 /* XMLFeedType.swift */,
+				32457766238E53A100730F17 /* ParserError.swift */,
+				32457767238E53A100730F17 /* JSONFeedParser.swift */,
+				32457768238E53A100730F17 /* FeedParser.swift */,
+				32457769238E53A100730F17 /* XMLFeedParser.swift */,
+				3245776A238E53A100730F17 /* FeedParserProtocol.swift */,
+				3245776B238E53A100730F17 /* Feed.swift */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		3245776C238E53A100730F17 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3245776D238E53A100730F17 /* URL + replacingScheme.swift */,
+				3245776E238E53A100730F17 /* String + toDuration.swift */,
+				3245776F238E53A100730F17 /* Array + Equatable.swift */,
+				32457770238E53A100730F17 /* Date + codingStrategy.swift */,
+				32457771238E53A100730F17 /* String + toDate.swift */,
+				32457772238E53A100730F17 /* String + toBool.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		32D99529238C068D00208D25 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +490,7 @@
 				324576FC238E0FB300730F17 /* ContentViewController.swift */,
 				324576F8238D8E0E00730F17 /* Globals.swift */,
 				32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */,
+				32457707238E53A100730F17 /* FeedKit */,
 				324576FE238E213B00730F17 /* KALoader */,
 				32D9954B238D865600208D25 /* AnnouncementsTableViewController.swift */,
 				324576FA238E063500730F17 /* AnnouncementTableView.swift */,
@@ -246,15 +640,109 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32457776238E53A100730F17 /* RFC3339DateFormatter.swift in Sources */,
+				32457780238E53A100730F17 /* AtomFeedEntrySummary.swift in Sources */,
+				324577AA238E53A100730F17 /* MediaRights.swift in Sources */,
 				32D9954E238D87D200208D25 /* AnnouncementTableViewCell.swift in Sources */,
+				3245779B238E53A100730F17 /* SyndicationUpdatePeriod.swift in Sources */,
+				324577BA238E53A200730F17 /* MediaText.swift in Sources */,
+				324577A4238E53A100730F17 /* MediaLicence.swift in Sources */,
+				32457798238E53A100730F17 /* RSSFeedItemEnclosure.swift in Sources */,
+				32457781238E53A100730F17 /* AtomPath.swift in Sources */,
+				3245778A238E53A100730F17 /* AtomFeedEntry.swift in Sources */,
 				324576F9238D8E0E00730F17 /* Globals.swift in Sources */,
+				324577CE238E53A200730F17 /* String + toDuration.swift in Sources */,
+				324577D2238E53A200730F17 /* String + toBool.swift in Sources */,
+				3245777E238E53A100730F17 /* AtomFeedContributor.swift in Sources */,
+				3245777F238E53A100730F17 /* AtomFeedCategory.swift in Sources */,
+				324577B4238E53A200730F17 /* MediaRestriction.swift in Sources */,
+				32457783238E53A100730F17 /* AtomFeed + mapCharacters.swift in Sources */,
+				32457793238E53A100730F17 /* RSSFeedSkipHour.swift in Sources */,
+				32457797238E53A100730F17 /* RSSFeedTextInput.swift in Sources */,
+				324577C5238E53A200730F17 /* FeedDataType.swift in Sources */,
+				324577C9238E53A200730F17 /* FeedParser.swift in Sources */,
+				324577A8238E53A100730F17 /* MediaNamespace.swift in Sources */,
+				32457792238E53A100730F17 /* RSSFeedItemGUID.swift in Sources */,
+				32457794238E53A100730F17 /* RSSFeedCloud.swift in Sources */,
+				32457789238E53A100730F17 /* AtomFeedSubtitle.swift in Sources */,
+				32457788238E53A100730F17 /* AtomFeed + mapAttributes.swift in Sources */,
+				324577A0238E53A100730F17 /* iTunesSubCategory.swift in Sources */,
+				3245777C238E53A100730F17 /* AtomFeedEntryContributor.swift in Sources */,
+				324577C6238E53A200730F17 /* XMLFeedType.swift in Sources */,
+				32457775238E53A100730F17 /* DateSpec.swift in Sources */,
+				3245779A238E53A100730F17 /* RSSFeed.swift in Sources */,
+				324577C3238E53A200730F17 /* JSONFeedItem.swift in Sources */,
+				324577B3238E53A200730F17 /* MediaCopyright.swift in Sources */,
+				3245778B238E53A100730F17 /* RSSFeed + mapCharacters.swift in Sources */,
+				324577B8238E53A200730F17 /* MediaStatistics.swift in Sources */,
+				324577BF238E53A200730F17 /* MediaPlayer.swift in Sources */,
+				324577A5238E53A100730F17 /* MediaCredit.swift in Sources */,
+				3245779D238E53A100730F17 /* iTunesCategory.swift in Sources */,
+				324577B9238E53A200730F17 /* MediaEmbed.swift in Sources */,
+				32457785238E53A100730F17 /* AtomFeedLink.swift in Sources */,
+				324577CC238E53A200730F17 /* Feed.swift in Sources */,
+				324577CB238E53A200730F17 /* FeedParserProtocol.swift in Sources */,
+				324577D1238E53A200730F17 /* String + toDate.swift in Sources */,
+				324577B6238E53A200730F17 /* MediaParam.swift in Sources */,
+				32457787238E53A100730F17 /* AtomFeedEntryLink.swift in Sources */,
+				32457790238E53A100730F17 /* RSSFeedImage.swift in Sources */,
+				3245778F238E53A100730F17 /* RSSFeed + mapAttributes.swift in Sources */,
+				3245778E238E53A100730F17 /* RSSFeedItem.swift in Sources */,
 				324576FB238E063500730F17 /* AnnouncementTableView.swift in Sources */,
+				324577A1238E53A100730F17 /* iTunesOwner.swift in Sources */,
+				324577C0238E53A200730F17 /* JSONFeed.swift in Sources */,
+				324577B1238E53A200730F17 /* MediaPrice.swift in Sources */,
+				324577AD238E53A100730F17 /* MediaSubTitle.swift in Sources */,
+				3245779E238E53A100730F17 /* iTunesImage.swift in Sources */,
+				32457786238E53A100730F17 /* AtomFeedEntryAuthor.swift in Sources */,
+				32457799238E53A100730F17 /* RSSFeedItemSource.swift in Sources */,
 				32D9954C238D865600208D25 /* AnnouncementsTableViewController.swift in Sources */,
+				32457791238E53A100730F17 /* RSSFeedSkipDay.swift in Sources */,
+				324577CA238E53A200730F17 /* XMLFeedParser.swift in Sources */,
+				324577D0238E53A200730F17 /* Date + codingStrategy.swift in Sources */,
+				324577AC238E53A100730F17 /* MediaTag.swift in Sources */,
 				32457704238E213B00730F17 /* KALoader.swift in Sources */,
+				324577AB238E53A100730F17 /* MediaContent.swift in Sources */,
+				324577CF238E53A200730F17 /* Array + Equatable.swift in Sources */,
+				3245777A238E53A100730F17 /* AtomFeedEntryContent.swift in Sources */,
+				324577CD238E53A200730F17 /* URL + replacingScheme.swift in Sources */,
+				3245778D238E53A100730F17 /* RDFPath.swift in Sources */,
+				324577B2238E53A200730F17 /* MediaPeerLink.swift in Sources */,
+				324577BC238E53A200730F17 /* MediaStatus.swift in Sources */,
+				324577B5238E53A200730F17 /* MediaDescription.swift in Sources */,
+				32457784238E53A100730F17 /* AtomFeedEntrySource.swift in Sources */,
+				324577A7238E53A100730F17 /* MediaTitle.swift in Sources */,
+				324577B7238E53A200730F17 /* MediaScene.swift in Sources */,
+				324577C7238E53A200730F17 /* ParserError.swift in Sources */,
+				324577A2238E53A100730F17 /* ContentNamespace.swift in Sources */,
+				324577BD238E53A200730F17 /* MediaStarRating.swift in Sources */,
+				32457782238E53A100730F17 /* AtomFeedAuthor.swift in Sources */,
 				32D99536238C068D00208D25 /* AppDelegate.swift in Sources */,
+				324577BB238E53A200730F17 /* MediaCategory.swift in Sources */,
 				32D99538238C068D00208D25 /* SceneDelegate.swift in Sources */,
+				32457777238E53A100730F17 /* RFC822DateFormatter.swift in Sources */,
+				324577AF238E53A100730F17 /* MediaGroup.swift in Sources */,
+				324577AE238E53A100730F17 /* MediaLocation.swift in Sources */,
+				32457779238E53A100730F17 /* AtomFeedGenerator.swift in Sources */,
+				324577A6238E53A100730F17 /* MediaHash.swift in Sources */,
+				3245777D238E53A100730F17 /* AtomFeedEntryCategory.swift in Sources */,
 				32457703238E213B00730F17 /* UIView+Extensions.swift in Sources */,
+				3245779C238E53A100730F17 /* SyndicationNamespace.swift in Sources */,
+				324577C1238E53A200730F17 /* JSONFeedAttachment.swift in Sources */,
+				324577A9238E53A100730F17 /* MediaRating.swift in Sources */,
+				324577A3238E53A100730F17 /* DublinCoreNamespace.swift in Sources */,
+				32457795238E53A100730F17 /* RSSFeedItemCategory.swift in Sources */,
+				324577BE238E53A200730F17 /* MediaThumbnail.swift in Sources */,
+				324577C2238E53A200730F17 /* JSONFeedHub.swift in Sources */,
+				32457796238E53A100730F17 /* RSSPath.swift in Sources */,
 				324576FD238E0FB300730F17 /* ContentViewController.swift in Sources */,
+				3245777B238E53A100730F17 /* AtomFeed.swift in Sources */,
+				3245779F238E53A100730F17 /* iTunesNamespace.swift in Sources */,
+				32457778238E53A100730F17 /* ISO8601DateFormatter.swift in Sources */,
+				3245778C238E53A100730F17 /* RSSFeedCategory.swift in Sources */,
+				324577B0238E53A100730F17 /* MediaCommunity.swift in Sources */,
+				324577C8238E53A200730F17 /* JSONFeedParser.swift in Sources */,
+				324577C4238E53A200730F17 /* JSONFeedAuthor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

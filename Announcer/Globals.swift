@@ -22,7 +22,7 @@ let rssURL = URL(string: "\(blogURL)/feeds/posts/default")!
 let jsonCallback = URL(string: "http://studentsblog.sst.edu.sg/feeds/posts/summary?alt=json&max-results")!
 
 // Struct that contains the date, content and title of each post
-struct Post {
+struct Post: Codable {
     var title: String
     var content: String // This content will be a HTML as a String
     var date: Date

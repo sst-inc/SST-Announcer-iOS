@@ -10,10 +10,25 @@ import UIKit
 
 class ContentViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var contentTextField: UITextView!
+    
+    var post: Post!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        
+        // Update labels/textview with data
+        titleLabel.text = post.title
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        
+        dateLabel.text = "Posted on \(dateFormatter.string(from: post.date))"
+        contentTextField.text = post.content
     }
     
     @IBAction func dismiss(_ sender: Any) {

@@ -10,6 +10,18 @@ import UIKit
 
 class AnnouncementTableViewCell: UITableViewCell {
 
+    var post: Post! {
+        didSet {
+            announcementTitleLabel.text = post.title
+            announcementContentLabel.text = post.content
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMM yyyy"
+            
+            announcementDateLabel.text = "Posted on \(dateFormatter.string(from: post.date))"
+        }
+    }
+    
     @IBOutlet weak var announcementTitleLabel: UILabel!
     @IBOutlet weak var announcementContentLabel: UILabel!
     @IBOutlet weak var announcementDateLabel: UILabel!
