@@ -18,13 +18,20 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
 
     #warning("haven't gotten around to fixing pinned items")
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if posts == nil {
+            return 10
+        }
         return posts.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "announcements", for: indexPath) as! AnnouncementTableViewCell
         
-        cell.post = posts[indexPath.row]
+        if posts == nil {
+            cell.startLoader()
+        } else {
+            cell.post = posts[indexPath.row]
+        }
         return cell
     }
     

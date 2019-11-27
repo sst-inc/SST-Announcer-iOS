@@ -11,8 +11,15 @@ import UIKit
 class AnnouncementsViewController: UIViewController {
 
     var selectedItem: Post!
-    var posts: [Post]!
+    var posts: [Post]! {
+        didSet {
+            DispatchQueue.main.async {
+                self.announcementTableView.reloadData()
+            }
+        }
+    }
     
+    @IBOutlet weak var announcementTableView: UITableView!
     @IBOutlet weak var searchField: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
     
@@ -22,7 +29,9 @@ class AnnouncementsViewController: UIViewController {
         // Navigation controller is only used for segue animations
         self.navigationController?.navigationBar.isHidden = true
         
-        posts = fetchBlogPosts()
+        DispatchQueue.global(qos: .background).async {
+            self.posts = fetchBlogPosts()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

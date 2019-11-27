@@ -23,6 +23,7 @@ class AnnouncementTableViewCell: UITableViewCell {
             
             announcementDateLabel.text = "Posted on \(dateFormatter.string(from: post.date))"
             setTitleLabelText()
+            endLoader()
         }
     }
     
@@ -69,5 +70,19 @@ class AnnouncementTableViewCell: UITableViewCell {
         
         announcementTitleLabel.attributedText = attrTitle
     }
-
+    
+    func startLoader() {
+        announcementTitleLabel.showLoader()
+        announcementTitleLabel.text = " "
+        announcementContentLabel.showLoader()
+        announcementContentLabel.text = " "
+        announcementDateLabel.showLoader()
+        announcementDateLabel.text = " "
+    }
+    
+    func endLoader() {
+        announcementTitleLabel.hideLoader()
+        announcementContentLabel.hideLoader()
+        announcementDateLabel.hideLoader()
+    }
 }
