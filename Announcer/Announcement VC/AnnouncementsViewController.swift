@@ -31,9 +31,13 @@ class AnnouncementsViewController: UIViewController {
     // Stores searchresults if searched with tags
     var searchTags = [Post]()
     
+    // Haptics play at each segment when scrolling up
+    var playedHaptic = 0
+    
     @IBOutlet weak var announcementTableView: UITableView!
     @IBOutlet weak var searchField: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var reloadButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,4 +80,13 @@ class AnnouncementsViewController: UIViewController {
         performSegue(withIdentifier: "labels", sender: nil)
     }
 
+    @IBAction func reload(_ sender: Any) {
+        self.posts = nil
+        
+        DispatchQueue.global(qos: .background).async {
+            self.posts = fetchBlogPosts()
+        }
+        
+        print("reloading")
+    }
 }

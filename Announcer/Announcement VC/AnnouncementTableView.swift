@@ -153,19 +153,47 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !searchField.isFirstResponder {
             if scrollView.contentOffset.y <= -150 {
+                let offset = (scrollView.contentOffset.y * -1 - 150) / 100
+                filterButton.alpha = 1
+                searchField.alpha = 1
+                reloadButton.alpha = 1 - offset
+                
+                if playedHaptic != 1 {
+                    let generator = UIImpactFeedbackGenerator(style: .medium)
+                    generator.impactOccurred()
+                }
+                playedHaptic = 1
+            } else if scrollView.contentOffset.y <= -100 {
                 let offset = (scrollView.contentOffset.y * -1 - 100) / 100
                 filterButton.alpha = 1 - offset
                 searchField.alpha = 1
+                reloadButton.alpha = 1
+                
+                if playedHaptic != 2 {
+                    let generator = UIImpactFeedbackGenerator(style: .medium)
+                    generator.impactOccurred()
+                }
+                playedHaptic = 2
             } else if scrollView.contentOffset.y <= -50 {
                 filterButton.alpha = 1
                 let offset = (scrollView.contentOffset.y * -1 - 50) / 100
                 searchField.alpha = 1 - offset
+                reloadButton.alpha = 1
+                
+                if playedHaptic != 3 {
+                    let generator = UIImpactFeedbackGenerator(style: .medium)
+                    generator.impactOccurred()
+                }
+                playedHaptic = 3
             }
         }
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView.contentOffset.y <= -150 {
+            print("reload")
+            reload(UILabel())
+        } else if scrollView.contentOffset.y <= -100 {
             print("Search Bar")
             sortWithLabels(UILabel())
         } else if scrollView.contentOffset.y <= -50 {
@@ -174,5 +202,6 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         }
         filterButton.alpha = 1
         searchField.alpha = 1
+        reloadButton.alpha = 1
     }
 }

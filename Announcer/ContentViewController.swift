@@ -60,7 +60,10 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     @IBAction func sharePost(_ sender: Any) {
-        //Get text of post
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "/yyyy/M/"
+        
+        //We share url not text because text is stupid
         let shareText = post.content.htmlToString
         
         //Create Activity View Controller (Share screen)

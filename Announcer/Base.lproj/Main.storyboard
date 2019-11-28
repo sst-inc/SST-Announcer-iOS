@@ -296,12 +296,24 @@
                                     <action selector="sortWithLabels:" destination="aOG-ux-bHk" eventType="touchUpInside" id="Q6H-aF-743"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUE-AL-bL7">
+                                <rect key="frame" x="371" y="104" width="23" height="27.5"/>
+                                <state key="normal" image="arrow.clockwise" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                    </preferredSymbolConfiguration>
+                                </state>
+                                <connections>
+                                    <action selector="reload:" destination="aOG-ux-bHk" eventType="touchUpInside" id="FhN-EW-0Ys"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="Carlie White"/>
                         <constraints>
                             <constraint firstItem="EzQ-w5-066" firstAttribute="leading" secondItem="Fdc-31-Cyo" secondAttribute="trailing" constant="20" id="6Ih-kc-aLi"/>
                             <constraint firstItem="Fjh-xs-KYN" firstAttribute="top" secondItem="Fdc-31-Cyo" secondAttribute="bottom" id="8B4-SH-dmf"/>
                             <constraint firstAttribute="bottom" secondItem="Fjh-xs-KYN" secondAttribute="bottom" id="8tf-aO-FJh"/>
+                            <constraint firstItem="GUE-AL-bL7" firstAttribute="centerY" secondItem="ST3-El-fJ0" secondAttribute="centerY" id="9K3-BT-EM6"/>
                             <constraint firstItem="KPy-Ki-cZP" firstAttribute="trailing" secondItem="EzQ-w5-066" secondAttribute="trailing" constant="20" id="AV1-yH-Z0a"/>
                             <constraint firstItem="Fdc-31-Cyo" firstAttribute="leading" secondItem="KPy-Ki-cZP" secondAttribute="leading" constant="16" id="BWe-D5-JX8"/>
                             <constraint firstItem="Fdc-31-Cyo" firstAttribute="top" secondItem="ST3-El-fJ0" secondAttribute="bottom" constant="16" id="K1Y-fV-FiY"/>
@@ -311,6 +323,7 @@
                             <constraint firstItem="ST3-El-fJ0" firstAttribute="leading" secondItem="KPy-Ki-cZP" secondAttribute="leading" constant="20" id="adz-lV-CgO"/>
                             <constraint firstItem="KPy-Ki-cZP" firstAttribute="trailing" secondItem="Fjh-xs-KYN" secondAttribute="trailing" id="guu-KS-gGf"/>
                             <constraint firstItem="KPy-Ki-cZP" firstAttribute="trailing" secondItem="ST3-El-fJ0" secondAttribute="trailing" constant="20" id="i3J-rv-slg"/>
+                            <constraint firstItem="KPy-Ki-cZP" firstAttribute="trailing" secondItem="GUE-AL-bL7" secondAttribute="trailing" constant="20" id="rPL-Vu-FJg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KPy-Ki-cZP"/>
                     </view>
@@ -318,6 +331,7 @@
                     <connections>
                         <outlet property="announcementTableView" destination="Fjh-xs-KYN" id="Fhf-4o-MwZ"/>
                         <outlet property="filterButton" destination="EzQ-w5-066" id="XTI-rG-vNz"/>
+                        <outlet property="reloadButton" destination="GUE-AL-bL7" id="sh8-bU-5EM"/>
                         <outlet property="searchField" destination="Fdc-31-Cyo" id="8wt-xK-ucp"/>
                         <segue destination="MQo-jn-rdj" kind="show" identifier="showContent" id="Mw8-WT-t8p"/>
                         <segue destination="a33-wK-9uz" kind="presentation" identifier="labels" id="q5n-5f-y3d"/>
@@ -365,6 +379,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="56" height="64"/>
         <image name="arrow.uturn.left" catalog="system" width="64" height="56"/>
         <image name="clock" catalog="system" width="64" height="60"/>
         <image name="line.horizontal.3.decrease.circle.fill" catalog="system" width="64" height="60"/>
