@@ -17,6 +17,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             if searchFoundInTitle.count == 0 && searchFoundInBody.count == 0 {
                 // No results found in search
                 return 0
+            } else if searchFoundInTitle.count == 0 || searchFoundInBody.count == 0 {
+                return 1
             }
         }
         return 2
@@ -27,6 +29,9 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         if searchField.text != "" {
             // if searchterm is found in title, it appears first
             if section == 0 {
+                if searchFoundInTitle.count == 0 {
+                    return searchFoundInBody.count
+                }
                 return searchFoundInTitle.count
             }
             return searchFoundInBody.count
@@ -55,12 +60,19 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             if searchField.text != "" {
                 // Display Search Results
                 if indexPath.section == 0 {
-                    cell.post = searchFoundInTitle[indexPath.row]
+                    if searchFoundInTitle.count == 0 {
+                        cell.post = searchFoundInBody[indexPath.row]
+                    } else {
+                        cell.post = searchFoundInTitle[indexPath.row]
+                    }
+                    
                 } else {
                     cell.post = searchFoundInBody[indexPath.row]
                 }
+            } else {
+                cell.post = posts[indexPath.row]
             }
-            cell.post = posts[indexPath.row]
+            
             tableView.isScrollEnabled = true
             tableView.allowsSelection = true
         }
@@ -87,6 +99,12 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         
         if searchField.text != "" {
             headers = ["Title", "Body"]
+            
+            if searchFoundInTitle.count == 0 {
+                headers = ["Body"]
+            } else if searchFoundInBody.count == 0 {
+                headers = ["Title"]
+            }
         }
         
         return headers[section]
