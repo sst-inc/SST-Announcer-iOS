@@ -11,7 +11,7 @@ import UIKit
 class SetDateViewController: UIViewController {
 
     let notifManager = LocalNotificationManager()
-    var post = Post!
+    var post: Post!
     
     override func viewDidLoad() {
         super.viewDidLoad()
