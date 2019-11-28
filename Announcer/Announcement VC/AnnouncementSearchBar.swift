@@ -70,7 +70,11 @@ extension AnnouncementsViewController: UISearchBarDelegate {
         searchTags = posts.filter({ (post) -> Bool in
             let tag = getTagsFromSearch(with: searchBar.text!)
             
-            return post.categories.contains(tag)
+            let newCat = post.categories.map { (str) -> String in
+                str.lowercased()
+            }
+            
+            return newCat.contains(tag)
         })
         
         announcementTableView.reloadData()

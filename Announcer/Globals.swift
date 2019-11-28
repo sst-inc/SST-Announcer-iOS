@@ -38,7 +38,6 @@ struct Post: Codable {
     var categories: [String]
 }
 
-#warning("Incomplete implementation")
 // JSON Callback to get all the labels for the blog posts
 func fetchLabels() -> [String] {
     var labels = [String]()
@@ -111,7 +110,7 @@ func getTagsFromSearch(with query: String) -> String {
         var result = split[0]
         result.removeFirst()
         
-        return String(result)
+        return String(result.lowercased())
     }
     return ""
 }
