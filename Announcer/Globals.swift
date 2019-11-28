@@ -21,7 +21,9 @@ let rssURL = URL(string: "\(blogURL)/feeds/posts/default")!
 
 // JSON Callback URL
 // http://studentsblog.sst.edu.sg/feeds/posts/summary?alt=json&max-results=0&callback=cat
-let jsonCallback = URL(string: "http://studentsblog.sst.edu.sg/feeds/posts/summary?alt=json&max-results")!
+let jsonCallback = URL(string: "\(blogURL)/feeds/posts/summary?alt=json&max-results")!
+
+var filter = ""
 
 // Struct that contains the date, content and title of each post
 struct Post: Codable {
@@ -36,20 +38,28 @@ struct Post: Codable {
     var categories: [String]
 }
 
-#warning("Incomplete implementation")
 // JSON Callback to get all the labels for the blog posts
 func fetchLabels() -> [String] {
+    var labels = [String]()
+    
     do {
         let strData = try String(contentsOf: jsonCallback)
+        let split = strData.split(separator: ",")
+        let filtered = split.filter { (value) -> Bool in
+            
+            return value.contains("term")
+        }
         
-        let jsonData = JSON(stringLiteral: strData)
-        print(jsonData)
-//        print(strData)
+        for item in filtered {
+            labels.append(String(item).replacingOccurrences(of: "{\"term\":\"", with: "").replacingOccurrences(of: "\"}", with: "").replacingOccurrences(of: "\\u0026", with: "\u{0026}"))
+        }
+        labels[0].removeFirst("\"category\":[".count)
+        labels[labels.count - 1].removeLast()
     } catch {
         print(error.localizedDescription)
     }
     
-    return []
+    return labels
 }
 
 func fetchBlogPosts() -> [Post] {
@@ -93,6 +103,18 @@ func convertFromEntries(feed: [AtomFeedEntry]) -> [Post] {
     return posts
 }
 
+func getTagsFromSearch(with query: String) -> String {
+    // Tags in search are a mess to deal with
+    if query.first == "[" {
+        let split = query.split(separator: "]")
+        var result = split[0]
+        result.removeFirst()
+        
+        return String(result.lowercased())
+    }
+    return ""
+}
+
 // For displaying data previews and displaying full screen
 extension String {
     var htmlToAttributedString: NSMutableAttributedString? {
@@ -130,5 +152,12 @@ extension String {
     func removeWhitespace() -> String {
         return self.replacingOccurrences(of: " ", with: "")
     }
+    
+    func removeTags() -> String {
+        var str = self
+        str.removeFirst(getTagsFromSearch(with: self).count)
+        return str
+    }
+
 }
 
