@@ -126,5 +126,9 @@ extension String {
         
         return indices
     }
+    
+    func removeWhitespace() -> String {
+        return self.replacingOccurrences(of: " ", with: "")
+    }
 }
 

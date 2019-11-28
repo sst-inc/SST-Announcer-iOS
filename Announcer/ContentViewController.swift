@@ -52,28 +52,7 @@ class ContentViewController: UIViewController {
         
         dateLabel.text = "Posted on \(dateFormatter.string(from: post.date))"
         
-        var attr = post.content.htmlToAttributedString
-        
-        if post.content.contains("<iframe") {
-            //Format and remove all iframes while converting them into attachment links
-            var entireText = post.content
-            attr?.append(NSAttributedString(string: "\n\n"))
-            while entireText.contains("<iframe") {
-                
-                //Find source of embedded content
-                let upperBound = post.content.range(of: "<iframe")
-                let lowerBound = post.content.range(of: "></iframe>")?.lowerBound
-                let nextBound = post.content.range(of: "src=")?.upperBound
-                let iframeText = post.content[(upperBound?.upperBound)!..<lowerBound!]
-                let sourceLink = iframeText[nextBound!...].replacingOccurrences(of: "\"", with: "")
-                
-                //Append embedded content link as attachment links
-                attr?.append(NSAttributedString(string: "[Attachment]: " + sourceLink))
-                
-                //Remove current iframe and move onto next if possible
-                entireText.removeSubrange(upperBound!)
-            }
-        }
+        let attr = post.content.htmlToAttributedString
         
         attr?.addAttribute(.font, value: UIFont.systemFont(ofSize: 15, weight: .medium), range: NSRange.init(location: 0, length: (attr?.length)!))
         
