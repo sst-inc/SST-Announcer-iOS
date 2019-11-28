@@ -18,7 +18,6 @@ class FilterTableViewController: UITableViewController {
         super.viewDidLoad()
         // Get Labels
         labels = fetchLabels().sorted()
-        print(labels)
     }
 
     // MARK: - Table view data source
