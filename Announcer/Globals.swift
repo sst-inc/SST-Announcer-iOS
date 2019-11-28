@@ -152,5 +152,12 @@ extension String {
     func removeWhitespace() -> String {
         return self.replacingOccurrences(of: " ", with: "")
     }
+    
+    func removeTags() -> String {
+        var str = self
+        str.removeFirst(getTagsFromSearch(with: self).count)
+        return str
+    }
+
 }
 
