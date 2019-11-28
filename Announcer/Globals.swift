@@ -39,17 +39,26 @@ struct Post: Codable {
 #warning("Incomplete implementation")
 // JSON Callback to get all the labels for the blog posts
 func fetchLabels() -> [String] {
+    var labels = [String]()
+    
     do {
         let strData = try String(contentsOf: jsonCallback)
+        let split = strData.split(separator: ",")
+        let filtered = split.filter { (value) -> Bool in
+            
+            return value.contains("term")
+        }
         
-        let jsonData = JSON(stringLiteral: strData)
-        print(jsonData)
-//        print(strData)
+        for item in filtered {
+            labels.append(String(item).replacingOccurrences(of: "{\"term\":\"", with: "").replacingOccurrences(of: "\"}", with: ""))
+        }
+        labels[0].removeFirst("\"category\":[".count)
+        labels[labels.count - 1].removeLast()
     } catch {
         print(error.localizedDescription)
     }
     
-    return []
+    return labels
 }
 
 func fetchBlogPosts() -> [Post] {
