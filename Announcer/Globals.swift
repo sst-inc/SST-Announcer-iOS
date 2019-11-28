@@ -21,7 +21,9 @@ let rssURL = URL(string: "\(blogURL)/feeds/posts/default")!
 
 // JSON Callback URL
 // http://studentsblog.sst.edu.sg/feeds/posts/summary?alt=json&max-results=0&callback=cat
-let jsonCallback = URL(string: "http://studentsblog.sst.edu.sg/feeds/posts/summary?alt=json&max-results")!
+let jsonCallback = URL(string: "\(blogURL)/feeds/posts/summary?alt=json&max-results")!
+
+var filter = ""
 
 // Struct that contains the date, content and title of each post
 struct Post: Codable {
@@ -100,6 +102,18 @@ func convertFromEntries(feed: [AtomFeedEntry]) -> [Post] {
         
     }
     return posts
+}
+
+func getTagsFromSearch(with query: String) -> String {
+    // Tags in search are a mess to deal with
+    if query.first == "[" {
+        let split = query.split(separator: "]")
+        var result = split[0]
+        result.removeFirst()
+        
+        return String(result)
+    }
+    return ""
 }
 
 // For displaying data previews and displaying full screen

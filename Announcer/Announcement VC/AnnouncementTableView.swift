@@ -14,12 +14,18 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
 
     func numberOfSections(in tableView: UITableView) -> Int {
         if searchField.text != "" {
-            if searchFoundInTitle.count == 0 && searchFoundInBody.count == 0 {
-                // No results found in search
-                return 0
-            } else if searchFoundInTitle.count == 0 || searchFoundInBody.count == 0 {
-                return 1
+            var sections = 0
+            
+            if searchTags.count > 0 {
+                sections += 1
             }
+            if searchFoundInTitle.count > 0 {
+                sections += 1
+            }
+            if searchFoundInBody.count > 0 {
+                sections += 1
+            }
+            return sections
         }
         return 2
     }
@@ -28,14 +34,29 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         // If the searchfield text is not empty, show search results
         if searchField.text != "" {
             // if searchterm is found in title, it appears first
-            if section == 0 {
-                if searchFoundInTitle.count == 0 {
+            switch section {
+            case 0:
+                if searchTags.count > 0 {
+                    return searchTags.count
+                } else if searchFoundInTitle.count >= 0 {
+                    return searchFoundInTitle.count
+                } else {
                     return searchFoundInBody.count
                 }
-                return searchFoundInTitle.count
+            case 1:
+                if searchTags.count > 0 {
+                    if searchFoundInTitle.count >= 0 {
+                        return searchFoundInTitle.count
+                    } else {
+                        return searchFoundInBody.count
+                    }
+                } else {
+                    return searchFoundInBody.count
+                }
+            default:
+                return searchFoundInBody.count
             }
-            return searchFoundInBody.count
-            
+
         } else {
             #warning("haven't gotten around to fixing pinned items")
             if posts == nil {
@@ -59,16 +80,29 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         } else {
             if searchField.text != "" {
                 // Display Search Results
-                if indexPath.section == 0 {
-                    if searchFoundInTitle.count == 0 {
-                        cell.post = searchFoundInBody[indexPath.row]
-                    } else {
+                switch indexPath.section {
+                case 0:
+                    if searchTags.count > 0 {
+                        cell.post = searchTags[indexPath.row]
+                    } else if searchFoundInTitle.count >= 0 {
                         cell.post = searchFoundInTitle[indexPath.row]
+                    } else {
+                        cell.post = searchFoundInBody[indexPath.row]
                     }
-                    
-                } else {
+                case 1:
+                    if searchTags.count > 0 {
+                        if searchFoundInTitle.count >= 0 {
+                            cell.post = searchFoundInTitle[indexPath.row]
+                        } else {
+                            cell.post = searchFoundInBody[indexPath.row]
+                        }
+                    } else {
+                        cell.post = searchFoundInBody[indexPath.row]
+                    }
+                default:
                     cell.post = searchFoundInBody[indexPath.row]
                 }
+                
             } else {
                 cell.post = posts[indexPath.row]
             }
@@ -98,18 +132,24 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         var headers = ["Pinned", "All Announcements"]
         
         if searchField.text != "" {
-            headers = ["Title", "Content"]
+            headers = []
             
-            if searchFoundInTitle.count == 0 {
-                headers = ["Content"]
-            } else if searchFoundInBody.count == 0 {
-                headers = ["Title"]
+            if searchTags.count > 0 {
+                headers.append("Labels")
             }
+            if searchFoundInTitle.count > 0 {
+                headers.append("Title")
+            }
+            if searchFoundInBody.count > 0 {
+                headers.append("Content")
+            }
+            
         }
         
         return headers[section]
     }
     
+    // MARK: ScrollView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !searchField.isFirstResponder {
             if scrollView.contentOffset.y <= -150 {
