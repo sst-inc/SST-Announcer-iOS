@@ -12,16 +12,70 @@ class SetDateViewController: UIViewController {
 
     let notifManager = LocalNotificationManager()
     var post: Post!
+    var reminderTime: TimeInterval = 0 // in seconds
+    
+    @IBOutlet weak var backgroundRedView: UIView!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    
+    @IBOutlet weak var tomorrowDateLabel: UILabel!
+    @IBOutlet weak var twoDaysDateLabel: UILabel!
+    @IBOutlet weak var nextWeekDateLabel: UILabel!
+    @IBOutlet weak var customDateLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        containerView.layer.cornerRadius = 10
+        doneButton.layer.cornerRadius = 10
+        cancelButton.layer.cornerRadius = 10
+        backgroundRedView.alpha = 0
+        
+        // Load dates in
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E, MMM d, h:mm a"
+        
+        tomorrowDateLabel.text = formatter.string(from: date.addingTimeInterval(86400))
+        twoDaysDateLabel.text = formatter.string(from: date.addingTimeInterval(86400*2))
+        nextWeekDateLabel.text = formatter.string(from: date.addingTimeInterval(86400*7))
+        customDateLabel.text = formatter.string(from: date.addingTimeInterval(86400*30))
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 0.5) {
+            self.backgroundRedView.alpha = 0.75
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+    }
+    
+    @IBAction func doneButtonClicked(_ sender: Any) {
+        // Set notification timing
+        notification(reminderTime)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.backgroundRedView.alpha = 0
+        }) { (_) in
+            self.dismiss(animated: true)
+        }
+    }
+    
+    @IBAction func cancelButtonClicked(_ sender: Any) {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.backgroundRedView.alpha = 0
+        }) { (_) in
+            self.dismiss(animated: true)
+        }
     }
     
     func notification(_ interval: TimeInterval) {
-        var date = Date().addingTimeInterval(interval) // in seconds
-        var dateFormatter = DateFormatter()
+        let date = Date().addingTimeInterval(interval) // in seconds
+        let dateFormatter = DateFormatter()
         
         dateFormatter.dateFormat = "M"
         let month = Int(dateFormatter.string(from: date))!
