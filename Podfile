@@ -6,5 +6,4 @@ target 'Announcer' do
   use_frameworks!
 
   # Pods for Announcer
-  pod 'Firebase/Core'
 end
