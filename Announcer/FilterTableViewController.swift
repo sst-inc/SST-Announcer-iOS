@@ -15,7 +15,8 @@ class FilterTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Get Labels
-        labels = fetchLabels()
+        labels = fetchLabels().sorted()
+        print(labels)
     }
 
     // MARK: - Table view data source
@@ -30,7 +31,7 @@ class FilterTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell", for: indexPath)
-
+        
         cell.textLabel?.text = labels[indexPath.row]
 
         return cell

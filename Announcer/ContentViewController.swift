@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContentViewController: UIViewController {
+class ContentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -73,6 +73,24 @@ class ContentViewController: UIViewController {
         shareViewController.popoverPresentationController?.sourceView = self.view
         self.present(shareViewController, animated: true, completion: nil)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return post.categories.count
+    }
+    
+    // CollectionView contains tags
+    // Each cell is Guan Yellow and
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoriesCollectionViewCell
+        
+        cell.titleLabel.text = post.categories[indexPath.row]
+        cell.backgroundColor = #colorLiteral(red: 0.9689999819, green: 0.875, blue: 0.6389999986, alpha: 1)
+        cell.layer.cornerRadius = 5
+        cell.clipsToBounds = true
+        
+        return cell
+    }
+
     
     @IBAction func dismiss(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

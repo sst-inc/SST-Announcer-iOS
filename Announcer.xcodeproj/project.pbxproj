@@ -110,6 +110,7 @@
 		324577D2238E53A200730F17 /* String + toBool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457772238E53A100730F17 /* String + toBool.swift */; };
 		324577D6238F7F8600730F17 /* AnnouncementSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577D5238F7F8600730F17 /* AnnouncementSearchBar.swift */; };
 		324577D8238F8CC100730F17 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577D7238F8CC100730F17 /* FilterTableViewController.swift */; };
+		324577DA238FA48300730F17 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */; };
 		32D99536238C068D00208D25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99535238C068D00208D25 /* AppDelegate.swift */; };
 		32D99538238C068D00208D25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99537238C068D00208D25 /* SceneDelegate.swift */; };
 		32D9953D238C068D00208D25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953B238C068D00208D25 /* Main.storyboard */; };
@@ -224,6 +225,7 @@
 		32457772238E53A100730F17 /* String + toBool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + toBool.swift"; sourceTree = "<group>"; };
 		324577D5238F7F8600730F17 /* AnnouncementSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementSearchBar.swift; sourceTree = "<group>"; };
 		324577D7238F8CC100730F17 /* FilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
+		324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		32D99532238C068D00208D25 /* SST Announcer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SST Announcer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D99535238C068D00208D25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32D99537238C068D00208D25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				32D99537238C068D00208D25 /* SceneDelegate.swift */,
 				32D99549238C087500208D25 /* GoogleService-Info.plist */,
 				32D9953B238C068D00208D25 /* Main.storyboard */,
+				324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */,
 				324577D7238F8CC100730F17 /* FilterTableViewController.swift */,
 				324576FC238E0FB300730F17 /* ContentViewController.swift */,
 				324576F8238D8E0E00730F17 /* Globals.swift */,
@@ -698,6 +701,7 @@
 				324577CB238E53A200730F17 /* FeedParserProtocol.swift in Sources */,
 				324577D1238E53A200730F17 /* String + toDate.swift in Sources */,
 				324577B6238E53A200730F17 /* MediaParam.swift in Sources */,
+				324577DA238FA48300730F17 /* CategoriesCollectionViewCell.swift in Sources */,
 				32457787238E53A100730F17 /* AtomFeedEntryLink.swift in Sources */,
 				32457790238E53A100730F17 /* RSSFeedImage.swift in Sources */,
 				3245778F238E53A100730F17 /* RSSFeed + mapAttributes.swift in Sources */,

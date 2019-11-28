@@ -50,7 +50,7 @@ func fetchLabels() -> [String] {
         }
         
         for item in filtered {
-            labels.append(String(item).replacingOccurrences(of: "{\"term\":\"", with: "").replacingOccurrences(of: "\"}", with: ""))
+            labels.append(String(item).replacingOccurrences(of: "{\"term\":\"", with: "").replacingOccurrences(of: "\"}", with: "").replacingOccurrences(of: "\\u0026", with: "\u{0026}"))
         }
         labels[0].removeFirst("\"category\":[".count)
         labels[labels.count - 1].removeLast()
