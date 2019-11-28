@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		324576F7238D8DF200730F17 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 324576F6238D8DF200730F17 /* SwiftPackageProductDependency */; };
 		324576F9238D8E0E00730F17 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Globals.swift */; };
 		324576FB238E063500730F17 /* AnnouncementTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576FA238E063500730F17 /* AnnouncementTableView.swift */; };
 		324576FD238E0FB300730F17 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576FC238E0FB300730F17 /* ContentViewController.swift */; };
@@ -241,7 +240,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				324576F7238D8DF200730F17 /* BuildFile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,7 +534,6 @@
 			);
 			name = Announcer;
 			packageProductDependencies = (
-				324576F6238D8DF200730F17 /* SwiftPackageProductDependency */,
 			);
 			productName = Announcer;
 			productReference = 32D99532238C068D00208D25 /* SST Announcer.app */;
@@ -567,7 +564,6 @@
 			);
 			mainGroup = 32D99529238C068D00208D25;
 			packageReferences = (
-				324576F5238D8DF200730F17 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 32D99533238C068D00208D25 /* Products */;
 			projectDirPath = "";
@@ -902,25 +898,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		324576F5238D8DF200730F17 /* RemoteSwiftPackageReference */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		324576F6238D8DF200730F17 /* SwiftPackageProductDependency */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 324576F5238D8DF200730F17 /* RemoteSwiftPackageReference */;
-			productName = SwiftyJSON;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 32D9952A238C068D00208D25 /* Project object */;
 }

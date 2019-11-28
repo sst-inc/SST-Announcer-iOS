@@ -34,7 +34,6 @@ class FilterTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell", for: indexPath) as! FilterTableViewCell
         
-        cell.textLabel?.text = labels[indexPath.row]
         cell.title = labels[indexPath.row]
         
         return cell
