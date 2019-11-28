@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 import SystemConfiguration
 import UserNotifications
 
@@ -26,7 +25,7 @@ let jsonCallback = URL(string: "\(blogURL)/feeds/posts/summary?alt=json&max-resu
 var filter = ""
 
 // Struct that contains the date, content and title of each post
-struct Post: Codable {
+struct Post: Codable, Equatable {
     var title: String
     var content: String // This content will be a HTML as a String
     var date: Date
@@ -130,7 +129,11 @@ extension String {
     }
     
     var htmlToString: String {
-        return htmlToAttributedString?.string ?? ""
+        #if targetEnvironment(macCatalyst)
+            return ""
+        #else
+            return htmlToAttributedString?.string ?? ""
+        #endif
     }
     
     func indicesOf(string: String) -> [Int] {

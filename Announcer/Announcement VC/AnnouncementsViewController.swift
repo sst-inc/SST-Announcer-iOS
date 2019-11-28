@@ -34,6 +34,9 @@ class AnnouncementsViewController: UIViewController {
     // Haptics play at each segment when scrolling up
     var playedHaptic = 0
     
+    // Stores pinned posts
+    var pinned = [Post]()
+    
     @IBOutlet weak var announcementTableView: UITableView!
     @IBOutlet weak var searchField: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
@@ -48,6 +51,8 @@ class AnnouncementsViewController: UIViewController {
         DispatchQueue.global(qos: .background).async {
             self.posts = fetchBlogPosts()
         }
+        
+        pinned = PinnedAnnouncements.loadFromFile() ?? []
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -56,6 +61,10 @@ class AnnouncementsViewController: UIViewController {
         if let vc = segue.destination as? ContentViewController {
             // Send the post over to that vc
             vc.post = selectedItem
+            vc.onDismiss = {
+                self.announcementTableView.reloadData()
+            }
+            
         }
         
         /// Get filter VC
@@ -84,6 +93,7 @@ class AnnouncementsViewController: UIViewController {
         self.posts = nil
         
         DispatchQueue.global(qos: .background).async {
+            self.pinned = PinnedAnnouncements.loadFromFile() ?? []
             self.posts = fetchBlogPosts()
         }
         

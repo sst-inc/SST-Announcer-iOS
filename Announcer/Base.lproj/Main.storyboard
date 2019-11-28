@@ -64,6 +64,9 @@
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                     </preferredSymbolConfiguration>
                                 </state>
+                                <connections>
+                                    <action selector="remindMeLater:" destination="MQo-jn-rdj" eventType="touchUpInside" id="qAG-oJ-Hm2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTt-rq-DZo">
                                 <rect key="frame" x="368" y="153.5" width="26" height="28"/>
@@ -77,6 +80,9 @@
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                                     </preferredSymbolConfiguration>
                                 </state>
+                                <connections>
+                                    <action selector="pinnedItem:" destination="MQo-jn-rdj" eventType="touchUpInside" id="Cee-T3-GuY"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxe-5r-lpJ">
                                 <rect key="frame" x="324" y="108" width="24" height="27"/>
@@ -167,12 +173,29 @@
                     <connections>
                         <outlet property="contentTextField" destination="rym-Zu-BLo" id="osM-YZ-Ciq"/>
                         <outlet property="dateLabel" destination="hqT-8H-aia" id="TPO-pJ-j1f"/>
+                        <outlet property="pinButton" destination="mTt-rq-DZo" id="dwE-Ej-mxn"/>
                         <outlet property="titleLabel" destination="1ZK-Yy-4Eg" id="81g-mC-ZHB"/>
+                        <segue destination="Ca2-ET-6Bf" kind="presentation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="v9H-2n-Vcn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xyf-o6-8Yo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2653.6231884057975" y="138.61607142857142"/>
+        </scene>
+        <!--Set Date View Controller-->
+        <scene sceneID="Npv-CI-t6R">
+            <objects>
+                <viewController id="Ca2-ET-6Bf" customClass="SetDateViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Vl-KO-WKI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Eh0-x0-w4e"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ik-0t-8tF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3364" y="139"/>
         </scene>
         <!--Filter with Labels-->
         <scene sceneID="oL9-kf-sVH">
@@ -227,7 +250,13 @@
                             <outlet property="delegate" destination="zk8-vt-iJy" id="U7B-OC-Q10"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Filter with Labels" id="jDe-Zv-U71"/>
+                    <navigationItem key="navigationItem" title="Filter with Labels" id="jDe-Zv-U71">
+                        <barButtonItem key="leftBarButtonItem" image="arrow.uturn.left" catalog="system" id="cNG-g1-zJf">
+                            <connections>
+                                <action selector="dismiss:" destination="zk8-vt-iJy" id="rBu-2r-fsm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n1R-x6-mgp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -9,12 +9,16 @@
 import UIKit
 
 class ContentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
+    var onDismiss: (() -> Void)?
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contentTextField: UITextView!
+    @IBOutlet weak var pinButton: UIButton!
     
     var post: Post!
+    var isPinned = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +56,27 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         dateLabel.text = "Posted on \(dateFormatter.string(from: post.date))"
         
+        // Render HTML from String
         let attr = post.content.htmlToAttributedString
         
         attr?.addAttribute(.font, value: UIFont.systemFont(ofSize: 15, weight: .medium), range: NSRange.init(location: 0, length: (attr?.length)!))
         
         contentTextField.attributedText = attr
+        
+        // Check if item is pinned
+        // Update the button to show
+        //If is in pinnned
+        let pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
+        
+        if #available(iOS 13, *) {
+            if pinnedItems.contains(post) {
+                isPinned = true
+                pinButton.setImage(UIImage(systemName: "pin.fill")!, for: .normal)
+            } else {
+                isPinned = false
+                pinButton.setImage(UIImage(systemName: "pin")!, for: .normal)
+            }
+        }
     }
     
     @IBAction func sharePost(_ sender: Any) {
@@ -93,20 +113,52 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         return cell
     }
-
+    
     
     @IBAction func dismiss(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func remindMeLater(_ sender: Any) {
+        
     }
-    */
-
+    
+    @IBAction func pinnedItem(_ sender: Any) {
+        //Toggle pin based on context
+        var pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
+        
+        if isPinned {
+            pinnedItems.remove(at: pinnedItems.firstIndex(of: post)!)
+        } else {
+            pinnedItems.append(post)
+        }
+        
+        PinnedAnnouncements.saveToFile(posts: pinnedItems)
+        
+        if #available(iOS 13.0, *) {
+            if pinnedItems.contains(post) {
+                isPinned = true
+                
+                pinButton.setImage(UIImage(systemName: "pin.fill")!, for: .normal)
+            } else {
+                isPinned = false
+                pinButton.setImage(UIImage(systemName: "pin")!, for: .normal)
+            }
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        onDismiss?()
+    }
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
