@@ -13,15 +13,26 @@ class AnnouncementTableViewCell: UITableViewCell {
     var post: Post! {
         // If the post value is changed, set these values to whatever is below in didSet
         didSet {
-            let content: String = {
-                return post.content.htmlToString.replacingOccurrences(of: "\n\n", with: "\n")
-            }()
-            announcementContentLabel.text = content
             
+            // Loading the content takes a while
+            // Converting HTML to String is slow
+            // Do conversion on different thread and update the cell when it's ready
+            // Show loading to user
+            self.announcementContentLabel.text = "Loading Content...\n\n"
+            DispatchQueue.main.async {
+                self.announcementContentLabel.text = self.post.content.htmlToString.replacingOccurrences(of: "\n\n", with: "\n")
+            }
+            
+            // Ensure date is formatted as 22 Oct 2019 using d MMM yyyy
+            // The date is the date posted onto studentsblog
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd MMM yyyy"
+            dateFormatter.dateFormat = "d MMM yyyy"
             
             announcementDateLabel.text = "Posted on \(dateFormatter.string(from: post.date))"
+            
+            // Set attributes of title label
+            // [Square Brackets] all red to highlight things like [Sec 2 students] etc.
+            // Set the text the label
             setTitleLabelText()
             
             // Hide all the loaders

@@ -13,15 +13,40 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     // MARK: - Table view data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
+        if searchField.text != "" {
+            if searchFoundInTitle.count == 0 && searchFoundInBody.count == 0 {
+                // No results found in search
+                return 0
+            } else if searchFoundInTitle.count == 0 || searchFoundInBody.count == 0 {
+                return 1
+            }
+        }
         return 2
     }
 
-    #warning("haven't gotten around to fixing pinned items")
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if posts == nil {
-            return 10
+        // If the searchfield text is not empty, show search results
+        if searchField.text != "" {
+            // if searchterm is found in title, it appears first
+            if section == 0 {
+                if searchFoundInTitle.count == 0 {
+                    return searchFoundInBody.count
+                }
+                return searchFoundInTitle.count
+            }
+            return searchFoundInBody.count
+            
+        } else {
+            #warning("haven't gotten around to fixing pinned items")
+            if posts == nil {
+                return 10
+            }
+            // Maximum of 5 pinned items
+            if section == 0 {
+                return 5
+            }
+            return posts.count
         }
-        return posts.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -29,8 +54,27 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         
         if posts == nil {
             cell.startLoader()
+            tableView.isScrollEnabled = false
+            tableView.allowsSelection = false
         } else {
-            cell.post = posts[indexPath.row]
+            if searchField.text != "" {
+                // Display Search Results
+                if indexPath.section == 0 {
+                    if searchFoundInTitle.count == 0 {
+                        cell.post = searchFoundInBody[indexPath.row]
+                    } else {
+                        cell.post = searchFoundInTitle[indexPath.row]
+                    }
+                    
+                } else {
+                    cell.post = searchFoundInBody[indexPath.row]
+                }
+            } else {
+                cell.post = posts[indexPath.row]
+            }
+            
+            tableView.isScrollEnabled = true
+            tableView.allowsSelection = true
         }
         return cell
     }
@@ -51,7 +95,18 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let headers = ["Pinned", "All Announcements"]
+        var headers = ["Pinned", "All Announcements"]
+        
+        if searchField.text != "" {
+            headers = ["Title", "Content"]
+            
+            if searchFoundInTitle.count == 0 {
+                headers = ["Content"]
+            } else if searchFoundInBody.count == 0 {
+                headers = ["Title"]
+            }
+        }
+        
         return headers[section]
     }
     

@@ -108,13 +108,14 @@
 		324577D0238E53A200730F17 /* Date + codingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457770238E53A100730F17 /* Date + codingStrategy.swift */; };
 		324577D1238E53A200730F17 /* String + toDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457771238E53A100730F17 /* String + toDate.swift */; };
 		324577D2238E53A200730F17 /* String + toBool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457772238E53A100730F17 /* String + toBool.swift */; };
+		324577D6238F7F8600730F17 /* AnnouncementSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577D5238F7F8600730F17 /* AnnouncementSearchBar.swift */; };
 		32D99536238C068D00208D25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99535238C068D00208D25 /* AppDelegate.swift */; };
 		32D99538238C068D00208D25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99537238C068D00208D25 /* SceneDelegate.swift */; };
 		32D9953D238C068D00208D25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953B238C068D00208D25 /* Main.storyboard */; };
 		32D9953F238C068F00208D25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953E238C068F00208D25 /* Assets.xcassets */; };
 		32D99542238C068F00208D25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D99540238C068F00208D25 /* LaunchScreen.storyboard */; };
 		32D9954A238C087500208D25 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32D99549238C087500208D25 /* GoogleService-Info.plist */; };
-		32D9954C238D865600208D25 /* AnnouncementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954B238D865600208D25 /* AnnouncementsTableViewController.swift */; };
+		32D9954C238D865600208D25 /* AnnouncementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954B238D865600208D25 /* AnnouncementsViewController.swift */; };
 		32D9954E238D87D200208D25 /* AnnouncementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -220,6 +221,7 @@
 		32457770238E53A100730F17 /* Date + codingStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date + codingStrategy.swift"; sourceTree = "<group>"; };
 		32457771238E53A100730F17 /* String + toDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + toDate.swift"; sourceTree = "<group>"; };
 		32457772238E53A100730F17 /* String + toBool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + toBool.swift"; sourceTree = "<group>"; };
+		324577D5238F7F8600730F17 /* AnnouncementSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementSearchBar.swift; sourceTree = "<group>"; };
 		32D99532238C068D00208D25 /* SST Announcer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SST Announcer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D99535238C068D00208D25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32D99537238C068D00208D25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -228,7 +230,7 @@
 		32D99541238C068F00208D25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32D99543238C068F00208D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32D99549238C087500208D25 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		32D9954B238D865600208D25 /* AnnouncementsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsTableViewController.swift; sourceTree = "<group>"; };
+		32D9954B238D865600208D25 /* AnnouncementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsViewController.swift; sourceTree = "<group>"; };
 		32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableViewCell.swift; sourceTree = "<group>"; };
 		827D72A5D23028414F2EC68E /* Pods-Announcer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Announcer.release.xcconfig"; path = "Target Support Files/Pods-Announcer/Pods-Announcer.release.xcconfig"; sourceTree = "<group>"; };
 		A432EC983826F26531689284 /* Pods_Announcer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Announcer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -462,6 +464,17 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		324577D4238F7F6D00730F17 /* Announcement VC */ = {
+			isa = PBXGroup;
+			children = (
+				32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */,
+				32D9954B238D865600208D25 /* AnnouncementsViewController.swift */,
+				324576FA238E063500730F17 /* AnnouncementTableView.swift */,
+				324577D5238F7F8600730F17 /* AnnouncementSearchBar.swift */,
+			);
+			path = "Announcement VC";
+			sourceTree = "<group>";
+		};
 		32D99529238C068D00208D25 = {
 			isa = PBXGroup;
 			children = (
@@ -489,11 +502,9 @@
 				32D9953B238C068D00208D25 /* Main.storyboard */,
 				324576FC238E0FB300730F17 /* ContentViewController.swift */,
 				324576F8238D8E0E00730F17 /* Globals.swift */,
-				32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */,
+				324577D4238F7F6D00730F17 /* Announcement VC */,
 				32457707238E53A100730F17 /* FeedKit */,
 				324576FE238E213B00730F17 /* KALoader */,
-				32D9954B238D865600208D25 /* AnnouncementsTableViewController.swift */,
-				324576FA238E063500730F17 /* AnnouncementTableView.swift */,
 				32D9953E238C068F00208D25 /* Assets.xcassets */,
 				32D99540238C068F00208D25 /* LaunchScreen.storyboard */,
 				32D99543238C068F00208D25 /* Info.plist */,
@@ -696,7 +707,7 @@
 				3245779E238E53A100730F17 /* iTunesImage.swift in Sources */,
 				32457786238E53A100730F17 /* AtomFeedEntryAuthor.swift in Sources */,
 				32457799238E53A100730F17 /* RSSFeedItemSource.swift in Sources */,
-				32D9954C238D865600208D25 /* AnnouncementsTableViewController.swift in Sources */,
+				32D9954C238D865600208D25 /* AnnouncementsViewController.swift in Sources */,
 				32457791238E53A100730F17 /* RSSFeedSkipDay.swift in Sources */,
 				324577CA238E53A200730F17 /* XMLFeedParser.swift in Sources */,
 				324577D0238E53A200730F17 /* Date + codingStrategy.swift in Sources */,
@@ -732,6 +743,7 @@
 				324577A9238E53A100730F17 /* MediaRating.swift in Sources */,
 				324577A3238E53A100730F17 /* DublinCoreNamespace.swift in Sources */,
 				32457795238E53A100730F17 /* RSSFeedItemCategory.swift in Sources */,
+				324577D6238F7F8600730F17 /* AnnouncementSearchBar.swift in Sources */,
 				324577BE238E53A200730F17 /* MediaThumbnail.swift in Sources */,
 				324577C2238E53A200730F17 /* JSONFeedHub.swift in Sources */,
 				32457796238E53A100730F17 /* RSSPath.swift in Sources */,

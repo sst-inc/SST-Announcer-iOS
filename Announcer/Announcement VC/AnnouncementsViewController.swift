@@ -9,8 +9,11 @@
 import UIKit
 
 class AnnouncementsViewController: UIViewController {
-
+    
+    // Store the selected post found on didSelect
     var selectedItem: Post!
+    
+    // Stores all post for this viewcontroller
     var posts: [Post]! {
         didSet {
             DispatchQueue.main.async {
@@ -18,6 +21,12 @@ class AnnouncementsViewController: UIViewController {
             }
         }
     }
+    
+    // Stores searchresults in the title
+    var searchFoundInTitle = [Post]()
+    
+    // Stores searchresults in body of post
+    var searchFoundInBody = [Post]()
     
     @IBOutlet weak var announcementTableView: UITableView!
     @IBOutlet weak var searchField: UISearchBar!
