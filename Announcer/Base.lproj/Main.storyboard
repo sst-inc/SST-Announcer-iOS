@@ -182,7 +182,7 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Fjh-xs-KYN">
-                                <rect key="frame" x="0.0" y="223.5" width="414" height="672.5"/>
+                                <rect key="frame" x="0.0" y="203.5" width="414" height="692.5"/>
                                 <color key="backgroundColor" name="Carlie White"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="announcements" id="Lbq-1h-jZ4" customClass="AnnouncementTableViewCell" customModule="SST_Announcer" customModuleProvider="target">
@@ -251,7 +251,7 @@
                         <color key="backgroundColor" name="Carlie White"/>
                         <constraints>
                             <constraint firstItem="EzQ-w5-066" firstAttribute="leading" secondItem="Fdc-31-Cyo" secondAttribute="trailing" constant="20" id="6Ih-kc-aLi"/>
-                            <constraint firstItem="Fjh-xs-KYN" firstAttribute="top" secondItem="Fdc-31-Cyo" secondAttribute="bottom" constant="20" id="8B4-SH-dmf"/>
+                            <constraint firstItem="Fjh-xs-KYN" firstAttribute="top" secondItem="Fdc-31-Cyo" secondAttribute="bottom" id="8B4-SH-dmf"/>
                             <constraint firstAttribute="bottom" secondItem="Fjh-xs-KYN" secondAttribute="bottom" id="8tf-aO-FJh"/>
                             <constraint firstItem="KPy-Ki-cZP" firstAttribute="trailing" secondItem="EzQ-w5-066" secondAttribute="trailing" constant="20" id="AV1-yH-Z0a"/>
                             <constraint firstItem="Fdc-31-Cyo" firstAttribute="leading" secondItem="KPy-Ki-cZP" secondAttribute="leading" constant="16" id="BWe-D5-JX8"/>
