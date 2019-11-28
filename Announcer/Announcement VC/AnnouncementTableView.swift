@@ -98,10 +98,10 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         var headers = ["Pinned", "All Announcements"]
         
         if searchField.text != "" {
-            headers = ["Title", "Body"]
+            headers = ["Title", "Content"]
             
             if searchFoundInTitle.count == 0 {
-                headers = ["Body"]
+                headers = ["Content"]
             } else if searchFoundInBody.count == 0 {
                 headers = ["Title"]
             }

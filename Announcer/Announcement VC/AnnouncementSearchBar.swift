@@ -20,18 +20,18 @@ extension AnnouncementsViewController: UISearchBarDelegate {
     // Seach results automatically reloads when value changed
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchFoundInTitle = posts.filter { (post) -> Bool in
-            let newTitle = post.title.removeWhitespace()
+            let newTitle = post.title.removeWhitespace().lowercased()
             
-            if newTitle.contains(searchText.removeWhitespace()) {
+            if newTitle.contains(searchText.removeWhitespace().lowercased()) {
                 return true
             }
             return false
         }
         
         searchFoundInBody = posts.filter { (post) -> Bool in
-            let newContent = post.content.removeWhitespace()
+            let newContent = post.content.removeWhitespace().lowercased()
             
-            if newContent.contains(searchText.removeWhitespace()) {
+            if newContent.contains(searchText.removeWhitespace().lowercased()) {
                 return true
             }
             return false
