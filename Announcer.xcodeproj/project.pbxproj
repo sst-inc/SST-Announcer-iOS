@@ -120,6 +120,7 @@
 		32D99542238C068F00208D25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D99540238C068F00208D25 /* LaunchScreen.storyboard */; };
 		32D9954C238D865600208D25 /* AnnouncementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954B238D865600208D25 /* AnnouncementsViewController.swift */; };
 		32D9954E238D87D200208D25 /* AnnouncementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */; };
+		32E9B4D923A3D86F000F769F /* AnnouncementPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -240,6 +241,7 @@
 		32D99543238C068F00208D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32D9954B238D865600208D25 /* AnnouncementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsViewController.swift; sourceTree = "<group>"; };
 		32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableViewCell.swift; sourceTree = "<group>"; };
+		32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementPreviewing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -473,6 +475,7 @@
 			children = (
 				32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */,
 				32D9954B238D865600208D25 /* AnnouncementsViewController.swift */,
+				32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */,
 				324576FA238E063500730F17 /* AnnouncementTableView.swift */,
 				324577D5238F7F8600730F17 /* AnnouncementSearchBar.swift */,
 			);
@@ -649,6 +652,7 @@
 				32D9954E238D87D200208D25 /* AnnouncementTableViewCell.swift in Sources */,
 				3245779B238E53A100730F17 /* SyndicationUpdatePeriod.swift in Sources */,
 				324577BA238E53A200730F17 /* MediaText.swift in Sources */,
+				32E9B4D923A3D86F000F769F /* AnnouncementPreviewing.swift in Sources */,
 				324577A4238E53A100730F17 /* MediaLicence.swift in Sources */,
 				32457798238E53A100730F17 /* RSSFeedItemEnclosure.swift in Sources */,
 				32C65274239017E500C698F2 /* PinnedAnnouncements.swift in Sources */,

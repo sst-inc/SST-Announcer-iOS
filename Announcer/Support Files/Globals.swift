@@ -63,7 +63,7 @@ func fetchLabels() -> [String] {
     return labels
 }
 
-func fetchBlogPosts() -> [Post] {
+func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
     let parser = FeedParser(URL: rssURL)
     let result = parser.parse()
     
@@ -75,6 +75,26 @@ func fetchBlogPosts() -> [Post] {
         return convertFromEntries(feed: (feed?.entries!)!)
     case .failure(let error):
         print(error.localizedDescription)
+        // Present alert
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Uh Oh :(", message: "Slow or no internet connection.\nPlease check your settings and try again", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
+                vc.reload(UILabel())
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Open in Settings", style: .default, handler: { action in
+                let url = URL(string: "App-Prefs:root=")!
+                UIApplication.shared.open(url, options: [:]) { (success) in
+                    print(success)
+                }
+            }))
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
+                
+            }))
+            
+            vc.present(alert, animated: true, completion: nil)
+        }
     }
     
     return []
@@ -131,6 +151,7 @@ extension String {
     }
     
     var htmlToString: String {
+        // MacOS Catalyst does not work properly
         #if targetEnvironment(macCatalyst)
         return ""
         #else

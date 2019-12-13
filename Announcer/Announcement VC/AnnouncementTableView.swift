@@ -110,7 +110,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             } else {
                 if pinned.count != 0 && indexPath.section == 0 {
                     cell.post = pinned[indexPath.row]
-                } else {
+                } else if posts.count != 0  {
                     cell.post = posts[indexPath.row]
                 }
             }
@@ -133,7 +133,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        performSegue(withIdentifier: "showContent", sender: nil)
+        let vc = getContentViewController(for: indexPath)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -217,12 +218,13 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         action.backgroundColor = UIColor(named: "Guan Yellow")
         return action
     }
-
+    
     
     // MARK: ScrollView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        #if targetEnvironment(macCatalyst)
-        #else
+        if #available(iOS 13.0, *) {
+            #if targetEnvironment(macCatalyst)
+            #else
             if !searchField.isFirstResponder {
                 if scrollView.contentOffset.y <= -150 {
                     let offset = (scrollView.contentOffset.y * -1 - 150) / 100
@@ -231,7 +233,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     reloadButton.tintColor = UIColor(named: "Global Tint")! + UIColor(named: "Carl and Shannen")! * offset
                     
                     if playedHaptic != 1 {
-                        let generator = UIImpactFeedbackGenerator(style: .medium)
+                        let generator = UIImpactFeedbackGenerator(style: .heavy)
                         generator.impactOccurred()
                     }
                     playedHaptic = 1
@@ -242,7 +244,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     reloadButton.tintColor = UIColor(named: "Global Tint")
                     
                     if playedHaptic != 2 {
-                        let generator = UIImpactFeedbackGenerator(style: .medium)
+                        let generator = UIImpactFeedbackGenerator(style: .light)
                         generator.impactOccurred()
                     }
                     playedHaptic = 2
@@ -253,13 +255,17 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     reloadButton.tintColor = UIColor(named: "Global Tint")
                     
                     if playedHaptic != 3 {
-                        let generator = UIImpactFeedbackGenerator(style: .medium)
+                        
+                        let generator = UIImpactFeedbackGenerator(style: .rigid)
                         generator.impactOccurred()
                     }
                     playedHaptic = 3
                 }
             }
-        #endif
+            #endif
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

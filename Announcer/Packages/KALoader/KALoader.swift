@@ -13,9 +13,9 @@ internal class KALoaderView: UIView {
   /// Constants
   private let gradientWidth: CGFloat = 0.2
   private let gradientStop: CGFloat = 0.1
-  private let backGrayColor = UIColor(red: 246.0 / 255, green: 246.0 / 255, blue: 246.0 / 255, alpha: 1.0)
-  private let firstLoadColor = UIColor(red: 222.0 / 255, green: 222.0 / 255, blue: 222.0 / 255, alpha: 1.0)
-  private let secondLoadColor = UIColor(red: 221.0 / 255, green: 221.0 / 255, blue: 221.0 / 255, alpha: 1.0)
+  private let backGrayColor = UIColor(named: "Back Gray Color")!
+  private let firstLoadColor = UIColor(named: "First Load Color")!
+  private let secondLoadColor = UIColor(named: "Second Load Color")!
     private let fillMode: String = CAMediaTimingFillMode.forwards.rawValue
   private var gradientAnimationDuration: TimeInterval = 0.7
   private var gradientLayer: CAGradientLayer!

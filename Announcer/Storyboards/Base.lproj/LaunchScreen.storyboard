@@ -90,7 +90,7 @@
         <image name="arrow.clockwise" catalog="system" width="56" height="64"/>
         <image name="line.horizontal.3.decrease.circle.fill" catalog="system" width="64" height="60"/>
         <namedColor name="Carlie White">
-            <color red="0.96100002527236938" green="0.9570000171661377" blue="0.9649999737739563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.96078431372549022" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <color key="tintColor" name="Global Tint"/>

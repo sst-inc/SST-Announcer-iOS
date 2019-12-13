@@ -62,6 +62,14 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         let attr = post.content.htmlToAttributedString
         
         attr?.addAttribute(.font, value: UIFont.systemFont(ofSize: 15, weight: .medium), range: NSRange.init(location: 0, length: (attr?.length)!))
+        attr?.addAttribute(.backgroundColor, value: UIColor.clear, range: NSRange(location: 0, length: (attr?.length)!))
+        
+        // Optimising for iOS 13 dark mode
+        if #available(iOS 13.0, *) {
+            attr?.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: (attr?.length)!))
+        } else {
+            
+        }
         
         contentTextField.attributedText = attr
         
@@ -88,6 +96,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         
         contentTextField.delegate = self
+        
     }
     
     @IBAction func sharePost(_ sender: Any) {
@@ -177,10 +186,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
                 }) {
                     self.remindMeLaterButton.setImage(UIImage(named: "clock.fill"), for: .normal)
                 }
-                
             }
         }
      }
-     
-    
 }

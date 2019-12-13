@@ -48,29 +48,21 @@ class AnnouncementsViewController: UIViewController {
         // Navigation controller is only used for segue animations
         self.navigationController?.navigationBar.isHidden = true
         
+        // Fetch Blog Posts
         DispatchQueue.global(qos: .background).async {
-            self.posts = fetchBlogPosts()
+            self.posts = fetchBlogPosts(self)
         }
         
+        // Load Pinned Comments
         pinned = PinnedAnnouncements.loadFromFile() ?? []
+        
+        searchField.setTextField(color: UIColor(named: "Carlie White")!)
+        
+        registerForPreviewing(with: self, sourceView: announcementTableView)
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        // Get Content VC
-        if let vc = segue.destination as? ContentViewController {
-            // Send the post over to that vc
-            vc.post = selectedItem
-            vc.onDismiss = {
-                DispatchQueue.main.async {
-                    self.announcementTableView.reloadData()
-                    self.reload(UILabel())
-                }
-                
-            }
-            
-        }
-        
         /// Get filter VC
         // Use an if let to ensure we are referring to the correct viewcontroller
         // We need go through a navigation controller layer
@@ -98,7 +90,7 @@ class AnnouncementsViewController: UIViewController {
         
         DispatchQueue.global(qos: .background).async {
             self.pinned = PinnedAnnouncements.loadFromFile() ?? []
-            self.posts = fetchBlogPosts()
+            self.posts = fetchBlogPosts(self)
         }
         
         print("reloading")
