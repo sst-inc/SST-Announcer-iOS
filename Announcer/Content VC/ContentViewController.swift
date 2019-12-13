@@ -8,14 +8,16 @@
 
 import UIKit
 
-class ContentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ContentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextViewDelegate {
     
     var onDismiss: (() -> Void)?
+    let notifManager = LocalNotificationManager()
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contentTextField: UITextView!
     @IBOutlet weak var pinButton: UIButton!
+    @IBOutlet weak var remindMeLaterButton: UIButton!
     
     var post: Post!
     var isPinned = false
@@ -77,6 +79,15 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
                 pinButton.setImage(UIImage(systemName: "pin")!, for: .normal)
             }
         }
+        
+        // Set up Remind Me Later
+        if self.notifManager.notifications.contains(where: { (notif) -> Bool in
+            notif.title == "Announcer Reminder" && notif.body == self.post.title
+        }) {
+            self.remindMeLaterButton.setImage(UIImage(named: "clock.fill"), for: .normal)
+        }
+        
+        contentTextField.delegate = self
     }
     
     @IBAction func sharePost(_ sender: Any) {
@@ -107,7 +118,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoriesCollectionViewCell
         
         cell.titleLabel.text = post.categories[indexPath.row]
-        cell.backgroundColor = #colorLiteral(red: 0.9689999819, green: 0.875, blue: 0.6389999986, alpha: 1)
+        cell.backgroundColor = UIColor(named: "Guan Yellow")
         cell.layer.cornerRadius = 5
         cell.clipsToBounds = true
         
@@ -160,6 +171,16 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
      // Pass the selected object to the new view controller.
         if let dest = segue.destination as? SetDateViewController {
             dest.post = post
+            dest.onDismiss = {
+                if self.notifManager.listScheduledNotifications().contains(where: { (notif) -> Bool in
+                    let newNotif: UNNotificationRequest = notif
+                    return newNotif.content.title == "Announcer Reminder" && newNotif.content.body == self.post.title
+                    
+                }) {
+                    self.remindMeLaterButton.setImage(UIImage(named: "clock.fill"), for: .normal)
+                }
+                
+            }
         }
      }
      

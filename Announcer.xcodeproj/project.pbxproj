@@ -500,25 +500,65 @@
 			isa = PBXGroup;
 			children = (
 				32C6527223900DC100C698F2 /* SST Announcer.entitlements */,
-				32D99535238C068D00208D25 /* AppDelegate.swift */,
-				32D99537238C068D00208D25 /* SceneDelegate.swift */,
-				32D9953B238C068D00208D25 /* Main.storyboard */,
-				32C65273239017E500C698F2 /* PinnedAnnouncements.swift */,
-				324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */,
-				324577DB238FA77000730F17 /* FilterTableViewCell.swift */,
-				32C652752390273700C698F2 /* Notifications.swift */,
-				324577D7238F8CC100730F17 /* FilterTableViewController.swift */,
-				324576FC238E0FB300730F17 /* ContentViewController.swift */,
-				324576F8238D8E0E00730F17 /* Globals.swift */,
-				32C65277239046FD00C698F2 /* SetDateViewController.swift */,
+				32E9B4D323A38D7A000F769F /* Support Files */,
+				32E9B4D423A38D88000F769F /* Storyboards */,
+				32E9B4D123A38D3C000F769F /* Content VC */,
+				32E9B4D223A38D4E000F769F /* Filter VC */,
 				324577D4238F7F6D00730F17 /* Announcement VC */,
-				32457707238E53A100730F17 /* FeedKit */,
-				324576FE238E213B00730F17 /* KALoader */,
-				32D9953E238C068F00208D25 /* Assets.xcassets */,
-				32D99540238C068F00208D25 /* LaunchScreen.storyboard */,
+				32E9B4D523A38D9A000F769F /* Packages */,
 				32D99543238C068F00208D25 /* Info.plist */,
 			);
 			path = Announcer;
+			sourceTree = "<group>";
+		};
+		32E9B4D123A38D3C000F769F /* Content VC */ = {
+			isa = PBXGroup;
+			children = (
+				324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */,
+				324576FC238E0FB300730F17 /* ContentViewController.swift */,
+				32C65277239046FD00C698F2 /* SetDateViewController.swift */,
+			);
+			path = "Content VC";
+			sourceTree = "<group>";
+		};
+		32E9B4D223A38D4E000F769F /* Filter VC */ = {
+			isa = PBXGroup;
+			children = (
+				324577DB238FA77000730F17 /* FilterTableViewCell.swift */,
+				324577D7238F8CC100730F17 /* FilterTableViewController.swift */,
+			);
+			path = "Filter VC";
+			sourceTree = "<group>";
+		};
+		32E9B4D323A38D7A000F769F /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				32D99535238C068D00208D25 /* AppDelegate.swift */,
+				32D99537238C068D00208D25 /* SceneDelegate.swift */,
+				32C65273239017E500C698F2 /* PinnedAnnouncements.swift */,
+				32C652752390273700C698F2 /* Notifications.swift */,
+				324576F8238D8E0E00730F17 /* Globals.swift */,
+				32D9953E238C068F00208D25 /* Assets.xcassets */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		32E9B4D423A38D88000F769F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				32D9953B238C068D00208D25 /* Main.storyboard */,
+				32D99540238C068F00208D25 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		32E9B4D523A38D9A000F769F /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				32457707238E53A100730F17 /* FeedKit */,
+				324576FE238E213B00730F17 /* KALoader */,
+			);
+			path = Packages;
 			sourceTree = "<group>";
 		};
 		F60E238002C508C5CE0166E8 /* Pods */ = {
@@ -859,7 +899,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Announcer/SST Announcer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = XL5JK4F896;
+				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Announcer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -881,7 +921,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Announcer/SST Announcer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = XL5JK4F896;
+				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Announcer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (

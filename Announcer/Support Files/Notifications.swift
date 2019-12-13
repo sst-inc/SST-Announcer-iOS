@@ -31,14 +31,19 @@ class LocalNotificationManager
         }
     }
     
-    func listScheduledNotifications()
+    func listScheduledNotifications() -> [UNNotificationRequest]
     {
+        
+        var allNotif = [UNNotificationRequest]()
         UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
             
             for notification in notifications {
                 print(notification)
+                allNotif.append(notification)
             }
         }
+        
+        return allNotif
     }
     
     func schedule() {

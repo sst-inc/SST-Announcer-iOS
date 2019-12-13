@@ -214,7 +214,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             //Complete
             completionHandler(true)
         }
-        action.backgroundColor = #colorLiteral(red: 0.9689999819, green: 0.875, blue: 0.6389999986, alpha: 1)
+        action.backgroundColor = UIColor(named: "Guan Yellow")
         return action
     }
 
@@ -226,9 +226,9 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             if !searchField.isFirstResponder {
                 if scrollView.contentOffset.y <= -150 {
                     let offset = (scrollView.contentOffset.y * -1 - 150) / 100
-                    filterButton.alpha = 1
-                    searchField.alpha = 1
-                    reloadButton.alpha = 1 - offset
+                    filterButton.tintColor = UIColor(named: "Global Tint")
+                    searchField.setTextField(color: UIColor(named: "Carlie White")!)
+                    reloadButton.tintColor = UIColor(named: "Global Tint")! + UIColor(named: "Carl and Shannen")! * offset
                     
                     if playedHaptic != 1 {
                         let generator = UIImpactFeedbackGenerator(style: .medium)
@@ -237,9 +237,9 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     playedHaptic = 1
                 } else if scrollView.contentOffset.y <= -100 {
                     let offset = (scrollView.contentOffset.y * -1 - 100) / 100
-                    filterButton.alpha = 1 - offset
-                    searchField.alpha = 1
-                    reloadButton.alpha = 1
+                    filterButton.tintColor = UIColor(named: "Global Tint")! + UIColor(named: "Carl and Shannen")! * offset
+                    searchField.setTextField(color: UIColor(named: "Carlie White")!)
+                    reloadButton.tintColor = UIColor(named: "Global Tint")
                     
                     if playedHaptic != 2 {
                         let generator = UIImpactFeedbackGenerator(style: .medium)
@@ -247,10 +247,10 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     }
                     playedHaptic = 2
                 } else if scrollView.contentOffset.y <= -50 {
-                    filterButton.alpha = 1
+                    filterButton.tintColor = UIColor(named: "Global Tint")
                     let offset = (scrollView.contentOffset.y * -1 - 50) / 100
-                    searchField.alpha = 1 - offset
-                    reloadButton.alpha = 1
+                    searchField.setTextField(color: UIColor(named: "Carlie White")! + UIColor(named: "Carl and Shannen")! * offset)
+                    reloadButton.tintColor = UIColor(named: "Global Tint")
                     
                     if playedHaptic != 3 {
                         let generator = UIImpactFeedbackGenerator(style: .medium)
@@ -276,9 +276,12 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 print("Filter Button")
                 searchField.becomeFirstResponder()
             }
-            filterButton.alpha = 1
-            searchField.alpha = 1
-            reloadButton.alpha = 1
+            filterButton.tintColor = UIColor(named: "Global Tint")
+            searchField.setTextField(color: UIColor(named: "Carlie White")!)
+            reloadButton.tintColor = UIColor(named: "Global Tint")
         #endif
     }
+    
+    
+    
 }
