@@ -156,9 +156,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
                 pinButton.setImage(UIImage(systemName: "pin")!, for: .normal)
             }
         }
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
+        
         onDismiss?()
     }
     

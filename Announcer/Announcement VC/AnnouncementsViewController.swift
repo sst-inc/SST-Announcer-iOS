@@ -62,7 +62,11 @@ class AnnouncementsViewController: UIViewController {
             // Send the post over to that vc
             vc.post = selectedItem
             vc.onDismiss = {
-                self.announcementTableView.reloadData()
+                DispatchQueue.main.async {
+                    self.announcementTableView.reloadData()
+                    self.reload(UILabel())
+                }
+                
             }
             
         }
