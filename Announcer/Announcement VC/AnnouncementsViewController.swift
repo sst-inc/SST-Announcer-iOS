@@ -58,8 +58,10 @@ class AnnouncementsViewController: UIViewController {
         
         searchField.setTextField(color: UIColor(named: "Carlie White")!)
         
-        registerForPreviewing(with: self, sourceView: announcementTableView)
-
+        if #available(iOS 13.0, *) {} else {
+            // Fallback on earlier versions
+            registerForPreviewing(with: self, sourceView: announcementTableView)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

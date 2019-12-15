@@ -28,8 +28,10 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             return sections
         }
         
-        if pinned.count == 0 {
+        if pinned.count == 0 || posts == nil || posts.count == 0 {
             return 1
+        } else if pinned.count == 0 && posts.count == 0 {
+            return 0
         }
         return 2
     }
@@ -115,9 +117,15 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 }
             }
             
+            if #available(iOS 13.0, *) {
+                let interaction = UIContextMenuInteraction(delegate: self)
+                cell.addInteraction(interaction)
+            }
+            
             tableView.isScrollEnabled = true
             tableView.allowsSelection = true
         }
+        
         return cell
     }
     

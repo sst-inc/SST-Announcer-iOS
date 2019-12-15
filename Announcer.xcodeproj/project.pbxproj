@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -121,7 +121,35 @@
 		32D9954C238D865600208D25 /* AnnouncementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954B238D865600208D25 /* AnnouncementsViewController.swift */; };
 		32D9954E238D87D200208D25 /* AnnouncementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */; };
 		32E9B4D923A3D86F000F769F /* AnnouncementPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */; };
+		32E9B4E123A53F40000F769F /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E9B4E023A53F40000F769F /* NotificationService.swift */; };
+		32E9B4E523A53F40000F769F /* AnnouncerNotificationsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 32E9B4DE23A53F40000F769F /* AnnouncerNotificationsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		562A9BEB93A4CDB5792FD79A /* libPods-Announcer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C57A4AE12E53367FA68A217 /* libPods-Announcer.a */; platformFilter = ios; };
+		DF517D1326E50B8CF2EAE25B /* libPods-AnnouncerNotificationsExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8EDFAB18ECD92B88CC3E48B /* libPods-AnnouncerNotificationsExtension.a */; platformFilter = ios; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		32E9B4E323A53F40000F769F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32D9952A238C068D00208D25 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 32E9B4DD23A53F40000F769F;
+			remoteInfo = AnnouncerNotificationsExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		32E9B4E623A53F40000F769F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				32E9B4E523A53F40000F769F /* AnnouncerNotificationsExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		324576F8238D8E0E00730F17 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
@@ -242,6 +270,16 @@
 		32D9954B238D865600208D25 /* AnnouncementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsViewController.swift; sourceTree = "<group>"; };
 		32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableViewCell.swift; sourceTree = "<group>"; };
 		32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementPreviewing.swift; sourceTree = "<group>"; };
+		32E9B4DE23A53F40000F769F /* AnnouncerNotificationsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AnnouncerNotificationsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		32E9B4E023A53F40000F769F /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		32E9B4E223A53F40000F769F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32E9B4EA23A540AA000F769F /* AnnouncerNotificationsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnnouncerNotificationsExtension.entitlements; sourceTree = "<group>"; };
+		4C57A4AE12E53367FA68A217 /* libPods-Announcer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Announcer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		85558855F0269C88AC6B03AF /* Pods-Announcer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Announcer.debug.xcconfig"; path = "Target Support Files/Pods-Announcer/Pods-Announcer.debug.xcconfig"; sourceTree = "<group>"; };
+		A4867305E9242A1A21948435 /* Pods-AnnouncerNotificationsExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnnouncerNotificationsExtension.debug.xcconfig"; path = "Target Support Files/Pods-AnnouncerNotificationsExtension/Pods-AnnouncerNotificationsExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		A80158056CD2534C54A2AB21 /* Pods-Announcer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Announcer.release.xcconfig"; path = "Target Support Files/Pods-Announcer/Pods-Announcer.release.xcconfig"; sourceTree = "<group>"; };
+		B8EDFAB18ECD92B88CC3E48B /* libPods-AnnouncerNotificationsExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnnouncerNotificationsExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC152EB410CF72FE570A74FD /* Pods-AnnouncerNotificationsExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnnouncerNotificationsExtension.release.xcconfig"; path = "Target Support Files/Pods-AnnouncerNotificationsExtension/Pods-AnnouncerNotificationsExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,12 +287,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				562A9BEB93A4CDB5792FD79A /* libPods-Announcer.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32E9B4DB23A53F40000F769F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF517D1326E50B8CF2EAE25B /* libPods-AnnouncerNotificationsExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2872A23A99F4B96DE42DB98B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4C57A4AE12E53367FA68A217 /* libPods-Announcer.a */,
+				B8EDFAB18ECD92B88CC3E48B /* libPods-AnnouncerNotificationsExtension.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		324576FE238E213B00730F17 /* KALoader */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,8 +542,10 @@
 			isa = PBXGroup;
 			children = (
 				32D99534238C068D00208D25 /* Announcer */,
+				32E9B4DF23A53F40000F769F /* AnnouncerNotificationsExtension */,
 				32D99533238C068D00208D25 /* Products */,
 				F60E238002C508C5CE0166E8 /* Pods */,
+				2872A23A99F4B96DE42DB98B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -495,6 +553,7 @@
 			isa = PBXGroup;
 			children = (
 				32D99532238C068D00208D25 /* SST Announcer.app */,
+				32E9B4DE23A53F40000F769F /* AnnouncerNotificationsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -564,9 +623,23 @@
 			path = Packages;
 			sourceTree = "<group>";
 		};
+		32E9B4DF23A53F40000F769F /* AnnouncerNotificationsExtension */ = {
+			isa = PBXGroup;
+			children = (
+				32E9B4EA23A540AA000F769F /* AnnouncerNotificationsExtension.entitlements */,
+				32E9B4E023A53F40000F769F /* NotificationService.swift */,
+				32E9B4E223A53F40000F769F /* Info.plist */,
+			);
+			path = AnnouncerNotificationsExtension;
+			sourceTree = "<group>";
+		};
 		F60E238002C508C5CE0166E8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				85558855F0269C88AC6B03AF /* Pods-Announcer.debug.xcconfig */,
+				A80158056CD2534C54A2AB21 /* Pods-Announcer.release.xcconfig */,
+				A4867305E9242A1A21948435 /* Pods-AnnouncerNotificationsExtension.debug.xcconfig */,
+				FC152EB410CF72FE570A74FD /* Pods-AnnouncerNotificationsExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -578,20 +651,39 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 32D99546238C068F00208D25 /* Build configuration list for PBXNativeTarget "Announcer" */;
 			buildPhases = (
+				A0EA9DF596EA407BB465D467 /* [CP] Check Pods Manifest.lock */,
 				32D9952E238C068D00208D25 /* Sources */,
 				32D9952F238C068D00208D25 /* Frameworks */,
 				32D99530238C068D00208D25 /* Resources */,
+				32E9B4E623A53F40000F769F /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				32E9B4E423A53F40000F769F /* PBXTargetDependency */,
+			);
+			name = Announcer;
+			productName = Announcer;
+			productReference = 32D99532238C068D00208D25 /* SST Announcer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		32E9B4DD23A53F40000F769F /* AnnouncerNotificationsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32E9B4E923A53F40000F769F /* Build configuration list for PBXNativeTarget "AnnouncerNotificationsExtension" */;
+			buildPhases = (
+				7D3D425AED315571BDE4EB09 /* [CP] Check Pods Manifest.lock */,
+				32E9B4DA23A53F40000F769F /* Sources */,
+				32E9B4DB23A53F40000F769F /* Frameworks */,
+				32E9B4DC23A53F40000F769F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Announcer;
-			packageProductDependencies = (
-			);
-			productName = Announcer;
-			productReference = 32D99532238C068D00208D25 /* SST Announcer.app */;
-			productType = "com.apple.product-type.application";
+			name = AnnouncerNotificationsExtension;
+			productName = AnnouncerNotificationsExtension;
+			productReference = 32E9B4DE23A53F40000F769F /* AnnouncerNotificationsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -606,6 +698,9 @@
 					32D99531238C068D00208D25 = {
 						CreatedOnToolsVersion = 11.3;
 					};
+					32E9B4DD23A53F40000F769F = {
+						CreatedOnToolsVersion = 11.3;
+					};
 				};
 			};
 			buildConfigurationList = 32D9952D238C068D00208D25 /* Build configuration list for PBXProject "Announcer" */;
@@ -617,13 +712,12 @@
 				Base,
 			);
 			mainGroup = 32D99529238C068D00208D25;
-			packageReferences = (
-			);
 			productRefGroup = 32D99533238C068D00208D25 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				32D99531238C068D00208D25 /* Announcer */,
+				32E9B4DD23A53F40000F769F /* AnnouncerNotificationsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -639,7 +733,61 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		32E9B4DC23A53F40000F769F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7D3D425AED315571BDE4EB09 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AnnouncerNotificationsExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0EA9DF596EA407BB465D467 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Announcer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		32D9952E238C068D00208D25 /* Sources */ = {
@@ -760,7 +908,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		32E9B4DA23A53F40000F769F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32E9B4E123A53F40000F769F /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		32E9B4E423A53F40000F769F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 32E9B4DD23A53F40000F769F /* AnnouncerNotificationsExtension */;
+			targetProxy = 32E9B4E323A53F40000F769F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		32D9953B238C068D00208D25 /* Main.storyboard */ = {
@@ -898,7 +1062,9 @@
 		};
 		32D99547238C068F00208D25 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85558855F0269C88AC6B03AF /* Pods-Announcer.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Announcer/SST Announcer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -920,7 +1086,9 @@
 		};
 		32D99548238C068F00208D25 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A80158056CD2534C54A2AB21 /* Pods-Announcer.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Announcer/SST Announcer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -935,6 +1103,52 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer;
 				PRODUCT_NAME = "SST Announcer";
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		32E9B4E723A53F40000F769F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4867305E9242A1A21948435 /* Pods-AnnouncerNotificationsExtension.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = AnnouncerNotificationsExtension/AnnouncerNotificationsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7K6ZTDFM48;
+				INFOPLIST_FILE = AnnouncerNotificationsExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer.AnnouncerNotificationsExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		32E9B4E823A53F40000F769F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC152EB410CF72FE570A74FD /* Pods-AnnouncerNotificationsExtension.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = AnnouncerNotificationsExtension/AnnouncerNotificationsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7K6ZTDFM48;
+				INFOPLIST_FILE = AnnouncerNotificationsExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer.AnnouncerNotificationsExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -957,6 +1171,15 @@
 			buildConfigurations = (
 				32D99547238C068F00208D25 /* Debug */,
 				32D99548238C068F00208D25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32E9B4E923A53F40000F769F /* Build configuration list for PBXNativeTarget "AnnouncerNotificationsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32E9B4E723A53F40000F769F /* Debug */,
+				32E9B4E823A53F40000F769F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
