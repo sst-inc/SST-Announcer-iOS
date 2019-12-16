@@ -122,7 +122,7 @@
 		32D9954E238D87D200208D25 /* AnnouncementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */; };
 		32E9B4D923A3D86F000F769F /* AnnouncementPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */; };
 		32E9B4E123A53F40000F769F /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E9B4E023A53F40000F769F /* NotificationService.swift */; };
-		32E9B4E523A53F40000F769F /* AnnouncerNotificationsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 32E9B4DE23A53F40000F769F /* AnnouncerNotificationsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		32E9B4E523A53F40000F769F /* AnnouncerNotificationsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 32E9B4DE23A53F40000F769F /* AnnouncerNotificationsExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		562A9BEB93A4CDB5792FD79A /* libPods-Announcer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C57A4AE12E53367FA68A217 /* libPods-Announcer.a */; platformFilter = ios; };
 		DF517D1326E50B8CF2EAE25B /* libPods-AnnouncerNotificationsExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8EDFAB18ECD92B88CC3E48B /* libPods-AnnouncerNotificationsExtension.a */; platformFilter = ios; };
 /* End PBXBuildFile section */
@@ -921,6 +921,7 @@
 /* Begin PBXTargetDependency section */
 		32E9B4E423A53F40000F769F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 32E9B4DD23A53F40000F769F /* AnnouncerNotificationsExtension */;
 			targetProxy = 32E9B4E323A53F40000F769F /* PBXContainerItemProxy */;
 		};

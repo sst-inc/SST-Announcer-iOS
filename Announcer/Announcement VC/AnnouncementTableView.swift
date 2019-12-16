@@ -14,23 +14,34 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if searchField.text != "" {
+            // The user is searching, sections should be based on search
+            // If no results, the section count will be 0
             var sections = 0
             
+            // Check if searchTags has anything, if so, add 1
             if searchTags.count > 0 {
                 sections += 1
             }
+            
+            // Check if search found in title has anything, if so, add 1
             if searchFoundInTitle.count > 0 {
                 sections += 1
             }
+            
+            // Check if search found in body has anything, if so, add 1
             if searchFoundInBody.count > 0 {
                 sections += 1
             }
             return sections
         }
         
+        // If posts == nil, it is loading.
+        // Return 1 segment for loading animations
         if pinned.count == 0 || posts == nil || posts.count == 0 {
             return 1
         } else if pinned.count == 0 && posts.count == 0 {
+            // It gave up pulling data from the feed
+            // There's probably no wifi
             return 0
         }
         return 2
