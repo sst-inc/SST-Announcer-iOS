@@ -13,16 +13,21 @@ class NotificationService: UNNotificationServiceExtension {
 
     var contentHandler: ((UNNotificationContent) -> Void)?
     var bestAttemptContent: UNMutableNotificationContent?
-
+    // RSS URL
+    let rssURL = URL(string: "http://studentsblog.sst.edu.sg/feeds/posts/default")!
+    
+    
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
         
         if let bestAttemptContent = bestAttemptContent {
             // Modify the notification content here...
-            bestAttemptContent.title = "\(bestAttemptContent.title) [modified]"
-            
-            contentHandler(bestAttemptContent)
+            if UserDefaults.standard.string(forKey: "previous notif") != fetchNotificationsTitle() && fetchNotificationsTitle() != "error"{
+                bestAttemptContent.title = "\(bestAttemptContent.title)"
+                bestAttemptContent.body = fetchNotificationsTitle()
+                contentHandler(bestAttemptContent)
+            }
         }
     }
     
@@ -33,5 +38,27 @@ class NotificationService: UNNotificationServiceExtension {
             contentHandler(bestAttemptContent)
         }
     }
+
+    func fetchNotificationsTitle() -> String {
+        let parser = FeedParser(URL: rssURL)
+        let result = parser.parse()
+        
+        switch result {
+        case .success(let feed):
+            print(feed)
+            let feed = feed.atomFeed
+            return convertFromEntries(feed: (feed?.entries!)!)
+        case .failure(let error):
+            return "error"
+        }
+    }
+
+
+    // Convert Enteries to Posts
+    func convertFromEntries(feed: [AtomFeedEntry]) -> String{
+        return feed.first?.title ?? ""
+    }
+
+
 
 }

@@ -100,6 +100,21 @@ func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
     return []
 }
 
+func fetchNotificationsTitle(_ vc: AnnouncementsViewController) -> String {
+    let parser = FeedParser(URL: rssURL)
+    let result = parser.parse()
+    
+    switch result {
+    case .success(let feed):
+        print(feed)
+        let feed = feed.atomFeed
+        return convertFromEntries(feed: (feed?.entries!)!).first!.title
+    case .failure(let error):
+        return "Check your wifi\n\(error.localizedDescription)"
+    }
+}
+
+
 // Convert Enteries to Posts
 func convertFromEntries(feed: [AtomFeedEntry]) -> [Post] {
     var posts = [Post]()
