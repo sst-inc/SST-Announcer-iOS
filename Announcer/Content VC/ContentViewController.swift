@@ -7,17 +7,17 @@
 //
 
 import UIKit
+import SafariServices
 
 class ContentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextViewDelegate {
     
     var onDismiss: (() -> Void)?
-    let notifManager = LocalNotificationManager()
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contentTextField: UITextView!
     @IBOutlet weak var pinButton: UIButton!
-    @IBOutlet weak var remindMeLaterButton: UIButton!
+    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     
     var post: Post!
     var isPinned = false
@@ -78,6 +78,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         //If is in pinnned
         let pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
         
+        // Fill/Don't fill pin
         if #available(iOS 13, *) {
             if pinnedItems.contains(post) {
                 isPinned = true
@@ -88,29 +89,22 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
         }
         
-        // Set up Remind Me Later
-        if self.notifManager.notifications.contains(where: { (notif) -> Bool in
-            notif.title == "Announcer Reminder" && notif.body == self.post.title
-        }) {
-            self.remindMeLaterButton.setImage(UIImage(named: "clock.fill"), for: .normal)
-        }
-        
+        // Set textField delegate
         contentTextField.delegate = self
         
+        // Hide the tags if there are none
+        if post.categories.count == 0 {
+            collectionViewHeightConstraint.constant = 0
+        }
     }
     
     @IBAction func sharePost(_ sender: Any) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "/yyyy/M/"
-        
-        //We share url not text because text is stupid
-        let shareText = post.content.htmlToString
         
         //Create Activity View Controller (Share screen)
-        let shareViewController = UIActivityViewController.init(activityItems: [shareText], applicationActivities: nil)
+        let shareViewController = UIActivityViewController.init(activityItems: [getShareURL(with: post)], applicationActivities: [])
         
         //Remove unneeded actions
-        shareViewController.excludedActivityTypes = [.saveToCameraRoll, .addToReadingList]
+        shareViewController.excludedActivityTypes = [.addToReadingList]
         
         //Present share sheet
         shareViewController.popoverPresentationController?.sourceView = self.view
@@ -139,10 +133,6 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func remindMeLater(_ sender: Any) {
-        self.performSegue(withIdentifier: "remindMeLater", sender: nil)
-    }
-    
     @IBAction func pinnedItem(_ sender: Any) {
         //Toggle pin based on context
         var pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
@@ -169,6 +159,10 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         onDismiss?()
     }
     
+    @IBAction func openPostInSafari(_ sender: Any) {
+        let vc = SFSafariViewController(url: getShareURL(with: post))
+        present(vc, animated: true, completion: nil)
+    }
     
      // MARK: - Navigation
      
@@ -179,13 +173,6 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         if let dest = segue.destination as? SetDateViewController {
             dest.post = post
             dest.onDismiss = {
-                if self.notifManager.listScheduledNotifications().contains(where: { (notif) -> Bool in
-                    let newNotif: UNNotificationRequest = notif
-                    return newNotif.content.title == "Announcer Reminder" && newNotif.content.body == self.post.title
-                    
-                }) {
-                    self.remindMeLaterButton.setImage(UIImage(named: "clock.fill"), for: .normal)
-                }
             }
         }
      }

@@ -32,8 +32,6 @@ extension AnnouncementsViewController: UIViewControllerPreviewingDelegate {
         }
         let cell = announcementTableView.cellForRow(at: indexPath) as! AnnouncementTableViewCell
         
-        selectedItem = cell.post
-        
         vc.post = selectedItem
         vc.onDismiss = {
             DispatchQueue.main.async {
@@ -55,7 +53,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
     // Menu should contain Open announcements, Unpin / Pin, Share
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         let cell = interaction.view as! AnnouncementTableViewCell
-
+        
         let actionProvider: ([UIMenuElement]) -> UIMenu? = { _ in // menu elements from responder chain if any
             // Creating actions…
             // Checking if the current post is pinned
@@ -65,55 +63,53 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                 // If the post is pinned, set it to unpin
                 pinned ? "Unpin" : "Pin"
             }(),
-                                       image: {
-                                        // Setting different image based the state of the post (pinned or unpinned)
-                                           pinned ? UIImage(systemName: "pin.fill")! : UIImage(systemName: "pin")!
-                                       }(),
-                                       identifier: nil,
-                                       discoverabilityTitle: nil,
-                                       attributes: [],
-                                       state: .off) { (_) in
-                                        print("tapped")
-                                        
-                                        // Pin / Unpin post
-                                        // Pull pinned items from the file (load the latest version)
-                                        var pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
-                                        
-                                        if pinned {
-                                            // Unpin post
-                                            pinnedItems.remove(at: pinnedItems.firstIndex(of: cell.post)!)
-                                        } else {
-                                            // Pin post
-                                            pinnedItems.append(cell.post)
-                                        }
-                                        
-                                        // Write back to the file
-                                        PinnedAnnouncements.saveToFile(posts: pinnedItems)
-                                        
-                                        // Reload the local pinned variable
-                                        self.pinned = PinnedAnnouncements.loadFromFile() ?? []
-                                        
-                                        // Reload TableView to show the new pinned / unpinned post
-                                        self.announcementTableView.reloadData()
+                               image: {
+                                // Setting different image based the state of the post (pinned or unpinned)
+                                pinned ? UIImage(systemName: "pin.fill")! : UIImage(systemName: "pin")!
+            }(),
+                               identifier: nil,
+                               discoverabilityTitle: nil,
+                               attributes: [],
+                               state: .off) { (_) in
+                                print("tapped")
+                                
+                                // Pin / Unpin post
+                                // Pull pinned items from the file (load the latest version)
+                                var pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
+                                
+                                if pinned {
+                                    // Unpin post
+                                    pinnedItems.remove(at: pinnedItems.firstIndex(of: cell.post)!)
+                                } else {
+                                    // Pin post
+                                    pinnedItems.append(cell.post)
+                                }
+                                
+                                // Write back to the file
+                                PinnedAnnouncements.saveToFile(posts: pinnedItems)
+                                
+                                // Reload the local pinned variable
+                                self.pinned = PinnedAnnouncements.loadFromFile() ?? []
+                                
+                                // Reload TableView to show the new pinned / unpinned post
+                                self.announcementTableView.reloadData()
             }
             
             let share = UIAction(title: "Share",
-                                             image: UIImage(systemName: "square.and.arrow.up"),
-                                             identifier: nil,
-                                             discoverabilityTitle: nil,
-                                             attributes: [],
-                                             state: .off) { (_) in
-                                                let shareText = cell.post.content.htmlToString
-                                                
-                                                //Create Activity View Controller (Share screen)
-                                                let shareViewController = UIActivityViewController.init(activityItems: [shareText], applicationActivities: nil)
-                                                
-                                                //Remove unneeded actions
-                                                shareViewController.excludedActivityTypes = [.saveToCameraRoll, .addToReadingList]
-                                                
-                                                //Present share sheet
-                                                shareViewController.popoverPresentationController?.sourceView = self.view
-                                                self.present(shareViewController, animated: true, completion: nil)
+                                 image: UIImage(systemName: "square.and.arrow.up"),
+                                 identifier: nil,
+                                 discoverabilityTitle: nil,
+                                 attributes: [],
+                                 state: .off) { (_) in
+                                    //Create Activity View Controller (Share screen)
+                                    let shareViewController = UIActivityViewController.init(activityItems: [getShareURL(with: cell.post)], applicationActivities: nil)
+                                    
+                                    //Remove unneeded actions
+                                    shareViewController.excludedActivityTypes = [.saveToCameraRoll, .addToReadingList]
+                                    
+                                    //Present share sheet
+                                    shareViewController.popoverPresentationController?.sourceView = self.view
+                                    self.present(shareViewController, animated: true, completion: nil)
             }
             
             let open = UIAction(title: "Open Announcement",
@@ -123,9 +119,14 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                 attributes: [], state: .off) { (_) in
                                     self.selectedItem = cell.post
                                     
+                                    // Appending posts to read posts
+                                    var readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
+                                    readAnnouncements.append(cell.post)
+                                    ReadAnnouncements.saveToFile(posts: readAnnouncements)
+                                    
                                     let vc = self.getContentViewControllerThroughPreview(with: cell.post)
                                     self.navigationController?.pushViewController(vc, animated: true)
-
+                                    
             }
             return UIMenu(title: "",
                           image: nil,
@@ -135,8 +136,8 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
         }
         return UIContextMenuConfiguration(identifier: "my identifier" as NSCopying,
                                           previewProvider: { () -> UIViewController? in
-                                              self.getContentViewControllerThroughPreview(with: cell.post)
-                                          },
+                                            self.getContentViewControllerThroughPreview(with: cell.post)
+        },
                                           actionProvider: actionProvider)
         
     }
@@ -144,6 +145,11 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
         let cell = interaction.view as! AnnouncementTableViewCell
         self.selectedItem = cell.post
+        
+        // Appending posts to read posts
+        var readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
+        readAnnouncements.append(cell.post)
+        ReadAnnouncements.saveToFile(posts: readAnnouncements)
         
         let vc = self.getContentViewControllerThroughPreview(with: cell.post)
         self.navigationController?.pushViewController(vc, animated: true)
@@ -165,5 +171,5 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
         
         return vc
     }
-
+    
 }

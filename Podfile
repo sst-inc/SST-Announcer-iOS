@@ -6,9 +6,12 @@ target 'Announcer' do
   # use_frameworks!
 
   # Pods for Announcer
-  pod 'OneSignal', '>= 2.11.2', '< 3.0'
+  # Add the Firebase pod for Google Analytics
+  pod 'Firebase/Analytics'
+  
+  # Add the pod for Firebase Cloud Messaging
+  pod 'Firebase/Messaging'
 end
 
 target 'AnnouncerNotificationsExtension' do
-  pod 'OneSignal', '>= 2.11.2', '< 3.0'
 end

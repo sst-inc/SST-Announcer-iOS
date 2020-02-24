@@ -1,5 +1,5 @@
 //
-//  PinnedAnnouncements.swift
+//  ReadAnnouncements.swift
 //  Announcer
 //
 //  Created by JiaChen(: on 28/11/19.
@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class PinnedAnnouncements: Codable {
+class ReadAnnouncements: Codable {
     static func getArchiveURL() -> URL {
-        let plistName = "pinned"
+        let plistName = "read"
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         return documentsDirectory.appendingPathComponent(plistName).appendingPathExtension("plist")
     }

@@ -288,7 +288,7 @@ class SetDateViewController: UIViewController {
         let second = Int(dateFormatter.string(from: date))!
         
         self.notifManager.notifications = [
-            Notification(
+            NotificationStruct(
                 id: "\(post.title)",
                 title: "Announcer Reminder",
                 body: "\(post.title)",

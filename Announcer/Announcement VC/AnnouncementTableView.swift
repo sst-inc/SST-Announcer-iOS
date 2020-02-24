@@ -75,14 +75,16 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             }
             
         } else {
-            // Loading screen
-            if posts == nil {
-                return 10
-            }
             // Maximum of 5 pinned items
             if section == 0 && pinned.count != 0 {
                 return pinned.count
             }
+            
+            // Loading screen
+            if posts == nil {
+                return 10
+            }
+            
             return posts.count
         }
     }
@@ -151,6 +153,11 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         selectedItem = cell.post
         
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        // Appending posts to read posts
+        var readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
+        readAnnouncements.append(cell.post)
+        ReadAnnouncements.saveToFile(posts: readAnnouncements)
         
         let vc = getContentViewController(for: indexPath)
         navigationController?.pushViewController(vc, animated: true)
@@ -247,9 +254,16 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             if !searchField.isFirstResponder {
                 if scrollView.contentOffset.y <= -150 {
                     let offset = (scrollView.contentOffset.y * -1 - 150) / 100
-                    filterButton.tintColor = UIColor(named: "Global Tint")
-                    searchField.setTextField(color: UIColor(named: "Carlie White")!)
-                    reloadButton.tintColor = UIColor(named: "Global Tint")! + UIColor(named: "Carl and Shannen")! * offset
+//                    filterButton.tintColor = UIColor(named: "Carl and Shannen")!
+                    filterButton.layer.borderWidth = 0
+                    filterButton.layer.borderColor = borderColor
+                    
+//                    searchField.setTextField(color: UIColor(named: "Carlie White")!)
+                    searchField.getTextField()?.layer.borderWidth = 0
+                    searchField.getTextField()?.layer.borderColor = borderColor
+//                    reloadButton.tintColor = UIColor(named: "Carl and Shannen")! + .systemRed * offset
+                    reloadButton.layer.borderWidth = 25 * offset
+                    reloadButton.layer.borderColor = borderColor
                     
                     if playedHaptic != 1 {
                         let generator = UIImpactFeedbackGenerator(style: .heavy)
@@ -258,27 +272,47 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     playedHaptic = 1
                 } else if scrollView.contentOffset.y <= -100 {
                     let offset = (scrollView.contentOffset.y * -1 - 100) / 100
-                    filterButton.tintColor = UIColor(named: "Global Tint")! + UIColor(named: "Carl and Shannen")! * offset
-                    searchField.setTextField(color: UIColor(named: "Carlie White")!)
-                    reloadButton.tintColor = UIColor(named: "Global Tint")
+//                    filterButton.tintColor = UIColor(named: "Global Tint")! + .systemRed * offset
+                    filterButton.layer.borderWidth = 25 * offset
+                    filterButton.layer.borderColor = borderColor
+                    
+//                    searchField.setTextField(color: UIColor(named: "Carlie White")!)
+                    searchField.getTextField()?.layer.borderWidth = 0
+                    searchField.getTextField()?.layer.borderColor = borderColor
+//                    reloadButton.tintColor = UIColor(named: "Carl and Shannen")!
+                    reloadButton.layer.borderWidth = 0
+                    reloadButton.layer.borderColor = borderColor
                     
                     if playedHaptic != 2 {
-                        let generator = UIImpactFeedbackGenerator(style: .light)
+                        let generator = UIImpactFeedbackGenerator(style: .medium)
                         generator.impactOccurred()
                     }
                     playedHaptic = 2
                 } else if scrollView.contentOffset.y <= -50 {
-                    filterButton.tintColor = UIColor(named: "Global Tint")
+//                    filterButton.tintColor = UIColor(named: "Carl and Shannen")!
+                    filterButton.layer.borderWidth = 0
+                    filterButton.layer.borderColor = borderColor
+                    
                     let offset = (scrollView.contentOffset.y * -1 - 50) / 100
-                    searchField.setTextField(color: UIColor(named: "Carlie White")! + UIColor(named: "Carl and Shannen")! * offset)
-                    reloadButton.tintColor = UIColor(named: "Global Tint")
+//                    searchField.setTextField(color: UIColor(named: "Carlie White")! + .systemRed * offset)
+                    searchField.getTextField()?.layer.borderWidth = 40 * offset
+                    searchField.getTextField()?.clipsToBounds = false
+                    searchField.getTextField()?.superview?.clipsToBounds = false
+                    searchField.clipsToBounds = false
+                    searchField.getTextField()?.layer.borderColor = borderColor
+//                    reloadButton.tintColor = UIColor(named: "Carl and Shannen")!
+                    reloadButton.layer.borderWidth = 0
+                    reloadButton.layer.borderColor = borderColor
                     
                     if playedHaptic != 3 {
                         
-                        let generator = UIImpactFeedbackGenerator(style: .rigid)
+                        let generator = UIImpactFeedbackGenerator(style: .light)
                         generator.impactOccurred()
                     }
                     playedHaptic = 3
+                } else {
+                    resetScroll()
+                    playedHaptic = 0
                 }
             }
             #endif
@@ -291,6 +325,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         #if targetEnvironment(macCatalyst)
             print("oh")
         #else
+            resetScroll()
             if scrollView.contentOffset.y <= -150 {
                 print("reload")
                 reload(UILabel())
@@ -300,13 +335,21 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             } else if scrollView.contentOffset.y <= -50 {
                 print("Filter Button")
                 searchField.becomeFirstResponder()
+                searchField.getTextField()?.layer.borderWidth = 0
             }
-            filterButton.tintColor = UIColor(named: "Global Tint")
+            filterButton.tintColor = UIColor(named: "Carl and Shannen")
             searchField.setTextField(color: UIColor(named: "Carlie White")!)
-            reloadButton.tintColor = UIColor(named: "Global Tint")
+            reloadButton.tintColor = UIColor(named: "Carl and Shannen")
+        
+            resetScroll()
         #endif
     }
     
+    func resetScroll() {
+        filterButton.layer.borderWidth = 0
+        searchField.getTextField()?.layer.borderWidth = 0
+        reloadButton.layer.borderWidth = 0
+    }
     
     
 }

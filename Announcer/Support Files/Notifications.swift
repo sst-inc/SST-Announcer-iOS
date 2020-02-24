@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import UserNotifications
 
-struct Notification {
+struct NotificationStruct {
     var id:String
     var title:String
     var body:String
@@ -19,7 +19,7 @@ struct Notification {
 
 class LocalNotificationManager
 {
-    var notifications = [Notification]()
+    var notifications = [NotificationStruct]()
     
     private func requestAuthorization()
     {

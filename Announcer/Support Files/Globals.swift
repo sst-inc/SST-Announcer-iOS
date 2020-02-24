@@ -10,10 +10,11 @@ import Foundation
 import SystemConfiguration
 import UserNotifications
 import UIKit
+import BackgroundTasks
 
 // Blog URL
-// should be https://studentsblog.sst.edu.sg unless testing
-#warning("Make sure the blog URL is correct on launch")
+// should be http://studentsblog.sst.edu.sg unless testing
+// Test blog https://testannouncer.blogspot.com
 let blogURL = "http://studentsblog.sst.edu.sg"
 
 // RSS URL
@@ -54,8 +55,12 @@ func fetchLabels() -> [String] {
         for item in filtered {
             labels.append(String(item).replacingOccurrences(of: "{\"term\":\"", with: "").replacingOccurrences(of: "\"}", with: "").replacingOccurrences(of: "\\u0026", with: "\u{0026}"))
         }
-        labels[0].removeFirst("\"category\":[".count)
-        labels[labels.count - 1].removeLast()
+        
+        if labels != [] {
+            labels[0].removeFirst("\"category\":[".count)
+            labels[labels.count - 1].removeLast()
+        }
+        
     } catch {
         print(error.localizedDescription)
     }
@@ -151,26 +156,52 @@ func getTagsFromSearch(with query: String) -> String {
     return ""
 }
 
+func getShareURL(with post: Post) -> URL {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "/yyyy/MM/"
+    
+    //We share url not text because text is stupid
+    var shareLink = ""
+    
+    let formatted = post.title.filter { (a) -> Bool in
+        a.isLetter || a.isNumber || a.isWhitespace
+    }.lowercased()
+    let split = formatted.split(separator: " ")
+    
+    for i in split {
+        if shareLink.count + i.count < 40 {
+            shareLink += i + "-"
+        } else {
+            break
+        }
+    }
+    shareLink.removeLast()
+    
+    // 40 chars
+    shareLink = blogURL + dateFormatter.string(from: post.date) + shareLink + ".html"
+    
+    return URL(string: shareLink) ?? URL(string: blogURL)!
+}
+
 // For displaying data previews and displaying full screen
 extension String {
     var htmlToAttributedString: NSMutableAttributedString? {
         do {
             return try NSMutableAttributedString(data: Data(utf8),
-                                          options: [.documentType: NSAttributedString.DocumentType.html,
-                                                    .characterEncoding: String.Encoding.utf8.rawValue],
-                                          documentAttributes: nil)
+                                                 options: [.documentType: NSAttributedString.DocumentType.html],
+                                                 documentAttributes: nil)
         } catch {
             print("error: ", error.localizedDescription)
-            return nil
+            return NSMutableAttributedString(string: "error: " + error.localizedDescription)
         }
     }
     
     var htmlToString: String {
         // MacOS Catalyst does not work properly
         #if targetEnvironment(macCatalyst)
-        return ""
+            return ""
         #else
-            return htmlToAttributedString?.string ?? ""
+            return (htmlToAttributedString ?? NSAttributedString(string: "")).string.condenseLinebreaks()
         #endif
     }
     
@@ -199,7 +230,30 @@ extension String {
         str.removeFirst(getTagsFromSearch(with: self).count)
         return str
     }
-
+    
+    func condenseWhitespace() -> String {
+        let components = self.components(separatedBy: CharacterSet.whitespacesAndNewlines)
+        return components.filter { !$0.isEmpty }.joined(separator: " ")
+    }
+    
+    func condenseLinebreaks() -> String {
+        let split = self.split(separator: "\n")
+        var isLinebreak = false
+        var returnString = ""
+        
+        for i in split {
+            if i == "\n" {
+                if !isLinebreak {
+                    isLinebreak = true
+                    returnString += "\n"
+                }
+            } else {
+                isLinebreak = false
+                returnString.append(i + "\n")
+            }
+        }
+        return returnString
+    }
 }
 
 extension UIColor {

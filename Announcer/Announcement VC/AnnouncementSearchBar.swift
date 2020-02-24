@@ -42,7 +42,7 @@ extension AnnouncementsViewController: UISearchBarDelegate {
                     // [] colors will be Carl and Shannen
                     // @shannen why these color names man
                     
-                    let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor(named: "Carl and Shannen")!, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)]
+                    let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)]
                     
                     attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 1))
                 }

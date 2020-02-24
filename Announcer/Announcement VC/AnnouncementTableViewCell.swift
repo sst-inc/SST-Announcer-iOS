@@ -18,9 +18,20 @@ class AnnouncementTableViewCell: UITableViewCell {
             // Converting HTML to String is slow
             // Do conversion on different thread and update the cell when it's ready
             // Show loading to user
-            self.announcementContentLabel.text = "Loading Content...\n\n"
+            
+            if #available(iOS 13.0, *) {
+                let str = NSMutableAttributedString.init(string: "")
+                str.append(NSAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "arrow.clockwise")!)))
+                str.append(NSAttributedString(string: "\tLoading Content...\n\n"))
+                self.announcementContentLabel.attributedText = str
+            } else {
+                // Fallback on earlier versions
+                self.announcementContentLabel.text = "Loading Content...\n\n"
+            }
+            
             DispatchQueue.main.async {
-                self.announcementContentLabel.text = self.post.content.htmlToString.replacingOccurrences(of: "\n\n", with: "\n")
+                self.announcementContentLabel.text = self.post.content.htmlToString
+                // self.post.content.htmlToString.replacingOccurrences(of: "\n\n", with: "\n")
             }
             
             // Ensure date is formatted as 22 Oct 2019 using d MMM yyyy
@@ -29,6 +40,30 @@ class AnnouncementTableViewCell: UITableViewCell {
             dateFormatter.dateFormat = "d MMM yyyy"
             
             announcementDateLabel.text = "Posted on \(dateFormatter.string(from: post.date))"
+            
+            let pinned = PinnedAnnouncements.loadFromFile()
+            
+            if pinned?.contains(post) ?? false {
+                announcementImageView.isHidden = false
+                if #available(iOS 13.0, *) {
+                    announcementImageView.image = UIImage(systemName: "pin.fill")!
+                    announcementImageView.tintColor = UIColor(named: "Carl and Shannen")
+                }
+            } else {
+                announcementImageView.isHidden = true
+            }
+            
+            let readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
+            
+            if !readAnnouncements.contains(post) {
+                announcementImageView.isHidden = false
+                if #available(iOS 13.0, *) {
+                    announcementImageView.image = UIImage(systemName: "circle.fill")
+                    announcementImageView.tintColor = .systemRed
+                }
+            }
+            
+            backgroundColor = UIColor(named: "Carlie White")
             
             // Set attributes of title label
             // [Square Brackets] all red to highlight things like [Sec 2 students] etc.
@@ -40,6 +75,7 @@ class AnnouncementTableViewCell: UITableViewCell {
         }
     }
     
+    @IBOutlet weak var announcementImageView: UIImageView!
     @IBOutlet weak var announcementTitleLabel: UILabel!
     @IBOutlet weak var announcementContentLabel: UILabel!
     @IBOutlet weak var announcementDateLabel: UILabel!
