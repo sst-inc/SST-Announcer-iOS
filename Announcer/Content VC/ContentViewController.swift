@@ -44,6 +44,8 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         currentScale = UserDefaults.standard.float(forKey: "textScale") == 0 ? defaultFontSize : CGFloat(UserDefaults.standard.float(forKey: "textScale"))
         
+        UserDefaults.standard.set(currentScale, forKey: "textScale")
+        
         // Update labels/textview with data
         let attrTitle = NSMutableAttributedString(string: post.title)
         // Find the [] and just make it like red or something
