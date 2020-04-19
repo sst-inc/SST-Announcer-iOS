@@ -20,10 +20,14 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Unable to load contents of post" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rym-Zu-BLo">
                                 <rect key="frame" x="16" y="225.5" width="382" height="566.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="38e-JE-Lg0" appends="YES" id="Tpb-be-iH8"/>
+                                </connections>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ZK-Yy-4Eg">
                                 <rect key="frame" x="20" y="151.5" width="328" height="26.5"/>
@@ -137,6 +141,20 @@
                                     <action selector="pinnedItem:" destination="MQo-jn-rdj" eventType="touchUpInside" id="NjH-6h-rZw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFV-08-BRC">
+                                <rect key="frame" x="20" y="792" width="374" height="50"/>
+                                <color key="backgroundColor" name="Guan Yellow"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="o6g-B4-o78"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <state key="normal" title="    Reset" image="textformat.size" catalog="system">
+                                    <color key="titleColor" name="Carl and Shannen"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetToDefaultFontSize:" destination="MQo-jn-rdj" eventType="touchUpInside" id="ihp-vx-rEt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="Carlie White"/>
                         <constraints>
@@ -145,6 +163,7 @@
                             <constraint firstItem="rym-Zu-BLo" firstAttribute="top" secondItem="hqT-8H-aia" secondAttribute="bottom" constant="20" id="Agk-c5-B30"/>
                             <constraint firstItem="84s-5y-1rw" firstAttribute="trailing" secondItem="ZgU-FN-WM7" secondAttribute="trailing" id="Cpj-au-6t0"/>
                             <constraint firstItem="ZgU-FN-WM7" firstAttribute="trailing" secondItem="4M5-iQ-t9p" secondAttribute="trailing" constant="20" id="DH0-bZ-Cdl"/>
+                            <constraint firstItem="ZgU-FN-WM7" firstAttribute="bottom" secondItem="KFV-08-BRC" secondAttribute="bottom" constant="20" id="ERR-ws-MkU"/>
                             <constraint firstItem="U2T-Td-RAX" firstAttribute="top" secondItem="ZgU-FN-WM7" secondAttribute="top" constant="20" id="Ekt-Af-rSR"/>
                             <constraint firstItem="hqT-8H-aia" firstAttribute="leading" secondItem="ZgU-FN-WM7" secondAttribute="leading" constant="20" id="IUn-QS-HFM"/>
                             <constraint firstItem="84s-5y-1rw" firstAttribute="bottom" secondItem="ZgU-FN-WM7" secondAttribute="bottom" constant="-20" id="MrP-Ms-Izj"/>
@@ -154,12 +173,14 @@
                             <constraint firstItem="hqT-8H-aia" firstAttribute="top" secondItem="1ZK-Yy-4Eg" secondAttribute="bottom" constant="8" id="YNq-Ok-UUm"/>
                             <constraint firstItem="mTt-rq-DZo" firstAttribute="top" secondItem="ZgU-FN-WM7" secondAttribute="top" constant="20" id="Zul-aT-v8i"/>
                             <constraint firstItem="84s-5y-1rw" firstAttribute="leading" secondItem="ZgU-FN-WM7" secondAttribute="leading" id="a5C-f3-V9o"/>
+                            <constraint firstItem="KFV-08-BRC" firstAttribute="leading" secondItem="ZgU-FN-WM7" secondAttribute="leading" constant="20" id="bji-9T-C0R"/>
                             <constraint firstItem="ZgU-FN-WM7" firstAttribute="trailing" secondItem="mTt-rq-DZo" secondAttribute="trailing" constant="20" id="bpX-vM-UFS"/>
                             <constraint firstItem="4M5-iQ-t9p" firstAttribute="top" secondItem="mTt-rq-DZo" secondAttribute="bottom" constant="15.5" id="dLq-kk-iAD"/>
                             <constraint firstItem="rym-Zu-BLo" firstAttribute="leading" secondItem="ZgU-FN-WM7" secondAttribute="leading" constant="16" id="gEP-4d-7Dk"/>
                             <constraint firstItem="ZgU-FN-WM7" firstAttribute="trailing" secondItem="rym-Zu-BLo" secondAttribute="trailing" constant="16" id="sFZ-CC-Pqc"/>
                             <constraint firstItem="1ZK-Yy-4Eg" firstAttribute="leading" secondItem="ZgU-FN-WM7" secondAttribute="leading" constant="20" id="tHG-IO-Z7H"/>
                             <constraint firstItem="U2T-Td-RAX" firstAttribute="leading" secondItem="ZgU-FN-WM7" secondAttribute="leading" constant="20" id="uPh-fV-SR1"/>
+                            <constraint firstItem="ZgU-FN-WM7" firstAttribute="trailing" secondItem="KFV-08-BRC" secondAttribute="trailing" constant="20" id="w2Z-Qd-Xii"/>
                             <constraint firstItem="Uxe-5r-lpJ" firstAttribute="top" secondItem="ZgU-FN-WM7" secondAttribute="top" constant="20" id="yU7-bb-rlv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZgU-FN-WM7"/>
@@ -169,11 +190,18 @@
                         <outlet property="collectionViewHeightConstraint" destination="POe-7F-3kM" id="rkH-YK-Vka"/>
                         <outlet property="contentTextField" destination="rym-Zu-BLo" id="osM-YZ-Ciq"/>
                         <outlet property="dateLabel" destination="hqT-8H-aia" id="TPO-pJ-j1f"/>
+                        <outlet property="defaultFontSizeButton" destination="KFV-08-BRC" id="WFj-ZS-REb"/>
+                        <outlet property="increaseTextSizeGestureRecognizer" destination="38e-JE-Lg0" id="cSi-3L-ro0"/>
                         <outlet property="pinButton" destination="mTt-rq-DZo" id="dwE-Ej-mxn"/>
                         <outlet property="titleLabel" destination="1ZK-Yy-4Eg" id="81g-mC-ZHB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xyf-o6-8Yo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="38e-JE-Lg0">
+                    <connections>
+                        <action selector="pinchedTextField:" destination="MQo-jn-rdj" id="Xqf-xh-c9z"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2653.6231884057975" y="138.61607142857142"/>
         </scene>
@@ -454,6 +482,7 @@
         <image name="pin.fill" catalog="system" width="119" height="128"/>
         <image name="safari" catalog="system" width="128" height="121"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <image name="textformat.size" catalog="system" width="128" height="82"/>
         <namedColor name="Carl and Shannen">
             <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

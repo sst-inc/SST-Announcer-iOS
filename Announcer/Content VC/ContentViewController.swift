@@ -12,12 +12,17 @@ import SafariServices
 class ContentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextViewDelegate {
     
     var onDismiss: (() -> Void)?
+    var defaultFontSize: CGFloat = 15
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contentTextField: UITextView!
     @IBOutlet weak var pinButton: UIButton!
     @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    
+    // Accessibility Increase Text Size
+    @IBOutlet weak var defaultFontSizeButton: UIButton!
+    @IBOutlet var increaseTextSizeGestureRecognizer: UIPinchGestureRecognizer!
     
     var post: Post!
     var isPinned = false
@@ -26,6 +31,11 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        // Set up custom font size system
+        let currentScale = UserDefaults.standard.float(forKey: "textScale") == 0 ? 1 : CGFloat(UserDefaults.standard.float(forKey: "textScale"))
+        
+        increaseTextSizeGestureRecognizer.scale = currentScale
         
         // Update labels/textview with data
         let attrTitle = NSMutableAttributedString(string: post.title)
@@ -74,7 +84,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
             
             let attr = content.htmlToAttributedString
             
-            attr?.addAttribute(.font, value: UIFont.systemFont(ofSize: 15, weight: .medium), range: NSRange.init(location: 0, length: (attr?.length)!))
+            attr?.addAttribute(.font, value: UIFont.systemFont(ofSize: defaultFontSize * increaseTextSizeGestureRecognizer.scale, weight: .medium), range: NSRange.init(location: 0, length: (attr?.length)!))
             attr?.addAttribute(.backgroundColor, value: UIColor.clear, range: NSRange(location: 0, length: (attr?.length)!))
             
             // Optimising for iOS 13 dark mode
@@ -110,6 +120,11 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         if post.categories.count == 0 {
             collectionViewHeightConstraint.constant = 0
         }
+        
+        // Styling default font size button
+        defaultFontSizeButton.layer.cornerRadius = 20
+        defaultFontSizeButton.clipsToBounds = true
+        defaultFontSizeButton.isHidden = true
     }
     
     @IBAction func sharePost(_ sender: Any) {
@@ -178,7 +193,43 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         present(vc, animated: true, completion: nil)
     }
     
-     // MARK: - Navigation
+    @IBAction func pinchedTextField(_ sender: UIPinchGestureRecognizer) {
+        print(sender.scale)
+        
+        let attr = NSMutableAttributedString(attributedString: contentTextField.attributedText)
+        
+        attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 15 * sender.scale, weight: .medium), range: NSRange.init(location: 0, length: attr.length))
+        
+        contentTextField.attributedText = attr
+        
+        UserDefaults.standard.set(sender.scale, forKey: "textScale")
+        
+        if sender.state == .ended || sender.state == .cancelled && sender.scale != 1 {
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (_) in
+                self.defaultFontSizeButton.isHidden = true
+            }
+        } else {
+            if sender.scale != 1 {
+                defaultFontSizeButton.isHidden = false
+            } else {
+                defaultFontSizeButton.isHidden = true
+            }
+            
+        }
+    }
+    
+    @IBAction func resetToDefaultFontSize(_ sender: Any) {
+        let attr = NSMutableAttributedString(attributedString: contentTextField.attributedText)
+        
+        attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 15, weight: .medium), range: NSRange(location: 0, length: attr.length))
+        
+        contentTextField.attributedText = attr
+        
+        defaultFontSizeButton.isHidden = true
+    }
+    
+    // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
