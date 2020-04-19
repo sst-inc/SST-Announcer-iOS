@@ -14,6 +14,16 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
     var onDismiss: (() -> Void)?
     var defaultFontSize: CGFloat = 15
     
+    var currentScale: CGFloat = 15 {
+        didSet {
+            if currentScale < 5 {
+                currentScale = 5
+            } else if currentScale > 50 {
+                currentScale = 50
+            }
+        }
+    }
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contentTextField: UITextView!
@@ -32,10 +42,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         // Do any additional setup after loading the view.
         
-        // Set up custom font size system
-        let currentScale = UserDefaults.standard.float(forKey: "textScale") == 0 ? 1 : CGFloat(UserDefaults.standard.float(forKey: "textScale"))
-        
-        increaseTextSizeGestureRecognizer.scale = currentScale
+        currentScale = UserDefaults.standard.float(forKey: "textScale") == 0 ? defaultFontSize : CGFloat(UserDefaults.standard.float(forKey: "textScale"))
         
         // Update labels/textview with data
         let attrTitle = NSMutableAttributedString(string: post.title)
@@ -84,7 +91,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
             
             let attr = content.htmlToAttributedString
             
-            attr?.addAttribute(.font, value: UIFont.systemFont(ofSize: defaultFontSize * increaseTextSizeGestureRecognizer.scale, weight: .medium), range: NSRange.init(location: 0, length: (attr?.length)!))
+            attr?.addAttribute(.font, value: UIFont.systemFont(ofSize: currentScale, weight: .medium), range: NSRange.init(location: 0, length: (attr?.length)!))
             attr?.addAttribute(.backgroundColor, value: UIColor.clear, range: NSRange(location: 0, length: (attr?.length)!))
             
             // Optimising for iOS 13 dark mode
@@ -198,11 +205,13 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         let attr = NSMutableAttributedString(attributedString: contentTextField.attributedText)
         
-        attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 15 * sender.scale, weight: .medium), range: NSRange.init(location: 0, length: attr.length))
+        currentScale = currentScale * sender.scale
+        
+        attr.addAttribute(.font, value: UIFont.systemFont(ofSize: currentScale, weight: .medium), range: NSRange.init(location: 0, length: attr.length))
         
         contentTextField.attributedText = attr
         
-        UserDefaults.standard.set(sender.scale, forKey: "textScale")
+        UserDefaults.standard.set(currentScale, forKey: "textScale")
         
         if sender.state == .ended || sender.state == .cancelled && sender.scale != 1 {
             
@@ -223,6 +232,10 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         let attr = NSMutableAttributedString(attributedString: contentTextField.attributedText)
         
         attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 15, weight: .medium), range: NSRange(location: 0, length: attr.length))
+        
+        currentScale = 15
+        
+        UserDefaults.standard.set(currentScale, forKey: "textScale")
         
         contentTextField.attributedText = attr
         

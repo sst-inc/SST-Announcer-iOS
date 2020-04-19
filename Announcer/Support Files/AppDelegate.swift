@@ -40,7 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        print(UserDefaults.standard.string(forKey: "error") ?? "")
+        print(UserDefaults.standard.string(forKey: "error") ?? "nothing?")
+        print(UserDefaults.standard.string(forKey: "status") ?? "did not refresh")
         
         return true
     }
@@ -70,6 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func handleAppRefresh(task: BGAppRefreshTask) {
         // Schedule a new refresh task
         scheduleAppRefresh()
+        
+        UserDefaults.standard.set("refreshed", forKey: "status")
         
         if let notificationTitle = fetchNotificationsTitle() {
             // New Notification

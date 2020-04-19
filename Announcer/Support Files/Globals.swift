@@ -15,7 +15,7 @@ import BackgroundTasks
 // Blog URL
 // should be http://studentsblog.sst.edu.sg unless testing
 // Test blog https://testannouncer.blogspot.com
-let blogURL = "https://testannouncer.blogspot.com"
+let blogURL = "http://studentsblog.sst.edu.sg"
 
 // RSS URL
 let rssURL = URL(string: "\(blogURL)/feeds/posts/default")!
@@ -214,7 +214,7 @@ extension String {
     var htmlToString: String {
         // MacOS Catalyst does not work properly
         #if targetEnvironment(macCatalyst)
-            return ""
+            return "Unable to display preview on Mac"
         #else
             return (htmlToAttributedString ?? NSAttributedString(string: "")).string.condenseLinebreaks()
         #endif
