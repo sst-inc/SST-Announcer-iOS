@@ -37,7 +37,7 @@ class AnnouncementsViewController: UIViewController {
     // Stores pinned posts
     var pinned = [Post]()
     
-    let borderColor = UIColor.systemRed.withAlphaComponent(0.5).cgColor
+    let borderColor = UIColor.systemRed.withAlphaComponent(0.3).cgColor
     
     @IBOutlet weak var announcementTableView: UITableView!
     @IBOutlet weak var searchField: UISearchBar!

@@ -55,7 +55,6 @@ class SetDateViewController: UIViewController {
         customDateLabel.text = formatter.string(from: date.addingTimeInterval(86400*30))
         
         // Set up gesture recogniser
-        containerStackView.arrangedSubviews
         let tomorrowGestureRecognizer = UITapGestureRecognizer()
         tomorrowGestureRecognizer.addTarget(self, action: #selector(tappedDate(sender:)))
         containerStackView.arrangedSubviews[0].tag = 0

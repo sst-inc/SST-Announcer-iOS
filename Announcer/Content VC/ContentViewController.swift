@@ -59,19 +59,33 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         dateLabel.text = "Posted on \(dateFormatter.string(from: post.date))"
         
         // Render HTML from String
-        let attr = post.content.htmlToAttributedString
-        
-        attr?.addAttribute(.font, value: UIFont.systemFont(ofSize: 15, weight: .medium), range: NSRange.init(location: 0, length: (attr?.length)!))
-        attr?.addAttribute(.backgroundColor, value: UIColor.clear, range: NSRange(location: 0, length: (attr?.length)!))
-        
-        // Optimising for iOS 13 dark mode
-        if #available(iOS 13.0, *) {
-            attr?.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: (attr?.length)!))
-        } else {
+        // Handle JavaScript
+        if post.content.contains("webkitallowfullscreen=\"true\"") {
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Unable to Open Post", message: "An error occured when opening this post. Open this post in Safari to view its contents.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
+                    self.openPostInSafari(UILabel())
+                }))
+                self.present(alert, animated: true)
+            }
             
+        } else {
+            let content = post.content
+            
+            let attr = content.htmlToAttributedString
+            
+            attr?.addAttribute(.font, value: UIFont.systemFont(ofSize: 15, weight: .medium), range: NSRange.init(location: 0, length: (attr?.length)!))
+            attr?.addAttribute(.backgroundColor, value: UIColor.clear, range: NSRange(location: 0, length: (attr?.length)!))
+            
+            // Optimising for iOS 13 dark mode
+            if #available(iOS 13.0, *) {
+                attr?.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: (attr?.length)!))
+            } else {
+                
+            }
+            
+            contentTextField.attributedText = attr
         }
-        
-        contentTextField.attributedText = attr
         
         // Check if item is pinned
         // Update the button to show

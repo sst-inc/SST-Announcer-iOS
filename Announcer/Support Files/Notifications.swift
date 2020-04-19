@@ -1,9 +1,9 @@
 //
 //  Notifications.swift
-//  FoodStuff
+//  SST Announcer
 //
 //  Created by JiaChen(: on 24/11/19.
-//  Copyright © 2019 Aakash Sanjay Mehta. All rights reserved.
+//  Copyright © 2019 SST Inc. All rights reserved.
 //
 
 import Foundation

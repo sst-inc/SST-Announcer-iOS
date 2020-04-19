@@ -14,9 +14,13 @@ import UIKit
 extension AnnouncementsViewController: UIViewControllerPreviewingDelegate {
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        if let indexPath = announcementTableView.indexPathForRow(at: location) {
-            previewingContext.sourceRect = announcementTableView.rectForRow(at: indexPath)
-            return getContentViewController(for: indexPath)
+        
+        if #available(iOS 13, *) {}
+        else {
+            if let indexPath = announcementTableView.indexPathForRow(at: location) {
+                previewingContext.sourceRect = announcementTableView.rectForRow(at: indexPath)
+                return getContentViewController(for: indexPath)
+            }
         }
         
         return nil
@@ -30,7 +34,6 @@ extension AnnouncementsViewController: UIViewControllerPreviewingDelegate {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "detail") as? ContentViewController else {
             fatalError()
         }
-        let cell = announcementTableView.cellForRow(at: indexPath) as! AnnouncementTableViewCell
         
         vc.post = selectedItem
         vc.onDismiss = {

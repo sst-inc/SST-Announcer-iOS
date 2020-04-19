@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications
+import BackgroundTasks
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,46 +28,99 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.bool(forKey: "retro") {
             // Turned on Retro
             print("you are in retro mode")
-            
         }
         
-        registerForPushNotifications()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+        }
+        
+//        registerForPushNotifications()
+        
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: "org.sstinc.announcer.feed", using: nil) { (task) in
+            self.handleAppRefresh(task: task as! BGAppRefreshTask)
+        }
+        
+        
+        print(UserDefaults.standard.string(forKey: "error") ?? "")
         
         return true
     }
     
-    func registerForPushNotifications() {
-        UNUserNotificationCenter.current()
-            .requestAuthorization(options: [.alert, .sound, .badge]) {
-                [weak self] granted, error in
-                  
-                print("Permission granted: \(granted)")
-                guard granted else { return }
-                self?.getNotificationSettings()
-        }
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        print("goodbye")
+        
+        scheduleAppRefresh()
     }
     
-    func getNotificationSettings() {
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            print("Notification settings: \(settings)")
+    func scheduleAppRefresh() {
+        let request = BGAppRefreshTaskRequest(identifier: "org.sstinc.announcer.feed")
+        
+        // Fetch no earlier than 15 minutes from now
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
+        
+        do {
+            try BGTaskScheduler.shared.submit(request)
+            UserDefaults.standard.set("No Errors, request submitted \(Date())", forKey: "error")
+        } catch {
+            print("Could not schedule app refresh: \(error)")
             
-            guard settings.authorizationStatus == .authorized else { return }
-            DispatchQueue.main.async {
-                UIApplication.shared.registerForRemoteNotifications()
-            }
+            UserDefaults.standard.set(error.localizedDescription, forKey: "error")
         }
     }
     
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-        let token = tokenParts.joined()
-        print("Device Token: \(token)")
+    func handleAppRefresh(task: BGAppRefreshTask) {
+        // Schedule a new refresh task
+        scheduleAppRefresh()
+        
+        if let notificationTitle = fetchNotificationsTitle() {
+            // New Notification
+            // Push
+            
+            notification(10, postTitle: notificationTitle)
+            
+            task.setTaskCompleted(success: true)
+        } else {
+            // No push
+            task.setTaskCompleted(success: false)
+        }
     }
     
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Failed to register: \(error)")
+    func notification(_ interval: TimeInterval, postTitle: String) {
+        let notifManager = LocalNotificationManager()
+        
+        let date = Date().addingTimeInterval(interval) // in seconds
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "M"
+        let month = Int(dateFormatter.string(from: date))!
+        
+        dateFormatter.dateFormat = "yyyy"
+        let year = Int(dateFormatter.string(from: date))!
+        
+        dateFormatter.dateFormat = "d"
+        let day = Int(dateFormatter.string(from: date))!
+        
+        dateFormatter.dateFormat = "h"
+        let hour = Int(dateFormatter.string(from: date))!
+        
+        dateFormatter.dateFormat = "m"
+        let minute = Int(dateFormatter.string(from: date))!
+        
+        dateFormatter.dateFormat = "s"
+        let second = Int(dateFormatter.string(from: date))!
+        
+        notifManager.notifications = [
+            NotificationStruct(
+                id: "\(UUID().uuidString)",
+                title: "New Announcement!",
+                body: "\(postTitle)",
+                datetime: DateComponents(calendar:
+                    Calendar.current, year: year, month: month, day: day, hour: hour, minute: minute, second: second))
+        ]
+        notifManager.schedule()
+        
     }
-    
+
+            
     // MARK: UISceneSession Lifecycle
     
     @available(iOS 13.0, *)
@@ -82,5 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+    
     
 }

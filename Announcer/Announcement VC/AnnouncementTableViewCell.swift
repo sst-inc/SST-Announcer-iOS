@@ -29,9 +29,21 @@ class AnnouncementTableViewCell: UITableViewCell {
                 self.announcementContentLabel.text = "Loading Content...\n\n"
             }
             
-            DispatchQueue.main.async {
-                self.announcementContentLabel.text = self.post.content.htmlToString
-                // self.post.content.htmlToString.replacingOccurrences(of: "\n\n", with: "\n")
+            if post.content.contains("webkitallowfullscreen=\"true\"") {
+                if #available(iOS 13.0, *) {
+                    let str = NSMutableAttributedString.init(string: "")
+                    str.append(NSAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "exclamationmark.triangle.fill")!)))
+                    str.append(NSAttributedString(string: "\tUnable to load preview.\n\tTap to open post."))
+                    self.announcementContentLabel.attributedText = str
+                } else {
+                    // Fallback on earlier versions
+                    self.announcementContentLabel.text = "Unable to load preview.\nClick to open post."
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.announcementContentLabel.text = self.post.content.htmlToString
+                    // self.post.content.htmlToString.replacingOccurrences(of: "\n\n", with: "\n")
+                }
             }
             
             // Ensure date is formatted as 22 Oct 2019 using d MMM yyyy

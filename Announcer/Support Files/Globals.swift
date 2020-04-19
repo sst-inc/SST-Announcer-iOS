@@ -15,7 +15,7 @@ import BackgroundTasks
 // Blog URL
 // should be http://studentsblog.sst.edu.sg unless testing
 // Test blog https://testannouncer.blogspot.com
-let blogURL = "http://studentsblog.sst.edu.sg"
+let blogURL = "https://testannouncer.blogspot.com"
 
 // RSS URL
 let rssURL = URL(string: "\(blogURL)/feeds/posts/default")!
@@ -76,8 +76,12 @@ func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
     case .success(let feed):
         print(feed)
         let feed = feed.atomFeed
+        let posts = convertFromEntries(feed: (feed?.entries!)!)
         
-        return convertFromEntries(feed: (feed?.entries!)!)
+        UserDefaults.standard.set(posts[0].title, forKey: "recent-title")
+        UserDefaults.standard.set(posts[0].content, forKey: "recent-content")
+        
+        return posts
     case .failure(let error):
         print(error.localizedDescription)
         // Present alert
@@ -105,18 +109,29 @@ func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
     return []
 }
 
-func fetchNotificationsTitle(_ vc: AnnouncementsViewController) -> String {
+func fetchNotificationsTitle() -> String? {
     let parser = FeedParser(URL: rssURL)
     let result = parser.parse()
     
     switch result {
     case .success(let feed):
-        print(feed)
         let feed = feed.atomFeed
-        return convertFromEntries(feed: (feed?.entries!)!).first!.title
-    case .failure(let error):
-        return "Check your wifi\n\(error.localizedDescription)"
+        
+        let posts = convertFromEntries(feed: (feed?.entries)!)
+        
+        if posts[0].title != UserDefaults.standard.string(forKey: "recent-title") && posts[0].content != UserDefaults.standard.string(forKey: "recent-content") {
+            
+            UserDefaults.standard.set(posts[0].title, forKey: "recent-title")
+            UserDefaults.standard.set(posts[0].content, forKey: "recent-content")
+            
+            return convertFromEntries(feed: (feed?.entries!)!).first!.title
+        }
+        
+    default:
+        break
     }
+    
+    return nil
 }
 
 
@@ -126,9 +141,9 @@ func convertFromEntries(feed: [AtomFeedEntry]) -> [Post] {
     for entry in feed {
         let cat = entry.categories ?? []
         
-        posts.append(Post(title: entry.title!,
-                          content: (entry.content?.value)!,
-                          date: entry.published!,
+        posts.append(Post(title: entry.title ?? "",
+                          content: (entry.content?.value) ?? "",
+                          date: entry.published ?? Date(),
                           pinned: false,
                           read: false,
                           reminderDate: nil,

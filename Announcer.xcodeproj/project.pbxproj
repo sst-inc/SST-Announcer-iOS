@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		322B1A022444682500F56FF3 /* NotificationsHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322B1A012444682500F56FF3 /* NotificationsHandlerDelegate.swift */; };
 		324576F9238D8E0E00730F17 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Globals.swift */; };
 		324576FB238E063500730F17 /* AnnouncementTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576FA238E063500730F17 /* AnnouncementTableView.swift */; };
 		324576FD238E0FB300730F17 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576FC238E0FB300730F17 /* ContentViewController.swift */; };
@@ -110,7 +111,6 @@
 		324577D8238F8CC100730F17 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577D7238F8CC100730F17 /* FilterTableViewController.swift */; };
 		324577DA238FA48300730F17 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */; };
 		324577DC238FA77000730F17 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577DB238FA77000730F17 /* FilterTableViewCell.swift */; };
-		329E3AE423F70F1900524901 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 329E3AE323F70F1900524901 /* GoogleService-Info.plist */; };
 		329E3B1D23F979CC00524901 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 329E3B1C23F979CC00524901 /* Settings.bundle */; };
 		329E3B1F23FEA47500524901 /* ReadAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */; };
 		32C65274239017E500C698F2 /* PinnedAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C65273239017E500C698F2 /* PinnedAnnouncements.swift */; };
@@ -124,7 +124,6 @@
 		32D9954C238D865600208D25 /* AnnouncementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954B238D865600208D25 /* AnnouncementsViewController.swift */; };
 		32D9954E238D87D200208D25 /* AnnouncementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */; };
 		32E9B4D923A3D86F000F769F /* AnnouncementPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */; };
-		562A9BEB93A4CDB5792FD79A /* libPods-Announcer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C57A4AE12E53367FA68A217 /* libPods-Announcer.a */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -141,6 +140,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		321CA6A7244A19420062E209 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		322B1A012444682500F56FF3 /* NotificationsHandlerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsHandlerDelegate.swift; sourceTree = "<group>"; };
 		324576F8238D8E0E00730F17 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		324576FA238E063500730F17 /* AnnouncementTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableView.swift; sourceTree = "<group>"; };
 		324576FC238E0FB300730F17 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
@@ -245,7 +246,6 @@
 		324577D7238F8CC100730F17 /* FilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		324577DB238FA77000730F17 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
-		329E3AE323F70F1900524901 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		329E3B1C23F979CC00524901 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadAnnouncements.swift; sourceTree = "<group>"; };
 		32C6527223900DC100C698F2 /* SST Announcer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SST Announcer.entitlements"; sourceTree = "<group>"; };
@@ -262,12 +262,6 @@
 		32D9954B238D865600208D25 /* AnnouncementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsViewController.swift; sourceTree = "<group>"; };
 		32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableViewCell.swift; sourceTree = "<group>"; };
 		32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementPreviewing.swift; sourceTree = "<group>"; };
-		4C57A4AE12E53367FA68A217 /* libPods-Announcer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Announcer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		85558855F0269C88AC6B03AF /* Pods-Announcer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Announcer.debug.xcconfig"; path = "Target Support Files/Pods-Announcer/Pods-Announcer.debug.xcconfig"; sourceTree = "<group>"; };
-		A4867305E9242A1A21948435 /* Pods-AnnouncerNotificationsExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnnouncerNotificationsExtension.debug.xcconfig"; path = "Target Support Files/Pods-AnnouncerNotificationsExtension/Pods-AnnouncerNotificationsExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		A80158056CD2534C54A2AB21 /* Pods-Announcer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Announcer.release.xcconfig"; path = "Target Support Files/Pods-Announcer/Pods-Announcer.release.xcconfig"; sourceTree = "<group>"; };
-		B8EDFAB18ECD92B88CC3E48B /* libPods-AnnouncerNotificationsExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnnouncerNotificationsExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC152EB410CF72FE570A74FD /* Pods-AnnouncerNotificationsExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnnouncerNotificationsExtension.release.xcconfig"; path = "Target Support Files/Pods-AnnouncerNotificationsExtension/Pods-AnnouncerNotificationsExtension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,7 +269,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				562A9BEB93A4CDB5792FD79A /* libPods-Announcer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,8 +278,7 @@
 		2872A23A99F4B96DE42DB98B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4C57A4AE12E53367FA68A217 /* libPods-Announcer.a */,
-				B8EDFAB18ECD92B88CC3E48B /* libPods-AnnouncerNotificationsExtension.a */,
+				321CA6A7244A19420062E209 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -574,6 +566,7 @@
 			isa = PBXGroup;
 			children = (
 				32D99535238C068D00208D25 /* AppDelegate.swift */,
+				322B1A012444682500F56FF3 /* NotificationsHandlerDelegate.swift */,
 				32D99537238C068D00208D25 /* SceneDelegate.swift */,
 				329E3B1C23F979CC00524901 /* Settings.bundle */,
 				32C65273239017E500C698F2 /* PinnedAnnouncements.swift */,
@@ -581,7 +574,6 @@
 				32C652752390273700C698F2 /* Notifications.swift */,
 				324576F8238D8E0E00730F17 /* Globals.swift */,
 				32D9953E238C068F00208D25 /* Assets.xcassets */,
-				329E3AE323F70F1900524901 /* GoogleService-Info.plist */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -607,10 +599,6 @@
 		F60E238002C508C5CE0166E8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				85558855F0269C88AC6B03AF /* Pods-Announcer.debug.xcconfig */,
-				A80158056CD2534C54A2AB21 /* Pods-Announcer.release.xcconfig */,
-				A4867305E9242A1A21948435 /* Pods-AnnouncerNotificationsExtension.debug.xcconfig */,
-				FC152EB410CF72FE570A74FD /* Pods-AnnouncerNotificationsExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -622,7 +610,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 32D99546238C068F00208D25 /* Build configuration list for PBXNativeTarget "Announcer" */;
 			buildPhases = (
-				A0EA9DF596EA407BB465D467 /* [CP] Check Pods Manifest.lock */,
 				32D9952E238C068D00208D25 /* Sources */,
 				32D9952F238C068D00208D25 /* Frameworks */,
 				32D99530238C068D00208D25 /* Resources */,
@@ -646,7 +633,7 @@
 				KnownAssetTags = (
 					New,
 				);
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "SST Inc.";
 				TargetAttributes = {
@@ -678,7 +665,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				329E3AE423F70F1900524901 /* GoogleService-Info.plist in Resources */,
 				32D99542238C068F00208D25 /* LaunchScreen.storyboard in Resources */,
 				329E3B1D23F979CC00524901 /* Settings.bundle in Resources */,
 				32D9953F238C068F00208D25 /* Assets.xcassets in Resources */,
@@ -687,31 +673,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		A0EA9DF596EA407BB465D467 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Announcer-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		32D9952E238C068D00208D25 /* Sources */ = {
@@ -729,6 +690,7 @@
 				32457798238E53A100730F17 /* RSSFeedItemEnclosure.swift in Sources */,
 				32C65274239017E500C698F2 /* PinnedAnnouncements.swift in Sources */,
 				32457781238E53A100730F17 /* AtomPath.swift in Sources */,
+				322B1A022444682500F56FF3 /* NotificationsHandlerDelegate.swift in Sources */,
 				3245778A238E53A100730F17 /* AtomFeedEntry.swift in Sources */,
 				324576F9238D8E0E00730F17 /* Globals.swift in Sources */,
 				324577CE238E53A200730F17 /* String + toDuration.swift in Sources */,
@@ -971,17 +933,17 @@
 		};
 		32D99547238C068F00208D25 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 85558855F0269C88AC6B03AF /* Pods-Announcer.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "Announcer/SST Announcer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Announcer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -997,17 +959,17 @@
 		};
 		32D99548238C068F00208D25 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A80158056CD2534C54A2AB21 /* Pods-Announcer.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "Announcer/SST Announcer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Announcer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
