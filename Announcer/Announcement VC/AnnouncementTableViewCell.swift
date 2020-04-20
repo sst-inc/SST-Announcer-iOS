@@ -71,7 +71,7 @@ class AnnouncementTableViewCell: UITableViewCell {
                 announcementImageView.isHidden = false
                 if #available(iOS 13.0, *) {
                     announcementImageView.image = UIImage(systemName: "circle.fill")
-                    announcementImageView.tintColor = .systemRed
+                    announcementImageView.tintColor = .systemBlue
                 }
             }
             
@@ -123,7 +123,7 @@ class AnnouncementTableViewCell: UITableViewCell {
                 
                 // [] colors will be Carl and Shannen
                 // @shannen why these color names man
-                let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.red, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
+                let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
                 
                 attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 2))
             }

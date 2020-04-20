@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        registerForPushNotifications()
         
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "org.sstinc.announcer.feed", using: nil) { (task) in
-            self.handleAppRefresh(task: task as! BGProcessingTask)
+            self.handleAppRefresh()
         }
         
         
@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func handleAppRefresh(task: BGProcessingTask) {
+    func handleAppRefresh() {
         // Schedule a new refresh task
         scheduleAppRefresh()
         
@@ -78,12 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // New Notification
             // Push
             
-            notification(10, postTitle: notificationTitle)
-            
-            task.setTaskCompleted(success: true)
-        } else {
-            // No push
-            task.setTaskCompleted(success: false)
+            notification(0, postTitle: notificationTitle)
         }
     }
     

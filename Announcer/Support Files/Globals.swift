@@ -15,7 +15,7 @@ import BackgroundTasks
 // Blog URL
 // should be http://studentsblog.sst.edu.sg unless testing
 // Test blog https://testannouncer.blogspot.com
-let blogURL = "https://testannouncer.blogspot.com"
+let blogURL = "http://studentsblog.sst.edu.sg"
 
 // RSS URL
 let rssURL = URL(string: "\(blogURL)/feeds/posts/default")!
@@ -42,30 +42,32 @@ struct Post: Codable, Equatable {
 
 // JSON Callback to get all the labels for the blog posts
 func fetchLabels() -> [String] {
-    var labels = [String]()
     
-    do {
-        let strData = try String(contentsOf: jsonCallback)
-        let split = strData.split(separator: ",")
-        let filtered = split.filter { (value) -> Bool in
+    let parser = FeedParser(URL: rssURL)
+    let result = parser.parse()
+    
+    switch result {
+    case .success(let feed):
+        var labels: [String] = []
+        
+        let entries = feed.atomFeed?.entries ?? []
+        
+        for i in entries {
+            for item in i.categories ?? [] {
+                labels.append(item.attributes?.term ?? "")
+            }
             
-            return value.contains("term")
         }
         
-        for item in filtered {
-            labels.append(String(item).replacingOccurrences(of: "{\"term\":\"", with: "").replacingOccurrences(of: "\"}", with: "").replacingOccurrences(of: "\\u0026", with: "\u{0026}"))
-        }
+        labels.removeDuplicates()
         
-        if labels != [] {
-            labels[0].removeFirst("\"category\":[".count)
-            labels[labels.count - 1].removeLast()
-        }
+        return labels
         
-    } catch {
+    case .failure(let error):
         print(error.localizedDescription)
+        // Present alert
     }
-    
-    return labels
+    return []
 }
 
 func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
@@ -376,4 +378,18 @@ private extension UITextField {
     }
     
     func getClearButton() -> UIButton? { return value(forKey: "clearButton") as? UIButton }
+}
+
+extension Array where Element: Hashable {
+    func removingDuplicates() -> [Element] {
+        var addedDict = [Element: Bool]()
+
+        return filter {
+            addedDict.updateValue(true, forKey: $0) == nil
+        }
+    }
+
+    mutating func removeDuplicates() {
+        self = self.removingDuplicates()
+    }
 }

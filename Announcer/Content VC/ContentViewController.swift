@@ -207,7 +207,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         let attr = NSMutableAttributedString(attributedString: contentTextField.attributedText)
         
-        currentScale = currentScale * sender.scale
+        currentScale = currentScale * (sender.scale / 2)
         
         attr.addAttribute(.font, value: UIFont.systemFont(ofSize: currentScale, weight: .medium), range: NSRange.init(location: 0, length: attr.length))
         
@@ -250,10 +250,5 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
-        if let dest = segue.destination as? SetDateViewController {
-            dest.post = post
-            dest.onDismiss = {
-            }
-        }
      }
 }

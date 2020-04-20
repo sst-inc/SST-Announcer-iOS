@@ -34,11 +34,11 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Scrolling Selection</string>
+			<string>Disable Scrolling Selection</string>
 			<key>Key</key>
 			<string>scrollSelection</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Type</key>

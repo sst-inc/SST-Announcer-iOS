@@ -251,7 +251,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         if #available(iOS 13.0, *) {
             #if targetEnvironment(macCatalyst)
             #else
-            if !searchField.isFirstResponder && UserDefaults.standard.bool(forKey: "scrollSelection") {
+            if !searchField.isFirstResponder && !UserDefaults.standard.bool(forKey: "scrollSelection") {
                 if scrollView.contentOffset.y <= -150 {
                     let offset = (scrollView.contentOffset.y * -1 - 150) / 100
                     filterButton.layer.borderWidth = 0
@@ -316,7 +316,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         #if targetEnvironment(macCatalyst)
             print("oh")
         #else
-            if UserDefaults.standard.bool(forKey: "scrollSelection") {
+            if !UserDefaults.standard.bool(forKey: "scrollSelection") {
                 resetScroll()
                 if scrollView.contentOffset.y <= -150 {
                     print("reload")

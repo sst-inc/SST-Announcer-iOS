@@ -29,6 +29,11 @@ extension AnnouncementsViewController: UISearchBarDelegate {
             let indicesStart = attrTitle.string.indicesOf(string: "[")
             let indicesEnd = attrTitle.string.indicesOf(string: "]")
             
+            // Set default attributes
+            let defaultAttributes : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.label, NSAttributedString.Key.font: UIFont.systemFont(ofSize: UIFont.labelFontSize)]
+            
+            attrTitle.addAttributes(defaultAttributes, range: NSRange(location: 0, length: attrTitle.string.count))
+            
             // Get search field
             let field = searchBar.value(forKey: "searchField") as? UITextField
             
@@ -42,7 +47,7 @@ extension AnnouncementsViewController: UISearchBarDelegate {
                     // [] colors will be Carl and Shannen
                     // @shannen why these color names man
                     
-                    let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.systemRed, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)]
+                    let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)]
                     
                     attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 1))
                 }
