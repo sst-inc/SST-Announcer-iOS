@@ -14,10 +14,24 @@ class FilterTableViewController: UITableViewController {
     var onDismiss: (() -> Void)?
     var selectedLabel = String()
     
+    let loadingIndicator = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.startAnimating()
+        
+        loadingIndicator.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 10, y: UIScreen.main.bounds.height / 2 - 10, width: 20, height: 20)
+        view.addSubview(loadingIndicator)
+        
         // Get Labels
-        labels = fetchLabels().sorted()
+        DispatchQueue.main.async {
+            self.labels = fetchLabels().sorted()
+            self.loadingIndicator.stopAnimating()
+            self.tableView.reloadData()
+        }
+        
     }
 
     // MARK: - Table view data source
