@@ -63,7 +63,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
                 
                 // [] colors will be Carl and Shannen
                 // @shannen why these color names man
-                let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.red, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
+                let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
                 
                 attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 2))
             }

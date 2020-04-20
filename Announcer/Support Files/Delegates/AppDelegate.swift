@@ -25,98 +25,85 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         #endif
         
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+        // Fetch data every five minutes.
+        // This deprecated thing is for the next exco to deal with.
+        UIApplication.shared.setMinimumBackgroundFetchInterval(300)
+        
+        //Ask for notification authorization
+        let center = UNUserNotificationCenter.current()
+        let options: UNAuthorizationOptions = [.alert, .sound]
+        center.requestAuthorization(options: options) {
+            (granted, error) in
+            if !granted {
+                print("Something went wrong")
+            }
         }
-        
-//        registerForPushNotifications()
-        
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: "org.sstinc.announcer.feed", using: nil) { (task) in
-            self.handleAppRefresh()
-        }
-        
-        
-        print(UserDefaults.standard.string(forKey: "error") ?? "nothing?")
-        print(UserDefaults.standard.string(forKey: "status") ?? "did not refresh")
-        
+
         return true
     }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        print("goodbye")
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        scheduleAppRefresh()
-    }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        scheduleAppRefresh()
-    }
-    
-    func scheduleAppRefresh() {
-        let request = BGProcessingTaskRequest(identifier: "org.sstinc.announcer.feed")
-        
-        // Fetch no earlier than 15 minutes from now
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
-        request.requiresNetworkConnectivity = true
-        
-        do {
-            try BGTaskScheduler.shared.submit(request)
-            UserDefaults.standard.set("No Errors, request submitted \(Date())", forKey: "error")
-        } catch {
-            print("Could not schedule app refresh: \(error)")
+        if let notificationContent = fetchNotificationsTitle() {
+            let notifications: [UNMutableNotificationContent] = { () -> [UNMutableNotificationContent] in
+                let content = UNMutableNotificationContent()
+                content.title = notificationContent.title
+                content.body = notificationContent.content
+                content.sound = .default
+                
+                return [content]
+            }()
             
-            UserDefaults.standard.set(error.localizedDescription, forKey: "error")
+            for notification in notifications {
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                let request = UNNotificationRequest(identifier: "NewPost", content: notification, trigger: trigger)
+                let center = UNUserNotificationCenter.current()
+                center.add(request, withCompletionHandler: nil)
+            }
         }
+        
     }
     
-    func handleAppRefresh() {
-        // Schedule a new refresh task
-        scheduleAppRefresh()
-        
-        UserDefaults.standard.set("refreshed", forKey: "status")
-        
-        if let notificationTitle = fetchNotificationsTitle() {
-            // New Notification
-            // Push
-            
-            notification(0, postTitle: notificationTitle)
-        }
-    }
+//    func applicationDidEnterBackground(_ application: UIApplication) {
+//        print("goodbye")
+//
+//        scheduleAppRefresh()
+//    }
     
-    func notification(_ interval: TimeInterval, postTitle: String) {
-        let notifManager = LocalNotificationManager()
-        
-        let date = Date().addingTimeInterval(interval) // in seconds
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "M"
-        let month = Int(dateFormatter.string(from: date))!
-        
-        dateFormatter.dateFormat = "yyyy"
-        let year = Int(dateFormatter.string(from: date))!
-        
-        dateFormatter.dateFormat = "d"
-        let day = Int(dateFormatter.string(from: date))!
-        
-        dateFormatter.dateFormat = "h"
-        let hour = Int(dateFormatter.string(from: date))!
-        
-        dateFormatter.dateFormat = "m"
-        let minute = Int(dateFormatter.string(from: date))!
-        
-        dateFormatter.dateFormat = "s"
-        let second = Int(dateFormatter.string(from: date))!
-        
-        notifManager.notifications = [
-            NotificationStruct(
-                id: "\(UUID().uuidString)",
-                title: "New Announcement!",
-                body: "\(postTitle)",
-                datetime: DateComponents(calendar:
-                    Calendar.current, year: year, month: month, day: day, hour: hour, minute: minute, second: second))
-        ]
-        notifManager.schedule()
-        
-    }
+//    func applicationWillTerminate(_ application: UIApplication) {
+//        scheduleAppRefresh()
+//    }
+//
+//    func scheduleAppRefresh() {
+//        let request = BGProcessingTaskRequest(identifier: "org.sstinc.announcer.feed")
+//
+//        // Fetch no earlier than 15 minutes from now
+//        request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
+//        request.requiresNetworkConnectivity = true
+//
+//        do {
+//            try BGTaskScheduler.shared.submit(request)
+//            UserDefaults.standard.set("No Errors, request submitted \(Date())", forKey: "error")
+//        } catch {
+//            print("Could not schedule app refresh: \(error)")
+//
+//            UserDefaults.standard.set(error.localizedDescription, forKey: "error")
+//        }
+//    }
+//
+//    func handleAppRefresh() {
+//        // Schedule a new refresh task
+//        scheduleAppRefresh()
+//
+//        UserDefaults.standard.set("refreshed", forKey: "status")
+//
+//        if let notificationTitle = fetchNotificationsTitle() {
+//            // New Notification
+//            // Push
+//
+//            notification(0, postTitle: notificationTitle)
+//        }
+//    }
 
             
     // MARK: UISceneSession Lifecycle

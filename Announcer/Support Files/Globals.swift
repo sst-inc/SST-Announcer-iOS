@@ -15,7 +15,7 @@ import BackgroundTasks
 // Blog URL
 // should be http://studentsblog.sst.edu.sg unless testing
 // Test blog https://testannouncer.blogspot.com
-let blogURL = "http://studentsblog.sst.edu.sg"
+let blogURL = "https://testannouncer.blogspot.com"
 
 // RSS URL
 let rssURL = URL(string: "\(blogURL)/feeds/posts/default")!
@@ -110,7 +110,7 @@ func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
     return []
 }
 
-func fetchNotificationsTitle() -> String? {
+func fetchNotificationsTitle() -> (title: String, content: String)? {
     let parser = FeedParser(URL: rssURL)
     let result = parser.parse()
     
@@ -125,7 +125,7 @@ func fetchNotificationsTitle() -> String? {
             UserDefaults.standard.set(posts[0].title, forKey: "recent-title")
             UserDefaults.standard.set(posts[0].content, forKey: "recent-content")
             
-            return convertFromEntries(feed: (feed?.entries!)!).first!.title
+            return (title: convertFromEntries(feed: (feed?.entries!)!).first!.title, content: convertFromEntries(feed: (feed?.entries!)!).first!.content.htmlToString)
         }
         
     default:
