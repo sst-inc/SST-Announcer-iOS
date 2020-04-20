@@ -115,7 +115,6 @@
 		329E3B1F23FEA47500524901 /* ReadAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */; };
 		32C65274239017E500C698F2 /* PinnedAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C65273239017E500C698F2 /* PinnedAnnouncements.swift */; };
 		32C652762390273700C698F2 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C652752390273700C698F2 /* Notifications.swift */; };
-		32C65278239046FD00C698F2 /* SetDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C65277239046FD00C698F2 /* SetDateViewController.swift */; };
 		32D99536238C068D00208D25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99535238C068D00208D25 /* AppDelegate.swift */; };
 		32D99538238C068D00208D25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99537238C068D00208D25 /* SceneDelegate.swift */; };
 		32D9953D238C068D00208D25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953B238C068D00208D25 /* Main.storyboard */; };
@@ -251,7 +250,6 @@
 		32C6527223900DC100C698F2 /* SST Announcer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SST Announcer.entitlements"; sourceTree = "<group>"; };
 		32C65273239017E500C698F2 /* PinnedAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedAnnouncements.swift; sourceTree = "<group>"; };
 		32C652752390273700C698F2 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
-		32C65277239046FD00C698F2 /* SetDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDateViewController.swift; sourceTree = "<group>"; };
 		32D99532238C068D00208D25 /* SST Announcer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SST Announcer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D99535238C068D00208D25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32D99537238C068D00208D25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -510,6 +508,25 @@
 			path = "Announcement VC";
 			sourceTree = "<group>";
 		};
+		3246CAFC244D5200009ABB63 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				32D99535238C068D00208D25 /* AppDelegate.swift */,
+				322B1A012444682500F56FF3 /* NotificationsHandlerDelegate.swift */,
+				32D99537238C068D00208D25 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		3246CAFD244D522A009ABB63 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				32C65273239017E500C698F2 /* PinnedAnnouncements.swift */,
+				329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
 		32D99529238C068D00208D25 = {
 			isa = PBXGroup;
 			children = (
@@ -548,7 +565,6 @@
 			children = (
 				324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */,
 				324576FC238E0FB300730F17 /* ContentViewController.swift */,
-				32C65277239046FD00C698F2 /* SetDateViewController.swift */,
 			);
 			path = "Content VC";
 			sourceTree = "<group>";
@@ -565,12 +581,9 @@
 		32E9B4D323A38D7A000F769F /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				32D99535238C068D00208D25 /* AppDelegate.swift */,
-				322B1A012444682500F56FF3 /* NotificationsHandlerDelegate.swift */,
-				32D99537238C068D00208D25 /* SceneDelegate.swift */,
+				3246CAFC244D5200009ABB63 /* Delegates */,
 				329E3B1C23F979CC00524901 /* Settings.bundle */,
-				32C65273239017E500C698F2 /* PinnedAnnouncements.swift */,
-				329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */,
+				3246CAFD244D522A009ABB63 /* Persistence */,
 				32C652752390273700C698F2 /* Notifications.swift */,
 				324576F8238D8E0E00730F17 /* Globals.swift */,
 				32D9953E238C068F00208D25 /* Assets.xcassets */,
@@ -706,7 +719,6 @@
 				324577A8238E53A100730F17 /* MediaNamespace.swift in Sources */,
 				32457792238E53A100730F17 /* RSSFeedItemGUID.swift in Sources */,
 				32457794238E53A100730F17 /* RSSFeedCloud.swift in Sources */,
-				32C65278239046FD00C698F2 /* SetDateViewController.swift in Sources */,
 				32457789238E53A100730F17 /* AtomFeedSubtitle.swift in Sources */,
 				32457788238E53A100730F17 /* AtomFeed + mapAttributes.swift in Sources */,
 				324577A0238E53A100730F17 /* iTunesSubCategory.swift in Sources */,
@@ -939,7 +951,7 @@
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "Announcer/SST Announcer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Announcer/Info.plist;
@@ -965,7 +977,7 @@
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "Announcer/SST Announcer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Announcer/Info.plist;

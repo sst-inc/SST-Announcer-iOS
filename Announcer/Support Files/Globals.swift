@@ -15,7 +15,7 @@ import BackgroundTasks
 // Blog URL
 // should be http://studentsblog.sst.edu.sg unless testing
 // Test blog https://testannouncer.blogspot.com
-let blogURL = "http://studentsblog.sst.edu.sg"
+let blogURL = "https://testannouncer.blogspot.com"
 
 // RSS URL
 let rssURL = URL(string: "\(blogURL)/feeds/posts/default")!
@@ -74,7 +74,6 @@ func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
     
     switch result {
     case .success(let feed):
-        print(feed)
         let feed = feed.atomFeed
         let posts = convertFromEntries(feed: (feed?.entries!)!)
         

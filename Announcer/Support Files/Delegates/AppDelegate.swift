@@ -25,18 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         #endif
         
-        if UserDefaults.standard.bool(forKey: "retro") {
-            // Turned on Retro
-            print("you are in retro mode")
-        }
-        
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
         }
         
 //        registerForPushNotifications()
         
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "org.sstinc.announcer.feed", using: nil) { (task) in
-            self.handleAppRefresh(task: task as! BGAppRefreshTask)
+            self.handleAppRefresh(task: task as! BGProcessingTask)
         }
         
         
@@ -52,11 +47,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         scheduleAppRefresh()
     }
     
+    func applicationWillTerminate(_ application: UIApplication) {
+        scheduleAppRefresh()
+    }
+    
     func scheduleAppRefresh() {
-        let request = BGAppRefreshTaskRequest(identifier: "org.sstinc.announcer.feed")
+        let request = BGProcessingTaskRequest(identifier: "org.sstinc.announcer.feed")
         
         // Fetch no earlier than 15 minutes from now
         request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
+        request.requiresNetworkConnectivity = true
         
         do {
             try BGTaskScheduler.shared.submit(request)
@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func handleAppRefresh(task: BGAppRefreshTask) {
+    func handleAppRefresh(task: BGProcessingTask) {
         // Schedule a new refresh task
         scheduleAppRefresh()
         
