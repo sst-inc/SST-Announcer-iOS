@@ -293,7 +293,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ST3-El-fJ0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ST3-El-fJ0">
                                 <rect key="frame" x="20" y="104" width="374" height="27.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27.5" id="bpi-Sd-MHf"/>
@@ -324,7 +324,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFs-9A-6CD">
-                                                    <rect key="frame" x="20" y="11" width="334" height="23.5"/>
+                                                    <rect key="frame" x="20" y="11" width="50" height="23.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -360,7 +360,7 @@
                                                 <constraint firstItem="Wf9-0K-l67" firstAttribute="top" secondItem="ny6-0q-uie" secondAttribute="topMargin" id="fUc-E5-VAR"/>
                                                 <constraint firstItem="pa4-Xa-zA5" firstAttribute="leading" secondItem="ny6-0q-uie" secondAttribute="leadingMargin" id="hzp-jK-59G"/>
                                                 <constraint firstItem="pa4-Xa-zA5" firstAttribute="top" secondItem="cFs-9A-6CD" secondAttribute="bottom" constant="8" id="kye-9V-lxo"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="cFs-9A-6CD" secondAttribute="trailing" constant="40" id="mtF-KV-PvC"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="cFs-9A-6CD" secondAttribute="trailing" id="mtF-KV-PvC"/>
                                                 <constraint firstItem="Ghj-WG-ybC" firstAttribute="top" secondItem="pa4-Xa-zA5" secondAttribute="bottom" constant="8" id="ndw-zs-MKK"/>
                                                 <constraint firstItem="cFs-9A-6CD" firstAttribute="top" secondItem="ny6-0q-uie" secondAttribute="topMargin" id="q9y-Zh-G2K"/>
                                                 <constraint firstItem="Wf9-0K-l67" firstAttribute="trailing" secondItem="ny6-0q-uie" secondAttribute="trailingMargin" id="vUD-4e-aak"/>
@@ -488,21 +488,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NpN-o8-KDF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1743.4782608695652" y="-592.63392857142856"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="EJK-A4-4hT">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T8u-cE-awl" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oDQ-op-9qZ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1Qr-B4-aq9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3526.0869565217395" y="134.59821428571428"/>
         </scene>
     </scenes>
     <color key="tintColor" name="Carl and Shannen"/>
