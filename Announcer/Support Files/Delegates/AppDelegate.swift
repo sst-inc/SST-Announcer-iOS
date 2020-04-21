@@ -42,6 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("nice.")
+    }
+    
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
         if let notificationContent = fetchNotificationsTitle() {
@@ -50,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 content.title = notificationContent.title
                 content.body = notificationContent.content
                 content.sound = .default
+                content.userInfo = ["title" : notificationContent.title]
                 
                 return [content]
             }()

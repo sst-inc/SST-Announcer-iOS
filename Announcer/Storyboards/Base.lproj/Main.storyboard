@@ -17,9 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Unable to load contents of post" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rym-Zu-BLo">
-                                <rect key="frame" x="16" y="224.5" width="382" height="567.5"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" editable="NO" text="Unable to load contents of post" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rym-Zu-BLo">
+                                <rect key="frame" x="16" y="226.5" width="382" height="565.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -30,13 +31,17 @@
                                 </connections>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ZK-Yy-4Eg">
-                                <rect key="frame" x="20" y="151" width="328" height="26.5"/>
+                                <rect key="frame" x="20" y="153" width="329" height="26.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U2T-Td-RAX">
-                                <rect key="frame" x="20" y="108" width="26" height="23"/>
+                                <rect key="frame" x="20" y="108" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="PsL-Sz-paz"/>
+                                    <constraint firstAttribute="height" constant="25" id="X9G-gw-9tB"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                 <state key="normal" image="arrow.uturn.left" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
@@ -48,15 +53,17 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqT-8H-aia">
-                                <rect key="frame" x="20" y="185.5" width="374" height="19"/>
+                                <rect key="frame" x="20" y="187.5" width="374" height="19"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTt-rq-DZo">
-                                <rect key="frame" x="368" y="108" width="26" height="28"/>
+                                <rect key="frame" x="368" y="108" width="26" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="26" id="8dH-bu-3G6"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="NlH-Le-cFv"/>
+                                    <constraint firstAttribute="height" constant="25" id="O6Z-h9-yqk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                 <state key="normal" image="pin" catalog="system">
@@ -69,7 +76,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxe-5r-lpJ">
-                                <rect key="frame" x="324" y="108" width="24" height="27"/>
+                                <rect key="frame" x="323" y="108" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="akm-fC-GTU"/>
+                                    <constraint firstAttribute="height" constant="25" id="wbh-e8-8sO"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                 <state key="normal" image="square.and.arrow.up" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
@@ -126,9 +137,9 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4M5-iQ-t9p">
-                                <rect key="frame" x="368" y="151.5" width="26" height="25"/>
+                                <rect key="frame" x="369" y="148.5" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="26" id="Bu9-Cf-fjh"/>
+                                    <constraint firstAttribute="width" constant="25" id="Bu9-Cf-fjh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                 <state key="normal" image="safari" catalog="system">
@@ -187,12 +198,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="rcF-4z-DE0"/>
                     <connections>
+                        <outlet property="backButton" destination="U2T-Td-RAX" id="wba-zR-Tsd"/>
                         <outlet property="collectionViewHeightConstraint" destination="POe-7F-3kM" id="rkH-YK-Vka"/>
                         <outlet property="contentTextField" destination="rym-Zu-BLo" id="osM-YZ-Ciq"/>
                         <outlet property="dateLabel" destination="hqT-8H-aia" id="TPO-pJ-j1f"/>
                         <outlet property="defaultFontSizeButton" destination="KFV-08-BRC" id="WFj-ZS-REb"/>
                         <outlet property="increaseTextSizeGestureRecognizer" destination="38e-JE-Lg0" id="cSi-3L-ro0"/>
                         <outlet property="pinButton" destination="mTt-rq-DZo" id="dwE-Ej-mxn"/>
+                        <outlet property="safariButton" destination="4M5-iQ-t9p" id="Nqb-cX-A3Q"/>
+                        <outlet property="shareButton" destination="Uxe-5r-lpJ" id="A7g-Ju-Lds"/>
                         <outlet property="titleLabel" destination="1ZK-Yy-4Eg" id="81g-mC-ZHB"/>
                     </connections>
                 </viewController>

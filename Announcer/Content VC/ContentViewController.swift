@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class ContentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextViewDelegate {
+class ContentViewController: UIViewController {
     
     var onDismiss: (() -> Void)?
     var defaultFontSize: CGFloat = 15
@@ -24,15 +24,25 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
     
+    let borderColor = UIColor.systemBlue.withAlphaComponent(0.3).cgColor
+    
+    var playedHaptic = 0
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contentTextField: UITextView!
-    @IBOutlet weak var pinButton: UIButton!
     @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     
     // Accessibility Increase Text Size
     @IBOutlet weak var defaultFontSizeButton: UIButton!
     @IBOutlet var increaseTextSizeGestureRecognizer: UIPinchGestureRecognizer!
+    
+    // Header Buttons
+    @IBOutlet weak var safariButton: UIButton!
+    @IBOutlet weak var pinButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
+    
     
     var post: Post!
     var isPinned = false
@@ -134,6 +144,11 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         defaultFontSizeButton.layer.cornerRadius = 20
         defaultFontSizeButton.clipsToBounds = true
         defaultFontSizeButton.isHidden = true
+        
+        safariButton.layer.cornerRadius = 25 / 2
+        backButton.layer.cornerRadius = 25 / 2
+        shareButton.layer.cornerRadius = 25 / 2
+        pinButton.layer.cornerRadius = 25 / 2
     }
     
     @IBAction func sharePost(_ sender: Any) {
@@ -148,24 +163,6 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         shareViewController.popoverPresentationController?.sourceView = self.view
         self.present(shareViewController, animated: true, completion: nil)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return post.categories.count
-    }
-    
-    // CollectionView contains tags
-    // Each cell is Guan Yellow and
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoriesCollectionViewCell
-        
-        cell.titleLabel.text = post.categories[indexPath.row]
-        cell.backgroundColor = UIColor(named: "Guan Yellow")
-        cell.layer.cornerRadius = 5
-        cell.clipsToBounds = true
-        
-        return cell
-    }
-    
     
     @IBAction func dismiss(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -194,6 +191,32 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
         }
         
+        // Create pop-up to say pinned or unpinned
+        let popUpView = UILabel()
+        popUpView.textAlignment = .center
+        popUpView.frame = CGRect(x: 50, y: 50, width: UIScreen.main.bounds.width - 100, height: 30)
+        
+        popUpView.layer.cornerRadius = 30 / 2
+        popUpView.clipsToBounds = true
+        
+        popUpView.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        popUpView.text = "Post \(isPinned ? "Pinned" : "Unpinned")"
+        
+        popUpView.backgroundColor = UIColor(named: "Guan Yellow")
+        popUpView.alpha = 0
+        
+        view.addSubview(popUpView)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            popUpView.alpha = 1
+        }) { (_) in
+            UIView.animate(withDuration: 0.5, delay: 3, options: .curveEaseOut, animations: {
+                popUpView.alpha = 0
+            }) { (_) in
+                popUpView.removeFromSuperview()
+            }
+        }
+        
         onDismiss?()
     }
     
@@ -207,7 +230,7 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         let attr = NSMutableAttributedString(attributedString: contentTextField.attributedText)
         
-        currentScale = currentScale * (sender.scale / 2)
+        currentScale = currentScale * sender.scale
         
         attr.addAttribute(.font, value: UIFont.systemFont(ofSize: currentScale, weight: .medium), range: NSRange.init(location: 0, length: attr.length))
         
@@ -243,12 +266,4 @@ class ContentViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         defaultFontSizeButton.isHidden = true
     }
-    
-    // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
 }

@@ -40,24 +40,6 @@
 			<key>DefaultValue</key>
 			<false/>
 		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTitleValueSpecifier</string>
-			<key>Title</key>
-			<string>Beta</string>
-			<key>DefaultValue</key>
-			<string>6</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTitleValueSpecifier</string>
-			<key>Title</key>
-			<string>Version</string>
-			<key>DefaultValue</key>
-			<string>11.0</string>
-			<key>Key</key>
-			<string></string>
-		</dict>
 	</array>
 </dict>
 </plist>
