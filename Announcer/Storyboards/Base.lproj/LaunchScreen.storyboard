@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q3L-bh-erf">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="a6N-ie-Hbr">
+            <objects>
+                <viewController id="q3L-bh-erf" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I3g-1i-Qeb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="la3-eh-nni">
+                                <rect key="frame" x="20" y="60" width="374" height="27.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27.5" id="mKP-hf-oiY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" text="" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="KG6-NR-CWo">
+                                <rect key="frame" x="16" y="103.5" width="332" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="5rr-E0-bDK"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="q3L-bh-erf" id="7bG-Or-BLx"/>
+                                </connections>
+                            </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4Z-nc-8jB">
+                                <rect key="frame" x="368" y="119" width="26" height="25"/>
+                                <state key="normal" image="line.horizontal.3.decrease.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                    </preferredSymbolConfiguration>
+                                </state>
+                                <connections>
+                                    <action selector="sortWithLabels:" destination="q3L-bh-erf" eventType="touchUpInside" id="7Gp-EG-94c"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcM-rT-ziF">
+                                <rect key="frame" x="371" y="60" width="23" height="27.5"/>
+                                <state key="normal" image="arrow.clockwise" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                    </preferredSymbolConfiguration>
+                                </state>
+                                <connections>
+                                    <action selector="reload:" destination="q3L-bh-erf" eventType="touchUpInside" id="xuf-1Q-TmZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="Carlie White"/>
+                        <constraints>
+                            <constraint firstItem="D4Z-nc-8jB" firstAttribute="leading" secondItem="KG6-NR-CWo" secondAttribute="trailing" constant="20" id="AVU-0V-KN0"/>
+                            <constraint firstItem="mcM-rT-ziF" firstAttribute="centerY" secondItem="la3-eh-nni" secondAttribute="centerY" id="Cdc-Zc-Y5Z"/>
+                            <constraint firstItem="KG6-NR-CWo" firstAttribute="top" secondItem="la3-eh-nni" secondAttribute="bottom" constant="16" id="Giy-qv-0LL"/>
+                            <constraint firstItem="KG6-NR-CWo" firstAttribute="leading" secondItem="Tpo-Xd-EWp" secondAttribute="leading" constant="16" id="Lde-YS-t5d"/>
+                            <constraint firstItem="la3-eh-nni" firstAttribute="leading" secondItem="Tpo-Xd-EWp" secondAttribute="leading" constant="20" id="VME-Xh-P4q"/>
+                            <constraint firstItem="Tpo-Xd-EWp" firstAttribute="trailing" secondItem="D4Z-nc-8jB" secondAttribute="trailing" constant="20" id="a6R-fI-u0t"/>
+                            <constraint firstItem="D4Z-nc-8jB" firstAttribute="centerY" secondItem="KG6-NR-CWo" secondAttribute="centerY" id="b1v-kp-5iP"/>
+                            <constraint firstItem="la3-eh-nni" firstAttribute="top" secondItem="Tpo-Xd-EWp" secondAttribute="top" constant="16" id="cuE-dt-xsX"/>
+                            <constraint firstItem="Tpo-Xd-EWp" firstAttribute="trailing" secondItem="la3-eh-nni" secondAttribute="trailing" constant="20" id="hQv-17-wri"/>
+                            <constraint firstItem="Tpo-Xd-EWp" firstAttribute="trailing" secondItem="mcM-rT-ziF" secondAttribute="trailing" constant="20" id="qh6-Xo-Ql0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Tpo-Xd-EWp"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RW4-Eq-oPg"/>
+                    <connections>
+                        <outlet property="filterButton" destination="D4Z-nc-8jB" id="jDU-Po-EcU"/>
+                        <outlet property="reloadButton" destination="mcM-rT-ziF" id="97U-OJ-72v"/>
+                        <outlet property="searchField" destination="KG6-NR-CWo" id="z0z-7t-Ngh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="peZ-M2-BLc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="573.91304347826087" y="320.75892857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow.clockwise" catalog="system" width="56" height="64"/>
+        <image name="line.horizontal.3.decrease.circle.fill" catalog="system" width="64" height="60"/>
+        <namedColor name="Carlie White">
+            <color red="0.96078431372549022" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+    <color key="tintColor" name="Global Tint"/>
+</document>

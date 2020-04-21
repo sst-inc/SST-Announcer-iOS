@@ -3,7 +3,15 @@
 
 target 'Announcer' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+  # use_frameworks!
 
   # Pods for Announcer
+  # Add the Firebase pod for Google Analytics
+  pod 'Firebase/Analytics'
+  
+  # Add the pod for Firebase Cloud Messaging
+  pod 'Firebase/Messaging'
+end
+
+target 'AnnouncerNotificationsExtension' do
 end
