@@ -124,9 +124,13 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 
             } else {
                 if pinned.count != 0 && indexPath.section == 0 {
+                    // Pinned items
                     cell.post = pinned[indexPath.row]
                 } else if posts.count != 0  {
                     cell.post = posts[indexPath.row]
+                    DispatchQueue.global(qos: .utility).async {
+                        self.activateActivity(with: cell.post)
+                    }
                 }
             }
             

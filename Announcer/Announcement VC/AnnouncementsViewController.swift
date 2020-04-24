@@ -77,7 +77,17 @@ class AnnouncementsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        announcementTableView.reloadData()
+        
+        if filter != "" {
+            self.searchField.text = "[\(filter)]"
+            self.announcementTableView.reloadData()
+            self.searchBar(self.searchField, textDidChange: "[\(filter)]")
+            filter = ""
+        } else {
+            self.announcementTableView.reloadData()
+        }
+        
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -100,6 +110,11 @@ class AnnouncementsViewController: UIViewController {
         
         if let dest = segue.destination as? ContentViewController {
             dest.post = selectedItem
+            dest.filterUpdated = {
+                self.searchField.text = "[\(filter)]"
+                self.announcementTableView.reloadData()
+                self.searchBar(self.searchField, textDidChange: "[\(filter)]")
+            }
         }
     }
     @IBAction func sortWithLabels(_ sender: Any) {
@@ -122,5 +137,45 @@ class AnnouncementsViewController: UIViewController {
         }
         
         print("reloading")
+    }
+    
+    func activateActivity(with post: Post) {
+//        let activity = NSUserActivity(activityType: "sg.edu.sst.panziyue.Announcer.content")
+//        
+//        activity.isEligibleForPrediction = true
+//        activity.isEligibleForPublicIndexing = true
+//        activity.isEligibleForSearch = true
+//        
+//        activity.addUserInfoEntries(from: ["title" : post.title, "content" : post.content])
+//        
+//        var keywords = [post.title, post.content]
+//        
+//        keywords += post.categories
+//        activity.keywords = Set<String>(keywords)
+//        
+//        activity.title = post.title
+//        activity.webpageURL = getShareURL(with: post)
+//        
+//        activity.expirationDate = Date(timeIntervalSinceNow: 604800)
+//        
+//        activity.requiredUserInfoKeys = Set<String>(keywords)
+//        activity.persistentIdentifier = post.title
+//        activity.becomeCurrent()
+//        
+//        activity.delegate = self
+    }
+    
+    func receivePost(with post: Post) {
+        selectedItem = post
+        
+        let vc = getContentViewController(for: IndexPath(row: 0, section: 0))
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension AnnouncementsViewController: NSUserActivityDelegate {
+    func userActivityWillSave(_ userActivity: NSUserActivity) {
+        print(userActivity.title! + " was saved")
     }
 }

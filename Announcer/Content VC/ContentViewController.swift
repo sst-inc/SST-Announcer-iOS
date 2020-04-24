@@ -8,10 +8,12 @@
 
 import UIKit
 import SafariServices
+import URLEmbeddedView
 
 class ContentViewController: UIViewController {
     
     var onDismiss: (() -> Void)?
+    var filterUpdated: (() -> Void)?
     var defaultFontSize: CGFloat = 15
     
     var currentScale: CGFloat = 15 {
@@ -31,7 +33,6 @@ class ContentViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contentTextField: UITextView!
-    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     
     // Accessibility Increase Text Size
     @IBOutlet weak var defaultFontSizeButton: UIButton!
@@ -43,9 +44,27 @@ class ContentViewController: UIViewController {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
+    @IBOutlet weak var tagsView: UIView!
+    @IBOutlet weak var linksView: UIView!
+    
+    @IBOutlet weak var linksCollectionView: UICollectionView!
+    @IBOutlet weak var tagsCollectionView: UICollectionView!
     
     var post: Post!
     var isPinned = false
+    
+    var links: [Links] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.linksCollectionView.reloadData()
+                
+                print(self.links)
+                if self.links.count > 0 {
+                    self.linksView.isHidden = false
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,7 +129,7 @@ class ContentViewController: UIViewController {
             if #available(iOS 13.0, *) {
                 attr?.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: (attr?.length)!))
             } else {
-                
+                attr?.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: 0, length: (attr?.length)!))
             }
             
             contentTextField.attributedText = attr
@@ -137,7 +156,7 @@ class ContentViewController: UIViewController {
         
         // Hide the tags if there are none
         if post.categories.count == 0 {
-            collectionViewHeightConstraint.constant = 0
+            tagsView.isHidden = true
         }
         
         // Styling default font size button
@@ -149,6 +168,40 @@ class ContentViewController: UIViewController {
         backButton.layer.cornerRadius = 25 / 2
         shareButton.layer.cornerRadius = 25 / 2
         pinButton.layer.cornerRadius = 25 / 2
+        
+        linksView.isHidden = true
+        
+        DispatchQueue.global(qos: .utility).async {
+            self.links = []
+            
+            for url in getLinksFromPost(post: self.post) {
+                OGDataProvider.shared.fetchOGData(withURLString: url.absoluteString) { [weak self] ogData, error in
+                    if let _ = error {
+                        return
+                    }
+                    
+                    print("- sourceUrl        = \(ogData.sourceUrl as URL?)\n"
+                        + "- url              = \(ogData.url as URL?)\n"
+                        + "- siteName         = \(ogData.siteName as String?)\n"
+                        + "- pageTitle        = \(ogData.pageTitle as String?)\n"
+                        + "- pageType         = \(ogData.pageType as String?)\n"
+                        + "- pageDescription  = \(ogData.pageDescription as String?)\n"
+                        + "- imageUrl         = \(ogData.imageUrl as URL?)\n")
+                    
+                    let sourceUrl: String = (ogData.sourceUrl ?? url).absoluteString
+                    let pageTitle: String = ogData.pageTitle ?? (url.baseURL?.absoluteString ?? url.absoluteString)
+                    let sourceImage: UIImage? = {
+                        if let imgUrl = ogData.imageUrl {
+                            return try? UIImage(data: Data(contentsOf: imgUrl), scale: 1)
+                        }
+                        return nil
+                    }()
+                    
+                    self?.links.append(Links(title: pageTitle, link: sourceUrl, image: sourceImage))
+                }
+            }
+        }
+
     }
     
     @IBAction func sharePost(_ sender: Any) {

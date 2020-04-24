@@ -89,5 +89,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>sg.edu.sst.panziyue.Announcer.content</string>
+	</array>
 </dict>
 </plist>

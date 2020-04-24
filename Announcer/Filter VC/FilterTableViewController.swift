@@ -60,7 +60,6 @@ class FilterTableViewController: UITableViewController {
         filter = cell.title
         print(selectedLabel)
         self.dismiss(animated: true) {
-            // Thanks Eric (TT)
             // Run an onDismiss void which is defined in the AnnouncementVC file
             // This void tells the AnnouncementVC to filter based on the selected tag
             self.onDismiss!()

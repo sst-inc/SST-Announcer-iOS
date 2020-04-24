@@ -37,19 +37,22 @@ extension AnnouncementsViewController: UISearchBarDelegate {
             // Get search field
             let field = searchBar.value(forKey: "searchField") as? UITextField
             
-            // Determine which one is smaller (start indices or end indices)
-            if (indicesStart.count <= (indicesEnd.count) ? indicesStart.count : indicesEnd.count) > 0 {
-                for i in 1...(indicesStart.count >= indicesEnd.count ? indicesStart.count : indicesEnd.count) {
-                    
-                    let start = indicesStart[i - 1]
-                    let end = indicesEnd[i - 1]
-                    
-                    // [] colors will be Carl and Shannen
-                    // @shannen why these color names man
-                    
-                    let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)]
-                    
-                    attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 1))
+            if indicesStart.count == 1 && indicesEnd.count == 1 {
+                
+                // Determine which one is smaller (start indices or end indices)
+                if (indicesStart.count <= (indicesEnd.count) ? indicesStart.count : indicesEnd.count) > 0 {
+                    for i in 1...(indicesStart.count >= indicesEnd.count ? indicesStart.count : indicesEnd.count) {
+                        
+                        let start = indicesStart[i - 1]
+                        let end = indicesEnd[i - 1]
+                        
+                        // [] colors will be Carl and Shannen
+                        // @shannen why these color names man
+                        
+                        let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)]
+                        
+                        attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 1))
+                    }
                 }
             }
             

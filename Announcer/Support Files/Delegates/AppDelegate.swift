@@ -38,12 +38,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Something went wrong")
             }
         }
-
+        
         return true
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("nice.")
+        let posts = fetchValues()
+        
+        var post: Post?
+        
+        for item in posts {
+            if item.title == userInfo["title"] as! String {
+                post = item
+                break
+            }
+        }
+        
+        if let announcementVC = window?.rootViewController as? AnnouncementsViewController, let post = post {
+            
+            announcementVC.receivePost(with: post)
+        }
     }
     
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -69,48 +83,73 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-//    func applicationDidEnterBackground(_ application: UIApplication) {
-//        print("goodbye")
-//
-//        scheduleAppRefresh()
-//    }
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
+        fatalError()
+    }
     
-//    func applicationWillTerminate(_ application: UIApplication) {
-//        scheduleAppRefresh()
-//    }
-//
-//    func scheduleAppRefresh() {
-//        let request = BGProcessingTaskRequest(identifier: "org.sstinc.announcer.feed")
-//
-//        // Fetch no earlier than 15 minutes from now
-//        request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
-//        request.requiresNetworkConnectivity = true
-//
-//        do {
-//            try BGTaskScheduler.shared.submit(request)
-//            UserDefaults.standard.set("No Errors, request submitted \(Date())", forKey: "error")
-//        } catch {
-//            print("Could not schedule app refresh: \(error)")
-//
-//            UserDefaults.standard.set(error.localizedDescription, forKey: "error")
-//        }
-//    }
-//
-//    func handleAppRefresh() {
-//        // Schedule a new refresh task
-//        scheduleAppRefresh()
-//
-//        UserDefaults.standard.set("refreshed", forKey: "status")
-//
-//        if let notificationTitle = fetchNotificationsTitle() {
-//            // New Notification
-//            // Push
-//
-//            notification(0, postTitle: notificationTitle)
-//        }
-//    }
-
+    func application(_ application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
+        
+        print("oh wow")
+        
+        let posts = fetchValues()
+        
+        let info = (userActivity!.userInfo as? [String:String])!
+        
+        var post: Post?
+        
+        for item in posts {
+            if item.title == info["title"] && item.content == info["content"] {
+                
+                post = item
+                break
+            }
+        }
+        
+        if let announcementVC = window?.rootViewController as? AnnouncementsViewController, let post = post {
             
+            announcementVC.receivePost(with: post)
+            
+            return true
+        }
+
+        
+        return false
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        
+        print("does this work")
+        
+        let posts = fetchValues()
+        
+        let info = (userActivity.userInfo as? [String:String])!
+        
+        var post: Post?
+        
+        for item in posts {
+            if item.title == info["title"] && item.content == info["content"] {
+                
+                post = item
+                break
+            }
+        }
+        
+        if let announcementVC = window?.rootViewController as? AnnouncementsViewController, let post = post {
+            
+            announcementVC.receivePost(with: post)
+            
+            return true
+        }
+
+        
+        return false
+    }
+    
+    func application(_ application: UIApplication, didFailToContinueUserActivityWithType userActivityType: String, error: Error) {
+        print(error.localizedDescription)
+        print("!!")
+    }
+    
     // MARK: UISceneSession Lifecycle
     
     @available(iOS 13.0, *)

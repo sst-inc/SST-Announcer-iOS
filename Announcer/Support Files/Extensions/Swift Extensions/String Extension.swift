@@ -79,4 +79,16 @@ extension String {
         }
         return returnString
     }
+    
+    func truncateBy(_ characters: Int) -> String {
+        if self.count > characters {
+            let item = index(startIndex, offsetBy: characters)
+            let mySubstring = self[..<item] + "…"
+            
+            return String(mySubstring)
+        } else {
+            return self
+        }
+        
+    }
 }

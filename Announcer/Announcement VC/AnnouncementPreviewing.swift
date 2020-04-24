@@ -31,7 +31,7 @@ extension AnnouncementsViewController: UIViewControllerPreviewingDelegate {
     }
     
     func getContentViewController(for indexPath: IndexPath) -> ContentViewController {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "detail") as? ContentViewController else {
+        guard let vc = UIStoryboard(name: "Content", bundle: .main).instantiateViewController(withIdentifier: "detail") as? ContentViewController else {
             fatalError()
         }
         
@@ -159,7 +159,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
     }
     
     func getContentViewControllerThroughPreview(with post: Post) -> ContentViewController {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "detail") as? ContentViewController else {
+        guard let vc = UIStoryboard(name: "Content", bundle: .main).instantiateViewController(withIdentifier: "detail") as? ContentViewController else {
             fatalError()
         }
         

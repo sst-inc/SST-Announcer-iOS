@@ -11,6 +11,7 @@ import SystemConfiguration
 import UserNotifications
 import UIKit
 import BackgroundTasks
+import CoreSpotlight
 
 // Blog URL
 // should be http://studentsblog.sst.edu.sg unless testing
@@ -38,6 +39,12 @@ struct Post: Codable, Equatable {
     var reminderDate: Date?
     
     var categories: [String]
+}
+
+struct Links: Equatable {
+    var title: String
+    var link: String
+    var image: UIImage?
 }
 
 // JSON Callback to get all the labels for the blog posts
@@ -87,12 +94,12 @@ func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
         print(error.localizedDescription)
         // Present alert
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Uh Oh :(", message: "Slow or no internet connection.\nPlease check your settings and try again", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Check your Internet", message: "Unable to fetch data from Students' Blog.\nPlease check your network settings and try again.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
                 vc.reload(UILabel())
             }))
             
-            alert.addAction(UIAlertAction(title: "Open in Settings", style: .default, handler: { action in
+            alert.addAction(UIAlertAction(title: "Open Settings", style: .default, handler: { action in
                 let url = URL(string: "App-Prefs:root=")!
                 UIApplication.shared.open(url, options: [:]) { (success) in
                     print(success)
@@ -134,6 +141,23 @@ func fetchNotificationsTitle() -> (title: String, content: String)? {
     
     return nil
 }
+
+func fetchValues() -> [Post] {
+    let parser = FeedParser(URL: rssURL)
+    let result = parser.parse()
+    
+    switch result {
+    case .success(let feed):
+        let feed = feed.atomFeed
+        
+        return convertFromEntries(feed: (feed?.entries)!)
+    default:
+        break
+    }
+    
+    return []
+}
+
 
 
 // Convert Enteries to Posts
@@ -196,5 +220,50 @@ func getShareURL(with post: Post) -> URL {
     // 40 chars
     shareLink = blogURL + dateFormatter.string(from: post.date) + shareLink + ".html"
     
-    return URL(string: shareLink) ?? URL(string: blogURL)!
+    let shareURL = URL(string: shareLink) ?? URL(string: blogURL)!
+    
+    let isURLValid: Bool = {
+        let str = try? String(contentsOf: shareURL)
+        if let str = str {
+            return !str.contains("Sorry, the page you were looking for in this blog does not exist.")
+        } else {
+            return false
+        }
+    }()
+    
+    if isURLValid {
+        return shareURL
+    }
+    
+    return URL(string: blogURL)!
+}
+
+func getLinksFromPost(post: Post) -> [URL] {
+    let items = post.content.components(separatedBy: "href=\"")
+    
+    var links: [URL] = []
+    
+    for item in items {
+        var newItem = ""
+        
+        for character in item {
+            if character != "\"" {
+                newItem += String(character)
+            } else {
+                break
+            }
+        }
+        
+        if let url = URL(string: newItem) {
+            links.append(url)
+        }
+    }
+    
+    links.removeDuplicates()
+    
+    links = links.filter { (link) -> Bool in
+        link.baseURL != URL(string: "http://4.bp.blogspot.com/")
+    }
+    
+    return links
 }
