@@ -184,8 +184,8 @@ func convertFromEntries(feed: [AtomFeedEntry]) -> [Post] {
     return posts
 }
 
-func getTagsFromSearch(with query: String) -> String {
-    // Tags in search are a mess to deal with
+func getLabelsFromSearch(with query: String) -> String {
+    // Labels in search are a mess to deal with
     if query.first == "[" {
         let split = query.split(separator: "]")
         var result = split[0]

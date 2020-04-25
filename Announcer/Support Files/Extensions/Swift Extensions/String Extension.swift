@@ -50,9 +50,9 @@ extension String {
         return self.replacingOccurrences(of: " ", with: "")
     }
     
-    func removeTags() -> String {
+    func removeLabel() -> String {
         var str = self
-        str.removeFirst(getTagsFromSearch(with: self).count)
+        str.removeFirst(getLabelsFromSearch(with: self).count)
         return str
     }
     

@@ -32,7 +32,7 @@ class ContentViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var contentTextField: UITextView!
+    @IBOutlet weak var contentTextView: UITextView!
     
     // Accessibility Increase Text Size
     @IBOutlet weak var defaultFontSizeButton: UIButton!
@@ -44,11 +44,11 @@ class ContentViewController: UIViewController {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
-    @IBOutlet weak var tagsView: UIView!
+    @IBOutlet weak var labelsView: UIView!
     @IBOutlet weak var linksView: UIView!
     
     @IBOutlet weak var linksCollectionView: UICollectionView!
-    @IBOutlet weak var tagsCollectionView: UICollectionView!
+    @IBOutlet weak var labelsCollectionView: UICollectionView!
     
     var post: Post!
     var isPinned = false
@@ -132,7 +132,7 @@ class ContentViewController: UIViewController {
                 attr?.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: 0, length: (attr?.length)!))
             }
             
-            contentTextField.attributedText = attr
+            contentTextView.attributedText = attr
         }
         
         // Check if item is pinned
@@ -152,11 +152,11 @@ class ContentViewController: UIViewController {
         }
         
         // Set textField delegate
-        contentTextField.delegate = self
+        contentTextView.delegate = self
         
-        // Hide the tags if there are none
+        // Hide the labels if there are none
         if post.categories.count == 0 {
-            tagsView.isHidden = true
+            labelsView.isHidden = true
         }
         
         // Styling default font size button
@@ -281,13 +281,13 @@ class ContentViewController: UIViewController {
     @IBAction func pinchedTextField(_ sender: UIPinchGestureRecognizer) {
         print(sender.scale)
         
-        let attr = NSMutableAttributedString(attributedString: contentTextField.attributedText)
+        let attr = NSMutableAttributedString(attributedString: contentTextView.attributedText)
         
         currentScale = currentScale * sender.scale
         
         attr.addAttribute(.font, value: UIFont.systemFont(ofSize: currentScale, weight: .medium), range: NSRange.init(location: 0, length: attr.length))
         
-        contentTextField.attributedText = attr
+        contentTextView.attributedText = attr
         
         UserDefaults.standard.set(currentScale, forKey: "textScale")
         
@@ -307,7 +307,7 @@ class ContentViewController: UIViewController {
     }
     
     @IBAction func resetToDefaultFontSize(_ sender: Any) {
-        let attr = NSMutableAttributedString(attributedString: contentTextField.attributedText)
+        let attr = NSMutableAttributedString(attributedString: contentTextView.attributedText)
         
         attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 15, weight: .medium), range: NSRange(location: 0, length: attr.length))
         
@@ -315,7 +315,7 @@ class ContentViewController: UIViewController {
         
         UserDefaults.standard.set(currentScale, forKey: "textScale")
         
-        contentTextField.attributedText = attr
+        contentTextView.attributedText = attr
         
         defaultFontSizeButton.isHidden = true
     }

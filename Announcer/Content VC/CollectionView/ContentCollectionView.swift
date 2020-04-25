@@ -12,17 +12,17 @@ import SafariServices
 
 extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == tagsCollectionView {
+        if collectionView == labelsCollectionView {
             return post.categories.count
         } else {
             return links.count
         }
     }
     
-    // CollectionView contains tags
+    // CollectionView contains labels
     // Each cell is Guan Yellow and
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == tagsCollectionView {
+        if collectionView == labelsCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoriesCollectionViewCell
             
             cell.titleLabel.text = post.categories[indexPath.row]
@@ -46,7 +46,7 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == tagsCollectionView {
+        if collectionView == labelsCollectionView {
             let cell = collectionView.cellForItem(at: indexPath) as! CategoriesCollectionViewCell
             filter = cell.titleLabel.text!
             print(filter)

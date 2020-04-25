@@ -20,7 +20,7 @@ extension AnnouncementsViewController: UISearchBarDelegate {
     // Seach results automatically reloads when value changed
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         DispatchQueue.global(qos: .background).async {
-            // Set color of tags
+            // Set color of labels
             // Update labels/textview with data
             let attrTitle = NSMutableAttributedString(string: searchText)
             // Find the [] and just make it like guan yellow
@@ -62,7 +62,7 @@ extension AnnouncementsViewController: UISearchBarDelegate {
             
             // Update content
             self.searchFoundInTitle = self.posts.filter { (post) -> Bool in
-                let newTitle = post.title.removeWhitespace().lowercased().removeTags()
+                let newTitle = post.title.removeWhitespace().lowercased().removeLabel()
                 
                 if newTitle.contains(searchText.removeWhitespace().lowercased()) {
                     return true
@@ -71,7 +71,7 @@ extension AnnouncementsViewController: UISearchBarDelegate {
             }
             
             self.searchFoundInBody = self.posts.filter { (post) -> Bool in
-                let newContent = post.content.removeWhitespace().lowercased().removeTags()
+                let newContent = post.content.removeWhitespace().lowercased().removeLabel()
                 
                 if newContent.contains(searchText.removeWhitespace().lowercased()) {
                     return true
@@ -79,14 +79,14 @@ extension AnnouncementsViewController: UISearchBarDelegate {
                 return false
             }
             
-            self.searchTags = self.posts.filter({ (post) -> Bool in
-                let tag = getTagsFromSearch(with: searchText)
+            self.searchLabels = self.posts.filter({ (post) -> Bool in
+                let label = getLabelsFromSearch(with: searchText)
                 
                 let newCat = post.categories.map { (str) -> String in
                     str.lowercased()
                 }
                 
-                return newCat.contains(tag)
+                return newCat.contains(label)
             })
             
             DispatchQueue.main.async {

@@ -61,7 +61,7 @@ class FilterTableViewController: UITableViewController {
         print(selectedLabel)
         self.dismiss(animated: true) {
             // Run an onDismiss void which is defined in the AnnouncementVC file
-            // This void tells the AnnouncementVC to filter based on the selected tag
+            // This void tells the AnnouncementVC to filter based on the selected label
             self.onDismiss!()
         }
     }

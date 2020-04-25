@@ -241,7 +241,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k7H-Fv-6vl">
                                         <rect key="frame" x="0.0" y="110.5" width="414" height="74.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gen-Ty-Ccj">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Labels" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gen-Ty-Ccj">
                                                 <rect key="frame" x="52" y="8" width="346" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -367,17 +367,17 @@
                     <navigationItem key="navigationItem" id="rcF-4z-DE0"/>
                     <connections>
                         <outlet property="backButton" destination="U2T-Td-RAX" id="wba-zR-Tsd"/>
-                        <outlet property="contentTextField" destination="rym-Zu-BLo" id="osM-YZ-Ciq"/>
+                        <outlet property="contentTextView" destination="rym-Zu-BLo" id="osM-YZ-Ciq"/>
                         <outlet property="dateLabel" destination="hqT-8H-aia" id="TPO-pJ-j1f"/>
                         <outlet property="defaultFontSizeButton" destination="KFV-08-BRC" id="WFj-ZS-REb"/>
                         <outlet property="increaseTextSizeGestureRecognizer" destination="38e-JE-Lg0" id="cSi-3L-ro0"/>
+                        <outlet property="labelsCollectionView" destination="IkW-6N-vaR" id="Dxs-kP-BtR"/>
+                        <outlet property="labelsView" destination="k7H-Fv-6vl" id="WUU-Aa-MIX"/>
                         <outlet property="linksCollectionView" destination="0Dd-kp-zdj" id="g0B-Dm-bTR"/>
                         <outlet property="linksView" destination="h3m-fr-5AJ" id="HXH-ii-wxa"/>
                         <outlet property="pinButton" destination="mTt-rq-DZo" id="dwE-Ej-mxn"/>
                         <outlet property="safariButton" destination="4M5-iQ-t9p" id="Nqb-cX-A3Q"/>
                         <outlet property="shareButton" destination="Uxe-5r-lpJ" id="A7g-Ju-Lds"/>
-                        <outlet property="tagsCollectionView" destination="IkW-6N-vaR" id="Dxs-kP-BtR"/>
-                        <outlet property="tagsView" destination="k7H-Fv-6vl" id="WUU-Aa-MIX"/>
                         <outlet property="titleLabel" destination="1ZK-Yy-4Eg" id="81g-mC-ZHB"/>
                     </connections>
                 </viewController>

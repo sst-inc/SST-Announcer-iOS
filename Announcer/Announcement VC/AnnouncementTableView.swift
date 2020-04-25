@@ -18,8 +18,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             // If no results, the section count will be 0
             var sections = 0
             
-            // Check if searchTags has anything, if so, add 1
-            if searchTags.count > 0 {
+            // Check if searchLabels has anything, if so, add 1
+            if searchLabels.count > 0 {
                 sections += 1
             }
             
@@ -53,15 +53,15 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             // if searchterm is found in title, it appears first
             switch section {
             case 0:
-                if searchTags.count > 0 {
-                    return searchTags.count
+                if searchLabels.count > 0 {
+                    return searchLabels.count
                 } else if searchFoundInTitle.count >= 0 {
                     return searchFoundInTitle.count
                 } else {
                     return searchFoundInBody.count
                 }
             case 1:
-                if searchTags.count > 0 {
+                if searchLabels.count > 0 {
                     if searchFoundInTitle.count >= 0 {
                         return searchFoundInTitle.count
                     } else {
@@ -101,15 +101,15 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 // Display Search Results
                 switch indexPath.section {
                 case 0:
-                    if searchTags.count > 0 {
-                        cell.post = searchTags[indexPath.row]
+                    if searchLabels.count > 0 {
+                        cell.post = searchLabels[indexPath.row]
                     } else if searchFoundInTitle.count >= 0 {
                         cell.post = searchFoundInTitle[indexPath.row]
                     } else {
                         cell.post = searchFoundInBody[indexPath.row]
                     }
                 case 1:
-                    if searchTags.count > 0 {
+                    if searchLabels.count > 0 {
                         if searchFoundInTitle.count >= 0 {
                             cell.post = searchFoundInTitle[indexPath.row]
                         } else {
@@ -176,7 +176,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         if searchField.text != "" {
             headers = []
             
-            if searchTags.count > 0 {
+            if searchLabels.count > 0 {
                 headers.append("Labels")
             }
             if searchFoundInTitle.count > 0 {

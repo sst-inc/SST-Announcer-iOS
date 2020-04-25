@@ -28,8 +28,8 @@ class AnnouncementsViewController: UIViewController {
     // Stores searchresults in body of post
     var searchFoundInBody = [Post]()
     
-    // Stores searchresults if searched with tags
-    var searchTags = [Post]()
+    // Stores searchresults if searched with labels
+    var searchLabels = [Post]()
     
     // Haptics play at each segment when scrolling up
     var playedHaptic = 0
