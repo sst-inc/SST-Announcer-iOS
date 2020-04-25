@@ -262,7 +262,7 @@ func getLinksFromPost(post: Post) -> [URL] {
     links.removeDuplicates()
     
     links = links.filter { (link) -> Bool in
-        link.baseURL != URL(string: "http://4.bp.blogspot.com/")
+        !link.absoluteString.contains("bp.blogspot.com/")
     }
     
     return links

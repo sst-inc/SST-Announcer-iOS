@@ -12,6 +12,18 @@ class LinksCollectionViewCell: UICollectionViewCell {
     
     var link: Links! {
         didSet {
+            if link.title.contains("https://") {
+                link.title.removeFirst(8)
+            } else if link.title.contains("http://") {
+                link.title.removeFirst(7)
+            } else if link.title.contains("mailto:") {
+                link.title.removeFirst(7)
+            }
+            
+            if link.title.contains("www.") {
+                link.title.removeFirst(4)
+            }
+            
             titleLabel.text = link.title.truncateBy(20)
             thumbnailImageView.isHidden = false
             
