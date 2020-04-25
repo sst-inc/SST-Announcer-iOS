@@ -107,20 +107,6 @@
                                     <action selector="pinnedItem:" destination="MQo-jn-rdj" eventType="touchUpInside" id="NjH-6h-rZw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFV-08-BRC">
-                                <rect key="frame" x="20" y="792" width="374" height="50"/>
-                                <color key="backgroundColor" name="Guan Yellow"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="o6g-B4-o78"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                <state key="normal" title="    Reset" image="textformat.size" catalog="system">
-                                    <color key="titleColor" name="Carl and Shannen"/>
-                                </state>
-                                <connections>
-                                    <action selector="resetToDefaultFontSize:" destination="MQo-jn-rdj" eventType="touchUpInside" id="ihp-vx-rEt"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="bYZ-GH-tzW">
                                 <rect key="frame" x="0.0" y="677" width="414" height="185"/>
                                 <subviews>
@@ -142,7 +128,7 @@
                                             </imageView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Dd-kp-zdj">
                                                 <rect key="frame" x="0.0" y="36.5" width="414" height="50"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="0eH-TU-KFd"/>
                                                 </constraints>
@@ -237,11 +223,12 @@
                                                 </connections>
                                             </collectionView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="0Dd-kp-zdj" firstAttribute="top" secondItem="lZF-zE-3od" secondAttribute="bottom" constant="8" id="1OA-pM-TBh"/>
                                             <constraint firstAttribute="trailing" secondItem="lZF-zE-3od" secondAttribute="trailing" constant="16" id="98Y-1H-gzT"/>
                                             <constraint firstItem="lZF-zE-3od" firstAttribute="leading" secondItem="3Nq-r8-QGX" secondAttribute="trailing" constant="16" id="Brm-8P-5ha"/>
+                                            <constraint firstAttribute="height" constant="94.5" id="HIe-go-7IS"/>
                                             <constraint firstItem="3Nq-r8-QGX" firstAttribute="top" secondItem="h3m-fr-5AJ" secondAttribute="top" constant="8" id="NEf-cl-ZTN"/>
                                             <constraint firstItem="lZF-zE-3od" firstAttribute="top" secondItem="h3m-fr-5AJ" secondAttribute="top" constant="8" id="Y0Z-bz-gLQ"/>
                                             <constraint firstItem="3Nq-r8-QGX" firstAttribute="leading" secondItem="h3m-fr-5AJ" secondAttribute="leading" constant="16" id="aXQ-16-SRB"/>
@@ -269,7 +256,7 @@
                                             </imageView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IkW-6N-vaR">
                                                 <rect key="frame" x="0.0" y="36.5" width="414" height="30"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="qzT-B3-xZo"/>
                                                 </constraints>
@@ -316,9 +303,10 @@
                                                 </connections>
                                             </collectionView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="IkW-6N-vaR" secondAttribute="trailing" id="106-vp-nxw"/>
+                                            <constraint firstAttribute="height" constant="74.5" id="2Au-ZI-wIR"/>
                                             <constraint firstItem="IkW-6N-vaR" firstAttribute="leading" secondItem="k7H-Fv-6vl" secondAttribute="leading" id="4ZV-z6-ty3"/>
                                             <constraint firstItem="gen-Ty-Ccj" firstAttribute="height" secondItem="lve-07-HdX" secondAttribute="height" multiplier="1.025" id="CCX-lE-CUt"/>
                                             <constraint firstItem="lve-07-HdX" firstAttribute="leading" secondItem="k7H-Fv-6vl" secondAttribute="leading" constant="16" id="EIc-W9-R85"/>
@@ -332,6 +320,20 @@
                                     </view>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFV-08-BRC">
+                                <rect key="frame" x="20" y="792" width="374" height="50"/>
+                                <color key="backgroundColor" name="Guan Yellow"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="o6g-B4-o78"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <state key="normal" title="    Reset" image="textformat.size" catalog="system">
+                                    <color key="titleColor" name="Carl and Shannen"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetToDefaultFontSize:" destination="MQo-jn-rdj" eventType="touchUpInside" id="ihp-vx-rEt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="Carlie White"/>
                         <constraints>
