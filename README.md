@@ -1,4 +1,4 @@
-# Announcer 2020
+# SST Announcer 2020 (iOS)
 SST Announcer was built to help SST Students stay up to date with the school’s announcements with ease and convenience on their devices. The app allows users to browse, pin and share important announcements made by the school. The app also sends notifications to students whenever a new announcement is posted. This helped to ensure that students are kept updated with the latest information from my school. 
 
 ---
@@ -27,6 +27,8 @@ SST Announcer was built to help SST Students stay up to date with the school’s
   - Fetching new blog posts in the background, on device.
   - This is easier and more cost effective than running a server to push notifications to each device 
     - TL;DR: I'm broke so this is the best way
+    - Limitations: 
+      - Unable to work with Low-Power Mode on 
 - [User Notifications](https://developer.apple.com/documentation/usernotifications)
   - To send notifications to the users whenever a new post comes (works together with Background Tasks)
 - [Mac Catalyst](https://developer.apple.com/documentation/uikit/mac_catalyst)
