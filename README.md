@@ -13,7 +13,7 @@ SST Announcer was built to help SST Students stay up to date with the school’s
 |:--------------:|:------------:|:--:|
 |iOS|11.0.1||
 |iPadOS|11.0.1||
-|MacOS|11.0.1|Certain features may not work as intended|
+|MacOS (Catalyst)|11.0.1|Certain features may not work as intended|
 
 ## Technologies/Libraries Used
 ### Open Source Libraries
