@@ -1,5 +1,4 @@
 # Announcer 2020
-## Overview
 SST Announcer was built to help SST Students stay up to date with the school’s announcements with ease and convenience on their devices. The app allows users to browse, pin and share important announcements made by the school. The app also sends notifications to students whenever a new announcement is posted. This helped to ensure that students are kept updated with the latest information from my school. 
 
 ---
