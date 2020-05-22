@@ -8,8 +8,7 @@ SST Announcer was built to help SST Students stay up to date with the school’s
 - open the Announcer.xcworkspace
 - done
 
-or download on the [app store](https://apps.apple.com/sg/app/sst-announcer/id683929182)
-
+[![App Store](https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg)](https://apps.apple.com/sg/app/sst-announcer/id683929182)
 ## Support
 |Operating System|Latest Version|Note|
 |:--------------:|:------------:|:--:|

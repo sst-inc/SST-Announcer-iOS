@@ -123,6 +123,7 @@
 		32C2532D244EA8D00015085A /* ContentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2532C244EA8D00015085A /* ContentTextView.swift */; };
 		32C4059924534617006CA49E /* Content.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C4059824534617006CA49E /* Content.storyboard */; };
 		32C65274239017E500C698F2 /* PinnedAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C65273239017E500C698F2 /* PinnedAnnouncements.swift */; };
+		32D7070524783054003DC98C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 32D7070424783053003DC98C /* README.md */; };
 		32D99536238C068D00208D25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99535238C068D00208D25 /* AppDelegate.swift */; };
 		32D99538238C068D00208D25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99537238C068D00208D25 /* SceneDelegate.swift */; };
 		32D9953D238C068D00208D25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953B238C068D00208D25 /* Main.storyboard */; };
@@ -269,6 +270,7 @@
 		32C4059824534617006CA49E /* Content.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Content.storyboard; sourceTree = "<group>"; };
 		32C6527223900DC100C698F2 /* SST Announcer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SST Announcer.entitlements"; sourceTree = "<group>"; };
 		32C65273239017E500C698F2 /* PinnedAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedAnnouncements.swift; sourceTree = "<group>"; };
+		32D7070424783053003DC98C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		32D99532238C068D00208D25 /* SST Announcer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SST Announcer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D99535238C068D00208D25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32D99537238C068D00208D25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -590,6 +592,7 @@
 		32D99529238C068D00208D25 = {
 			isa = PBXGroup;
 			children = (
+				32D7070424783053003DC98C /* README.md */,
 				32D99534238C068D00208D25 /* Announcer */,
 				32D99533238C068D00208D25 /* Products */,
 				F60E238002C508C5CE0166E8 /* Pods */,
@@ -744,6 +747,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32D7070524783054003DC98C /* README.md in Resources */,
 				32D99542238C068F00208D25 /* LaunchScreen.storyboard in Resources */,
 				329E3B1D23F979CC00524901 /* Settings.bundle in Resources */,
 				32D9953F238C068F00208D25 /* Assets.xcassets in Resources */,
