@@ -50,6 +50,8 @@ class ContentViewController: UIViewController {
     @IBOutlet weak var linksCollectionView: UICollectionView!
     @IBOutlet weak var labelsCollectionView: UICollectionView!
     
+    @IBOutlet weak var linksAndLabelStackView: UIStackView!
+    
     var post: Post!
     var isPinned = false
     
@@ -214,6 +216,17 @@ class ContentViewController: UIViewController {
             }
         }
 
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+            linksAndLabelStackView.isHidden = true
+        } else {
+            print("Portrait")
+            linksAndLabelStackView.isHidden = false
+        }
     }
     
     @IBAction func sharePost(_ sender: Any) {

@@ -49,7 +49,7 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
         if collectionView == labelsCollectionView {
             let cell = collectionView.cellForItem(at: indexPath) as! CategoriesCollectionViewCell
             filter = cell.titleLabel.text!
-            print(filter)
+            
             filterUpdated?()
             
             navigationController?.popToRootViewController(animated: true)
