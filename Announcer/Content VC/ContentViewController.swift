@@ -189,7 +189,19 @@ class ContentViewController: UIViewController {
                         + "- imageUrl         = \(ogData.imageUrl as URL?)\n")
                     
                     let sourceUrl: String = (ogData.sourceUrl ?? url).absoluteString
-                    let pageTitle: String = ogData.pageTitle ?? (url.baseURL?.absoluteString ?? url.absoluteString)
+                    let pageTitle: String = {
+                        let newURL = url.baseURL?.absoluteString ?? url.absoluteString
+                        
+                        if newURL.contains("sites.google.com") {
+                            var urlItems = newURL.split(separator: "/")
+                            
+                            urlItems.removeFirst(3)
+                            
+                            return urlItems.joined(separator: "/")
+                        }
+                        
+                        return ogData.pageTitle ?? newURL
+                    }()
                     let sourceImage: UIImage? = {
                         if let imgUrl = ogData.imageUrl {
                             return try? UIImage(data: Data(contentsOf: imgUrl), scale: 1)
