@@ -1,4 +1,4 @@
-# SST Announcer 2020 (iOS)
+# SST Announcer (iOS)
 [![Language](http://img.shields.io/badge/swift-5-orange.svg?style=flat)](https://developer.apple.com/swift)
 [![Xcode](http://img.shields.io/badge/xcode-11.4-red.svg?style=flat)](https://developer.apple.com/xcode)
 [![Cocoapods](http://img.shields.io/badge/pod-v1.8.4-darkgray.svg?style=flat)](https://cocoapods.org/)
@@ -39,6 +39,10 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
   - Fetching data from Students' Blog (Atom feed)
   
 ### Apple Technologies
+- [UIKit](https://developer.apple.com/documentation/uikit/)
+  - User Interface for iOS, iPadOS and MacOS
+- [Mac Catalyst](https://developer.apple.com/documentation/uikit/mac_catalyst)
+  - To enable MacOS support
 - [Background Tasks](https://developer.apple.com/documentation/backgroundtasks)
   - Fetching new blog posts in the background, on device.
   - This is easier and more cost effective than running a server to push notifications to each device 
@@ -47,10 +51,6 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
       - Unable to work with Low-Power Mode on 
 - [User Notifications](https://developer.apple.com/documentation/usernotifications)
   - To send notifications to the users whenever a new post comes (works together with Background Tasks)
-- [Mac Catalyst](https://developer.apple.com/documentation/uikit/mac_catalyst)
-  - To enable MacOS support
-- [UIKit](https://developer.apple.com/documentation/uikit/)
-  - User Interface for iOS, iPadOS and MacOS
 
 ## Screenshots (iOS)
 Dark and Light mode

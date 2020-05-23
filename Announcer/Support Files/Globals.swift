@@ -11,7 +11,6 @@ import SystemConfiguration
 import UserNotifications
 import UIKit
 import BackgroundTasks
-import CoreSpotlight
 
 // Blog URL
 // should be http://studentsblog.sst.edu.sg unless testing
