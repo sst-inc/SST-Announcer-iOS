@@ -3,17 +3,24 @@ SST Announcer was built to help SST Students stay up to date with the school’s
 
 ---
 ## Installation
-- run `pod install` (there is one or two pods there)
-- open the Announcer.xcworkspace
-- done
+This project uses Cocoapods. Check the Podfile for more information.
 
+0. To install Cocoapods, in terminal, run `sudo gem install cocoapods`
+1. To install the pods into the project, go to the project's directory and run `pod install` on this project
+2. Open the Announcer.xcworkspace
+3. Done
+
+or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/id683929182)
 [![App Store](https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg)](https://apps.apple.com/sg/app/sst-announcer/id683929182)
-## Support
+
+## Requirements
+Requires Xcode 11.4
+
 |Operating System|Latest Version|Note|
 |:--------------:|:------------:|:--:|
-|iOS|11.0.1||
-|iPadOS|11.0.1||
-|MacOS (Catalyst)|11.0.1|Certain features may not work as intended|
+|iOS 13 and above|11.0.1||
+|iPadOS 13 and above|11.0.1||
+|MacOS 10.15 and above|11.0.1|BackgroundTasks and Previews do not work on Mac Catalyst|
 
 ## Technologies/Libraries Used
 ### Open Source Libraries
