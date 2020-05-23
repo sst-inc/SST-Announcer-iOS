@@ -1,4 +1,10 @@
 # SST Announcer 2020 (iOS)
+[![Language](http://img.shields.io/badge/swift-5-orange.svg?style=flat)](https://developer.apple.com/swift)
+[![Xcode](http://img.shields.io/badge/xcode-11.4-red.svg?style=flat)](https://developer.apple.com/xcode)
+[![iOS](http://img.shields.io/badge/platform-iOS%2013-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
+[![iPadOS](http://img.shields.io/badge/platform-iPadOS%2013-blue.svg?style=flat)](https://developer.apple.com/ipad/)
+[![Mac Catalyst](http://img.shields.io/badge/platform-MacOS%2010.15-blue.svg?style=flat)](https://developer.apple.com/mac-catalyst/)
+
 SST Announcer was built to help SST Students stay up to date with the school’s announcements with ease and convenience on their devices. The app allows users to browse, pin and share important announcements made by the school. The app also sends notifications to students whenever a new announcement is posted. This helped to ensure that students are kept updated with the latest information from the school. 
 
 ---
@@ -15,13 +21,11 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
 [![App Store](https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg)](https://apps.apple.com/sg/app/sst-announcer/id683929182)
 
 ## Requirements
-Requires Xcode 11.4
-
-|Operating System|Latest Version|Note|
-|:--------------:|:------------:|:--:|
-|iOS 13 and above|11.0.1||
-|iPadOS 13 and above|11.0.1||
-|MacOS 10.15 and above|11.0.1|BackgroundTasks and Previews do not work on Mac Catalyst|
+- Xcode 11.4 or greater
+- Swift 5 
+- iOS 13 or greater
+- iPadOS 13 or greater
+- MacOS 10.15 or greater
 
 ## Technologies/Libraries Used
 ### Open Source Libraries
@@ -41,6 +45,8 @@ Requires Xcode 11.4
   - To send notifications to the users whenever a new post comes (works together with Background Tasks)
 - [Mac Catalyst](https://developer.apple.com/documentation/uikit/mac_catalyst)
   - To enable MacOS support
+- [UIKit](https://developer.apple.com/documentation/uikit/)
+  - Interface
 
 ## Screenshots (iOS)
 Dark and Light mode
