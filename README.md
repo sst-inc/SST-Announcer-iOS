@@ -11,6 +11,7 @@ This project uses Cocoapods. Check the Podfile for more information.
 3. Done
 
 or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/id683929182)
+
 [![App Store](https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg)](https://apps.apple.com/sg/app/sst-announcer/id683929182)
 
 ## Requirements
