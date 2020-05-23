@@ -33,3 +33,12 @@ SST Announcer was built to help SST Students stay up to date with the school’s
   - To send notifications to the users whenever a new post comes (works together with Background Tasks)
 - [Mac Catalyst](https://developer.apple.com/documentation/uikit/mac_catalyst)
   - To enable MacOS support
+
+## Screenshots (iOS)
+Dark and Light mode
+### Home 
+<img src="Screenshots/iPhone/iPhone 11/Dark Mode/home.png" width="200">    <img src="Screenshots/iPhone/iPhone 11/Light Mode/home.png" width="200">
+### Content
+<img src="Screenshots/iPhone/iPhone 11/Dark Mode/content.png" width="200">    <img src="Screenshots/iPhone/iPhone 11/Light Mode/content.png" width="200">
+### Search 
+<img src="Screenshots/iPhone/iPhone 11/Dark Mode/search.png" width="200">    <img src="Screenshots/iPhone/iPhone 11/Light Mode/search.png" width="200">
