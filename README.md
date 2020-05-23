@@ -1,6 +1,8 @@
 # SST Announcer 2020 (iOS)
 [![Language](http://img.shields.io/badge/swift-5-orange.svg?style=flat)](https://developer.apple.com/swift)
 [![Xcode](http://img.shields.io/badge/xcode-11.4-red.svg?style=flat)](https://developer.apple.com/xcode)
+[![Cocoapods](http://img.shields.io/badge/pod-v1.8.4-darkgray.svg?style=flat)](https://cocoapods.org/)
+
 [![iOS](http://img.shields.io/badge/platform-iOS%2013-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
 [![iPadOS](http://img.shields.io/badge/platform-iPadOS%2013-blue.svg?style=flat)](https://developer.apple.com/ipad/)
 [![Mac Catalyst](http://img.shields.io/badge/platform-MacOS%2010.15-blue.svg?style=flat)](https://developer.apple.com/mac-catalyst/)
@@ -26,11 +28,13 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
 - iOS 13 or greater
 - iPadOS 13 or greater
 - MacOS 10.15 or greater
+- Cocoapods 1.8.4 or greater
 
 ## Technologies/Libraries Used
 ### Open Source Libraries
 - [URLEmbeddedView](https://github.com/marty-suzuki/URLEmbeddedView)
   - Previewing Links in the blog posts
+  - Installed using Cocoapods
 - [FeedKit](https://github.com/nmdias/FeedKit)
   - Fetching data from Students' Blog (Atom feed)
   
@@ -46,7 +50,7 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
 - [Mac Catalyst](https://developer.apple.com/documentation/uikit/mac_catalyst)
   - To enable MacOS support
 - [UIKit](https://developer.apple.com/documentation/uikit/)
-  - Interface
+  - User Interface for iOS, iPadOS and MacOS
 
 ## Screenshots (iOS)
 Dark and Light mode
