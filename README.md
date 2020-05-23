@@ -1,5 +1,5 @@
 # SST Announcer 2020 (iOS)
-SST Announcer was built to help SST Students stay up to date with the school’s announcements with ease and convenience on their devices. The app allows users to browse, pin and share important announcements made by the school. The app also sends notifications to students whenever a new announcement is posted. This helped to ensure that students are kept updated with the latest information from my school. 
+SST Announcer was built to help SST Students stay up to date with the school’s announcements with ease and convenience on their devices. The app allows users to browse, pin and share important announcements made by the school. The app also sends notifications to students whenever a new announcement is posted. This helped to ensure that students are kept updated with the latest information from the school. 
 
 ---
 ## Installation
@@ -48,5 +48,5 @@ Dark and Light mode
 <img src="Screenshots/iPhone/iPhone 11/Dark Mode/home.png" width="200">    <img src="Screenshots/iPhone/iPhone 11/Light Mode/home.png" width="200">
 ### Content
 <img src="Screenshots/iPhone/iPhone 11/Dark Mode/content.png" width="200">    <img src="Screenshots/iPhone/iPhone 11/Light Mode/content.png" width="200">
-### Search 
+### Search with Tags
 <img src="Screenshots/iPhone/iPhone 11/Dark Mode/search.png" width="200">    <img src="Screenshots/iPhone/iPhone 11/Light Mode/search.png" width="200">
