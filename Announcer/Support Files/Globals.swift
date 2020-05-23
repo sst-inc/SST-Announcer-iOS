@@ -12,20 +12,44 @@ import UserNotifications
 import UIKit
 import BackgroundTasks
 
-// Blog URL
-// should be http://studentsblog.sst.edu.sg unless testing
-// Test blog https://testannouncer.blogspot.com
+/**
+ Source URL for the Blog
+ 
+ - important: Ensure that the URL is set to the correct blog before production.
+ 
+ # Production Blog URL
+ http://studentsblog.sst.edu.sg
+ 
+ # Development Blog URL
+ https://testannouncer.blogspot.com
+ 
+ This constant stores the URL for the blog linked to the RSS feed.
+ */
 let blogURL = "http://studentsblog.sst.edu.sg"
 
-// RSS URL
+/**
+ URL for the blogURL's RSS feed
+ 
+ - important: This will only work for blogs created on Blogger.
+ 
+ This URL is the blogURL but with the path of the RSS feed added to the back.
+ */
 let rssURL = URL(string: "\(blogURL)/feeds/posts/default")!
 
-// 404 URL
+/**
+ Error 404 website
+ 
+ This URL is to redirect users in a case of an error while getting the blog posts or while attempting to show the student's blog.
+ */
 let errorNotFoundURL = URL(string: "https://sstinc.org/404")!
 
 var filter = ""
 
-// Struct that contains the date, content and title of each post
+/**
+ Contains attributes for each post such as date, content and title
+ 
+ This struct is used to store Posts. The posts stored here will be used in the ReadAnnouncements and the PinnedAnnouncements for persistency. It is also used to present each post in the AnnouncementsViewController.
+ */
 struct Post: Codable, Equatable {
     var title: String
     var content: String // This content will be a HTML as a String
@@ -38,13 +62,32 @@ struct Post: Codable, Equatable {
     var categories: [String]
 }
 
+/**
+ Contains attributes for each link such as title, URL and image.
+ 
+ # Usage
+ This is an example using SST Inc.'s website
+ ```swift
+ let site = Links(title: "SST Inc.",
+                  link: "https://sstinc.org",
+                  UIImage())
+ ```
+ 
+ This struct is used to store Links which are to be previewed in the links collectionView in the post. This struct contains 3 attributes, the `title`, `link` and `image`. Looking back, not a good idea to name it `link` but refractoring is annoying so you'll settle with `link.link`.
+ */
 struct Links: Equatable {
     var title: String
     var link: String
     var image: UIImage?
 }
 
-// JSON Callback to get all the labels for the blog posts
+/**
+ Get the labels, tags or categories from the posts.
+ 
+ - returns: An array of labels or tags from the post
+ 
+ This method gets labels, tags or categories, from blog posts and removes duplicates.
+ */
 func fetchLabels() -> [String] {
     
     let parser = FeedParser(URL: rssURL)
@@ -74,6 +117,16 @@ func fetchLabels() -> [String] {
     return []
 }
 
+/**
+ Fetch blog post from the blogURL
+ 
+ - returns: An array of Announcements stored as Post
+ 
+ - parameters:
+    - vc: Takes in Announcement View Controller to present an alert in a case of an error
+  
+ This method fetches the blog post from the blogURL and will alert the user if an error occurs and it is unable to get the announcements
+ */
 func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
     let parser = FeedParser(URL: rssURL)
     let result = parser.parse()
@@ -114,6 +167,13 @@ func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
     return []
 }
 
+/**
+ Fetches latest blog post for notifications
+ 
+ - returns: A tuple with the title and content of the post or `nil` if no new content has been posted
+ 
+ This method will fetch the latest posts from the RSS feed and if it is a new post, it will return the title and content for notifications, otherwise, it will return nil.
+ */
 func fetchNotificationsTitle() -> (title: String, content: String)? {
     let parser = FeedParser(URL: rssURL)
     let result = parser.parse()
@@ -139,6 +199,14 @@ func fetchNotificationsTitle() -> (title: String, content: String)? {
     return nil
 }
 
+/**
+Fetches the blog posts from the blogURL
+
+- returns: An array of `Post` from the blog
+- important: This method will handle errors it receives by returning an empty array
+
+ This method will fetch the posts from the blog and return it as [Post]
+*/
 func fetchValues() -> [Post] {
     let parser = FeedParser(URL: rssURL)
     let result = parser.parse()
@@ -155,9 +223,16 @@ func fetchValues() -> [Post] {
     return []
 }
 
-
-
-// Convert Enteries to Posts
+/**
+ Converts an array of `AtomFeedEntry` to an array of `Post`
+ 
+ - returns: An array of `Post`
+ 
+ - parameters:
+    - feed: An array of `AtomFeedEntry`
+  
+ This method will convert the array of `AtomFeedEntry` from `FeedKit` to an array of `Post`.
+*/
 func convertFromEntries(feed: [AtomFeedEntry]) -> [Post] {
     var posts = [Post]()
     for entry in feed {
@@ -181,6 +256,16 @@ func convertFromEntries(feed: [AtomFeedEntry]) -> [Post] {
     return posts
 }
 
+/**
+ Gets the labels from search queries
+ 
+ - returns: Label within the search query
+ 
+ - parameters:
+    - query: A String containing the search query
+  
+ This method locates the squared brackets `[]` in search queries and returns the Label within the query.
+*/
 func getLabelsFromSearch(with query: String) -> String {
     // Labels in search are a mess to deal with
     if query.first == "[" {
@@ -193,11 +278,24 @@ func getLabelsFromSearch(with query: String) -> String {
     return ""
 }
 
+/**
+ Gets the share URL from a `Post`
+ 
+ - returns: The URL of the blog post
+ 
+ - parameters:
+    - post: The post to be shared
+  
+ - important: This method handles error 404 by simply returning the `blogURL`
+ 
+ - note: Versions of SST Announcer before 11.0 shared the full content of the post instead of the URL
+ 
+ This method generates a URL for the post by merging the date and the post title.
+*/
 func getShareURL(with post: Post) -> URL {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "/yyyy/MM/"
     
-    //We share url not text because text is stupid
     var shareLink = ""
     
     let formatted = post.title.filter { (a) -> Bool in
@@ -219,6 +317,7 @@ func getShareURL(with post: Post) -> URL {
     
     let shareURL = URL(string: shareLink) ?? URL(string: blogURL)!
     
+    // Checking if the URL brings up a 404 page
     let isURLValid: Bool = {
         let str = try? String(contentsOf: shareURL)
         if let str = str {
@@ -235,6 +334,18 @@ func getShareURL(with post: Post) -> URL {
     return URL(string: blogURL)!
 }
 
+/**
+ Gets the links within the `Post`
+ 
+ - returns: An array of `URL`s which are in the post.
+ 
+ - parameters:
+    - post: The selected post
+ 
+ - important: This process takes a bit so it is better to do it asyncronously so the app will not freeze while searching for URLs.
+ 
+ This method gets the URLs found within the blog post and filters out images from blogger's content delivery network because no one wants those URLs.
+*/
 func getLinksFromPost(post: Post) -> [URL] {
     let items = post.content.components(separatedBy: "href=\"")
     
