@@ -59,8 +59,10 @@ class AnnouncementsViewController: UIViewController {
         // Load Pinned Comments
         pinned = PinnedAnnouncements.loadFromFile() ?? []
         
+        // Setting the searhField's text field color
         searchField.setTextField(color: UIColor(named: "Carlie White")!)
         
+        // Peek
         if #available(iOS 13.0, *) {} else {
             // Fallback on earlier versions
             registerForPreviewing(with: self, sourceView: announcementTableView)
@@ -137,32 +139,6 @@ class AnnouncementsViewController: UIViewController {
         }
         
         print("reloading")
-    }
-    
-    func activateActivity(with post: Post) {
-//        let activity = NSUserActivity(activityType: "sg.edu.sst.panziyue.Announcer.content")
-//        
-//        activity.isEligibleForPrediction = true
-//        activity.isEligibleForPublicIndexing = true
-//        activity.isEligibleForSearch = true
-//        
-//        activity.addUserInfoEntries(from: ["title" : post.title, "content" : post.content])
-//        
-//        var keywords = [post.title, post.content]
-//        
-//        keywords += post.categories
-//        activity.keywords = Set<String>(keywords)
-//        
-//        activity.title = post.title
-//        activity.webpageURL = getShareURL(with: post)
-//        
-//        activity.expirationDate = Date(timeIntervalSinceNow: 604800)
-//        
-//        activity.requiredUserInfoKeys = Set<String>(keywords)
-//        activity.persistentIdentifier = post.title
-//        activity.becomeCurrent()
-//        
-//        activity.delegate = self
     }
     
     func receivePost(with post: Post) {

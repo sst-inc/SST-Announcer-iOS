@@ -11,6 +11,8 @@ import UIKit
 import SafariServices
 
 extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    // Setting the number of items in the collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == labelsCollectionView {
             return post.categories.count
@@ -19,25 +21,30 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
     }
     
-    // CollectionView contains labels
-    // Each cell is Guan Yellow and
+    // Setting the content of collectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == labelsCollectionView {
+            // Handling the Labels
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoriesCollectionViewCell
             
-            cell.titleLabel.text = post.categories[indexPath.row]
             cell.backgroundColor = UIColor(named: "Guan Yellow")
+            
+            cell.titleLabel.text = post.categories[indexPath.row]
+            
+            // Setting Cell Corner Radius
             cell.layer.cornerRadius = 5
             cell.clipsToBounds = true
             
             return cell
         } else {
+            // Handling the Links
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "links", for: indexPath) as! LinksCollectionViewCell
             
             cell.backgroundColor = UIColor(named: "Guan Yellow")
             
             cell.link = links[indexPath.row]
             
+            // Setting Cell Corner Radius
             cell.layer.cornerRadius = 5
             cell.clipsToBounds = true
             
@@ -47,22 +54,29 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == labelsCollectionView {
+            // Handling the Labels
             let cell = collectionView.cellForItem(at: indexPath) as! CategoriesCollectionViewCell
+            
             filter = cell.titleLabel.text!
             
             filterUpdated?()
             
             navigationController?.popToRootViewController(animated: true)
         } else {
+            // Handling the Links
             let cell = collectionView.cellForItem(at: indexPath) as! LinksCollectionViewCell
             
+            // Handle if it is a "mailto:" or something else. Or just a normal URL.
+            // When it is a normal URL, present a Safari View Controller
+            // Otherwise just open the URL and iOS will handle it
             if cell.link.link.contains("http://") || cell.link.link.contains("https://") {
-                let url = URL(string: cell.link.link) ?? URL(string: "https://sstinc.org/404")!
+                let url = URL(string: cell.link.link) ?? errorNotFoundURL
                 
                 let svc = SFSafariViewController(url: url)
+                
                 present(svc, animated: true)
             } else {
-                let url = URL(string: cell.link.link) ?? URL(string: "https://sstinc.org/404")!
+                let url = URL(string: cell.link.link) ?? errorNotFoundURL
                 
                 UIApplication.shared.open(url)
             }

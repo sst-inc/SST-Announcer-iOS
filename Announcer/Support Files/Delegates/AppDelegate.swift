@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     
-    // New Push Notifications thing
+    // Push the notification to the user
     func pushNotification(with postTitle: String, content postContent: String) {
         let identifier = "new-announcement"
         let content = UNMutableNotificationContent()
@@ -127,11 +127,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         completionHandler([.alert, .badge, .sound])
     }
     
+    // Calls when user opens app from a notification
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        
-        // Calls when user opens app from a notification
         
         openPost(with: response.notification)
         

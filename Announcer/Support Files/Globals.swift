@@ -21,10 +21,8 @@ let blogURL = "http://studentsblog.sst.edu.sg"
 // RSS URL
 let rssURL = URL(string: "\(blogURL)/feeds/posts/default")!
 
-// JSON Callback URL
-// Returns back the Labels for sorting
-// http://studentsblog.sst.edu.sg/feeds/posts/summary?alt=json&max-results=0&callback=cat
-let jsonCallback = URL(string: "\(blogURL)/feeds/posts/summary?alt=json&max-results")!
+// 404 URL
+let errorNotFoundURL = URL(string: "https://sstinc.org/404")!
 
 var filter = ""
 

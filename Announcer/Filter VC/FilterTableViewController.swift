@@ -14,21 +14,29 @@ class FilterTableViewController: UITableViewController {
     var onDismiss: (() -> Void)?
     var selectedLabel = String()
     
+    // Show activity indicator while fetching the data
     let loadingIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set up activity indicator
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.startAnimating()
         
         loadingIndicator.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 10, y: UIScreen.main.bounds.height / 2 - 10, width: 20, height: 20)
+        
         view.addSubview(loadingIndicator)
         
-        // Get Labels
+        // Getting the Labels asyncronously
         DispatchQueue.main.async {
+            // Get labels from the Posts
             self.labels = fetchLabels().sorted()
+            
+            // Hide loading indicator once
             self.loadingIndicator.stopAnimating()
+            
+            // Reloading tableView with new data
             self.tableView.reloadData()
         }
         

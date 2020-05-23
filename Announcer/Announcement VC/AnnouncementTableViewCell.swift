@@ -18,31 +18,35 @@ class AnnouncementTableViewCell: UITableViewCell {
             // Converting HTML to String is slow
             // Do conversion on different thread and update the cell when it's ready
             // Show loading to user
-            
             if #available(iOS 13.0, *) {
+                // Loading for iOS 13 and above has fancy icon
                 let str = NSMutableAttributedString.init(string: "")
                 str.append(NSAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "arrow.clockwise")!)))
                 str.append(NSAttributedString(string: "\tLoading Content...\n\n"))
                 self.announcementContentLabel.attributedText = str
             } else {
-                // Fallback on earlier versions
+                // Loading for iOS 12 and below has no icon :(
                 self.announcementContentLabel.text = "Loading Content...\n\n"
             }
             
+            // Unable to preview because it requires JavaScript
             if post.content.contains("webkitallowfullscreen=\"true\"") {
                 if #available(iOS 13.0, *) {
-                    let str = NSMutableAttributedString.init(string: "")
+                    // Fancy icon on iOS 13 and up
+                    let str = NSMutableAttributedString(string: "")
+                    
                     str.append(NSAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "exclamationmark.triangle.fill")!)))
                     str.append(NSAttributedString(string: "\tUnable to load preview.\n\tTap to open post."))
+                    
                     self.announcementContentLabel.attributedText = str
                 } else {
-                    // Fallback on earlier versions
+                    // No icon on iOS 12 and below :(
                     self.announcementContentLabel.text = "Unable to load preview.\nClick to open post."
                 }
             } else {
+                // Handle this async so that the experience will not be super laggy
                 DispatchQueue.main.async {
                     self.announcementContentLabel.text = self.post.content.htmlToString
-                    // self.post.content.htmlToString.replacingOccurrences(of: "\n\n", with: "\n")
                 }
             }
             
@@ -53,10 +57,14 @@ class AnnouncementTableViewCell: UITableViewCell {
             
             announcementDateLabel.text = "Posted on \(dateFormatter.string(from: post.date))"
             
+            // Handling pinned items
             let pinned = PinnedAnnouncements.loadFromFile()
             
+            // Checking if item is pinned
             if pinned?.contains(post) ?? false {
                 announcementImageView.isHidden = false
+                
+                // If user is on iOS 13 and up, color the pin
                 if #available(iOS 13.0, *) {
                     announcementImageView.image = UIImage(systemName: "pin.fill")!
                     announcementImageView.tintColor = UIColor(named: "Carl and Shannen")
@@ -65,16 +73,20 @@ class AnnouncementTableViewCell: UITableViewCell {
                 announcementImageView.isHidden = true
             }
             
+            // Handling read announcements
             let readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
             
+            // Checking if announcement is read
             if !readAnnouncements.contains(post) {
                 announcementImageView.isHidden = false
+                
                 if #available(iOS 13.0, *) {
                     announcementImageView.image = UIImage(systemName: "circle.fill")
                     announcementImageView.tintColor = .systemBlue
                 }
             }
             
+            // Set background color
             backgroundColor = UIColor(named: "Carlie White")
             
             // Set attributes of title label

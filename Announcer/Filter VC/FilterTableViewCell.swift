@@ -12,6 +12,7 @@ class FilterTableViewCell: UITableViewCell {
 
     var title = String() {
         didSet {
+            // When the title variable is changed or set, update the titleLabel
             titleLabel.text = title
         }
     }

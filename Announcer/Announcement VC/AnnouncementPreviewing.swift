@@ -26,10 +26,12 @@ extension AnnouncementsViewController: UIViewControllerPreviewingDelegate {
         return nil
     }
     
+    // Open up VC through navigation controller when tapped
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
     
+    // Getting the contentViewController
     func getContentViewController(for indexPath: IndexPath) -> ContentViewController {
         guard let vc = UIStoryboard(name: "Content", bundle: .main).instantiateViewController(withIdentifier: "detail") as? ContentViewController else {
             fatalError()
