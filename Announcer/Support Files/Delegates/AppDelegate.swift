@@ -66,6 +66,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Start background task
         scheduleBackgroundTaskIfNeeded()
         
+        // Set project version
+        let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+        UserDefaults.standard.set(versionNumber, forKey: "versionNumber")
+        
+        // Set project build
+        let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+        UserDefaults.standard.set(buildNumber, forKey: "buildNumber")
+        
         return true
     }
     
