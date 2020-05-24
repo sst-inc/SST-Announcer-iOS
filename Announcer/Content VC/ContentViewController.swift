@@ -26,8 +26,6 @@ class ContentViewController: UIViewController {
         }
     }
     
-    let borderColor = UIColor.systemBlue.withAlphaComponent(0.3).cgColor
-    
     var playedHaptic = 0
     
     @IBOutlet weak var titleLabel: UILabel!

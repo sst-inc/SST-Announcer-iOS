@@ -137,6 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         completionHandler()
     }
     
+    /// Open up the post from notification
     func openPost(with notification: UNNotification) {
         let posts = fetchValues()
         
