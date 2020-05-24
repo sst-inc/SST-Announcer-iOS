@@ -11,6 +11,7 @@ import SystemConfiguration
 import UserNotifications
 import UIKit
 import BackgroundTasks
+import SafariServices
 
 // MARK: - Constants
 /**
@@ -395,4 +396,60 @@ func getLinksFromPost(post: Post) -> [URL] {
     }
     
     return links
+}
+
+/**
+ Launches post using the post title
+ 
+ - parameters:
+    - postTitle: The title of the post to be found
+ 
+ - note: This method is generally for search and notifications
+ 
+ This method launches post using the post title and will show an open in safari button if there is an error.
+*/
+func launchPost(withTitle postTitle: String) {
+    let posts = fetchValues()
+    
+    var post: Post?
+    
+    // Finding the post to present
+    for item in posts {
+        if item.title == postTitle {
+            
+            post = item
+            
+            break
+        }
+    }
+    
+    let navigationController = UIApplication.shared.windows.first?.rootViewController as! UINavigationController
+    let announcementVC = navigationController.topViewController as! AnnouncementsViewController
+    
+    if let post = post {
+        // Handles when post is found
+        
+        announcementVC.receivePost(with: post)
+        
+    } else {
+        // Handle when unable to get post
+        // Show an alert to the user to tell them that the post was unable to be found :(
+
+        print("failed to get post :(")
+
+        let alert = UIAlertController(title: "Unable to get post", message: "Something went wrong when trying to retrieve the post. You can try to open this post in Safari.", preferredStyle: .alert)
+
+        // If user opens post in Safari, it will simply bring them to student blog home page
+        alert.addAction(UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
+            let svc = SFSafariViewController(url: URL(string: blogURL)!)
+            
+            announcementVC.present(svc, animated: true)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        
+        announcementVC.present(alert, animated: true)
+        
+    }
+
 }

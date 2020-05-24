@@ -87,7 +87,7 @@ class AnnouncementTableViewCell: UITableViewCell {
             }
             
             // Set background color
-            backgroundColor = UIColor(named: "Background")
+            backgroundColor = UIColor(named: "background")
             
             // Set attributes of title label
             // [Square Brackets] all red to highlight things like [Sec 2 students] etc.

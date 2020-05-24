@@ -1085,7 +1085,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 11.0.1;
+				MARKETING_VERSION = 11.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer;
 				PRODUCT_NAME = "SST Announcer";
 				SUPPORTS_MACCATALYST = YES;
@@ -1112,7 +1112,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 11.0.1;
+				MARKETING_VERSION = 11.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer;
 				PRODUCT_NAME = "SST Announcer";
 				SUPPORTS_MACCATALYST = YES;
