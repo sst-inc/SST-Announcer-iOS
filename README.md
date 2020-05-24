@@ -89,15 +89,14 @@ These colors are the ones as part of Apple's [UIColor Human Interface Guidelines
 
 |Color Name |API     |Light Theme|Dark Theme |
 |-----------|--------|-----------|-----------|
-|Label      |`.label`|![](https://via.placeholder.com/15/000000/000000) - #000000|![](https://via.placeholder.com/15/FFFFFF/FFFFFF) - #FFFFFF|
 |Blue       |`.systemBlue`|![](https://via.placeholder.com/15/007BFF/007BFF) - #007BFF|![](https://via.placeholder.com/15/0A84FF/0A84FF) - #0A84FF|
-
+|Label      |`.label`|![](https://via.placeholder.com/15/000000/000000) - #000000|![](https://via.placeholder.com/15/FFFFFF/FFFFFF) - #FFFFFF|
 
 ### Loading Colors
 These colors are used for loading content using KALoader
 
 |Color Name |Identifier|Light Theme|Dark Theme |
 |-----------|----------|-----------|-----------|
-|Back Gray Color |`Back Gray Color`|![](https://via.placeholder.com/15/F6F6F6/F6F6F6) - #F6F6F6|![](https://via.placeholder.com/15/080808/080808) - #080808|
 |First Load Color|`First Load Color`|![](https://via.placeholder.com/15/DEDEDE/DEDEDE) - #DEDEDE|![](https://via.placeholder.com/15/202020/202020) - #202020|
 |Second Load Color|`Second Load Color`|![](https://via.placeholder.com/15/DDDDDD/DDDDDD) - #DDDDDD|![](https://via.placeholder.com/15/212121/212121) - #212121|
+|Back Gray Color |`Back Gray Color`|![](https://via.placeholder.com/15/F6F6F6/F6F6F6) - #F6F6F6|![](https://via.placeholder.com/15/080808/080808) - #080808|
