@@ -10,10 +10,10 @@ import UIKit
 
 class AnnouncementsViewController: UIViewController {
     
-    // Store the selected post found on didSelect
+    /// Store the selected post found on didSelect
     var selectedItem: Post!
     
-    // Stores all post for this viewcontroller
+    /// Stores all post for this viewcontroller
     var posts: [Post]! {
         didSet {
             DispatchQueue.main.async {
@@ -22,22 +22,20 @@ class AnnouncementsViewController: UIViewController {
         }
     }
     
-    // Stores searchresults in the title
+    /// Stores search results in the title
     var searchFoundInTitle = [Post]()
     
-    // Stores searchresults in body of post
+    /// Stores search results in body of post
     var searchFoundInBody = [Post]()
     
-    // Stores searchresults if searched with labels
+    /// Stores search results if searched with labels
     var searchLabels = [Post]()
     
-    // Haptics play at each segment when scrolling up
+    /// Haptics play at each segment when scrolling up
     var playedHaptic = 0
     
-    // Stores pinned posts
+    /// Stores pinned posts
     var pinned = [Post]()
-    
-    let borderColor = UIColor.systemBlue.withAlphaComponent(0.3).cgColor
     
     @IBOutlet weak var announcementTableView: UITableView!
     @IBOutlet weak var searchField: UISearchBar!
@@ -60,58 +58,54 @@ class AnnouncementsViewController: UIViewController {
         pinned = PinnedAnnouncements.loadFromFile() ?? []
         
         // Setting the searhField's text field color
-        searchField.setTextField(color: UIColor(named: "Carlie White")!)
+        searchField.setTextField(color: UIColor(named: "Background")!)
         
-        // Peek
-        if #available(iOS 13.0, *) {} else {
+        // Peek & Pop for below iOS 13
+        if #available(iOS 13.0, *) {
+        } else {
             // Fallback on earlier versions
             registerForPreviewing(with: self, sourceView: announcementTableView)
         }
         
+        // Corner radius for top buttons
+        // This is for the scroll selection
         filterButton.layer.cornerRadius = 25 / 2
         reloadButton.layer.cornerRadius = 27.5 / 2
     }
     
+    // Handles changing from dark to light or vice-versa
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        
-        searchField.setTextField(color: UIColor(named: "Carlie White")!)
+        searchField.setTextField(color: UIColor(named: "Background")!)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        // Handling when a tag is selected from the ContentViewController
         if filter != "" {
+            // Setting search bar text
             self.searchField.text = "[\(filter)]"
+            
+            // Reloading announcementTableView with the new search field tet
             self.announcementTableView.reloadData()
+            
+            // Updating search bar
             self.searchBar(self.searchField, textDidChange: "[\(filter)]")
+            
+            // Reset filter
             filter = ""
         } else {
             self.announcementTableView.reloadData()
         }
-        
-
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /// Get filter VC
-        // Use an if let to ensure we are referring to the correct viewcontroller
-        // We need go through a navigation controller layer
-        if let nvc = segue.destination as? UINavigationController {
-            
-            // nvc.children.first is the viewcontroller
-            let vc = nvc.children.first as! FilterTableViewController
-            
-            // Set onDismiss actions that will run when we dismiss the other vc
-            // this void should reload tableview etc.
-            vc.onDismiss = {
-                self.searchField.text = "[\(filter)]"
-                self.announcementTableView.reloadData()
-                self.searchBar(self.searchField, textDidChange: "[\(filter)]")
-            }
-        }
-        
         if let dest = segue.destination as? ContentViewController {
+            
+            // Sending the post to contentVC
             dest.post = selectedItem
+            
+            // Handling filter updates in case user taps filter from contentVC
             dest.filterUpdated = {
                 self.searchField.text = "[\(filter)]"
                 self.announcementTableView.reloadData()
@@ -119,11 +113,14 @@ class AnnouncementsViewController: UIViewController {
             }
         }
     }
+    
+    // Open Filter with Labels
     @IBAction func sortWithLabels(_ sender: Any) {
         resetScroll()
-        performSegue(withIdentifier: "labels", sender: nil)
+        openFilter()
     }
 
+    // Reload announcements
     @IBAction func reload(_ sender: Any) {
         self.posts = nil
         loadingIndicator.startAnimating()
@@ -137,10 +134,9 @@ class AnnouncementsViewController: UIViewController {
                 self.reloadButton.isHidden = false
             }
         }
-        
-        print("reloading")
     }
     
+    /// Receiving post from push notifications
     func receivePost(with post: Post) {
         selectedItem = post
         
@@ -148,10 +144,23 @@ class AnnouncementsViewController: UIViewController {
         
         navigationController?.pushViewController(vc, animated: true)
     }
-}
-
-extension AnnouncementsViewController: NSUserActivityDelegate {
-    func userActivityWillSave(_ userActivity: NSUserActivity) {
-        print(userActivity.title! + " was saved")
+    
+    /// Get filter view controller and open it up
+    func openFilter() {
+        let filterStoryboard = UIStoryboard(name: "Filter", bundle: nil)
+        
+        let nvc = filterStoryboard.instantiateInitialViewController() as! UINavigationController
+        
+        let vc = nvc.children.first as! FilterTableViewController
+        
+        // Set onDismiss actions that will run when we dismiss the other vc
+        // this void should reload tableview etc.
+        vc.onDismiss = {
+            self.searchField.text = "[\(filter)]"
+            self.announcementTableView.reloadData()
+            self.searchBar(self.searchField, textDidChange: "[\(filter)]")
+        }
+        
+        self.present(nvc, animated: true)
     }
 }

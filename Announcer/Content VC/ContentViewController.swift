@@ -26,8 +26,6 @@ class ContentViewController: UIViewController {
         }
     }
     
-    let borderColor = UIColor.systemBlue.withAlphaComponent(0.3).cgColor
-    
     var playedHaptic = 0
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -46,6 +44,7 @@ class ContentViewController: UIViewController {
     
     @IBOutlet weak var labelsView: UIView!
     @IBOutlet weak var linksView: UIView!
+    @IBOutlet weak var seperatorView: UIView!
     
     @IBOutlet weak var linksCollectionView: UICollectionView!
     @IBOutlet weak var labelsCollectionView: UICollectionView!
@@ -60,9 +59,11 @@ class ContentViewController: UIViewController {
             DispatchQueue.main.async {
                 self.linksCollectionView.reloadData()
                 
-                print(self.links)
                 if self.links.count > 0 {
                     self.linksView.isHidden = false
+                    self.seperatorView.isHidden = self.labelsView.isHidden
+                } else {
+                    self.seperatorView.isHidden = true
                 }
             }
         }
@@ -92,7 +93,7 @@ class ContentViewController: UIViewController {
                 let start = indicesStart[i - 1]
                 let end = indicesEnd[i - 1]
                 
-                // [] colors will be Carl and Shannen
+                // [] colors will be Grey 1
                 // @shannen why these color names man
                 let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
                 
@@ -159,6 +160,9 @@ class ContentViewController: UIViewController {
         // Hide the labels if there are none
         if post.categories.count == 0 {
             labelsView.isHidden = true
+            seperatorView.isHidden = true
+        } else {
+            labelsView.isHidden = false
         }
         
         // Styling default font size button
@@ -181,14 +185,6 @@ class ContentViewController: UIViewController {
                     if let _ = error {
                         return
                     }
-                    
-                    print("- sourceUrl        = \(ogData.sourceUrl as URL?)\n"
-                        + "- url              = \(ogData.url as URL?)\n"
-                        + "- siteName         = \(ogData.siteName as String?)\n"
-                        + "- pageTitle        = \(ogData.pageTitle as String?)\n"
-                        + "- pageType         = \(ogData.pageType as String?)\n"
-                        + "- pageDescription  = \(ogData.pageDescription as String?)\n"
-                        + "- imageUrl         = \(ogData.imageUrl as URL?)\n")
                     
                     let sourceUrl: String = (ogData.sourceUrl ?? url).absoluteString
                     let pageTitle: String = {
@@ -280,7 +276,7 @@ class ContentViewController: UIViewController {
         popUpView.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         popUpView.text = "Post \(isPinned ? "Pinned" : "Unpinned")"
         
-        popUpView.backgroundColor = UIColor(named: "Guan Yellow")
+        popUpView.backgroundColor = UIColor(named: "Grey 2")
         popUpView.alpha = 0
         
         view.addSubview(popUpView)

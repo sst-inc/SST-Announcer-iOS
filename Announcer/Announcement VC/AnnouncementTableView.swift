@@ -242,7 +242,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             //Complete
             completionHandler(true)
         }
-        action.backgroundColor = UIColor(named: "Guan Yellow")
+        action.backgroundColor = UIColor(named: "Grey 2")
         return action
     }
     
@@ -330,9 +330,9 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     searchField.becomeFirstResponder()
                     searchField.getTextField()?.layer.borderWidth = 0
                 }
-                filterButton.tintColor = UIColor(named: "Carl and Shannen")
-                searchField.setTextField(color: UIColor(named: "Carlie White")!)
-                reloadButton.tintColor = UIColor(named: "Carl and Shannen")
+                filterButton.tintColor = UIColor(named: "Grey 1")
+                searchField.setTextField(color: UIColor(named: "Background")!)
+                reloadButton.tintColor = UIColor(named: "Grey 1")
                 
                 resetScroll()
             }

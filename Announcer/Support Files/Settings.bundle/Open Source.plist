@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>OPEN SOURCE
+
+SST Announcer (iOS) is open sourced on GitHub at https://github.com/sst-inc/SST-Announcer-iOS
+
+Copyright (c) 2020 SST Incorporated (https://sstinc.org)</string>
+		</dict>
+	</array>
+</dict>
+</plist>

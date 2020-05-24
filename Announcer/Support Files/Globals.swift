@@ -12,6 +12,7 @@ import UserNotifications
 import UIKit
 import BackgroundTasks
 
+// MARK: - Constants
 /**
  Source URL for the Blog
  
@@ -43,8 +44,22 @@ let rssURL = URL(string: "\(blogURL)/feeds/posts/default")!
  */
 let errorNotFoundURL = URL(string: "https://sstinc.org/404")!
 
+/**
+ Border Color for Scroll Selection
+
+ This border color is used for scroll selection. The alpha of `0.3` will allow the user to see the icon and the color while selecting.
+*/
+let borderColor = UIColor.systemBlue.withAlphaComponent(0.3).cgColor
+
+// MARK: - Variables
+/**
+ Used to transfer a filter value between viewcontrollers
+ 
+ This variable is used to transfer filter values between filterVC, contentVC and announcementVC.
+*/
 var filter = ""
 
+// MARK: - Structs
 /**
  Contains attributes for each post such as date, content and title
  
@@ -81,6 +96,7 @@ struct Links: Equatable {
     var image: UIImage?
 }
 
+// MARK: - Functions
 /**
  Get the labels, tags or categories from the posts.
  
@@ -144,11 +160,15 @@ func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
         print(error.localizedDescription)
         // Present alert
         DispatchQueue.main.async {
+            // No internet error
             let alert = UIAlertController(title: "Check your Internet", message: "Unable to fetch data from Students' Blog.\nPlease check your network settings and try again.", preferredStyle: .alert)
+            
+            // Try to reload and hopefully it works
             alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
                 vc.reload(UILabel())
             }))
             
+            // Open the settings app
             alert.addAction(UIAlertAction(title: "Open Settings", style: .default, handler: { action in
                 let url = URL(string: "App-Prefs:root=")!
                 UIApplication.shared.open(url, options: [:]) { (success) in
@@ -156,6 +176,7 @@ func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
                 }
             }))
             
+            // Just dismiss it
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
                 
             }))
