@@ -62,3 +62,33 @@ Dark and Light mode
 <img src="Screenshots/iPhone/iPhone 11/Dark Mode/content.png" width="200">    <img src="Screenshots/iPhone/iPhone 11/Light Mode/content.png" width="200">
 ### Search with Tags
 <img src="Screenshots/iPhone/iPhone 11/Dark Mode/search.png" width="200">    <img src="Screenshots/iPhone/iPhone 11/Light Mode/search.png" width="200">
+
+## Colors
+### Main Colors
+These colors are used for different parts of the app such as backgrounds and labels.
+
+|Color Name |Light Theme|Dark Theme |
+|-----------|-----------|-----------|
+|Background |![](https://via.placeholder.com/15/F5F4F6/F5F4F6) - #F5F4F6|![](https://via.placeholder.com/15/060400/060400) - #060400|
+|Global Tint|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|
+|Grey 1     |![](https://via.placeholder.com/15/434343/434343) - #434343|![](https://via.placeholder.com/15/B8BABB/B8BABB) - #B8BABB|
+|Grey 2     |![](https://via.placeholder.com/15/DCDADB/DCDADB) - #DCDADB|![](https://via.placeholder.com/15/252628/252628) - #252628|
+
+### Apple Colors
+These colors are the ones as part of Apple's [UIColor Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/color/)
+
+|Color Name   |Light Theme|Dark Theme |
+|-------------|-----------|-----------|
+|`.label`     |![](https://via.placeholder.com/15/000000/000000) - #000000|![](https://via.placeholder.com/15/FFFFFF/FFFFFF) - #FFFFFF|
+|`.systemBlue`|![](https://via.placeholder.com/15/007BFF/007BFF) - #007BFF|![](https://via.placeholder.com/15/0A84FF/0A84FF) - #0A84FF|
+
+
+### Loading Colors
+These colors are used for loading content using KALoader
+
+|Color Name |Light Theme|Dark Theme |
+|-----------|-----------|-----------|
+|Background |![](https://via.placeholder.com/15/F5F4F6/F5F4F6) - #F5F4F6|![](https://via.placeholder.com/15/060400/060400) - #060400|
+|Global Tint|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|
+|Grey 1     |![](https://via.placeholder.com/15/434343/434343) - #434343|![](https://via.placeholder.com/15/B8BABB/B8BABB) - #B8BABB|
+|Grey 2     |![](https://via.placeholder.com/15/DCDADB/DCDADB) - #DCDADB|![](https://via.placeholder.com/15/252628/252628) - #252628|
