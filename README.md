@@ -53,6 +53,8 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
       - Unable to work with Low-Power Mode on 
 - [User Notifications](https://developer.apple.com/documentation/usernotifications)
   - To send notifications to the users whenever a new post comes (works together with Background Tasks)
+- [Core Spotlight](https://developer.apple.com/documentation/corespotlight)
+  - To allow users to search for announcements using spotlight search
 
 ## Screenshots (iOS)
 Dark and Light mode
