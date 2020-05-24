@@ -93,23 +93,6 @@ class AnnouncementsViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /// Get filter VC
-        // Use an if let to ensure we are referring to the correct viewcontroller
-        // We need go through a navigation controller layer
-        if let nvc = segue.destination as? UINavigationController {
-            
-            // nvc.children.first is the viewcontroller
-            let vc = nvc.children.first as! FilterTableViewController
-            
-            // Set onDismiss actions that will run when we dismiss the other vc
-            // this void should reload tableview etc.
-            vc.onDismiss = {
-                self.searchField.text = "[\(filter)]"
-                self.announcementTableView.reloadData()
-                self.searchBar(self.searchField, textDidChange: "[\(filter)]")
-            }
-        }
-        
         if let dest = segue.destination as? ContentViewController {
             dest.post = selectedItem
             dest.filterUpdated = {
@@ -119,9 +102,11 @@ class AnnouncementsViewController: UIViewController {
             }
         }
     }
+    
+    // Open Filter with Labels
     @IBAction func sortWithLabels(_ sender: Any) {
         resetScroll()
-        performSegue(withIdentifier: "labels", sender: nil)
+        openFilter()
     }
 
     @IBAction func reload(_ sender: Any) {
@@ -147,6 +132,24 @@ class AnnouncementsViewController: UIViewController {
         let vc = getContentViewController(for: IndexPath(row: 0, section: 0))
         
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func openFilter() {
+        let filterStoryboard = UIStoryboard(name: "Filter", bundle: nil)
+        
+        let nvc = filterStoryboard.instantiateInitialViewController() as! UINavigationController
+        
+        let vc = nvc.children.first as! FilterTableViewController
+        
+        // Set onDismiss actions that will run when we dismiss the other vc
+        // this void should reload tableview etc.
+        vc.onDismiss = {
+            self.searchField.text = "[\(filter)]"
+            self.announcementTableView.reloadData()
+            self.searchBar(self.searchField, textDidChange: "[\(filter)]")
+        }
+        
+        self.present(nvc, animated: true)
     }
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aYT-dT-Pjl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aYT-dT-Pjl">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -8,72 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Filter with Labels-->
-        <scene sceneID="oL9-kf-sVH">
-            <objects>
-                <tableViewController id="zk8-vt-iJy" customClass="FilterTableViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6lQ-wG-dRr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="Carlie White"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="labelCell" id="3ab-Oz-2nr" customClass="FilterTableViewCell" customModule="SST_Announcer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="74.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3ab-Oz-2nr" id="68J-Og-8DK">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="74.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mfa-Cg-r04">
-                                            <rect key="frame" x="20" y="11" width="374" height="52.5"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0D-AC-7Fq">
-                                                    <rect key="frame" x="20" y="16" width="334" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" name="Guan Yellow"/>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="V0D-AC-7Fq" secondAttribute="bottom" constant="16" id="0jK-CR-edY"/>
-                                                <constraint firstItem="V0D-AC-7Fq" firstAttribute="leading" secondItem="Mfa-Cg-r04" secondAttribute="leading" constant="20" id="SGN-nT-gx7"/>
-                                                <constraint firstAttribute="trailing" secondItem="V0D-AC-7Fq" secondAttribute="trailing" constant="20" id="XCL-Vh-iMT"/>
-                                                <constraint firstItem="V0D-AC-7Fq" firstAttribute="top" secondItem="Mfa-Cg-r04" secondAttribute="top" constant="16" id="jOW-GV-KQU"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <color key="backgroundColor" name="Carlie White"/>
-                                    <constraints>
-                                        <constraint firstItem="Mfa-Cg-r04" firstAttribute="bottom" secondItem="68J-Og-8DK" secondAttribute="bottomMargin" id="V0F-Qh-VC9"/>
-                                        <constraint firstItem="Mfa-Cg-r04" firstAttribute="top" secondItem="68J-Og-8DK" secondAttribute="topMargin" id="bjh-UV-mYT"/>
-                                        <constraint firstItem="Mfa-Cg-r04" firstAttribute="leading" secondItem="68J-Og-8DK" secondAttribute="leadingMargin" id="drv-MR-K5d"/>
-                                        <constraint firstItem="Mfa-Cg-r04" firstAttribute="trailing" secondItem="68J-Og-8DK" secondAttribute="trailingMargin" id="hg7-Ie-Z8g"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="titleLabel" destination="V0D-AC-7Fq" id="scF-gG-HFr"/>
-                                    <outlet property="yellowView" destination="Mfa-Cg-r04" id="mmP-nw-CuS"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="zk8-vt-iJy" id="oHh-bA-fWh"/>
-                            <outlet property="delegate" destination="zk8-vt-iJy" id="U7B-OC-Q10"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Filter with Labels" id="jDe-Zv-U71">
-                        <barButtonItem key="leftBarButtonItem" image="arrow.uturn.left" catalog="system" id="cNG-g1-zJf">
-                            <connections>
-                                <action selector="dismiss:" destination="zk8-vt-iJy" id="rBu-2r-fsm"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="n1R-x6-mgp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2653.6231884057975" y="-592.63392857142856"/>
-        </scene>
         <!--Announcements View Controller-->
         <scene sceneID="hht-TJ-cQl">
             <objects>
@@ -234,12 +168,20 @@
                         <outlet property="loadingIndicator" destination="1VZ-cv-H04" id="RRL-cO-kkr"/>
                         <outlet property="reloadButton" destination="GUE-AL-bL7" id="sh8-bU-5EM"/>
                         <outlet property="searchField" destination="Fdc-31-Cyo" id="8wt-xK-ucp"/>
-                        <segue destination="a33-wK-9uz" kind="presentation" identifier="labels" id="q5n-5f-y3d"/>
+                        <segue destination="E0W-Mm-yuL" kind="presentation" identifier="labels" id="rNe-BV-ZKK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAe-A3-FIL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1757.9710144927537" y="138.61607142857142"/>
+        </scene>
+        <!--Filter-->
+        <scene sceneID="fBU-dK-70w">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Filter" id="E0W-Mm-yuL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dYa-ZP-cDW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2404" y="123"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6s9-lU-M57">
@@ -259,29 +201,10 @@
             </objects>
             <point key="canvasLocation" x="847.82608695652175" y="138.61607142857142"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="fE7-pE-fwo">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a33-wK-9uz" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aNi-16-cp1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="zk8-vt-iJy" kind="relationship" relationship="rootViewController" id="bbX-CT-NsC"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NpN-o8-KDF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1743.4782608695652" y="-592.63392857142856"/>
-        </scene>
     </scenes>
     <color key="tintColor" name="Carl and Shannen"/>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
-        <image name="arrow.uturn.left" catalog="system" width="128" height="112"/>
         <image name="line.horizontal.3.decrease.circle.fill" catalog="system" width="128" height="121"/>
         <image name="pin.fill" catalog="system" width="119" height="128"/>
         <namedColor name="Carl and Shannen">
@@ -289,9 +212,6 @@
         </namedColor>
         <namedColor name="Carlie White">
             <color red="0.96078431372549022" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Guan Yellow">
-            <color red="0.86274509803921573" green="0.85490196078431369" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
