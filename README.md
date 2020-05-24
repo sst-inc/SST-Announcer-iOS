@@ -65,7 +65,7 @@ Dark and Light mode
 ### Search with Tags
 <img src="Screenshots/iPhone/iPhone 6.5in/Dark Mode/search.png" width="250">    <img src="Screenshots/iPhone/iPhone 6.5in/Light Mode/search.png" width="250">
 ### Spotlight Search
-<img src="Screenshots/iPhone/iPhone 6.5in/spotlight.png" width="200">
+<img src="Screenshots/iPhone/iPhone 6.5in/spotlight.png" width="250">
 
 
 ## Colors
