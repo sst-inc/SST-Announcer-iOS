@@ -168,20 +168,11 @@
                         <outlet property="loadingIndicator" destination="1VZ-cv-H04" id="RRL-cO-kkr"/>
                         <outlet property="reloadButton" destination="GUE-AL-bL7" id="sh8-bU-5EM"/>
                         <outlet property="searchField" destination="Fdc-31-Cyo" id="8wt-xK-ucp"/>
-                        <segue destination="E0W-Mm-yuL" kind="presentation" identifier="labels" id="rNe-BV-ZKK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAe-A3-FIL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1757.9710144927537" y="138.61607142857142"/>
-        </scene>
-        <!--Filter-->
-        <scene sceneID="fBU-dK-70w">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Filter" id="E0W-Mm-yuL" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dYa-ZP-cDW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2404" y="123"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6s9-lU-M57">
