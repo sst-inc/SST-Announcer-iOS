@@ -59,11 +59,14 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
 ## Screenshots (iOS)
 Dark and Light mode
 ### Home 
-<img src="Screenshots/iPhone/iPhone 11/Dark Mode/home.png" width="200">    <img src="Screenshots/iPhone/iPhone 11/Light Mode/home.png" width="200">
+<img src="Screenshots/iPhone/iPhone 6.5"/Dark Mode/home.png" width="200">    <img src="Screenshots/iPhone/iPhone 6.5"/Light Mode/home.png" width="200">
 ### Content
-<img src="Screenshots/iPhone/iPhone 11/Dark Mode/content.png" width="200">    <img src="Screenshots/iPhone/iPhone 11/Light Mode/content.png" width="200">
+<img src="Screenshots/iPhone/iPhone 6.5"/Dark Mode/content.png" width="200">    <img src="Screenshots/iPhone/iPhone 6.5"/Light Mode/content.png" width="200">
 ### Search with Tags
-<img src="Screenshots/iPhone/iPhone 11/Dark Mode/search.png" width="200">    <img src="Screenshots/iPhone/iPhone 11/Light Mode/search.png" width="200">
+<img src="Screenshots/iPhone/iPhone 6.5"/Dark Mode/search.png" width="200">    <img src="Screenshots/iPhone/iPhone 6.5"/Light Mode/search.png" width="200">
+### Spotlight Search
+<img src="Screenshots/iPhone/iPhone 6.5"/spotlight.png" width="200">
+
 
 ## Colors
 ### Main Colors
