@@ -67,7 +67,7 @@ class AnnouncementTableViewCell: UITableViewCell {
                 // If user is on iOS 13 and up, color the pin
                 if #available(iOS 13.0, *) {
                     announcementImageView.image = UIImage(systemName: "pin.fill")!
-                    announcementImageView.tintColor = UIColor(named: "Carl and Shannen")
+                    announcementImageView.tintColor = UIColor(named: "Grey 1")
                 }
             } else {
                 announcementImageView.isHidden = true
@@ -87,7 +87,7 @@ class AnnouncementTableViewCell: UITableViewCell {
             }
             
             // Set background color
-            backgroundColor = UIColor(named: "Carlie White")
+            backgroundColor = UIColor(named: "Background")
             
             // Set attributes of title label
             // [Square Brackets] all red to highlight things like [Sec 2 students] etc.
@@ -133,7 +133,7 @@ class AnnouncementTableViewCell: UITableViewCell {
                 let start = indicesStart[i - 1]
                 let end = indicesEnd[i - 1]
                 
-                // [] colors will be Carl and Shannen
+                // [] colors will be Grey 1
                 // @shannen why these color names man
                 let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
                 

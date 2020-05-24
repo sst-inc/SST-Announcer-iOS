@@ -23,7 +23,7 @@ extension AnnouncementsViewController: UISearchBarDelegate {
             // Set color of labels
             // Update labels/textview with data
             let attrTitle = NSMutableAttributedString(string: searchText)
-            // Find the [] and just make it like guan yellow
+            // Find the [] and just make it like Grey 2
             
             // Make square brackets colored
             let indicesStart = attrTitle.string.indicesOf(string: "[")
@@ -46,7 +46,7 @@ extension AnnouncementsViewController: UISearchBarDelegate {
                         let start = indicesStart[i - 1]
                         let end = indicesEnd[i - 1]
                         
-                        // [] colors will be Carl and Shannen
+                        // [] colors will be Grey 1
                         // @shannen why these color names man
                         
                         let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)]

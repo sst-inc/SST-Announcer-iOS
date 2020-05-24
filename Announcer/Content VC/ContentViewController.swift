@@ -93,7 +93,7 @@ class ContentViewController: UIViewController {
                 let start = indicesStart[i - 1]
                 let end = indicesEnd[i - 1]
                 
-                // [] colors will be Carl and Shannen
+                // [] colors will be Grey 1
                 // @shannen why these color names man
                 let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
                 
@@ -276,7 +276,7 @@ class ContentViewController: UIViewController {
         popUpView.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         popUpView.text = "Post \(isPinned ? "Pinned" : "Unpinned")"
         
-        popUpView.backgroundColor = UIColor(named: "Guan Yellow")
+        popUpView.backgroundColor = UIColor(named: "Grey 2")
         popUpView.alpha = 0
         
         view.addSubview(popUpView)

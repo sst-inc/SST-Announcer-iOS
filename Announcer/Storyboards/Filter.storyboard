@@ -14,7 +14,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6lQ-wG-dRr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="Carlie White"/>
+                        <color key="backgroundColor" name="Background"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="labelCell" id="3ab-Oz-2nr" customClass="FilterTableViewCell" customModule="SST_Announcer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="74.5"/>
@@ -33,7 +33,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" name="Guan Yellow"/>
+                                            <color key="backgroundColor" name="Grey 2"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="V0D-AC-7Fq" secondAttribute="bottom" constant="16" id="0jK-CR-edY"/>
                                                 <constraint firstItem="V0D-AC-7Fq" firstAttribute="leading" secondItem="Mfa-Cg-r04" secondAttribute="leading" constant="20" id="SGN-nT-gx7"/>
@@ -42,7 +42,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" name="Carlie White"/>
+                                    <color key="backgroundColor" name="Background"/>
                                     <constraints>
                                         <constraint firstItem="Mfa-Cg-r04" firstAttribute="bottom" secondItem="68J-Og-8DK" secondAttribute="bottomMargin" id="V0F-Qh-VC9"/>
                                         <constraint firstItem="Mfa-Cg-r04" firstAttribute="top" secondItem="68J-Og-8DK" secondAttribute="topMargin" id="bjh-UV-mYT"/>
@@ -79,7 +79,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a33-wK-9uz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO">
-                        <color key="tintColor" name="Carl and Shannen"/>
+                        <color key="tintColor" name="Grey 1"/>
                     </simulatedNavigationBarMetrics>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aNi-16-cp1">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -95,19 +95,19 @@
             <point key="canvasLocation" x="1743.4782608695652" y="-592.63392857142856"/>
         </scene>
     </scenes>
-    <color key="tintColor" name="Carl and Shannen"/>
+    <color key="tintColor" name="Grey 1"/>
     <resources>
         <image name="arrow.uturn.left" catalog="system" width="128" height="112"/>
-        <namedColor name="Carl and Shannen">
-            <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Carl and Shannen">
-            <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Carlie White">
+        <namedColor name="Background">
             <color red="0.96078431372549022" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Guan Yellow">
+        <namedColor name="Grey 1">
+            <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Grey 1">
+            <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Grey 2">
             <color red="0.86274509803921573" green="0.85490196078431369" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>

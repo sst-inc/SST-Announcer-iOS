@@ -58,7 +58,7 @@ class AnnouncementsViewController: UIViewController {
         pinned = PinnedAnnouncements.loadFromFile() ?? []
         
         // Setting the searhField's text field color
-        searchField.setTextField(color: UIColor(named: "Carlie White")!)
+        searchField.setTextField(color: UIColor(named: "Background")!)
         
         // Peek & Pop for below iOS 13
         if #available(iOS 13.0, *) {
@@ -75,7 +75,7 @@ class AnnouncementsViewController: UIViewController {
     
     // Handles changing from dark to light or vice-versa
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        searchField.setTextField(color: UIColor(named: "Carlie White")!)
+        searchField.setTextField(color: UIColor(named: "Background")!)
     }
     
     override func viewDidAppear(_ animated: Bool) {

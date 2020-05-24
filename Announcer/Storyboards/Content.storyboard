@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MQo-jn-rdj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MQo-jn-rdj">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -127,7 +127,7 @@
                                                                             </constraints>
                                                                         </stackView>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" name="Guan Yellow"/>
+                                                                    <color key="backgroundColor" name="Grey 2"/>
                                                                     <constraints>
                                                                         <constraint firstItem="gFe-e9-dYL" firstAttribute="leading" secondItem="UV3-jH-79f" secondAttribute="leading" constant="8" id="LHt-gz-qQm"/>
                                                                         <constraint firstItem="gFe-e9-dYL" firstAttribute="top" secondItem="UV3-jH-79f" secondAttribute="top" id="ToL-nR-mTQ"/>
@@ -135,7 +135,7 @@
                                                                         <constraint firstAttribute="trailing" secondItem="gFe-e9-dYL" secondAttribute="trailing" id="p6Y-0w-bEA"/>
                                                                     </constraints>
                                                                 </collectionViewCellContentView>
-                                                                <color key="backgroundColor" name="Guan Yellow"/>
+                                                                <color key="backgroundColor" name="Grey 2"/>
                                                                 <connections>
                                                                     <outlet property="linkLabel" destination="wwk-Eq-yrr" id="MAM-yw-ukh"/>
                                                                     <outlet property="thumbnailImageView" destination="gx7-OX-V8u" id="V7z-cY-le9"/>
@@ -224,7 +224,7 @@
                                                                         <constraint firstItem="AJb-fX-Lhi" firstAttribute="top" secondItem="tTw-dC-ZAv" secondAttribute="top" id="hHh-hT-YYR"/>
                                                                     </constraints>
                                                                 </collectionViewCellContentView>
-                                                                <color key="backgroundColor" name="Guan Yellow"/>
+                                                                <color key="backgroundColor" name="Grey 2"/>
                                                                 <connections>
                                                                     <outlet property="titleLabel" destination="AJb-fX-Lhi" id="wa5-WO-b8K"/>
                                                                 </connections>
@@ -336,20 +336,21 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFV-08-BRC">
                                 <rect key="frame" x="20" y="802" width="374" height="40"/>
-                                <color key="backgroundColor" name="Guan Yellow"/>
+                                <color key="backgroundColor" name="Grey 2"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="o6g-B4-o78"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <state key="normal" title="    Reset" image="textformat.size" catalog="system">
-                                    <color key="titleColor" name="Carl and Shannen"/>
+                                    <color key="titleColor" name="Grey 1"/>
                                 </state>
                                 <connections>
                                     <action selector="resetToDefaultFontSize:" destination="MQo-jn-rdj" eventType="touchUpInside" id="ihp-vx-rEt"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" name="Carlie White"/>
+                        <color key="backgroundColor" name="Background"/>
+                        <color key="tintColor" name="Grey 1"/>
                         <constraints>
                             <constraint firstItem="rvY-1i-u3H" firstAttribute="bottom" secondItem="ZgU-FN-WM7" secondAttribute="bottom" constant="-16" id="6T1-we-frQ"/>
                             <constraint firstItem="4M5-iQ-t9p" firstAttribute="leading" secondItem="1ZK-Yy-4Eg" secondAttribute="trailing" constant="20" id="9xQ-1g-icX"/>
@@ -404,7 +405,7 @@
             <point key="canvasLocation" x="2653.6231884057975" y="138.61607142857142"/>
         </scene>
     </scenes>
-    <color key="tintColor" name="Carl and Shannen"/>
+    <color key="tintColor" name="Grey 1"/>
     <resources>
         <image name="arrow.uturn.left" catalog="system" width="128" height="112"/>
         <image name="link" catalog="system" width="128" height="116"/>
@@ -413,13 +414,13 @@
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="tag.fill" catalog="system" width="128" height="116"/>
         <image name="textformat.size" catalog="system" width="128" height="82"/>
-        <namedColor name="Carl and Shannen">
-            <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Carlie White">
+        <namedColor name="Background">
             <color red="0.96078431372549022" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Guan Yellow">
+        <namedColor name="Grey 1">
+            <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Grey 2">
             <color red="0.86274509803921573" green="0.85490196078431369" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>

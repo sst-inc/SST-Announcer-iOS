@@ -28,7 +28,7 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             // Handling the Labels
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoriesCollectionViewCell
             
-            cell.backgroundColor = UIColor(named: "Guan Yellow")
+            cell.backgroundColor = UIColor(named: "Grey 2")
             
             cell.titleLabel.text = post.categories[indexPath.row]
             
@@ -41,7 +41,7 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             // Handling the Links
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "links", for: indexPath) as! LinksCollectionViewCell
             
-            cell.backgroundColor = UIColor(named: "Guan Yellow")
+            cell.backgroundColor = UIColor(named: "Grey 2")
             
             cell.link = links[indexPath.row]
             
