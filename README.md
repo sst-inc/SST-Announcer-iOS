@@ -37,6 +37,8 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
   - Installed using Cocoapods
 - [FeedKit](https://github.com/nmdias/FeedKit)
   - Fetching data from Students' Blog (Atom feed)
+- [KALoader](https://github.com/Kirillzzy/KALoader)
+  - Loading animations while getting data from RSS feed
   
 ### Apple Technologies
 - [UIKit](https://developer.apple.com/documentation/uikit/)
