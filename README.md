@@ -9,13 +9,19 @@
 
 SST Announcer was built to help SST Students stay up to date with the school’s announcements with ease and convenience on their devices. The app allows users to browse, pin and share important announcements made by the school. The app also sends notifications to students whenever a new announcement is posted. This helped to ensure that students are kept updated with the latest information from the school. 
 
+> Original design by *FourierIndustries (formerly StatiX Industries)*
+>
+> Revamped in 2018 by *OrbitIndustries*
+>
+> Revamped, again, in 2020 by *Jia Chen and Shannen*
+
 ---
 ## Installation
 This project uses Cocoapods. Check the Podfile for more information.
 
 0. To install Cocoapods, in terminal, run `sudo gem install cocoapods`
 1. To install the pods into the project, go to the project's directory and run `pod install` on this project
-2. Open the Announcer.xcworkspace
+2. Open the `Announcer.xcworkspace`
 3. Done
 
 or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/id683929182)
@@ -53,15 +59,19 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
       - Unable to work with Low-Power Mode on 
 - [User Notifications](https://developer.apple.com/documentation/usernotifications)
   - To send notifications to the users whenever a new post comes (works together with Background Tasks)
+- [Core Spotlight](https://developer.apple.com/documentation/corespotlight)
+  - To allow users to search for announcements using spotlight search
 
 ## Screenshots (iOS)
 Dark and Light mode
 ### Home 
-<img src="Screenshots/iPhone/iPhone 11/Dark Mode/home.png" width="200">    <img src="Screenshots/iPhone/iPhone 11/Light Mode/home.png" width="200">
+<img src="Screenshots/iPhone/iPhone 6.5in/Dark Mode/home.png" width="250"><img src="Screenshots/iPhone/iPhone 6.5in/Light Mode/home.png" width="250">
 ### Content
-<img src="Screenshots/iPhone/iPhone 11/Dark Mode/content.png" width="200">    <img src="Screenshots/iPhone/iPhone 11/Light Mode/content.png" width="200">
+<img src="Screenshots/iPhone/iPhone 6.5in/Dark Mode/content.png" width="250"><img src="Screenshots/iPhone/iPhone 6.5in/Light Mode/content.png" width="250">
 ### Search with Tags
-<img src="Screenshots/iPhone/iPhone 11/Dark Mode/search.png" width="200">    <img src="Screenshots/iPhone/iPhone 11/Light Mode/search.png" width="200">
+<img src="Screenshots/iPhone/iPhone 6.5in/Dark Mode/search.png" width="250"><img src="Screenshots/iPhone/iPhone 6.5in/Light Mode/search.png" width="250">
+### Spotlight Search
+<img src="Screenshots/iPhone/iPhone 6.5in/spotlight.png" width="250">
 
 ## Colors
 ### Main Colors
@@ -88,7 +98,6 @@ These colors are used for loading content using KALoader
 
 |Color Name |Light Theme|Dark Theme |
 |-----------|-----------|-----------|
-|Background |![](https://via.placeholder.com/15/F5F4F6/F5F4F6) - #F5F4F6|![](https://via.placeholder.com/15/060400/060400) - #060400|
-|Global Tint|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|
-|Grey 1     |![](https://via.placeholder.com/15/434343/434343) - #434343|![](https://via.placeholder.com/15/B8BABB/B8BABB) - #B8BABB|
-|Grey 2     |![](https://via.placeholder.com/15/DCDADB/DCDADB) - #DCDADB|![](https://via.placeholder.com/15/252628/252628) - #252628|
+|Back Gray Color |![](https://via.placeholder.com/15/F6F6F6/F6F6F6) - #F6F6F6|![](https://via.placeholder.com/15/080808/080808) - #080808|
+|First Load Color|![](https://via.placeholder.com/15/DEDEDE/DEDEDE) - #DEDEDE|![](https://via.placeholder.com/15/202020/202020) - #202020|
+|Second Load Color|![](https://via.placeholder.com/15/DDDDDD/DDDDDD) - #DDDDDD|![](https://via.placeholder.com/15/212121/212121) - #212121|

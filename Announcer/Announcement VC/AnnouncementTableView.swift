@@ -331,7 +331,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     searchField.getTextField()?.layer.borderWidth = 0
                 }
                 filterButton.tintColor = UIColor(named: "Grey 1")
-                searchField.setTextField(color: UIColor(named: "Background")!)
+                searchField.setTextField(color: UIColor(named: "background")!)
                 reloadButton.tintColor = UIColor(named: "Grey 1")
                 
                 resetScroll()

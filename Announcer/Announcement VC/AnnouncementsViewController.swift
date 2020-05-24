@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreSpotlight
+import MobileCoreServices
 
 class AnnouncementsViewController: UIViewController {
     
@@ -18,6 +20,7 @@ class AnnouncementsViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 self.announcementTableView.reloadData()
+                self.addItemsToCoreSpotlight()
             }
         }
     }
@@ -58,7 +61,7 @@ class AnnouncementsViewController: UIViewController {
         pinned = PinnedAnnouncements.loadFromFile() ?? []
         
         // Setting the searhField's text field color
-        searchField.setTextField(color: UIColor(named: "Background")!)
+        searchField.setTextField(color: UIColor(named: "background")!)
         
         // Peek & Pop for below iOS 13
         if #available(iOS 13.0, *) {
@@ -75,7 +78,7 @@ class AnnouncementsViewController: UIViewController {
     
     // Handles changing from dark to light or vice-versa
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        searchField.setTextField(color: UIColor(named: "Background")!)
+        searchField.setTextField(color: UIColor(named: "background")!)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -162,5 +165,25 @@ class AnnouncementsViewController: UIViewController {
         }
         
         self.present(nvc, animated: true)
+    }
+    
+    func addItemsToCoreSpotlight() {
+        let items: [CSSearchableItem] = posts.map({ post in
+            let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+            attributeSet.title = post.title
+            attributeSet.contentDescription = post.content.condenseLinebreaks().htmlToString
+
+            return CSSearchableItem(uniqueIdentifier: "\(post.title)",
+                domainIdentifier: Bundle.main.bundleIdentifier!,
+                attributeSet: attributeSet)
+        })
+        
+        CSSearchableIndex.default().indexSearchableItems(items) { error in
+            if let error = error {
+                print("Indexing error: \(error.localizedDescription)")
+            } else {
+                print("Search items successfully indexed!")
+            }
+        }
     }
 }

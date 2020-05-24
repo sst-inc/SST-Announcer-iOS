@@ -11,6 +11,9 @@ import UserNotifications
 import BackgroundTasks
 import SafariServices
 
+import CoreSpotlight
+import MobileCoreServices
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
@@ -139,52 +142,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     /// Open up the post from notification
     func openPost(with notification: UNNotification) {
-        let posts = fetchValues()
-        
-        var post: Post?
-        
         let notificationContent = notification.request.content
         
         var postTitle = notificationContent.title
         postTitle.removeFirst(2)
         
-        // Finding the post to present
-        for item in posts {
-            if item.title == postTitle {
-                
-                post = item
-                
-                break
+        launchPost(withTitle: postTitle)
+    }
+    
+    // Catching userActivity for iOS 12 and below
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        
+        if userActivity.activityType == CSSearchableItemActionType {
+            if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+                launchPost(withTitle: uniqueIdentifier)
             }
         }
         
-        let navigationController = UIApplication.shared.windows.first?.rootViewController as! UINavigationController
-        let announcementVC = navigationController.topViewController as! AnnouncementsViewController
-        
-        if let post = post {
-            // Handles when post is found
-            
-            announcementVC.receivePost(with: post)
-            
-        } else {
-            // Handle when unable to get post
-            // Show an alert to the user to tell them that the post was unable to be found :(
-
-            print("failed to get post :(")
-
-            let alert = UIAlertController(title: "Unable to get post", message: "Something went wrong when trying to retrieve the post. You can try to open this post in Safari.", preferredStyle: .alert)
-
-            // If user opens post in Safari, it will simply bring them to student blog home page
-            alert.addAction(UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
-                let svc = SFSafariViewController(url: URL(string: blogURL)!)
-                
-                announcementVC.present(svc, animated: true)
-            }))
-            
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            
-            announcementVC.present(alert, animated: true)
-            
-        }
+        return true
     }
 }
