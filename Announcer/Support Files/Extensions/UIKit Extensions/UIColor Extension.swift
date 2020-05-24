@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    
+    /// Add multiple colors together with +
     static func +(color1: UIColor, color2: UIColor) -> UIColor {
         var (r1, g1, b1, a1) = (CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(0))
         var (r2, g2, b2, a2) = (CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(0))
@@ -22,6 +22,7 @@ extension UIColor {
         return UIColor(red: min(r1 + r2, 1), green: min(g1 + g2, 1), blue: min(b1 + b2, 1), alpha: (a1 + a2) / 2)
     }
 
+    /// Multiply a color by a `CGFloat` from 0 to 1
     static func *(color: UIColor, multiplier: CGFloat) -> UIColor {
         var (r, g, b, a) = (CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(0))
         color.getRed(&r, green: &g, blue: &b, alpha: &a)
