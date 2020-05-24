@@ -15,7 +15,7 @@ This project uses Cocoapods. Check the Podfile for more information.
 
 0. To install Cocoapods, in terminal, run `sudo gem install cocoapods`
 1. To install the pods into the project, go to the project's directory and run `pod install` on this project
-2. Open the Announcer.xcworkspace
+2. Open the `Announcer.xcworkspace`
 3. Done
 
 or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/id683929182)
