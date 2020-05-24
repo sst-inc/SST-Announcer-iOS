@@ -11,6 +11,9 @@ import UserNotifications
 import BackgroundTasks
 import SafariServices
 
+import CoreSpotlight
+import MobileCoreServices
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
@@ -145,5 +148,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         postTitle.removeFirst(2)
         
         launchPost(withTitle: postTitle)
+    }
+    
+    // Catching userActivity for iOS 12 and below
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        
+        if userActivity.activityType == CSSearchableItemActionType {
+            if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+                launchPost(withTitle: uniqueIdentifier)
+            }
+        }
+        
+        return true
     }
 }
