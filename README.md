@@ -9,6 +9,12 @@
 
 SST Announcer was built to help SST Students stay up to date with the school’s announcements with ease and convenience on their devices. The app allows users to browse, pin and share important announcements made by the school. The app also sends notifications to students whenever a new announcement is posted. This helped to ensure that students are kept updated with the latest information from the school. 
 
+> Original design by *FourierIndustries (formerly StatiX Industries)*
+>
+> Revamped in 2018 by *OrbitIndustries*
+>
+> Revamped, again, in 2020 by *Jia Chen and Shannen*
+
 ---
 ## Installation
 This project uses Cocoapods. Check the Podfile for more information.
@@ -59,14 +65,13 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
 ## Screenshots (iOS)
 Dark and Light mode
 ### Home 
-<img src="Screenshots/iPhone/iPhone 6.5in/Dark Mode/home.png" width="250">    <img src="Screenshots/iPhone/iPhone 6.5in/Light Mode/home.png" width="250">
+<img src="Screenshots/iPhone/iPhone 6.5in/Dark Mode/home.png" width="250"><img src="Screenshots/iPhone/iPhone 6.5in/Light Mode/home.png" width="250">
 ### Content
-<img src="Screenshots/iPhone/iPhone 6.5in/Dark Mode/content.png" width="250">    <img src="Screenshots/iPhone/iPhone 6.5in/Light Mode/content.png" width="250">
+<img src="Screenshots/iPhone/iPhone 6.5in/Dark Mode/content.png" width="250"><img src="Screenshots/iPhone/iPhone 6.5in/Light Mode/content.png" width="250">
 ### Search with Tags
-<img src="Screenshots/iPhone/iPhone 6.5in/Dark Mode/search.png" width="250">    <img src="Screenshots/iPhone/iPhone 6.5in/Light Mode/search.png" width="250">
+<img src="Screenshots/iPhone/iPhone 6.5in/Dark Mode/search.png" width="250"><img src="Screenshots/iPhone/iPhone 6.5in/Light Mode/search.png" width="250">
 ### Spotlight Search
 <img src="Screenshots/iPhone/iPhone 6.5in/spotlight.png" width="250">
-
 
 ## Colors
 ### Main Colors
