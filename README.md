@@ -98,7 +98,6 @@ These colors are used for loading content using KALoader
 
 |Color Name |Light Theme|Dark Theme |
 |-----------|-----------|-----------|
-|Background |![](https://via.placeholder.com/15/F5F4F6/F5F4F6) - #F5F4F6|![](https://via.placeholder.com/15/060400/060400) - #060400|
-|Global Tint|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|
-|Grey 1     |![](https://via.placeholder.com/15/434343/434343) - #434343|![](https://via.placeholder.com/15/B8BABB/B8BABB) - #B8BABB|
-|Grey 2     |![](https://via.placeholder.com/15/DCDADB/DCDADB) - #DCDADB|![](https://via.placeholder.com/15/252628/252628) - #252628|
+|Back Gray Color |![](https://via.placeholder.com/15/F6F6F6/F6F6F6) - #F6F6F6|![](https://via.placeholder.com/15/080808/080808) - #080808|
+|First Load Color|![](https://via.placeholder.com/15/DEDEDE/DEDEDE) - #DEDEDE|![](https://via.placeholder.com/15/202020/202020) - #202020|
+|Second Load Color|![](https://via.placeholder.com/15/DDDDDD/DDDDDD) - #DDDDDD|![](https://via.placeholder.com/15/212121/212121) - #212121|
