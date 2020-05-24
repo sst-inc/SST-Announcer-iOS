@@ -46,6 +46,7 @@ class ContentViewController: UIViewController {
     
     @IBOutlet weak var labelsView: UIView!
     @IBOutlet weak var linksView: UIView!
+    @IBOutlet weak var seperatorView: UIView!
     
     @IBOutlet weak var linksCollectionView: UICollectionView!
     @IBOutlet weak var labelsCollectionView: UICollectionView!
@@ -60,9 +61,11 @@ class ContentViewController: UIViewController {
             DispatchQueue.main.async {
                 self.linksCollectionView.reloadData()
                 
-                print(self.links)
                 if self.links.count > 0 {
                     self.linksView.isHidden = false
+                    self.seperatorView.isHidden = self.labelsView.isHidden
+                } else {
+                    self.seperatorView.isHidden = true
                 }
             }
         }
@@ -159,6 +162,9 @@ class ContentViewController: UIViewController {
         // Hide the labels if there are none
         if post.categories.count == 0 {
             labelsView.isHidden = true
+            seperatorView.isHidden = true
+        } else {
+            labelsView.isHidden = false
         }
         
         // Styling default font size button
@@ -181,14 +187,6 @@ class ContentViewController: UIViewController {
                     if let _ = error {
                         return
                     }
-                    
-                    print("- sourceUrl        = \(ogData.sourceUrl as URL?)\n"
-                        + "- url              = \(ogData.url as URL?)\n"
-                        + "- siteName         = \(ogData.siteName as String?)\n"
-                        + "- pageTitle        = \(ogData.pageTitle as String?)\n"
-                        + "- pageType         = \(ogData.pageType as String?)\n"
-                        + "- pageDescription  = \(ogData.pageDescription as String?)\n"
-                        + "- imageUrl         = \(ogData.imageUrl as URL?)\n")
                     
                     let sourceUrl: String = (ogData.sourceUrl ?? url).absoluteString
                     let pageTitle: String = {

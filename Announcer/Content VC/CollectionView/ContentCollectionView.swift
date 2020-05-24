@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 import SafariServices
 
-extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // Setting the number of items in the collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == labelsCollectionView {
-            return post.categories.count
+            let numberOfItems = post.categories.count
+            return numberOfItems
         } else {
             return links.count
         }
