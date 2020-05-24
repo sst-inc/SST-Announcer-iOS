@@ -168,6 +168,13 @@ class AnnouncementsViewController: UIViewController {
     }
     
     func addItemsToCoreSpotlight() {
+        
+        /// So that it does not crash when `posts` gets forced unwrapped
+        if posts == nil {
+            return
+        }
+        
+        /// `posts` converted to `CSSearchableItems`
         let items: [CSSearchableItem] = posts.map({ post in
             let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
             attributeSet.title = post.title
@@ -178,6 +185,7 @@ class AnnouncementsViewController: UIViewController {
                 attributeSet: attributeSet)
         })
         
+        // Index the items
         CSSearchableIndex.default().indexSearchableItems(items) { error in
             if let error = error {
                 print("Indexing error: \(error.localizedDescription)")
