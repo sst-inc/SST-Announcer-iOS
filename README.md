@@ -1,6 +1,6 @@
 # SST Announcer (iOS)
 [![Language](http://img.shields.io/badge/swift-5-orange.svg?style=flat)](https://developer.apple.com/swift)
-[![Xcode](http://img.shields.io/badge/xcode-11.4-red.svg?style=flat)](https://developer.apple.com/xcode)
+[![Xcode](http://img.shields.io/badge/xcode-11.5-red.svg?style=flat)](https://developer.apple.com/xcode)
 [![Cocoapods](http://img.shields.io/badge/pod-v1.8.4-darkgray.svg?style=flat)](https://cocoapods.org/)
 
 [![iOS](http://img.shields.io/badge/platform-iOS%2013-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
