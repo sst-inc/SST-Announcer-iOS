@@ -179,14 +179,17 @@ class AnnouncementsViewController: UIViewController {
             let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
             attributeSet.title = post.title
             attributeSet.contentDescription = post.content.condenseLinebreaks().htmlToString
-
-            return CSSearchableItem(uniqueIdentifier: "\(post.title)",
-                domainIdentifier: Bundle.main.bundleIdentifier!,
-                attributeSet: attributeSet)
+            
+            let item = CSSearchableItem(uniqueIdentifier: "\(post.title)", domainIdentifier: Bundle.main.bundleIdentifier!, attributeSet: attributeSet)
+            
+            item.expirationDate = Date.distantFuture
+            
+            return item
         })
         
         // Index the items
         CSSearchableIndex.default().indexSearchableItems(items) { error in
+            // Make sure there is no error indexing everything
             if let error = error {
                 print("Indexing error: \(error.localizedDescription)")
             } else {
