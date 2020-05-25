@@ -77,9 +77,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    // Testing if background task works
-    // Run this below in debugger
-    // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"sg.edu.sst.panziyue.Announcer.new-announcement"]
+    /**
+    Schedules the new announcement background task
+    
+     The identifier is `sg.edu.sst.panziyue.Announcer.new-announcement`
+     
+     ---
+    # Debugging Background Tasks
+     Running this line in the debugger to instantly manually background refresh. Background refresh takes a while so this is the easier way to do it and test it out.
+    ```
+     e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"sg.edu.sst.panziyue.Announcer.new-announcement"]
+     ```
+     */
     func scheduleBackgroundTaskIfNeeded() {
         let taskRequest = BGProcessingTaskRequest(identifier: AppDelegate.backgroundTaskIdentifier)
         taskRequest.requiresNetworkConnectivity = true
