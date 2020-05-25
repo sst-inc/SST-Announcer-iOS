@@ -79,10 +79,10 @@ These colors are used for different parts of the app such as backgrounds and lab
 
 |Color Name |Identifier|Light Theme|Dark Theme |
 |-----------|----------|-----------|-----------|
-|Background |`background`|![](https://via.placeholder.com/15/F5F4F6/F5F4F6) - #F5F4F6|![](https://via.placeholder.com/15/060400/060400) - #060400|
-|Global Tint|`Global Tint`|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|
-|Grey 1     |`Grey 1`|![](https://via.placeholder.com/15/434343/434343) - #434343|![](https://via.placeholder.com/15/B8BABB/B8BABB) - #B8BABB|
-|Grey 2     |`Grey 2`|![](https://via.placeholder.com/15/DCDADB/DCDADB) - #DCDADB|![](https://via.placeholder.com/15/252628/252628) - #252628|
+|Background |`"background"`|![](https://via.placeholder.com/15/F5F4F6/F5F4F6) - #F5F4F6|![](https://via.placeholder.com/15/060400/060400) - #060400|
+|Global Tint|`"Global Tint"`|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|
+|Grey 1     |`"Grey 1"`|![](https://via.placeholder.com/15/434343/434343) - #434343|![](https://via.placeholder.com/15/B8BABB/B8BABB) - #B8BABB|
+|Grey 2     |`"Grey 2"`|![](https://via.placeholder.com/15/DCDADB/DCDADB) - #DCDADB|![](https://via.placeholder.com/15/252628/252628) - #252628|
 
 ### Apple Colors
 These colors are the ones as part of Apple's [UIColor Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/color/)
@@ -97,6 +97,6 @@ These colors are used for loading content using KALoader
 
 |Color Name |Identifier|Light Theme|Dark Theme |
 |-----------|----------|-----------|-----------|
-|First Load Color|`First Load Color`|![](https://via.placeholder.com/15/DEDEDE/DEDEDE) - #DEDEDE|![](https://via.placeholder.com/15/202020/202020) - #202020|
-|Second Load Color|`Second Load Color`|![](https://via.placeholder.com/15/DDDDDD/DDDDDD) - #DDDDDD|![](https://via.placeholder.com/15/212121/212121) - #212121|
-|Back Gray Color |`Back Gray Color`|![](https://via.placeholder.com/15/F6F6F6/F6F6F6) - #F6F6F6|![](https://via.placeholder.com/15/080808/080808) - #080808|
+|First Load Color|`"First Load Color"`|![](https://via.placeholder.com/15/DEDEDE/DEDEDE) - #DEDEDE|![](https://via.placeholder.com/15/202020/202020) - #202020|
+|Second Load Color|`"Second Load Color"`|![](https://via.placeholder.com/15/DDDDDD/DDDDDD) - #DDDDDD|![](https://via.placeholder.com/15/212121/212121) - #212121|
+|Back Gray Color |`"Back Gray Color"`|![](https://via.placeholder.com/15/F6F6F6/F6F6F6) - #F6F6F6|![](https://via.placeholder.com/15/080808/080808) - #080808|
