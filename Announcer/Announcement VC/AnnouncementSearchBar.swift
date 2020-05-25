@@ -19,6 +19,10 @@ extension AnnouncementsViewController: UISearchBarDelegate {
     // When text changes, update search results with searchText
     // Seach results automatically reloads when value changed
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Handling when posts are missing because reloading
+        if posts == nil { return }
+        
+        // It takes a bit to search so just run it in the background
         DispatchQueue.global(qos: .background).async {
             // Set color of labels
             // Update labels/textview with data
