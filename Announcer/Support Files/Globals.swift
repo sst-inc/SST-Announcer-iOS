@@ -20,10 +20,10 @@ import SafariServices
  - important: Ensure that the URL is set to the correct blog before production.
  
  # Production Blog URL
- http://studentsblog.sst.edu.sg
+ [http://studentsblog.sst.edu.sg](http://studentsblog.sst.edu.sg)
  
  # Development Blog URL
- https://testannouncer.blogspot.com
+ [https://testannouncer.blogspot.com](https://testannouncer.blogspot.com)
  
  This constant stores the URL for the blog linked to the RSS feed.
  */
@@ -428,7 +428,6 @@ func launchPost(withTitle postTitle: String) {
     
     if let post = post {
         // Handles when post is found
-        
         announcementVC.receivePost(with: post)
         
     } else {
