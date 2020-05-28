@@ -77,7 +77,9 @@ func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
         // Present alert
         DispatchQueue.main.async {
             // No internet error
-            let alert = UIAlertController(title: "Check your Internet", message: "Unable to fetch data from Students' Blog.\nPlease check your network settings and try again.", preferredStyle: .alert)
+            let alert = UIAlertController(title: ErrorMessages.unableToLoadPost.title,
+                                          message: ErrorMessages.unableToLoadPost.description,
+                                          preferredStyle: .alert)
             
             // Try to reload and hopefully it works
             alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
@@ -351,7 +353,9 @@ func launchPost(withTitle postTitle: String) {
 
         print("failed to get post :(")
 
-        let alert = UIAlertController(title: "Unable to get post", message: "Something went wrong when trying to retrieve the post. You can try to open this post in Safari.", preferredStyle: .alert)
+        let alert = UIAlertController(title: ErrorMessages.unableToLaunchPost.title,
+                                      message: ErrorMessages.unableToLaunchPost.description,
+                                      preferredStyle: .alert)
 
         // If user opens post in Safari, it will simply bring them to student blog home page
         alert.addAction(UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in

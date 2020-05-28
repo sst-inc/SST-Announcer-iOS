@@ -113,10 +113,18 @@ class ContentViewController: UIViewController {
         // Handle JavaScript
         if post.content.contains("webkitallowfullscreen=\"true\"") {
             DispatchQueue.main.async {
-                let alert = UIAlertController(title: "Unable to Open Post", message: "An error occured when opening this post. Open this post in Safari to view its contents.", preferredStyle: .alert)
+                let alert = UIAlertController(title: ErrorMessages.postRequiresWebKit.title,
+                                              message: ErrorMessages.postRequiresWebKit.description,
+                                              preferredStyle: .alert)
+                
                 alert.addAction(UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
                     self.openPostInSafari(UILabel())
                 }))
+                
+                alert.addAction(UIAlertAction(title: "Close Post", style: .cancel, handler: { (_) in
+                    self.navigationController?.popViewController(animated: true)
+                }))
+                
                 self.present(alert, animated: true)
             }
             
