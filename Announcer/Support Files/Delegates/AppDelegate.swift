@@ -169,11 +169,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // Catching userActivity for iOS 12 and below
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         
-        if userActivity.activityType == CSSearchableItemActionType {
-            if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
-                launchPost(withTitle: uniqueIdentifier)
-            }
-        }
+        continueFromCoreSpotlight(with: userActivity)
         
         return true
     }

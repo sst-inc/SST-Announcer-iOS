@@ -12,6 +12,7 @@ import UserNotifications
 import UIKit
 import BackgroundTasks
 import SafariServices
+import CoreSpotlight
 
 /**
  Get the labels, tags or categories from the posts.
@@ -370,4 +371,13 @@ func launchPost(withTitle postTitle: String) {
         
     }
 
+}
+
+
+func continueFromCoreSpotlight(with userActivity: NSUserActivity) {
+    if userActivity.activityType == CSSearchableItemActionType {
+        if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+            launchPost(withTitle: uniqueIdentifier)
+        }
+    }
 }

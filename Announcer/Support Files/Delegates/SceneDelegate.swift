@@ -24,11 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     // Handling when user opens from spotlight search
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-        if userActivity.activityType == CSSearchableItemActionType {
-            if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
-                launchPost(withTitle: uniqueIdentifier)
-            }
-        }
+        continueFromCoreSpotlight(with: userActivity)
     }
 }
 
