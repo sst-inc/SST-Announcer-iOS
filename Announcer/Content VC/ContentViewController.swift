@@ -95,7 +95,7 @@ class ContentViewController: UIViewController {
                 
                 // [] colors will be Grey 1
                 // @shannen why these color names man
-                let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
+                let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: GlobalColors.blueTint, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
                 
                 attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 2))
             }

@@ -52,11 +52,14 @@ struct GlobalLinks {
  This struct contains all the colors used in the app
  */
 struct GlobalColors {
+    /// Blue Tint
+    static let blueTint = UIColor.systemBlue
+    
     /// Border Color for Scroll Selection
-    static let borderColor = UIColor.systemBlue.withAlphaComponent(0.3).cgColor
+    static let borderColor = GlobalColors.blueTint.withAlphaComponent(0.3).cgColor
     
     /// Background color for App
-    static let background = UIColor(named: "background")!
+    static let background = UIColor(named: "Background")!
     
     /// First Grey Color
     static let greyOne = UIColor(named: "Grey 1")!

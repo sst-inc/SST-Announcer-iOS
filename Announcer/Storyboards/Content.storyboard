@@ -349,7 +349,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" name="background"/>
+                        <color key="backgroundColor" name="Background"/>
                         <color key="tintColor" name="Grey 1"/>
                         <constraints>
                             <constraint firstItem="rvY-1i-u3H" firstAttribute="bottom" secondItem="ZgU-FN-WM7" secondAttribute="bottom" constant="-16" id="6T1-we-frQ"/>
@@ -420,7 +420,7 @@
         <namedColor name="Grey 2">
             <color red="0.86274509803921573" green="0.85490196078431369" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="background">
+        <namedColor name="Background">
             <color red="0.96078431372549022" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
