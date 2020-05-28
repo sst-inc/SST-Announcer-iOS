@@ -82,7 +82,7 @@ These colors are used for different parts of the app such as backgrounds and lab
 
 |Color Name |Identifier|Light Theme|Dark Theme |
 |-----------|----------|-----------|-----------|
-|Background |`"background"`|![](https://via.placeholder.com/15/F5F4F6/F5F4F6) - #F5F4F6|![](https://via.placeholder.com/15/060400/060400) - #060400|
+|Background |`"Background"`|![](https://via.placeholder.com/15/F5F4F6/F5F4F6) - #F5F4F6|![](https://via.placeholder.com/15/060400/060400) - #060400|
 |Global Tint|`"Global Tint"`|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|
 |Grey 1     |`"Grey 1"`|![](https://via.placeholder.com/15/434343/434343) - #434343|![](https://via.placeholder.com/15/B8BABB/B8BABB) - #B8BABB|
 |Grey 2     |`"Grey 2"`|![](https://via.placeholder.com/15/DCDADB/DCDADB) - #DCDADB|![](https://via.placeholder.com/15/252628/252628) - #252628|

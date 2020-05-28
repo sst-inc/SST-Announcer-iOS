@@ -77,20 +77,27 @@ struct GlobalColors {
  This struct contains all the identifiers used in the app
  */
 struct GlobalIdentifier {
-    /// Cell identifier for filterViewController
-    static let labelCell = "labelCell"
+    /// Cell identifier for labels in filterViewController and contentViewController
+    static let labelCell = "labels"
+    
+    /// Cell identifier for announcements in announcementViewController
+    static let announcementCell = "announcements"
+    
+    /// Cell identifier for links in contentViewController
+    static let linkCell = "links"
+    
+    /// Background Task Identifier
+    static let backgroundTask = Bundle.main.bundleIdentifier! + ".new-announcement"
+    
+    /// New announcement notification identifier
+    static let newNotification = "new-announcement"
 }
 
 /**
  Error Messages
  
- This struct contains all the identifiers used in the app
+ This struct contains error messages used in the app
  */
-struct Message {
-    var title: String
-    var description: String
-}
-
 struct ErrorMessages {
     /// When there is an error launching a post because it requires JavaScript
     static let postRequiresWebKit = Message(title: "Unable to Open Post",
@@ -103,5 +110,9 @@ struct ErrorMessages {
     /// Error launching post from notifications or spotlight search
     static let unableToLaunchPost = Message(title: "Unable to launch post",
                                             description: "Something went wrong when trying to retrieve the post. You can try to open this post in Safari.")
-    
+}
+
+struct Message {
+    var title: String
+    var description: String
 }

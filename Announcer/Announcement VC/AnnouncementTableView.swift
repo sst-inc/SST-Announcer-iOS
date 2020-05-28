@@ -90,7 +90,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "announcements", for: indexPath) as! AnnouncementTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: GlobalIdentifier.announcementCell, for: indexPath) as! AnnouncementTableViewCell
         
         if posts == nil {
             cell.startLoader()

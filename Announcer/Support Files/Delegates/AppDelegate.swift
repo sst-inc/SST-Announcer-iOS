@@ -17,8 +17,6 @@ import MobileCoreServices
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
-    static let backgroundTaskIdentifier = Bundle.main.bundleIdentifier! + ".new-announcement"
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Checks to ensure the URL is correct.
         // Safeguard against my 3am stupidity
@@ -45,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UNUserNotificationCenter.current().delegate = self
         
         // Performing Background Fetch for new posts
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: AppDelegate.backgroundTaskIdentifier, using: .main) { task in
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: GlobalIdentifier.backgroundTask, using: .main) { task in
             
             // Check if there is a new post
             if let notificationContent = fetchNotificationsTitle() {
@@ -94,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
      ```
      */
     func scheduleBackgroundTaskIfNeeded() {
-        let taskRequest = BGProcessingTaskRequest(identifier: AppDelegate.backgroundTaskIdentifier)
+        let taskRequest = BGProcessingTaskRequest(identifier: GlobalIdentifier.backgroundTask)
         taskRequest.requiresNetworkConnectivity = true
         
         do {
@@ -125,7 +123,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // Push the notification to the user
     func pushNotification(with postTitle: String, content postContent: String) {
-        let identifier = "new-announcement"
         let content = UNMutableNotificationContent()
         
         content.title = "📢 \(postTitle)"
@@ -133,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         content.sound = .default
         
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
+        let request = UNNotificationRequest(identifier: GlobalIdentifier.newNotification, content: content, trigger: nil)
         
         UNUserNotificationCenter.current().add(request) { error in
             DispatchQueue.main.async {

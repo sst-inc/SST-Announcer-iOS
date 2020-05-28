@@ -26,7 +26,7 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == labelsCollectionView {
             // Handling the Labels
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoriesCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GlobalIdentifier.labelCell, for: indexPath) as! CategoriesCollectionViewCell
             
             cell.backgroundColor = GlobalColors.greyTwo
             
@@ -39,7 +39,7 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             return cell
         } else {
             // Handling the Links
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "links", for: indexPath) as! LinksCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GlobalIdentifier.linkCell, for: indexPath) as! LinksCollectionViewCell
             
             cell.backgroundColor = GlobalColors.greyTwo
             
