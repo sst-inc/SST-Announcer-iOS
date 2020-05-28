@@ -28,7 +28,7 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             // Handling the Labels
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoriesCollectionViewCell
             
-            cell.backgroundColor = UIColor(named: "Grey 2")
+            cell.backgroundColor = GlobalColors.greyTwo
             
             cell.titleLabel.text = post.categories[indexPath.row]
             
@@ -41,7 +41,7 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             // Handling the Links
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "links", for: indexPath) as! LinksCollectionViewCell
             
-            cell.backgroundColor = UIColor(named: "Grey 2")
+            cell.backgroundColor = GlobalColors.greyTwo
             
             cell.link = links[indexPath.row]
             
@@ -71,13 +71,13 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             // When it is a normal URL, present a Safari View Controller
             // Otherwise just open the URL and iOS will handle it
             if cell.link.link.contains("http://") || cell.link.link.contains("https://") {
-                let url = URL(string: cell.link.link) ?? errorNotFoundURL
+                let url = URL(string: cell.link.link) ?? GlobalLinks.errorNotFoundURL
                 
                 let svc = SFSafariViewController(url: url)
                 
                 present(svc, animated: true)
             } else {
-                let url = URL(string: cell.link.link) ?? errorNotFoundURL
+                let url = URL(string: cell.link.link) ?? GlobalLinks.errorNotFoundURL
                 
                 UIApplication.shared.open(url)
             }

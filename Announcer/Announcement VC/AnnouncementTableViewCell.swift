@@ -67,7 +67,7 @@ class AnnouncementTableViewCell: UITableViewCell {
                 // If user is on iOS 13 and up, color the pin
                 if #available(iOS 13.0, *) {
                     announcementImageView.image = UIImage(systemName: "pin.fill")!
-                    announcementImageView.tintColor = UIColor(named: "Grey 1")
+                    announcementImageView.tintColor = GlobalColors.greyOne
                 }
             } else {
                 announcementImageView.isHidden = true
@@ -87,7 +87,7 @@ class AnnouncementTableViewCell: UITableViewCell {
             }
             
             // Set background color
-            backgroundColor = UIColor(named: "background")
+            backgroundColor = GlobalColors.background
             
             // Set attributes of title label
             // [Square Brackets] all red to highlight things like [Sec 2 students] etc.

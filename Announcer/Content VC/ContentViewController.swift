@@ -276,7 +276,7 @@ class ContentViewController: UIViewController {
         popUpView.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         popUpView.text = "Post \(isPinned ? "Pinned" : "Unpinned")"
         
-        popUpView.backgroundColor = UIColor(named: "Grey 2")
+        popUpView.backgroundColor = GlobalColors.greyTwo
         popUpView.alpha = 0
         
         view.addSubview(popUpView)

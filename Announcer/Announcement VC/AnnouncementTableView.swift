@@ -242,7 +242,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             //Complete
             completionHandler(true)
         }
-        action.backgroundColor = UIColor(named: "Grey 2")
+        action.backgroundColor = GlobalColors.greyTwo
         return action
     }
     
@@ -256,12 +256,12 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 if scrollView.contentOffset.y <= -150 {
                     let offset = (scrollView.contentOffset.y * -1 - 150) / 100
                     filterButton.layer.borderWidth = 0
-                    filterButton.layer.borderColor = borderColor
+                    filterButton.layer.borderColor = GlobalColors.borderColor
                     
                     searchField.getTextField()?.layer.borderWidth = 0
-                    searchField.getTextField()?.layer.borderColor = borderColor
+                    searchField.getTextField()?.layer.borderColor = GlobalColors.borderColor
                     reloadButton.layer.borderWidth = 25 * offset
-                    reloadButton.layer.borderColor = borderColor
+                    reloadButton.layer.borderColor = GlobalColors.borderColor
                     
                     if playedHaptic != 1 {
                         let generator = UIImpactFeedbackGenerator(style: .heavy)
@@ -271,12 +271,12 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 } else if scrollView.contentOffset.y <= -100 {
                     let offset = (scrollView.contentOffset.y * -1 - 100) / 100
                     filterButton.layer.borderWidth = 25 * offset
-                    filterButton.layer.borderColor = borderColor
+                    filterButton.layer.borderColor = GlobalColors.borderColor
                     
                     searchField.getTextField()?.layer.borderWidth = 0
-                    searchField.getTextField()?.layer.borderColor = borderColor
+                    searchField.getTextField()?.layer.borderColor = GlobalColors.borderColor
                     reloadButton.layer.borderWidth = 0
-                    reloadButton.layer.borderColor = borderColor
+                    reloadButton.layer.borderColor = GlobalColors.borderColor
                     
                     if playedHaptic != 2 {
                         let generator = UIImpactFeedbackGenerator(style: .medium)
@@ -285,16 +285,16 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     playedHaptic = 2
                 } else if scrollView.contentOffset.y <= -50 {
                     filterButton.layer.borderWidth = 0
-                    filterButton.layer.borderColor = borderColor
+                    filterButton.layer.borderColor = GlobalColors.borderColor
                     
                     let offset = (scrollView.contentOffset.y * -1 - 50) / 100
                     searchField.getTextField()?.layer.borderWidth = 40 * offset
                     searchField.getTextField()?.clipsToBounds = false
                     searchField.getTextField()?.superview?.clipsToBounds = false
                     searchField.clipsToBounds = false
-                    searchField.getTextField()?.layer.borderColor = borderColor
+                    searchField.getTextField()?.layer.borderColor = GlobalColors.borderColor
                     reloadButton.layer.borderWidth = 0
-                    reloadButton.layer.borderColor = borderColor
+                    reloadButton.layer.borderColor = GlobalColors.borderColor
                     
                     if playedHaptic != 3 {
                         
@@ -330,9 +330,9 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     searchField.becomeFirstResponder()
                     searchField.getTextField()?.layer.borderWidth = 0
                 }
-                filterButton.tintColor = UIColor(named: "Grey 1")
-                searchField.setTextField(color: UIColor(named: "background")!)
-                reloadButton.tintColor = UIColor(named: "Grey 1")
+                filterButton.tintColor = GlobalColors.greyOne
+                searchField.setTextField(color: GlobalColors.background)
+                reloadButton.tintColor = GlobalColors.greyOne
                 
                 resetScroll()
             }

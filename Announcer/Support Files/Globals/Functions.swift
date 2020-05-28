@@ -1,9 +1,9 @@
 //
-//  Labels.swift
+//  Functions.swift
 //  Announcer
 //
-//  Created by JiaChen(: on 27/11/19.
-//  Copyright © 2019 SST Inc. All rights reserved.
+//  Created by JiaChen(: on 28/5/20.
+//  Copyright © 2020 SST Inc. All rights reserved.
 //
 
 import Foundation
@@ -13,91 +13,6 @@ import UIKit
 import BackgroundTasks
 import SafariServices
 
-// MARK: - Constants
-/**
- Source URL for the Blog
- 
- - important: Ensure that the URL is set to the correct blog before production.
- 
- # Production Blog URL
- [http://studentsblog.sst.edu.sg](http://studentsblog.sst.edu.sg)
- 
- # Development Blog URL
- [https://testannouncer.blogspot.com](https://testannouncer.blogspot.com)
- 
- This constant stores the URL for the blog linked to the RSS feed.
- */
-let blogURL = "http://studentsblog.sst.edu.sg"
-
-/**
- URL for the blogURL's RSS feed
- 
- - important: This will only work for blogs created on Blogger.
- 
- This URL is the blogURL but with the path of the RSS feed added to the back.
- */
-let rssURL = URL(string: "\(blogURL)/feeds/posts/default")!
-
-/**
- Error 404 website
- 
- This URL is to redirect users in a case of an error while getting the blog posts or while attempting to show the student's blog.
- */
-let errorNotFoundURL = URL(string: "https://sstinc.org/404")!
-
-/**
- Border Color for Scroll Selection
-
- This border color is used for scroll selection. The alpha of `0.3` will allow the user to see the icon and the color while selecting.
-*/
-let borderColor = UIColor.systemBlue.withAlphaComponent(0.3).cgColor
-
-// MARK: - Variables
-/**
- Used to transfer a filter value between viewcontrollers
- 
- This variable is used to transfer filter values between filterVC, contentVC and announcementVC.
-*/
-var filter = ""
-
-// MARK: - Structs
-/**
- Contains attributes for each post such as date, content and title
- 
- This struct is used to store Posts. The posts stored here will be used in the ReadAnnouncements and the PinnedAnnouncements for persistency. It is also used to present each post in the AnnouncementsViewController.
- */
-struct Post: Codable, Equatable {
-    var title: String
-    var content: String // This content will be a HTML as a String
-    var date: Date
-    
-    var pinned: Bool
-    var read: Bool
-    var reminderDate: Date?
-    
-    var categories: [String]
-}
-
-/**
- Contains attributes for each link such as title, URL and image.
- 
- # Usage
- This is an example using SST Inc.'s website
- ```swift
- let site = Links(title: "SST Inc.",
-                  link: "https://sstinc.org",
-                  UIImage())
- ```
- 
- This struct is used to store Links which are to be previewed in the links collectionView in the post. This struct contains 3 attributes, the `title`, `link` and `image`. Looking back, not a good idea to name it `link` but refractoring is annoying so you'll settle with `link.link`.
- */
-struct Links: Equatable {
-    var title: String
-    var link: String
-    var image: UIImage?
-}
-
-// MARK: - Functions
 /**
  Get the labels, tags or categories from the posts.
  
@@ -107,7 +22,7 @@ struct Links: Equatable {
  */
 func fetchLabels() -> [String] {
     
-    let parser = FeedParser(URL: rssURL)
+    let parser = FeedParser(URL: GlobalLinks.rssURL)
     let result = parser.parse()
     
     switch result {
@@ -145,7 +60,7 @@ func fetchLabels() -> [String] {
  This method fetches the blog post from the blogURL and will alert the user if an error occurs and it is unable to get the announcements
  */
 func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
-    let parser = FeedParser(URL: rssURL)
+    let parser = FeedParser(URL: GlobalLinks.rssURL)
     let result = parser.parse()
     
     switch result {
@@ -197,7 +112,7 @@ func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
  This method will fetch the latest posts from the RSS feed and if it is a new post, it will return the title and content for notifications, otherwise, it will return nil.
  */
 func fetchNotificationsTitle() -> (title: String, content: String)? {
-    let parser = FeedParser(URL: rssURL)
+    let parser = FeedParser(URL: GlobalLinks.rssURL)
     let result = parser.parse()
     
     switch result {
@@ -230,7 +145,7 @@ Fetches the blog posts from the blogURL
  This method will fetch the posts from the blog and return it as [Post]
 */
 func fetchValues() -> [Post] {
-    let parser = FeedParser(URL: rssURL)
+    let parser = FeedParser(URL: GlobalLinks.rssURL)
     let result = parser.parse()
     
     switch result {
@@ -335,9 +250,9 @@ func getShareURL(with post: Post) -> URL {
     shareLink.removeLast()
     
     // 40 chars
-    shareLink = blogURL + dateFormatter.string(from: post.date) + shareLink + ".html"
+    shareLink = GlobalLinks.blogURL + dateFormatter.string(from: post.date) + shareLink + ".html"
     
-    let shareURL = URL(string: shareLink) ?? URL(string: blogURL)!
+    let shareURL = URL(string: shareLink) ?? URL(string: GlobalLinks.blogURL)!
     
     // Checking if the URL brings up a 404 page
     let isURLValid: Bool = {
@@ -353,7 +268,7 @@ func getShareURL(with post: Post) -> URL {
         return shareURL
     }
     
-    return URL(string: blogURL)!
+    return URL(string: GlobalLinks.blogURL)!
 }
 
 /**
@@ -440,7 +355,7 @@ func launchPost(withTitle postTitle: String) {
 
         // If user opens post in Safari, it will simply bring them to student blog home page
         alert.addAction(UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
-            let svc = SFSafariViewController(url: URL(string: blogURL)!)
+            let svc = SFSafariViewController(url: URL(string: GlobalLinks.blogURL)!)
             
             announcementVC.present(svc, animated: true)
         }))

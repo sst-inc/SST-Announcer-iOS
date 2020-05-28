@@ -21,16 +21,16 @@ extension ContentViewController: UITextViewDelegate {
                     let offset = (scrollView.contentOffset.y * -1 - 150) / 100
                     
                     safariButton.layer.borderWidth = 0
-                    safariButton.layer.borderColor = borderColor
+                    safariButton.layer.borderColor = GlobalColors.borderColor
                     
                     backButton.layer.borderWidth = 0
-                    backButton.layer.borderColor = borderColor
+                    backButton.layer.borderColor = GlobalColors.borderColor
                     
                     shareButton.layer.borderWidth = 0
-                    shareButton.layer.borderColor = borderColor
+                    shareButton.layer.borderColor = GlobalColors.borderColor
                     
                     pinButton.layer.borderWidth = 25 * offset
-                    pinButton.layer.borderColor = borderColor
+                    pinButton.layer.borderColor = GlobalColors.borderColor
                     
                     if playedHaptic != 1 {
                         let generator = UIImpactFeedbackGenerator(style: .heavy)
@@ -44,16 +44,16 @@ extension ContentViewController: UITextViewDelegate {
                     let offset = (scrollView.contentOffset.y * -1 - 112.5) / 100
                     
                     safariButton.layer.borderWidth = 0
-                    safariButton.layer.borderColor = borderColor
+                    safariButton.layer.borderColor = GlobalColors.borderColor
                     
                     backButton.layer.borderWidth = 0
-                    backButton.layer.borderColor = borderColor
+                    backButton.layer.borderColor = GlobalColors.borderColor
                     
                     shareButton.layer.borderWidth = 25 * offset
-                    shareButton.layer.borderColor = borderColor
+                    shareButton.layer.borderColor = GlobalColors.borderColor
                     
                     pinButton.layer.borderWidth = 0
-                    pinButton.layer.borderColor = borderColor
+                    pinButton.layer.borderColor = GlobalColors.borderColor
                     
                     if playedHaptic != 2 {
                         let generator = UIImpactFeedbackGenerator(style: .heavy)
@@ -67,16 +67,16 @@ extension ContentViewController: UITextViewDelegate {
                     let offset = (scrollView.contentOffset.y * -1 - 75) / 100
                     
                     safariButton.layer.borderWidth = 0
-                    safariButton.layer.borderColor = borderColor
+                    safariButton.layer.borderColor = GlobalColors.borderColor
                     
                     backButton.layer.borderWidth = 25 * offset
-                    backButton.layer.borderColor = borderColor
+                    backButton.layer.borderColor = GlobalColors.borderColor
 
                     shareButton.layer.borderWidth = 0
-                    shareButton.layer.borderColor = borderColor
+                    shareButton.layer.borderColor = GlobalColors.borderColor
                     
                     pinButton.layer.borderWidth = 0
-                    pinButton.layer.borderColor = borderColor
+                    pinButton.layer.borderColor = GlobalColors.borderColor
                     
                     if playedHaptic != 3 {
                         let generator = UIImpactFeedbackGenerator(style: .medium)
@@ -91,16 +91,16 @@ extension ContentViewController: UITextViewDelegate {
                     let offset = (scrollView.contentOffset.y * -1 - 37.5) / 100
                     
                     safariButton.layer.borderWidth = 25 * offset
-                    safariButton.layer.borderColor = borderColor
+                    safariButton.layer.borderColor = GlobalColors.borderColor
                     
                     backButton.layer.borderWidth = 0
-                    backButton.layer.borderColor = borderColor
+                    backButton.layer.borderColor = GlobalColors.borderColor
                     
                     shareButton.layer.borderWidth = 0
-                    shareButton.layer.borderColor = borderColor
+                    shareButton.layer.borderColor = GlobalColors.borderColor
                     
                     pinButton.layer.borderWidth = 0
-                    pinButton.layer.borderColor = borderColor
+                    pinButton.layer.borderColor = GlobalColors.borderColor
                     
                     if playedHaptic != 4 {
                         
