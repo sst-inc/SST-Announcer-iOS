@@ -122,7 +122,11 @@ class ContentViewController: UIViewController {
                 }))
                 
                 alert.addAction(UIAlertAction(title: "Close Post", style: .cancel, handler: { (_) in
+                    // Handling dismissing from Navigation Controller
                     self.navigationController?.popViewController(animated: true)
+                    
+                    // Handling dismissing from Peek and Pop
+                    self.dismiss(animated: true)
                 }))
                 
                 self.present(alert, animated: true)
