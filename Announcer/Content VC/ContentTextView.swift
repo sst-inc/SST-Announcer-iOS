@@ -14,23 +14,17 @@ extension ContentViewController: UITextViewDelegate {
         if #available(iOS 13.0, *) {
             #if targetEnvironment(macCatalyst)
             #else
-            if !UserDefaults.standard.bool(forKey: "scrollSelection") {
+            if !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
                 
                 // Pin Button highlighted
                 if scrollView.contentOffset.y <= -150 {
-                    let offset = (scrollView.contentOffset.y * -1 - 150) / 100
+                    ScrollSelection.setNormalState(for: safariButton)
+                    ScrollSelection.setNormalState(for: backButton)
+                    ScrollSelection.setNormalState(for: shareButton)
                     
-                    safariButton.layer.borderWidth = 0
-                    safariButton.layer.borderColor = GlobalColors.borderColor
-                    
-                    backButton.layer.borderWidth = 0
-                    backButton.layer.borderColor = GlobalColors.borderColor
-                    
-                    shareButton.layer.borderWidth = 0
-                    shareButton.layer.borderColor = GlobalColors.borderColor
-                    
-                    pinButton.layer.borderWidth = 25 * offset
-                    pinButton.layer.borderColor = GlobalColors.borderColor
+                    ScrollSelection.setSelectedState(for: pinButton,
+                                                     withOffset: scrollView.contentOffset.y,
+                                                     andConstant: 150)
                     
                     if playedHaptic != 1 {
                         let generator = UIImpactFeedbackGenerator(style: .heavy)
@@ -41,19 +35,13 @@ extension ContentViewController: UITextViewDelegate {
                     
                     // Share button highlighted
                 else if scrollView.contentOffset.y <= -112.5 {
-                    let offset = (scrollView.contentOffset.y * -1 - 112.5) / 100
+                    ScrollSelection.setNormalState(for: safariButton)
+                    ScrollSelection.setNormalState(for: backButton)
+                    ScrollSelection.setNormalState(for: pinButton)
                     
-                    safariButton.layer.borderWidth = 0
-                    safariButton.layer.borderColor = GlobalColors.borderColor
-                    
-                    backButton.layer.borderWidth = 0
-                    backButton.layer.borderColor = GlobalColors.borderColor
-                    
-                    shareButton.layer.borderWidth = 25 * offset
-                    shareButton.layer.borderColor = GlobalColors.borderColor
-                    
-                    pinButton.layer.borderWidth = 0
-                    pinButton.layer.borderColor = GlobalColors.borderColor
+                    ScrollSelection.setSelectedState(for: shareButton,
+                                                     withOffset: scrollView.contentOffset.y,
+                                                     andConstant: 112.5)
                     
                     if playedHaptic != 2 {
                         let generator = UIImpactFeedbackGenerator(style: .heavy)
@@ -64,19 +52,13 @@ extension ContentViewController: UITextViewDelegate {
                     
                     // Back button highlighted
                 else if scrollView.contentOffset.y <= -75 {
-                    let offset = (scrollView.contentOffset.y * -1 - 75) / 100
-                    
-                    safariButton.layer.borderWidth = 0
-                    safariButton.layer.borderColor = GlobalColors.borderColor
-                    
-                    backButton.layer.borderWidth = 25 * offset
-                    backButton.layer.borderColor = GlobalColors.borderColor
+                    ScrollSelection.setNormalState(for: safariButton)
+                    ScrollSelection.setNormalState(for: shareButton)
+                    ScrollSelection.setNormalState(for: pinButton)
 
-                    shareButton.layer.borderWidth = 0
-                    shareButton.layer.borderColor = GlobalColors.borderColor
-                    
-                    pinButton.layer.borderWidth = 0
-                    pinButton.layer.borderColor = GlobalColors.borderColor
+                    ScrollSelection.setSelectedState(for: backButton,
+                                                     withOffset: scrollView.contentOffset.y,
+                                                     andConstant: 75)
                     
                     if playedHaptic != 3 {
                         let generator = UIImpactFeedbackGenerator(style: .medium)
@@ -88,19 +70,14 @@ extension ContentViewController: UITextViewDelegate {
                     
                     // Safari button highlighted
                 else if scrollView.contentOffset.y <= -37.5 {
-                    let offset = (scrollView.contentOffset.y * -1 - 37.5) / 100
+                    ScrollSelection.setNormalState(for: backButton)
+                    ScrollSelection.setNormalState(for: shareButton)
+                    ScrollSelection.setNormalState(for: pinButton)
                     
-                    safariButton.layer.borderWidth = 25 * offset
-                    safariButton.layer.borderColor = GlobalColors.borderColor
-                    
-                    backButton.layer.borderWidth = 0
-                    backButton.layer.borderColor = GlobalColors.borderColor
-                    
-                    shareButton.layer.borderWidth = 0
-                    shareButton.layer.borderColor = GlobalColors.borderColor
-                    
-                    pinButton.layer.borderWidth = 0
-                    pinButton.layer.borderColor = GlobalColors.borderColor
+                    ScrollSelection.setSelectedState(for: safariButton,
+                                                     withOffset: scrollView.contentOffset.y,
+                                                     andConstant: 37.5)
+
                     
                     if playedHaptic != 4 {
                         
@@ -123,7 +100,7 @@ extension ContentViewController: UITextViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         #if targetEnvironment(macCatalyst)
         #else
-            if !UserDefaults.standard.bool(forKey: "scrollSelection") {
+            if !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
                 resetScroll()
                 if scrollView.contentOffset.y <= -150 {
                     // Pin button highlighted

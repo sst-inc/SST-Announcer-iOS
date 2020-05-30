@@ -38,12 +38,12 @@ extension AnnouncementsViewController: UIViewControllerPreviewingDelegate {
         }
         
         vc.post = selectedItem
+        
         vc.onDismiss = {
             DispatchQueue.main.async {
                 self.announcementTableView.reloadData()
                 self.reload(UILabel())
             }
-            
         }
         
         return vc
@@ -133,6 +133,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                     self.navigationController?.pushViewController(vc, animated: true)
                                     
             }
+            
             return UIMenu(title: "",
                           image: nil,
                           identifier: nil,

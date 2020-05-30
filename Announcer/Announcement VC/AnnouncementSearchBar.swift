@@ -51,7 +51,6 @@ extension AnnouncementsViewController: UISearchBarDelegate {
                         let end = indicesEnd[i - 1]
                         
                         // [] colors will be Grey 1
-                        // @shannen why these color names man
                         
                         let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: GlobalColors.blueTint, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)]
                         

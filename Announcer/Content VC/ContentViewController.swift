@@ -74,9 +74,9 @@ class ContentViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        currentScale = UserDefaults.standard.float(forKey: "textScale") == 0 ? defaultFontSize : CGFloat(UserDefaults.standard.float(forKey: "textScale"))
+        currentScale = UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue) == 0 ? defaultFontSize : CGFloat(UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue))
         
-        UserDefaults.standard.set(currentScale, forKey: "textScale")
+        UserDefaults.standard.set(currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
         
         // Update labels/textview with data
         let attrTitle = NSMutableAttributedString(string: post.title)
@@ -322,7 +322,7 @@ class ContentViewController: UIViewController {
         
         contentTextView.attributedText = attr
         
-        UserDefaults.standard.set(currentScale, forKey: "textScale")
+        UserDefaults.standard.set(currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
         
         if sender.state == .ended || sender.state == .cancelled && sender.scale != 1 {
             
@@ -346,7 +346,7 @@ class ContentViewController: UIViewController {
         
         currentScale = 15
         
-        UserDefaults.standard.set(currentScale, forKey: "textScale")
+        UserDefaults.standard.set(currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
         
         contentTextView.attributedText = attr
         

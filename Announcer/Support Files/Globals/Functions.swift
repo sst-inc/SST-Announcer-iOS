@@ -69,8 +69,8 @@ func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
         let feed = feed.atomFeed
         let posts = convertFromEntries(feed: (feed?.entries!)!)
         
-        UserDefaults.standard.set(posts[0].title, forKey: "recent-title")
-        UserDefaults.standard.set(posts[0].content, forKey: "recent-content")
+        UserDefaults.standard.set(posts[0].title, forKey: UserDefaultsIdentifiers.recentsTitle.rawValue)
+        UserDefaults.standard.set(posts[0].content, forKey: UserDefaultsIdentifiers.recentsContent.rawValue)
         
         return posts
     case .failure(let error):
@@ -122,10 +122,10 @@ func fetchNotificationsTitle() -> (title: String, content: String)? {
         
         let posts = convertFromEntries(feed: (feed?.entries)!)
         
-        if posts[0].title != UserDefaults.standard.string(forKey: "recent-title") && posts[0].content != UserDefaults.standard.string(forKey: "recent-content") {
+        if posts[0].title != UserDefaults.standard.string(forKey: UserDefaultsIdentifiers.recentsTitle.rawValue) && posts[0].content != UserDefaults.standard.string(forKey: UserDefaultsIdentifiers.recentsContent.rawValue) {
             
-            UserDefaults.standard.set(posts[0].title, forKey: "recent-title")
-            UserDefaults.standard.set(posts[0].content, forKey: "recent-content")
+            UserDefaults.standard.set(posts[0].title, forKey: UserDefaultsIdentifiers.recentsTitle.rawValue)
+            UserDefaults.standard.set(posts[0].content, forKey: UserDefaultsIdentifiers.recentsContent.rawValue)
             
             return (title: convertFromEntries(feed: (feed?.entries!)!).first!.title, content: convertFromEntries(feed: (feed?.entries!)!).first!.content.htmlToString)
         }
@@ -273,10 +273,46 @@ func launchPost(withTitle postTitle: String) {
 
 }
 
+/**
+ Continuing userActivity from Spotlight Search
+ 
+ - parameters:
+    - userActivity: UserActivity received from Delegate
+ 
+ This method opens the post that is received from spotlight search.
+*/
 func continueFromCoreSpotlight(with userActivity: NSUserActivity) {
     if userActivity.activityType == CSSearchableItemActionType {
         if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
             launchPost(withTitle: uniqueIdentifier)
+        }
+    }
+}
+
+struct ScrollSelection {
+    static func setNormalState(for item: UIView) {
+        if let button = item as? UIButton {
+            button.layer.borderWidth = 0
+            button.layer.borderColor = GlobalColors.borderColor
+        } else if let searchBar = item as? UISearchBar {
+            searchBar.getTextField()?.layer.borderWidth = 0
+            searchBar.getTextField()?.layer.borderColor = GlobalColors.borderColor
+        }
+    }
+    
+    static func setSelectedState(for item: UIView, withOffset offset: CGFloat, andConstant constant: CGFloat) {
+        let multiplier = (offset * -1 - constant) / 100
+        
+        if let button = item as? UIButton {
+            
+            button.layer.borderWidth = 25 * multiplier
+            button.layer.borderColor = GlobalColors.borderColor
+        } else if let searchBar = item as? UISearchBar {
+            searchBar.getTextField()?.layer.borderWidth = 40 * multiplier
+            searchBar.getTextField()?.clipsToBounds = false
+            searchBar.getTextField()?.superview?.clipsToBounds = false
+            searchBar.clipsToBounds = false
+            searchBar.getTextField()?.layer.borderColor = GlobalColors.borderColor
         }
     }
 }

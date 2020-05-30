@@ -177,19 +177,26 @@ struct GlobalColors {
  */
 struct GlobalIdentifier {
     /// Cell identifier for labels in filterViewController and contentViewController
-    static let labelCell           = "labels"
+    static let labelCell                = "labels"
     
     /// Cell identifier for announcements in announcementViewController
-    static let announcementCell    = "announcements"
+    static let announcementCell         = "announcements"
     
     /// Cell identifier for links in contentViewController
-    static let linkCell            = "links"
+    static let linkCell                 = "links"
     
     /// Background Task Identifier
-    static let backgroundTask      = Bundle.main.bundleIdentifier! + ".new-announcement"
+    static let backgroundTask           = Bundle.main.bundleIdentifier! + ".new-announcement"
     
     /// New announcement notification identifier
-    static let newNotification     = "new-announcement"
+    static let newNotification          = "new-announcement"
+    
+    /// Pinned plist used for persistence
+    static let pinnedPersistencePlist   = "pinned"
+    
+    /// Read plist used for persistence
+    static let readPersistencePlist     = "read"
+
 }
 
 /**
@@ -214,4 +221,19 @@ struct ErrorMessages {
 struct Message {
     var title: String
     var description: String
+}
+
+/// An enum of UserDefault identifiers
+enum UserDefaultsIdentifiers: String {
+    // For notifications and Background Fetch
+    case recentsTitle = "recent-title"
+    case recentsContent = "recent-content"
+    
+    // For settings bundle
+    case versionNumber = "versionNumber"
+    case buildNumber = "buildNumber"
+    
+    // For User Interface
+    case scrollSelection = "scrollSelection"
+    case textScale = "textScale"
 }

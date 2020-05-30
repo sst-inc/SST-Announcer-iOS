@@ -252,16 +252,15 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         if #available(iOS 13.0, *) {
             #if targetEnvironment(macCatalyst)
             #else
-            if !searchField.isFirstResponder && !UserDefaults.standard.bool(forKey: "scrollSelection") {
+            if !searchField.isFirstResponder && !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
                 if scrollView.contentOffset.y <= -150 {
-                    let offset = (scrollView.contentOffset.y * -1 - 150) / 100
-                    filterButton.layer.borderWidth = 0
-                    filterButton.layer.borderColor = GlobalColors.borderColor
                     
-                    searchField.getTextField()?.layer.borderWidth = 0
-                    searchField.getTextField()?.layer.borderColor = GlobalColors.borderColor
-                    reloadButton.layer.borderWidth = 25 * offset
-                    reloadButton.layer.borderColor = GlobalColors.borderColor
+                    ScrollSelection.setNormalState(for: filterButton)
+                    ScrollSelection.setNormalState(for: searchField)
+                    
+                    ScrollSelection.setSelectedState(for: reloadButton,
+                                     withOffset: scrollView.contentOffset.y,
+                                     andConstant: 150)
                     
                     if playedHaptic != 1 {
                         let generator = UIImpactFeedbackGenerator(style: .heavy)
@@ -269,32 +268,27 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     }
                     playedHaptic = 1
                 } else if scrollView.contentOffset.y <= -100 {
-                    let offset = (scrollView.contentOffset.y * -1 - 100) / 100
-                    filterButton.layer.borderWidth = 25 * offset
-                    filterButton.layer.borderColor = GlobalColors.borderColor
+                    ScrollSelection.setNormalState(for: searchField)
+                    ScrollSelection.setNormalState(for: reloadButton)
                     
-                    searchField.getTextField()?.layer.borderWidth = 0
-                    searchField.getTextField()?.layer.borderColor = GlobalColors.borderColor
-                    reloadButton.layer.borderWidth = 0
-                    reloadButton.layer.borderColor = GlobalColors.borderColor
+                    ScrollSelection.setSelectedState(for: filterButton,
+                                                     withOffset: scrollView.contentOffset.y,
+                                                     andConstant: 100)
                     
                     if playedHaptic != 2 {
                         let generator = UIImpactFeedbackGenerator(style: .medium)
                         generator.impactOccurred()
                     }
+                    
                     playedHaptic = 2
                 } else if scrollView.contentOffset.y <= -50 {
-                    filterButton.layer.borderWidth = 0
-                    filterButton.layer.borderColor = GlobalColors.borderColor
                     
-                    let offset = (scrollView.contentOffset.y * -1 - 50) / 100
-                    searchField.getTextField()?.layer.borderWidth = 40 * offset
-                    searchField.getTextField()?.clipsToBounds = false
-                    searchField.getTextField()?.superview?.clipsToBounds = false
-                    searchField.clipsToBounds = false
-                    searchField.getTextField()?.layer.borderColor = GlobalColors.borderColor
-                    reloadButton.layer.borderWidth = 0
-                    reloadButton.layer.borderColor = GlobalColors.borderColor
+                    ScrollSelection.setNormalState(for: filterButton)
+                    ScrollSelection.setNormalState(for: reloadButton)
+                    
+                    ScrollSelection.setSelectedState(for: searchField,
+                                                     withOffset: scrollView.contentOffset.y,
+                                                     andConstant: 50)
                     
                     if playedHaptic != 3 {
                         
@@ -317,7 +311,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         #if targetEnvironment(macCatalyst)
             print("oh")
         #else
-            if !UserDefaults.standard.bool(forKey: "scrollSelection") {
+            if !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
                 resetScroll()
                 if scrollView.contentOffset.y <= -150 {
                     print("reload")
@@ -330,6 +324,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     searchField.becomeFirstResponder()
                     searchField.getTextField()?.layer.borderWidth = 0
                 }
+                
                 filterButton.tintColor = GlobalColors.greyOne
                 searchField.setTextField(color: GlobalColors.background)
                 reloadButton.tintColor = GlobalColors.greyOne
@@ -344,6 +339,4 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         searchField.getTextField()?.layer.borderWidth = 0
         reloadButton.layer.borderWidth = 0
     }
-    
-    
 }

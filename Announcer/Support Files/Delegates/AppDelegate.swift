@@ -67,11 +67,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // Set project version
         let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-        UserDefaults.standard.set(versionNumber, forKey: "versionNumber")
+        UserDefaults.standard.set(versionNumber, forKey: UserDefaultsIdentifiers.versionNumber.rawValue)
         
         // Set project build
         let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
-        UserDefaults.standard.set(buildNumber, forKey: "buildNumber")
+        UserDefaults.standard.set(buildNumber, forKey: UserDefaultsIdentifiers.buildNumber.rawValue)
         
         return true
     }

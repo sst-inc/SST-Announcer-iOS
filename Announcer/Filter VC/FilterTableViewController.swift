@@ -60,13 +60,14 @@ class FilterTableViewController: UITableViewController {
         return cell
     }
     
+    // Selected a label
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Get the tvc
         let cell = tableView.cellForRow(at: indexPath) as! FilterTableViewCell
         
         // Pass the cell's title over to the next VC
         filter = cell.title
-        print(selectedLabel)
+        
         self.dismiss(animated: true) {
             // Run an onDismiss void which is defined in the AnnouncementVC file
             // This void tells the AnnouncementVC to filter based on the selected label
@@ -74,8 +75,9 @@ class FilterTableViewController: UITableViewController {
         }
     }
     
+    // Close view controller when X pressed
     @IBAction func dismiss(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
     
     /*
