@@ -33,7 +33,7 @@ extension AnnouncementsViewController: UIViewControllerPreviewingDelegate {
     
     // Getting the contentViewController
     func getContentViewController(for indexPath: IndexPath) -> ContentViewController {
-        guard let vc = UIStoryboard(name: "Content", bundle: .main).instantiateViewController(withIdentifier: "detail") as? ContentViewController else {
+        guard let vc = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
             fatalError()
         }
         
@@ -70,7 +70,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
             }(),
                                image: {
                                 // Setting different image based the state of the post (pinned or unpinned)
-                                pinned ? UIImage(systemName: "pin.fill")! : UIImage(systemName: "pin")!
+                                pinned ? Assets.unpin : Assets.pin
             }(),
                                identifier: nil,
                                discoverabilityTitle: nil,
@@ -101,7 +101,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
             }
             
             let share = UIAction(title: "Share",
-                                 image: UIImage(systemName: "square.and.arrow.up"),
+                                 image: Assets.share,
                                  identifier: nil,
                                  discoverabilityTitle: nil,
                                  attributes: [],
@@ -118,7 +118,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
             }
             
             let open = UIAction(title: "Open Announcement",
-                                image: UIImage(systemName: "envelope.open"),
+                                image: Assets.open,
                                 identifier: nil,
                                 discoverabilityTitle: nil,
                                 attributes: [], state: .off) { (_) in
@@ -140,7 +140,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                           options: [],
                           children: [open, pin, share])
         }
-        return UIContextMenuConfiguration(identifier: "my identifier" as NSCopying,
+        return UIContextMenuConfiguration(identifier: GlobalIdentifier.openPostPreview,
                                           previewProvider: { () -> UIViewController? in
                                             self.getContentViewControllerThroughPreview(with: cell.post)
         },
@@ -162,7 +162,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
     }
     
     func getContentViewControllerThroughPreview(with post: Post) -> ContentViewController {
-        guard let vc = UIStoryboard(name: "Content", bundle: .main).instantiateViewController(withIdentifier: "detail") as? ContentViewController else {
+        guard let vc = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
             fatalError()
         }
         

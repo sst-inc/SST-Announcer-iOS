@@ -150,9 +150,7 @@ class AnnouncementsViewController: UIViewController {
     
     /// Get filter view controller and open it up
     func openFilter() {
-        let filterStoryboard = UIStoryboard(name: "Filter", bundle: nil)
-        
-        let nvc = filterStoryboard.instantiateInitialViewController() as! UINavigationController
+        let nvc = Storyboards.filter.instantiateInitialViewController() as! UINavigationController
         
         let vc = nvc.children.first as! FilterTableViewController
         

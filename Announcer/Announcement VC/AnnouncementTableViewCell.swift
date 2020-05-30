@@ -21,7 +21,7 @@ class AnnouncementTableViewCell: UITableViewCell {
             if #available(iOS 13.0, *) {
                 // Loading for iOS 13 and above has fancy icon
                 let str = NSMutableAttributedString.init(string: "")
-                str.append(NSAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "arrow.clockwise")!)))
+                str.append(NSAttributedString(attachment: NSTextAttachment(image: Assets.loading)))
                 str.append(NSAttributedString(string: "\tLoading Content...\n\n"))
                 self.announcementContentLabel.attributedText = str
             } else {
@@ -35,7 +35,7 @@ class AnnouncementTableViewCell: UITableViewCell {
                     // Fancy icon on iOS 13 and up
                     let str = NSMutableAttributedString(string: "")
                     
-                    str.append(NSAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "exclamationmark.triangle.fill")!)))
+                    str.append(NSAttributedString(attachment: NSTextAttachment(image: Assets.error)))
                     str.append(NSAttributedString(string: "\tUnable to load preview.\n\tTap to open post."))
                     
                     self.announcementContentLabel.attributedText = str
@@ -66,7 +66,7 @@ class AnnouncementTableViewCell: UITableViewCell {
                 
                 // If user is on iOS 13 and up, color the pin
                 if #available(iOS 13.0, *) {
-                    announcementImageView.image = UIImage(systemName: "pin.fill")!
+                    announcementImageView.image = Assets.unpin
                     announcementImageView.tintColor = GlobalColors.greyOne
                 }
             } else {
@@ -81,7 +81,7 @@ class AnnouncementTableViewCell: UITableViewCell {
                 announcementImageView.isHidden = false
                 
                 if #available(iOS 13.0, *) {
-                    announcementImageView.image = UIImage(systemName: "circle.fill")
+                    announcementImageView.image = Assets.unread
                     announcementImageView.tintColor = .systemBlue
                 }
             }

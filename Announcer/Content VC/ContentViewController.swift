@@ -159,10 +159,10 @@ class ContentViewController: UIViewController {
         if #available(iOS 13, *) {
             if pinnedItems.contains(post) {
                 isPinned = true
-                pinButton.setImage(UIImage(systemName: "pin.fill")!, for: .normal)
+                pinButton.setImage(Assets.pin, for: .normal)
             } else {
                 isPinned = false
-                pinButton.setImage(UIImage(systemName: "pin")!, for: .normal)
+                pinButton.setImage(Assets.unpin, for: .normal)
             }
         }
         
@@ -228,28 +228,26 @@ class ContentViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-            linksAndLabelStackView.isHidden = true
-        } else {
-            print("Portrait")
-            linksAndLabelStackView.isHidden = false
-        }
+        
+        linksAndLabelStackView.isHidden = UIDevice.current.orientation.isLandscape
     }
     
     @IBAction func sharePost(_ sender: Any) {
         
-        //Create Activity View Controller (Share screen)
+        // Create Activity View Controller (Share screen)
         let shareViewController = UIActivityViewController.init(activityItems: [GlobalLinks.getShareURL(with: post)], applicationActivities: [])
         
-        //Remove unneeded actions
+        // Remove unneeded actions
         shareViewController.excludedActivityTypes = [.addToReadingList]
         
-        //Present share sheet
+        // Setting the source view
         shareViewController.popoverPresentationController?.sourceView = self.view
+        
+        // Present share sheet
         self.present(shareViewController, animated: true, completion: nil)
     }
     
+    // Go back to previous view controller
     @IBAction func dismiss(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -270,10 +268,10 @@ class ContentViewController: UIViewController {
             if pinnedItems.contains(post) {
                 isPinned = true
                 
-                pinButton.setImage(UIImage(systemName: "pin.fill")!, for: .normal)
+                pinButton.setImage(Assets.pin, for: .normal)
             } else {
                 isPinned = false
-                pinButton.setImage(UIImage(systemName: "pin")!, for: .normal)
+                pinButton.setImage(Assets.unpin, for: .normal)
             }
         }
         

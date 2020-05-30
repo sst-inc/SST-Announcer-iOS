@@ -70,16 +70,17 @@ struct GlobalLinks {
         }.lowercased()
         let split = formatted.split(separator: " ")
         
+        // Add "-" between words. Ensure that it is under 45 characters, because blogger.
         for i in split {
-            if shareLink.count + i.count < 40 {
+            if shareLink.count + i.count < 45 {
                 shareLink += i + "-"
             } else {
                 break
             }
         }
+        
         shareLink.removeLast()
         
-        // 40 chars
         shareLink = GlobalLinks.blogURL + dateFormatter.string(from: post.date) + shareLink + ".html"
         
         let shareURL = URL(string: shareLink) ?? URL(string: GlobalLinks.blogURL)!
@@ -152,22 +153,22 @@ struct GlobalLinks {
  */
 struct GlobalColors {
     /// Blue Tint
-    static let blueTint = UIColor.systemBlue
+    static let blueTint                 = UIColor.systemBlue
     
     /// Border Color for Scroll Selection
-    static let borderColor         = GlobalColors.blueTint.withAlphaComponent(0.3).cgColor
+    static let borderColor              = GlobalColors.blueTint.withAlphaComponent(0.3).cgColor
     
     /// Background color for App
-    static let background          = UIColor(named: "Background")!
+    static let background               = UIColor(named: "Background")!
     
     /// First Grey Color
-    static let greyOne             = UIColor(named: "Grey 1")!
+    static let greyOne                  = UIColor(named: "Grey 1")!
     
     /// Second Grey Color
-    static let greyTwo             = UIColor(named: "Grey 2")!
+    static let greyTwo                  = UIColor(named: "Grey 2")!
     
     /// Global Tint
-    static let globalTint          = UIColor(named: "Global Tint")!
+    static let globalTint               = UIColor(named: "Global Tint")!
 }
 
 /**
@@ -196,6 +197,9 @@ struct GlobalIdentifier {
     
     /// Read plist used for persistence
     static let readPersistencePlist     = "read"
+    
+    /// Identifier for peek and pop for launching post
+    static let openPostPreview          = "open post" as NSCopying
 
 }
 
@@ -206,16 +210,16 @@ struct GlobalIdentifier {
  */
 struct ErrorMessages {
     /// When there is an error launching a post because it requires JavaScript
-    static let postRequiresWebKit  = Message(title: "Unable to Open Post",
-                                             description: "An error occured when opening this post. Open this post in Safari to view its contents.")
+    static let postRequiresWebKit       = Message(title: "Unable to Open Post",
+                                                  description: "An error occured when opening this post. Open this post in Safari to view its contents.")
     
     /// Error getting posts
-    static let unableToLoadPost    = Message(title: "Check your Internet",
-                                             description: "Unable to fetch data from Students' Blog.\nPlease check your network settings and try again.")
+    static let unableToLoadPost         = Message(title: "Check your Internet",
+                                                  description: "Unable to fetch data from Students' Blog.\nPlease check your network settings and try again.")
     
     /// Error launching post from notifications or spotlight search
-    static let unableToLaunchPost  = Message(title: "Unable to launch post",
-                                             description: "Something went wrong when trying to retrieve the post. You can try to open this post in Safari.")
+    static let unableToLaunchPost       = Message(title: "Unable to launch post",
+                                                  description: "Something went wrong when trying to retrieve the post. You can try to open this post in Safari.")
 }
 
 struct Message {
@@ -226,14 +230,44 @@ struct Message {
 /// An enum of UserDefault identifiers
 enum UserDefaultsIdentifiers: String {
     // For notifications and Background Fetch
-    case recentsTitle = "recent-title"
-    case recentsContent = "recent-content"
+    case recentsTitle                   = "recent-title"
+    case recentsContent                 = "recent-content"
     
     // For settings bundle
-    case versionNumber = "versionNumber"
-    case buildNumber = "buildNumber"
+    case versionNumber                  = "versionNumber"
+    case buildNumber                    = "buildNumber"
     
     // For User Interface
-    case scrollSelection = "scrollSelection"
-    case textScale = "textScale"
+    case scrollSelection                = "scrollSelection"
+    case textScale                      = "textScale"
+}
+
+/// Struct stores all the images used
+struct Assets {
+    // Post status icons
+    static let pin = UIImage(systemName: "pin.fill")!
+    static let unpin = UIImage(systemName: "pin")!
+    static let loading = UIImage(systemName: "arrow.clockwise")!
+    static let error = UIImage(systemName: "exclamationmark.triangle.fill")!
+    static let unread = UIImage(systemName: "circle.fill")!
+    
+    // Link Icons
+    static let mail = UIImage(systemName: "envelope.circle.fill")!
+    static let docs = UIImage(systemName: "envelope.circle.fill")!
+    static let folder = UIImage(systemName: "folder.circle.fill")!
+    static let call = UIImage(systemName: "phone.circle.fill")!
+    static let socialMedia = UIImage(systemName: "person.crop.circle.fill")!
+    static let video = UIImage(systemName: "film.fill")!
+    static let photo = UIImage(systemName: "photo.fill")!
+    static let defaultLinkIcon = UIImage(systemName: "link.circle.fill")!
+    
+    // Other icons
+    static let share = UIImage(systemName: "square.and.arrow.up")!
+    static let open = UIImage(systemName: "envelope.open")!
+}
+
+struct Storyboards {
+    static let main = UIStoryboard(name: "Main", bundle: .main)
+    static let filter = UIStoryboard(name: "Filter", bundle: .main)
+    static let content = UIStoryboard(name: "Content", bundle: .main)
 }

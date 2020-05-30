@@ -51,31 +51,31 @@ class LinksCollectionViewCell: UICollectionViewCell {
     func getImageFor(title: String, with defaultImage: UIImage?) -> UIImage {
         if title.contains("mailto:") {
             // Handling Email Addresses
-            return UIImage(systemName: "envelope.circle.fill")!
+            return Assets.mail
             
         } else if title.contains("docs.google.com") || title.contains("paper.dropbox.com") || title.contains(".pdf") {
             // Handling Documents
-            return UIImage(systemName: "doc.circle.fill")!
+            return Assets.docs
             
         } else if title.contains("drive.google.com") || title.contains("icloud.com") {
             // Handling Files and Folders
-            return UIImage(systemName: "folder.circle.fill")!
+            return Assets.folder
             
         } else if title.contains("zoom.us") || title.contains("meet.google.com") || title.contains("skype") {
             // Handling Video Calls
-            return UIImage(systemName: "phone.circle.fill")!
+            return Assets.call
             
         } else if title.contains("facebook") || title.contains("twitter") || title.contains("linkedin") || title.contains("instagram") || title.contains("linkedin") {
             // Handling Social Media
-            return UIImage(systemName: "person.crop.circle.fill")!
+            return Assets.socialMedia
             
         } else if title.contains("youtube") {
             // Handling YouTube Videos
-            return UIImage(systemName: "film.fill")!
+            return Assets.video
             
         } else if title.contains(".png") || title.contains(".jpg") || title.contains(".jpeg") || title.contains(".tiff") {
             // Handling Images
-            return UIImage(systemName: "photo.fill")!
+            return Assets.photo
             
         } else {
             // Hopefully getting a preview image
@@ -83,10 +83,10 @@ class LinksCollectionViewCell: UICollectionViewCell {
                 return img
             } else {
                 // Getting Favicon from Domain
-                let data = (try? Data(contentsOf: URL(string: "https://www.google.com/s2/favicons?domain=\(title)")!)) ?? UIImage(systemName: "link.circle.fill")!.pngData()!
+                let data = (try? Data(contentsOf: URL(string: "https://www.google.com/s2/favicons?domain=\(title)")!)) ?? Assets.defaultLinkIcon.pngData()!
                 
                 // If there are no images, just use a Link icon
-                let image = UIImage(data: data) ?? UIImage(systemName: "link.circle.fill")!
+                let image = UIImage(data: data) ?? Assets.defaultLinkIcon
                 
                 return image
             }
