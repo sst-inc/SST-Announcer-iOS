@@ -192,7 +192,7 @@ class ContentViewController: UIViewController {
         DispatchQueue.global(qos: .utility).async {
             self.links = []
             
-            for url in GlobalLinks.getLinksFromPost(post: self.post) {
+            for url in LinkFunctions.getLinksFromPost(post: self.post) {
                 OGDataProvider.shared.fetchOGData(withURLString: url.absoluteString) { [weak self] ogData, error in
                     if let _ = error {
                         return
@@ -235,7 +235,7 @@ class ContentViewController: UIViewController {
     @IBAction func sharePost(_ sender: Any) {
         
         // Create Activity View Controller (Share screen)
-        let shareViewController = UIActivityViewController.init(activityItems: [GlobalLinks.getShareURL(with: post)], applicationActivities: [])
+        let shareViewController = UIActivityViewController.init(activityItems: [LinkFunctions.getShareURL(with: post)], applicationActivities: [])
         
         // Remove unneeded actions
         shareViewController.excludedActivityTypes = [.addToReadingList]
@@ -305,7 +305,7 @@ class ContentViewController: UIViewController {
     }
     
     @IBAction func openPostInSafari(_ sender: Any) {
-        let vc = SFSafariViewController(url: GlobalLinks.getShareURL(with: post))
+        let vc = SFSafariViewController(url: LinkFunctions.getShareURL(with: post))
         present(vc, animated: true, completion: nil)
     }
     

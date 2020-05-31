@@ -27,7 +27,7 @@ struct GlobalLinks {
      
      This constant stores the URL for the blog linked to the RSS feed.
      */
-    static let blogURL             = "http://studentsblog.sst.edu.sg"
+    static let blogURL                  = "http://studentsblog.sst.edu.sg"
     
     /**
      URL for the blogURL's RSS feed
@@ -36,114 +36,21 @@ struct GlobalLinks {
      
      This URL is the blogURL but with the path of the RSS feed added to the back.
      */
-    static let rssURL              = URL(string: "\(GlobalLinks.blogURL)/feeds/posts/default")!
+    static let rssURL                   = URL(string: "\(GlobalLinks.blogURL)/feeds/posts/default")!
 
     /**
      Error 404 website
      
      This URL is to redirect users in a case of an error while getting the blog posts or while attempting to show the student's blog.
      */
-    static let errorNotFoundURL    = URL(string: "https://sstinc.org/404")!
+    static let errorNotFoundURL         = URL(string: "https://sstinc.org/404")!
     
     /**
-     Gets the share URL from a `Post`
+     Error 404 website
      
-     - returns: The URL of the blog post
-     
-     - parameters:
-        - post: The post to be shared
-      
-     - important: This method handles error 404 by simply returning the `blogURL`
-     
-     - note: Versions of SST Announcer before 11.0 shared the full content of the post instead of the URL
-     
-     This method generates a URL for the post by merging the date and the post title.
-    */
-    static func getShareURL(with post: Post) -> URL {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "/yyyy/MM/"
-        
-        var shareLink = ""
-        
-        let formatted = post.title.filter { (a) -> Bool in
-            a.isLetter || a.isNumber || a.isWhitespace
-        }.lowercased()
-        let split = formatted.split(separator: " ")
-        
-        // Add "-" between words. Ensure that it is under 45 characters, because blogger.
-        for i in split {
-            if shareLink.count + i.count < 45 {
-                shareLink += i + "-"
-            } else {
-                break
-            }
-        }
-        
-        shareLink.removeLast()
-        
-        shareLink = GlobalLinks.blogURL + dateFormatter.string(from: post.date) + shareLink + ".html"
-        
-        let shareURL = URL(string: shareLink) ?? URL(string: GlobalLinks.blogURL)!
-        
-        // Checking if the URL brings up a 404 page
-        let isURLValid: Bool = {
-            let str = try? String(contentsOf: shareURL)
-            if let str = str {
-                return !str.contains("Sorry, the page you were looking for in this blog does not exist.")
-            } else {
-                return false
-            }
-        }()
-        
-        if isURLValid {
-            return shareURL
-        }
-        
-        return URL(string: GlobalLinks.blogURL)!
-    }
-
-    /**
-     Gets the links within the `Post`
-     
-     - returns: An array of `URL`s which are in the post.
-     
-     - parameters:
-        - post: The selected post
-     
-     - important: This process takes a bit so it is better to do it asyncronously so the app will not freeze while searching for URLs.
-     
-     This method gets the URLs found within the blog post and filters out images from blogger's content delivery network because no one wants those URLs.
-    */
-    static func getLinksFromPost(post: Post) -> [URL] {
-        let items = post.content.components(separatedBy: "href=\"")
-        
-        var links: [URL] = []
-        
-        for item in items {
-            var newItem = ""
-            
-            for character in item {
-                if character != "\"" {
-                    newItem += String(character)
-                } else {
-                    break
-                }
-            }
-            
-            if let url = URL(string: newItem) {
-                links.append(url)
-            }
-        }
-        
-        links.removeDuplicates()
-        
-        links = links.filter { (link) -> Bool in
-            !link.absoluteString.contains("bp.blogspot.com/")
-        }
-        
-        return links
-    }
-
+     This URL is to redirect users in a case of an error while getting the blog posts or while attempting to show the student's blog.
+     */
+    static let settingsURL              = URL(string: "App-Prefs:root=")!
 }
 
 /**
@@ -245,29 +152,29 @@ enum UserDefaultsIdentifiers: String {
 /// Struct stores all the images used
 struct Assets {
     // Post status icons
-    static let pin = UIImage(systemName: "pin.fill")!
-    static let unpin = UIImage(systemName: "pin")!
-    static let loading = UIImage(systemName: "arrow.clockwise")!
-    static let error = UIImage(systemName: "exclamationmark.triangle.fill")!
-    static let unread = UIImage(systemName: "circle.fill")!
+    static let pin                      = UIImage(systemName: "pin.fill")!
+    static let unpin                    = UIImage(systemName: "pin")!
+    static let loading                  = UIImage(systemName: "arrow.clockwise")!
+    static let error                    = UIImage(systemName: "exclamationmark.triangle.fill")!
+    static let unread                   = UIImage(systemName: "circle.fill")!
     
     // Link Icons
-    static let mail = UIImage(systemName: "envelope.circle.fill")!
-    static let docs = UIImage(systemName: "envelope.circle.fill")!
-    static let folder = UIImage(systemName: "folder.circle.fill")!
-    static let call = UIImage(systemName: "phone.circle.fill")!
-    static let socialMedia = UIImage(systemName: "person.crop.circle.fill")!
-    static let video = UIImage(systemName: "film.fill")!
-    static let photo = UIImage(systemName: "photo.fill")!
-    static let defaultLinkIcon = UIImage(systemName: "link.circle.fill")!
+    static let mail                     = UIImage(systemName: "envelope.circle.fill")!
+    static let docs                     = UIImage(systemName: "envelope.circle.fill")!
+    static let folder                   = UIImage(systemName: "folder.circle.fill")!
+    static let call                     = UIImage(systemName: "phone.circle.fill")!
+    static let socialMedia              = UIImage(systemName: "person.crop.circle.fill")!
+    static let video                    = UIImage(systemName: "film.fill")!
+    static let photo                    = UIImage(systemName: "photo.fill")!
+    static let defaultLinkIcon          = UIImage(systemName: "link.circle.fill")!
     
     // Other icons
-    static let share = UIImage(systemName: "square.and.arrow.up")!
-    static let open = UIImage(systemName: "envelope.open")!
+    static let share                    = UIImage(systemName: "square.and.arrow.up")!
+    static let open                     = UIImage(systemName: "envelope.open")!
 }
 
 struct Storyboards {
-    static let main = UIStoryboard(name: "Main", bundle: .main)
-    static let filter = UIStoryboard(name: "Filter", bundle: .main)
-    static let content = UIStoryboard(name: "Content", bundle: .main)
+    static let main                     = UIStoryboard(name: "Main", bundle: .main)
+    static let filter                   = UIStoryboard(name: "Filter", bundle: .main)
+    static let content                  = UIStoryboard(name: "Content", bundle: .main)
 }

@@ -107,7 +107,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                  attributes: [],
                                  state: .off) { (_) in
                                     //Create Activity View Controller (Share screen)
-                                    let shareViewController = UIActivityViewController.init(activityItems: [GlobalLinks.getShareURL(with: cell.post)], applicationActivities: nil)
+                                    let shareViewController = UIActivityViewController.init(activityItems: [LinkFunctions.getShareURL(with: cell.post)], applicationActivities: nil)
                                     
                                     //Remove unneeded actions
                                     shareViewController.excludedActivityTypes = [.saveToCameraRoll, .addToReadingList]

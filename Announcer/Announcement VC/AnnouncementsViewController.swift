@@ -54,7 +54,7 @@ class AnnouncementsViewController: UIViewController {
         
         // Fetch Blog Posts
         DispatchQueue.global(qos: .background).async {
-            self.posts = fetchBlogPosts(self)
+            self.posts = PostFetching.fetchBlogPosts(self)
         }
         
         // Load Pinned Comments
@@ -131,7 +131,7 @@ class AnnouncementsViewController: UIViewController {
         
         DispatchQueue.global(qos: .background).async {
             self.pinned = PinnedAnnouncements.loadFromFile() ?? []
-            self.posts = fetchBlogPosts(self)
+            self.posts = PostFetching.fetchBlogPosts(self)
             DispatchQueue.main.async {
                 self.loadingIndicator.stopAnimating()
                 self.reloadButton.isHidden = false
