@@ -70,15 +70,16 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             // Handle if it is a "mailto:" or something else. Or just a normal URL.
             // When it is a normal URL, present a Safari View Controller
             // Otherwise just open the URL and iOS will handle it
-            if cell.link.link.contains("http://") || cell.link.link.contains("https://") {
-                let url = URL(string: cell.link.link) ?? GlobalLinks.errorNotFoundURL
-                
+            let url = URL(string: cell.link.link) ?? GlobalLinks.errorNotFoundURL
+            
+            let scheme = url.scheme
+            
+            if scheme == "https" || scheme == "http" {
                 let svc = SFSafariViewController(url: url)
                 
                 present(svc, animated: true)
             } else {
-                let url = URL(string: cell.link.link) ?? GlobalLinks.errorNotFoundURL
-                
+                print("caught here")
                 UIApplication.shared.open(url)
             }
         }

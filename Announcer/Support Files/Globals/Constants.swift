@@ -152,8 +152,8 @@ enum UserDefaultsIdentifiers: String {
 /// Struct stores all the images used
 struct Assets {
     // Post status icons
-    static let pin                      = UIImage(systemName: "pin.fill")!
-    static let unpin                    = UIImage(systemName: "pin")!
+    static let pin                      = UIImage(systemName: "pin")!
+    static let unpin                    = UIImage(systemName: "pin.fill")!
     static let loading                  = UIImage(systemName: "arrow.clockwise")!
     static let error                    = UIImage(systemName: "exclamationmark.triangle.fill")!
     static let unread                   = UIImage(systemName: "circle.fill")!
