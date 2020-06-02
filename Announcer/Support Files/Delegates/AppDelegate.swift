@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         BGTaskScheduler.shared.register(forTaskWithIdentifier: GlobalIdentifier.backgroundTask, using: .main) { task in
             
             // Check if there is a new post
-            if let notificationContent = PostFetching.fetchNotificationsTitle() {
+            if let notificationContent = Fetch.latestNotification() {
                 // Notify the user if there is a new post
                 self.pushNotification(with: notificationContent.title, content: notificationContent.content)
             }

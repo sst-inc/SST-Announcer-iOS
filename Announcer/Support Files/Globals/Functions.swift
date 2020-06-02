@@ -15,7 +15,7 @@ import SafariServices
 import CoreSpotlight
 
 /// Functions meant to fetch data
-struct PostFetching {
+struct Fetch {
     /**
      Get the labels, tags or categories from the posts.
      
@@ -23,7 +23,7 @@ struct PostFetching {
      
      This method gets labels, tags or categories, from blog posts and removes duplicates.
      */
-    static func fetchLabels() -> [String] {
+    static func labels() -> [String] {
         
         let parser = FeedParser(URL: GlobalLinks.rssURL)
         let result = parser.parse()
@@ -62,7 +62,7 @@ struct PostFetching {
       
      This method fetches the blog post from the blogURL and will alert the user if an error occurs and it is unable to get the announcements
      */
-    static func fetchBlogPosts(_ vc: AnnouncementsViewController) -> [Post] {
+    static func posts(with vc: AnnouncementsViewController) -> [Post] {
         let parser = FeedParser(URL: GlobalLinks.rssURL)
         let result = parser.parse()
         
@@ -113,7 +113,7 @@ struct PostFetching {
      
      This method will fetch the latest posts from the RSS feed and if it is a new post, it will return the title and content for notifications, otherwise, it will return nil.
      */
-    static func fetchNotificationsTitle() -> (title: String, content: String)? {
+    static func latestNotification() -> (title: String, content: String)? {
         let parser = FeedParser(URL: GlobalLinks.rssURL)
         let result = parser.parse()
         
@@ -146,7 +146,7 @@ struct PostFetching {
 
      This method will fetch the posts from the blog and return it as [Post]
     */
-    static func fetchValues() -> [Post] {
+    static func values() -> [Post] {
         let parser = FeedParser(URL: GlobalLinks.rssURL)
         let result = parser.parse()
         
@@ -230,7 +230,7 @@ func getLabelsFromSearch(with query: String) -> String {
  This method launches post using the post title and will show an open in safari button if there is an error.
 */
 func launchPost(withTitle postTitle: String) {
-    let posts = PostFetching.fetchValues()
+    let posts = Fetch.values()
     
     var post: Post?
     

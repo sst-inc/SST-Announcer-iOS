@@ -31,7 +31,7 @@ class FilterTableViewController: UITableViewController {
         // Getting the Labels asyncronously
         DispatchQueue.main.async {
             // Get labels from the Posts
-            self.labels = PostFetching.fetchLabels().sorted()
+            self.labels = Fetch.labels().sorted()
             
             // Hide loading indicator once
             self.loadingIndicator.stopAnimating()
