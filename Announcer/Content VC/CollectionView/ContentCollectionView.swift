@@ -79,7 +79,8 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
                 present(svc, animated: true)
             } else {
-                print("caught here")
+                // This does not seem to work on simulator with mailto schemes
+                // test on actual device
                 UIApplication.shared.open(url)
             }
         }

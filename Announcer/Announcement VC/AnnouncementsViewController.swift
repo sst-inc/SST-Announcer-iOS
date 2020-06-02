@@ -40,6 +40,9 @@ class AnnouncementsViewController: UIViewController {
     /// Stores pinned posts
     var pinned = [Post]()
     
+    /// Scroll selection multiplier used to control scroll height
+    let scrollSelectionMultiplier: CGFloat = 50
+    
     @IBOutlet weak var announcementTableView: UITableView!
     @IBOutlet weak var searchField: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!

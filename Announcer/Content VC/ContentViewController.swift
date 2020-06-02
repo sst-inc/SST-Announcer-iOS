@@ -28,6 +28,8 @@ class ContentViewController: UIViewController {
     
     var playedHaptic = 0
     
+    let scrollSelectionMultiplier: CGFloat = 37.5
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!

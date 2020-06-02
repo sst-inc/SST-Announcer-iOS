@@ -253,27 +253,27 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             #if targetEnvironment(macCatalyst)
             #else
             if !searchField.isFirstResponder && !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
-                if scrollView.contentOffset.y <= -150 {
+                if scrollView.contentOffset.y <= -3 * scrollSelectionMultiplier {
                     
                     ScrollSelection.setNormalState(for: filterButton)
                     ScrollSelection.setNormalState(for: searchField)
                     
                     ScrollSelection.setSelectedState(for: reloadButton,
                                      withOffset: scrollView.contentOffset.y,
-                                     andConstant: 150)
+                                     andConstant: 3 * scrollSelectionMultiplier)
                     
                     if playedHaptic != 1 {
                         let generator = UIImpactFeedbackGenerator(style: .heavy)
                         generator.impactOccurred()
                     }
                     playedHaptic = 1
-                } else if scrollView.contentOffset.y <= -100 {
+                } else if scrollView.contentOffset.y <= -2 * scrollSelectionMultiplier {
                     ScrollSelection.setNormalState(for: searchField)
                     ScrollSelection.setNormalState(for: reloadButton)
                     
                     ScrollSelection.setSelectedState(for: filterButton,
                                                      withOffset: scrollView.contentOffset.y,
-                                                     andConstant: 100)
+                                                     andConstant: 2 * scrollSelectionMultiplier)
                     
                     if playedHaptic != 2 {
                         let generator = UIImpactFeedbackGenerator(style: .medium)
@@ -281,14 +281,14 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     }
                     
                     playedHaptic = 2
-                } else if scrollView.contentOffset.y <= -50 {
+                } else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
                     
                     ScrollSelection.setNormalState(for: filterButton)
                     ScrollSelection.setNormalState(for: reloadButton)
                     
                     ScrollSelection.setSelectedState(for: searchField,
                                                      withOffset: scrollView.contentOffset.y,
-                                                     andConstant: 50)
+                                                     andConstant: scrollSelectionMultiplier)
                     
                     if playedHaptic != 3 {
                         
@@ -313,16 +313,20 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         #else
             if !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
                 resetScroll()
-                if scrollView.contentOffset.y <= -150 {
-                    print("reload")
+                if scrollView.contentOffset.y <= -3 * scrollSelectionMultiplier {
+                    // Reload view
                     reload(UILabel())
-                } else if scrollView.contentOffset.y <= -100 {
-                    print("Search Bar")
+                    
+                } else if scrollView.contentOffset.y <= -2 * scrollSelectionMultiplier {
+                    // Show labels selection screen
                     sortWithLabels(UILabel())
-                } else if scrollView.contentOffset.y <= -50 {
-                    print("Filter Button")
+                    
+                } else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
+                    // Select search field
                     searchField.becomeFirstResponder()
-                    searchField.getTextField()?.layer.borderWidth = 0
+                    
+                    // Reset search field style
+                    ScrollSelection.setNormalState(for: searchField)
                 }
                 
                 filterButton.tintColor = GlobalColors.greyOne
