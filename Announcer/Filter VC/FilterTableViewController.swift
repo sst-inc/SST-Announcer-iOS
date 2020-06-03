@@ -24,6 +24,11 @@ class FilterTableViewController: UITableViewController {
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.startAnimating()
         
+        #if targetEnvironment(macCatalyst)
+        #else
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        #endif
+        
         loadingIndicator.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 10, y: UIScreen.main.bounds.height / 2 - 10, width: 20, height: 20)
         
         view.addSubview(loadingIndicator)
@@ -36,6 +41,11 @@ class FilterTableViewController: UITableViewController {
             // Hide loading indicator once
             self.loadingIndicator.stopAnimating()
             
+            // Stop the network activity indicator in status bar
+            #if targetEnvironment(macCatalyst)
+            #else
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            #endif
             // Reloading tableView with new data
             self.tableView.reloadData()
         }

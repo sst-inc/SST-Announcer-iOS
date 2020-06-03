@@ -105,24 +105,13 @@ class AnnouncementsViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dest = segue.destination as? ContentViewController {
-            
-            // Sending the post to contentVC
-            dest.post = selectedItem
-            
-            // Handling filter updates in case user taps filter from contentVC
-            dest.filterUpdated = {
-                self.searchField.text = "[\(filter)]"
-                self.announcementTableView.reloadData()
-                self.searchBar(self.searchField, textDidChange: "[\(filter)]")
-            }
-        }
-    }
-    
     // Open Filter with Labels
     @IBAction func sortWithLabels(_ sender: Any) {
+        // Resetting scroll selection
+        // Handles when a user selects this button through scroll selection
         resetScroll()
+        
+        // Open up the filter view controller
         openFilter()
     }
 
@@ -160,26 +149,42 @@ class AnnouncementsViewController: UIViewController {
         // Set onDismiss actions that will run when we dismiss the other vc
         // this void should reload tableview etc.
         vc.onDismiss = {
+            // Set search bar text
             self.searchField.text = "[\(filter)]"
+            
+            // Reload table view with new content
             self.announcementTableView.reloadData()
+            
+            // Run search function
             self.searchBar(self.searchField, textDidChange: "[\(filter)]")
+            
+            // Reset filters
+            filter = ""
         }
         
         self.present(nvc, animated: true)
     }
     
+    // Save items to spotlight search
     func addItemsToCoreSpotlight() {
         
         /// So that it does not crash when `posts` gets forced unwrapped
+        /// Handles instances when `posts` is `nil`, for instance, when reloading
         if posts == nil {
             return
         }
         
         /// `posts` converted to `CSSearchableItems`
         let items: [CSSearchableItem] = posts.map({ post in
-            let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+            let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeHTML as String)
+            
+            /// Setting the title of the post
             attributeSet.title = post.title
+            
+            /// Set the keywords for the `CSSearchableItem` to make it easier to find on Spotlight Search
             attributeSet.keywords = post.categories
+            
+            /// Setting the content description so when the user previews the announcement through spotlight search, they can see the content description
             attributeSet.contentDescription = post.content.condenseLinebreaks().htmlToString
             
             let item = CSSearchableItem(uniqueIdentifier: "\(post.title)", domainIdentifier: Bundle.main.bundleIdentifier!, attributeSet: attributeSet)
