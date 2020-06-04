@@ -231,7 +231,7 @@ class ContentViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        linksAndLabelStackView.isHidden = UIDevice.current.orientation.isLandscape
+        linksAndLabelStackView.isHidden = UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone
     }
     
     @IBAction func sharePost(_ sender: Any) {
