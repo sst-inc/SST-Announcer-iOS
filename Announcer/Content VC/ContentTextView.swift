@@ -12,6 +12,7 @@ import UIKit
 extension ContentViewController: UITextViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if #available(iOS 13.0, *) {
+            // Scroll selection
             #if targetEnvironment(macCatalyst)
             #else
             if !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
@@ -95,6 +96,25 @@ extension ContentViewController: UITextViewDelegate {
             }
             #endif
         }
+        
+        // Hide the links and labels when the user scrolls down
+        if scrollView.contentOffset.y > 10 && linksAndLabelStackView.alpha == 1 {
+            
+            // Fade the stackView out then hide it to allow the content to take up the full space
+            UIView.animate(withDuration: 0.5, animations: {
+                self.linksAndLabelStackView.alpha = 0
+            }) { (_) in
+                self.linksAndLabelStackView.isHidden = true
+            }
+        } else if scrollView.contentOffset.y <= 10 && linksAndLabelStackView.alpha == 0 {
+            self.linksAndLabelStackView.isHidden = false
+            
+            // Slowly fade the stackView into view
+            UIView.animate(withDuration: 0.5, animations: {
+                self.linksAndLabelStackView.alpha = 1
+            })
+        }
+        
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
