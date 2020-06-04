@@ -13,7 +13,7 @@ import Foundation
  
  This struct is used to store Posts. The posts stored here will be used in the ReadAnnouncements and the PinnedAnnouncements for persistency. It is also used to present each post in the AnnouncementsViewController.
  */
-struct Post: Codable, Equatable {
+struct Post: Codable, Equatable, Hashable {
     var title        : String
     var content      : String // This content will be a HTML as a String
     var date         : Date

@@ -34,7 +34,21 @@ class ReadAnnouncements: Codable {
     static func saveToFile(posts: [Post]) {
         let archiveURL = getArchiveURL()
         let propertyListEncoder = PropertyListEncoder()
-        let encodedPosts = try? propertyListEncoder.encode(posts)
+        
+        // Remove duplicated posts to keep the READ items short
+        var postsRemovedDuplicates = { () -> [Post] in
+            var mutablePosts = posts
+            mutablePosts.removeDuplicates()
+            
+            return mutablePosts
+        }()
+        
+        // Limit the read array to the latest 20 otherwise the plist will get ridiculously huge and store a bunch of old, unnecessary data
+        if postsRemovedDuplicates.count > 20 {
+            postsRemovedDuplicates.removeFirst(postsRemovedDuplicates.count - 20)
+        }
+        
+        let encodedPosts = try? propertyListEncoder.encode(postsRemovedDuplicates)
         try? encodedPosts?.write(to: archiveURL, options: .noFileProtection)
     }
     
