@@ -90,6 +90,17 @@ class AnnouncementTableViewCell: UITableViewCell {
             endLoader()
         }
     }
+    var highlightPost = false {
+        didSet {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                if highlightPost {
+                    contentView.backgroundColor = .systemGray5
+                } else {
+                    contentView.backgroundColor = GlobalColors.background
+                }
+            }
+        }
+    }
     
     @IBOutlet weak var announcementImageView: UIImageView!
     @IBOutlet weak var announcementTitleLabel: UILabel!
@@ -105,6 +116,16 @@ class AnnouncementTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        
+//        if UIDevice.current.userInterfaceIdiom == .pad {
+//
+//            print(selected)
+//            if selected {
+//                contentView.backgroundColor = .systemGray6
+//            } else {
+//                contentView.backgroundColor = GlobalColors.background
+//            }
+//        }
     }
     
     // Color the brackets []

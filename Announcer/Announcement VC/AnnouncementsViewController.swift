@@ -21,6 +21,11 @@ class AnnouncementsViewController: UIViewController {
             DispatchQueue.main.async {
                 self.announcementTableView.reloadData()
                 self.addItemsToCoreSpotlight()
+                
+                if let parentVC = self.parent?.parent as? SplitViewController {
+                    parentVC.vc.post = self.posts.first
+                    parentVC.show(parentVC.vc, sender: nil)
+                }
             }
         }
     }
@@ -42,6 +47,9 @@ class AnnouncementsViewController: UIViewController {
     
     /// Scroll selection multiplier used to control scroll height
     let scrollSelectionMultiplier: CGFloat = 50
+    
+    /// Selected Path
+    var selectedPath = IndexPath(row: 0, section: 0)
     
     @IBOutlet weak var announcementTableView: UITableView!
     @IBOutlet weak var searchField: UISearchBar!

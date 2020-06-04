@@ -12,10 +12,13 @@ import URLEmbeddedView
 
 class ContentViewController: UIViewController {
     
+    /// Handles updating AnnouncementVC when dismissing to reload tableView
     var onDismiss: (() -> Void)?
-    var filterUpdated: (() -> Void)?
-    var defaultFontSize: CGFloat = 15
     
+    /// Called when a label is selected to update AnnouncementVC and show results for filter
+    var filterUpdated: (() -> Void)?
+
+    /// Current font size used in post
     var currentScale: CGFloat = 15 {
         didSet {
             if currentScale < 5 {
@@ -53,7 +56,14 @@ class ContentViewController: UIViewController {
     
     @IBOutlet weak var linksAndLabelStackView: UIStackView!
     
-    var post: Post!
+    var post: Post! {
+        didSet {
+            DispatchQueue.main.async {
+                self.updateContent()
+            }
+        }
+    }
+    
     var isPinned = false
     
     var links: [Links] = [] {
@@ -80,10 +90,13 @@ class ContentViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        currentScale = UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue) == 0 ? defaultFontSize : CGFloat(UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue))
+        currentScale = UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue) == 0 ? GlobalIdentifier.defaultFontSize : CGFloat(UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue))
         
         UserDefaults.standard.set(currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
         
+    }
+    
+    func updateContent() {
         // Update labels/textview with data
         let attrTitle = NSMutableAttributedString(string: post.title)
         // Find the [] and just make it like red or something
@@ -188,8 +201,10 @@ class ContentViewController: UIViewController {
         shareButton.layer.cornerRadius = 25 / 2
         pinButton.layer.cornerRadius = 25 / 2
         
+        // Hide links view while loading links
         linksView.isHidden = true
         
+        // Load in links asyncronously as it takes a while to generate images etc. for images
         DispatchQueue.global(qos: .utility).async {
             self.links = []
             

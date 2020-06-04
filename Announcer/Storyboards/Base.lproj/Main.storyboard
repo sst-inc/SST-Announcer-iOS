@@ -175,6 +175,18 @@
             </objects>
             <point key="canvasLocation" x="1757.9710144927537" y="138.61607142857142"/>
         </scene>
+        <!--Split View Controller-->
+        <scene sceneID="J5O-Hu-bPl">
+            <objects>
+                <splitViewController storyboardIdentifier="master" id="G6T-FP-Cgc" customClass="SplitViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="aYT-dT-Pjl" kind="relationship" relationship="masterViewController" id="3eZ-cB-OhQ"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fpY-r4-69b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-70" y="507"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="6s9-lU-M57">
             <objects>

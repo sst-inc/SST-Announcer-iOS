@@ -24,10 +24,9 @@ class FilterTableViewController: UITableViewController {
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.startAnimating()
         
-        #if targetEnvironment(macCatalyst)
-        #else
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        #endif
+        // Show network activity indicator to indicate loading
+        // This is deprecated for all non-notch devices (e.g. iPhone SE)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         loadingIndicator.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 10, y: UIScreen.main.bounds.height / 2 - 10, width: 20, height: 20)
         
@@ -42,10 +41,9 @@ class FilterTableViewController: UITableViewController {
             self.loadingIndicator.stopAnimating()
             
             // Stop the network activity indicator in status bar
-            #if targetEnvironment(macCatalyst)
-            #else
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            #endif
+            // This is deprecated for all non-notch devices (e.g. iPhone SE)
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
             // Reloading tableView with new data
             self.tableView.reloadData()
         }

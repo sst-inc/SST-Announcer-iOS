@@ -163,12 +163,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         launchPost(withTitle: postTitle)
     }
-    
-    // Catching userActivity for iOS 12 and below
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        
-        continueFromCoreSpotlight(with: userActivity)
-        
-        return true
-    }
 }

@@ -73,7 +73,6 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             default:
                 return searchFoundInBody.count
             }
-            
         } else {
             // Maximum of 5 pinned items
             if section == 0 && pinned.count != 0 {
@@ -131,8 +130,12 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 }
             }
             
-            let interaction = UIContextMenuInteraction(delegate: self)
-            cell.addInteraction(interaction)
+            if let _ = parent?.parent as? SplitViewController {
+                cell.highlightPost = indexPath == selectedPath
+            } else {
+                let interaction = UIContextMenuInteraction(delegate: self)
+                cell.addInteraction(interaction)
+            }
             
             tableView.isScrollEnabled = true
             tableView.allowsSelection = true
@@ -151,6 +154,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         
         selectedItem = cell.post
         
+        cell.highlightPost = indexPath == selectedPath
+        
         tableView.deselectRow(at: indexPath, animated: true)
         
         // Appending posts to read posts
@@ -158,8 +163,19 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         readAnnouncements.append(cell.post)
         ReadAnnouncements.saveToFile(posts: readAnnouncements)
         
-        let vc = getContentViewController(for: indexPath)
-        navigationController?.pushViewController(vc, animated: true)
+        if let parentVC = parent?.parent as? SplitViewController {
+            parentVC.vc.post = cell.post
+            cell.highlightPost = true
+            
+            if let previousCell = tableView.cellForRow(at: selectedPath) as? AnnouncementTableViewCell {
+                previousCell.highlightPost = false
+            }
+            
+            selectedPath = indexPath
+        } else {
+            let vc = getContentViewController(for: indexPath)
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
