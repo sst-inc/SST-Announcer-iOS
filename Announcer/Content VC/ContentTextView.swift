@@ -11,91 +11,89 @@ import UIKit
 
 extension ContentViewController: UITextViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if #available(iOS 13.0, *) {
-            // Scroll selection
-            #if targetEnvironment(macCatalyst)
-            #else
-            if !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
+        // Scroll selection
+        #if targetEnvironment(macCatalyst)
+        #else
+        if !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
+            
+            // Pin Button highlighted
+            if scrollView.contentOffset.y <= -4 * scrollSelectionMultiplier {
+                ScrollSelection.setNormalState(for: safariButton)
+                ScrollSelection.setNormalState(for: backButton)
+                ScrollSelection.setNormalState(for: shareButton)
                 
-                // Pin Button highlighted
-                if scrollView.contentOffset.y <= -4 * scrollSelectionMultiplier {
-                    ScrollSelection.setNormalState(for: safariButton)
-                    ScrollSelection.setNormalState(for: backButton)
-                    ScrollSelection.setNormalState(for: shareButton)
-                    
-                    ScrollSelection.setSelectedState(for: pinButton,
-                                                     withOffset: scrollView.contentOffset.y,
-                                                     andConstant: 4 * scrollSelectionMultiplier)
-                    
-                    if playedHaptic != 1 {
-                        let generator = UIImpactFeedbackGenerator(style: .heavy)
-                        generator.impactOccurred()
-                    }
-                    playedHaptic = 1
+                ScrollSelection.setSelectedState(for: pinButton,
+                                                 withOffset: scrollView.contentOffset.y,
+                                                 andConstant: 4 * scrollSelectionMultiplier)
+                
+                if playedHaptic != 1 {
+                    let generator = UIImpactFeedbackGenerator(style: .heavy)
+                    generator.impactOccurred()
                 }
-                    
-                    // Share button highlighted
-                else if scrollView.contentOffset.y <= -3 * scrollSelectionMultiplier {
-                    ScrollSelection.setNormalState(for: safariButton)
-                    ScrollSelection.setNormalState(for: backButton)
-                    ScrollSelection.setNormalState(for: pinButton)
-                    
-                    ScrollSelection.setSelectedState(for: shareButton,
-                                                     withOffset: scrollView.contentOffset.y,
-                                                     andConstant: 3 * scrollSelectionMultiplier)
-                    
-                    if playedHaptic != 2 {
-                        let generator = UIImpactFeedbackGenerator(style: .heavy)
-                        generator.impactOccurred()
-                    }
-                    playedHaptic = 2
-                }
-                    
-                    // Back button highlighted
-                else if scrollView.contentOffset.y <= -2 * scrollSelectionMultiplier {
-                    ScrollSelection.setNormalState(for: safariButton)
-                    ScrollSelection.setNormalState(for: shareButton)
-                    ScrollSelection.setNormalState(for: pinButton)
-
-                    ScrollSelection.setSelectedState(for: backButton,
-                                                     withOffset: scrollView.contentOffset.y,
-                                                     andConstant: 2 * scrollSelectionMultiplier)
-                    
-                    if playedHaptic != 3 {
-                        let generator = UIImpactFeedbackGenerator(style: .medium)
-                        generator.impactOccurred()
-                    }
-                    
-                    playedHaptic = 3
-                }
-                    
-                    // Safari button highlighted
-                else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
-                    ScrollSelection.setNormalState(for: backButton)
-                    ScrollSelection.setNormalState(for: shareButton)
-                    ScrollSelection.setNormalState(for: pinButton)
-                    
-                    ScrollSelection.setSelectedState(for: safariButton,
-                                                     withOffset: scrollView.contentOffset.y,
-                                                     andConstant: 1 * scrollSelectionMultiplier)
-
-                    
-                    if playedHaptic != 4 {
-                        
-                        let generator = UIImpactFeedbackGenerator(style: .light)
-                        generator.impactOccurred()
-                    }
-                    playedHaptic = 4
-                }
-                    
-                    // Reset
-                else {
-                    resetScroll()
-                    playedHaptic = 0
-                }
+                playedHaptic = 1
             }
-            #endif
+                
+                // Share button highlighted
+            else if scrollView.contentOffset.y <= -3 * scrollSelectionMultiplier {
+                ScrollSelection.setNormalState(for: safariButton)
+                ScrollSelection.setNormalState(for: backButton)
+                ScrollSelection.setNormalState(for: pinButton)
+                
+                ScrollSelection.setSelectedState(for: shareButton,
+                                                 withOffset: scrollView.contentOffset.y,
+                                                 andConstant: 3 * scrollSelectionMultiplier)
+                
+                if playedHaptic != 2 {
+                    let generator = UIImpactFeedbackGenerator(style: .heavy)
+                    generator.impactOccurred()
+                }
+                playedHaptic = 2
+            }
+                
+                // Back button highlighted
+            else if scrollView.contentOffset.y <= -2 * scrollSelectionMultiplier {
+                ScrollSelection.setNormalState(for: safariButton)
+                ScrollSelection.setNormalState(for: shareButton)
+                ScrollSelection.setNormalState(for: pinButton)
+                
+                ScrollSelection.setSelectedState(for: backButton,
+                                                 withOffset: scrollView.contentOffset.y,
+                                                 andConstant: 2 * scrollSelectionMultiplier)
+                
+                if playedHaptic != 3 {
+                    let generator = UIImpactFeedbackGenerator(style: .medium)
+                    generator.impactOccurred()
+                }
+                
+                playedHaptic = 3
+            }
+                
+                // Safari button highlighted
+            else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
+                ScrollSelection.setNormalState(for: backButton)
+                ScrollSelection.setNormalState(for: shareButton)
+                ScrollSelection.setNormalState(for: pinButton)
+                
+                ScrollSelection.setSelectedState(for: safariButton,
+                                                 withOffset: scrollView.contentOffset.y,
+                                                 andConstant: 1 * scrollSelectionMultiplier)
+                
+                
+                if playedHaptic != 4 {
+                    
+                    let generator = UIImpactFeedbackGenerator(style: .light)
+                    generator.impactOccurred()
+                }
+                playedHaptic = 4
+            }
+                
+                // Reset
+            else {
+                resetScroll()
+                playedHaptic = 0
+            }
         }
+        #endif
         
         // Hide the links and labels when the user scrolls down
         if scrollView.contentOffset.y > 10 && linksAndLabelStackView.alpha == 1 {

@@ -9,50 +9,8 @@
 import Foundation
 import UIKit
 
-// iOS 12 and under
-// This extension is for the 3D touch options for iOS 12 and under. It will simply peek and pop. No options.
-extension AnnouncementsViewController: UIViewControllerPreviewingDelegate {
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        
-        if #available(iOS 13, *) {}
-        else {
-            if let indexPath = announcementTableView.indexPathForRow(at: location) {
-                previewingContext.sourceRect = announcementTableView.rectForRow(at: indexPath)
-                return getContentViewController(for: indexPath)
-            }
-        }
-        
-        return nil
-    }
-    
-    // Open up VC through navigation controller when tapped
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        navigationController?.pushViewController(viewControllerToCommit, animated: true)
-    }
-    
-    // Getting the contentViewController
-    func getContentViewController(for indexPath: IndexPath) -> ContentViewController {
-        guard let vc = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
-            fatalError()
-        }
-        
-        vc.post = selectedItem
-        
-        vc.onDismiss = {
-            DispatchQueue.main.async {
-                self.announcementTableView.reloadData()
-                self.reload(UILabel())
-            }
-        }
-        
-        return vc
-    }
-}
-
 // This extension is for iOS 13 and above
 // It provides options when user Long Presses (for devices without 3D touch), 3D touch or Force touch (MacOS Catalyst)
-@available(iOS 13.0, *)
 extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
     // Set up items in the menu
     // Menu should contain Open announcements, Unpin / Pin, Share
@@ -178,4 +136,22 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
         return vc
     }
     
+    // Getting the contentViewController
+    func getContentViewController(for indexPath: IndexPath) -> ContentViewController {
+        guard let vc = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
+            fatalError()
+        }
+        
+        vc.post = selectedItem
+        
+        vc.onDismiss = {
+            DispatchQueue.main.async {
+                self.announcementTableView.reloadData()
+                self.reload(UILabel())
+            }
+        }
+        
+        return vc
+    }
+
 }

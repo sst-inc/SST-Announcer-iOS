@@ -66,13 +66,6 @@ class AnnouncementsViewController: UIViewController {
         // Setting the searhField's text field color
         searchField.setTextField(color: GlobalColors.background)
         
-        // Peek & Pop for below iOS 13
-        if #available(iOS 13.0, *) {
-        } else {
-            // Fallback on earlier versions
-            registerForPreviewing(with: self, sourceView: announcementTableView)
-        }
-        
         // Corner radius for top buttons
         // This is for the scroll selection
         filterButton.layer.cornerRadius = 25 / 2

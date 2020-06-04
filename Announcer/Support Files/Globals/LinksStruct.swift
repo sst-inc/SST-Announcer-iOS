@@ -22,7 +22,7 @@ import UIKit
  
  This struct is used to store Links which are to be previewed in the links collectionView in the post. This struct contains 3 attributes, the `title`, `link` and `image`. Looking back, not a good idea to name it `link` but refractoring is annoying so you'll settle with `link.link`.
  */
-struct Links: Equatable {
+struct Links: Equatable, Hashable {
     var title   : String
     var link    : String
     var image   : UIImage?

@@ -58,6 +58,10 @@ class ContentViewController: UIViewController {
     
     var links: [Links] = [] {
         didSet {
+            // Handle duplicated links
+            links.removeDuplicates()
+            
+            // Reload linksCollectionView
             DispatchQueue.main.async {
                 self.linksCollectionView.reloadData()
                 
@@ -143,11 +147,7 @@ class ContentViewController: UIViewController {
             attr?.addAttribute(.backgroundColor, value: UIColor.clear, range: NSRange(location: 0, length: (attr?.length)!))
             
             // Optimising for iOS 13 dark mode
-            if #available(iOS 13.0, *) {
-                attr?.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: (attr?.length)!))
-            } else {
-                attr?.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: 0, length: (attr?.length)!))
-            }
+            attr?.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: (attr?.length)!))
             
             contentTextView.attributedText = attr
         }
@@ -158,14 +158,12 @@ class ContentViewController: UIViewController {
         let pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
         
         // Fill/Don't fill pin
-        if #available(iOS 13, *) {
-            if pinnedItems.contains(post) {
-                isPinned = true
-                pinButton.setImage(Assets.pin, for: .normal)
-            } else {
-                isPinned = false
-                pinButton.setImage(Assets.unpin, for: .normal)
-            }
+        if pinnedItems.contains(post) {
+            isPinned = true
+            pinButton.setImage(Assets.pin, for: .normal)
+        } else {
+            isPinned = false
+            pinButton.setImage(Assets.unpin, for: .normal)
         }
         
         // Set textField delegate
@@ -184,6 +182,7 @@ class ContentViewController: UIViewController {
         defaultFontSizeButton.clipsToBounds = true
         defaultFontSizeButton.isHidden = true
         
+        // Setting corner radii for the scrollSelection buttons to allow for the circular highlight
         safariButton.layer.cornerRadius = 25 / 2
         backButton.layer.cornerRadius = 25 / 2
         shareButton.layer.cornerRadius = 25 / 2
@@ -236,11 +235,14 @@ class ContentViewController: UIViewController {
     
     @IBAction func sharePost(_ sender: Any) {
         
+        // Get share URL
+        let shareURL = LinkFunctions.getShareURL(with: post)
+        
         // Create Activity View Controller (Share screen)
-        let shareViewController = UIActivityViewController.init(activityItems: [LinkFunctions.getShareURL(with: post)], applicationActivities: [])
+        let shareViewController = UIActivityViewController(activityItems: [shareURL], applicationActivities: [])
         
         // Remove unneeded actions
-        shareViewController.excludedActivityTypes = [.addToReadingList]
+        shareViewController.excludedActivityTypes = [.saveToCameraRoll]
         
         // Setting the source view
         shareViewController.popoverPresentationController?.sourceView = self.view
@@ -255,26 +257,27 @@ class ContentViewController: UIViewController {
     }
     
     @IBAction func pinnedItem(_ sender: Any) {
-        //Toggle pin based on context
+        // Toggle pin based on context
         var pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
         
+        // If item is already pinned, unpin it and vice versa
         if isPinned {
+            // Remove the post from the pinned posts
             pinnedItems.remove(at: pinnedItems.firstIndex(of: post)!)
         } else {
+            // Add the post to pinned posts
             pinnedItems.append(post)
         }
         
+        // Write the pinned announcements to .plist
         PinnedAnnouncements.saveToFile(posts: pinnedItems)
         
-        if #available(iOS 13.0, *) {
-            if pinnedItems.contains(post) {
-                isPinned = true
-                
-                pinButton.setImage(Assets.pin, for: .normal)
-            } else {
-                isPinned = false
-                pinButton.setImage(Assets.unpin, for: .normal)
-            }
+        if pinnedItems.contains(post) {
+            isPinned = true
+            pinButton.setImage(Assets.pin, for: .normal)
+        } else {
+            isPinned = false
+            pinButton.setImage(Assets.unpin, for: .normal)
         }
         
         // Create pop-up to say pinned or unpinned
@@ -293,12 +296,16 @@ class ContentViewController: UIViewController {
         
         view.addSubview(popUpView)
         
+        // Show the pop-up
         UIView.animate(withDuration: 0.5, animations: {
             popUpView.alpha = 1
         }) { (_) in
+            
+            // Wait 3 seconds and then auto-dismiss the pop up
             UIView.animate(withDuration: 0.5, delay: 3, options: .curveEaseOut, animations: {
                 popUpView.alpha = 0
             }) { (_) in
+                // When pop-up time is up, remove from stack
                 popUpView.removeFromSuperview()
             }
         }

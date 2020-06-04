@@ -131,10 +131,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 }
             }
             
-            if #available(iOS 13.0, *) {
-                let interaction = UIContextMenuInteraction(delegate: self)
-                cell.addInteraction(interaction)
-            }
+            let interaction = UIContextMenuInteraction(delegate: self)
+            cell.addInteraction(interaction)
             
             tableView.isScrollEnabled = true
             tableView.allowsSelection = true
@@ -249,62 +247,58 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     
     // MARK: ScrollView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if #available(iOS 13.0, *) {
-            #if targetEnvironment(macCatalyst)
-            #else
-            if !searchField.isFirstResponder && !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
-                if scrollView.contentOffset.y <= -3 * scrollSelectionMultiplier {
-                    
-                    ScrollSelection.setNormalState(for: filterButton)
-                    ScrollSelection.setNormalState(for: searchField)
-                    
-                    ScrollSelection.setSelectedState(for: reloadButton,
-                                     withOffset: scrollView.contentOffset.y,
-                                     andConstant: 3 * scrollSelectionMultiplier)
-                    
-                    if playedHaptic != 1 {
-                        let generator = UIImpactFeedbackGenerator(style: .heavy)
-                        generator.impactOccurred()
-                    }
-                    playedHaptic = 1
-                } else if scrollView.contentOffset.y <= -2 * scrollSelectionMultiplier {
-                    ScrollSelection.setNormalState(for: searchField)
-                    ScrollSelection.setNormalState(for: reloadButton)
-                    
-                    ScrollSelection.setSelectedState(for: filterButton,
-                                                     withOffset: scrollView.contentOffset.y,
-                                                     andConstant: 2 * scrollSelectionMultiplier)
-                    
-                    if playedHaptic != 2 {
-                        let generator = UIImpactFeedbackGenerator(style: .medium)
-                        generator.impactOccurred()
-                    }
-                    
-                    playedHaptic = 2
-                } else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
-                    
-                    ScrollSelection.setNormalState(for: filterButton)
-                    ScrollSelection.setNormalState(for: reloadButton)
-                    
-                    ScrollSelection.setSelectedState(for: searchField,
-                                                     withOffset: scrollView.contentOffset.y,
-                                                     andConstant: scrollSelectionMultiplier)
-                    
-                    if playedHaptic != 3 {
-                        
-                        let generator = UIImpactFeedbackGenerator(style: .light)
-                        generator.impactOccurred()
-                    }
-                    playedHaptic = 3
-                } else {
-                    resetScroll()
-                    playedHaptic = 0
+        #if targetEnvironment(macCatalyst)
+        #else
+        if !searchField.isFirstResponder && !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
+            if scrollView.contentOffset.y <= -3 * scrollSelectionMultiplier {
+                
+                ScrollSelection.setNormalState(for: filterButton)
+                ScrollSelection.setNormalState(for: searchField)
+                
+                ScrollSelection.setSelectedState(for: reloadButton,
+                                                 withOffset: scrollView.contentOffset.y,
+                                                 andConstant: 3 * scrollSelectionMultiplier)
+                
+                if playedHaptic != 1 {
+                    let generator = UIImpactFeedbackGenerator(style: .heavy)
+                    generator.impactOccurred()
                 }
+                playedHaptic = 1
+            } else if scrollView.contentOffset.y <= -2 * scrollSelectionMultiplier {
+                ScrollSelection.setNormalState(for: searchField)
+                ScrollSelection.setNormalState(for: reloadButton)
+                
+                ScrollSelection.setSelectedState(for: filterButton,
+                                                 withOffset: scrollView.contentOffset.y,
+                                                 andConstant: 2 * scrollSelectionMultiplier)
+                
+                if playedHaptic != 2 {
+                    let generator = UIImpactFeedbackGenerator(style: .medium)
+                    generator.impactOccurred()
+                }
+                
+                playedHaptic = 2
+            } else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
+                
+                ScrollSelection.setNormalState(for: filterButton)
+                ScrollSelection.setNormalState(for: reloadButton)
+                
+                ScrollSelection.setSelectedState(for: searchField,
+                                                 withOffset: scrollView.contentOffset.y,
+                                                 andConstant: scrollSelectionMultiplier)
+                
+                if playedHaptic != 3 {
+                    
+                    let generator = UIImpactFeedbackGenerator(style: .light)
+                    generator.impactOccurred()
+                }
+                playedHaptic = 3
+            } else {
+                resetScroll()
+                playedHaptic = 0
             }
-            #endif
-        } else {
-            // Fallback on earlier versions
         }
+        #endif
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
