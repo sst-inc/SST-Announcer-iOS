@@ -179,9 +179,11 @@ struct Assets {
     static let photo                    = UIImage(systemName: "photo.fill")!
     static let defaultLinkIcon          = UIImage(systemName: "link.circle.fill")!
     
-    // Other icons
+    // Preview icons
     static let share                    = UIImage(systemName: "square.and.arrow.up")!
     static let open                     = UIImage(systemName: "envelope.open")!
+    
+    // Header icons
     static let filter                   = UIImage(systemName: "line.horizontal.3.decrease.circle")
     static let filterFill               = UIImage(systemName: "line.horizontal.3.decrease.circle.fill")
     static let safari                   = UIImage(systemName: "safari")

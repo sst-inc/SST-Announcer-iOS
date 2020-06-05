@@ -170,11 +170,15 @@ class AnnouncementTableViewCell: UITableViewCell {
         
         // Checking if announcement is read
         if !readAnnouncements.contains(post) {
+            // Handling if post is unread
             announcementImageView.isHidden = false
             
             // Adding unread indicator on unread posts
             announcementImageView.image = Assets.unread
             announcementImageView.tintColor = .systemBlue
+        } else {
+            // Handling if post is read
+            announcementImageView.isHidden = true
         }
         
     }
