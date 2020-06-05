@@ -98,6 +98,12 @@ class ContentViewController: UIViewController {
         if (self.parent as? SplitViewController) != nil {
             backButton.isHidden = true
         }
+        
+        if #available(iOS 13.4, *) {
+            shareButton.addInteraction(UIPointerInteraction(delegate: self))
+            pinButton.addInteraction(UIPointerInteraction(delegate: self))
+            safariButton.addInteraction(UIPointerInteraction(delegate: self))
+        }
     }
     
     func updateContent() {
@@ -180,10 +186,10 @@ class ContentViewController: UIViewController {
         // Fill/Don't fill pin
         if pinnedItems.contains(post) {
             isPinned = true
-            pinButton.setImage(Assets.pin, for: .normal)
+            pinButton.setImage(Assets.unpin, for: .normal)
         } else {
             isPinned = false
-            pinButton.setImage(Assets.unpin, for: .normal)
+            pinButton.setImage(Assets.pin, for: .normal)
         }
         
         // Set textField delegate
@@ -296,39 +302,45 @@ class ContentViewController: UIViewController {
         
         if pinnedItems.contains(post) {
             isPinned = true
-            pinButton.setImage(Assets.pin, for: .normal)
+            pinButton.setImage(Assets.unpin, for: .normal)
         } else {
             isPinned = false
-            pinButton.setImage(Assets.unpin, for: .normal)
+            pinButton.setImage(Assets.pin, for: .normal)
         }
         
-        // Create pop-up to say pinned or unpinned
-        let popUpView = UILabel()
-        popUpView.textAlignment = .center
-        popUpView.frame = CGRect(x: 50, y: 50, width: UIScreen.main.bounds.width - 100, height: 30)
-        
-        popUpView.layer.cornerRadius = 30 / 2
-        popUpView.clipsToBounds = true
-        
-        popUpView.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        popUpView.text = "Post \(isPinned ? "Pinned" : "Unpinned")"
-        
-        popUpView.backgroundColor = GlobalColors.greyTwo
-        popUpView.alpha = 0
-        
-        view.addSubview(popUpView)
-        
-        // Show the pop-up
-        UIView.animate(withDuration: 0.5, animations: {
-            popUpView.alpha = 1
-        }) { (_) in
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let avc = self.parent?.children.first?.children.first as? AnnouncementsViewController {
+                avc.announcementTableView.reloadData()
+            }
+        } else {
+            // Create pop-up to say pinned or unpinned
+            let popUpView = UILabel()
+            popUpView.textAlignment = .center
+            popUpView.frame = CGRect(x: 50, y: 50, width: UIScreen.main.bounds.width - 100, height: 30)
             
-            // Wait 3 seconds and then auto-dismiss the pop up
-            UIView.animate(withDuration: 0.5, delay: 3, options: .curveEaseOut, animations: {
-                popUpView.alpha = 0
+            popUpView.layer.cornerRadius = 30 / 2
+            popUpView.clipsToBounds = true
+            
+            popUpView.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+            popUpView.text = "Post \(isPinned ? "Pinned" : "Unpinned")"
+            
+            popUpView.backgroundColor = GlobalColors.greyTwo
+            popUpView.alpha = 0
+            
+            view.addSubview(popUpView)
+            
+            // Show the pop-up
+            UIView.animate(withDuration: 0.5, animations: {
+                popUpView.alpha = 1
             }) { (_) in
-                // When pop-up time is up, remove from stack
-                popUpView.removeFromSuperview()
+                
+                // Wait 3 seconds and then auto-dismiss the pop up
+                UIView.animate(withDuration: 0.5, delay: 3, options: .curveEaseOut, animations: {
+                    popUpView.alpha = 0
+                }) { (_) in
+                    // When pop-up time is up, remove from stack
+                    popUpView.removeFromSuperview()
+                }
             }
         }
         

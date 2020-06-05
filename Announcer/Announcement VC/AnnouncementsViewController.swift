@@ -40,7 +40,21 @@ class AnnouncementsViewController: UIViewController {
     var searchFoundInBody = [Post]()
     
     /// Stores search results if searched with labels
-    var searchLabels = [Post]()
+    var searchLabels = [Post]() {
+        didSet {
+            if searchLabels.count == 0 {
+                DispatchQueue.main.async {
+                    self.filterButton.setImage(Assets.filter, for: .normal)
+                }
+                
+            } else {
+                DispatchQueue.main.async {
+                    self.filterButton.setImage(Assets.filterFill, for: .normal)
+                }
+                
+            }
+        }
+    }
     
     /// Haptics play at each segment when scrolling up
     var playedHaptic = 0
@@ -82,11 +96,11 @@ class AnnouncementsViewController: UIViewController {
         filterButton.layer.cornerRadius = 25 / 2
         reloadButton.layer.cornerRadius = 27.5 / 2
         
+        // Pointer support
+        // Add a circle when they hover over button
         if #available(iOS 13.4, *) {
             filterButton.addInteraction(UIPointerInteraction(delegate: self))
             reloadButton.addInteraction(UIPointerInteraction(delegate: self))
-        } else {
-            // Fallback on earlier versions
         }
     }
     

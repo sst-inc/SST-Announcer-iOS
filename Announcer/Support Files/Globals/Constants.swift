@@ -182,6 +182,10 @@ struct Assets {
     // Other icons
     static let share                    = UIImage(systemName: "square.and.arrow.up")!
     static let open                     = UIImage(systemName: "envelope.open")!
+    static let filter                   = UIImage(systemName: "line.horizontal.3.decrease.circle")
+    static let filterFill               = UIImage(systemName: "line.horizontal.3.decrease.circle.fill")
+    static let safari                   = UIImage(systemName: "safari")
+    static let settings                 = UIImage(systemName: "gear")
 }
 
 struct Storyboards {

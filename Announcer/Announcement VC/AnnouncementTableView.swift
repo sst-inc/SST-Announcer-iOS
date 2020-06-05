@@ -266,6 +266,9 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     
     // MARK: ScrollView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Dismiss keyboard at for iPads because they do not auto dismiss
+        view.endEditing(true)
+        
         #if targetEnvironment(macCatalyst)
         #else
         if !searchField.isFirstResponder && !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {

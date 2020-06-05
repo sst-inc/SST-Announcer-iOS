@@ -29,11 +29,65 @@ class SplitViewController: UISplitViewController {
     }
     
     override var keyCommands: [UIKeyCommand]? {
-        let search = UIKeyCommand.init(title: "Search", image: UIImage(systemName: "magnifyingglass"), action: #selector(startSearching), input: "f", modifierFlags: .command, discoverabilityTitle: "Search", state: .mixed)
-        let reload = UIKeyCommand.init(title: "Reload", image: UIImage(systemName: "arrow.clockwise"), action: #selector(reloadView), input: "r", modifierFlags: .command, discoverabilityTitle: "Reload", state: .mixed)
-        let filter = UIKeyCommand.init(title: "Filter Posts", image: UIImage(systemName: "three.line.horizontal.3.decrease.circle.fill"), action: #selector(filterPosts), input: "f", modifierFlags: [.command, .shift], discoverabilityTitle: "Filter Posts", state: .mixed)
+        let search = UIKeyCommand(title: "Search",
+                                  image: UIImage(systemName: "magnifyingglass"),
+                                  action: #selector(startSearching),
+                                  input: "f",
+                                  modifierFlags: .command,
+                                  discoverabilityTitle: "Search",
+                                  state: .mixed)
         
-        return [search, filter, reload]
+        let reload = UIKeyCommand(title: "Reload",
+                                  image: UIImage(systemName: "arrow.clockwise"),
+                                  action: #selector(reloadView),
+                                  input: "r",
+                                  modifierFlags: .command,
+                                  discoverabilityTitle: "Reload",
+                                  state: .mixed)
+        
+        let filter = UIKeyCommand(title: "Filter Posts",
+                                  image: Assets.filter,
+                                  action: #selector(filterPosts),
+                                  input: "f",
+                                  modifierFlags: [.command, .shift],
+                                  discoverabilityTitle: "Filter Posts",
+                                  state: .mixed)
+        
+        let share = UIKeyCommand(title: "Share",
+                                  image: Assets.share,
+                                  action: #selector(sharePost),
+                                  input: "s",
+                                  modifierFlags: .command,
+                                  discoverabilityTitle: "Share Post",
+                                  state: .mixed)
+        
+        let pin = UIKeyCommand(title: "Pin",
+                               image: Assets.pin,
+                               action: #selector(pinPost),
+                               input: "p",
+                               modifierFlags: .command,
+                               discoverabilityTitle: "Pin Post",
+                               state: .mixed)
+        
+        let safari = UIKeyCommand(title: "Open in Safari",
+                                  image: Assets.safari,
+                                  action: #selector(pinPost),
+                                  input: "s",
+                                  modifierFlags: [.command, .shift],
+                                  discoverabilityTitle: "Open in Safari",
+                                  state: .mixed)
+        
+        let settings = UIKeyCommand(title: "Settings",
+                                  image: Assets.settings,
+                                  action: #selector(openSettings),
+                                  input: ",",
+                                  modifierFlags: [.command],
+                                  discoverabilityTitle: "Settings",
+                                  state: .mixed)
+
+        
+        return [settings, search, filter, reload,
+                share, safari, pin]
     }
 
     @objc func startSearching() {
@@ -52,6 +106,20 @@ class SplitViewController: UISplitViewController {
         let avc = (self.children[0] as! UINavigationController).children.first as! AnnouncementsViewController
         
         avc.openFilter()
+    }
+    
+    @objc func sharePost() {
+        vc.sharePost(self)
+    }
+    
+    @objc func pinPost() {
+        vc.pinnedItem(self)
+    }
+    
+    @objc func openSettings() {
+        let settings = UIApplication.openSettingsURLString
+        
+        UIApplication.shared.open(URL(string: settings)!)
     }
     
     /*
