@@ -91,7 +91,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                     if let splitVC = self.splitViewController as? SplitViewController {
                                         
                                         // Setting the post in the contentVC
-                                        splitVC.vc.post = cell.post
+                                        splitVC.contentViewController.post = cell.post
                                         
                                         // Highlight the selected post
                                         cell.highlightPost = true

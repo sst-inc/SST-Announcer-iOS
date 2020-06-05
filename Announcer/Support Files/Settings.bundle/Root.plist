@@ -49,6 +49,8 @@
 			<string>Accessibliity
 
 Content Size</string>
+			<key>FooterText</key>
+			<string>Scroll selection allows you to select a button by scrolling up.</string>
 		</dict>
 		<dict>
 			<key>Type</key>

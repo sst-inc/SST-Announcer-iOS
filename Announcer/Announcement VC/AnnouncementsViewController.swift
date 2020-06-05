@@ -25,8 +25,8 @@ class AnnouncementsViewController: UIViewController {
                     self.addItemsToCoreSpotlight()
                     
                     if let splitVC = self.splitViewController as? SplitViewController {
-                        splitVC.vc.post = self.posts.first
-                        splitVC.show(splitVC.vc, sender: nil)
+                        splitVC.contentViewController.post = self.posts.first
+                        splitVC.show(splitVC.contentViewController, sender: nil)
                     }
                 }
             }
@@ -128,12 +128,6 @@ class AnnouncementsViewController: UIViewController {
         } else {
             self.announcementTableView.reloadData()
         }
-    }
-    
-    override var keyCommands: [UIKeyCommand]? {
-        
-        let search = UIKeyCommand.init(title: "Search", image: UIImage(systemName: "magnifyingglass"), action: #selector(startSearching), input: "f", modifierFlags: .command, discoverabilityTitle: "Search", state: .mixed)
-        return [search]
     }
     
     // Open Filter with Labels

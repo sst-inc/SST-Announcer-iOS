@@ -175,15 +175,20 @@ class AnnouncementTableViewCell: UITableViewCell {
             // Adding unread indicator on unread posts
             announcementImageView.image = Assets.unread
             announcementImageView.tintColor = .systemBlue
-        } 
+        }
         
     }
     
+    // Highlights the cell when hovered
     @objc func hovered(_ sender: UIHoverGestureRecognizer) {
         switch sender.state {
         case .began, .changed:
+            
+            // User is hovering over post
             contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelectionHover : GlobalColors.tableViewHover
         case .ended:
+            
+            // User stopped hovering over post
             contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelection : GlobalColors.background
         default:
             break

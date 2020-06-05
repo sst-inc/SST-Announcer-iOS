@@ -10,12 +10,17 @@ import UIKit
 
 class SplitViewController: UISplitViewController {
 
-    let vc = Storyboards.content.instantiateInitialViewController() as! ContentViewController
-
+    let contentViewController = Storyboards.content.instantiateInitialViewController() as! ContentViewController
+    var announcementViewController: AnnouncementsViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Setting announcerViewController
+        let navigationController = children[0] as! UINavigationController
+        announcementViewController = navigationController.visibleViewController as? AnnouncementsViewController
         
         // Show loading vc
         // Loading VC will be replaced by contentVC when the data has finished loading in AnnouncementVC
@@ -91,29 +96,23 @@ class SplitViewController: UISplitViewController {
     }
 
     @objc func startSearching() {
-        let avc = (self.children[0] as! UINavigationController).children.first as! AnnouncementsViewController
-        
-        avc.searchField.becomeFirstResponder()
+        announcementViewController.searchField.becomeFirstResponder()
     }
     
     @objc func reloadView() {
-        let avc = (self.children[0] as! UINavigationController).children.first as! AnnouncementsViewController
-        
-        avc.reload(self)
+        announcementViewController.reload(self)
     }
     
     @objc func filterPosts() {
-        let avc = (self.children[0] as! UINavigationController).children.first as! AnnouncementsViewController
-        
-        avc.openFilter()
+        announcementViewController.openFilter()
     }
     
     @objc func sharePost() {
-        vc.sharePost(self)
+        contentViewController.sharePost(self)
     }
     
     @objc func pinPost() {
-        vc.pinnedItem(self)
+        contentViewController.pinnedItem(self)
     }
     
     @objc func openSettings() {

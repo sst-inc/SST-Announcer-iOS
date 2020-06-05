@@ -99,6 +99,7 @@ class ContentViewController: UIViewController {
             backButton.isHidden = true
         }
         
+        // Adding pointer interactions
         if #available(iOS 13.4, *) {
             shareButton.addInteraction(UIPointerInteraction(delegate: self))
             pinButton.addInteraction(UIPointerInteraction(delegate: self))
@@ -223,31 +224,42 @@ class ContentViewController: UIViewController {
             
             for url in LinkFunctions.getLinksFromPost(post: self.post) {
                 OGDataProvider.shared.fetchOGData(withURLString: url.absoluteString) { [weak self] ogData, error in
-                    if let _ = error {
-                        return
-                    }
+                    if let _ = error { return }
                     
+                    // Getting sourceURL
                     let sourceUrl: String = (ogData.sourceUrl ?? url).absoluteString
+                    
+                    // Getting page title
                     let pageTitle: String = {
+                        // Get newURL
                         let newURL = url.baseURL?.absoluteString ?? url.absoluteString
                         
+                        // Handling title for Google Sites
                         if newURL.contains("sites.google.com") {
                             var urlItems = newURL.split(separator: "/")
                             
+                            // Remove the first 3 items as it is "https", "sites.google.com" and the domain thing
                             urlItems.removeFirst(3)
                             
+                            // Return item
                             return urlItems.joined(separator: "/")
                         }
                         
+                        // Setting page title, if not found, just use the URL
                         return ogData.pageTitle ?? newURL
                     }()
+                    
+                    // Adding thumbnail image
                     let sourceImage: UIImage? = {
+                        
+                        // Handling imageURL
                         if let imgUrl = ogData.imageUrl {
                             return try? UIImage(data: Data(contentsOf: imgUrl), scale: 1)
                         }
                         return nil
                     }()
                     
+                    // Append latest link to links
                     self?.links.append(Links(title: pageTitle, link: sourceUrl, image: sourceImage))
                 }
             }
@@ -255,9 +267,11 @@ class ContentViewController: UIViewController {
 
     }
     
+    // Handle when view orientation change
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
+        // Hide linksAndLabelStackView if in landscape; show if in portrait
         linksAndLabelStackView.isHidden = UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone
     }
     
@@ -308,34 +322,49 @@ class ContentViewController: UIViewController {
             pinButton.setImage(Assets.pin, for: .normal)
         }
         
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            if let avc = self.parent?.children.first?.children.first as? AnnouncementsViewController {
-                avc.announcementTableView.reloadData()
-            }
+        // Handling splitViewController for iPad/MacCatalyst
+        if let splitVC = splitViewController as? SplitViewController {
+            
+            // Getting announcementVC
+            let announcementVC = splitVC.announcementViewController!
+            
+            // Reload data on announcementTableView
+            announcementVC.announcementTableView.reloadData()
         } else {
             // Create pop-up to say pinned or unpinned
             let popUpView = UILabel()
             popUpView.textAlignment = .center
             popUpView.frame = CGRect(x: 50, y: 50, width: UIScreen.main.bounds.width - 100, height: 30)
             
+            // Corner radius
             popUpView.layer.cornerRadius = 30 / 2
             popUpView.clipsToBounds = true
             
+            // Setting text and font
             popUpView.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
             popUpView.text = "Post \(isPinned ? "Pinned" : "Unpinned")"
             
+            // Setting background styles
             popUpView.backgroundColor = GlobalColors.greyTwo
+            
+            // Alpha = 0 to allow for a fade in when switching from 0 to 1
             popUpView.alpha = 0
             
+            // Adding to subview
             view.addSubview(popUpView)
             
             // Show the pop-up
             UIView.animate(withDuration: 0.5, animations: {
+                
+                // Animate a fade in of popUpView
                 popUpView.alpha = 1
+                
             }) { (_) in
                 
                 // Wait 3 seconds and then auto-dismiss the pop up
                 UIView.animate(withDuration: 0.5, delay: 3, options: .curveEaseOut, animations: {
+                    
+                    // Animate a fade out of popUpView
                     popUpView.alpha = 0
                 }) { (_) in
                     // When pop-up time is up, remove from stack
@@ -348,63 +377,90 @@ class ContentViewController: UIViewController {
     }
     
     @IBAction func openPostInSafari(_ sender: Any) {
-        let vc = SFSafariViewController(url: LinkFunctions.getShareURL(with: post))
+        // Getting shareURL from post
+        let link = LinkFunctions.getShareURL(with: post)
+        
+        // Creating SafariVC
+        let vc = SFSafariViewController(url: link)
+        
+        // Presenting SafariVC
         present(vc, animated: true, completion: nil)
     }
     
     @IBAction func pinchedTextField(_ sender: UIPinchGestureRecognizer) {
-        print(sender.scale)
-        
+        // Creating attributed text
         let attr = NSMutableAttributedString(attributedString: contentTextView.attributedText)
         
+        // Calculating the scale
         currentScale = currentScale * sender.scale
         
-        attr.addAttribute(.font, value: UIFont.systemFont(ofSize: currentScale, weight: .medium), range: NSRange.init(location: 0, length: attr.length))
+        // New font size and style
+        let font = UIFont.systemFont(ofSize: currentScale, weight: .medium)
         
+        // Setting text color using NSAttributedString
+        attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
+        
+        // Setting attributedText on contentTextView
         contentTextView.attributedText = attr
         
+        // Updating UserDefaults with the new scale
         UserDefaults.standard.set(currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
         
         if sender.state == .ended || sender.state == .cancelled && sender.scale != 1 {
             
+            // Handling when the user stops zooming to show reset button
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { (_) in
                 self.defaultFontSizeButton.isHidden = true
             }
         } else {
             if sender.scale != 1 {
+                // Hide defaultFontSizeButton
                 defaultFontSizeButton.isHidden = false
             } else {
+                // Show defaultFontSizeButton
                 defaultFontSizeButton.isHidden = true
             }
-            
         }
     }
     
+    // Tapped reset to default font size button
     @IBAction func resetToDefaultFontSize(_ sender: Any) {
         let attr = NSMutableAttributedString(attributedString: contentTextView.attributedText)
         
-        attr.addAttribute(.font, value: UIFont.systemFont(ofSize: 15, weight: .medium), range: NSRange(location: 0, length: attr.length))
+        // Set currentScale to default font size
+        currentScale = GlobalIdentifier.defaultFontSize
         
-        currentScale = 15
+        // Default font style
+        let font = UIFont.systemFont(ofSize: currentScale, weight: .medium)
         
+        // Setting font to the whole attributed string
+        attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
+        
+        // Update UserDefaults with new scale
         UserDefaults.standard.set(currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
         
+        // Set attributedText to contentTextView
         contentTextView.attributedText = attr
         
+        // Hide the button
         defaultFontSizeButton.isHidden = true
     }
     
+    // Updating pinned values
     func updatePinned() {
         let pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
         if pinnedItems.contains(post) {
+            // Item is pinned
             isPinned = true
+            
+            // Set the image
             pinButton.setImage(Assets.unpin, for: .normal)
         } else {
+            // Item is not pinned
             isPinned = false
+            
+            // Set the image
             pinButton.setImage(Assets.pin, for: .normal)
         }
-        
-        print("isPinned")
-        print(isPinned)
     }
 }

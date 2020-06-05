@@ -167,7 +167,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         
         if let splitVC = splitViewController as? SplitViewController {
             // Getting the post from cell and setting it in the ContentVC
-            splitVC.vc.post = cell.post
+            splitVC.contentViewController.post = cell.post
             
             // Highlight current cell
             cell.highlightPost = true
@@ -263,8 +263,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 self.announcementTableView.reloadData()
                 
                 // Getting the post from cell and setting it in the ContentVC
-                if let parentVC = self.parent?.parent as? SplitViewController {
-                    parentVC.vc.updatePinned()
+                if let splitVC = self.splitViewController as? SplitViewController {
+                    splitVC.contentViewController.updatePinned()
                 }
             }
             
