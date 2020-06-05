@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class ReadAnnouncements: Codable {
+    static let maxPosts = 40
     /**
      Gets archive URL for Read Announcements
      
@@ -44,8 +45,8 @@ class ReadAnnouncements: Codable {
         }()
         
         // Limit the read array to the latest 20 otherwise the plist will get ridiculously huge and store a bunch of old, unnecessary data
-        if postsRemovedDuplicates.count > 20 {
-            postsRemovedDuplicates.removeFirst(postsRemovedDuplicates.count - 20)
+        if postsRemovedDuplicates.count > maxPosts {
+            postsRemovedDuplicates.removeFirst(postsRemovedDuplicates.count - maxPosts)
         }
         
         let encodedPosts = try? propertyListEncoder.encode(postsRemovedDuplicates)
