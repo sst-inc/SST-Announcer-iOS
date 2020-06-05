@@ -95,7 +95,7 @@ class ContentViewController: UIViewController {
         UserDefaults.standard.set(currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
         
         // Hide back button if on splitVC
-        if (self.parent as? SplitViewController) != nil {
+        if splitViewController != nil {
             backButton.isHidden = true
         }
         

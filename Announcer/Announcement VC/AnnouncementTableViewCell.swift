@@ -185,7 +185,7 @@ class AnnouncementTableViewCell: UITableViewCell {
         case .began, .changed:
             
             // User is hovering over post
-            contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelectionHover : GlobalColors.tableViewHover
+            contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelectionHover : GlobalColors.greyThree
         case .ended:
             
             // User stopped hovering over post

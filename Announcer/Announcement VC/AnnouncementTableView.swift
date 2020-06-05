@@ -169,14 +169,14 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             // Getting the post from cell and setting it in the ContentVC
             splitVC.contentViewController.post = cell.post
             
-            // Highlight current cell
-            cell.highlightPost = true
-            
             // Unhighlight previous cell
             if let previousCell = tableView.cellForRow(at: selectedPath) as? AnnouncementTableViewCell {
                 previousCell.highlightPost = false
             }
             
+            // Highlight current cell
+            cell.highlightPost = true
+                        
             // Setting the current cell's indexPath to be selectedPath so that it can be used as previousCell
             selectedPath = indexPath
             

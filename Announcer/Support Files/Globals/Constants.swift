@@ -74,11 +74,12 @@ struct GlobalColors {
     /// Second Grey Color
     static let greyTwo                  = UIColor(named: "Grey 2")!
     
+    /// Third Grey Color
+    /// Table View Hover Color
+    static let greyThree                = UIColor(named: "Grey 3")!
+    
     /// Global Tint
     static let globalTint               = UIColor(named: "Global Tint")!
-    
-    /// Table View Hover Color
-    static let tableViewHover           = UIColor(named: "Grey 3")
     
     /// Table View Selection Color
     static let tableViewSelection       = UIColor.systemGray5
