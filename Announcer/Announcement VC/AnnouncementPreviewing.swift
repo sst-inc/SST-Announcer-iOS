@@ -87,9 +87,30 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                     readAnnouncements.append(cell.post)
                                     ReadAnnouncements.saveToFile(posts: readAnnouncements)
                                     
-                                    let vc = self.getContentViewControllerThroughPreview(with: cell.post)
-                                    self.navigationController?.pushViewController(vc, animated: true)
-                                    
+                                    // If user is viewing the splitViewController, open in the SVC
+                                    if let parentVC = self.parent?.parent as? SplitViewController {
+                                        // Setting the post in the contentVC
+                                        parentVC.vc.post = cell.post
+                                        
+                                        // Highlight the selected post
+                                        cell.highlightPost = true
+                                        
+                                        // Getting previous cell to remove highlight
+                                        if let previousCell = self.announcementTableView.cellForRow(at: self.selectedPath) as? AnnouncementTableViewCell {
+                                            previousCell.highlightPost = false
+                                        }
+                                        
+                                        // Update selected path
+                                        let path = self.announcementTableView.indexPath(for: cell)
+                                        self.selectedPath = path!
+                                        
+                                        // Change read indicator
+                                        cell.handleRead()
+                                    } else {
+                                        // Opening if user isnt on split vc
+                                        let vc = self.getContentViewControllerThroughPreview(with: cell.post)
+                                        self.navigationController?.pushViewController(vc, animated: true)
+                                    }
             }
             
             return UIMenu(title: "",
@@ -98,9 +119,13 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                           options: [],
                           children: [open, pin, share])
         }
+        
         return UIContextMenuConfiguration(identifier: GlobalIdentifier.openPostPreview,
                                           previewProvider: { () -> UIViewController? in
-                                            self.getContentViewControllerThroughPreview(with: cell.post)
+                                            if let _ = self.parent?.parent as? SplitViewController {
+                                                return nil
+                                            }
+                                            return self.getContentViewControllerThroughPreview(with: cell.post)
         },
                                           actionProvider: actionProvider)
         

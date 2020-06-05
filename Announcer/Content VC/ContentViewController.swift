@@ -94,6 +94,10 @@ class ContentViewController: UIViewController {
         
         UserDefaults.standard.set(currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
         
+        // Hide back button if on splitVC
+        if (self.parent as? SplitViewController) != nil {
+            backButton.isHidden = true
+        }
     }
     
     func updateContent() {
@@ -120,13 +124,16 @@ class ContentViewController: UIViewController {
             }
         }
         
-        titleLabel.attributedText = attrTitle
         
         // Format date as "1 Jan 2019"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy"
         
-        dateLabel.text = "Posted on \(dateFormatter.string(from: post.date))"
+        DispatchQueue.main.async {
+            self.titleLabel.attributedText = attrTitle
+            self.dateLabel.text = "Posted on \(dateFormatter.string(from: self.post.date))"
+        }
+        
         
         // Render HTML from String
         // Handle JavaScript

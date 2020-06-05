@@ -20,11 +20,14 @@ class AnnouncementsViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 self.announcementTableView.reloadData()
-                self.addItemsToCoreSpotlight()
                 
-                if let parentVC = self.parent?.parent as? SplitViewController {
-                    parentVC.vc.post = self.posts.first
-                    parentVC.show(parentVC.vc, sender: nil)
+                if self.posts != nil {
+                    self.addItemsToCoreSpotlight()
+                    
+                    if let parentVC = self.parent?.parent as? SplitViewController {
+                        parentVC.vc.post = self.posts.first
+                        parentVC.show(parentVC.vc, sender: nil)
+                    }
                 }
             }
         }
@@ -78,6 +81,13 @@ class AnnouncementsViewController: UIViewController {
         // This is for the scroll selection
         filterButton.layer.cornerRadius = 25 / 2
         reloadButton.layer.cornerRadius = 27.5 / 2
+        
+        if #available(iOS 13.4, *) {
+            filterButton.addInteraction(UIPointerInteraction(delegate: self))
+            reloadButton.addInteraction(UIPointerInteraction(delegate: self))
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     // Handles changing from dark to light or vice-versa
@@ -104,6 +114,12 @@ class AnnouncementsViewController: UIViewController {
         } else {
             self.announcementTableView.reloadData()
         }
+    }
+    
+    override var keyCommands: [UIKeyCommand]? {
+        
+        let search = UIKeyCommand.init(title: "Search", image: UIImage(systemName: "magnifyingglass"), action: #selector(startSearching), input: "f", modifierFlags: .command, discoverabilityTitle: "Search", state: .mixed)
+        return [search]
     }
     
     // Open Filter with Labels
@@ -204,5 +220,9 @@ class AnnouncementsViewController: UIViewController {
                 print("Search items successfully indexed!")
             }
         }
+    }
+    
+    @objc func startSearching() {
+        searchField.becomeFirstResponder()
     }
 }

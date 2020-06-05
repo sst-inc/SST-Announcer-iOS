@@ -133,9 +133,11 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             if let _ = parent?.parent as? SplitViewController {
                 cell.highlightPost = indexPath == selectedPath
             } else {
-                let interaction = UIContextMenuInteraction(delegate: self)
-                cell.addInteraction(interaction)
+                
             }
+            
+            let interaction = UIContextMenuInteraction(delegate: self)
+            cell.addInteraction(interaction)
             
             tableView.isScrollEnabled = true
             tableView.allowsSelection = true
@@ -172,6 +174,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             }
             
             selectedPath = indexPath
+            cell.handleRead()
         } else {
             let vc = getContentViewController(for: indexPath)
             navigationController?.pushViewController(vc, animated: true)

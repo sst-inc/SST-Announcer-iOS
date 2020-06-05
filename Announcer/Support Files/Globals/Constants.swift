@@ -76,6 +76,15 @@ struct GlobalColors {
     
     /// Global Tint
     static let globalTint               = UIColor(named: "Global Tint")!
+    
+    /// Table View Hover Color
+    static let tableViewHover           = UIColor(named: "Grey 3")
+    
+    /// Table View Selection Color
+    static let tableViewSelection       = UIColor.systemGray5
+    
+    /// Table View Selection Hover Color
+    static let tableViewSelectionHover  = UIColor.systemGray4
 }
 
 /**

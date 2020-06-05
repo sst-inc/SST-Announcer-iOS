@@ -66,17 +66,8 @@ class AnnouncementTableViewCell: UITableViewCell {
                 announcementImageView.isHidden = true
             }
             
-            // Handling read announcements
-            let readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
-            
-            // Checking if announcement is read
-            if !readAnnouncements.contains(post) {
-                announcementImageView.isHidden = false
-                
-                // Adding unread indicator on unread posts
-                announcementImageView.image = Assets.unread
-                announcementImageView.tintColor = .systemBlue
-            }
+            // Update read
+            handleRead()
             
             // Set tableViewCell background color
             backgroundColor = GlobalColors.background
@@ -94,7 +85,7 @@ class AnnouncementTableViewCell: UITableViewCell {
         didSet {
             if UIDevice.current.userInterfaceIdiom == .pad {
                 if highlightPost {
-                    contentView.backgroundColor = .systemGray5
+                    contentView.backgroundColor = GlobalColors.tableViewSelection
                 } else {
                     contentView.backgroundColor = GlobalColors.background
                 }
@@ -110,22 +101,10 @@ class AnnouncementTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        let hover = UIHoverGestureRecognizer()
+        hover.addTarget(self, action: #selector(hovered(_:)))
         
-//        if UIDevice.current.userInterfaceIdiom == .pad {
-//
-//            print(selected)
-//            if selected {
-//                contentView.backgroundColor = .systemGray6
-//            } else {
-//                contentView.backgroundColor = GlobalColors.background
-//            }
-//        }
+        contentView.addGestureRecognizer(hover)
     }
     
     // Color the brackets []
@@ -183,5 +162,31 @@ class AnnouncementTableViewCell: UITableViewCell {
         announcementTitleLabel.hideLoader()
         announcementContentLabel.hideLoader()
         announcementDateLabel.hideLoader()
+    }
+    
+    func handleRead() {
+        // Handling read announcements
+        let readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
+        
+        // Checking if announcement is read
+        if !readAnnouncements.contains(post) {
+            announcementImageView.isHidden = false
+            
+            // Adding unread indicator on unread posts
+            announcementImageView.image = Assets.unread
+            announcementImageView.tintColor = .systemBlue
+        }
+        
+    }
+    
+    @objc func hovered(_ sender: UIHoverGestureRecognizer) {
+        switch sender.state {
+        case .began, .changed:
+            contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelectionHover : GlobalColors.tableViewHover
+        case .ended:
+            contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelection : GlobalColors.background
+        default:
+            break
+        }
     }
 }

@@ -112,6 +112,7 @@
 		324577DA238FA48300730F17 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */; };
 		324577DC238FA77000730F17 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577DB238FA77000730F17 /* FilterTableViewCell.swift */; };
 		326210EC2452061900629CC7 /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326210EB2452061900629CC7 /* UIView Extension.swift */; };
+		329CE2282489B713002022A6 /* AnnouncementPointers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329CE2272489B713002022A6 /* AnnouncementPointers.swift */; };
 		329E3B1D23F979CC00524901 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 329E3B1C23F979CC00524901 /* Settings.bundle */; };
 		329E3B1F23FEA47500524901 /* ReadAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */; };
 		32B7C4442488BBE0009D160F /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7C4432488BBE0009D160F /* SplitViewController.swift */; };
@@ -265,6 +266,7 @@
 		324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		324577DB238FA77000730F17 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		326210EB2452061900629CC7 /* UIView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView Extension.swift"; sourceTree = "<group>"; };
+		329CE2272489B713002022A6 /* AnnouncementPointers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementPointers.swift; sourceTree = "<group>"; };
 		329E3B1C23F979CC00524901 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadAnnouncements.swift; sourceTree = "<group>"; };
 		32B7C4432488BBE0009D160F /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
@@ -548,12 +550,11 @@
 			isa = PBXGroup;
 			children = (
 				32D9954B238D865600208D25 /* AnnouncementsViewController.swift */,
-				32B7C4452488F047009D160F /* LoadingViewController.swift */,
 				32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */,
 				32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */,
 				324576FA238E063500730F17 /* AnnouncementTableView.swift */,
+				329CE2272489B713002022A6 /* AnnouncementPointers.swift */,
 				324577D5238F7F8600730F17 /* AnnouncementSearchBar.swift */,
-				32B7C4432488BBE0009D160F /* SplitViewController.swift */,
 			);
 			path = "Announcement VC";
 			sourceTree = "<group>";
@@ -574,6 +575,15 @@
 				329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		32B7C44724895BD0009D160F /* Split View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				32B7C4452488F047009D160F /* LoadingViewController.swift */,
+				32B7C4432488BBE0009D160F /* SplitViewController.swift */,
+			);
+			path = "Split View Controller";
 			sourceTree = "<group>";
 		};
 		32C2531D244EA5C40015085A /* Extensions */ = {
@@ -632,6 +642,7 @@
 				32E9B4D423A38D88000F769F /* Storyboards */,
 				32E9B4D123A38D3C000F769F /* Content VC */,
 				32E9B4D223A38D4E000F769F /* Filter VC */,
+				32B7C44724895BD0009D160F /* Split View Controller */,
 				324577D4238F7F6D00730F17 /* Announcement VC */,
 				32E9B4D523A38D9A000F769F /* Libraries */,
 				32D99543238C068F00208D25 /* Info.plist */,
@@ -835,6 +846,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				329CE2282489B713002022A6 /* AnnouncementPointers.swift in Sources */,
 				32457776238E53A100730F17 /* RFC3339DateFormatter.swift in Sources */,
 				32457780238E53A100730F17 /* AtomFeedEntrySummary.swift in Sources */,
 				324577AA238E53A100730F17 /* MediaRights.swift in Sources */,

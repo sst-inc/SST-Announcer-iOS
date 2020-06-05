@@ -15,16 +15,22 @@ class LoadingViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
+        // Create an activity indicator programmetically (because Storyboards crashed)
         let loadingIndicator = UIActivityIndicatorView()
         
+        // Set the style to large (because iPad)
         loadingIndicator.style = .large
         
+        // Ensure that indicator will be hidden when stopped
         loadingIndicator.hidesWhenStopped = true
         
+        // Start animating loading indicator to make it spin
         loadingIndicator.startAnimating()
         
+        // Programmetic Constraints
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
         
+        // Align to center x and y, width and height are 40
         view.addConstraints([NSLayoutConstraint(item: loadingIndicator,
                                                 attribute: .centerX,
                                                 relatedBy: .equal,
@@ -55,9 +61,13 @@ class LoadingViewController: UIViewController {
                                                 constant: 40)
         ])
         
+        // Add as a subview
         view.addSubview(loadingIndicator)
+        
+        // Set view's background color
         view.backgroundColor = GlobalColors.background
         
+        // Update self.loadingIndicator with the new indicator
         self.loadingIndicator = loadingIndicator
     }
     
