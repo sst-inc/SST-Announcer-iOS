@@ -24,9 +24,9 @@ class AnnouncementsViewController: UIViewController {
                 if self.posts != nil {
                     self.addItemsToCoreSpotlight()
                     
-                    if let parentVC = self.parent?.parent as? SplitViewController {
-                        parentVC.vc.post = self.posts.first
-                        parentVC.show(parentVC.vc, sender: nil)
+                    if let splitVC = self.splitViewController as? SplitViewController {
+                        splitVC.vc.post = self.posts.first
+                        splitVC.show(splitVC.vc, sender: nil)
                     }
                 }
             }

@@ -130,7 +130,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 }
             }
             
-            if let _ = parent?.parent as? SplitViewController {
+            if splitViewController != nil {
                 cell.highlightPost = indexPath == selectedPath
             } else {
                 
@@ -165,16 +165,23 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         readAnnouncements.append(cell.post)
         ReadAnnouncements.saveToFile(posts: readAnnouncements)
         
-        if let parentVC = parent?.parent as? SplitViewController {
-            parentVC.vc.post = cell.post
+        if let splitVC = splitViewController as? SplitViewController {
+            // Getting the post from cell and setting it in the ContentVC
+            splitVC.vc.post = cell.post
+            
+            // Highlight current cell
             cell.highlightPost = true
             
+            // Unhighlight previous cell
             if let previousCell = tableView.cellForRow(at: selectedPath) as? AnnouncementTableViewCell {
                 previousCell.highlightPost = false
             }
             
+            // Setting the current cell's indexPath to be selectedPath so that it can be used as previousCell
             selectedPath = indexPath
-            cell.handleRead()
+            
+            // Update the Cell's UI based on whether it is read or unread
+            cell.handlePinAndRead()
         } else {
             let vc = getContentViewController(for: indexPath)
             navigationController?.pushViewController(vc, animated: true)
@@ -254,6 +261,11 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_) in
                 self.pinned = PinnedAnnouncements.loadFromFile() ?? []
                 self.announcementTableView.reloadData()
+                
+                // Getting the post from cell and setting it in the ContentVC
+                if let parentVC = self.parent?.parent as? SplitViewController {
+                    parentVC.vc.updatePinned()
+                }
             }
             
             //Complete

@@ -393,4 +393,18 @@ class ContentViewController: UIViewController {
         
         defaultFontSizeButton.isHidden = true
     }
+    
+    func updatePinned() {
+        let pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
+        if pinnedItems.contains(post) {
+            isPinned = true
+            pinButton.setImage(Assets.unpin, for: .normal)
+        } else {
+            isPinned = false
+            pinButton.setImage(Assets.pin, for: .normal)
+        }
+        
+        print("isPinned")
+        print(isPinned)
+    }
 }

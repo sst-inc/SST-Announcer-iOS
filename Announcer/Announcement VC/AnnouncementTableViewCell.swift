@@ -51,23 +51,7 @@ class AnnouncementTableViewCell: UITableViewCell {
             
             announcementDateLabel.text = "Posted on \(dateFormatter.string(from: post.date))"
             
-            // Handling pinned items
-            let pinned = PinnedAnnouncements.loadFromFile()
-            
-            // Checking if item is pinned
-            if pinned?.contains(post) ?? false {
-                announcementImageView.isHidden = false
-                
-                // Color the pin to state if the post is pinned or not
-                announcementImageView.image = Assets.unpin
-                announcementImageView.tintColor = GlobalColors.greyOne
-            } else {
-                // Hide pin image view if post is not pinned
-                announcementImageView.isHidden = true
-            }
-            
-            // Update read
-            handleRead()
+            handlePinAndRead()
             
             // Set tableViewCell background color
             backgroundColor = GlobalColors.background
@@ -164,7 +148,22 @@ class AnnouncementTableViewCell: UITableViewCell {
         announcementDateLabel.hideLoader()
     }
     
-    func handleRead() {
+    func handlePinAndRead() {
+        // Handling pinned items
+        let pinned = PinnedAnnouncements.loadFromFile()
+        
+        // Checking if item is pinned
+        if pinned?.contains(post) ?? false {
+            announcementImageView.isHidden = false
+            
+            // Color the pin to state if the post is pinned or not
+            announcementImageView.image = Assets.unpin
+            announcementImageView.tintColor = GlobalColors.greyOne
+        } else {
+            // Hide pin image view if post is not pinned
+            announcementImageView.isHidden = true
+        }
+        
         // Handling read announcements
         let readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
         
@@ -176,10 +175,7 @@ class AnnouncementTableViewCell: UITableViewCell {
             // Adding unread indicator on unread posts
             announcementImageView.image = Assets.unread
             announcementImageView.tintColor = .systemBlue
-        } else {
-            // Handling if post is read
-            announcementImageView.isHidden = true
-        }
+        } 
         
     }
     

@@ -88,9 +88,10 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                     ReadAnnouncements.saveToFile(posts: readAnnouncements)
                                     
                                     // If user is viewing the splitViewController, open in the SVC
-                                    if let parentVC = self.parent?.parent as? SplitViewController {
+                                    if let splitVC = self.splitViewController as? SplitViewController {
+                                        
                                         // Setting the post in the contentVC
-                                        parentVC.vc.post = cell.post
+                                        splitVC.vc.post = cell.post
                                         
                                         // Highlight the selected post
                                         cell.highlightPost = true
@@ -105,7 +106,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                         self.selectedPath = path!
                                         
                                         // Change read indicator
-                                        cell.handleRead()
+                                        cell.handlePinAndRead()
                                     } else {
                                         // Opening if user isnt on split vc
                                         let vc = self.getContentViewControllerThroughPreview(with: cell.post)
@@ -122,7 +123,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
         
         return UIContextMenuConfiguration(identifier: GlobalIdentifier.openPostPreview,
                                           previewProvider: { () -> UIViewController? in
-                                            if let _ = self.parent?.parent as? SplitViewController {
+                                            if self.splitViewController != nil {
                                                 return nil
                                             }
                                             return self.getContentViewControllerThroughPreview(with: cell.post)
