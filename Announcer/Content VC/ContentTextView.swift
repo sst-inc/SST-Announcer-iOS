@@ -143,6 +143,7 @@ extension ContentViewController: UITextViewDelegate {
         #endif
     }
     
+    // Reset scroll selection by setting borders to 0
     func resetScroll() {
         safariButton.layer.borderWidth = 0
         backButton.layer.borderWidth = 0
