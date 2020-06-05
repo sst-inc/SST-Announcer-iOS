@@ -44,6 +44,16 @@
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Keyboard Shortcuts</string>
+			<key>File</key>
+			<string>Keyboard Shortcuts</string>
+			<key>Key</key>
+			<string>Keyboard Shortcuts</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>Accessibliity
