@@ -82,10 +82,13 @@ These colors are used for different parts of the app such as backgrounds and lab
 
 |Color Name |Identifier|Light Theme|Dark Theme |
 |-----------|----------|-----------|-----------|
-|Background |`"Background"`|![](https://via.placeholder.com/15/F5F4F6/F5F4F6) - #F5F4F6|![](https://via.placeholder.com/15/060400/060400) - #060400|
+|Background |`"Background"`|![](https://via.placeholder.com/15/F5F4F6/F5F4F6) - #F5F4F6|![](https://via.placeholder.com/15/1D1D23/1D1D23) - #1D1D23|
 |Global Tint|`"Global Tint"`|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|
 |Grey 1     |`"Grey 1"`|![](https://via.placeholder.com/15/434343/434343) - #434343|![](https://via.placeholder.com/15/B8BABB/B8BABB) - #B8BABB|
 |Grey 2     |`"Grey 2"`|![](https://via.placeholder.com/15/DCDADB/DCDADB) - #DCDADB|![](https://via.placeholder.com/15/252628/252628) - #252628|
+|Grey 3     |`"Grey 3"`|![](https://via.placeholder.com/15/F0F0F7/F0F0F7) - #F0F0F7|![](https://via.placeholder.com/15/232328/232328) - #232328|
+|Table View Selection     |`.systemGray5`|![](https://via.placeholder.com/15/e5e5ea/e5e5ea) - #E5E5EA|![](https://via.placeholder.com/15/2c2c2e/2c2c2e) - #2C2C2E|
+|Table View Selection Hover     |`.systemGray4`|![](https://via.placeholder.com/15/d1d1d6/d1d1d6) - #D1D1D6|![](https://via.placeholder.com/15/3a3a3c/3a3a3c) - #3A3A3C|
 
 ### Apple Colors
 These colors are the ones as part of Apple's [UIColor Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/color/)
