@@ -16,8 +16,13 @@ extension ContentViewController: UIPointerInteractionDelegate {
             
             let frame = CGRect(x: 0, y: 0, width: interaction.view!.frame.width + 5, height: interaction.view!.frame.height + 5)
             
-            return .init(shape: UIPointerShape.roundedRect(frame, radius: 20))
+            return .init(shape: UIPointerShape.roundedRect(frame, radius: 0))
+            
+        } else if interaction.view is UICollectionViewCell {
+            
+            return .init(effect: UIPointerEffect.lift(UITargetedPreview(view: interaction.view!)))
         }
+
         
         return nil
     }
@@ -36,6 +41,11 @@ extension ContentViewController: UIPointerInteractionDelegate {
         if let view = interaction.view as? UIButton {
             pointerRegion = UIPointerRegion(rect: view.bounds,
                                             identifier: "pointer identifier")
+        }
+        
+        if let view = interaction.view as? UICollectionViewCell {
+            pointerRegion = UIPointerRegion(rect: view.bounds,
+                                            identifier: "selectedView")
         }
         
         return pointerRegion

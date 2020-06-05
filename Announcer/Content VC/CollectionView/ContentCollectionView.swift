@@ -36,6 +36,12 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             cell.layer.cornerRadius = 5
             cell.clipsToBounds = true
             
+            if #available(iOS 13.4, *) {
+                cell.addInteraction(UIPointerInteraction(delegate: self))
+            } else {
+                // Fallback on earlier versions
+            }
+            
             return cell
         } else {
             // Handling the Links
@@ -48,6 +54,12 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             // Setting Cell Corner Radius
             cell.layer.cornerRadius = 5
             cell.clipsToBounds = true
+            
+            if #available(iOS 13.4, *) {
+                cell.addInteraction(UIPointerInteraction(delegate: self))
+            } else {
+                // Fallback on earlier versions
+            }
             
             return cell
         }

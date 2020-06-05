@@ -13,7 +13,7 @@ extension String {
     var htmlToAttributedString: NSMutableAttributedString? {
         do {
             return try NSMutableAttributedString(data: Data(utf8),
-                                                 options: [.documentType: NSAttributedString.DocumentType.html],
+                                                 options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: 4],
                                                  documentAttributes: nil)
         } catch {
             print("error: ", error.localizedDescription)
