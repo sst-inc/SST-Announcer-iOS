@@ -145,9 +145,15 @@ class AnnouncementsViewController: UIViewController {
     func receivePost(with post: Post) {
         selectedItem = post
         
-        let vc = getContentViewController(for: IndexPath(row: 0, section: 0))
-        
-        navigationController?.pushViewController(vc, animated: true)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let vc = (splitViewController as? SplitViewController)?.contentViewController
+            
+            vc!.post = post
+        } else {
+            let vc = getContentViewController(for: IndexPath(row: 0, section: 0))
+            
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     /// Get filter view controller and open it up

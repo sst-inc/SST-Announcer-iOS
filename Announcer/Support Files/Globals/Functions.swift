@@ -244,8 +244,16 @@ func launchPost(withTitle postTitle: String) {
         }
     }
     
-    let navigationController = UIApplication.shared.windows.first?.rootViewController as! UINavigationController
-    let announcementVC = navigationController.topViewController as! AnnouncementsViewController
+    var announcementVC: AnnouncementsViewController!
+    
+    if UIDevice.current.userInterfaceIdiom == .pad {
+        let splitVC = UIApplication.shared.windows.first?.rootViewController as! SplitViewController
+        announcementVC = splitVC.announcementViewController!
+        
+    } else {
+        let navigationController = UIApplication.shared.windows.first?.rootViewController as! UINavigationController
+        announcementVC = navigationController.topViewController as? AnnouncementsViewController
+    }
     
     if let post = post {
         // Handles when post is found
@@ -273,6 +281,7 @@ func launchPost(withTitle postTitle: String) {
         announcementVC.present(alert, animated: true)
         
     }
+
 }
 
 /**
