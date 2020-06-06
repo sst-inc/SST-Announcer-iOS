@@ -25,7 +25,8 @@ class AnnouncementsViewController: UIViewController {
                     self.addItemsToCoreSpotlight()
                     
                     if let splitVC = self.splitViewController as? SplitViewController {
-                        splitVC.contentViewController.post = self.posts.first
+                        let cell = self.tableView(self.announcementTableView, cellForRowAt: self.selectedPath) as? AnnouncementTableViewCell
+                        splitVC.contentViewController.post = cell?.post
                         splitVC.show(splitVC.contentViewController, sender: nil)
                     }
                 }
