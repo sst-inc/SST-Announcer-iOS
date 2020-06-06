@@ -41,22 +41,22 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
 
 ### Device Requirements
 #### iPadOS
-|Support |Version |Notes                                                                              |
-|----------|----------|--------------------------------------------------------------|
-|Minimum|13.0      |Pointer not supported, certain animations will not work|
-|Full        |13.4       |Full support for iPadOS|
+|Support |Version |Notes                                                    |
+|--------|--------|---------------------------------------------------------|
+|Minimum |13.0    |Pointer not supported, certain animations will not work  |
+|Full    |13.4    |Full support for iPadOS                                  |
 
 #### iOS
-|Support |Version |Notes                                                                              |
-|----------|----------|--------------------------------------------------------------|
-|Minimum|13.0      |Certain animations may not work|
-|Full        |13.4       |Full support for iOS|
+|Support |Version |Notes                                                    |
+|--------|--------|---------------------------------------------------------|
+|Minimum |13.0    |Certain animations may not work                          |
+|Full    |13.4    |Full support for iOS                                     |
 
 #### MacOS
-|Support |Version |Notes                                                                              |
-|----------|----------|--------------------------------------------------------------|
-|Minimum|10.15    |Pointer and Hover interactions not supported|
-|Full        |10.15.4  |Full support for MacOS|
+|Support |Version |Notes                                                    |
+|--------|--------|---------------------------------------------------------|
+|Minimum |10.15   |Pointer and Hover interactions not supported             |
+|Full    |10.15.4 |Full support for MacOS                                   |
 
 ## Technologies/Libraries Used
 ### Open Source Libraries
