@@ -72,7 +72,7 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
             let actionProvider: ([UIMenuElement]) -> UIMenu? = { _ in // menu elements from responder chain if any
                 
                 let openLink = UIAction(title: "Filter Posts",
-                                        image: Assets.safari,
+                                        image: Assets.filter,
                                         identifier: nil,
                                         discoverabilityTitle: nil,
                                         attributes: [],

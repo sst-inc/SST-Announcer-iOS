@@ -80,38 +80,12 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                 identifier: nil,
                                 discoverabilityTitle: nil,
                                 attributes: [], state: .off) { (_) in
+                                    
+                                    // Setting selectedItem to the current selected item
                                     self.selectedItem = cell.post
                                     
-                                    // Appending posts to read posts
-                                    var readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
-                                    readAnnouncements.append(cell.post)
-                                    ReadAnnouncements.saveToFile(posts: readAnnouncements)
-                                    
-                                    // If user is viewing the splitViewController, open in the SVC
-                                    if let splitVC = self.splitViewController as? SplitViewController {
-                                        
-                                        // Setting the post in the contentVC
-                                        splitVC.contentViewController.post = cell.post
-                                        
-                                        // Highlight the selected post
-                                        cell.highlightPost = true
-                                        
-                                        // Getting previous cell to remove highlight
-                                        if let previousCell = self.announcementTableView.cellForRow(at: self.selectedPath) as? AnnouncementTableViewCell {
-                                            previousCell.highlightPost = false
-                                        }
-                                        
-                                        // Update selected path
-                                        let path = self.announcementTableView.indexPath(for: cell)
-                                        self.selectedPath = path!
-                                        
-                                        // Change read indicator
-                                        cell.handlePinAndRead()
-                                    } else {
-                                        // Opening if user isnt on split vc
-                                        let vc = self.getContentViewControllerThroughPreview(with: cell.post)
-                                        self.navigationController?.pushViewController(vc, animated: true)
-                                    }
+                                    // Open post
+                                    self.openPostFromPreview(with: cell)
             }
             
             return UIMenu(title: "",
@@ -133,18 +107,51 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
     }
     
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-        let cell = interaction.view as! AnnouncementTableViewCell
-        self.selectedItem = cell.post
         
+        // Getting cell from interaction
+        let cell = interaction.view as! AnnouncementTableViewCell
+        
+        // Setting selectedItem to the current selected item
+        selectedItem = cell.post
+        
+        // Open post
+        openPostFromPreview(with: cell)
+    }
+    
+    func openPostFromPreview(with cell: AnnouncementTableViewCell) {
         // Appending posts to read posts
         var readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
         readAnnouncements.append(cell.post)
         ReadAnnouncements.saveToFile(posts: readAnnouncements)
         
-        let vc = self.getContentViewControllerThroughPreview(with: cell.post)
-        self.navigationController?.pushViewController(vc, animated: true)
+        // If user is viewing the splitViewController, open in the SVC
+        if let splitVC = self.splitViewController as? SplitViewController {
+            
+            // Setting the post in the contentVC
+            splitVC.contentViewController.post = cell.post
+            
+            // Highlight the selected post
+            cell.highlightPost = true
+            
+            // Getting previous cell to remove highlight
+            if let previousCell = self.announcementTableView.cellForRow(at: self.selectedPath) as? AnnouncementTableViewCell {
+                previousCell.highlightPost = false
+            }
+            
+            // Update selected path
+            let path = self.announcementTableView.indexPath(for: cell)
+            self.selectedPath = path!
+            
+            // Change read indicator
+            cell.handlePinAndRead()
+            
+        } else {
+            let vc = self.getContentViewControllerThroughPreview(with: cell.post)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
+    // Getting contentVC from post
     func getContentViewControllerThroughPreview(with post: Post) -> ContentViewController {
         guard let vc = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
             fatalError()

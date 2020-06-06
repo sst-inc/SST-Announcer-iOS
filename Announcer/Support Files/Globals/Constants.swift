@@ -118,6 +118,9 @@ struct GlobalIdentifier {
     /// Identifier for peek and pop for launching post
     static let openPostPreview          = "open post" as NSCopying
 
+    /// Identifier for peek and pop for filters
+    static let filterSelection          = "open filter" as NSCopying
+    
     /// Default font size used in the post
     static let defaultFontSize: CGFloat = 15
     
