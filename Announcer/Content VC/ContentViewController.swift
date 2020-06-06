@@ -19,18 +19,26 @@ class ContentViewController: UIViewController {
     var filterUpdated: (() -> Void)?
 
     /// Current font size used in post
-    var currentScale: CGFloat = 15 {
+    var currentScale: CGFloat = GlobalIdentifier.defaultFontSize {
         didSet {
+            // Ensuring that currentScale are within the limits
+            
             if currentScale < GlobalIdentifier.minimumFontSize {
+                // Handling when it goes below minimum font size
                 currentScale = GlobalIdentifier.minimumFontSize
+                
             } else if currentScale > GlobalIdentifier.maximumFontSize {
+                // Handling when it goes above maximum font size
                 currentScale = GlobalIdentifier.maximumFontSize
+                
             }
         }
     }
     
+    /// Latest haptic feedback played for `ScrollSelection`
     var playedHaptic = 0
     
+    /// `ScrollSelection` multiplier used to calculate each stage
     let scrollSelectionMultiplier: CGFloat = 37.5
     
     @IBOutlet weak var titleLabel: UILabel!
