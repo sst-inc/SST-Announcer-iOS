@@ -121,6 +121,9 @@ struct GlobalIdentifier {
     /// Identifier for peek and pop for filters
     static let filterSelection          = "open filter" as NSCopying
     
+    /// Identifier for peek and pop for filters
+    static let linksSelection           = "open links" as NSCopying
+    
     /// Default font size used in the post
     static let defaultFontSize: CGFloat = 15
     

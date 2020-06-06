@@ -63,7 +63,7 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
                               children: [openLink, copyLink, share])
             }
             
-            return UIContextMenuConfiguration(identifier: GlobalIdentifier.openPostPreview,
+            return UIContextMenuConfiguration(identifier: GlobalIdentifier.linksSelection,
                                               previewProvider: { () -> UIViewController? in
                                                 return safariVC
             },
@@ -97,7 +97,7 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
                               children: [openLink, copyFilter])
             }
             
-            return UIContextMenuConfiguration(identifier: GlobalIdentifier.openPostPreview,
+            return UIContextMenuConfiguration(identifier: GlobalIdentifier.filterSelection,
                                               previewProvider: nil,
                                               actionProvider: actionProvider)
         }
