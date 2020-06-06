@@ -278,8 +278,10 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     
     // MARK: ScrollView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // Dismiss keyboard at for iPads because they do not auto dismiss
-        view.endEditing(true)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            // Dismiss keyboard at for iPads because they do not auto dismiss
+            view.endEditing(true)
+        }
         
         #if targetEnvironment(macCatalyst)
         #else
@@ -350,11 +352,21 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     sortWithLabels(UILabel())
                     
                 } else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
-                    // Select search field
-                    searchField.becomeFirstResponder()
-                    
-                    // Reset search field style
-                    ScrollSelection.setNormalState(for: searchField)
+                    if UIDevice.current.userInterfaceIdiom == .pad {
+                        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_) in
+                            // Select search field
+                            self.searchField.becomeFirstResponder()
+                            
+                            // Reset search field style
+                            ScrollSelection.setNormalState(for: self.searchField)
+                        }
+                    } else {
+                        // Select search field
+                        searchField.becomeFirstResponder()
+                        
+                        // Reset search field style
+                        ScrollSelection.setNormalState(for: searchField)
+                    }
                 }
                 
                 filterButton.tintColor = GlobalColors.greyOne
