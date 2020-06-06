@@ -109,33 +109,33 @@ These colors are used for loading content using KALoader
 
 ## Keyboard Shortcuts
 ### General
-|Command          |Key      |
-|:------------------:|:-------:|
-|Open in Settings|`⌘ ,`     |
+|Command          |Key (Symbols) |Key (Description)            |
+|-----------------|--------------|-----------------------------|
+|Open in Settings |`⌘ ,`         |Command-Comma                |
 
 ### Navigation
-|Command          |Key      |
-|:------------------:|:-------:|
-|Next Post           |`▶︎` or `▼`|
-|Previous Post     |`◀︎` or `▲`|
+|Command          |Key (Symbols) |Key (Description)            |
+|-----------------|--------------|-----------------------------|
+|Next Post        |`▶︎` or `▼`    |Arrow Right or Arrow Down    |
+|Previous Post    |`◀︎` or `▲`    |Arrow Left or Arrow Up       |
 
 ### Getting Announcements
-|Command          |Key      |
-|:------------------:|:-------:|
-|Search                |`⌘ F`     |
-|Filter Post           |`⌘ ⇧ F` |
-|Reload                |`⌘ R`     |
+|Command          |Key (Symbols) |Key (Description)            |
+|-----------------|--------------|-----------------------------|
+|Search           |`⌘ F`         |Command-F                    |
+|Filter Post      |`⌘ ⇧ F`       |Command-Shift-F              |
+|Reload           |`⌘ R`         |Command-R                    |
 
 ### Viewing Posts
-|Command          |Key      |
-|:------------------:|:-------:|
-|Share                  |`⌘ S`     |
-|Pin                      |`⌘ P`     |
-|Safari                  |`⌘ ⇧ S` |
+|Command          |Key (Symbols) |Key (Description)            |
+|-----------------|--------------|-----------------------------|
+|Share            |`⌘ S`         |Command-S                    |
+|Pin              |`⌘ P`         |Command-P                    |
+|Safari           |`⌘ ⇧ S`       |Command-Shift-S              |
 
 ### Content Size
-|Command          |Key      |
-|:------------------:|:-------:|
-|Zoom In              |`⌘ =` or `⌘ +`|
-|Zoom Out           |`⌘ -`     |
-|Reset to Default |`⌘ 1`    |
+|Command          |Key (Symbols) |Key (Description)            |
+|-----------------|--------------|-----------------------------|
+|Zoom In          |`⌘ =` or `⌘ +`|Command-Equal or Command-Plus|
+|Zoom Out         |`⌘ -`         |Command-Minus                |
+|Reset to Default |`⌘ 1`         |Command-One                  |
