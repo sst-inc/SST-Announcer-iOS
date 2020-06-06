@@ -21,10 +21,10 @@ class ContentViewController: UIViewController {
     /// Current font size used in post
     var currentScale: CGFloat = 15 {
         didSet {
-            if currentScale < 5 {
-                currentScale = 5
-            } else if currentScale > 50 {
-                currentScale = 50
+            if currentScale < GlobalIdentifier.minimumFontSize {
+                currentScale = GlobalIdentifier.minimumFontSize
+            } else if currentScale > GlobalIdentifier.maximumFontSize {
+                currentScale = GlobalIdentifier.maximumFontSize
             }
         }
     }

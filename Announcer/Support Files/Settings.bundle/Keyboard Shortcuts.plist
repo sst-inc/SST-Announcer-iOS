@@ -120,6 +120,42 @@
 			<key>DefaultValue</key>
 			<string>⌘ ⇧ S</string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Content Size</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Zoom In</string>
+			<key>Key</key>
+			<string>Zoom In</string>
+			<key>DefaultValue</key>
+			<string>⌘ =</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Zoom Out</string>
+			<key>Key</key>
+			<string>Zoom Out</string>
+			<key>DefaultValue</key>
+			<string>⌘ -</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Reset to Default</string>
+			<key>Key</key>
+			<string>Reset to Default</string>
+			<key>DefaultValue</key>
+			<string>⌘ 1</string>
+		</dict>
 	</array>
 </dict>
 </plist>

@@ -120,6 +120,12 @@ struct GlobalIdentifier {
 
     /// Default font size used in the post
     static let defaultFontSize: CGFloat = 15
+    
+    /// Maximum font size used in the post
+    static let maximumFontSize: CGFloat = 50
+    
+    /// Minimum font size used in the post
+    static let minimumFontSize: CGFloat = 5
 }
 
 /**
@@ -185,10 +191,15 @@ struct Assets {
     static let open                     = UIImage(systemName: "envelope.open")!
     
     // Header icons
-    static let filter                   = UIImage(systemName: "line.horizontal.3.decrease.circle")
-    static let filterFill               = UIImage(systemName: "line.horizontal.3.decrease.circle.fill")
-    static let safari                   = UIImage(systemName: "safari")
-    static let settings                 = UIImage(systemName: "gear")
+    static let filter                   = UIImage(systemName: "line.horizontal.3.decrease.circle")!
+    static let filterFill               = UIImage(systemName: "line.horizontal.3.decrease.circle.fill")!
+    static let safari                   = UIImage(systemName: "safari")!
+    static let settings                 = UIImage(systemName: "gear")!
+    
+    // Zooming Icon
+    static let zoomIn                   = UIImage(systemName: "plus.magnifyingglass")!
+    static let zoomOut                  = UIImage(systemName: "minus.magnifyingglass")!
+    static let resetZoom                = UIImage(systemName: "1.magnifyingglass")!
 }
 
 struct Storyboards {

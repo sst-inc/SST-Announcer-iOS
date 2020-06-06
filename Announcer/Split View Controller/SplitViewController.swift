@@ -96,9 +96,33 @@ class SplitViewController: UISplitViewController {
         let upArrow = UIKeyCommand(input: UIKeyCommand.inputUpArrow, modifierFlags: [], action: #selector(previousPost))
         let leftArrow = UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: [], action: #selector(previousPost))
 
+        let zoomIn = UIKeyCommand(title: "Zoom In",
+                                  image: Assets.zoomIn,
+                                  action: #selector(zoomInPost),
+                                  input: "=",
+                                  modifierFlags: [.command],
+                                  discoverabilityTitle: "Zoom In",
+                                  state: .mixed)
+        
+        let zoomOut = UIKeyCommand(title: "Zoom Out",
+                                   image: Assets.zoomOut,
+                                   action: #selector(zoomOutPost),
+                                   input: "-",
+                                   modifierFlags: [.command],
+                                   discoverabilityTitle: "Zoom Out",
+                                   state: .mixed)
+        
+        let resetZoom = UIKeyCommand(title: "Reset Zoom",
+                                     image: Assets.resetZoom,
+                                     action: #selector(resetPostZoom),
+                                     input: "1",
+                                     modifierFlags: [.command],
+                                     discoverabilityTitle: "Reset Zoom",
+                                     state: .mixed)
         
         return [settings, search, filter, reload,
                 share, safari, pin,
+                zoomIn, zoomOut, resetZoom,
                 downArrow, upArrow, rightArrow, leftArrow]
     }
 
@@ -120,6 +144,72 @@ class SplitViewController: UISplitViewController {
     
     @objc func pinPost() {
         contentViewController.pinnedItem(self)
+    }
+    
+    @objc func resetPostZoom() {
+        // Creating attributed text
+        let attr = NSMutableAttributedString(attributedString: contentViewController.contentTextView.attributedText)
+        
+        // Setting currentScale
+        contentViewController.currentScale = GlobalIdentifier.defaultFontSize
+        
+        // New font size and style
+        let font = UIFont.systemFont(ofSize: contentViewController.currentScale, weight: .medium)
+        
+        // Setting text color using NSAttributedString
+        attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
+        
+        // Setting attributedText on contentTextView
+        contentViewController.contentTextView.attributedText = attr
+        
+        // Updating UserDefaults with the new scale
+        UserDefaults.standard.set(contentViewController.currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
+    }
+    
+    @objc func zoomInPost() {
+        // Creating attributed text
+        let attr = NSMutableAttributedString(attributedString: contentViewController.contentTextView.attributedText)
+        
+        // Setting currentScale
+        // Limit is 50
+        contentViewController.currentScale = {
+            (round(contentViewController.currentScale / 5) + 1) * 5
+        }()
+        
+        // New font size and style
+        let font = UIFont.systemFont(ofSize: contentViewController.currentScale, weight: .medium)
+        
+        // Setting text color using NSAttributedString
+        attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
+        
+        // Setting attributedText on contentTextView
+        contentViewController.contentTextView.attributedText = attr
+        
+        // Updating UserDefaults with the new scale
+        UserDefaults.standard.set(contentViewController.currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
+    }
+    
+    @objc func zoomOutPost() {
+        // Creating attributed text
+        let attr = NSMutableAttributedString(attributedString: contentViewController.contentTextView.attributedText)
+        
+        // Setting currentScale
+        // Limit is 50
+        contentViewController.currentScale = {
+            (round(contentViewController.currentScale / 5) - 1) * 5
+        }()
+        
+        // New font size and style
+        let font = UIFont.systemFont(ofSize: contentViewController.currentScale, weight: .medium)
+        
+        // Setting text color using NSAttributedString
+        attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
+        
+        // Setting attributedText on contentTextView
+        contentViewController.contentTextView.attributedText = attr
+        
+        // Updating UserDefaults with the new scale
+        UserDefaults.standard.set(contentViewController.currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
     }
     
     @objc func nextPost() {

@@ -12,9 +12,12 @@ import Foundation
 extension String {
     var htmlToAttributedString: NSMutableAttributedString? {
         do {
-            return try NSMutableAttributedString(data: Data(utf8),
-                                                 options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: 4],
-                                                 documentAttributes: nil)
+            let attributedString = try NSMutableAttributedString(data: Data(utf8),
+                                                                 options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: 4],
+                                                                 documentAttributes: nil)
+            
+            attributedString.append(NSAttributedString(string: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"))
+            return attributedString
         } catch {
             print("error: ", error.localizedDescription)
             return NSMutableAttributedString(string: "error: " + error.localizedDescription)
