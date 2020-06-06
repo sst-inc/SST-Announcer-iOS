@@ -106,3 +106,36 @@ These colors are used for loading content using KALoader
 |First Load Color|`"First Load Color"`|![](https://via.placeholder.com/15/DEDEDE/DEDEDE) - #DEDEDE|![](https://via.placeholder.com/15/202020/202020) - #202020|
 |Second Load Color|`"Second Load Color"`|![](https://via.placeholder.com/15/DDDDDD/DDDDDD) - #DDDDDD|![](https://via.placeholder.com/15/212121/212121) - #212121|
 |Back Gray Color |`"Back Gray Color"`|![](https://via.placeholder.com/15/F6F6F6/F6F6F6) - #F6F6F6|![](https://via.placeholder.com/15/080808/080808) - #080808|
+
+## Keyboard Shortcuts
+### General
+|Command          |Key      |
+|:------------------:|:-------:|
+|Open in Settings|`⌘ ,`     |
+
+### Navigation
+|Command          |Key      |
+|:------------------:|:-------:|
+|Next Post           |`▶︎` or `▼`|
+|Previous Post     |`◀︎` or `▲`|
+
+### Getting Announcements
+|Command          |Key      |
+|:------------------:|:-------:|
+|Search                |`⌘ F`     |
+|Filter Post           |`⌘ ⇧ F` |
+|Reload                |`⌘ R`     |
+
+### Viewing Posts
+|Command          |Key      |
+|:------------------:|:-------:|
+|Share                  |`⌘ S`     |
+|Pin                      |`⌘ P`     |
+|Safari                  |`⌘ ⇧ S` |
+
+### Content Size
+|Command          |Key      |
+|:------------------:|:-------:|
+|Zoom In              |`⌘ =` or `⌘ +`|
+|Zoom Out           |`⌘ -`     |
+|Reset to Default |`⌘ 1`    |
