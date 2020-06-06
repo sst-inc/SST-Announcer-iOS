@@ -42,6 +42,9 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
                 // Fallback on earlier versions
             }
             
+            let interaction = UIContextMenuInteraction(delegate: self)
+            cell.addInteraction(interaction)
+            
             return cell
         } else {
             // Handling the Links
@@ -61,6 +64,9 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
                 // Fallback on earlier versions
             }
             
+            let interaction = UIContextMenuInteraction(delegate: self)
+            cell.addInteraction(interaction)
+            
             return cell
         }
     }
@@ -75,6 +81,10 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             filterUpdated?()
             
             navigationController?.popToRootViewController(animated: true)
+            
+            if let announcementVC = (splitViewController as? SplitViewController)?.announcementViewController {
+                announcementVC.reloadFilter()
+            }
         } else {
             // Handling the Links
             let cell = collectionView.cellForItem(at: indexPath) as! LinksCollectionViewCell

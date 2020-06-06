@@ -112,22 +112,7 @@ class AnnouncementsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Handling when a tag is selected from the ContentViewController
-        if filter != "" {
-            // Setting search bar text
-            self.searchField.text = "[\(filter)]"
-            
-            // Reloading announcementTableView with the new search field tet
-            self.announcementTableView.reloadData()
-            
-            // Updating search bar
-            self.searchBar(self.searchField, textDidChange: "[\(filter)]")
-            
-            // Reset filter
-            filter = ""
-        } else {
-            self.announcementTableView.reloadData()
-        }
+        reloadFilter()
     }
     
     // Open Filter with Labels
@@ -228,6 +213,26 @@ class AnnouncementsViewController: UIViewController {
                 print("Search items successfully indexed!")
             }
         }
+    }
+    
+    func reloadFilter() {
+        // Handling when a tag is selected from the ContentViewController
+        if filter != "" {
+            // Setting search bar text
+            self.searchField.text = "[\(filter)]"
+            
+            // Reloading announcementTableView with the new search field tet
+            self.announcementTableView.reloadData()
+            
+            // Updating search bar
+            self.searchBar(self.searchField, textDidChange: "[\(filter)]")
+            
+            // Reset filter
+            filter = ""
+        } else {
+            self.announcementTableView.reloadData()
+        }
+
     }
     
     @objc func startSearching() {

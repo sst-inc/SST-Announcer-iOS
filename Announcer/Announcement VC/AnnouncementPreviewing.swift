@@ -58,7 +58,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                 self.announcementTableView.reloadData()
             }
             
-            let share = UIAction(title: "Share",
+            let share = UIAction(title: "Share...",
                                  image: Assets.share,
                                  identifier: nil,
                                  discoverabilityTitle: nil,
@@ -71,7 +71,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                     shareViewController.excludedActivityTypes = [.saveToCameraRoll, .addToReadingList]
                                     
                                     //Present share sheet
-                                    shareViewController.popoverPresentationController?.sourceView = self.view
+                                    shareViewController.popoverPresentationController?.sourceView = cell
                                     self.present(shareViewController, animated: true, completion: nil)
             }
             

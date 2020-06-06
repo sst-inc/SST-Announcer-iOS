@@ -16,7 +16,7 @@ extension ContentViewController: UIPointerInteractionDelegate {
             
             let frame = CGRect(x: 0, y: 0, width: interaction.view!.frame.width + 5, height: interaction.view!.frame.height + 5)
             
-            return .init(shape: UIPointerShape.roundedRect(frame, radius: 0))
+            return .init(shape: UIPointerShape.roundedRect(frame, radius: 30))
             
         } else if interaction.view is UICollectionViewCell {
             

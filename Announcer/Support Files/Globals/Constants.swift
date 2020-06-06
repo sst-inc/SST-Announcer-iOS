@@ -189,6 +189,8 @@ struct Assets {
     // Preview icons
     static let share                    = UIImage(systemName: "square.and.arrow.up")!
     static let open                     = UIImage(systemName: "envelope.open")!
+    static let readingList              = UIImage(systemName: "eyeglasses")!
+    static let copy                     = UIImage(systemName: "doc.on.doc")!
     
     // Header icons
     static let filter                   = UIImage(systemName: "line.horizontal.3.decrease.circle")!

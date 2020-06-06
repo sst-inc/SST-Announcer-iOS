@@ -139,8 +139,9 @@ class ContentViewController: UIViewController {
         DispatchQueue.main.async {
             self.titleLabel.attributedText = attrTitle
             self.dateLabel.text = "Posted on \(dateFormatter.string(from: self.post.date))"
+            
+            self.labelsCollectionView.reloadData()
         }
-        
         
         // Render HTML from String
         // Handle JavaScript
