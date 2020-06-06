@@ -55,7 +55,7 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
 #### MacOS
 |Support |Version |Notes                                                    |
 |--------|--------|---------------------------------------------------------|
-|Minimum |10.15   |Pointer and Hover interactions not supported             |
+|Minimum |10.15.0 |Pointer and Hover interactions not supported             |
 |Full    |10.15.4 |Full support for MacOS                                   |
 
 ## Technologies/Libraries Used
