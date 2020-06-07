@@ -185,7 +185,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fpY-r4-69b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-70" y="507"/>
+            <point key="canvasLocation" x="-103" y="170"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6s9-lU-M57">

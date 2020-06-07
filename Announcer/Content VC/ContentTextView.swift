@@ -102,15 +102,21 @@ extension ContentViewController: UITextViewDelegate {
             UIView.animate(withDuration: 0.5, animations: {
                 self.linksAndLabelStackView.alpha = 0
             }) { (_) in
-                self.linksAndLabelStackView.isHidden = true
+                UIView.animate(withDuration: 0.3) {
+                    self.linksAndLabelStackView.isHidden = true
+                }
+                
             }
         } else if scrollView.contentOffset.y <= 10 && linksAndLabelStackView.alpha == 0 {
-            self.linksAndLabelStackView.isHidden = false
-            
             // Slowly fade the stackView into view
-            UIView.animate(withDuration: 0.5, animations: {
-                self.linksAndLabelStackView.alpha = 1
-            })
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.linksAndLabelStackView.isHidden = false
+            }) { (_) in
+                UIView.animate(withDuration: 0.5) {
+                    self.linksAndLabelStackView.alpha = 1
+                }
+            }
         }
         
     }
