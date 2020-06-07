@@ -24,6 +24,7 @@ class FilterTableViewController: UITableViewController {
         // Set up activity indicator
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.startAnimating()
+        loadingIndicator.style = .large
         
         // Programmetic Constraints
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -42,21 +43,7 @@ class FilterTableViewController: UITableViewController {
                                                 toItem: view,
                                                 attribute: .centerY,
                                                 multiplier: 1,
-                                                constant: 0),
-                             NSLayoutConstraint(item: loadingIndicator,
-                                                attribute: .width,
-                                                relatedBy: .equal,
-                                                toItem: nil,
-                                                attribute: .notAnAttribute,
-                                                multiplier: 1,
-                                                constant: 40),
-                             NSLayoutConstraint(item: loadingIndicator,
-                                                attribute: .height,
-                                                relatedBy: .equal,
-                                                toItem: nil,
-                                                attribute: .notAnAttribute,
-                                                multiplier: 1,
-                                                constant: 40)
+                                                constant: 0)
         ])
 
         
