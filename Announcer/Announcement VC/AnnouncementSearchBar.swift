@@ -57,10 +57,10 @@ extension AnnouncementsViewController: UISearchBarDelegate {
                         attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 1))
                     }
                 }
-            }
-            
-            DispatchQueue.main.async {
-                field?.attributedText = attrTitle
+                
+                DispatchQueue.main.async {
+                    field?.attributedText = attrTitle
+                }
             }
             
             // Update content

@@ -101,24 +101,24 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 switch indexPath.section {
                 case 0:
                     if searchLabels.count > 0 {
-                        cell.post = searchLabels[indexPath.row]
+                        updateSearch(with: searchLabels, cell: cell, path: indexPath)
                     } else if searchFoundInTitle.count >= 0 {
-                        cell.post = searchFoundInTitle[indexPath.row]
+                        updateSearch(with: searchFoundInTitle, cell: cell, path: indexPath)
                     } else {
-                        cell.post = searchFoundInBody[indexPath.row]
+                        updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
                     }
                 case 1:
                     if searchLabels.count > 0 {
                         if searchFoundInTitle.count >= 0 {
-                            cell.post = searchFoundInTitle[indexPath.row]
+                            updateSearch(with: searchFoundInTitle, cell: cell, path: indexPath)
                         } else {
-                            cell.post = searchFoundInBody[indexPath.row]
+                            updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
                         }
                     } else {
-                        cell.post = searchFoundInBody[indexPath.row]
+                        updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
                     }
                 default:
-                    cell.post = searchFoundInBody[indexPath.row]
+                    updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
                 }
                 
             } else {
@@ -132,10 +132,9 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             
             if splitViewController != nil {
                 cell.highlightPost = indexPath == selectedPath
-            } else {
-                
             }
             
+            // Previewing
             let interaction = UIContextMenuInteraction(delegate: self)
             cell.addInteraction(interaction)
             
@@ -144,6 +143,13 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         }
         
         return cell
+    }
+    
+    // Function to update the search results while ensuring it does not crash
+    func updateSearch(with searchSource: [Post], cell: AnnouncementTableViewCell, path indexPath: IndexPath) {
+        if searchFoundInTitle.count - 1 >= indexPath.row {
+            cell.post = searchFoundInTitle[indexPath.row]
+        }
     }
     
     // MARK: - TableView delegate
