@@ -142,7 +142,7 @@ class ContentViewController: UIViewController {
         
         // Format date as "1 Jan 2019"
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
+        dateFormatter.dateFormat = "d MMM yyyy"
         
         DispatchQueue.main.async {
             self.titleLabel.attributedText = attrTitle
