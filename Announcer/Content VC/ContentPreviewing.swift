@@ -146,4 +146,19 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
         // Return nil if there is nothing to handle
         return nil
     }
+    
+    // Handling when clicking on preview
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        
+        // This should only need to work for categoriesCollectionViewCell as links just launch Safari View Controller
+        // Safari VC is handled on the other function
+        // All this has to do is launch a filter
+        if let cell = interaction.view as? CategoriesCollectionViewCell {
+            // Filter content from cell
+            let filterContent = cell.titleLabel.text!
+            
+            // Updating filter with new filter content
+            self.updatedFilter(newFilter: filterContent)
+        }
+    }
 }
