@@ -76,15 +76,8 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             // Handling the Labels
             let cell = collectionView.cellForItem(at: indexPath) as! CategoriesCollectionViewCell
             
-            filter = cell.titleLabel.text!
-            
-            filterUpdated?()
-            
-            navigationController?.popToRootViewController(animated: true)
-            
-            if let announcementVC = (splitViewController as? SplitViewController)?.announcementViewController {
-                announcementVC.reloadFilter()
-            }
+            // Update filters
+            updatedFilter(newFilter: cell.titleLabel.text!)
         } else {
             // Handling the Links
             let cell = collectionView.cellForItem(at: indexPath) as! LinksCollectionViewCell
@@ -105,6 +98,18 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
                 // test on actual device
                 UIApplication.shared.open(url)
             }
+        }
+    }
+    
+    func updatedFilter(newFilter: String) {
+        filter = newFilter
+        
+        filterUpdated?()
+        
+        navigationController?.popToRootViewController(animated: true)
+        
+        if let announcementVC = (splitViewController as? SplitViewController)?.announcementViewController {
+            announcementVC.reloadFilter()
         }
     }
 }

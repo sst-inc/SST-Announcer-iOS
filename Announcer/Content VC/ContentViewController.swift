@@ -55,38 +55,53 @@ class ContentViewController: UIViewController {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
+    // Links and labels section
     @IBOutlet weak var labelsView: UIView!
     @IBOutlet weak var linksView: UIView!
     @IBOutlet weak var seperatorView: UIView!
     
+    // - Collection Views
     @IBOutlet weak var linksCollectionView: UICollectionView!
     @IBOutlet weak var labelsCollectionView: UICollectionView!
     
+    // - Overall stack view
     @IBOutlet weak var linksAndLabelStackView: UIStackView!
     
+    /// Getting the post
     var post: Post! {
         didSet {
+            // Escaping to main thread to update user interface with new content
             DispatchQueue.main.async {
+                
+                // Updating content
                 self.updateContent()
             }
         }
     }
     
+    /// Handling if a post is pinned
     var isPinned = false
     
+    /// Stores links from post
     var links: [Links] = [] {
         didSet {
             // Handle duplicated links
             links.removeDuplicates()
             
-            // Reload linksCollectionView
+            // Updating user interface
+            // Requires main thread
             DispatchQueue.main.async {
+                // Reload linksCollectionView
                 self.linksCollectionView.reloadData()
                 
+                // Ensuring that there are links
                 if self.links.count > 0 {
+                    // Unhide seperators and linksView
+                    
                     self.linksView.isHidden = false
                     self.seperatorView.isHidden = self.labelsView.isHidden
                 } else {
+                    // Hide seperator
                     self.seperatorView.isHidden = true
                 }
             }
@@ -98,16 +113,23 @@ class ContentViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
+        // Getting the current scale from UserDefaults
+        // If there is nothing present, use the defaultFontSize from GlobalIdentifier
+        // Otherwise, use the userdefaults value
         currentScale = UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue) == 0 ? GlobalIdentifier.defaultFontSize : CGFloat(UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue))
         
+        // Updating currentScale on user defaults
+        // This is to handle a case where the currentScale on UserDefaults is nil
         UserDefaults.standard.set(currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
         
         // Hide back button if on splitVC
+        // Works only if there is a splitViewController
         if splitViewController != nil {
             backButton.isHidden = true
         }
         
         // Adding pointer interactions
+        // Only avaliable for iOS 13.4 and up
         if #available(iOS 13.4, *) {
             shareButton.addInteraction(UIPointerInteraction(delegate: self))
             pinButton.addInteraction(UIPointerInteraction(delegate: self))
@@ -144,25 +166,32 @@ class ContentViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d MMM yyyy"
         
+        // Escape to main thread to update user interface
         DispatchQueue.main.async {
+            // Update textLabel with attributed text for colored square brackets
             self.titleLabel.attributedText = attrTitle
+            
+            // Update dateLabel with formatted date
             self.dateLabel.text = "Posted on \(dateFormatter.string(from: self.post.date))"
             
+            // Reload labels collection view with new data
             self.labelsCollectionView.reloadData()
         }
         
         // Render HTML from String
-        // Handle JavaScript
+        // Handle WebKit requirements by showing an error
         if post.content.contains("webkitallowfullscreen=\"true\"") {
             DispatchQueue.main.async {
                 let alert = UIAlertController(title: ErrorMessages.postRequiresWebKit.title,
                                               message: ErrorMessages.postRequiresWebKit.description,
                                               preferredStyle: .alert)
                 
+                // Open post in safari, post requires webkit
                 alert.addAction(UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
                     self.openPostInSafari(UILabel())
                 }))
                 
+                // Close post
                 alert.addAction(UIAlertAction(title: "Close Post", style: .cancel, handler: { (_) in
                     // Handling dismissing from Navigation Controller
                     self.navigationController?.popViewController(animated: true)
@@ -171,20 +200,25 @@ class ContentViewController: UIViewController {
                     self.dismiss(animated: true)
                 }))
                 
+                // Present alert
                 self.present(alert, animated: true)
             }
             
         } else {
+            // Getting HTML content
             let content = post.content
             
+            // Converting HTML content to NSAttributedString
             let attr = content.htmlToAttributedString
             
+            // Adding font and background color that support dark mode
             attr?.addAttribute(.font, value: UIFont.systemFont(ofSize: currentScale, weight: .medium), range: NSRange.init(location: 0, length: (attr?.length)!))
             attr?.addAttribute(.backgroundColor, value: UIColor.clear, range: NSRange(location: 0, length: (attr?.length)!))
             
             // Optimising for iOS 13 dark mode
             attr?.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: (attr?.length)!))
             
+            // Set the attributed text
             contentTextView.attributedText = attr
         }
         
@@ -195,10 +229,16 @@ class ContentViewController: UIViewController {
         
         // Fill/Don't fill pin
         if pinnedItems.contains(post) {
+            // Set the isPinned variable
             isPinned = true
+            
+            // Updating the pinButton image to unpin
             pinButton.setImage(Assets.unpin, for: .normal)
         } else {
+            // Set the isPinned variable
             isPinned = false
+            
+            // Updating the pinButton image to pin
             pinButton.setImage(Assets.pin, for: .normal)
         }
         
@@ -214,8 +254,11 @@ class ContentViewController: UIViewController {
         }
         
         // Styling default font size button
+        // Create a button of corner radius 20
         defaultFontSizeButton.layer.cornerRadius = 20
         defaultFontSizeButton.clipsToBounds = true
+        
+        // Hide the button until needed
         defaultFontSizeButton.isHidden = true
         
         // Setting corner radii for the scrollSelection buttons to allow for the circular highlight
