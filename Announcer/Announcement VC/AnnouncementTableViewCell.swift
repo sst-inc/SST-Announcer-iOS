@@ -120,7 +120,7 @@ class AnnouncementTableViewCell: UITableViewCell {
                 
                 /// Ensuring that upper bounds is more than lower bounds
                 if end > start {
-                    /// `[]` colors will be `.systemBlue`
+                    /// `[]` colors will be `.blueTint`
                     // Setting the bracket style
                     let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: GlobalColors.blueTint, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
                     
