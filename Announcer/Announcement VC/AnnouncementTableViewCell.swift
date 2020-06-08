@@ -28,15 +28,21 @@ class AnnouncementTableViewCell: UITableViewCell {
             if post.content.contains("webkitallowfullscreen=\"true\"") {
                 let str = NSMutableAttributedString(string: "")
                 
+                // Creating error message - with icon
                 str.append(NSAttributedString(attachment: NSTextAttachment(image: Assets.error)))
                 str.append(NSAttributedString(string: "\tUnable to load preview.\n\tTap to open post."))
                 
+                // Set attributed text
                 self.announcementContentLabel.attributedText = str
             } else {
                 // Handle this async so that the experience will not be super laggy
                 DispatchQueue.global(qos: .default).async {
+                    
+                    // Convert html to string, this is the slowest part in the process
+                    // Main drawback is that if there are images involved, it has to get those images from the links
                     let previewText = self.post.content.htmlToString
                     
+                    // Set contentLabel's content on main thread
                     DispatchQueue.main.async {
                         self.announcementContentLabel.text = previewText
                     }

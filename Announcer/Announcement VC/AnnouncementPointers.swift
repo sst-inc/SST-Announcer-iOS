@@ -22,14 +22,6 @@ extension AnnouncementsViewController: UIPointerInteractionDelegate {
         return nil
     }
     
-    func pointerInteraction(_ interaction: UIPointerInteraction, willExit region: UIPointerRegion, animator: UIPointerInteractionAnimating) {
-        
-    }
-    
-    func pointerInteraction(_ interaction: UIPointerInteraction, willEnter region: UIPointerRegion, animator: UIPointerInteractionAnimating) {
-        
-    }
-    
     func pointerInteraction(_ interaction: UIPointerInteraction, regionFor request: UIPointerRegionRequest, defaultRegion: UIPointerRegion) -> UIPointerRegion? {
         var pointerRegion: UIPointerRegion? = nil
         
