@@ -9,50 +9,8 @@
 import Foundation
 import UIKit
 
-// iOS 12 and under
-// This extension is for the 3D touch options for iOS 12 and under. It will simply peek and pop. No options.
-extension AnnouncementsViewController: UIViewControllerPreviewingDelegate {
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        
-        if #available(iOS 13, *) {}
-        else {
-            if let indexPath = announcementTableView.indexPathForRow(at: location) {
-                previewingContext.sourceRect = announcementTableView.rectForRow(at: indexPath)
-                return getContentViewController(for: indexPath)
-            }
-        }
-        
-        return nil
-    }
-    
-    // Open up VC through navigation controller when tapped
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        navigationController?.pushViewController(viewControllerToCommit, animated: true)
-    }
-    
-    // Getting the contentViewController
-    func getContentViewController(for indexPath: IndexPath) -> ContentViewController {
-        guard let vc = UIStoryboard(name: "Content", bundle: .main).instantiateViewController(withIdentifier: "detail") as? ContentViewController else {
-            fatalError()
-        }
-        
-        vc.post = selectedItem
-        vc.onDismiss = {
-            DispatchQueue.main.async {
-                self.announcementTableView.reloadData()
-                self.reload(UILabel())
-            }
-            
-        }
-        
-        return vc
-    }
-}
-
 // This extension is for iOS 13 and above
 // It provides options when user Long Presses (for devices without 3D touch), 3D touch or Force touch (MacOS Catalyst)
-@available(iOS 13.0, *)
 extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
     // Set up items in the menu
     // Menu should contain Open announcements, Unpin / Pin, Share
@@ -70,7 +28,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
             }(),
                                image: {
                                 // Setting different image based the state of the post (pinned or unpinned)
-                                pinned ? UIImage(systemName: "pin.fill")! : UIImage(systemName: "pin")!
+                                pinned ? Assets.unpin : Assets.pin
             }(),
                                identifier: nil,
                                discoverabilityTitle: nil,
@@ -100,68 +58,102 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                 self.announcementTableView.reloadData()
             }
             
-            let share = UIAction(title: "Share",
-                                 image: UIImage(systemName: "square.and.arrow.up"),
+            let share = UIAction(title: "Share...",
+                                 image: Assets.share,
                                  identifier: nil,
                                  discoverabilityTitle: nil,
                                  attributes: [],
                                  state: .off) { (_) in
                                     //Create Activity View Controller (Share screen)
-                                    let shareViewController = UIActivityViewController.init(activityItems: [getShareURL(with: cell.post)], applicationActivities: nil)
+                                    let shareViewController = UIActivityViewController.init(activityItems: [LinkFunctions.getShareURL(with: cell.post)], applicationActivities: nil)
                                     
                                     //Remove unneeded actions
                                     shareViewController.excludedActivityTypes = [.saveToCameraRoll, .addToReadingList]
                                     
                                     //Present share sheet
-                                    shareViewController.popoverPresentationController?.sourceView = self.view
+                                    shareViewController.popoverPresentationController?.sourceView = cell
                                     self.present(shareViewController, animated: true, completion: nil)
             }
             
             let open = UIAction(title: "Open Announcement",
-                                image: UIImage(systemName: "envelope.open"),
+                                image: Assets.open,
                                 identifier: nil,
                                 discoverabilityTitle: nil,
                                 attributes: [], state: .off) { (_) in
+                                    
+                                    // Setting selectedItem to the current selected item
                                     self.selectedItem = cell.post
                                     
-                                    // Appending posts to read posts
-                                    var readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
-                                    readAnnouncements.append(cell.post)
-                                    ReadAnnouncements.saveToFile(posts: readAnnouncements)
-                                    
-                                    let vc = self.getContentViewControllerThroughPreview(with: cell.post)
-                                    self.navigationController?.pushViewController(vc, animated: true)
-                                    
+                                    // Open post
+                                    self.openPostFromPreview(with: cell)
             }
+            
             return UIMenu(title: "",
                           image: nil,
                           identifier: nil,
                           options: [],
                           children: [open, pin, share])
         }
-        return UIContextMenuConfiguration(identifier: "my identifier" as NSCopying,
+        
+        return UIContextMenuConfiguration(identifier: GlobalIdentifier.openPostPreview,
                                           previewProvider: { () -> UIViewController? in
-                                            self.getContentViewControllerThroughPreview(with: cell.post)
+                                            if self.splitViewController != nil {
+                                                return nil
+                                            }
+                                            return self.getContentViewControllerThroughPreview(with: cell.post)
         },
                                           actionProvider: actionProvider)
         
     }
     
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
-        let cell = interaction.view as! AnnouncementTableViewCell
-        self.selectedItem = cell.post
         
+        // Getting cell from interaction
+        let cell = interaction.view as! AnnouncementTableViewCell
+        
+        // Setting selectedItem to the current selected item
+        selectedItem = cell.post
+        
+        // Open post
+        openPostFromPreview(with: cell)
+    }
+    
+    func openPostFromPreview(with cell: AnnouncementTableViewCell) {
         // Appending posts to read posts
         var readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
         readAnnouncements.append(cell.post)
         ReadAnnouncements.saveToFile(posts: readAnnouncements)
         
-        let vc = self.getContentViewControllerThroughPreview(with: cell.post)
-        self.navigationController?.pushViewController(vc, animated: true)
+        // If user is viewing the splitViewController, open in the SVC
+        if let splitVC = self.splitViewController as? SplitViewController {
+            
+            // Setting the post in the contentVC
+            splitVC.contentViewController.post = cell.post
+            
+            // Highlight the selected post
+            cell.highlightPost = true
+            
+            // Getting previous cell to remove highlight
+            if let previousCell = self.announcementTableView.cellForRow(at: self.selectedPath) as? AnnouncementTableViewCell {
+                previousCell.highlightPost = false
+            }
+            
+            // Update selected path
+            let path = self.announcementTableView.indexPath(for: cell)
+            self.selectedPath = path!
+            
+            // Change read indicator
+            cell.handlePinAndRead()
+            
+        } else {
+            let vc = self.getContentViewControllerThroughPreview(with: cell.post)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
+    // Getting contentVC from post
     func getContentViewControllerThroughPreview(with post: Post) -> ContentViewController {
-        guard let vc = UIStoryboard(name: "Content", bundle: .main).instantiateViewController(withIdentifier: "detail") as? ContentViewController else {
+        guard let vc = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
             fatalError()
         }
         
@@ -177,4 +169,22 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
         return vc
     }
     
+    // Getting the contentViewController
+    func getContentViewController(for indexPath: IndexPath) -> ContentViewController {
+        guard let vc = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
+            fatalError()
+        }
+        
+        vc.post = selectedItem
+        
+        vc.onDismiss = {
+            DispatchQueue.main.async {
+                self.announcementTableView.reloadData()
+                self.reload(UILabel())
+            }
+        }
+        
+        return vc
+    }
+
 }

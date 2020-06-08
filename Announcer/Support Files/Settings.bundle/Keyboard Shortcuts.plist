@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>General</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Open in Settings</string>
+			<key>Key</key>
+			<string>Open in Settings</string>
+			<key>DefaultValue</key>
+			<string>⌘ ,</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Navigation</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Next Post</string>
+			<key>Key</key>
+			<string>Next Post</string>
+			<key>DefaultValue</key>
+			<string>▶︎ or ▼</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Previous Post</string>
+			<key>Key</key>
+			<string>Previous Post</string>
+			<key>DefaultValue</key>
+			<string>◀︎ or ▲</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Getting Announcements</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Search</string>
+			<key>Key</key>
+			<string>Search</string>
+			<key>DefaultValue</key>
+			<string>⌘ F</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Filter Posts</string>
+			<key>Key</key>
+			<string>Filter Posts</string>
+			<key>DefaultValue</key>
+			<string>⌘ ⇧ F</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Reload</string>
+			<key>Key</key>
+			<string>Reload</string>
+			<key>DefaultValue</key>
+			<string>⌘ R</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Viewing Posts</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Share</string>
+			<key>Key</key>
+			<string>Share</string>
+			<key>DefaultValue</key>
+			<string>⌘ S</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Pin</string>
+			<key>Key</key>
+			<string>Pin</string>
+			<key>DefaultValue</key>
+			<string>⌘ P</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Open in Safari</string>
+			<key>Key</key>
+			<string>Open in Safari</string>
+			<key>DefaultValue</key>
+			<string>⌘ ⇧ S</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Content Size</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Zoom In</string>
+			<key>Key</key>
+			<string>Zoom In</string>
+			<key>DefaultValue</key>
+			<string>⌘ =</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Zoom Out</string>
+			<key>Key</key>
+			<string>Zoom Out</string>
+			<key>DefaultValue</key>
+			<string>⌘ -</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Reset to Default</string>
+			<key>Key</key>
+			<string>Reset to Default</string>
+			<key>DefaultValue</key>
+			<string>⌘ 1</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -73,7 +73,6 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             default:
                 return searchFoundInBody.count
             }
-            
         } else {
             // Maximum of 5 pinned items
             if section == 0 && pinned.count != 0 {
@@ -90,7 +89,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "announcements", for: indexPath) as! AnnouncementTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: GlobalIdentifier.announcementCell, for: indexPath) as! AnnouncementTableViewCell
         
         if posts == nil {
             cell.startLoader()
@@ -102,24 +101,24 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 switch indexPath.section {
                 case 0:
                     if searchLabels.count > 0 {
-                        cell.post = searchLabels[indexPath.row]
+                        updateSearch(with: searchLabels, cell: cell, path: indexPath)
                     } else if searchFoundInTitle.count >= 0 {
-                        cell.post = searchFoundInTitle[indexPath.row]
+                        updateSearch(with: searchFoundInTitle, cell: cell, path: indexPath)
                     } else {
-                        cell.post = searchFoundInBody[indexPath.row]
+                        updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
                     }
                 case 1:
                     if searchLabels.count > 0 {
                         if searchFoundInTitle.count >= 0 {
-                            cell.post = searchFoundInTitle[indexPath.row]
+                            updateSearch(with: searchFoundInTitle, cell: cell, path: indexPath)
                         } else {
-                            cell.post = searchFoundInBody[indexPath.row]
+                            updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
                         }
                     } else {
-                        cell.post = searchFoundInBody[indexPath.row]
+                        updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
                     }
                 default:
-                    cell.post = searchFoundInBody[indexPath.row]
+                    updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
                 }
                 
             } else {
@@ -131,16 +130,26 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 }
             }
             
-            if #available(iOS 13.0, *) {
-                let interaction = UIContextMenuInteraction(delegate: self)
-                cell.addInteraction(interaction)
+            if splitViewController != nil {
+                cell.highlightPost = indexPath == selectedPath
             }
+            
+            // Previewing
+            let interaction = UIContextMenuInteraction(delegate: self)
+            cell.addInteraction(interaction)
             
             tableView.isScrollEnabled = true
             tableView.allowsSelection = true
         }
         
         return cell
+    }
+    
+    // Function to update the search results while ensuring it does not crash
+    func updateSearch(with searchSource: [Post], cell: AnnouncementTableViewCell, path indexPath: IndexPath) {
+        if searchFoundInTitle.count - 1 >= indexPath.row {
+            cell.post = searchFoundInTitle[indexPath.row]
+        }
     }
     
     // MARK: - TableView delegate
@@ -153,6 +162,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         
         selectedItem = cell.post
         
+        cell.highlightPost = indexPath == selectedPath
+        
         tableView.deselectRow(at: indexPath, animated: true)
         
         // Appending posts to read posts
@@ -160,8 +171,27 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         readAnnouncements.append(cell.post)
         ReadAnnouncements.saveToFile(posts: readAnnouncements)
         
-        let vc = getContentViewController(for: indexPath)
-        navigationController?.pushViewController(vc, animated: true)
+        if let splitVC = splitViewController as? SplitViewController {
+            // Getting the post from cell and setting it in the ContentVC
+            splitVC.contentViewController.post = cell.post
+            
+            // Unhighlight previous cell
+            if let previousCell = tableView.cellForRow(at: selectedPath) as? AnnouncementTableViewCell {
+                previousCell.highlightPost = false
+            }
+            
+            // Highlight current cell
+            cell.highlightPost = true
+                        
+            // Setting the current cell's indexPath to be selectedPath so that it can be used as previousCell
+            selectedPath = indexPath
+            
+            // Update the Cell's UI based on whether it is read or unread
+            cell.handlePinAndRead()
+        } else {
+            let vc = getContentViewController(for: indexPath)
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -237,102 +267,117 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_) in
                 self.pinned = PinnedAnnouncements.loadFromFile() ?? []
                 self.announcementTableView.reloadData()
+                
+                // Getting the post from cell and setting it in the ContentVC
+                if let splitVC = self.splitViewController as? SplitViewController {
+                    splitVC.contentViewController.updatePinned()
+                }
             }
             
             //Complete
             completionHandler(true)
         }
-        action.backgroundColor = UIColor(named: "Grey 2")
+        action.backgroundColor = GlobalColors.greyTwo
         return action
     }
     
     
     // MARK: ScrollView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if #available(iOS 13.0, *) {
-            #if targetEnvironment(macCatalyst)
-            #else
-            if !searchField.isFirstResponder && !UserDefaults.standard.bool(forKey: "scrollSelection") {
-                if scrollView.contentOffset.y <= -150 {
-                    let offset = (scrollView.contentOffset.y * -1 - 150) / 100
-                    filterButton.layer.borderWidth = 0
-                    filterButton.layer.borderColor = borderColor
-                    
-                    searchField.getTextField()?.layer.borderWidth = 0
-                    searchField.getTextField()?.layer.borderColor = borderColor
-                    reloadButton.layer.borderWidth = 25 * offset
-                    reloadButton.layer.borderColor = borderColor
-                    
-                    if playedHaptic != 1 {
-                        let generator = UIImpactFeedbackGenerator(style: .heavy)
-                        generator.impactOccurred()
-                    }
-                    playedHaptic = 1
-                } else if scrollView.contentOffset.y <= -100 {
-                    let offset = (scrollView.contentOffset.y * -1 - 100) / 100
-                    filterButton.layer.borderWidth = 25 * offset
-                    filterButton.layer.borderColor = borderColor
-                    
-                    searchField.getTextField()?.layer.borderWidth = 0
-                    searchField.getTextField()?.layer.borderColor = borderColor
-                    reloadButton.layer.borderWidth = 0
-                    reloadButton.layer.borderColor = borderColor
-                    
-                    if playedHaptic != 2 {
-                        let generator = UIImpactFeedbackGenerator(style: .medium)
-                        generator.impactOccurred()
-                    }
-                    playedHaptic = 2
-                } else if scrollView.contentOffset.y <= -50 {
-                    filterButton.layer.borderWidth = 0
-                    filterButton.layer.borderColor = borderColor
-                    
-                    let offset = (scrollView.contentOffset.y * -1 - 50) / 100
-                    searchField.getTextField()?.layer.borderWidth = 40 * offset
-                    searchField.getTextField()?.clipsToBounds = false
-                    searchField.getTextField()?.superview?.clipsToBounds = false
-                    searchField.clipsToBounds = false
-                    searchField.getTextField()?.layer.borderColor = borderColor
-                    reloadButton.layer.borderWidth = 0
-                    reloadButton.layer.borderColor = borderColor
-                    
-                    if playedHaptic != 3 {
-                        
-                        let generator = UIImpactFeedbackGenerator(style: .light)
-                        generator.impactOccurred()
-                    }
-                    playedHaptic = 3
-                } else {
-                    resetScroll()
-                    playedHaptic = 0
-                }
-            }
-            #endif
-        } else {
-            // Fallback on earlier versions
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            // Dismiss keyboard at for iPads because they do not auto dismiss
+            view.endEditing(true)
         }
+        
+        #if targetEnvironment(macCatalyst)
+        #else
+        if !searchField.isFirstResponder && !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
+            if scrollView.contentOffset.y <= -3 * scrollSelectionMultiplier {
+                
+                ScrollSelection.setNormalState(for: filterButton)
+                ScrollSelection.setNormalState(for: searchField)
+                
+                ScrollSelection.setSelectedState(for: reloadButton,
+                                                 withOffset: scrollView.contentOffset.y,
+                                                 andConstant: 3 * scrollSelectionMultiplier)
+                
+                if playedHaptic != 1 {
+                    let generator = UIImpactFeedbackGenerator(style: .heavy)
+                    generator.impactOccurred()
+                }
+                playedHaptic = 1
+            } else if scrollView.contentOffset.y <= -2 * scrollSelectionMultiplier {
+                ScrollSelection.setNormalState(for: searchField)
+                ScrollSelection.setNormalState(for: reloadButton)
+                
+                ScrollSelection.setSelectedState(for: filterButton,
+                                                 withOffset: scrollView.contentOffset.y,
+                                                 andConstant: 2 * scrollSelectionMultiplier)
+                
+                if playedHaptic != 2 {
+                    let generator = UIImpactFeedbackGenerator(style: .medium)
+                    generator.impactOccurred()
+                }
+                
+                playedHaptic = 2
+            } else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
+                
+                ScrollSelection.setNormalState(for: filterButton)
+                ScrollSelection.setNormalState(for: reloadButton)
+                
+                ScrollSelection.setSelectedState(for: searchField,
+                                                 withOffset: scrollView.contentOffset.y,
+                                                 andConstant: scrollSelectionMultiplier)
+                
+                if playedHaptic != 3 {
+                    
+                    let generator = UIImpactFeedbackGenerator(style: .light)
+                    generator.impactOccurred()
+                }
+                playedHaptic = 3
+            } else {
+                resetScroll()
+                playedHaptic = 0
+            }
+        }
+        #endif
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         #if targetEnvironment(macCatalyst)
             print("oh")
         #else
-            if !UserDefaults.standard.bool(forKey: "scrollSelection") {
+            if !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
                 resetScroll()
-                if scrollView.contentOffset.y <= -150 {
-                    print("reload")
+                if scrollView.contentOffset.y <= -3 * scrollSelectionMultiplier {
+                    // Reload view
                     reload(UILabel())
-                } else if scrollView.contentOffset.y <= -100 {
-                    print("Search Bar")
+                    
+                } else if scrollView.contentOffset.y <= -2 * scrollSelectionMultiplier {
+                    // Show labels selection screen
                     sortWithLabels(UILabel())
-                } else if scrollView.contentOffset.y <= -50 {
-                    print("Filter Button")
-                    searchField.becomeFirstResponder()
-                    searchField.getTextField()?.layer.borderWidth = 0
+                    
+                } else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
+                    if UIDevice.current.userInterfaceIdiom == .pad {
+                        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_) in
+                            // Select search field
+                            self.searchField.becomeFirstResponder()
+                            
+                            // Reset search field style
+                            ScrollSelection.setNormalState(for: self.searchField)
+                        }
+                    } else {
+                        // Select search field
+                        searchField.becomeFirstResponder()
+                        
+                        // Reset search field style
+                        ScrollSelection.setNormalState(for: searchField)
+                    }
                 }
-                filterButton.tintColor = UIColor(named: "Grey 1")
-                searchField.setTextField(color: UIColor(named: "background")!)
-                reloadButton.tintColor = UIColor(named: "Grey 1")
+                
+                filterButton.tintColor = GlobalColors.greyOne
+                searchField.setTextField(color: GlobalColors.background)
+                reloadButton.tintColor = GlobalColors.greyOne
                 
                 resetScroll()
             }
@@ -344,6 +389,4 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         searchField.getTextField()?.layer.borderWidth = 0
         reloadButton.layer.borderWidth = 0
     }
-    
-    
 }

@@ -49,6 +49,8 @@
 			<string>Accessibliity
 
 Content Size</string>
+			<key>FooterText</key>
+			<string>Scroll selection allows you to select a button by scrolling up.</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -71,6 +73,24 @@ Content Size</string>
 			<string>scrollSelection</string>
 			<key>DefaultValue</key>
 			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>iPad Features</string>
+			<key>FooterText</key>
+			<string>These features are only avaliable on iPadOS. Such features may not be avaliable or functions on iOS.</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Keyboard Shortcuts</string>
+			<key>File</key>
+			<string>Keyboard Shortcuts</string>
+			<key>Key</key>
+			<string>Keyboard Shortcuts</string>
 		</dict>
 	</array>
 </dict>

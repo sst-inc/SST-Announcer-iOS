@@ -1,4 +1,7 @@
-# SST Announcer (iOS)
+ <img src="Announcer/Support Files/Assets.xcassets/AppIcon.appiconset/iTunesArtwork@2x.png" width="70"> 
+ 
+# SST Announcer (iOS) 
+
 [![Language](http://img.shields.io/badge/swift-5-orange.svg?style=flat)](https://developer.apple.com/swift)
 [![Xcode](http://img.shields.io/badge/xcode-11.5-red.svg?style=flat)](https://developer.apple.com/xcode)
 [![Cocoapods](http://img.shields.io/badge/pod-v1.8.4-darkgray.svg?style=flat)](https://cocoapods.org/)
@@ -31,10 +34,26 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
 ## Requirements
 - Xcode 11.4 or greater
 - Swift 5 
-- iOS 13 or greater
-- iPadOS 13 or greater
-- MacOS 10.15 or greater
 - Cocoapods 1.8.4 or greater
+
+### Device Requirements
+#### iPadOS
+|Support        |Version |Notes                                                    |
+|---------------|--------|---------------------------------------------------------|
+|Minimum Support|13.0    |Pointer not supported, certain animations will not work  |
+|Full Support   |13.4    |Full support for iPadOS                                  |
+
+#### iOS
+|Support        |Version |Notes                                                    |
+|---------------|--------|---------------------------------------------------------|
+|Minimum Support|13.0    |Certain animations may not work                          |
+|Full Support   |13.4    |Full support for iOS                                     |
+
+#### MacOS
+|Support        |Version |Notes                                                    |
+|---------------|--------|---------------------------------------------------------|
+|Minimum Support|10.15.0 |Pointer and Hover interactions not supported             |
+|Full Support   |10.15.4 |Full support for MacOS                                   |
 
 ## Technologies/Libraries Used
 ### Open Source Libraries
@@ -90,10 +109,13 @@ These colors are used for different parts of the app such as backgrounds and lab
 
 |Color Name |Identifier|Light Theme|Dark Theme |
 |-----------|----------|-----------|-----------|
-|Background |`"background"`|![](https://via.placeholder.com/15/F5F4F6/F5F4F6) - #F5F4F6|![](https://via.placeholder.com/15/060400/060400) - #060400|
+|Background |`"Background"`|![](https://via.placeholder.com/15/F5F4F6/F5F4F6) - #F5F4F6|![](https://via.placeholder.com/15/1D1D23/1D1D23) - #1D1D23|
 |Global Tint|`"Global Tint"`|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|![](https://via.placeholder.com/15/A9A9A9/A9A9A9) - #A9A9A9|
 |Grey 1     |`"Grey 1"`|![](https://via.placeholder.com/15/434343/434343) - #434343|![](https://via.placeholder.com/15/B8BABB/B8BABB) - #B8BABB|
 |Grey 2     |`"Grey 2"`|![](https://via.placeholder.com/15/DCDADB/DCDADB) - #DCDADB|![](https://via.placeholder.com/15/252628/252628) - #252628|
+|Grey 3     |`"Grey 3"`|![](https://via.placeholder.com/15/F0F0F7/F0F0F7) - #F0F0F7|![](https://via.placeholder.com/15/232328/232328) - #232328|
+|Table View Selection     |`.systemGray5`|![](https://via.placeholder.com/15/e5e5ea/e5e5ea) - #E5E5EA|![](https://via.placeholder.com/15/2c2c2e/2c2c2e) - #2C2C2E|
+|Table View Selection Hover     |`.systemGray4`|![](https://via.placeholder.com/15/d1d1d6/d1d1d6) - #D1D1D6|![](https://via.placeholder.com/15/3a3a3c/3a3a3c) - #3A3A3C|
 
 ### Apple Colors
 These colors are the ones as part of Apple's [UIColor Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/color/)
@@ -111,3 +133,36 @@ These colors are used for loading content using KALoader
 |First Load Color|`"First Load Color"`|![](https://via.placeholder.com/15/DEDEDE/DEDEDE) - #DEDEDE|![](https://via.placeholder.com/15/202020/202020) - #202020|
 |Second Load Color|`"Second Load Color"`|![](https://via.placeholder.com/15/DDDDDD/DDDDDD) - #DDDDDD|![](https://via.placeholder.com/15/212121/212121) - #212121|
 |Back Gray Color |`"Back Gray Color"`|![](https://via.placeholder.com/15/F6F6F6/F6F6F6) - #F6F6F6|![](https://via.placeholder.com/15/080808/080808) - #080808|
+
+## Keyboard Shortcuts
+### General
+|Command          |Key (Symbols) |Key (Description)            |
+|-----------------|--------------|-----------------------------|
+|Open in Settings |`⌘ ,`         |Command-Comma                |
+
+### Navigation
+|Command          |Key (Symbols) |Key (Description)            |
+|-----------------|--------------|-----------------------------|
+|Next Post        |`▶︎` or `▼`    |Arrow Right or Arrow Down    |
+|Previous Post    |`◀︎` or `▲`    |Arrow Left or Arrow Up       |
+
+### Getting Announcements
+|Command          |Key (Symbols) |Key (Description)            |
+|-----------------|--------------|-----------------------------|
+|Search           |`⌘ F`         |Command-F                    |
+|Filter Post      |`⌘ ⇧ F`       |Command-Shift-F              |
+|Reload           |`⌘ R`         |Command-R                    |
+
+### Viewing Posts
+|Command          |Key (Symbols) |Key (Description)            |
+|-----------------|--------------|-----------------------------|
+|Share            |`⌘ S`         |Command-S                    |
+|Pin              |`⌘ P`         |Command-P                    |
+|Safari           |`⌘ ⇧ S`       |Command-Shift-S              |
+
+### Content Size
+|Command          |Key (Symbols) |Key (Description)            |
+|-----------------|--------------|-----------------------------|
+|Zoom In          |`⌘ =` or `⌘ +`|Command-Equal or Command-Plus|
+|Zoom Out         |`⌘ -`         |Command-Minus                |
+|Reset to Default |`⌘ 1`         |Command-One                  |

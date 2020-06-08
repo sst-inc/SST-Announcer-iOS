@@ -17,24 +17,56 @@ class FilterTableViewController: UITableViewController {
     // Show activity indicator while fetching the data
     let loadingIndicator = UIActivityIndicatorView()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // Creating activity indicator to show when loading
+    override func loadView() {
+        super.loadView()
         
         // Set up activity indicator
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.startAnimating()
+        loadingIndicator.style = .large
         
-        loadingIndicator.frame = CGRect(x: UIScreen.main.bounds.width / 2 - 10, y: UIScreen.main.bounds.height / 2 - 10, width: 20, height: 20)
+        // Programmetic Constraints
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Align to center x and y, width and height are 40
+        view.addConstraints([NSLayoutConstraint(item: loadingIndicator,
+                                                attribute: .centerX,
+                                                relatedBy: .equal,
+                                                toItem: view,
+                                                attribute: .centerX,
+                                                multiplier: 1,
+                                                constant: 0),
+                             NSLayoutConstraint(item: loadingIndicator,
+                                                attribute: .centerY,
+                                                relatedBy: .equal,
+                                                toItem: view,
+                                                attribute: .centerY,
+                                                multiplier: 1,
+                                                constant: 0)
+        ])
+
         
         view.addSubview(loadingIndicator)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Show network activity indicator to indicate loading
+        // This is deprecated for all non-notch devices (e.g. iPhone SE)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         // Getting the Labels asyncronously
         DispatchQueue.main.async {
             // Get labels from the Posts
-            self.labels = fetchLabels().sorted()
+            self.labels = Fetch.labels().sorted()
             
-            // Hide loading indicator once
+            // Hide loading indicator once done
             self.loadingIndicator.stopAnimating()
+            
+            // Stop the network activity indicator in status bar
+            // This is deprecated for all non-notch devices (e.g. iPhone SE)
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             // Reloading tableView with new data
             self.tableView.reloadData()
@@ -48,25 +80,34 @@ class FilterTableViewController: UITableViewController {
         return 1
     }
 
+    // Creating a whole bunch of rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return labels.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell", for: indexPath) as! FilterTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: GlobalIdentifier.labelCell, for: indexPath) as! FilterTableViewCell
         
+        // Setting the title
         cell.title = labels[indexPath.row]
+        
+        // Creating preview interaction
+        let interaction = UIContextMenuInteraction(delegate: self)
+        
+        // Adding interaction to cell
+        cell.addInteraction(interaction)
         
         return cell
     }
     
+    // Selected a label
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Get the tvc
         let cell = tableView.cellForRow(at: indexPath) as! FilterTableViewCell
         
         // Pass the cell's title over to the next VC
         filter = cell.title
-        print(selectedLabel)
+        
         self.dismiss(animated: true) {
             // Run an onDismiss void which is defined in the AnnouncementVC file
             // This void tells the AnnouncementVC to filter based on the selected label
@@ -74,18 +115,8 @@ class FilterTableViewController: UITableViewController {
         }
     }
     
+    // Close view controller when X pressed
     @IBAction func dismiss(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

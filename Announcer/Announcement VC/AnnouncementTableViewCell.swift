@@ -18,35 +18,35 @@ class AnnouncementTableViewCell: UITableViewCell {
             // Converting HTML to String is slow
             // Do conversion on different thread and update the cell when it's ready
             // Show loading to user
-            if #available(iOS 13.0, *) {
-                // Loading for iOS 13 and above has fancy icon
-                let str = NSMutableAttributedString.init(string: "")
-                str.append(NSAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "arrow.clockwise")!)))
-                str.append(NSAttributedString(string: "\tLoading Content...\n\n"))
-                self.announcementContentLabel.attributedText = str
-            } else {
-                // Loading for iOS 12 and below has no icon :(
-                self.announcementContentLabel.text = "Loading Content...\n\n"
-            }
+            // Loading for iOS 13 and above has fancy icon
+            let str = NSMutableAttributedString.init(string: "")
+            str.append(NSAttributedString(attachment: NSTextAttachment(image: Assets.loading)))
+            str.append(NSAttributedString(string: "\tLoading Content...\n\n"))
+            self.announcementContentLabel.attributedText = str
             
             // Unable to preview because it requires JavaScript
             if post.content.contains("webkitallowfullscreen=\"true\"") {
-                if #available(iOS 13.0, *) {
-                    // Fancy icon on iOS 13 and up
-                    let str = NSMutableAttributedString(string: "")
-                    
-                    str.append(NSAttributedString(attachment: NSTextAttachment(image: UIImage(systemName: "exclamationmark.triangle.fill")!)))
-                    str.append(NSAttributedString(string: "\tUnable to load preview.\n\tTap to open post."))
-                    
-                    self.announcementContentLabel.attributedText = str
-                } else {
-                    // No icon on iOS 12 and below :(
-                    self.announcementContentLabel.text = "Unable to load preview.\nClick to open post."
-                }
+                let str = NSMutableAttributedString(string: "")
+                
+                // Creating error message - with icon
+                str.append(NSAttributedString(attachment: NSTextAttachment(image: Assets.error)))
+                str.append(NSAttributedString(string: "\tUnable to load preview.\n\tTap to open post."))
+                
+                // Set attributed text
+                self.announcementContentLabel.attributedText = str
             } else {
                 // Handle this async so that the experience will not be super laggy
-                DispatchQueue.main.async {
-                    self.announcementContentLabel.text = self.post.content.htmlToString
+                DispatchQueue.global(qos: .default).async {
+                    
+                    // Convert html to string, this is the slowest part in the process
+                    // Main drawback is that if there are images involved, it has to get those images from the links
+                    let previewText = self.post.content.htmlToString
+                    
+                    // Set contentLabel's content on main thread
+                    DispatchQueue.main.async {
+                        self.announcementContentLabel.text = previewText
+                    }
+                    
                 }
             }
             
@@ -57,37 +57,10 @@ class AnnouncementTableViewCell: UITableViewCell {
             
             announcementDateLabel.text = "Posted on \(dateFormatter.string(from: post.date))"
             
-            // Handling pinned items
-            let pinned = PinnedAnnouncements.loadFromFile()
+            handlePinAndRead()
             
-            // Checking if item is pinned
-            if pinned?.contains(post) ?? false {
-                announcementImageView.isHidden = false
-                
-                // If user is on iOS 13 and up, color the pin
-                if #available(iOS 13.0, *) {
-                    announcementImageView.image = UIImage(systemName: "pin.fill")!
-                    announcementImageView.tintColor = UIColor(named: "Grey 1")
-                }
-            } else {
-                announcementImageView.isHidden = true
-            }
-            
-            // Handling read announcements
-            let readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
-            
-            // Checking if announcement is read
-            if !readAnnouncements.contains(post) {
-                announcementImageView.isHidden = false
-                
-                if #available(iOS 13.0, *) {
-                    announcementImageView.image = UIImage(systemName: "circle.fill")
-                    announcementImageView.tintColor = .systemBlue
-                }
-            }
-            
-            // Set background color
-            backgroundColor = UIColor(named: "background")
+            // Set tableViewCell background color
+            backgroundColor = GlobalColors.background
             
             // Set attributes of title label
             // [Square Brackets] all red to highlight things like [Sec 2 students] etc.
@@ -96,6 +69,17 @@ class AnnouncementTableViewCell: UITableViewCell {
             
             // Hide all the loaders
             endLoader()
+        }
+    }
+    var highlightPost = false {
+        didSet {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                if highlightPost {
+                    contentView.backgroundColor = GlobalColors.tableViewSelection
+                } else {
+                    contentView.backgroundColor = GlobalColors.background
+                }
+            }
         }
     }
     
@@ -107,12 +91,10 @@ class AnnouncementTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        let hover = UIHoverGestureRecognizer()
+        hover.addTarget(self, action: #selector(hovered(_:)))
+        
+        contentView.addGestureRecognizer(hover)
     }
     
     // Color the brackets []
@@ -126,18 +108,25 @@ class AnnouncementTableViewCell: UITableViewCell {
         let indicesStart = attrTitle.string.indicesOf(string: "[")
         let indicesEnd = attrTitle.string.indicesOf(string: "]")
         
-        // Determine which one is smaller (start indices or end indices)
-        if (indicesStart.count >= (indicesEnd.count) ? indicesStart.count : indicesEnd.count) > 0 {
+        // Determine which array of indices contains more values (start indices or end indices)
+        let smallerIndicesArray = indicesStart.count >= (indicesEnd.count) ? indicesStart.count : indicesEnd.count
+        
+        // Ensure that there is more than 0 items in the array
+        if smallerIndicesArray > 0 {
             for i in 1...(indicesStart.count >= indicesEnd.count ? indicesStart.count : indicesEnd.count) {
                 
                 let start = indicesStart[i - 1]
                 let end = indicesEnd[i - 1]
                 
-                // [] colors will be Grey 1
-                // @shannen why these color names man
-                let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
-                
-                attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 2))
+                /// Ensuring that upper bounds is more than lower bounds
+                if end > start {
+                    /// `[]` colors will be `.blueTint`
+                    // Setting the bracket style
+                    let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: GlobalColors.blueTint, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
+                    
+                    /// Add the blue to the squared brackets in the title
+                    attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 2))
+                }
             }
         }
         
@@ -163,5 +152,52 @@ class AnnouncementTableViewCell: UITableViewCell {
         announcementTitleLabel.hideLoader()
         announcementContentLabel.hideLoader()
         announcementDateLabel.hideLoader()
+    }
+    
+    func handlePinAndRead() {
+        // Handling pinned items
+        let pinned = PinnedAnnouncements.loadFromFile()
+        
+        // Checking if item is pinned
+        if pinned?.contains(post) ?? false {
+            announcementImageView.isHidden = false
+            
+            // Color the pin to state if the post is pinned or not
+            announcementImageView.image = Assets.unpin
+            announcementImageView.tintColor = GlobalColors.greyOne
+        } else {
+            // Hide pin image view if post is not pinned
+            announcementImageView.isHidden = true
+        }
+        
+        // Handling read announcements
+        let readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
+        
+        // Checking if announcement is read
+        if !readAnnouncements.contains(post) {
+            // Handling if post is unread
+            announcementImageView.isHidden = false
+            
+            // Adding unread indicator on unread posts
+            announcementImageView.image = Assets.unread
+            announcementImageView.tintColor = .systemBlue
+        }
+        
+    }
+    
+    // Highlights the cell when hovered
+    @objc func hovered(_ sender: UIHoverGestureRecognizer) {
+        switch sender.state {
+        case .began, .changed:
+            
+            // User is hovering over post
+            contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelectionHover : GlobalColors.greyThree
+        case .ended:
+            
+            // User stopped hovering over post
+            contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelection : GlobalColors.background
+        default:
+            break
+        }
     }
 }

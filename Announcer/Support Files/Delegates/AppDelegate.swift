@@ -17,14 +17,12 @@ import MobileCoreServices
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
-    static let backgroundTaskIdentifier = Bundle.main.bundleIdentifier! + ".new-announcement"
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Checks to ensure the URL is correct.
         // Safeguard against my 3am stupidity
         #if DEBUG
         #else
-        if blogURL != "http://studentsblog.sst.edu.sg" {
+        if GlobalLinks.blogURL != "http://studentsblog.sst.edu.sg" {
             fatalError("incorrect URL")
         }
         #endif
@@ -45,10 +43,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UNUserNotificationCenter.current().delegate = self
         
         // Performing Background Fetch for new posts
-        BGTaskScheduler.shared.register(forTaskWithIdentifier: AppDelegate.backgroundTaskIdentifier, using: .main) { task in
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: GlobalIdentifier.backgroundTask, using: .main) { task in
             
             // Check if there is a new post
-            if let notificationContent = fetchNotificationsTitle() {
+            if let notificationContent = Fetch.latestNotification() {
                 // Notify the user if there is a new post
                 self.pushNotification(with: notificationContent.title, content: notificationContent.content)
             }
@@ -69,11 +67,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // Set project version
         let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-        UserDefaults.standard.set(versionNumber, forKey: "versionNumber")
+        UserDefaults.standard.set(versionNumber, forKey: UserDefaultsIdentifiers.versionNumber.rawValue)
         
         // Set project build
         let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
-        UserDefaults.standard.set(buildNumber, forKey: "buildNumber")
+        UserDefaults.standard.set(buildNumber, forKey: UserDefaultsIdentifiers.buildNumber.rawValue)
         
         return true
     }
@@ -94,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
      ```
      */
     func scheduleBackgroundTaskIfNeeded() {
-        let taskRequest = BGProcessingTaskRequest(identifier: AppDelegate.backgroundTaskIdentifier)
+        let taskRequest = BGProcessingTaskRequest(identifier: GlobalIdentifier.backgroundTask)
         taskRequest.requiresNetworkConnectivity = true
         
         do {
@@ -108,14 +106,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // MARK: UISceneSession Lifecycle
     
-    @available(iOS 13.0, *)
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
     
-    @available(iOS 13.0, *)
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
@@ -125,7 +121,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // Push the notification to the user
     func pushNotification(with postTitle: String, content postContent: String) {
-        let identifier = "new-announcement"
         let content = UNMutableNotificationContent()
         
         content.title = "📢 \(postTitle)"
@@ -133,7 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         content.sound = .default
         
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
+        let request = UNNotificationRequest(identifier: GlobalIdentifier.newNotification, content: content, trigger: nil)
         
         UNUserNotificationCenter.current().add(request) { error in
             DispatchQueue.main.async {
@@ -167,17 +162,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         postTitle.removeFirst(2)
         
         launchPost(withTitle: postTitle)
-    }
-    
-    // Catching userActivity for iOS 12 and below
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        
-        if userActivity.activityType == CSSearchableItemActionType {
-            if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
-                launchPost(withTitle: uniqueIdentifier)
-            }
-        }
-        
-        return true
     }
 }

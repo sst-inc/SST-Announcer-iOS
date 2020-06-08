@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class ReadAnnouncements: Codable {
+    static let maxPosts = 40
     /**
      Gets archive URL for Read Announcements
      
@@ -18,7 +19,7 @@ class ReadAnnouncements: Codable {
      This method gets the .plist URL to save the read announcements to.
      */
     static func getArchiveURL() -> URL {
-        let plistName = "read"
+        let plistName = GlobalIdentifier.readPersistencePlist
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         return documentsDirectory.appendingPathComponent(plistName).appendingPathExtension("plist")
     }
@@ -34,7 +35,21 @@ class ReadAnnouncements: Codable {
     static func saveToFile(posts: [Post]) {
         let archiveURL = getArchiveURL()
         let propertyListEncoder = PropertyListEncoder()
-        let encodedPosts = try? propertyListEncoder.encode(posts)
+        
+        // Remove duplicated posts to keep the READ items short
+        var postsRemovedDuplicates = { () -> [Post] in
+            var mutablePosts = posts
+            mutablePosts.removeDuplicates()
+            
+            return mutablePosts
+        }()
+        
+        // Limit the read array to the latest 20 otherwise the plist will get ridiculously huge and store a bunch of old, unnecessary data
+        if postsRemovedDuplicates.count > maxPosts {
+            postsRemovedDuplicates.removeFirst(postsRemovedDuplicates.count - maxPosts)
+        }
+        
+        let encodedPosts = try? propertyListEncoder.encode(postsRemovedDuplicates)
         try? encodedPosts?.write(to: archiveURL, options: .noFileProtection)
     }
     

@@ -18,7 +18,7 @@ class PinnedAnnouncements: Codable {
      This method gets the .plist URL to save the pinned announcements to.
      */
     static func getArchiveURL() -> URL {
-        let plistName = "pinned"
+        let plistName = GlobalIdentifier.pinnedPersistencePlist
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         return documentsDirectory.appendingPathComponent(plistName).appendingPathExtension("plist")
     }

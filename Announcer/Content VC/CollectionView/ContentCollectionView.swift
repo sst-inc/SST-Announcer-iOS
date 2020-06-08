@@ -26,9 +26,9 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == labelsCollectionView {
             // Handling the Labels
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoriesCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GlobalIdentifier.labelCell, for: indexPath) as! CategoriesCollectionViewCell
             
-            cell.backgroundColor = UIColor(named: "Grey 2")
+            cell.backgroundColor = GlobalColors.greyTwo
             
             cell.titleLabel.text = post.categories[indexPath.row]
             
@@ -36,18 +36,36 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             cell.layer.cornerRadius = 5
             cell.clipsToBounds = true
             
+            if #available(iOS 13.4, *) {
+                cell.addInteraction(UIPointerInteraction(delegate: self))
+            } else {
+                // Fallback on earlier versions
+            }
+            
+            let interaction = UIContextMenuInteraction(delegate: self)
+            cell.addInteraction(interaction)
+            
             return cell
         } else {
             // Handling the Links
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "links", for: indexPath) as! LinksCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GlobalIdentifier.linkCell, for: indexPath) as! LinksCollectionViewCell
             
-            cell.backgroundColor = UIColor(named: "Grey 2")
+            cell.backgroundColor = GlobalColors.greyTwo
             
             cell.link = links[indexPath.row]
             
             // Setting Cell Corner Radius
             cell.layer.cornerRadius = 5
             cell.clipsToBounds = true
+            
+            if #available(iOS 13.4, *) {
+                cell.addInteraction(UIPointerInteraction(delegate: self))
+            } else {
+                // Fallback on earlier versions
+            }
+            
+            let interaction = UIContextMenuInteraction(delegate: self)
+            cell.addInteraction(interaction)
             
             return cell
         }
@@ -63,6 +81,10 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             filterUpdated?()
             
             navigationController?.popToRootViewController(animated: true)
+            
+            if let announcementVC = (splitViewController as? SplitViewController)?.announcementViewController {
+                announcementVC.reloadFilter()
+            }
         } else {
             // Handling the Links
             let cell = collectionView.cellForItem(at: indexPath) as! LinksCollectionViewCell
@@ -70,15 +92,17 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             // Handle if it is a "mailto:" or something else. Or just a normal URL.
             // When it is a normal URL, present a Safari View Controller
             // Otherwise just open the URL and iOS will handle it
-            if cell.link.link.contains("http://") || cell.link.link.contains("https://") {
-                let url = URL(string: cell.link.link) ?? errorNotFoundURL
-                
+            let url = URL(string: cell.link.link) ?? GlobalLinks.errorNotFoundURL
+            
+            let scheme = url.scheme
+            
+            if scheme == "https" || scheme == "http" {
                 let svc = SFSafariViewController(url: url)
                 
                 present(svc, animated: true)
             } else {
-                let url = URL(string: cell.link.link) ?? errorNotFoundURL
-                
+                // This does not seem to work on simulator with mailto schemes
+                // test on actual device
                 UIApplication.shared.open(url)
             }
         }

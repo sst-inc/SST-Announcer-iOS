@@ -10,19 +10,9 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>ACKNOWLEDGEMENTS
-
-This application makes use of the following open source third-party libraries:</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>URLEMBEDDEDVIEW
-
-https://github.com/marty-suzuki/URLEmbeddedView
-
-The MIT License (MIT)
+			<string>URLEMBEDDEDVIEW (https://github.com/marty-suzuki/URLEmbeddedView)</string>
+			<key>FooterText</key>
+			<string>The MIT License (MIT)
 
 Copyright (c) 2016 szk-atmosphere &lt;s1180183@gmail.com&gt;
 
@@ -48,11 +38,9 @@ THE SOFTWARE.</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>FEEDKIT
-
-https://github.com/nmdias/FeedKit
-
-The MIT License (MIT)
+			<string>FEEDKIT (https://github.com/nmdias/FeedKit)</string>
+			<key>FooterText</key>
+			<string>The MIT License (MIT)
 
 Copyright (c) 2016 - 2018 Nuno Manuel Dias
 
@@ -78,11 +66,9 @@ SOFTWARE.</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>KALOADER
-
-https://github.com/Kirillzzy/KALoader
-
-MIT License
+			<string>KALOADER (https://github.com/Kirillzzy/KALoader)</string>
+			<key>FooterText</key>
+			<string>MIT License
 
 Copyright (c) 2017 Kirill Averyanov
 
@@ -103,10 +89,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
 		</dict>
 	</array>
 </dict>
