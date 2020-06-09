@@ -173,7 +173,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         
         if let splitVC = splitViewController as? SplitViewController {
             // Getting the post from cell and setting it in the ContentVC
-            splitVC.contentViewController.post = cell.post
+            splitVC.contentVC.post = cell.post
             
             // Unhighlight previous cell
             if let previousCell = tableView.cellForRow(at: selectedPath) as? AnnouncementTableViewCell {
@@ -270,7 +270,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 
                 // Getting the post from cell and setting it in the ContentVC
                 if let splitVC = self.splitViewController as? SplitViewController {
-                    splitVC.contentViewController.updatePinned()
+                    splitVC.contentVC.updatePinned()
                 }
             }
             

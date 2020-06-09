@@ -26,8 +26,8 @@ class AnnouncementsViewController: UIViewController {
                     
                     if let splitVC = self.splitViewController as? SplitViewController {
                         let cell = self.tableView(self.announcementTableView, cellForRowAt: self.selectedPath) as? AnnouncementTableViewCell
-                        splitVC.contentViewController.post = cell?.post
-                        splitVC.show(splitVC.contentViewController, sender: nil)
+                        splitVC.contentVC.post = cell?.post
+                        splitVC.show(splitVC.contentVC, sender: nil)
                     }
                 }
             }
@@ -147,7 +147,7 @@ class AnnouncementsViewController: UIViewController {
         selectedItem = post
         
         if UIDevice.current.userInterfaceIdiom == .pad {
-            let vc = (splitViewController as? SplitViewController)?.contentViewController
+            let vc = (splitViewController as? SplitViewController)?.contentVC
             
             vc!.post = post
         } else {

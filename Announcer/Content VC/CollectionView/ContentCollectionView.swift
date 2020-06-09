@@ -139,7 +139,7 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         // Handling reload on announcement vc if user launches from splitViewControl
         // Getting announcement view controller
-        if let announcementVC = (splitViewController as? SplitViewController)?.announcementViewController {
+        if let announcementVC = (splitViewController as? SplitViewController)?.announcementVC {
             // Reload filters
             announcementVC.reloadFilter()
         }
