@@ -100,7 +100,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                             if self.splitViewController != nil {
                                                 return nil
                                             }
-                                            return self.getContentViewControllerThroughPreview(with: cell.post)
+                                            return self.getContentViewController(with: cell.post)
         },
                                           actionProvider: actionProvider)
         
@@ -146,45 +146,68 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
             cell.handlePinAndRead()
             
         } else {
-            let vc = self.getContentViewControllerThroughPreview(with: cell.post)
-            self.navigationController?.pushViewController(vc, animated: true)
+            // Get contentVC from post
+            let contentVC = self.getContentViewController(with: cell.post)
+            
+            // Present contentVC through navigation controller
+            self.navigationController?.pushViewController(contentVC, animated: true)
         }
     }
     
     // Getting contentVC from post
-    func getContentViewControllerThroughPreview(with post: Post) -> ContentViewController {
-        guard let vc = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
+    func getContentViewController(with post: Post) -> ContentViewController {
+        guard let contentVC = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
             fatalError()
         }
         
-        vc.post = post
-        vc.onDismiss = {
+        // Set the post in contentVC
+        contentVC.post = post
+        
+        // Handling when contentVC is dismissed
+        contentVC.onDismiss = {
+            // Do this on main as it requires updating the user interface
             DispatchQueue.main.async {
+                // This updates the pinned items and read indicators and any updates made from contentVC
+                
+                // Reload announcementTableView
                 self.announcementTableView.reloadData()
-                self.reload(UILabel())
+                
+                // Reload data with the sender as contentVC
+                self.reload(contentVC)
             }
-            
         }
         
-        return vc
+        // Return contentVC
+        return contentVC
     }
     
     // Getting the contentViewController
     func getContentViewController(for indexPath: IndexPath) -> ContentViewController {
-        guard let vc = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
+        
+        // Getting contentVC
+        guard let contentVC = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
             fatalError()
         }
         
-        vc.post = selectedItem
+        /// The post is the `selectedItem` in this case
+        contentVC.post = selectedItem
         
-        vc.onDismiss = {
+        // Handling when contentVC is dismissed
+        contentVC.onDismiss = {
+            // Do this on main as it requires updating the user interface
             DispatchQueue.main.async {
+                // This updates the pinned items and read indicators and any updates made from contentVC
+                
+                // Reload announcementTableView
                 self.announcementTableView.reloadData()
-                self.reload(UILabel())
+                
+                // Reload data with the sender as contentVC
+                self.reload(contentVC)
             }
         }
         
-        return vc
+        // Return contentVC
+        return contentVC
     }
 
 }

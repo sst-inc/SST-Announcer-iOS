@@ -52,14 +52,20 @@ extension AnnouncementsViewController: UISearchBarDelegate {
                         
                         // [] colors will be Grey 1
                         
-                        let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: GlobalColors.blueTint, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)]
+                        // Setting font color and font
+                        let bracketStyle : [NSAttributedString.Key : Any] = [.foregroundColor: GlobalColors.blueTint,
+                                                                             .font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)]
                         
+                        // Add attributes
                         attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 1))
                     }
                 }
                 
+                // Escape to main thread to edit set attributedText to search field
                 DispatchQueue.main.async {
+                    // Add attributes to field
                     field?.attributedText = attrTitle
+                    
                 }
             }
             
@@ -92,8 +98,11 @@ extension AnnouncementsViewController: UISearchBarDelegate {
                 return newCat.contains(label)
             })
             
+            // Escape to main thread to update tableView
             DispatchQueue.main.async {
+                // Reload tableView's data
                 self.announcementTableView.reloadData()
+                
             }
         }
     }

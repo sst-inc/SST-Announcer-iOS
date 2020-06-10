@@ -44,6 +44,9 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             // There's probably no wifi
             return 0
         }
+        
+        // If it is not searching, that means there will be 2 sections
+        // Pinned announcements and All announcements
         return 2
     }
     
@@ -92,7 +95,13 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: GlobalIdentifier.announcementCell, for: indexPath) as! AnnouncementTableViewCell
         
         if posts == nil {
+            // Handles when posts do not exist aka it is loading or no internet
+            
+            // Start loading indicator (the fancy animations over the content)
             cell.startLoader()
+            
+            // When loading, disable interactivity with tableView
+            // Therefore, disable scrolling and selecting
             tableView.isScrollEnabled = false
             tableView.allowsSelection = false
         } else {
