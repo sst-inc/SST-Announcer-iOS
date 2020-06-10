@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uI2-ze-bQz">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Timetable-->
+        <scene sceneID="QhN-lk-Vwb">
+            <objects>
+                <viewController id="GJI-ha-qIi" customClass="TimetableViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rmg-hs-vh3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is Announcer Timetable?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLu-M7-Ulr">
+                                <rect key="frame" x="20" y="160" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TT7-t0-JmK">
+                                <rect key="frame" x="16" y="189" width="382" height="587"/>
+                                <color key="backgroundColor" name="Background"/>
+                                <string key="text">Announcer Timetable is a beta feature that allows you to keep track of your timetable simply using Announcer. 
+
+Stay on top of your day with notifications on which class is happening next. 
+
+Keep track of your classes with the Today Widget. Glance over at your device to check your timetable, without unlocking your device.
+
+Announcer Timetable works by having you select your class and when you want your alert to be. You no longer need to set your phone wallpaper as your timetable.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RpD-jZ-fiL">
+                                <rect key="frame" x="20" y="792" width="374" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ug8-9Z-P0q"/>
+                                </constraints>
+                                <color key="tintColor" name="Background"/>
+                                <state key="normal" title="Get Started"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="Background"/>
+                        <constraints>
+                            <constraint firstItem="TT7-t0-JmK" firstAttribute="leading" secondItem="BFV-Oq-cEf" secondAttribute="leading" constant="16" id="4fW-f5-Qqc"/>
+                            <constraint firstItem="BFV-Oq-cEf" firstAttribute="trailing" secondItem="RpD-jZ-fiL" secondAttribute="trailing" constant="20" id="7gz-8r-jdM"/>
+                            <constraint firstItem="BFV-Oq-cEf" firstAttribute="trailing" secondItem="oLu-M7-Ulr" secondAttribute="trailing" constant="20" id="Etl-hz-dt7"/>
+                            <constraint firstItem="oLu-M7-Ulr" firstAttribute="leading" secondItem="BFV-Oq-cEf" secondAttribute="leading" constant="20" id="PLk-7p-yyy"/>
+                            <constraint firstItem="BFV-Oq-cEf" firstAttribute="bottom" secondItem="RpD-jZ-fiL" secondAttribute="bottom" constant="20" id="ZxQ-qk-e0S"/>
+                            <constraint firstItem="oLu-M7-Ulr" firstAttribute="top" secondItem="BFV-Oq-cEf" secondAttribute="top" constant="20" id="beK-km-azQ"/>
+                            <constraint firstItem="RpD-jZ-fiL" firstAttribute="top" secondItem="TT7-t0-JmK" secondAttribute="bottom" constant="16" id="gzx-6n-FP0"/>
+                            <constraint firstItem="BFV-Oq-cEf" firstAttribute="trailing" secondItem="TT7-t0-JmK" secondAttribute="trailing" constant="16" id="h7m-IO-0EZ"/>
+                            <constraint firstItem="RpD-jZ-fiL" firstAttribute="leading" secondItem="BFV-Oq-cEf" secondAttribute="leading" constant="20" id="hSd-s7-65l"/>
+                            <constraint firstItem="TT7-t0-JmK" firstAttribute="top" secondItem="oLu-M7-Ulr" secondAttribute="bottom" constant="8" id="oL2-8g-Ily"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BFV-Oq-cEf"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Timetable" id="26Q-Ir-Jga">
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="Sb2-pP-ydS"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="getStartedButton" destination="RpD-jZ-fiL" id="Xj8-dN-YAq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="41A-4S-2hN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3500.0000000000005" y="132.58928571428572"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2m0-Ig-SkE">
+            <objects>
+                <viewController id="7wI-fn-SbU" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WTF-Rr-ND6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="52u-3k-arj"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oQC-Li-nss" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4242" y="133"/>
+        </scene>
+        <!--Timetable Navigation View Controller-->
+        <scene sceneID="hdz-Mq-uv2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uI2-ze-bQz" customClass="TimetableNavigationViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="hR5-ll-Ioc">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GJI-ha-qIi" kind="relationship" relationship="rootViewController" id="W2j-lr-zZo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9iD-GR-CXB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2589.8550724637685" y="132.58928571428572"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" name="Grey 1"/>
+    <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="Background">
+            <color red="0.96078431372549022" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Grey 1">
+            <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

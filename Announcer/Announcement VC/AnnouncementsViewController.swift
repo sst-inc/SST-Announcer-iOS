@@ -149,6 +149,12 @@ class AnnouncementsViewController: UIViewController {
         }
     }
     
+    @IBAction func openTimetable(_ sender: Any) {
+        let vc = Storyboards.timetable.instantiateInitialViewController()!
+        
+        present(vc, animated: true)
+    }
+    
     /// Receiving post from push notifications
     func receivePost(with post: Post) {
         selectedItem = post

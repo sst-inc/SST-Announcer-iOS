@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -138,6 +138,11 @@
 		32D99542238C068F00208D25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D99540238C068F00208D25 /* LaunchScreen.storyboard */; };
 		32D9954C238D865600208D25 /* AnnouncementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954B238D865600208D25 /* AnnouncementsViewController.swift */; };
 		32D9954E238D87D200208D25 /* AnnouncementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */; };
+		32E28CF02490CB26006D623C /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CEF2490CB26006D623C /* TimetableViewController.swift */; };
+		32E28CF32490D0A5006D623C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 32E28CF22490D0A5006D623C /* Alamofire */; };
+		32E28CF62490E025006D623C /* Timetable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32E28CF42490E025006D623C /* Timetable.storyboard */; };
+		32E28CF92490EE95006D623C /* TimetableNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CF82490EE94006D623C /* TimetableNavigationViewController.swift */; };
+		32E28CFD2490F2F7006D623C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CFC2490F2F7006D623C /* Keys.swift */; };
 		32E9B4D923A3D86F000F769F /* AnnouncementPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */; };
 		32FA680D247FF9420077E030 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA680C247FF9420077E030 /* Variables.swift */; };
 		32FA680F247FF95B0077E030 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA680E247FF95B0077E030 /* Functions.swift */; };
@@ -298,6 +303,10 @@
 		32D99543238C068F00208D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32D9954B238D865600208D25 /* AnnouncementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsViewController.swift; sourceTree = "<group>"; };
 		32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableViewCell.swift; sourceTree = "<group>"; };
+		32E28CEF2490CB26006D623C /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
+		32E28CF52490E025006D623C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Timetable.storyboard; sourceTree = "<group>"; };
+		32E28CF82490EE94006D623C /* TimetableNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableNavigationViewController.swift; sourceTree = "<group>"; };
+		32E28CFC2490F2F7006D623C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementPreviewing.swift; sourceTree = "<group>"; };
 		32FA680C247FF9420077E030 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		32FA680E247FF95B0077E030 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
@@ -312,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57932F273AA9112D178ED0D9 /* Pods_Announcer.framework in Frameworks */,
+				32E28CF32490D0A5006D623C /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,12 +658,22 @@
 				32E9B4D423A38D88000F769F /* Storyboards */,
 				32E9B4D123A38D3C000F769F /* Content VC */,
 				32E9B4D223A38D4E000F769F /* Filter VC */,
+				32E28CF72490EDC3006D623C /* Timetable VC */,
 				32B7C44724895BD0009D160F /* Split View Controller */,
 				324577D4238F7F6D00730F17 /* Announcement VC */,
 				32E9B4D523A38D9A000F769F /* Libraries */,
 				32D99543238C068F00208D25 /* Info.plist */,
 			);
 			path = Announcer;
+			sourceTree = "<group>";
+		};
+		32E28CF72490EDC3006D623C /* Timetable VC */ = {
+			isa = PBXGroup;
+			children = (
+				32E28CEF2490CB26006D623C /* TimetableViewController.swift */,
+				32E28CF82490EE94006D623C /* TimetableNavigationViewController.swift */,
+			);
+			path = "Timetable VC";
 			sourceTree = "<group>";
 		};
 		32E9B4D123A38D3C000F769F /* Content VC */ = {
@@ -694,6 +714,7 @@
 		32E9B4D423A38D88000F769F /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				32E28CF42490E025006D623C /* Timetable.storyboard */,
 				32C4059824534617006CA49E /* Content.storyboard */,
 				32D7070B247A894E003DC98C /* Filter.storyboard */,
 				32D9953B238C068D00208D25 /* Main.storyboard */,
@@ -715,6 +736,7 @@
 			isa = PBXGroup;
 			children = (
 				324576F8238D8E0E00730F17 /* Constants.swift */,
+				32E28CFC2490F2F7006D623C /* Keys.swift */,
 				32FA680C247FF9420077E030 /* Variables.swift */,
 				32FA680E247FF95B0077E030 /* Functions.swift */,
 				32FA6810247FFAC20077E030 /* PostStruct.swift */,
@@ -751,6 +773,9 @@
 			dependencies = (
 			);
 			name = Announcer;
+			packageProductDependencies = (
+				32E28CF22490D0A5006D623C /* Alamofire */,
+			);
 			productName = Announcer;
 			productReference = 32D99532238C068D00208D25 /* SST Announcer.app */;
 			productType = "com.apple.product-type.application";
@@ -782,6 +807,9 @@
 				Base,
 			);
 			mainGroup = 32D99529238C068D00208D25;
+			packageReferences = (
+				32E28CF12490D0A5006D623C /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 32D99533238C068D00208D25 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -798,6 +826,7 @@
 			files = (
 				32D7070524783054003DC98C /* README.md in Resources */,
 				32D99542238C068F00208D25 /* LaunchScreen.storyboard in Resources */,
+				32E28CF62490E025006D623C /* Timetable.storyboard in Resources */,
 				329E3B1D23F979CC00524901 /* Settings.bundle in Resources */,
 				32D9953F238C068F00208D25 /* Assets.xcassets in Resources */,
 				32D9953D238C068D00208D25 /* Main.storyboard in Resources */,
@@ -889,8 +918,10 @@
 				324577A8238E53A100730F17 /* MediaNamespace.swift in Sources */,
 				32457792238E53A100730F17 /* RSSFeedItemGUID.swift in Sources */,
 				32457794238E53A100730F17 /* RSSFeedCloud.swift in Sources */,
+				32E28CF92490EE95006D623C /* TimetableNavigationViewController.swift in Sources */,
 				32457789238E53A100730F17 /* AtomFeedSubtitle.swift in Sources */,
 				32457788238E53A100730F17 /* AtomFeed + mapAttributes.swift in Sources */,
+				32E28CFD2490F2F7006D623C /* Keys.swift in Sources */,
 				324577A0238E53A100730F17 /* iTunesSubCategory.swift in Sources */,
 				3245777C238E53A100730F17 /* AtomFeedEntryContributor.swift in Sources */,
 				324577C6238E53A200730F17 /* XMLFeedType.swift in Sources */,
@@ -927,6 +958,7 @@
 				32457799238E53A100730F17 /* RSSFeedItemSource.swift in Sources */,
 				32D9954C238D865600208D25 /* AnnouncementsViewController.swift in Sources */,
 				32457791238E53A100730F17 /* RSSFeedSkipDay.swift in Sources */,
+				32E28CF02490CB26006D623C /* TimetableViewController.swift in Sources */,
 				324577CA238E53A200730F17 /* XMLFeedParser.swift in Sources */,
 				32FA6813247FFAE30077E030 /* LinksStruct.swift in Sources */,
 				324577D0238E53A200730F17 /* Date + codingStrategy.swift in Sources */,
@@ -1004,6 +1036,14 @@
 				32D99541238C068F00208D25 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		32E28CF42490E025006D623C /* Timetable.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32E28CF52490E025006D623C /* Base */,
+			);
+			name = Timetable.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1199,6 +1239,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		32E28CF12490D0A5006D623C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		32E28CF22490D0A5006D623C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 32E28CF12490D0A5006D623C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 32D9952A238C068D00208D25 /* Project object */;
 }
