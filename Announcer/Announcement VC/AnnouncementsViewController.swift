@@ -24,9 +24,16 @@ class AnnouncementsViewController: UIViewController {
                 if self.posts != nil {
                     self.addItemsToCoreSpotlight()
                     
+                    // Handling iPadOS splitVC
                     if let splitVC = self.splitViewController as? SplitViewController {
+                        
+                        // Get first or selected cell
                         let cell = self.tableView(self.announcementTableView, cellForRowAt: self.selectedPath) as? AnnouncementTableViewCell
+                        
+                        // Set content of posts
                         splitVC.contentVC.post = cell?.post
+                        
+                        // Show contentVC
                         splitVC.show(splitVC.contentVC, sender: nil)
                     }
                 }

@@ -171,15 +171,25 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         
         selectedItem = cell.post
         
+        // Highlight post if it should be highlighted
+        // On start, it would be the first cell
+        // Otherwise, it is whatever cell is previously highlighted
         cell.highlightPost = indexPath == selectedPath
         
-        tableView.deselectRow(at: indexPath, animated: true)
+        // Deselect the row so as to avoid weird animation issues
+        tableView.deselectRow(at: indexPath, animated: false)
         
         // Appending posts to read posts
+        // - Getting read announcements from file
         var readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
+        
+        // - Adding the read announcement to the new array
         readAnnouncements.append(cell.post)
+        
+        // - Save announcements to file
         ReadAnnouncements.saveToFile(posts: readAnnouncements)
         
+        // Updating and going to contentVC
         if let splitVC = splitViewController as? SplitViewController {
             // Getting the post from cell and setting it in the ContentVC
             splitVC.contentVC.post = cell.post
@@ -198,8 +208,10 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             // Update the Cell's UI based on whether it is read or unread
             cell.handlePinAndRead()
         } else {
-            let vc = getContentViewController(for: indexPath)
-            navigationController?.pushViewController(vc, animated: true)
+            let contentVC = getContentViewController(for: indexPath)
+            
+            // Present contentVC via navigation controller
+            navigationController?.pushViewController(contentVC, animated: true)
         }
     }
     
@@ -234,7 +246,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         return swipeConfig
     }
     
-    //Swipe Function Handlers
+    // MARK: - Swipe Function Handlers
     //Pin Handlers
     func pinPost(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         // Register the cell
@@ -354,7 +366,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         #if targetEnvironment(macCatalyst)
-            print("oh")
+        // Disabled scroll selection on mac catalyst
         #else
             if !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
                 resetScroll()
