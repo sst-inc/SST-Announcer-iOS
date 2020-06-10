@@ -24,10 +24,17 @@ class AnnouncementsViewController: UIViewController {
                 if self.posts != nil {
                     self.addItemsToCoreSpotlight()
                     
+                    // Handling iPadOS splitVC
                     if let splitVC = self.splitViewController as? SplitViewController {
+                        
+                        // Get first or selected cell
                         let cell = self.tableView(self.announcementTableView, cellForRowAt: self.selectedPath) as? AnnouncementTableViewCell
-                        splitVC.contentViewController.post = cell?.post
-                        splitVC.show(splitVC.contentViewController, sender: nil)
+                        
+                        // Set content of posts
+                        splitVC.contentVC.post = cell?.post
+                        
+                        // Show contentVC
+                        splitVC.show(splitVC.contentVC, sender: nil)
                     }
                 }
             }
@@ -146,26 +153,32 @@ class AnnouncementsViewController: UIViewController {
     func receivePost(with post: Post) {
         selectedItem = post
         
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            let vc = (splitViewController as? SplitViewController)?.contentViewController
+        /// iPad uses splitVC, therefore, when recieving a post, it must handle it though splitVC
+        /// Getting contentVC from splitViewController but handling it as an optional as there is a chance user is on iPhone which will make `splitViewController`'s value `nil`
+        if let contentVC = (splitViewController as? SplitViewController)?.contentVC {
+            // Setting post in contentVC to itself
+            contentVC.post = post
             
-            vc!.post = post
         } else {
-            let vc = getContentViewController(for: IndexPath(row: 0, section: 0))
+            /// Getting contentViewController with `post`
+            let contentVC = getContentViewController(with: post)
             
-            navigationController?.pushViewController(vc, animated: true)
+            // Push navigation controller
+            navigationController?.pushViewController(contentVC, animated: true)
         }
     }
     
     /// Get filter view controller and open it up
     func openFilter() {
-        let nvc = Storyboards.filter.instantiateInitialViewController() as! UINavigationController
+        // Getting navigation controller from filter storyboard
+        let filterNVC = Storyboards.filter.instantiateInitialViewController() as! UINavigationController
         
-        let vc = nvc.children.first as! FilterTableViewController
+        // Get filterViewController from navigationController
+        let filterVC = filterNVC.children.first as! FilterTableViewController
         
         // Set onDismiss actions that will run when we dismiss the other vc
         // this void should reload tableview etc.
-        vc.onDismiss = {
+        filterVC.onDismiss = {
             // Set search bar text
             self.searchField.text = "[\(filter)]"
             
@@ -179,10 +192,11 @@ class AnnouncementsViewController: UIViewController {
             filter = ""
         }
         
-        self.present(nvc, animated: true)
+        // Present filter navigation controller
+        self.present(filterNVC, animated: true)
     }
     
-    // Save items to spotlight search
+    /// Save items to spotlight search
     func addItemsToCoreSpotlight() {
         
         /// So that it does not crash when `posts` gets forced unwrapped
@@ -204,10 +218,14 @@ class AnnouncementsViewController: UIViewController {
             /// Setting the content description so when the user previews the announcement through spotlight search, they can see the content description
             attributeSet.contentDescription = post.content.condenseLinebreaks().htmlToString
             
+            // Creating the searchable item from the attributesSet
             let item = CSSearchableItem(uniqueIdentifier: "\(post.title)", domainIdentifier: Bundle.main.bundleIdentifier!, attributeSet: attributeSet)
             
+            // Setting the expiration date to distant future
+            // So that it will not expire, at least not in 2000 years
             item.expirationDate = Date.distantFuture
             
+            // Return the item
             return item
         })
         
@@ -215,13 +233,18 @@ class AnnouncementsViewController: UIViewController {
         CSSearchableIndex.default().indexSearchableItems(items) { error in
             // Make sure there is no error indexing everything
             if let error = error {
+                // An error occurred when indexing
+                // I do not exactly have a back-up plan on what to do in this case
+                // Mainly just have the spotlight search not work
                 print("Indexing error: \(error.localizedDescription)")
             } else {
+                // Items were indexed. We did it.
                 print("Search items successfully indexed!")
             }
         }
     }
     
+    /// Reload filter with new filter query
     func reloadFilter() {
         // Handling when a tag is selected from the ContentViewController
         if filter != "" {
@@ -242,7 +265,9 @@ class AnnouncementsViewController: UIViewController {
 
     }
     
+    /// Select `searchField` to bring up keyboard
     @objc func startSearching() {
+        // Set search field as first responder to bring up keyboard
         searchField.becomeFirstResponder()
     }
 }

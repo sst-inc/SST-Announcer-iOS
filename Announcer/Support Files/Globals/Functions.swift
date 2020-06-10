@@ -248,7 +248,7 @@ func launchPost(withTitle postTitle: String) {
     
     if UIDevice.current.userInterfaceIdiom == .pad {
         let splitVC = UIApplication.shared.windows.first?.rootViewController as! SplitViewController
-        announcementVC = splitVC.announcementViewController!
+        announcementVC = splitVC.announcementVC!
         
     } else {
         let navigationController = UIApplication.shared.windows.first?.rootViewController as! UINavigationController

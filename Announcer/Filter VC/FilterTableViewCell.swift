@@ -10,6 +10,8 @@ import UIKit
 
 class FilterTableViewCell: UITableViewCell {
 
+    // Store the filter title
+    // When set, update label
     var title = String() {
         didSet {
             // When the title variable is changed or set, update the titleLabel
@@ -17,13 +19,18 @@ class FilterTableViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var yellowView: UIView!
+    // Just a view with color and a corner radius
+    @IBOutlet weak var primaryView: UIView!
+    
+    // Contains the filter
     @IBOutlet weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        yellowView.layer.cornerRadius = 10
+        
+        // Curve the primary view
+        primaryView.layer.cornerRadius = 10
     }
 
 }

@@ -378,7 +378,7 @@ class ContentViewController: UIViewController {
         if let splitVC = splitViewController as? SplitViewController {
             
             // Getting announcementVC
-            let announcementVC = splitVC.announcementViewController!
+            let announcementVC = splitVC.announcementVC!
             
             // Reload data on announcementTableView
             announcementVC.announcementTableView.reloadData()

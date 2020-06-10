@@ -17,14 +17,11 @@ extension ContentViewController: UIPointerInteractionDelegate {
     func pointerInteraction(_ interaction: UIPointerInteraction, styleFor region: UIPointerRegion) -> UIPointerStyle? {
         // If the view is a button, create interaction frame to be a little larger
         if interaction.view is UIButton {
-            // Expansion constant is a constant value added to the width and height of the button to make the cursor scale in size when hovering over button
-            let expansionConstant: CGFloat = 5
-            
             // Creating the frame of the cursor expansion
             let frame = CGRect(x: 0,
                                y: 0,
-                               width: interaction.view!.frame.width + expansionConstant,
-                               height: interaction.view!.frame.height + expansionConstant)
+                               width: interaction.view!.frame.width + GlobalIdentifier.expansionConstant,
+                               height: interaction.view!.frame.height + GlobalIdentifier.expansionConstant)
             
             // Round corners of selection
             return .init(shape: UIPointerShape.roundedRect(frame, radius: 30))

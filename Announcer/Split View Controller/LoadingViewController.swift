@@ -8,6 +8,8 @@
 
 import UIKit
 
+// The only purpose of this View Controller is to show a loading indicator
+// Other than styling the indicator, nothing else is done here, no interaction whatsoever
 class LoadingViewController: UIViewController {
 
     var loadingIndicator: UIActivityIndicatorView!
@@ -56,22 +58,4 @@ class LoadingViewController: UIViewController {
         // Update self.loadingIndicator with the new indicator
         self.loadingIndicator = loadingIndicator
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

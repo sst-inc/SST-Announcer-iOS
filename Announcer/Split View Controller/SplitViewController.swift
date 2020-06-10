@@ -10,8 +10,11 @@ import UIKit
 
 class SplitViewController: UISplitViewController {
 
-    let contentViewController = Storyboards.content.instantiateInitialViewController() as! ContentViewController
-    var announcementViewController: AnnouncementsViewController!
+    // Getting contentVC from storyboards
+    let contentVC = Storyboards.content.instantiateInitialViewController() as! ContentViewController
+    
+    // announcementVC is set through viewDidLoad
+    var announcementVC: AnnouncementsViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +23,7 @@ class SplitViewController: UISplitViewController {
         
         // Setting announcerViewController
         let navigationController = children[0] as! UINavigationController
-        announcementViewController = navigationController.visibleViewController as? AnnouncementsViewController
+        announcementVC = navigationController.visibleViewController as? AnnouncementsViewController
         
         // Show loading vc
         // Loading VC will be replaced by contentVC when the data has finished loading in AnnouncementVC
@@ -34,6 +37,7 @@ class SplitViewController: UISplitViewController {
     }
     
     override var keyCommands: [UIKeyCommand]? {
+        // Search for announcements using Cmd F
         let search = UIKeyCommand(title: "Search",
                                   image: UIImage(systemName: "magnifyingglass"),
                                   action: #selector(startSearching),
@@ -42,14 +46,17 @@ class SplitViewController: UISplitViewController {
                                   discoverabilityTitle: "Search",
                                   state: .mixed)
         
+        
+        // Reload announcements using Cmd R
         let reload = UIKeyCommand(title: "Reload",
                                   image: UIImage(systemName: "arrow.clockwise"),
-                                  action: #selector(reloadView),
+                                  action: #selector(reloadPosts),
                                   input: "r",
                                   modifierFlags: .command,
                                   discoverabilityTitle: "Reload",
                                   state: .mixed)
         
+        // Filter announcements using Cmd Shift F
         let filter = UIKeyCommand(title: "Filter Posts",
                                   image: Assets.filter,
                                   action: #selector(filterPosts),
@@ -58,6 +65,7 @@ class SplitViewController: UISplitViewController {
                                   discoverabilityTitle: "Filter Posts",
                                   state: .mixed)
         
+        // Share announcement using Cmd S
         let share = UIKeyCommand(title: "Share",
                                   image: Assets.share,
                                   action: #selector(sharePost),
@@ -66,6 +74,7 @@ class SplitViewController: UISplitViewController {
                                   discoverabilityTitle: "Share Post",
                                   state: .mixed)
         
+        // Pin announcement using Cmd P
         let pin = UIKeyCommand(title: "Pin",
                                image: Assets.pin,
                                action: #selector(pinPost),
@@ -74,6 +83,7 @@ class SplitViewController: UISplitViewController {
                                discoverabilityTitle: "Pin Post",
                                state: .mixed)
         
+        // Open announcement in Safari using Cmd Shift S
         let safari = UIKeyCommand(title: "Open in Safari",
                                   image: Assets.safari,
                                   action: #selector(pinPost),
@@ -82,6 +92,7 @@ class SplitViewController: UISplitViewController {
                                   discoverabilityTitle: "Open in Safari",
                                   state: .mixed)
         
+        // Open App's settings using Cmd ,
         let settings = UIKeyCommand(title: "Settings",
                                   image: Assets.settings,
                                   action: #selector(openSettings),
@@ -137,100 +148,118 @@ class SplitViewController: UISplitViewController {
                 downArrow, upArrow, rightArrow, leftArrow]
     }
 
+    // Selecting search bar
     @objc func startSearching() {
-        announcementViewController.searchField.becomeFirstResponder()
+        // Get announcementVC and make searchField first responder
+        // This will push the keyboard and select the search field
+        announcementVC.searchField.becomeFirstResponder()
     }
     
-    @objc func reloadView() {
-        announcementViewController.reload(self)
+    // Reload posts
+    @objc func reloadPosts() {
+        // Get announcementVC and call the reload @IBAction function
+        /// Set the sender to `SplitViewController`, aka `self`
+        announcementVC.reload(self)
     }
     
+    // Open filters
     @objc func filterPosts() {
-        announcementViewController.openFilter()
+        // Get announcementVC and open filter
+        announcementVC.openFilter()
     }
     
+    // Share post
     @objc func sharePost() {
-        contentViewController.sharePost(self)
+        // Get contentVC and call the sharePost @IBAction function
+        /// Set the sender to `SplitViewController`, aka `self`
+        contentVC.sharePost(self)
     }
     
+    // Pin post
     @objc func pinPost() {
-        contentViewController.pinnedItem(self)
+        // Get contentVC and call the pinPost @IBAction function
+        /// Set the sender to `SplitViewController`, aka `self`
+        contentVC.pinnedItem(self)
     }
     
+    // Reset zoom
     @objc func resetPostZoom() {
         // Creating attributed text
-        let attr = NSMutableAttributedString(attributedString: contentViewController.contentTextView.attributedText)
+        let attr = NSMutableAttributedString(attributedString: contentVC.contentTextView.attributedText)
         
         // Setting currentScale
-        contentViewController.currentScale = GlobalIdentifier.defaultFontSize
+        contentVC.currentScale = GlobalIdentifier.defaultFontSize
         
         // New font size and style
-        let font = UIFont.systemFont(ofSize: contentViewController.currentScale, weight: .medium)
+        let font = UIFont.systemFont(ofSize: contentVC.currentScale, weight: .medium)
         
         // Setting text color using NSAttributedString
         attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
         
         // Setting attributedText on contentTextView
-        contentViewController.contentTextView.attributedText = attr
+        contentVC.contentTextView.attributedText = attr
         
         // Updating UserDefaults with the new scale
-        UserDefaults.standard.set(contentViewController.currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
+        UserDefaults.standard.set(contentVC.currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
     }
     
+    // Zoom in cmd = or cmd + is used
     @objc func zoomInPost() {
         // Creating attributed text
-        let attr = NSMutableAttributedString(attributedString: contentViewController.contentTextView.attributedText)
+        let attr = NSMutableAttributedString(attributedString: contentVC.contentTextView.attributedText)
         
         // Setting currentScale
         // Limit is 50
-        contentViewController.currentScale = {
-            (round(contentViewController.currentScale / 5) + 1) * 5
+        contentVC.currentScale = {
+            (round(contentVC.currentScale / 5) + 1) * 5
         }()
         
         // New font size and style
-        let font = UIFont.systemFont(ofSize: contentViewController.currentScale, weight: .medium)
+        let font = UIFont.systemFont(ofSize: contentVC.currentScale, weight: .medium)
         
         // Setting text color using NSAttributedString
         attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
         
         // Setting attributedText on contentTextView
-        contentViewController.contentTextView.attributedText = attr
+        contentVC.contentTextView.attributedText = attr
         
         // Updating UserDefaults with the new scale
-        UserDefaults.standard.set(contentViewController.currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
+        UserDefaults.standard.set(contentVC.currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
     }
     
+    // Zoom out cmd - is used
     @objc func zoomOutPost() {
         // Creating attributed text
-        let attr = NSMutableAttributedString(attributedString: contentViewController.contentTextView.attributedText)
+        let attr = NSMutableAttributedString(attributedString: contentVC.contentTextView.attributedText)
         
         // Setting currentScale
         // Limit is 50
-        contentViewController.currentScale = {
-            (round(contentViewController.currentScale / 5) - 1) * 5
+        contentVC.currentScale = {
+            (round(contentVC.currentScale / 5) - 1) * 5
         }()
         
         // New font size and style
-        let font = UIFont.systemFont(ofSize: contentViewController.currentScale, weight: .medium)
+        let font = UIFont.systemFont(ofSize: contentVC.currentScale, weight: .medium)
         
         // Setting text color using NSAttributedString
         attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
         
         // Setting attributedText on contentTextView
-        contentViewController.contentTextView.attributedText = attr
+        contentVC.contentTextView.attributedText = attr
         
         // Updating UserDefaults with the new scale
-        UserDefaults.standard.set(contentViewController.currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
+        UserDefaults.standard.set(contentVC.currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
     }
     
+    /// Open next post
     @objc func nextPost() {
-        var path = announcementViewController.selectedPath
+        var path = announcementVC.selectedPath
         
         // Get items in each section
-        let itemsInSegment = announcementViewController.announcementTableView.numberOfRows(inSection: path.section)
+        let itemsInSegment = announcementVC.announcementTableView.numberOfRows(inSection: path.section)
         
         // Get number of sections
-        let numberOfSegments = announcementViewController.announcementTableView.numberOfSections
+        let numberOfSegments = announcementVC.announcementTableView.numberOfSections
         
         if path.row > itemsInSegment - 2 && path.section == numberOfSegments - 1 { return }
         
@@ -243,18 +272,18 @@ class SplitViewController: UISplitViewController {
         }
         
         // Update tableView
-        announcementViewController.tableView(announcementViewController.announcementTableView,
+        announcementVC.tableView(announcementVC.announcementTableView,
                                              didSelectRowAt: path)
         
         // Scroll to the row
-        announcementViewController.announcementTableView.scrollToRow(at: {
+        announcementVC.announcementTableView.scrollToRow(at: {
             // Create a newPath that will push out the row before
             // If it is the first row, just use the first row
             // This fixes the crash bug when the TableView is scrolling
             
             var newPath = path
             
-            let itemsInNewSegment = announcementViewController.announcementTableView.numberOfRows(inSection: newPath.section)
+            let itemsInNewSegment = announcementVC.announcementTableView.numberOfRows(inSection: newPath.section)
             
             if newPath.row != itemsInNewSegment - 1 {
                 newPath.row += 1
@@ -268,15 +297,16 @@ class SplitViewController: UISplitViewController {
                                                                      animated: true)
     }
     
+    /// Open previous post
     @objc func previousPost() {
-        var path = announcementViewController.selectedPath
+        var path = announcementVC.selectedPath
         
         // Handling if it is the first IndexPath
         if path == IndexPath(row: 0, section: 0) { return }
         
         if path.row == 0 {
             // Handling first row but not the first section
-            let numberOfRows = announcementViewController.announcementTableView.numberOfRows(inSection: 0)
+            let numberOfRows = announcementVC.announcementTableView.numberOfRows(inSection: 0)
             
             path = IndexPath(row: numberOfRows - 1, section: 0)
             
@@ -287,7 +317,7 @@ class SplitViewController: UISplitViewController {
         }
         
         // Scroll to the cell, so it does not crash
-        announcementViewController.announcementTableView.scrollToRow(at: {
+        announcementVC.announcementTableView.scrollToRow(at: {
             // Create a newPath that will push out the row before
             // If it is the first row, just use the first row
             // This fixes the crash bug when the TableView is scrolling
@@ -295,25 +325,32 @@ class SplitViewController: UISplitViewController {
             var newPath = path
             
             if path.row != 0 {
+                // In this case, it is ok to subtract 1
                 newPath.row -= 1
             } else if path.section == 1 {
+                // In this case, change the section
                 newPath.section -= 1
             }
+            // Otherwise, do not do anything
             
+            // Return the new path and scroll to the new path
             return newPath
         }(),
                                                                      at: .top,
                                                                      animated: true)
         
         // Update tableViewCell and content
-        announcementViewController.tableView(announcementViewController.announcementTableView,
+        announcementVC.tableView(announcementVC.announcementTableView,
                                              didSelectRowAt: path)
 
     }
     
+    /// Open Settings app and go to the SST Announcer tab
     @objc func openSettings() {
+        // Getting settings URL from app
         let settings = UIApplication.openSettingsURLString
         
+        // Open settings url (in the Settings app)
         UIApplication.shared.open(URL(string: settings)!)
     }
 

@@ -46,7 +46,7 @@ class FilterTableViewController: UITableViewController {
                                                 constant: 0)
         ])
 
-        
+        // Add the indicator to subview
         view.addSubview(loadingIndicator)
     }
     
