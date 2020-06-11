@@ -214,46 +214,53 @@ struct Assets {
     
     // Subject icons
     // Key: Subject Name, Item: image
-    static let subjectIcons = ["el"       : UIImage(systemName: "book")!,                             // 􀉚
-                               "math"     : UIImage(systemName: "x.squareroot")!,                     // 􀓪
-                               "s&w"      : UIImage(systemName: "sportscourt")!,                      // 􀝐
-                               "hum"      : UIImage(systemName: "person")!,                           // 􀉩
-                               "sci"      : UIImage(systemName: "thermometer")!,                      // 􀇬
+    static func getSubject(_ identifier: String, font: UIFont) -> (UIImage, String) {
+        let subjectIcons = ["el"       : ["book", "English"],                               // 􀉚
+                            "math"     : ["x.squareroot", "Math"],                          // 􀓪
+                            "s&w"      : ["sportscourt", "Sports & Wellness"],              // 􀝐
+                            "hum"      : ["person", "Humanities"],                          // 􀉩
+                            "sci"      : ["thermometer", "Science"],                        // 􀇬
+                           
+                            // Mother tongue
+                            "cl"       : ["globe", "Mother Tongue"],                        // 􀆪
+                            "ml"       : ["globe", "Mother Tongue"],                        // 􀆪
+                            "tl"       : ["globe", "Mother Tongue"],                        // 􀆪
+                           
+                            // Changemakers
+                            "cm(ict)"  : ["desktopcomputer", "ICT"],                        // 􀙗
+                            "cm(ps)"   : ["mic", "Presentation Skills"],                    // 􀊰
+                            "cm(admt)" : ["scribble", "ADMT"],                              // 􀓨
+                            "i&e"      : ["paperplane", "I&E"],   // 􀈟
+                            "cm lesson": ["lightbulb", "Changemakers"],                     // 􀛭
+                           
+                            // Applied Subjects
+                            "comp"     : ["chevron.left.slash.chevron.right", "Computing"], // 􀙚
+                            "elec"     : ["bolt", "Electronics"],                           // 􀋥
+                            "design"   : ["paintbrush", "Design Studies"],                  // 􀎑
+                            "biotech"  : ["leaf.arrow.circlepath", "Biotech"],              // 􀙜
+                           
+                            // Humanities
+                            "ch(ge)"   : ["mappin.and.ellipse", "Geography"],               // 􀎫
+                            "ch(he)"   : ["clock", "History"],                              // 􀐫
+                            "ss"       : ["flag", "Social Studies"],                        // 􀋉
+                           
+                            // Science
+                            "bio"      : ["hare", "Biology"],                               // 􀓎
+                            "phy"      : ["cube", "Physics"],                               // 􀐘
+                            "chem"     : ["flame", "Chemistry"],                            // 􀙬
+                           
+                            // Others
+                            "break"    : ["zzz", "Break"],                                 // 􀖃
+                            "adv/assb" : ["smiley", "Advisory/Assembly"],                  // 􀎸
+                            "cce"      : ["smiley", "CCE"],                                // 􀎸
+                            "other"    : ["studentdesk", identifier],                      // 􀑔
+        ]
         
-                               // Mother tongue
-                               "cl"       : UIImage(systemName: "globe")!,                            // 􀆪
-                               "ml"       : UIImage(systemName: "globe")!,                            // 􀆪
-                               "tl"       : UIImage(systemName: "globe")!,                            // 􀆪
+        let subject = subjectIcons[identifier] ?? subjectIcons["other"]!
+        let icon = UIImage(systemName: subject[0], withConfiguration: UIImage.SymbolConfiguration(font: font))!
         
-                               // Changemakers
-                               "cm(ict)"  : UIImage(systemName: "desktopcomputer")!,                  // 􀙗
-                               "cm(ps)"   : UIImage(systemName: "mic")!,                              // 􀊰
-                               "cm(admt)" : UIImage(systemName: "scribble")!,                         // 􀓨
-                               "cm(i&e)"  : UIImage(systemName: "paperplane")!,                       // 􀈟
-                               "cm lesson": UIImage(systemName: "lightbulb")!,                        // 􀛭
-                                    
-                               // Applied Subjects
-                               "comp"     : UIImage(systemName: "chevron.left.slash.chevron.right")!, // 􀙚
-                               "elec"     : UIImage(systemName: "bolt")!,                             // 􀋥
-                               "design"   : UIImage(systemName: "paintbrush")!,                       // 􀎑
-                               "biotech"  : UIImage(systemName: "leaf.arrow.circlepath")!,            // 􀙜
-        
-                               // Humanities
-                               "ch(ge)"   : UIImage(systemName: "zzz")!,                              // 􀖃
-                               "ch(he)"   : UIImage(systemName: "clock")!,                            // 􀐫
-                               "ss"       : UIImage(systemName: "flag")!,                             // 􀋉
-        
-                               // Science
-                               "bio"      : UIImage(systemName: "hare")!,                             // 􀓎
-                               "phy"      : UIImage(systemName: "cube")!,                             // 􀐘
-                               "chem"     : UIImage(systemName: "flame")!,                            // 􀙬
-
-                               // Others
-                               "break"    : UIImage(systemName: "zzz")!,                              // 􀖃
-                               "adv/assb" : UIImage(systemName: "smiley")!,                           // 􀎸
-                               "cce"      : UIImage(systemName: "smiley")!,                           // 􀎸
-                               "other"    : UIImage(systemName: "studentdesk")!,                      // 􀑔
-                               ]
+        return (icon, subject[1])
+    }
 }
 
 struct Storyboards {
