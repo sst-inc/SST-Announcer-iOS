@@ -211,6 +211,49 @@ struct Assets {
     static let zoomIn                   = UIImage(systemName: "plus.magnifyingglass")!
     static let zoomOut                  = UIImage(systemName: "minus.magnifyingglass")!
     static let resetZoom                = UIImage(systemName: "1.magnifyingglass")!
+    
+    // Subject icons
+    // Key: Subject Name, Item: image
+    static let subjectIcons = ["el"       : UIImage(systemName: "book")!,                             // 􀉚
+                               "math"     : UIImage(systemName: "x.squareroot")!,                     // 􀓪
+                               "s&w"      : UIImage(systemName: "sportscourt")!,                      // 􀝐
+                               "hum"      : UIImage(systemName: "person")!,                           // 􀉩
+                               "sci"      : UIImage(systemName: "thermometer")!,                      // 􀇬
+        
+                               // Mother tongue
+                               "cl"       : UIImage(systemName: "globe")!,                            // 􀆪
+                               "ml"       : UIImage(systemName: "globe")!,                            // 􀆪
+                               "tl"       : UIImage(systemName: "globe")!,                            // 􀆪
+        
+                               // Changemakers
+                               "cm(ict)"  : UIImage(systemName: "desktopcomputer")!,                  // 􀙗
+                               "cm(ps)"   : UIImage(systemName: "mic")!,                              // 􀊰
+                               "cm(admt)" : UIImage(systemName: "scribble")!,                         // 􀓨
+                               "cm(i&e)"  : UIImage(systemName: "paperplane")!,                       // 􀈟
+                               "cm lesson": UIImage(systemName: "lightbulb")!,                        // 􀛭
+                                    
+                               // Applied Subjects
+                               "comp"     : UIImage(systemName: "chevron.left.slash.chevron.right")!, // 􀙚
+                               "elec"     : UIImage(systemName: "bolt")!,                             // 􀋥
+                               "design"   : UIImage(systemName: "paintbrush")!,                       // 􀎑
+                               "biotech"  : UIImage(systemName: "leaf.arrow.circlepath")!,            // 􀙜
+        
+                               // Humanities
+                               "ch(ge)"   : UIImage(systemName: "zzz")!,                              // 􀖃
+                               "ch(he)"   : UIImage(systemName: "clock")!,                            // 􀐫
+                               "ss"       : UIImage(systemName: "flag")!,                             // 􀋉
+        
+                               // Science
+                               "bio"      : UIImage(systemName: "hare")!,                             // 􀓎
+                               "phy"      : UIImage(systemName: "cube")!,                             // 􀐘
+                               "chem"     : UIImage(systemName: "flame")!,                            // 􀙬
+
+                               // Others
+                               "break"    : UIImage(systemName: "zzz")!,                              // 􀖃
+                               "adv/assb" : UIImage(systemName: "smiley")!,                           // 􀎸
+                               "cce"      : UIImage(systemName: "smiley")!,                           // 􀎸
+                               "other"    : UIImage(systemName: "studentdesk")!,                      // 􀑔
+                               ]
 }
 
 struct Storyboards {

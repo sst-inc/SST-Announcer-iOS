@@ -150,7 +150,7 @@ class AnnouncementsViewController: UIViewController {
     }
     
     @IBAction func openTimetable(_ sender: Any) {
-        let vc = Storyboards.timetable.instantiateInitialViewController()!
+        let vc = Storyboards.timetable.instantiateInitialViewController() as! TTNavigationViewController
         
         present(vc, animated: true)
     }

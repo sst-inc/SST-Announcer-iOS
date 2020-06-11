@@ -218,8 +218,11 @@ class ContentViewController: UIViewController {
             // Optimising for iOS 13 dark mode
             attr?.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: (attr?.length)!))
             
-            // Set the attributed text
-            contentTextView.attributedText = attr
+            DispatchQueue.main.async {
+                // Set the attributed text
+                self.contentTextView.attributedText = attr
+            }
+            
         }
         
         // Check if item is pinned
@@ -227,49 +230,51 @@ class ContentViewController: UIViewController {
         //If is in pinnned
         let pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
         
-        // Fill/Don't fill pin
-        if pinnedItems.contains(post) {
-            // Set the isPinned variable
-            isPinned = true
+        DispatchQueue.main.async {
+            // Fill/Don't fill pin
+            if pinnedItems.contains(self.post) {
+                // Set the isPinned variable
+                self.isPinned = true
+                
+                // Updating the pinButton image to unpin
+                self.pinButton.setImage(Assets.unpin, for: .normal)
+            } else {
+                // Set the isPinned variable
+                self.isPinned = false
+                
+                // Updating the pinButton image to pin
+                self.pinButton.setImage(Assets.pin, for: .normal)
+            }
             
-            // Updating the pinButton image to unpin
-            pinButton.setImage(Assets.unpin, for: .normal)
-        } else {
-            // Set the isPinned variable
-            isPinned = false
+            // Set textField delegate
+            self.contentTextView.delegate = self
             
-            // Updating the pinButton image to pin
-            pinButton.setImage(Assets.pin, for: .normal)
+            // Hide the labels if there are none
+            if self.post.categories.count == 0 {
+                self.labelsView.isHidden = true
+                self.seperatorView.isHidden = true
+            } else {
+                self.labelsView.isHidden = false
+            }
+            
+            // Styling default font size button
+            // Create a button of corner radius 20
+            self.defaultFontSizeButton.layer.cornerRadius = 20
+            self.defaultFontSizeButton.clipsToBounds = true
+            
+            // Hide the button until needed
+            self.defaultFontSizeButton.isHidden = true
+            
+            // Setting corner radii for the scrollSelection buttons to allow for the circular highlight
+            self.safariButton.layer.cornerRadius = 25 / 2
+            self.backButton.layer.cornerRadius = 25 / 2
+            self.shareButton.layer.cornerRadius = 25 / 2
+            self.pinButton.layer.cornerRadius = 25 / 2
+            
+            // Hide links view while loading links
+            self.linksView.isHidden = true
+
         }
-        
-        // Set textField delegate
-        contentTextView.delegate = self
-        
-        // Hide the labels if there are none
-        if post.categories.count == 0 {
-            labelsView.isHidden = true
-            seperatorView.isHidden = true
-        } else {
-            labelsView.isHidden = false
-        }
-        
-        // Styling default font size button
-        // Create a button of corner radius 20
-        defaultFontSizeButton.layer.cornerRadius = 20
-        defaultFontSizeButton.clipsToBounds = true
-        
-        // Hide the button until needed
-        defaultFontSizeButton.isHidden = true
-        
-        // Setting corner radii for the scrollSelection buttons to allow for the circular highlight
-        safariButton.layer.cornerRadius = 25 / 2
-        backButton.layer.cornerRadius = 25 / 2
-        shareButton.layer.cornerRadius = 25 / 2
-        pinButton.layer.cornerRadius = 25 / 2
-        
-        // Hide links view while loading links
-        linksView.isHidden = true
-        
         // Load in links asyncronously as it takes a while to generate images etc. for images
         DispatchQueue.global(qos: .utility).async {
             self.links = []

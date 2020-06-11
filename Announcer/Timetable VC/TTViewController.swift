@@ -1,5 +1,5 @@
 //
-//  TimetableNavigationViewController.swift
+//  TimetableViewController.swift
 //  Announcer
 //
 //  Created by JiaChen(: on 10/6/20.
@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import Alamofire
+import PDFKit
 
-class TimetableNavigationViewController: UINavigationController {
+class TTViewController: UIViewController {
 
+    @IBOutlet weak var getStartedButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getStartedButton.layer.cornerRadius = 10
+        
         // Do any additional setup after loading the view.
     }
     

@@ -112,6 +112,14 @@
 		324577DA238FA48300730F17 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */; };
 		324577DC238FA77000730F17 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577DB238FA77000730F17 /* FilterTableViewCell.swift */; };
 		326210EC2452061900629CC7 /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326210EB2452061900629CC7 /* UIView Extension.swift */; };
+		327524B724910999008EA814 /* TTGetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B624910999008EA814 /* TTGetStartedViewController.swift */; };
+		327524B924912470008EA814 /* TTPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B824912470008EA814 /* TTPreviewViewController.swift */; };
+		327524BF249213D8008EA814 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321CA6A7244A19420062E209 /* NotificationCenter.framework */; };
+		327524C2249213D8008EA814 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524C1249213D8008EA814 /* TodayViewController.swift */; };
+		327524C5249213D8008EA814 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 327524C3249213D8008EA814 /* MainInterface.storyboard */; };
+		327524C9249213D8008EA814 /* Timetable.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 327524BE249213D8008EA814 /* Timetable.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		327524CD249215EC008EA814 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953E238C068F00208D25 /* Assets.xcassets */; };
+		327524CE2492296D008EA814 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Constants.swift */; };
 		3292B75D2489DD7C005749CB /* ContentPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3292B75C2489DD7C005749CB /* ContentPointer.swift */; };
 		329B6B46248BAAC100ED4428 /* ContentPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B6B45248BAAC100ED4428 /* ContentPreviewing.swift */; };
 		329B6B48248BF25900ED4428 /* FilterPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B6B47248BF25900ED4428 /* FilterPreview.swift */; };
@@ -138,10 +146,10 @@
 		32D99542238C068F00208D25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D99540238C068F00208D25 /* LaunchScreen.storyboard */; };
 		32D9954C238D865600208D25 /* AnnouncementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954B238D865600208D25 /* AnnouncementsViewController.swift */; };
 		32D9954E238D87D200208D25 /* AnnouncementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */; };
-		32E28CF02490CB26006D623C /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CEF2490CB26006D623C /* TimetableViewController.swift */; };
+		32E28CF02490CB26006D623C /* TTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CEF2490CB26006D623C /* TTViewController.swift */; };
 		32E28CF32490D0A5006D623C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 32E28CF22490D0A5006D623C /* Alamofire */; };
 		32E28CF62490E025006D623C /* Timetable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32E28CF42490E025006D623C /* Timetable.storyboard */; };
-		32E28CF92490EE95006D623C /* TimetableNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CF82490EE94006D623C /* TimetableNavigationViewController.swift */; };
+		32E28CF92490EE95006D623C /* TTNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CF82490EE94006D623C /* TTNavigationViewController.swift */; };
 		32E28CFD2490F2F7006D623C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CFC2490F2F7006D623C /* Keys.swift */; };
 		32E9B4D923A3D86F000F769F /* AnnouncementPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */; };
 		32FA680D247FF9420077E030 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA680C247FF9420077E030 /* Variables.swift */; };
@@ -151,6 +159,16 @@
 		57932F273AA9112D178ED0D9 /* Pods_Announcer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD293BB20EEED7B1A9804C0 /* Pods_Announcer.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		327524C7249213D8008EA814 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32D9952A238C068D00208D25 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 327524BD249213D8008EA814;
+			remoteInfo = Timetable;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		32E9B4E623A53F40000F769F /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -158,6 +176,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				327524C9249213D8008EA814 /* Timetable.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +293,12 @@
 		324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		324577DB238FA77000730F17 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		326210EB2452061900629CC7 /* UIView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView Extension.swift"; sourceTree = "<group>"; };
+		327524B624910999008EA814 /* TTGetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTGetStartedViewController.swift; sourceTree = "<group>"; };
+		327524B824912470008EA814 /* TTPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTPreviewViewController.swift; sourceTree = "<group>"; };
+		327524BE249213D8008EA814 /* Timetable.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Timetable.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		327524C1249213D8008EA814 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		327524C4249213D8008EA814 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		327524C6249213D8008EA814 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3292B75C2489DD7C005749CB /* ContentPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPointer.swift; sourceTree = "<group>"; };
 		329B6B45248BAAC100ED4428 /* ContentPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPreviewing.swift; sourceTree = "<group>"; };
 		329B6B47248BF25900ED4428 /* FilterPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPreview.swift; sourceTree = "<group>"; };
@@ -303,9 +328,9 @@
 		32D99543238C068F00208D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32D9954B238D865600208D25 /* AnnouncementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsViewController.swift; sourceTree = "<group>"; };
 		32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableViewCell.swift; sourceTree = "<group>"; };
-		32E28CEF2490CB26006D623C /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
+		32E28CEF2490CB26006D623C /* TTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTViewController.swift; sourceTree = "<group>"; };
 		32E28CF52490E025006D623C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Timetable.storyboard; sourceTree = "<group>"; };
-		32E28CF82490EE94006D623C /* TimetableNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableNavigationViewController.swift; sourceTree = "<group>"; };
+		32E28CF82490EE94006D623C /* TTNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTNavigationViewController.swift; sourceTree = "<group>"; };
 		32E28CFC2490F2F7006D623C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementPreviewing.swift; sourceTree = "<group>"; };
 		32FA680C247FF9420077E030 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
@@ -316,6 +341,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		327524BB249213D8008EA814 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				327524BF249213D8008EA814 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32D9952F238C068D00208D25 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -593,6 +626,16 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
+		327524C0249213D8008EA814 /* Timetable */ = {
+			isa = PBXGroup;
+			children = (
+				327524C1249213D8008EA814 /* TodayViewController.swift */,
+				327524C3249213D8008EA814 /* MainInterface.storyboard */,
+				327524C6249213D8008EA814 /* Info.plist */,
+			);
+			path = Timetable;
+			sourceTree = "<group>";
+		};
 		32B7C44724895BD0009D160F /* Split View Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -636,6 +679,7 @@
 			children = (
 				32D7070424783053003DC98C /* README.md */,
 				32D99534238C068D00208D25 /* Announcer */,
+				327524C0249213D8008EA814 /* Timetable */,
 				32D99533238C068D00208D25 /* Products */,
 				F60E238002C508C5CE0166E8 /* Pods */,
 				2872A23A99F4B96DE42DB98B /* Frameworks */,
@@ -646,6 +690,7 @@
 			isa = PBXGroup;
 			children = (
 				32D99532238C068D00208D25 /* SST Announcer.app */,
+				327524BE249213D8008EA814 /* Timetable.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -670,8 +715,10 @@
 		32E28CF72490EDC3006D623C /* Timetable VC */ = {
 			isa = PBXGroup;
 			children = (
-				32E28CEF2490CB26006D623C /* TimetableViewController.swift */,
-				32E28CF82490EE94006D623C /* TimetableNavigationViewController.swift */,
+				32E28CEF2490CB26006D623C /* TTViewController.swift */,
+				32E28CF82490EE94006D623C /* TTNavigationViewController.swift */,
+				327524B624910999008EA814 /* TTGetStartedViewController.swift */,
+				327524B824912470008EA814 /* TTPreviewViewController.swift */,
 			);
 			path = "Timetable VC";
 			sourceTree = "<group>";
@@ -757,6 +804,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		327524BD249213D8008EA814 /* Timetable */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 327524CA249213D8008EA814 /* Build configuration list for PBXNativeTarget "Timetable" */;
+			buildPhases = (
+				327524BA249213D8008EA814 /* Sources */,
+				327524BB249213D8008EA814 /* Frameworks */,
+				327524BC249213D8008EA814 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Timetable;
+			productName = Timetable;
+			productReference = 327524BE249213D8008EA814 /* Timetable.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		32D99531238C068D00208D25 /* Announcer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 32D99546238C068F00208D25 /* Build configuration list for PBXNativeTarget "Announcer" */;
@@ -771,6 +835,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				327524C8249213D8008EA814 /* PBXTargetDependency */,
 			);
 			name = Announcer;
 			packageProductDependencies = (
@@ -789,10 +854,13 @@
 				KnownAssetTags = (
 					New,
 				);
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "SST Inc.";
 				TargetAttributes = {
+					327524BD249213D8008EA814 = {
+						CreatedOnToolsVersion = 11.5;
+					};
 					32D99531238C068D00208D25 = {
 						CreatedOnToolsVersion = 11.3;
 					};
@@ -815,11 +883,21 @@
 			projectRoot = "";
 			targets = (
 				32D99531238C068D00208D25 /* Announcer */,
+				327524BD249213D8008EA814 /* Timetable */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		327524BC249213D8008EA814 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				327524CD249215EC008EA814 /* Assets.xcassets in Resources */,
+				327524C5249213D8008EA814 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32D99530238C068D00208D25 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -880,6 +958,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		327524BA249213D8008EA814 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				327524C2249213D8008EA814 /* TodayViewController.swift in Sources */,
+				327524CE2492296D008EA814 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32D9952E238C068D00208D25 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -918,7 +1005,8 @@
 				324577A8238E53A100730F17 /* MediaNamespace.swift in Sources */,
 				32457792238E53A100730F17 /* RSSFeedItemGUID.swift in Sources */,
 				32457794238E53A100730F17 /* RSSFeedCloud.swift in Sources */,
-				32E28CF92490EE95006D623C /* TimetableNavigationViewController.swift in Sources */,
+				32E28CF92490EE95006D623C /* TTNavigationViewController.swift in Sources */,
+				327524B924912470008EA814 /* TTPreviewViewController.swift in Sources */,
 				32457789238E53A100730F17 /* AtomFeedSubtitle.swift in Sources */,
 				32457788238E53A100730F17 /* AtomFeed + mapAttributes.swift in Sources */,
 				32E28CFD2490F2F7006D623C /* Keys.swift in Sources */,
@@ -958,12 +1046,13 @@
 				32457799238E53A100730F17 /* RSSFeedItemSource.swift in Sources */,
 				32D9954C238D865600208D25 /* AnnouncementsViewController.swift in Sources */,
 				32457791238E53A100730F17 /* RSSFeedSkipDay.swift in Sources */,
-				32E28CF02490CB26006D623C /* TimetableViewController.swift in Sources */,
+				32E28CF02490CB26006D623C /* TTViewController.swift in Sources */,
 				324577CA238E53A200730F17 /* XMLFeedParser.swift in Sources */,
 				32FA6813247FFAE30077E030 /* LinksStruct.swift in Sources */,
 				324577D0238E53A200730F17 /* Date + codingStrategy.swift in Sources */,
 				324577AC238E53A100730F17 /* MediaTag.swift in Sources */,
 				32C2532B244EA8390015085A /* ContentCollectionView.swift in Sources */,
+				327524B724910999008EA814 /* TTGetStartedViewController.swift in Sources */,
 				32457704238E213B00730F17 /* KALoader.swift in Sources */,
 				324577AB238E53A100730F17 /* MediaContent.swift in Sources */,
 				324577CF238E53A200730F17 /* Array + Equatable.swift in Sources */,
@@ -1021,7 +1110,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		327524C8249213D8008EA814 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 327524BD249213D8008EA814 /* Timetable */;
+			targetProxy = 327524C7249213D8008EA814 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		327524C3249213D8008EA814 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				327524C4249213D8008EA814 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		32D9953B238C068D00208D25 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1049,6 +1154,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		327524CB249213D8008EA814 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7K6ZTDFM48;
+				INFOPLIST_FILE = Timetable/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer.Timetable;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		327524CC249213D8008EA814 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7K6ZTDFM48;
+				INFOPLIST_FILE = Timetable/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer.Timetable;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		32D99544238C068F00208D25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1220,6 +1365,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		327524CA249213D8008EA814 /* Build configuration list for PBXNativeTarget "Timetable" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				327524CB249213D8008EA814 /* Debug */,
+				327524CC249213D8008EA814 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		32D9952D238C068D00208D25 /* Build configuration list for PBXProject "Announcer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
