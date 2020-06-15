@@ -121,12 +121,18 @@
 		327524CD249215EC008EA814 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953E238C068F00208D25 /* Assets.xcassets */; };
 		327524CE2492296D008EA814 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Constants.swift */; };
 		327524D024922D4E008EA814 /* SubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524CF24922D4E008EA814 /* SubjectView.swift */; };
+		328BFFE42493EBBF00132EB4 /* UIImage Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */; };
+		328BFFE82496275100132EB4 /* TimetableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE72496275100132EB4 /* TimetableStruct.swift */; };
+		328BFFEA24964F0400132EB4 /* TTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE924964F0400132EB4 /* TTViewController.swift */; };
+		328BFFEE24965E3E00132EB4 /* TTTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFED24965E3E00132EB4 /* TTTableViewCell.swift */; };
 		3292B75D2489DD7C005749CB /* ContentPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3292B75C2489DD7C005749CB /* ContentPointer.swift */; };
 		329B6B46248BAAC100ED4428 /* ContentPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B6B45248BAAC100ED4428 /* ContentPreviewing.swift */; };
 		329B6B48248BF25900ED4428 /* FilterPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B6B47248BF25900ED4428 /* FilterPreview.swift */; };
 		329CE2282489B713002022A6 /* AnnouncementPointers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329CE2272489B713002022A6 /* AnnouncementPointers.swift */; };
 		329E3B1D23F979CC00524901 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 329E3B1C23F979CC00524901 /* Settings.bundle */; };
 		329E3B1F23FEA47500524901 /* ReadAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */; };
+		32A27B9B2493072F00786B03 /* TodayOngoingUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A27B9A2493072F00786B03 /* TodayOngoingUI.swift */; };
+		32A27B9D2493078800786B03 /* TodaySetUpUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A27B9C2493078800786B03 /* TodaySetUpUI.swift */; };
 		32B7C4442488BBE0009D160F /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7C4432488BBE0009D160F /* SplitViewController.swift */; };
 		32B7C4462488F047009D160F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7C4452488F047009D160F /* LoadingViewController.swift */; };
 		32C2531F244EA5D40015085A /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2531E244EA5D40015085A /* UIColor Extension.swift */; };
@@ -147,7 +153,7 @@
 		32D99542238C068F00208D25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D99540238C068F00208D25 /* LaunchScreen.storyboard */; };
 		32D9954C238D865600208D25 /* AnnouncementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954B238D865600208D25 /* AnnouncementsViewController.swift */; };
 		32D9954E238D87D200208D25 /* AnnouncementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */; };
-		32E28CF02490CB26006D623C /* TTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CEF2490CB26006D623C /* TTViewController.swift */; };
+		32E28CF02490CB26006D623C /* TTSetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CEF2490CB26006D623C /* TTSetUpViewController.swift */; };
 		32E28CF32490D0A5006D623C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 32E28CF22490D0A5006D623C /* Alamofire */; };
 		32E28CF62490E025006D623C /* Timetable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32E28CF42490E025006D623C /* Timetable.storyboard */; };
 		32E28CF92490EE95006D623C /* TTNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CF82490EE94006D623C /* TTNavigationViewController.swift */; };
@@ -301,12 +307,18 @@
 		327524C4249213D8008EA814 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		327524C6249213D8008EA814 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		327524CF24922D4E008EA814 /* SubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectView.swift; sourceTree = "<group>"; };
+		328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage Extension.swift"; sourceTree = "<group>"; };
+		328BFFE72496275100132EB4 /* TimetableStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableStruct.swift; sourceTree = "<group>"; };
+		328BFFE924964F0400132EB4 /* TTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTViewController.swift; sourceTree = "<group>"; };
+		328BFFED24965E3E00132EB4 /* TTTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTTableViewCell.swift; sourceTree = "<group>"; };
 		3292B75C2489DD7C005749CB /* ContentPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPointer.swift; sourceTree = "<group>"; };
 		329B6B45248BAAC100ED4428 /* ContentPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPreviewing.swift; sourceTree = "<group>"; };
 		329B6B47248BF25900ED4428 /* FilterPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPreview.swift; sourceTree = "<group>"; };
 		329CE2272489B713002022A6 /* AnnouncementPointers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementPointers.swift; sourceTree = "<group>"; };
 		329E3B1C23F979CC00524901 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadAnnouncements.swift; sourceTree = "<group>"; };
+		32A27B9A2493072F00786B03 /* TodayOngoingUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayOngoingUI.swift; sourceTree = "<group>"; };
+		32A27B9C2493078800786B03 /* TodaySetUpUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySetUpUI.swift; sourceTree = "<group>"; };
 		32B7C4432488BBE0009D160F /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		32B7C4452488F047009D160F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		32C2531E244EA5D40015085A /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
@@ -330,7 +342,7 @@
 		32D99543238C068F00208D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32D9954B238D865600208D25 /* AnnouncementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsViewController.swift; sourceTree = "<group>"; };
 		32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableViewCell.swift; sourceTree = "<group>"; };
-		32E28CEF2490CB26006D623C /* TTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTViewController.swift; sourceTree = "<group>"; };
+		32E28CEF2490CB26006D623C /* TTSetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSetUpViewController.swift; sourceTree = "<group>"; };
 		32E28CF52490E025006D623C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Timetable.storyboard; sourceTree = "<group>"; };
 		32E28CF82490EE94006D623C /* TTNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTNavigationViewController.swift; sourceTree = "<group>"; };
 		32E28CFC2490F2F7006D623C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
@@ -632,11 +644,32 @@
 			isa = PBXGroup;
 			children = (
 				327524C1249213D8008EA814 /* TodayViewController.swift */,
+				32A27B9A2493072F00786B03 /* TodayOngoingUI.swift */,
+				32A27B9C2493078800786B03 /* TodaySetUpUI.swift */,
 				327524CF24922D4E008EA814 /* SubjectView.swift */,
 				327524C3249213D8008EA814 /* MainInterface.storyboard */,
 				327524C6249213D8008EA814 /* Info.plist */,
 			);
 			path = Timetable;
+			sourceTree = "<group>";
+		};
+		328BFFEB24964F1700132EB4 /* Setting Up Timetable */ = {
+			isa = PBXGroup;
+			children = (
+				32E28CEF2490CB26006D623C /* TTSetUpViewController.swift */,
+				327524B624910999008EA814 /* TTGetStartedViewController.swift */,
+				327524B824912470008EA814 /* TTPreviewViewController.swift */,
+			);
+			path = "Setting Up Timetable";
+			sourceTree = "<group>";
+		};
+		328BFFEC24965E0A00132EB4 /* Timetable VC */ = {
+			isa = PBXGroup;
+			children = (
+				328BFFE924964F0400132EB4 /* TTViewController.swift */,
+				328BFFED24965E3E00132EB4 /* TTTableViewCell.swift */,
+			);
+			path = "Timetable VC";
 			sourceTree = "<group>";
 		};
 		32B7C44724895BD0009D160F /* Split View Controller */ = {
@@ -664,6 +697,7 @@
 				32C25322244EA6200015085A /* UITextField Extension.swift */,
 				32C25320244EA6030015085A /* UISearchBar Extension.swift */,
 				326210EB2452061900629CC7 /* UIView Extension.swift */,
+				328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */,
 			);
 			path = "UIKit Extensions";
 			sourceTree = "<group>";
@@ -706,7 +740,7 @@
 				32E9B4D423A38D88000F769F /* Storyboards */,
 				32E9B4D123A38D3C000F769F /* Content VC */,
 				32E9B4D223A38D4E000F769F /* Filter VC */,
-				32E28CF72490EDC3006D623C /* Timetable VC */,
+				32E28CF72490EDC3006D623C /* Timetable */,
 				32B7C44724895BD0009D160F /* Split View Controller */,
 				324577D4238F7F6D00730F17 /* Announcement VC */,
 				32E9B4D523A38D9A000F769F /* Libraries */,
@@ -715,15 +749,14 @@
 			path = Announcer;
 			sourceTree = "<group>";
 		};
-		32E28CF72490EDC3006D623C /* Timetable VC */ = {
+		32E28CF72490EDC3006D623C /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
-				32E28CEF2490CB26006D623C /* TTViewController.swift */,
+				328BFFEB24964F1700132EB4 /* Setting Up Timetable */,
+				328BFFEC24965E0A00132EB4 /* Timetable VC */,
 				32E28CF82490EE94006D623C /* TTNavigationViewController.swift */,
-				327524B624910999008EA814 /* TTGetStartedViewController.swift */,
-				327524B824912470008EA814 /* TTPreviewViewController.swift */,
 			);
-			path = "Timetable VC";
+			path = Timetable;
 			sourceTree = "<group>";
 		};
 		32E9B4D123A38D3C000F769F /* Content VC */ = {
@@ -791,6 +824,7 @@
 				32FA680E247FF95B0077E030 /* Functions.swift */,
 				32FA6810247FFAC20077E030 /* PostStruct.swift */,
 				32FA6812247FFAE30077E030 /* LinksStruct.swift */,
+				328BFFE72496275100132EB4 /* TimetableStruct.swift */,
 			);
 			path = Globals;
 			sourceTree = "<group>";
@@ -866,6 +900,7 @@
 					};
 					32D99531238C068D00208D25 = {
 						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1150;
 					};
 				};
 			};
@@ -876,6 +911,30 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				ar,
+				"zh-Hans",
+				ja,
+				fa,
+				es,
+				it,
+				ms,
+				ko,
+				"zh-Hant",
+				"fa-IR",
+				hu,
+				"da-DK",
+				tr,
+				pl,
+				"pt-BR",
+				vi,
+				ru,
+				fr,
+				fi,
+				id,
+				nl,
+				pt,
+				ro,
 			);
 			mainGroup = 32D99529238C068D00208D25;
 			packageReferences = (
@@ -966,8 +1025,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				327524C2249213D8008EA814 /* TodayViewController.swift in Sources */,
+				32A27B9B2493072F00786B03 /* TodayOngoingUI.swift in Sources */,
 				327524D024922D4E008EA814 /* SubjectView.swift in Sources */,
 				327524CE2492296D008EA814 /* Constants.swift in Sources */,
+				32A27B9D2493078800786B03 /* TodaySetUpUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -982,6 +1043,7 @@
 				32D9954E238D87D200208D25 /* AnnouncementTableViewCell.swift in Sources */,
 				32C25325244EA63C0015085A /* Array Extension.swift in Sources */,
 				3245779B238E53A100730F17 /* SyndicationUpdatePeriod.swift in Sources */,
+				328BFFE82496275100132EB4 /* TimetableStruct.swift in Sources */,
 				324577BA238E53A200730F17 /* MediaText.swift in Sources */,
 				32E9B4D923A3D86F000F769F /* AnnouncementPreviewing.swift in Sources */,
 				324577A4238E53A100730F17 /* MediaLicence.swift in Sources */,
@@ -1033,6 +1095,7 @@
 				32FA680F247FF95B0077E030 /* Functions.swift in Sources */,
 				324577CC238E53A200730F17 /* Feed.swift in Sources */,
 				324577CB238E53A200730F17 /* FeedParserProtocol.swift in Sources */,
+				328BFFEE24965E3E00132EB4 /* TTTableViewCell.swift in Sources */,
 				324577D1238E53A200730F17 /* String + toDate.swift in Sources */,
 				324577B6238E53A200730F17 /* MediaParam.swift in Sources */,
 				324577DA238FA48300730F17 /* CategoriesCollectionViewCell.swift in Sources */,
@@ -1050,10 +1113,11 @@
 				32457799238E53A100730F17 /* RSSFeedItemSource.swift in Sources */,
 				32D9954C238D865600208D25 /* AnnouncementsViewController.swift in Sources */,
 				32457791238E53A100730F17 /* RSSFeedSkipDay.swift in Sources */,
-				32E28CF02490CB26006D623C /* TTViewController.swift in Sources */,
+				32E28CF02490CB26006D623C /* TTSetUpViewController.swift in Sources */,
 				324577CA238E53A200730F17 /* XMLFeedParser.swift in Sources */,
 				32FA6813247FFAE30077E030 /* LinksStruct.swift in Sources */,
 				324577D0238E53A200730F17 /* Date + codingStrategy.swift in Sources */,
+				328BFFE42493EBBF00132EB4 /* UIImage Extension.swift in Sources */,
 				324577AC238E53A100730F17 /* MediaTag.swift in Sources */,
 				32C2532B244EA8390015085A /* ContentCollectionView.swift in Sources */,
 				327524B724910999008EA814 /* TTGetStartedViewController.swift in Sources */,
@@ -1082,6 +1146,7 @@
 				32D99538238C068D00208D25 /* SceneDelegate.swift in Sources */,
 				32457777238E53A100730F17 /* RFC822DateFormatter.swift in Sources */,
 				324577AF238E53A100730F17 /* MediaGroup.swift in Sources */,
+				328BFFEA24964F0400132EB4 /* TTViewController.swift in Sources */,
 				324577AE238E53A100730F17 /* MediaLocation.swift in Sources */,
 				32457779238E53A100730F17 /* AtomFeedGenerator.swift in Sources */,
 				324577A6238E53A100730F17 /* MediaHash.swift in Sources */,
@@ -1318,6 +1383,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "Announcer/SST Announcer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -1334,6 +1400,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer;
 				PRODUCT_NAME = "SST Announcer";
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1345,6 +1413,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "Announcer/SST Announcer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -1361,6 +1430,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer;
 				PRODUCT_NAME = "SST Announcer";
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

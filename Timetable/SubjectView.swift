@@ -75,7 +75,7 @@ class SubjectView: UIView {
         let subtitleLabel = UILabel()
         let iconImageView = UIImageView()
         
-        let normalAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: titleTextSize, weight: .heavy)]
+        let normalAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: titleTextSize, weight: .bold)]
         let teacherAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: titleTextSize, weight: .regular)]
         
         if let teacher = teacher {
@@ -86,6 +86,7 @@ class SubjectView: UIView {
             titleLabel.attributedText = attributedStr
         } else {
             titleLabel.text = (teacher == nil) ? subject : subject + " • " + teacher!
+            titleLabel.font = UIFont.systemFont(ofSize: titleTextSize, weight: .bold)
         }
         
         // Setting up subtitleLabel
@@ -138,7 +139,7 @@ class SubjectView: UIView {
                                                             toItem: iconImageView,
                                                             attribute: .trailing,
                                                             multiplier: 1,
-                                                            constant: 16),
+                                                            constant: 8),
                                          NSLayoutConstraint(item: titleLabel,
                                                             attribute: .height,
                                                             relatedBy: .equal,

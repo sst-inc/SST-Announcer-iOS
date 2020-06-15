@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import PDFKit
 
-class TTViewController: UIViewController {
+class TTSetUpViewController: UIViewController {
 
     @IBOutlet weak var getStartedButton: UIButton!
     
@@ -22,7 +22,10 @@ class TTViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func dismiss(_ sender: Any) {
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

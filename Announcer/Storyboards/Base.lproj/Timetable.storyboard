@@ -11,19 +11,19 @@
         <!--Timetable-->
         <scene sceneID="QhN-lk-Vwb">
             <objects>
-                <viewController id="GJI-ha-qIi" customClass="TTViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GJI-ha-qIi" customClass="TTSetUpViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rmg-hs-vh3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is Announcer Timetable?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLu-M7-Ulr">
-                                <rect key="frame" x="20" y="194" width="374" height="21"/>
+                                <rect key="frame" x="20" y="64" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TT7-t0-JmK">
-                                <rect key="frame" x="16" y="223" width="382" height="553"/>
+                                <rect key="frame" x="16" y="93" width="382" height="683"/>
                                 <color key="backgroundColor" name="Background"/>
                                 <string key="text">Announcer Timetable is a beta feature that allows you to keep track of your timetable simply using Announcer. 
 
@@ -66,7 +66,11 @@ Announcer Timetable works by having you select your class and when you want your
                     </view>
                     <navigationItem key="navigationItem" title="Timetable" prompt="Beta Feature" id="26Q-Ir-Jga">
                         <barButtonItem key="backBarButtonItem" title="Back" id="0hF-Oi-tpE"/>
-                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="Sb2-pP-ydS"/>
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="Sb2-pP-ydS">
+                            <connections>
+                                <action selector="dismiss:" destination="GJI-ha-qIi" id="SDi-bi-cZr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="getStartedButton" destination="RpD-jZ-fiL" id="Xj8-dN-YAq"/>
@@ -75,6 +79,296 @@ Announcer Timetable works by having you select your class and when you want your
                 <placeholder placeholderIdentifier="IBFirstResponder" id="41A-4S-2hN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3500.0000000000005" y="132.58928571428572"/>
+        </scene>
+        <!--Timetable-->
+        <scene sceneID="weW-co-Pgq">
+            <objects>
+                <viewController id="11p-qr-rvn" customClass="TTViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qk8-dJ-xam">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sTB-hs-TKx">
+                                <rect key="frame" x="20" y="792" width="374" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="MBK-2I-72b"/>
+                                </constraints>
+                                <color key="tintColor" name="Background"/>
+                                <state key="normal" title="Update Timetable"/>
+                                <connections>
+                                    <segue destination="7wI-fn-SbU" kind="show" id="3Nq-Pl-Mec"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="A6g-f3-ufA">
+                                <rect key="frame" x="20" y="160" width="374" height="86.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="BXA-oH-BYV">
+                                        <rect key="frame" x="0.0" y="0.0" width="170.5" height="86.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkC-Mv-Nch">
+                                                <rect key="frame" x="0.0" y="0.0" width="170.5" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="fKP-Sq-MYR"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xfr-6k-jsI">
+                                                <rect key="frame" x="0.0" y="32" width="170.5" height="26.5"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zzz" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="72p-PU-XUs">
+                                                        <rect key="frame" x="0.0" y="0.0" width="26.5" height="26"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="72p-PU-XUs" secondAttribute="height" multiplier="1:1" id="VnB-SQ-8DN"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Break" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7m-DU-JUT">
+                                                        <rect key="frame" x="34.5" y="0.0" width="136" height="26.5"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ends in 10 min 5 sec" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXX-ZV-Fcn">
+                                                <rect key="frame" x="0.0" y="70.5" width="170.5" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bUN-yf-X69">
+                                        <rect key="frame" x="186.5" y="0.0" width="1" height="86.5"/>
+                                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="hiM-Qp-Ihm"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="NLJ-Sj-8QL">
+                                        <rect key="frame" x="203.5" y="0.0" width="170.5" height="86.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Later:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vY0-vl-Ddr">
+                                                <rect key="frame" x="0.0" y="0.0" width="170.5" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="wCa-nD-dJX"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZEb-NT-d41">
+                                                <rect key="frame" x="0.0" y="32" width="170.5" height="26.5"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="x.squareroot" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Kng-GE-jfL">
+                                                        <rect key="frame" x="0.0" y="1.5" width="26.5" height="23.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="Kng-GE-jfL" secondAttribute="height" multiplier="1:1" id="QF5-LB-9C0"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Math" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqm-S0-caB">
+                                                        <rect key="frame" x="34.5" y="0.0" width="136" height="26.5"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teacher: Janet Tan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pcl-WM-HrF">
+                                                <rect key="frame" x="0.0" y="70.5" width="170.5" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="NLJ-Sj-8QL" firstAttribute="width" secondItem="BXA-oH-BYV" secondAttribute="width" id="L3S-3H-7v2"/>
+                                    <constraint firstItem="Pcl-WM-HrF" firstAttribute="height" secondItem="TXX-ZV-Fcn" secondAttribute="height" id="u7C-Jm-tn7"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQT-a7-GOg">
+                                <rect key="frame" x="20" y="262.5" width="374" height="1"/>
+                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="4so-MY-x4c"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday, 15 Jun (Today)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckK-uI-IHd">
+                                <rect key="frame" x="68" y="279.5" width="278" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="BoW-d0-sw2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mrm-1j-Tmd">
+                                <rect key="frame" x="20" y="269.5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Mrm-1j-Tmd" secondAttribute="height" multiplier="1:1" id="pUh-um-QHf"/>
+                                    <constraint firstAttribute="height" constant="40" id="qgy-Y5-tHE"/>
+                                </constraints>
+                                <state key="normal" image="arrowtriangle.left.fill" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAX-cA-b4l">
+                                <rect key="frame" x="354" y="269.5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ANw-aV-NUR"/>
+                                    <constraint firstAttribute="width" secondItem="oAX-cA-b4l" secondAttribute="height" multiplier="1:1" id="Wob-He-fwi"/>
+                                </constraints>
+                                <state key="normal" image="arrowtriangle.right.fill" catalog="system"/>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I16-aa-ztJ">
+                                <rect key="frame" x="0.0" y="315.5" width="414" height="460.5"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="time" id="fsJ-uh-xqs" customClass="TTTableViewCell" customModule="SST_Announcer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="68.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fsJ-uh-xqs" id="fao-N4-H2K">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="68.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T56-Tt-dkR">
+                                                    <rect key="frame" x="20" y="16" width="8" height="52.5"/>
+                                                    <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="8" id="rxk-Cx-4ZP"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDa-kn-XsG">
+                                                    <rect key="frame" x="20" y="0.0" width="8" height="16"/>
+                                                    <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="8" id="qg6-Tv-oTz"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From 2pm to 3pm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uX2-EQ-BA6">
+                                                    <rect key="frame" x="52" y="36" width="108" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zzz" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ENs-St-0xL">
+                                                    <rect key="frame" x="52" y="8" width="20" height="19.5"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Math • Janet Tan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbN-hd-hkm">
+                                                    <rect key="frame" x="80" y="8" width="137" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="kl3-ZR-ege"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ahI-MQ-uBN">
+                                                    <rect key="frame" x="52" y="60" width="342" height="0.5"/>
+                                                    <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="0.5" id="vTO-QJ-6gu"/>
+                                                    </constraints>
+                                                </view>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vge-zF-Ryd">
+                                                    <rect key="frame" x="12" y="8.5" width="24" height="23"/>
+                                                    <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="F1K-Aj-uN3"/>
+                                                        <constraint firstAttribute="width" constant="24" id="M1C-kX-yLW"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="T56-Tt-dkR" firstAttribute="leading" secondItem="fao-N4-H2K" secondAttribute="leading" constant="20" id="2u9-ob-lZ1"/>
+                                                <constraint firstItem="xDa-kn-XsG" firstAttribute="top" secondItem="fao-N4-H2K" secondAttribute="top" id="38J-4N-4rK"/>
+                                                <constraint firstItem="T56-Tt-dkR" firstAttribute="top" secondItem="xDa-kn-XsG" secondAttribute="bottom" id="6E4-Q9-WR0"/>
+                                                <constraint firstItem="T56-Tt-dkR" firstAttribute="top" secondItem="fao-N4-H2K" secondAttribute="top" constant="16" id="BHy-XW-0gf"/>
+                                                <constraint firstItem="ENs-St-0xL" firstAttribute="width" secondItem="ENs-St-0xL" secondAttribute="height" multiplier="1:1" id="Chb-uD-gUj"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nbN-hd-hkm" secondAttribute="trailing" constant="20" symbolic="YES" id="IMK-No-Tzf"/>
+                                                <constraint firstItem="vge-zF-Ryd" firstAttribute="centerX" secondItem="T56-Tt-dkR" secondAttribute="centerX" id="Ibw-tB-FDZ"/>
+                                                <constraint firstItem="nbN-hd-hkm" firstAttribute="leading" secondItem="ENs-St-0xL" secondAttribute="trailing" constant="8" id="Syu-48-omu"/>
+                                                <constraint firstItem="ENs-St-0xL" firstAttribute="height" secondItem="nbN-hd-hkm" secondAttribute="height" id="UZl-Ek-Odg"/>
+                                                <constraint firstItem="ahI-MQ-uBN" firstAttribute="leading" secondItem="T56-Tt-dkR" secondAttribute="trailing" constant="24" id="Vm2-VN-AKX"/>
+                                                <constraint firstItem="uX2-EQ-BA6" firstAttribute="leading" secondItem="T56-Tt-dkR" secondAttribute="trailing" constant="24" id="Xr6-da-djd"/>
+                                                <constraint firstItem="ENs-St-0xL" firstAttribute="leading" secondItem="vge-zF-Ryd" secondAttribute="trailing" constant="16" id="dsD-My-2Rl"/>
+                                                <constraint firstAttribute="trailing" secondItem="ahI-MQ-uBN" secondAttribute="trailing" constant="20" id="g11-MO-LIh"/>
+                                                <constraint firstItem="uX2-EQ-BA6" firstAttribute="top" secondItem="ENs-St-0xL" secondAttribute="bottom" constant="8" id="hQ4-uw-jbf"/>
+                                                <constraint firstItem="ahI-MQ-uBN" firstAttribute="top" secondItem="uX2-EQ-BA6" secondAttribute="bottom" constant="8" id="lvJ-vp-x4d"/>
+                                                <constraint firstItem="xDa-kn-XsG" firstAttribute="leading" secondItem="fao-N4-H2K" secondAttribute="leading" constant="20" id="ob2-gS-bT9"/>
+                                                <constraint firstItem="vge-zF-Ryd" firstAttribute="top" secondItem="fao-N4-H2K" secondAttribute="top" constant="8" id="ou9-0r-m0m"/>
+                                                <constraint firstItem="ENs-St-0xL" firstAttribute="top" secondItem="fao-N4-H2K" secondAttribute="top" constant="8" id="tS5-1J-6Nf"/>
+                                                <constraint firstItem="nbN-hd-hkm" firstAttribute="top" secondItem="fao-N4-H2K" secondAttribute="top" constant="8" id="uCj-LX-ErQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="T56-Tt-dkR" secondAttribute="bottom" id="wRJ-rA-V4y"/>
+                                                <constraint firstAttribute="bottom" secondItem="ahI-MQ-uBN" secondAttribute="bottom" constant="8" id="yA8-3O-Fln"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uX2-EQ-BA6" secondAttribute="trailing" constant="20" symbolic="YES" id="yPb-Xm-gJX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bottomTimelineIndicator" destination="T56-Tt-dkR" id="VqR-44-9ew"/>
+                                            <outlet property="subjectImageView" destination="ENs-St-0xL" id="zyH-z2-ckm"/>
+                                            <outlet property="subjectTeacherLabel" destination="nbN-hd-hkm" id="OeT-wm-LQW"/>
+                                            <outlet property="timelineIndicator" destination="vge-zF-Ryd" id="Tku-vt-Rnm"/>
+                                            <outlet property="timingLabel" destination="uX2-EQ-BA6" id="X94-sh-M74"/>
+                                            <outlet property="topTimelineView" destination="xDa-kn-XsG" id="oiF-Gq-REQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="11p-qr-rvn" id="WR6-2U-jAj"/>
+                                    <outlet property="delegate" destination="11p-qr-rvn" id="B6v-Fx-qLa"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="sTB-hs-TKx" firstAttribute="leading" secondItem="84a-ei-6bq" secondAttribute="leading" constant="20" id="0d3-HN-QXx"/>
+                            <constraint firstItem="SQT-a7-GOg" firstAttribute="leading" secondItem="84a-ei-6bq" secondAttribute="leading" constant="20" id="1FX-Fs-RNf"/>
+                            <constraint firstItem="84a-ei-6bq" firstAttribute="trailing" secondItem="sTB-hs-TKx" secondAttribute="trailing" constant="20" id="1pi-YF-Hy9"/>
+                            <constraint firstItem="sTB-hs-TKx" firstAttribute="top" secondItem="I16-aa-ztJ" secondAttribute="bottom" constant="16" id="AEn-LT-ZFd"/>
+                            <constraint firstItem="Mrm-1j-Tmd" firstAttribute="leading" secondItem="84a-ei-6bq" secondAttribute="leading" constant="20" id="Dca-96-zFl"/>
+                            <constraint firstItem="I16-aa-ztJ" firstAttribute="leading" secondItem="84a-ei-6bq" secondAttribute="leading" id="EOc-Xm-hU0"/>
+                            <constraint firstItem="I16-aa-ztJ" firstAttribute="top" secondItem="ckK-uI-IHd" secondAttribute="bottom" constant="16" id="Hce-sW-pW8"/>
+                            <constraint firstItem="ckK-uI-IHd" firstAttribute="centerY" secondItem="oAX-cA-b4l" secondAttribute="centerY" id="K2R-6H-J6I"/>
+                            <constraint firstItem="A6g-f3-ufA" firstAttribute="top" secondItem="84a-ei-6bq" secondAttribute="top" constant="20" id="L8w-BE-i1E"/>
+                            <constraint firstItem="84a-ei-6bq" firstAttribute="trailing" secondItem="SQT-a7-GOg" secondAttribute="trailing" constant="20" id="M6Y-mM-ryZ"/>
+                            <constraint firstItem="84a-ei-6bq" firstAttribute="trailing" secondItem="I16-aa-ztJ" secondAttribute="trailing" id="VoJ-JE-VU0"/>
+                            <constraint firstItem="ckK-uI-IHd" firstAttribute="leading" secondItem="Mrm-1j-Tmd" secondAttribute="trailing" constant="8" id="YtR-Tf-Vh3"/>
+                            <constraint firstItem="A6g-f3-ufA" firstAttribute="leading" secondItem="84a-ei-6bq" secondAttribute="leading" constant="20" id="ZVJ-n1-kEl"/>
+                            <constraint firstItem="oAX-cA-b4l" firstAttribute="width" secondItem="oAX-cA-b4l" secondAttribute="height" multiplier="1:1" id="cAS-W8-Ql5"/>
+                            <constraint firstItem="SQT-a7-GOg" firstAttribute="top" secondItem="A6g-f3-ufA" secondAttribute="bottom" constant="16" id="eCs-U8-aSH"/>
+                            <constraint firstItem="oAX-cA-b4l" firstAttribute="leading" secondItem="ckK-uI-IHd" secondAttribute="trailing" constant="8" id="kXb-Sw-Oco"/>
+                            <constraint firstItem="ckK-uI-IHd" firstAttribute="top" secondItem="SQT-a7-GOg" secondAttribute="bottom" constant="16" id="oWu-AF-ghW"/>
+                            <constraint firstItem="84a-ei-6bq" firstAttribute="bottom" secondItem="sTB-hs-TKx" secondAttribute="bottom" constant="20" id="sEU-1E-qRM"/>
+                            <constraint firstItem="Mrm-1j-Tmd" firstAttribute="centerY" secondItem="ckK-uI-IHd" secondAttribute="centerY" id="vBZ-xK-bcg"/>
+                            <constraint firstItem="84a-ei-6bq" firstAttribute="trailing" secondItem="oAX-cA-b4l" secondAttribute="trailing" constant="20" id="xMc-Da-UfW"/>
+                            <constraint firstItem="84a-ei-6bq" firstAttribute="trailing" secondItem="A6g-f3-ufA" secondAttribute="trailing" constant="20" id="zRo-Nb-fvK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="84a-ei-6bq"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Timetable" id="FJX-RD-CJ6">
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="fjU-KI-df6">
+                            <connections>
+                                <action selector="dismissButton:" destination="11p-qr-rvn" id="1eK-hw-Qj2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="laterImageView" destination="Kng-GE-jfL" id="Dkd-Km-JSu"/>
+                        <outlet property="laterLessonLabel" destination="oqm-S0-caB" id="HSt-d9-WBi"/>
+                        <outlet property="laterTeacherLabel" destination="Pcl-WM-HrF" id="HsL-nw-JBN"/>
+                        <outlet property="laterView" destination="NLJ-Sj-8QL" id="T64-OK-yax"/>
+                        <outlet property="nowDescriptionLabel" destination="TXX-ZV-Fcn" id="Az8-ts-4Jf"/>
+                        <outlet property="nowImageView" destination="72p-PU-XUs" id="c9o-wB-OQS"/>
+                        <outlet property="nowLessonLabel" destination="m7m-DU-JUT" id="Ik0-Jm-VsW"/>
+                        <outlet property="nowView" destination="BXA-oH-BYV" id="7S2-CD-ca7"/>
+                        <outlet property="separatorView" destination="bUN-yf-X69" id="LYy-ON-wYf"/>
+                        <outlet property="updateTimetable" destination="sTB-hs-TKx" id="9v4-zd-Qw7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vuq-UQ-IXI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3492.753623188406" y="794.86607142857144"/>
         </scene>
         <!--Get Started-->
         <scene sceneID="2m0-Ig-SkE">
@@ -140,6 +434,7 @@ Announcer Timetable works by having you select your class and when you want your
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Nmn-DF-Zhb">
                                                 <rect key="frame" x="0.0" y="0.5" width="20" height="19"/>
+                                                <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Nmn-DF-Zhb" secondAttribute="height" multiplier="1:1" id="aGV-GP-y6r"/>
                                                 </constraints>
@@ -157,6 +452,7 @@ Announcer Timetable works by having you select your class and when you want your
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aX5-U6-n8f">
                                                 <rect key="frame" x="0.0" y="0.5" width="20" height="23"/>
+                                                <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="aX5-U6-n8f" secondAttribute="height" multiplier="5:6" id="Yjm-9R-FsW"/>
                                                 </constraints>
@@ -177,6 +473,7 @@ Announcer Timetable works by having you select your class and when you want your
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Mvs-6V-J3K">
                                                 <rect key="frame" x="0.0" y="0.5" width="20" height="23"/>
+                                                <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Mvs-6V-J3K" secondAttribute="height" multiplier="5:6" id="Iod-ds-fCM"/>
                                                 </constraints>
@@ -197,6 +494,7 @@ Announcer Timetable works by having you select your class and when you want your
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1Ub-fD-CsX">
                                                 <rect key="frame" x="0.0" y="0.5" width="20" height="23"/>
+                                                <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="1Ub-fD-CsX" secondAttribute="height" multiplier="5:6" id="nU4-PQ-iUL"/>
                                                 </constraints>
@@ -217,6 +515,7 @@ Announcer Timetable works by having you select your class and when you want your
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uXU-mL-4ro">
                                                 <rect key="frame" x="0.0" y="0.5" width="20" height="23"/>
+                                                <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="uXU-mL-4ro" secondAttribute="height" multiplier="5:6" id="0sB-9C-tmj"/>
                                                 </constraints>
@@ -237,6 +536,7 @@ Announcer Timetable works by having you select your class and when you want your
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="k40-UE-7Mw">
                                                 <rect key="frame" x="0.0" y="0.5" width="20" height="23"/>
+                                                <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="k40-UE-7Mw" secondAttribute="height" multiplier="5:6" id="HPb-Fm-rNd"/>
                                                 </constraints>
@@ -329,17 +629,20 @@ Announcer Timetable works by having you select your class and when you want your
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="253" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="U70-Nj-1Dw">
-                                <rect key="frame" x="20" y="268.5" width="374" height="17.5"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crop your timetable " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBJ-7V-gcT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Generating Timetable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBJ-7V-gcT">
                                 <rect key="frame" x="20" y="194" width="374" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20.5" id="m1y-53-rpf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Crop out the unnecessary bits in the timetable and just leave the table there. Zoom in to get a perfect crop." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5X-iM-CAk">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Please make sure that this timetable matches your current class timetable. It may take a while to load." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5X-iM-CAk">
                                 <rect key="frame" x="20" y="222.5" width="374" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="ODR-Wr-MLg"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -353,74 +656,24 @@ Announcer Timetable works by having you select your class and when you want your
                                 <color key="tintColor" name="Background"/>
                                 <state key="normal" title="Done"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJL-Tv-dzk">
-                                <rect key="frame" x="369" y="194" width="25" height="24"/>
-                                <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="getInformation:" destination="2QG-n3-2PJ" eventType="touchUpInside" id="ZAf-Kf-x8D"/>
-                                </connections>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="HJI-RK-gfM">
-                                <rect key="frame" x="20" y="664.5" width="156.5" height="115.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cropping Tools" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTq-3X-XWY">
-                                        <rect key="frame" x="0.0" y="0.0" width="156.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="h1s-bT-jQn">
-                                        <rect key="frame" x="0.0" y="36.5" width="156.5" height="32"/>
-                                        <segments>
-                                            <segment title="" image="arrow.left.to.line" catalog="system"/>
-                                            <segment title="" image="arrow.up.to.line" catalog="system"/>
-                                            <segment title="" image="arrow.down.to.line" catalog="system"/>
-                                            <segment title="" image="arrow.right.to.line" catalog="system"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="changedCroppingTool:" destination="2QG-n3-2PJ" eventType="valueChanged" id="Tn3-yr-nHj"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="94g-GI-9Be">
-                                        <rect key="frame" x="0.0" y="83.5" width="156.5" height="32"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 pt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="409-Bc-j0m">
-                                                <rect key="frame" x="0.0" y="0.0" width="30.5" height="32"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="G4a-8C-GYs">
-                                                <rect key="frame" x="62.5" y="0.0" width="94" height="32"/>
-                                                <connections>
-                                                    <action selector="stepperChanged:" destination="2QG-n3-2PJ" eventType="valueChanged" id="siq-id-PmH"/>
-                                                </connections>
-                                            </stepper>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="115.5" id="bft-1I-OXT"/>
-                                </constraints>
-                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="253" image="arrow.counterclockwise" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="U70-Nj-1Dw">
+                                <rect key="frame" x="20" y="270.5" width="374" height="20"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" name="Background"/>
                         <constraints>
+                            <constraint firstItem="uTP-aK-9DY" firstAttribute="trailing" secondItem="U70-Nj-1Dw" secondAttribute="trailing" constant="20" id="7wD-WN-cGD"/>
                             <constraint firstItem="uTP-aK-9DY" firstAttribute="trailing" secondItem="ZOO-UN-MdJ" secondAttribute="trailing" constant="20" id="8Dg-pq-mjM"/>
                             <constraint firstItem="uTP-aK-9DY" firstAttribute="trailing" secondItem="fBJ-7V-gcT" secondAttribute="trailing" constant="20" id="8Kb-eJ-TCa"/>
-                            <constraint firstItem="U70-Nj-1Dw" firstAttribute="top" secondItem="a5X-iM-CAk" secondAttribute="bottom" constant="16" id="A1P-Vr-4xC"/>
-                            <constraint firstItem="ZOO-UN-MdJ" firstAttribute="top" secondItem="HJI-RK-gfM" secondAttribute="bottom" constant="16" id="BcV-4f-iyQ"/>
-                            <constraint firstItem="U70-Nj-1Dw" firstAttribute="leading" secondItem="uTP-aK-9DY" secondAttribute="leading" constant="20" id="MRQ-JU-mtO"/>
+                            <constraint firstItem="U70-Nj-1Dw" firstAttribute="leading" secondItem="uTP-aK-9DY" secondAttribute="leading" constant="20" id="Lvk-JU-vJU"/>
+                            <constraint firstItem="U70-Nj-1Dw" firstAttribute="top" secondItem="a5X-iM-CAk" secondAttribute="bottom" constant="20" id="NAP-6O-oGy"/>
                             <constraint firstItem="uTP-aK-9DY" firstAttribute="trailing" secondItem="a5X-iM-CAk" secondAttribute="trailing" constant="20" id="O48-99-dWZ"/>
                             <constraint firstItem="a5X-iM-CAk" firstAttribute="top" secondItem="fBJ-7V-gcT" secondAttribute="bottom" constant="8" id="OVk-RT-t92"/>
-                            <constraint firstItem="uTP-aK-9DY" firstAttribute="trailing" secondItem="U70-Nj-1Dw" secondAttribute="trailing" constant="20" id="Oh2-wf-je2"/>
                             <constraint firstItem="ZOO-UN-MdJ" firstAttribute="leading" secondItem="uTP-aK-9DY" secondAttribute="leading" constant="20" id="QOw-oX-vxG"/>
                             <constraint firstItem="uTP-aK-9DY" firstAttribute="bottom" secondItem="ZOO-UN-MdJ" secondAttribute="bottom" constant="16" id="Qd4-1k-af9"/>
-                            <constraint firstItem="uTP-aK-9DY" firstAttribute="trailing" secondItem="QJL-Tv-dzk" secondAttribute="trailing" constant="20" id="VkU-2t-qEd"/>
                             <constraint firstItem="fBJ-7V-gcT" firstAttribute="top" secondItem="uTP-aK-9DY" secondAttribute="top" constant="20" id="Z81-Er-psM"/>
-                            <constraint firstItem="HJI-RK-gfM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="U70-Nj-1Dw" secondAttribute="bottom" constant="16" id="Zo6-to-cGR"/>
-                            <constraint firstItem="HJI-RK-gfM" firstAttribute="leading" secondItem="uTP-aK-9DY" secondAttribute="leading" constant="20" id="hIl-18-EUx"/>
-                            <constraint firstItem="QJL-Tv-dzk" firstAttribute="top" secondItem="fBJ-7V-gcT" secondAttribute="top" id="oWX-4h-xFr"/>
+                            <constraint firstItem="ZOO-UN-MdJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="U70-Nj-1Dw" secondAttribute="bottom" constant="20" id="ajW-ui-ZNN"/>
                             <constraint firstItem="a5X-iM-CAk" firstAttribute="leading" secondItem="uTP-aK-9DY" secondAttribute="leading" constant="20" id="qJx-PV-keX"/>
                             <constraint firstItem="fBJ-7V-gcT" firstAttribute="leading" secondItem="uTP-aK-9DY" secondAttribute="leading" constant="20" id="qvs-a1-TdL"/>
                         </constraints>
@@ -428,10 +681,7 @@ Announcer Timetable works by having you select your class and when you want your
                     </view>
                     <navigationItem key="navigationItem" title="SX-0X" prompt="Beta Feature" id="rWb-Ej-qzm"/>
                     <connections>
-                        <outlet property="cropSegmentedControl" destination="h1s-bT-jQn" id="XWT-t8-O94"/>
-                        <outlet property="cropStepper" destination="G4a-8C-GYs" id="NNM-em-0Sj"/>
                         <outlet property="doneButton" destination="ZOO-UN-MdJ" id="rdt-bu-ggc"/>
-                        <outlet property="offsetPointLabel" destination="409-Bc-j0m" id="fA3-Rg-Q0i"/>
                         <outlet property="timetableImageView" destination="U70-Nj-1Dw" id="KGf-eJ-D9i"/>
                     </connections>
                 </viewController>
@@ -450,7 +700,7 @@ Announcer Timetable works by having you select your class and when you want your
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="GJI-ha-qIi" kind="relationship" relationship="rootViewController" id="W2j-lr-zZo"/>
+                        <segue destination="11p-qr-rvn" kind="relationship" relationship="rootViewController" id="bTa-oZ-VyC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9iD-GR-CXB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -458,15 +708,19 @@ Announcer Timetable works by having you select your class and when you want your
             <point key="canvasLocation" x="2589.8550724637685" y="132.58928571428572"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3Nq-Pl-Mec"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" name="Grey 1"/>
     <resources>
-        <image name="arrow.down.to.line" catalog="system" width="128" height="128"/>
-        <image name="arrow.left.to.line" catalog="system" width="128" height="101"/>
-        <image name="arrow.right.to.line" catalog="system" width="128" height="101"/>
-        <image name="arrow.up.to.line" catalog="system" width="128" height="128"/>
+        <image name="arrow.counterclockwise" catalog="system" width="115" height="128"/>
+        <image name="arrowtriangle.left.fill" catalog="system" width="128" height="113"/>
+        <image name="arrowtriangle.right.fill" catalog="system" width="128" height="113"/>
         <image name="circle" catalog="system" width="128" height="121"/>
-        <image name="photo" catalog="system" width="128" height="93"/>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
+        <image name="x.squareroot" catalog="system" width="128" height="98"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="zzz" catalog="system" width="121" height="128"/>
         <namedColor name="Background">
             <color red="0.96078431372549022" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -27,7 +27,23 @@ class TTNavigationViewController: UINavigationController {
             let apiKey = Keys.driveAPI
             
             // This is the fileID for the current timetable, it is a placeholder
-            let fileID = "1wwSNCuWOjsLgjrmo5lUNPMC9ArzV-GWU"
+            
+            var possiblePosts = Fetch.values().filter { $0.categories.contains("Timetable") || $0.categories.contains("timetable") }
+            possiblePosts.sort { (first, second) -> Bool in
+                first.date.distance(to: second.date) < 0
+            }
+            
+            let post = possiblePosts.first
+            
+            // Getting the driveLink
+            let driveLink = LinkFunctions.getLinksFromPost(post: post!).filter { (link) -> Bool in
+                link.absoluteString.contains("drive.google.com")
+            }[0]
+            
+            // Getting the path components of drive URL to extract the fileID
+            let driveComponents = driveLink.pathComponents
+            
+            let fileID = driveComponents[driveComponents.count - 2]
             
             let url = URL(string: "https://www.googleapis.com/drive/v3/files/\(fileID)?prettyPrint=true&key=\(apiKey)")!
             

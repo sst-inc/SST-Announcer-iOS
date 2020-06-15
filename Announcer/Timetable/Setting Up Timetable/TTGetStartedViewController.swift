@@ -44,6 +44,13 @@ class TTGetStartedViewController: UIViewController, UITextFieldDelegate {
             // Adding the gesture recognizer
             optionView.addGestureRecognizer(gestureRecognizer)
         }
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        classTextField.becomeFirstResponder()
     }
     
     @objc func tappedOnOptions(sender: UITapGestureRecognizer) {

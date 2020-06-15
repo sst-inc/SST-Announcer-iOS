@@ -212,6 +212,10 @@ struct Assets {
     static let zoomOut                  = UIImage(systemName: "minus.magnifyingglass")!
     static let resetZoom                = UIImage(systemName: "1.magnifyingglass")!
     
+    static let checkmark                = UIImage(systemName: "checkmark")!
+    static let cross                    = UIImage(systemName: "xmark")!
+    static let home                     = UIImage(systemName: "house")!
+    
     // Subject icons
     // Key: Subject Name, Item: image
     static func getSubject(_ identifier: String, font: UIFont) -> (UIImage, String) {
@@ -230,7 +234,7 @@ struct Assets {
                             "cm(ict)"  : ["desktopcomputer", "ICT"],                        // 􀙗
                             "cm(ps)"   : ["mic", "Presentation Skills"],                    // 􀊰
                             "cm(admt)" : ["scribble", "ADMT"],                              // 􀓨
-                            "i&e"      : ["paperplane", "I&E"],   // 􀈟
+                            "i&e"      : ["paperplane", "I&E"],                             // 􀈟
                             "cm lesson": ["lightbulb", "Changemakers"],                     // 􀛭
                            
                             // Applied Subjects
