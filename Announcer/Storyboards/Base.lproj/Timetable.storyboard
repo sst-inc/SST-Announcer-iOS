@@ -213,6 +213,9 @@ Announcer Timetable works by having you select your class and when you want your
                                     <constraint firstAttribute="height" constant="40" id="qgy-Y5-tHE"/>
                                 </constraints>
                                 <state key="normal" image="arrowtriangle.left.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="yesterdayButtonClicked:" destination="11p-qr-rvn" eventType="touchUpInside" id="Eua-Zh-QPD"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAX-cA-b4l">
                                 <rect key="frame" x="354" y="269.5" width="40" height="40"/>
@@ -221,6 +224,9 @@ Announcer Timetable works by having you select your class and when you want your
                                     <constraint firstAttribute="width" secondItem="oAX-cA-b4l" secondAttribute="height" multiplier="1:1" id="Wob-He-fwi"/>
                                 </constraints>
                                 <state key="normal" image="arrowtriangle.right.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="tomorrowButtonClicked:" destination="11p-qr-rvn" eventType="touchUpInside" id="YIk-mo-Fo8"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I16-aa-ztJ">
                                 <rect key="frame" x="0.0" y="315.5" width="414" height="460.5"/>
@@ -354,6 +360,7 @@ Announcer Timetable works by having you select your class and when you want your
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dateLabel" destination="ckK-uI-IHd" id="MIG-K0-Hx4"/>
                         <outlet property="laterImageView" destination="Kng-GE-jfL" id="Dkd-Km-JSu"/>
                         <outlet property="laterLessonLabel" destination="oqm-S0-caB" id="HSt-d9-WBi"/>
                         <outlet property="laterTeacherLabel" destination="Pcl-WM-HrF" id="HsL-nw-JBN"/>

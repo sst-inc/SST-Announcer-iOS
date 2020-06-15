@@ -13,7 +13,23 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var timetable: Timetable!
     var lessons: [Lesson]!
     
-    var lessonIndex = 0
+    var lessonIndex: Int?
+    
+    var selectedDate = Date() {
+        didSet {
+            let formatter = DateFormatter()
+            
+            formatter.dateFormat = "EEEE, d MMM"
+            
+            let str = formatter.string(from: selectedDate)
+            
+            if Calendar.current.isDateInToday(selectedDate) {
+                dateLabel.text = str + " (Today)"
+            } else {
+                dateLabel.text = str
+            }
+        }
+    }
     
     @IBOutlet weak var timetableTableView: UITableView!
     
@@ -32,6 +48,9 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var separatorView: UIView!
     
     @IBOutlet weak var laterView: UIStackView!
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,11 +65,11 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                                        Lesson(identifier: "bio", teacher: "Leong WF", startTime: 36000, endTime: 42000),
                                        Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
                                        Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)],
-                              tuesday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
+                              tuesday: [Lesson(identifier: "s&w", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
                                         Lesson(identifier: "break", startTime: 36000, endTime: 38400),
-                                        Lesson(identifier: "bio", teacher: "Leong WF", startTime: 36000, endTime: 42000),
-                                        Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
-                                        Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)],
+                                        Lesson(identifier: "chem", teacher: "Leong WF", startTime: 36000, endTime: 42000),
+                                        Lesson(identifier: "bio", teacher: "Praveena", startTime: 42000, endTime: 45600),
+                                        Lesson(identifier: "ss", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)],
                               wednesday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
                                           Lesson(identifier: "break", startTime: 36000, endTime: 38400),
                                           Lesson(identifier: "bio", teacher: "Leong WF", startTime: 36000, endTime: 42000),
@@ -66,6 +85,9 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                                        Lesson(identifier: "bio", teacher: "Leong WF", startTime: 36000, endTime: 42000),
                                        Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
                                        Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)])
+        
+        // Set up selected date to be the current date, this is to call the didSet there to update the labels and all
+        selectedDate = Date()
         
         // Get the current day and update the lessons array
         dayChanged()
@@ -89,7 +111,30 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func tomorrowButtonClicked(_ sender: Any) {
+        // Add 24 hours (86400 seconds) to time
+        selectedDate.addTimeInterval(86400)
+        dayChanged()
+    }
+    
+    @IBAction func yesterdayButtonClicked(_ sender: Any) {
+        // Subtract 24 hours (86400 seconds) to time
+        selectedDate.addTimeInterval(-86400)
+        dayChanged()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if lessons.count == 0 {
+            let defaultAttr = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .semibold)]
+            
+            let attrString = NSMutableAttributedString(string: "😴\n\nThere are no lessons today.", attributes: defaultAttr)
+            
+            attrString.addAttribute(.font, value: UIFont.systemFont(ofSize: 48, weight: .bold), range: NSRange(location: 0, length: 3))
+            
+            tableView.setEmptyState(attrString)
+        } else {
+            tableView.restore()
+        }
         return lessons.count
     }
     
@@ -99,24 +144,28 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         if indexPath.row == 0 {
             cell.topTimelineView.isHidden = true
         }
-        cell.bottomTimelineIndicator.backgroundColor = GlobalColors.greyThree
-        cell.topTimelineView.backgroundColor = GlobalColors.greyThree
-        cell.timelineIndicator.tintColor = GlobalColors.greyThree
-        
         
         if indexPath.row == lessons.count - 1 {
             cell.bottomTimelineIndicator.layer.cornerRadius = cell.bottomTimelineIndicator.frame.width / 2
         } else {
             cell.bottomTimelineIndicator.layer.cornerRadius = 0
         }
-                
+        
+        cell.selectedDate = selectedDate
+        
+        // Resetting timeline colors
+        cell.topTimelineView.backgroundColor = GlobalColors.greyThree
+        cell.timelineIndicator.tintColor = GlobalColors.greyThree
+        cell.bottomTimelineIndicator.backgroundColor = GlobalColors.greyThree
+        
+        print(lessons[indexPath.row])
         cell.lesson = lessons[indexPath.row]
         
         return cell
     }
     
     @objc func dayChanged() {
-        switch Calendar.current.component(.weekday, from: Date()) {
+        switch Calendar.current.component(.weekday, from: selectedDate) {
         case 2:
             lessons = timetable.monday
             
@@ -140,6 +189,8 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         // After updating the lessons, update the timings
         // This will allow it to update the UI
         timeUpdated()
+        
+        timetableTableView.reloadData()
     }
     
     func timeUpdated() {
@@ -183,7 +234,7 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             nowLessonLabel.text = ongoingLessonAttr.1
             nowImageView.image = ongoingLessonAttr.0
-            nowDescriptionLabel.text = "Ends in \(todayTimeInterval)"
+            nowDescriptionLabel.text = "From \(Lesson.convert(time: ongoingLesson.startTime)) to \(Lesson.convert(time: ongoingLesson.endTime))"
             
             nowView.isHidden = false
         } else {
@@ -194,10 +245,10 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             nowView.isHidden = true
         }
         
-        if lessonIndex < lessons.count {
+        if lessonIndex! < lessons.count {
             // The value which corresponds to the lesson in the lessons array
             // If the ongoingLesson is nil, it means that no lesson is ongoing, therefore, show the first item
-            let nextLessonIndex = ongoingLesson == nil ? 0 : lessonIndex + 1
+            let nextLessonIndex = ongoingLesson == nil ? 0 : lessonIndex! + 1
             
             // The next lesson
             let nextLesson = lessons[nextLessonIndex]

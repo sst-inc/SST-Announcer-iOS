@@ -129,6 +129,7 @@
 		329B6B46248BAAC100ED4428 /* ContentPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B6B45248BAAC100ED4428 /* ContentPreviewing.swift */; };
 		329B6B48248BF25900ED4428 /* FilterPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B6B47248BF25900ED4428 /* FilterPreview.swift */; };
 		329CE2282489B713002022A6 /* AnnouncementPointers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329CE2272489B713002022A6 /* AnnouncementPointers.swift */; };
+		329DCBCA249703FC00018D32 /* UITableView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DCBC9249703FC00018D32 /* UITableView Extension.swift */; };
 		329E3B1D23F979CC00524901 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 329E3B1C23F979CC00524901 /* Settings.bundle */; };
 		329E3B1F23FEA47500524901 /* ReadAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */; };
 		32A27B9B2493072F00786B03 /* TodayOngoingUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A27B9A2493072F00786B03 /* TodayOngoingUI.swift */; };
@@ -315,6 +316,7 @@
 		329B6B45248BAAC100ED4428 /* ContentPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPreviewing.swift; sourceTree = "<group>"; };
 		329B6B47248BF25900ED4428 /* FilterPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPreview.swift; sourceTree = "<group>"; };
 		329CE2272489B713002022A6 /* AnnouncementPointers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementPointers.swift; sourceTree = "<group>"; };
+		329DCBC9249703FC00018D32 /* UITableView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView Extension.swift"; sourceTree = "<group>"; };
 		329E3B1C23F979CC00524901 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadAnnouncements.swift; sourceTree = "<group>"; };
 		32A27B9A2493072F00786B03 /* TodayOngoingUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayOngoingUI.swift; sourceTree = "<group>"; };
@@ -698,6 +700,7 @@
 				32C25320244EA6030015085A /* UISearchBar Extension.swift */,
 				326210EB2452061900629CC7 /* UIView Extension.swift */,
 				328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */,
+				329DCBC9249703FC00018D32 /* UITableView Extension.swift */,
 			);
 			path = "UIKit Extensions";
 			sourceTree = "<group>";
@@ -892,7 +895,7 @@
 					New,
 				);
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "SST Inc.";
 				TargetAttributes = {
 					327524BD249213D8008EA814 = {
@@ -1057,6 +1060,7 @@
 				3292B75D2489DD7C005749CB /* ContentPointer.swift in Sources */,
 				324576F9238D8E0E00730F17 /* Constants.swift in Sources */,
 				324577CE238E53A200730F17 /* String + toDuration.swift in Sources */,
+				329DCBCA249703FC00018D32 /* UITableView Extension.swift in Sources */,
 				324577D2238E53A200730F17 /* String + toBool.swift in Sources */,
 				32B7C4442488BBE0009D160F /* SplitViewController.swift in Sources */,
 				3245777E238E53A100730F17 /* AtomFeedContributor.swift in Sources */,
@@ -1267,6 +1271,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1327,6 +1332,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
