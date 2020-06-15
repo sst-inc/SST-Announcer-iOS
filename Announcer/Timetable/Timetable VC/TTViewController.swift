@@ -12,6 +12,7 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     var timetable: Timetable!
     var lessons: [Lesson]!
+    var todayLessons: [Lesson]!
     
     var lessonIndex: Int?
     
@@ -67,16 +68,20 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                                        Lesson(identifier: "math", teacher: "Janet Tan", startTime: 42000, endTime: 45600),
                                        Lesson(identifier: "chem", teacher: "Praveena", startTime: 45600, endTime: 49200),
                                        Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 49200, endTime: 52800)],
-                              tuesday: [Lesson(identifier: "s&w", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
-                                        Lesson(identifier: "break", startTime: 36000, endTime: 38400),
-                                        Lesson(identifier: "chem", teacher: "Leong WF", startTime: 38400, endTime: 42000),
-                                        Lesson(identifier: "bio", teacher: "Praveena", startTime: 42000, endTime: 45600),
-                                        Lesson(identifier: "ss", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)],
-                              wednesday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
-                                          Lesson(identifier: "break", startTime: 36000, endTime: 38400),
-                                          Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
-                                          Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
-                                          Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)],
+                              tuesday: [Lesson(identifier: "ss", teacher: "Seth Tan", startTime: 28800, endTime: 32400),
+                                        Lesson(identifier: "break", startTime: 32400, endTime: 34800),
+                                        Lesson(identifier: "cl", startTime: 34800, endTime: 38400),
+                                        Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 38400, endTime: 43200),
+                                        Lesson(identifier: "break", startTime: 43200, endTime: 45600),
+                                        Lesson(identifier: "chem", teacher: "Praveena", startTime: 45600, endTime: 49200),
+                                        Lesson(identifier: "math", teacher: "Janet Tan", startTime: 49200, endTime: 52800),
+                                        Lesson(identifier: "ch(ge)", teacher: "Alvin Tan", startTime: 52800, endTime: 56400)],
+                              wednesday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 2400, endTime: 3000),
+//                                          Lesson(identifier: "break", startTime: 36000, endTime: 38400),
+//                                          Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
+//                                          Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
+//                                          Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)
+            ],
                               thursday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
                                          Lesson(identifier: "break", startTime: 36000, endTime: 38400),
                                          Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
@@ -187,17 +192,21 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             lessons = []
         }
         
+        todayLessons = lessons
+        
         // After updating the lessons, update the timings
         // This will allow it to update the UI
         timeUpdated()
         
-        timetableTableView.reloadData()
+        DispatchQueue.main.async {
+            self.timetableTableView.reloadData()
+        }
     }
     
     func timeUpdated() {
         // Handling weekends
         // If user uses announcer on weekends, they should know that no data will appear
-        if lessons == [] { return }
+        if todayLessons == [] { return }
         
         // Declaring ongoingLesson as optional as there may not be an ongoing lesson
         var ongoingLesson: Lesson?
@@ -206,10 +215,10 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         // Getting today's date value, at 00:00 and getting the time interval since now
         // Basically, how many seconds since 00:00
-        let todayTimeInterval = Date().timeIntervalSince(Lesson.todayDate)
+        let todayTimeInterval = Date().timeIntervalSince(Lesson.getTodayDate())
         
         // Looping through to find the current lesson
-        for i in lessons {
+        for i in todayLessons {
             // Adding to the counter because, it is a counter
             counter += 1
             
@@ -236,23 +245,19 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             nowLessonLabel.text = ongoingLessonAttr.1
             nowImageView.image = ongoingLessonAttr.0
             nowDescriptionLabel.text = "From \(Lesson.convert(time: ongoingLesson.startTime)) to \(Lesson.convert(time: ongoingLesson.endTime))"
-            
-            nowView.isHidden = false
         } else {
             nowLessonLabel.text = "No Lessons"
             nowImageView.image = Assets.home
-            nowDescriptionLabel.text = "No ongoing lessons."
-            
-            nowView.isHidden = true
+            nowDescriptionLabel.text = "There are no ongoing lessons."
         }
         
-        if lessonIndex! < lessons.count - 1 {
+        if lessonIndex! < todayLessons.count - 1 {
             // The value which corresponds to the lesson in the lessons array
             // If the ongoingLesson is nil, it means that no lesson is ongoing, therefore, show the first item
             let nextLessonIndex = ongoingLesson == nil ? 0 : lessonIndex! + 1
             
             // The next lesson
-            let nextLesson = lessons[nextLessonIndex]
+            let nextLesson = todayLessons[nextLessonIndex]
             
             // Assets for the next lesson such as the icon and the full name
             let nextLessonAttr = Assets.getSubject(nextLesson.identifier, font: .systemFont(ofSize: 30))
@@ -284,17 +289,6 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         timetableTableView.reloadData()
         
         // Scroll to lesson index
-        timetableTableView.scrollToRow(at: IndexPath(row: lessonIndex!, section: 0), at: .top, animated: true)
+        timetableTableView.scrollToRow(at: IndexPath(row: lessonIndex ?? 0, section: 0), at: .top, animated: true)
     }
-    
-/*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -22,7 +22,7 @@ class TTTableViewCell: UITableViewCell {
             
             // Setting the colors
             if Calendar.current.isDateInToday(selectedDate) {
-                let todayTimeInterval = Date().timeIntervalSince(Lesson.todayDate)
+                let todayTimeInterval = Date().timeIntervalSince(Lesson.getTodayDate())
                 
                 if todayTimeInterval > lesson.startTime {
                     topTimelineView.backgroundColor = GlobalColors.blueTint
