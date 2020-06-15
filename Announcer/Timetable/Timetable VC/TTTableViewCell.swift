@@ -16,6 +16,10 @@ class TTTableViewCell: UITableViewCell {
             let subject = Assets.getSubject(lesson.identifier, font: .systemFont(ofSize: 30, weight: .bold))
             subjectImageView.image = subject.0
             
+            timelineIndicator.image = UIImage(systemName: "circle.fill")
+            timelineIndicator.backgroundColor = .clear
+            
+            
             // Setting the colors
             if Calendar.current.isDateInToday(selectedDate) {
                 let todayTimeInterval = Date().timeIntervalSince(Lesson.todayDate)
@@ -25,6 +29,9 @@ class TTTableViewCell: UITableViewCell {
                     timelineIndicator.tintColor = GlobalColors.blueTint
                     
                     if todayTimeInterval < lesson.endTime {
+                        timelineIndicator.image = UIImage(systemName: "largecircle.fill.circle")
+                        
+                        timelineIndicator.backgroundColor = GlobalColors.background
                     } else {
                         bottomTimelineIndicator.backgroundColor = GlobalColors.blueTint
                     }
@@ -66,7 +73,8 @@ class TTTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        timelineIndicator.clipsToBounds = true
+        timelineIndicator.layer.cornerRadius = timelineIndicator.frame.height / 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

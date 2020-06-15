@@ -116,16 +116,17 @@ Announcer Timetable works by having you select your class and when you want your
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xfr-6k-jsI">
-                                                <rect key="frame" x="0.0" y="32" width="170.5" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="32" width="170.5" height="20"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zzz" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="72p-PU-XUs">
-                                                        <rect key="frame" x="0.0" y="0.0" width="26.5" height="26"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="20" height="19.5"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="9pi-Si-oQE"/>
                                                             <constraint firstAttribute="width" secondItem="72p-PU-XUs" secondAttribute="height" multiplier="1:1" id="VnB-SQ-8DN"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Break" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7m-DU-JUT">
-                                                        <rect key="frame" x="34.5" y="0.0" width="136" height="26.5"/>
+                                                        <rect key="frame" x="28" y="0.0" width="142.5" height="20"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -133,7 +134,7 @@ Announcer Timetable works by having you select your class and when you want your
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ends in 10 min 5 sec" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXX-ZV-Fcn">
-                                                <rect key="frame" x="0.0" y="70.5" width="170.5" height="16"/>
+                                                <rect key="frame" x="0.0" y="64" width="170.5" height="22.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -160,16 +161,16 @@ Announcer Timetable works by having you select your class and when you want your
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZEb-NT-d41">
-                                                <rect key="frame" x="0.0" y="32" width="170.5" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="32" width="170.5" height="20"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="x.squareroot" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Kng-GE-jfL">
-                                                        <rect key="frame" x="0.0" y="1.5" width="26.5" height="23.5"/>
+                                                        <rect key="frame" x="0.0" y="1.5" width="20" height="17"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="Kng-GE-jfL" secondAttribute="height" multiplier="1:1" id="QF5-LB-9C0"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Math" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqm-S0-caB">
-                                                        <rect key="frame" x="34.5" y="0.0" width="136" height="26.5"/>
+                                                        <rect key="frame" x="28" y="0.0" width="142.5" height="20"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -177,7 +178,7 @@ Announcer Timetable works by having you select your class and when you want your
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teacher: Janet Tan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pcl-WM-HrF">
-                                                <rect key="frame" x="0.0" y="70.5" width="170.5" height="16"/>
+                                                <rect key="frame" x="0.0" y="64" width="170.5" height="22.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -262,7 +263,7 @@ Announcer Timetable works by having you select your class and when you want your
                                                     <rect key="frame" x="52" y="8" width="20" height="19.5"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Math • Janet Tan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbN-hd-hkm">
-                                                    <rect key="frame" x="80" y="8" width="137" height="20"/>
+                                                    <rect key="frame" x="80" y="8" width="314" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="kl3-ZR-ege"/>
                                                     </constraints>
@@ -291,7 +292,6 @@ Announcer Timetable works by having you select your class and when you want your
                                                 <constraint firstItem="T56-Tt-dkR" firstAttribute="top" secondItem="xDa-kn-XsG" secondAttribute="bottom" id="6E4-Q9-WR0"/>
                                                 <constraint firstItem="T56-Tt-dkR" firstAttribute="top" secondItem="fao-N4-H2K" secondAttribute="top" constant="16" id="BHy-XW-0gf"/>
                                                 <constraint firstItem="ENs-St-0xL" firstAttribute="width" secondItem="ENs-St-0xL" secondAttribute="height" multiplier="1:1" id="Chb-uD-gUj"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nbN-hd-hkm" secondAttribute="trailing" constant="20" symbolic="YES" id="IMK-No-Tzf"/>
                                                 <constraint firstItem="vge-zF-Ryd" firstAttribute="centerX" secondItem="T56-Tt-dkR" secondAttribute="centerX" id="Ibw-tB-FDZ"/>
                                                 <constraint firstItem="nbN-hd-hkm" firstAttribute="leading" secondItem="ENs-St-0xL" secondAttribute="trailing" constant="8" id="Syu-48-omu"/>
                                                 <constraint firstItem="ENs-St-0xL" firstAttribute="height" secondItem="nbN-hd-hkm" secondAttribute="height" id="UZl-Ek-Odg"/>
@@ -300,6 +300,7 @@ Announcer Timetable works by having you select your class and when you want your
                                                 <constraint firstItem="ENs-St-0xL" firstAttribute="leading" secondItem="vge-zF-Ryd" secondAttribute="trailing" constant="16" id="dsD-My-2Rl"/>
                                                 <constraint firstAttribute="trailing" secondItem="ahI-MQ-uBN" secondAttribute="trailing" constant="20" id="g11-MO-LIh"/>
                                                 <constraint firstItem="uX2-EQ-BA6" firstAttribute="top" secondItem="ENs-St-0xL" secondAttribute="bottom" constant="8" id="hQ4-uw-jbf"/>
+                                                <constraint firstAttribute="trailing" secondItem="nbN-hd-hkm" secondAttribute="trailing" constant="20" id="hZd-ir-c2K"/>
                                                 <constraint firstItem="ahI-MQ-uBN" firstAttribute="top" secondItem="uX2-EQ-BA6" secondAttribute="bottom" constant="8" id="lvJ-vp-x4d"/>
                                                 <constraint firstItem="xDa-kn-XsG" firstAttribute="leading" secondItem="fao-N4-H2K" secondAttribute="leading" constant="20" id="ob2-gS-bT9"/>
                                                 <constraint firstItem="vge-zF-Ryd" firstAttribute="top" secondItem="fao-N4-H2K" secondAttribute="top" constant="8" id="ou9-0r-m0m"/>

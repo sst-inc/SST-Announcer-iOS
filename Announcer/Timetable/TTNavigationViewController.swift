@@ -27,7 +27,7 @@ class TTNavigationViewController: UINavigationController {
         let timetable = storyboard.instantiateViewController(identifier: "Timetable")
         let setUp = storyboard.instantiateViewController(identifier: "SetUp")
         
-        if UserDefaults.standard.object(forKey: "timetable") != nil {
+        if UserDefaults.standard.object(forKey: "timetable") == nil {
             self.viewControllers = [timetable]
         } else {
             self.viewControllers = [setUp]

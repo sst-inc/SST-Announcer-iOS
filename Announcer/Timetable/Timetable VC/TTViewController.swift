@@ -64,8 +64,9 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                               monday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
                                        Lesson(identifier: "break", startTime: 36000, endTime: 38400),
                                        Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
-                                       Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
-                                       Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)],
+                                       Lesson(identifier: "math", teacher: "Janet Tan", startTime: 42000, endTime: 45600),
+                                       Lesson(identifier: "chem", teacher: "Praveena", startTime: 45600, endTime: 49200),
+                                       Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 49200, endTime: 52800)],
                               tuesday: [Lesson(identifier: "s&w", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
                                         Lesson(identifier: "break", startTime: 36000, endTime: 38400),
                                         Lesson(identifier: "chem", teacher: "Leong WF", startTime: 38400, endTime: 42000),
@@ -144,16 +145,14 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "time", for: indexPath) as! TTTableViewCell
         
-        if indexPath.row == 0 {
-            cell.topTimelineView.isHidden = true
-        }
+        // Hide the top part of the timeline if it is the first row, this is to create a convincing timeline
+        cell.topTimelineView.isHidden = indexPath.row == 0
         
-        if indexPath.row == lessons.count - 1 {
-            cell.bottomTimelineIndicator.layer.cornerRadius = cell.bottomTimelineIndicator.frame.width / 2
-        } else {
-            cell.bottomTimelineIndicator.layer.cornerRadius = 0
-        }
+        // Hide the bottom of timeline when done
+        cell.bottomTimelineIndicator.isHidden = indexPath.row == lessons.count - 1
         
+        // Set the selected date, this is going to be used to determine the current date
+        // This solves the issue of having the timeline highlighting on days that have already passed or are far in the future
         cell.selectedDate = selectedDate
         
         // Resetting timeline colors
@@ -161,7 +160,6 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.timelineIndicator.tintColor = GlobalColors.greyThree
         cell.bottomTimelineIndicator.backgroundColor = GlobalColors.greyThree
         
-        print(lessons[indexPath.row])
         cell.lesson = lessons[indexPath.row]
         
         return cell
@@ -248,7 +246,7 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             nowView.isHidden = true
         }
         
-        if lessonIndex! < lessons.count {
+        if lessonIndex! < lessons.count - 1 {
             // The value which corresponds to the lesson in the lessons array
             // If the ongoingLesson is nil, it means that no lesson is ongoing, therefore, show the first item
             let nextLessonIndex = ongoingLesson == nil ? 0 : lessonIndex! + 1
@@ -284,6 +282,9 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         // Reload timetable's data
         timetableTableView.reloadData()
+        
+        // Scroll to lesson index
+        timetableTableView.scrollToRow(at: IndexPath(row: lessonIndex!, section: 0), at: .top, animated: true)
     }
     
 /*
