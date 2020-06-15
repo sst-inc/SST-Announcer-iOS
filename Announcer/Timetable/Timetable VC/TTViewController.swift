@@ -57,34 +57,37 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         // Do any additional setup after loading the view.
         updateTimetable.layer.cornerRadius = 10
         
+        // Commented out Dummy Data
         // Dummy Data
         timetable = Timetable(class: "S4-07",
                               timetableImage: Data(),
                               monday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
                                        Lesson(identifier: "break", startTime: 36000, endTime: 38400),
-                                       Lesson(identifier: "bio", teacher: "Leong WF", startTime: 36000, endTime: 42000),
+                                       Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
                                        Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
                                        Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)],
                               tuesday: [Lesson(identifier: "s&w", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
                                         Lesson(identifier: "break", startTime: 36000, endTime: 38400),
-                                        Lesson(identifier: "chem", teacher: "Leong WF", startTime: 36000, endTime: 42000),
+                                        Lesson(identifier: "chem", teacher: "Leong WF", startTime: 38400, endTime: 42000),
                                         Lesson(identifier: "bio", teacher: "Praveena", startTime: 42000, endTime: 45600),
                                         Lesson(identifier: "ss", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)],
                               wednesday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
                                           Lesson(identifier: "break", startTime: 36000, endTime: 38400),
-                                          Lesson(identifier: "bio", teacher: "Leong WF", startTime: 36000, endTime: 42000),
+                                          Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
                                           Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
                                           Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)],
                               thursday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
                                          Lesson(identifier: "break", startTime: 36000, endTime: 38400),
-                                         Lesson(identifier: "bio", teacher: "Leong WF", startTime: 36000, endTime: 42000),
+                                         Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
                                          Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
                                          Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)],
                               friday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
                                        Lesson(identifier: "break", startTime: 36000, endTime: 38400),
-                                       Lesson(identifier: "bio", teacher: "Leong WF", startTime: 36000, endTime: 42000),
+                                       Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
                                        Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
                                        Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)])
+        
+//        timetable = UserDefaults.standard.object(forKey: "timetable") as? Timetable
         
         // Set up selected date to be the current date, this is to call the didSet there to update the labels and all
         selectedDate = Date()

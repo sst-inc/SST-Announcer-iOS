@@ -23,12 +23,24 @@ class TTNavigationViewController: UINavigationController {
 
         // Do any additional setup after loading the view.
         
+        let storyboard = Storyboards.timetable
+        let timetable = storyboard.instantiateViewController(identifier: "Timetable")
+        let setUp = storyboard.instantiateViewController(identifier: "SetUp")
+        
+        if UserDefaults.standard.object(forKey: "timetable") != nil {
+            self.viewControllers = [timetable]
+        } else {
+            self.viewControllers = [setUp]
+        }
+        
+        
         DispatchQueue.global(qos: .default).async {
             let apiKey = Keys.driveAPI
             
             // This is the fileID for the current timetable, it is a placeholder
             
-            var possiblePosts = Fetch.values().filter { $0.categories.contains("Timetable") || $0.categories.contains("timetable") }
+            var possiblePosts = Fetch.values().filter { $0.categories.contains("Timetable") || $0.categories.contains("timetable")
+            }
             possiblePosts.sort { (first, second) -> Bool in
                 first.date.distance(to: second.date) < 0
             }

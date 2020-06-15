@@ -11,7 +11,7 @@
         <!--Timetable-->
         <scene sceneID="QhN-lk-Vwb">
             <objects>
-                <viewController id="GJI-ha-qIi" customClass="TTSetUpViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SetUp" id="GJI-ha-qIi" customClass="TTSetUpViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rmg-hs-vh3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,7 +83,7 @@ Announcer Timetable works by having you select your class and when you want your
         <!--Timetable-->
         <scene sceneID="weW-co-Pgq">
             <objects>
-                <viewController id="11p-qr-rvn" customClass="TTViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Timetable" id="11p-qr-rvn" customClass="TTViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qk8-dJ-xam">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,7 +101,7 @@ Announcer Timetable works by having you select your class and when you want your
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="A6g-f3-ufA">
-                                <rect key="frame" x="20" y="160" width="374" height="86.5"/>
+                                <rect key="frame" x="20" y="194" width="374" height="86.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="BXA-oH-BYV">
                                         <rect key="frame" x="0.0" y="0.0" width="170.5" height="86.5"/>
@@ -191,14 +191,14 @@ Announcer Timetable works by having you select your class and when you want your
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQT-a7-GOg">
-                                <rect key="frame" x="20" y="262.5" width="374" height="1"/>
+                                <rect key="frame" x="20" y="296.5" width="374" height="1"/>
                                 <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="4so-MY-x4c"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday, 15 Jun (Today)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckK-uI-IHd">
-                                <rect key="frame" x="68" y="279.5" width="278" height="20"/>
+                                <rect key="frame" x="68" y="313.5" width="278" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="BoW-d0-sw2"/>
                                 </constraints>
@@ -207,7 +207,7 @@ Announcer Timetable works by having you select your class and when you want your
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mrm-1j-Tmd">
-                                <rect key="frame" x="20" y="269.5" width="40" height="40"/>
+                                <rect key="frame" x="20" y="303.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Mrm-1j-Tmd" secondAttribute="height" multiplier="1:1" id="pUh-um-QHf"/>
                                     <constraint firstAttribute="height" constant="40" id="qgy-Y5-tHE"/>
@@ -218,7 +218,7 @@ Announcer Timetable works by having you select your class and when you want your
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAX-cA-b4l">
-                                <rect key="frame" x="354" y="269.5" width="40" height="40"/>
+                                <rect key="frame" x="354" y="303.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ANw-aV-NUR"/>
                                     <constraint firstAttribute="width" secondItem="oAX-cA-b4l" secondAttribute="height" multiplier="1:1" id="Wob-He-fwi"/>
@@ -229,7 +229,7 @@ Announcer Timetable works by having you select your class and when you want your
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I16-aa-ztJ">
-                                <rect key="frame" x="0.0" y="315.5" width="414" height="460.5"/>
+                                <rect key="frame" x="0.0" y="349.5" width="414" height="426.5"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="time" id="fsJ-uh-xqs" customClass="TTTableViewCell" customModule="SST_Announcer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="68.5"/>
@@ -352,7 +352,7 @@ Announcer Timetable works by having you select your class and when you want your
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="84a-ei-6bq"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Timetable" id="FJX-RD-CJ6">
+                    <navigationItem key="navigationItem" title="Timetable" prompt="Beta Feature" id="FJX-RD-CJ6">
                         <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="fjU-KI-df6">
                             <connections>
                                 <action selector="dismissButton:" destination="11p-qr-rvn" id="1eK-hw-Qj2"/>
@@ -378,7 +378,7 @@ Announcer Timetable works by having you select your class and when you want your
             </objects>
             <point key="canvasLocation" x="3492.753623188406" y="794.86607142857144"/>
         </scene>
-        <!--Get Started-->
+        <!--Set Up-->
         <scene sceneID="2m0-Ig-SkE">
             <objects>
                 <viewController id="7wI-fn-SbU" customClass="TTGetStartedViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
@@ -610,7 +610,7 @@ Announcer Timetable works by having you select your class and when you want your
                             <outletCollection property="gestureRecognizers" destination="O0B-ER-kxs" appends="YES" id="V4M-87-9vn"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Get Started" prompt="Beta Feature" id="E9N-WC-GAX">
+                    <navigationItem key="navigationItem" title="Set Up" prompt="Beta Feature" id="E9N-WC-GAX">
                         <barButtonItem key="backBarButtonItem" title="Back" id="y6Q-pd-w1s"/>
                     </navigationItem>
                     <connections>
