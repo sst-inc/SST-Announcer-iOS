@@ -15,6 +15,8 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var lessonIndex = 0
     
+    @IBOutlet weak var timetableTableView: UITableView!
+    
     @IBOutlet weak var updateTimetable: UIButton!
     
     @IBOutlet weak var nowImageView: UIImageView!
@@ -65,9 +67,14 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                                        Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
                                        Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)])
         
-        lessons = timetable.monday
+        // Get the current day and update the lessons array
+        dayChanged()
         
-        timeUpdated()
+        // Add an observer to handle when the day gets changed
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(dayChanged),
+                                               name: .NSCalendarDayChanged, object: nil)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -108,7 +115,38 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return cell
     }
     
+    @objc func dayChanged() {
+        switch Calendar.current.component(.weekday, from: Date()) {
+        case 2:
+            lessons = timetable.monday
+            
+        case 3:
+            lessons = timetable.tuesday
+            
+        case 4:
+            lessons = timetable.wednesday
+            
+        case 5:
+            lessons = timetable.thursday
+            
+        case 6:
+            lessons = timetable.friday
+            
+        default:
+            // No what, why are u using Announcer Timetable on weekends
+            lessons = []
+        }
+        
+        // After updating the lessons, update the timings
+        // This will allow it to update the UI
+        timeUpdated()
+    }
+    
     func timeUpdated() {
+        // Handling weekends
+        // If user uses announcer on weekends, they should know that no data will appear
+        if lessons == [] { return }
+        
         // Declaring ongoingLesson as optional as there may not be an ongoing lesson
         var ongoingLesson: Lesson?
         
@@ -174,9 +212,10 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             // - Setting the text to the one that is from the assets
             laterLessonLabel.text = nextLessonAttr.1
             
-            // - Setting the teacher's name.
-            //    - For lessons that the teacher's name is unable to be determined, it will just show nothing in place of the actual name.
-            laterTeacherLabel.text = nextLesson.teacher ?? ""
+            // - Setting the start at label's text
+            //    - This will show what time the lesson starts at
+            //    - e.g. "Starts at 9:00am"
+            laterTeacherLabel.text = "Starts at \(Lesson.convert(time: nextLesson.startTime))"
             
             // Ensure that the laterView is not hidden
             laterView.isHidden = false
@@ -188,6 +227,9 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         // Handling the separator view
         // Separator gets hidden when either laterView or nowView is hidden
         separatorView.isHidden = laterView.isHidden || nowView.isHidden
+        
+        // Reload timetable's data
+        timetableTableView.reloadData()
     }
     
 /*

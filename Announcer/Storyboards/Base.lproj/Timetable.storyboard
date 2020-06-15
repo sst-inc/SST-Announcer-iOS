@@ -363,6 +363,7 @@ Announcer Timetable works by having you select your class and when you want your
                         <outlet property="nowLessonLabel" destination="m7m-DU-JUT" id="Ik0-Jm-VsW"/>
                         <outlet property="nowView" destination="BXA-oH-BYV" id="7S2-CD-ca7"/>
                         <outlet property="separatorView" destination="bUN-yf-X69" id="LYy-ON-wYf"/>
+                        <outlet property="timetableTableView" destination="I16-aa-ztJ" id="Z2I-TI-glO"/>
                         <outlet property="updateTimetable" destination="sTB-hs-TKx" id="9v4-zd-Qw7"/>
                     </connections>
                 </viewController>
