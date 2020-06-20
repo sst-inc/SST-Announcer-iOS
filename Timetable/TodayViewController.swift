@@ -30,7 +30,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 lessonOverUI()
             case .weekend:
                 extensionContext?.widgetLargestAvailableDisplayMode = .compact
-                setUpWeekend()
+                setUpWeekendUI()
             case .none: break
             }
         }

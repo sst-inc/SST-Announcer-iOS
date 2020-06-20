@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension TodayViewController {
-    func setUpWeekend() {
+    func setUpWeekendUI() {
         let view = UIView(frame: self.view.frame)
         
         let ongoingSubject = SubjectView("weekend", subtitle: "Do no harm to yourself,\nDo no harm to others,\nDo no harm to the school.", vc: self)

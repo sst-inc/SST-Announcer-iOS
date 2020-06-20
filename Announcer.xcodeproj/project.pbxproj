@@ -404,6 +404,17 @@
 			path = CollectionView;
 			sourceTree = "<group>";
 		};
+		321C9BE6249E5E6A00088677 /* Today UI */ = {
+			isa = PBXGroup;
+			children = (
+				32A27B9A2493072F00786B03 /* TodayOngoingUI.swift */,
+				32A27B9C2493078800786B03 /* TodaySetUpUI.swift */,
+				32866680249E523D007CC75E /* TodayWrongDay.swift */,
+				3286667B249E46C8007CC75E /* TodayLessonOverUI.swift */,
+			);
+			path = "Today UI";
+			sourceTree = "<group>";
+		};
 		324576FE238E213B00730F17 /* KALoader */ = {
 			isa = PBXGroup;
 			children = (
@@ -655,10 +666,7 @@
 			children = (
 				3294ABEC249863F200A70538 /* Timetable.entitlements */,
 				327524C1249213D8008EA814 /* TodayViewController.swift */,
-				32A27B9A2493072F00786B03 /* TodayOngoingUI.swift */,
-				32A27B9C2493078800786B03 /* TodaySetUpUI.swift */,
-				32866680249E523D007CC75E /* TodayWrongDay.swift */,
-				3286667B249E46C8007CC75E /* TodayLessonOverUI.swift */,
+				321C9BE6249E5E6A00088677 /* Today UI */,
 				327524CF24922D4E008EA814 /* SubjectView.swift */,
 				327524C3249213D8008EA814 /* MainInterface.storyboard */,
 				327524C6249213D8008EA814 /* Info.plist */,
