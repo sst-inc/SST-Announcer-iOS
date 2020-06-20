@@ -262,7 +262,8 @@ struct Assets {
                             "other"    : ["studentdesk", identifier],                       // 􀑔
              
                             "weekend"  : ["calendar", "It's \(day)!"],                      // 􀉉
-                            "|before|" : ["clock", "Starting Soon"]                         // 􀐫
+                            "|before|" : ["clock", "Starting Soon"],                        // 􀐫
+                            "|over|"   : ["Class Dismissed!", "house"]                      // 􀎞
         ]
         
         let subject = subjectIcons[identifier] ?? subjectIcons["other"]!

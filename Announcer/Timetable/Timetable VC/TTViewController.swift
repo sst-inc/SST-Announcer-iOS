@@ -161,7 +161,7 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         if lessons.count == 0 {
             let defaultAttr = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .semibold)]
             
-            let attrString = NSMutableAttributedString(string: "😴\n\nThere are no lessons today.", attributes: defaultAttr)
+            let attrString = NSMutableAttributedString(string: "😴\n\nThere are no lessons on \(Calendar.current.component(.weekday, from: selectedDate) == 1 ? "Sunday" : "Saturday").", attributes: defaultAttr)
             
             attrString.addAttribute(.font, value: UIFont.systemFont(ofSize: 48, weight: .bold), range: NSRange(location: 0, length: 3))
             
@@ -197,10 +197,6 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @objc func dayChanged() {
         
-        // Ensure the views are not hidden, if they need to be, they will get hidden later
-        ongoingUpNextStackView.isHidden = false
-        bottomSeparatorView.isHidden = false
-        
         switch Calendar.current.component(.weekday, from: selectedDate) {
         case 2:
             lessons = timetable.monday
@@ -220,14 +216,20 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         default:
             // No what, why are u using Announcer Timetable on weekends
             lessons = []
-            
-            // Hide views because it is the weekends
-            ongoingUpNextStackView.isHidden = true
-            bottomSeparatorView.isHidden = true
         }
         
         if Calendar.current.isDateInToday(selectedDate) {
             todayLessons = lessons
+            
+            if todayLessons == [] {
+                // Hide views because it is the weekends
+                ongoingUpNextStackView.isHidden = true
+                bottomSeparatorView.isHidden = true
+            } else {
+                // Ensure the views are not hidden, if they need to be, they will get hidden later
+                ongoingUpNextStackView.isHidden = false
+                bottomSeparatorView.isHidden = false
+            }
         }
         
         // After updating the lessons, update the timings

@@ -15,6 +15,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     var interface: InterfaceStyle! {
         didSet {
+            // Resetting interface
+            view.subviews.forEach { $0.removeFromSuperview() }
+            
             switch interface {
             case .notSetUp:
                 extensionContext?.widgetLargestAvailableDisplayMode = .compact
@@ -23,7 +26,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 extensionContext?.widgetLargestAvailableDisplayMode = .expanded
                 createUI()
             case .lessonOver:
-                extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+                extensionContext?.widgetLargestAvailableDisplayMode = .compact
+                lessonOverUI()
             case .weekend:
                 extensionContext?.widgetLargestAvailableDisplayMode = .compact
                 setUpWeekend()
@@ -81,9 +85,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        var currentSize: CGSize = self.preferredContentSize
-        currentSize.height = 200.0
-        self.preferredContentSize = currentSize
+//        var currentSize: CGSize = self.preferredContentSize
+//        currentSize.height = 200.0
+//
+//        self.preferredContentSize = currentSize
+        
     }
     
     override func loadView() {
@@ -105,28 +111,29 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+        
         if interface == .ongoing {
             let oldConstraints = self.view.constraints
             
             if activeDisplayMode == .compact {
                 let newConstraints = getOngoingLessonLayout(for: .compact, withViews: view, ongoingSubject!, nowLabel!, laterSubjects!, laterLabel!)
                 
+//                preferredContentSize.height = 200
+                
                 UIView.animate(withDuration: 0.5) {
                     self.view.removeConstraints(oldConstraints)
                     self.view.addConstraints(newConstraints)
                 }
-                
-                preferredContentSize.height = 200
                 
             } else {
                 let newConstraints = getOngoingLessonLayout(for: .expanded, withViews: view, ongoingSubject!, nowLabel!, laterSubjects!, laterLabel!)
                 
+//                preferredContentSize.height = 280
+                
                 UIView.animate(withDuration: 0.5) {
                     self.view.removeConstraints(oldConstraints)
                     self.view.addConstraints(newConstraints)
                 }
-                
-                preferredContentSize = maxSize
             }
         }
     }

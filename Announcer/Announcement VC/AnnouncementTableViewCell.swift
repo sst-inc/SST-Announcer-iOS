@@ -182,7 +182,6 @@ class AnnouncementTableViewCell: UITableViewCell {
             announcementImageView.image = Assets.unread
             announcementImageView.tintColor = .systemBlue
         }
-        
     }
     
     // Highlights the cell when hovered

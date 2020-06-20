@@ -1,5 +1,5 @@
 //
-//  TodayWeekend.swift
+//  TodayWrongDay.swift
 //  Timetable
 //
 //  Created by JiaChen(: on 20/6/20.
@@ -11,6 +11,8 @@ import UIKit
 
 extension TodayViewController {
     func setUpWeekend() {
+        let view = UIView(frame: self.view.frame)
+        
         let ongoingSubject = SubjectView("weekend", subtitle: "Do no harm to yourself,\nDo no harm to others,\nDo no harm to the school.", vc: self)
         
         ongoingSubject.translatesAutoresizingMaskIntoConstraints = false
@@ -40,5 +42,7 @@ extension TodayViewController {
         view.addSubview(ongoingSubject)
         
         view.addConstraints(ongoingSubjectConstraints)
+        
+        self.view = view
     }
 }

@@ -221,8 +221,10 @@ class SubjectView: UIView {
         let normalAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: titleTextSize, weight: .heavy)]
         let teacherAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: titleTextSize, weight: .regular)]
         
-        if let teacher = teacher {
-            let attributedStr = NSMutableAttributedString(string: subject ?? "" + " • " + teacher, attributes: normalAttributes)
+        if let teacher = teacher, teacher != "" {
+            
+            let teacherAndSubject = (subject ?? "") + " • " + teacher
+            let attributedStr = NSMutableAttributedString(string: teacherAndSubject, attributes: normalAttributes)
             
             attributedStr.addAttributes(teacherAttributes, range: NSRange(location: (subject ?? "").count, length: teacher.count + 3))
             
@@ -234,7 +236,12 @@ class SubjectView: UIView {
         }
     }
     
-    func update(identifier: String, withTeacher teacher: String? = nil, subtitle: String? = nil) {
+    func update(identifier: String,
+                withTeacher teacher: String? = nil,
+                subtitle: String? = nil,
+                endTime: TimeInterval? = nil,
+                startTime: TimeInterval? = nil) {
+        
         let subjectInfo = Assets.getSubject(identifier, font: .systemFont(ofSize: iconSize, weight: .bold))
         
         self.subject = subjectInfo.1
@@ -246,6 +253,13 @@ class SubjectView: UIView {
         
         if let subtitle = subtitle {
             self.subtitle = subtitle
+            
+        } else if let endTime = endTime {
+            self.subtitle = "Ends at \(Lesson.convert(time: endTime))"
+            
+        } else if let startTime = startTime {
+            self.subtitle = "Starts at \(Lesson.convert(time: startTime))"
+            
         }
     }
     

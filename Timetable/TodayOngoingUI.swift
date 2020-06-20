@@ -14,12 +14,12 @@ extension TodayViewController {
     func createUI() {
         let view = UIView(frame: self.view.frame)
 
-        let ongoingSubject = SubjectView("break", subtitle: "Ends in 10 min 5 sec", vc: self)
+        let ongoingSubject = SubjectView("other", subtitle: "Ends at 10am", vc: self)
 
         let nowLabel = createHeaderLabels(withText: "Now:")
         
-        let laterSubjects = [SubjectView("bio", subtitle: "Starts at 10am", vc: self),
-                             SubjectView("s&w", subtitle: "Starts at 11am", vc: self)]
+        let laterSubjects = [SubjectView("other", subtitle: "Starts at 10am", vc: self),
+                             SubjectView("other", subtitle: "Starts at 11am", vc: self)]
         
         let laterLabel = createHeaderLabels(withText: "Later:")
         
@@ -229,6 +229,7 @@ extension TodayViewController {
             
             let todaysDate = Lesson.getTodayDate()
             
+            // Handling before lessons
             if currentLesson == 0 && Date().distance(to: todaysDate.advanced(by: lessons[0].startTime)) > 0 {
                 let lesson = lessons[currentLesson]
                 
@@ -243,13 +244,13 @@ extension TodayViewController {
                 return
             }
             
-            if lessons.count < currentLesson - 1 {
+            if lessons.count > currentLesson - 1 {
                 
                 currentLesson += 1
                 
                 let lesson = lessons[currentLesson]
                 
-                ongoingSubject.update(identifier: lesson.identifier, withTeacher: lesson.teacher)
+                ongoingSubject.update(identifier: lesson.identifier, withTeacher: lesson.teacher, endTime: lesson.endTime)
                 
                 let timer = Timer(fire: todaysDate.advanced(by: lesson.endTime), interval: 0, repeats: false) { (_) in
                     self.updateLesson()
@@ -257,15 +258,15 @@ extension TodayViewController {
                 
                 RunLoop.main.add(timer, forMode: .default)
                 
-                if lessons.count < currentLesson {
+                if lessons.count > currentLesson {
                     let secondLesson = lessons[currentLesson + 1]
                     
-                    laterSubjects[0].update(identifier: secondLesson.identifier, withTeacher: secondLesson.teacher)
+                    laterSubjects[0].update(identifier: secondLesson.identifier, withTeacher: secondLesson.teacher, startTime: secondLesson.startTime)
                     
-                    if lessons.count < currentLesson + 1 {
+                    if lessons.count > currentLesson + 1 {
                         let thirdLesson = lessons[currentLesson + 2]
                         
-                        laterSubjects[1].update(identifier: thirdLesson.identifier, withTeacher: thirdLesson.teacher)
+                        laterSubjects[1].update(identifier: thirdLesson.identifier, withTeacher: thirdLesson.teacher, startTime: thirdLesson.startTime)
                     } else {
                         laterSubjects[1].isHidden = true
                     }

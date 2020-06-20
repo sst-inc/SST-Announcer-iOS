@@ -121,7 +121,8 @@
 		327524CD249215EC008EA814 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953E238C068F00208D25 /* Assets.xcassets */; };
 		327524CE2492296D008EA814 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Constants.swift */; };
 		327524D024922D4E008EA814 /* SubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524CF24922D4E008EA814 /* SubjectView.swift */; };
-		3286667A249DCEAA007CC75E /* TodayWeekend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32866679249DCEAA007CC75E /* TodayWeekend.swift */; };
+		3286667C249E46C8007CC75E /* TodayLessonOverUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286667B249E46C8007CC75E /* TodayLessonOverUI.swift */; };
+		32866681249E523D007CC75E /* TodayWrongDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32866680249E523D007CC75E /* TodayWrongDay.swift */; };
 		328BFFE42493EBBF00132EB4 /* UIImage Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */; };
 		328BFFE82496275100132EB4 /* TimetableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE72496275100132EB4 /* TimetableStruct.swift */; };
 		328BFFEA24964F0400132EB4 /* TTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE924964F0400132EB4 /* TTViewController.swift */; };
@@ -312,7 +313,8 @@
 		327524C4249213D8008EA814 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		327524C6249213D8008EA814 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		327524CF24922D4E008EA814 /* SubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectView.swift; sourceTree = "<group>"; };
-		32866679249DCEAA007CC75E /* TodayWeekend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeekend.swift; sourceTree = "<group>"; };
+		3286667B249E46C8007CC75E /* TodayLessonOverUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayLessonOverUI.swift; sourceTree = "<group>"; };
+		32866680249E523D007CC75E /* TodayWrongDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWrongDay.swift; sourceTree = "<group>"; };
 		328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage Extension.swift"; sourceTree = "<group>"; };
 		328BFFE72496275100132EB4 /* TimetableStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableStruct.swift; sourceTree = "<group>"; };
 		328BFFE924964F0400132EB4 /* TTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTViewController.swift; sourceTree = "<group>"; };
@@ -655,7 +657,8 @@
 				327524C1249213D8008EA814 /* TodayViewController.swift */,
 				32A27B9A2493072F00786B03 /* TodayOngoingUI.swift */,
 				32A27B9C2493078800786B03 /* TodaySetUpUI.swift */,
-				32866679249DCEAA007CC75E /* TodayWeekend.swift */,
+				32866680249E523D007CC75E /* TodayWrongDay.swift */,
+				3286667B249E46C8007CC75E /* TodayLessonOverUI.swift */,
 				327524CF24922D4E008EA814 /* SubjectView.swift */,
 				327524C3249213D8008EA814 /* MainInterface.storyboard */,
 				327524C6249213D8008EA814 /* Info.plist */,
@@ -1037,14 +1040,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				329DCBCB2497E11500018D32 /* TimetableStruct.swift in Sources */,
+				3286667C249E46C8007CC75E /* TodayLessonOverUI.swift in Sources */,
 				32A4B10124984EF1007A1F5C /* PinnedAnnouncements.swift in Sources */,
 				327524C2249213D8008EA814 /* TodayViewController.swift in Sources */,
+				32866681249E523D007CC75E /* TodayWrongDay.swift in Sources */,
 				32A27B9B2493072F00786B03 /* TodayOngoingUI.swift in Sources */,
 				327524D024922D4E008EA814 /* SubjectView.swift in Sources */,
 				327524CE2492296D008EA814 /* Constants.swift in Sources */,
 				32A4B10224984F0E007A1F5C /* PostStruct.swift in Sources */,
 				32A27B9D2493078800786B03 /* TodaySetUpUI.swift in Sources */,
-				3286667A249DCEAA007CC75E /* TodayWeekend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
