@@ -14,12 +14,12 @@ extension TodayViewController {
     func createUI() {
         let view = UIView(frame: self.view.frame)
 
-        let ongoingSubject = SubjectView("break", subtitle: "Ends in 10 min 5 sec")
+        let ongoingSubject = SubjectView("break", subtitle: "Ends in 10 min 5 sec", vc: self)
 
         let nowLabel = createHeaderLabels(withText: "Now:")
         
-        let laterSubjects = [SubjectView("bio", subtitle: "Starts at 10am"),
-                             SubjectView("s&w", subtitle: "Starts at 11am")]
+        let laterSubjects = [SubjectView("bio", subtitle: "Starts at 10am", vc: self),
+                             SubjectView("s&w", subtitle: "Starts at 11am", vc: self)]
         
         let laterLabel = createHeaderLabels(withText: "Later:")
         
@@ -221,6 +221,61 @@ extension TodayViewController {
         default:
             // No what, why are u using Announcer Timetable on weekends
             lessons = []
+        }
+    }
+    
+    func updateLesson() {
+        if let ongoingSubject = ongoingSubject, let laterSubjects = laterSubjects, lessons.count > 0 {
+            
+            let todaysDate = Lesson.getTodayDate()
+            
+            if currentLesson == 0 && Date().distance(to: todaysDate.advanced(by: lessons[0].startTime)) > 0 {
+                let lesson = lessons[currentLesson]
+                
+                ongoingSubject.update(identifier: "|before|", subtitle: "Class has not started yet. Starts at \(Lesson.convert(time: lesson.startTime))")
+                
+                let timer = Timer(fire: todaysDate.advanced(by: lesson.startTime), interval: 0, repeats: false) { (_) in
+                    self.updateLesson()
+                }
+                
+                RunLoop.main.add(timer, forMode: .default)
+                
+                return
+            }
+            
+            if lessons.count < currentLesson - 1 {
+                
+                currentLesson += 1
+                
+                let lesson = lessons[currentLesson]
+                
+                ongoingSubject.update(identifier: lesson.identifier, withTeacher: lesson.teacher)
+                
+                let timer = Timer(fire: todaysDate.advanced(by: lesson.endTime), interval: 0, repeats: false) { (_) in
+                    self.updateLesson()
+                }
+                
+                RunLoop.main.add(timer, forMode: .default)
+                
+                if lessons.count < currentLesson {
+                    let secondLesson = lessons[currentLesson + 1]
+                    
+                    laterSubjects[0].update(identifier: secondLesson.identifier, withTeacher: secondLesson.teacher)
+                    
+                    if lessons.count < currentLesson + 1 {
+                        let thirdLesson = lessons[currentLesson + 2]
+                        
+                        laterSubjects[1].update(identifier: thirdLesson.identifier, withTeacher: thirdLesson.teacher)
+                    } else {
+                        laterSubjects[1].isHidden = true
+                    }
+                } else {
+                    laterSubjects[0].isHidden = true
+                    laterSubjects[1].isHidden = true
+                }
+            } else {
+                self.interface = .lessonOver
+            }
         }
     }
 }

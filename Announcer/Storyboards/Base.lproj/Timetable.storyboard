@@ -408,6 +408,7 @@ Announcer Timetable works by having you select your class and when you want your
                         <outlet property="nowImageView" destination="72p-PU-XUs" id="c9o-wB-OQS"/>
                         <outlet property="nowLessonLabel" destination="m7m-DU-JUT" id="Ik0-Jm-VsW"/>
                         <outlet property="nowView" destination="BXA-oH-BYV" id="7S2-CD-ca7"/>
+                        <outlet property="ongoingUpNextStackView" destination="A6g-f3-ufA" id="c5w-Pz-VxS"/>
                         <outlet property="separatorView" destination="bUN-yf-X69" id="LYy-ON-wYf"/>
                         <outlet property="settingDateStackView" destination="BP0-ra-Ogb" id="Qsp-tm-ExD"/>
                         <outlet property="timetableTableView" destination="I16-aa-ztJ" id="Z2I-TI-glO"/>

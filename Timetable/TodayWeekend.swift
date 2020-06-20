@@ -11,7 +11,7 @@ import UIKit
 
 extension TodayViewController {
     func setUpWeekend() {
-        let ongoingSubject = SubjectView("weekend", subtitle: "Do no harm to yourself,\nDo no harm to others,\nDo no harm to your school.")
+        let ongoingSubject = SubjectView("weekend", subtitle: "Do no harm to yourself,\nDo no harm to others,\nDo no harm to the school.", vc: self)
         
         ongoingSubject.translatesAutoresizingMaskIntoConstraints = false
         

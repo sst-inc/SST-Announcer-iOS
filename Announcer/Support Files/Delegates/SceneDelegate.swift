@@ -24,6 +24,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = Storyboards.main.instantiateViewController(withIdentifier: "master")
         }
         
+        // Determine who sent the URL.
+        if let urlContext = connectionOptions.urlContexts.first {
+            
+            let sendingAppID = urlContext.options.sourceApplication
+            let url = urlContext.url
+            print("source application = \(sendingAppID ?? "Unknown")")
+            print("url = \(url)")
+                        
+            var announcementVC: AnnouncementsViewController!
+            
+            if let splitVC = window?.rootViewController as? SplitViewController {
+                announcementVC = splitVC.announcementVC
+            } else {
+                announcementVC = window?.rootViewController as? AnnouncementsViewController
+            }
+            
+            DispatchQueue.main.async {
+                announcementVC.openTimetable(self)
+            }
+            
+        }
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        let timetableVC = Storyboards.timetable.instantiateInitialViewController()
+        UIApplication.shared.windows.first?.rootViewController?.present(timetableVC!, animated: true, completion: nil)
+        
     }
     
     // Handling when user opens from spotlight search

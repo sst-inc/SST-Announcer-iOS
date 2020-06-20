@@ -32,6 +32,7 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
+    @IBOutlet weak var ongoingUpNextStackView: UIStackView!
     
     @IBOutlet weak var updateTimetable: UIButton!
     
@@ -195,6 +196,11 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     @objc func dayChanged() {
+        
+        // Ensure the views are not hidden, if they need to be, they will get hidden later
+        ongoingUpNextStackView.isHidden = false
+        bottomSeparatorView.isHidden = false
+        
         switch Calendar.current.component(.weekday, from: selectedDate) {
         case 2:
             lessons = timetable.monday
@@ -214,6 +220,10 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         default:
             // No what, why are u using Announcer Timetable on weekends
             lessons = []
+            
+            // Hide views because it is the weekends
+            ongoingUpNextStackView.isHidden = true
+            bottomSeparatorView.isHidden = true
         }
         
         if Calendar.current.isDateInToday(selectedDate) {

@@ -38,6 +38,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     var ongoingSubject: SubjectView?
     var laterSubjects: [SubjectView]?
     
+    var currentLesson = 0
+    
     var timetable: Timetable?
     
     enum InterfaceStyle {
@@ -69,6 +71,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                                                        object: nil)
                 
                 self.interface = self.lessons == [] ? .weekend : .ongoing
+                
+                self.updateLesson()
             } else {
                 self.interface = .notSetUp
             }
@@ -122,7 +126,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     self.view.addConstraints(newConstraints)
                 }
                 
-                preferredContentSize.height = 280
+                preferredContentSize = maxSize
             }
         }
     }

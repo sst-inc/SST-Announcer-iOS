@@ -16,12 +16,15 @@ class SubjectView: UIView {
     
     private var iconImageView: UIImageView!
     
+    private var tapGesture: UITapGestureRecognizer!
+    
     private let titleTextSize: CGFloat = 20
     
     private let iconSize: CGFloat = 30
     
     private let subtitleTextSize: CGFloat = 16
-
+    
+    private var vc: TodayViewController!
     
     /// Setting the lesson subject
     open var subject: String? {
@@ -49,14 +52,12 @@ class SubjectView: UIView {
         }
     }
     
-    
-    
-    init(_ iconImageId: String, teacher: String? = nil, subtitle: String? = nil) {
+    init(_ iconImageId: String, teacher: String? = nil, subtitle: String? = nil, vc: TodayViewController) {
         super.init(frame: .zero)
         
         let subjectInfo = Assets.getSubject(iconImageId, font: .systemFont(ofSize: iconSize, weight: .bold))
         
-        commonInit(subjectInfo.1, image: subjectInfo.0, teacher: teacher, subtitle: subtitle)
+        commonInit(subjectInfo.1, image: subjectInfo.0, teacher: teacher, subtitle: subtitle, vc: vc)
         
         self.subtitle = subject
         self.iconImage = subjectInfo.0
@@ -67,13 +68,14 @@ class SubjectView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        commonInit("", image: .init())
+        commonInit("", image: .init(), vc: TodayViewController())
     }
 
-    func commonInit(_ subject: String, image iconImage: UIImage, teacher: String? = nil, subtitle: String? = nil) {
+    func commonInit(_ subject: String, image iconImage: UIImage, teacher: String? = nil, subtitle: String? = nil, vc: TodayViewController) {
         let titleLabel = UILabel()
         let subtitleLabel = UILabel()
         let iconImageView = UIImageView()
+        let tapGesture = UITapGestureRecognizer()
         
         let normalAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: titleTextSize, weight: .bold)]
         let teacherAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: titleTextSize, weight: .regular)]
@@ -104,6 +106,12 @@ class SubjectView: UIView {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Setting up TodayViewController
+        self.vc = vc
+        
+        // Setting up tap gesture recognizer
+        tapGesture.addTarget(self, action: #selector(handleTap))
         
         let iconImageViewConstraints = [NSLayoutConstraint(item: iconImageView,
                                                            attribute: .leading,
@@ -197,6 +205,8 @@ class SubjectView: UIView {
         addSubview(titleLabel)
         addSubview(subtitleLabel)
         
+        addGestureRecognizer(tapGesture)
+        
         // Adding constraints
         addConstraints(subtitleLabelViewConstraints + titleLabelViewConstraints + iconImageViewConstraints)
         
@@ -204,6 +214,7 @@ class SubjectView: UIView {
         self.titleLabel = titleLabel
         self.subtitleLabel = subtitleLabel
         self.iconImageView = iconImageView
+        self.tapGesture = tapGesture
     }
 
     func updateTitleLabel() {
@@ -221,6 +232,26 @@ class SubjectView: UIView {
             
             titleLabel.attributedText = attributedStr
         }
+    }
+    
+    func update(identifier: String, withTeacher teacher: String? = nil, subtitle: String? = nil) {
+        let subjectInfo = Assets.getSubject(identifier, font: .systemFont(ofSize: iconSize, weight: .bold))
         
+        self.subject = subjectInfo.1
+        self.iconImage = subjectInfo.0
+        
+        if let teacher = teacher {
+            self.teacher = teacher
+        }
+        
+        if let subtitle = subtitle {
+            self.subtitle = subtitle
+        }
+    }
+    
+    @objc func handleTap() {
+        let appURL = URL(string: "sstannouncer:from?id=1")!
+        
+        vc.extensionContext?.open(appURL, completionHandler: nil)
     }
 }

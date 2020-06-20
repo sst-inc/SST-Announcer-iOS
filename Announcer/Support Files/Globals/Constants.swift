@@ -219,6 +219,8 @@ struct Assets {
     // Subject icons
     // Key: Subject Name, Item: image
     static func getSubject(_ identifier: String, font: UIFont) -> (UIImage, String) {
+        let day = Calendar.current.component(.weekday, from: Date()) == 1 ? "Sunday" : "Saturday"
+        
         let subjectIcons = ["el"       : ["book", "English"],                               // 􀉚
                             "math"     : ["x.squareroot", "Math"],                          // 􀓪
                             "s&w"      : ["sportscourt", "Sports & Wellness"],              // 􀝐
@@ -254,13 +256,13 @@ struct Assets {
                             "chem"     : ["flame", "Chemistry"],                            // 􀙬
                            
                             // Others
-                            "break"    : ["zzz", "Break"],                                 // 􀖃
-                            "adv/assb" : ["smiley", "Advisory/Assembly"],                  // 􀎸
-                            "cce"      : ["smiley", "CCE"],                                // 􀎸
-                            "other"    : ["studentdesk", identifier],                      // 􀑔
-            
-                            "weekend"  : ["calendar",
-                                          "It's \(Calendar.current.component(.weekday, from: Date()) == 1 ? "Sunday" : "Saturday")"] // 􀉉
+                            "break"    : ["zzz", "Break"],                                  // 􀖃
+                            "adv/assb" : ["smiley", "Advisory/Assembly"],                   // 􀎸
+                            "cce"      : ["smiley", "CCE"],                                 // 􀎸
+                            "other"    : ["studentdesk", identifier],                       // 􀑔
+             
+                            "weekend"  : ["calendar", "It's \(day)!"],                      // 􀉉
+                            "|before|" : ["clock", "Starting Soon"]                         // 􀐫
         ]
         
         let subject = subjectIcons[identifier] ?? subjectIcons["other"]!
