@@ -32,6 +32,8 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
+    @IBOutlet weak var todayButton: UIButton!
+    
     @IBOutlet weak var ongoingUpNextStackView: UIStackView!
     
     @IBOutlet weak var updateTimetable: UIButton!
@@ -62,6 +64,7 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
         // Do any additional setup after loading the view.
         updateTimetable.layer.cornerRadius = 10
+        todayButton.layer.cornerRadius = 10
         
         // Commented out Dummy Data
         // Dummy Data
@@ -157,6 +160,12 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         dayChanged()
     }
     
+    @IBAction func todayButtonClicked(_ sender: Any) {
+        selectedDate = Lesson.getTodayDate()
+        dayChanged()
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if lessons.count == 0 {
             let defaultAttr = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .semibold)]
@@ -229,6 +238,15 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 // Ensure the views are not hidden, if they need to be, they will get hidden later
                 ongoingUpNextStackView.isHidden = false
                 bottomSeparatorView.isHidden = false
+            }
+            
+            UIView.animate(withDuration: 0.5) {
+                self.todayButton.isHidden = true
+            }
+            
+        } else {
+            UIView.animate(withDuration: 0.5) {
+                self.todayButton.isHidden = false
             }
         }
         

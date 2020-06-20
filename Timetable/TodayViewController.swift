@@ -85,10 +85,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        var currentSize: CGSize = self.preferredContentSize
-//        currentSize.height = 200.0
-//
-//        self.preferredContentSize = currentSize
         
     }
     
@@ -118,8 +114,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             if activeDisplayMode == .compact {
                 let newConstraints = getOngoingLessonLayout(for: .compact, withViews: view, ongoingSubject!, nowLabel!, laterSubjects!, laterLabel!)
                 
-//                preferredContentSize.height = 200
-                
                 UIView.animate(withDuration: 0.5) {
                     self.view.removeConstraints(oldConstraints)
                     self.view.addConstraints(newConstraints)
@@ -127,8 +121,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 
             } else {
                 let newConstraints = getOngoingLessonLayout(for: .expanded, withViews: view, ongoingSubject!, nowLabel!, laterSubjects!, laterLabel!)
-                
-//                preferredContentSize.height = 280
                 
                 UIView.animate(withDuration: 0.5) {
                     self.view.removeConstraints(oldConstraints)

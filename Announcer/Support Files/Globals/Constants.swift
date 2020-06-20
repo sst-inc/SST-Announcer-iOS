@@ -223,7 +223,7 @@ struct Assets {
         
         let subjectIcons = ["el"       : ["book", "English"],                               // 􀉚
                             "math"     : ["x.squareroot", "Math"],                          // 􀓪
-                            "s&w"      : ["sportscourt", "Sports & Wellness"],              // 􀝐
+                            "s&w"      : ["sportscourt", "S&W"],                            // 􀝐
                             "hum"      : ["person", "Humanities"],                          // 􀉩
                             "sci"      : ["thermometer", "Science"],                        // 􀇬
                            
@@ -261,7 +261,8 @@ struct Assets {
                             "cce"      : ["smiley", "CCE"],                                 // 􀎸
                             "other"    : ["studentdesk", identifier],                       // 􀑔
              
-                            "weekend"  : ["calendar", "It's \(day)!"],                      // 􀉉
+                            // Special state icons
+                            "|weekend|": ["calendar", "It's \(day)!"],                      // 􀉉
                             "|before|" : ["clock", "Starting Soon"],                        // 􀐫
                             "|over|"   : ["Class Dismissed!", "house"]                      // 􀎞
         ]

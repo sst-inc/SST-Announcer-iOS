@@ -13,7 +13,7 @@ extension TodayViewController {
     func setUpWeekendUI() {
         let view = UIView(frame: self.view.frame)
         
-        let ongoingSubject = SubjectView("weekend", subtitle: "Do no harm to yourself,\nDo no harm to others,\nDo no harm to the school.", vc: self)
+        let ongoingSubject = SubjectView("|weekend|", subtitle: "Tap to view your timetable.\n👋 See you on Monday.", vc: self)
         
         ongoingSubject.translatesAutoresizingMaskIntoConstraints = false
         

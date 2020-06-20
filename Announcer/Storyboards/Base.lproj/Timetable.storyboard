@@ -88,18 +88,35 @@ Announcer Timetable works by having you select your class and when you want your
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sTB-hs-TKx">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dA6-mu-5sR">
                                 <rect key="frame" x="20" y="792" width="374" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="MBK-2I-72b"/>
-                                </constraints>
-                                <color key="tintColor" name="Background"/>
-                                <state key="normal" title="Update Timetable"/>
-                                <connections>
-                                    <segue destination="7wI-fn-SbU" kind="show" id="3Nq-Pl-Mec"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xIi-Ph-ASg">
+                                        <rect key="frame" x="0.0" y="0.0" width="183" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Phd-q5-41l"/>
+                                        </constraints>
+                                        <color key="tintColor" name="Background"/>
+                                        <state key="normal" title="Today"/>
+                                        <connections>
+                                            <action selector="todayButtonClicked:" destination="11p-qr-rvn" eventType="touchUpInside" id="gE7-L0-RKe"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sTB-hs-TKx">
+                                        <rect key="frame" x="191" y="0.0" width="183" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="MBK-2I-72b"/>
+                                        </constraints>
+                                        <color key="tintColor" name="Background"/>
+                                        <state key="normal" title="Update Timetable"/>
+                                        <connections>
+                                            <segue destination="7wI-fn-SbU" kind="show" id="3Nq-Pl-Mec"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Hme-9h-5fA">
                                 <rect key="frame" x="0.0" y="194" width="414" height="578"/>
                                 <subviews>
@@ -380,12 +397,12 @@ Announcer Timetable works by having you select your class and when you want your
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="sTB-hs-TKx" firstAttribute="leading" secondItem="84a-ei-6bq" secondAttribute="leading" constant="20" id="0d3-HN-QXx"/>
-                            <constraint firstItem="84a-ei-6bq" firstAttribute="trailing" secondItem="sTB-hs-TKx" secondAttribute="trailing" constant="20" id="1pi-YF-Hy9"/>
-                            <constraint firstItem="sTB-hs-TKx" firstAttribute="top" secondItem="Hme-9h-5fA" secondAttribute="bottom" constant="20" id="2Lh-Lu-ZMa"/>
+                            <constraint firstItem="84a-ei-6bq" firstAttribute="trailing" secondItem="dA6-mu-5sR" secondAttribute="trailing" constant="20" id="4KG-z4-VvJ"/>
                             <constraint firstItem="Hme-9h-5fA" firstAttribute="leading" secondItem="84a-ei-6bq" secondAttribute="leading" id="5DU-ys-w7V"/>
                             <constraint firstAttribute="trailing" secondItem="Hme-9h-5fA" secondAttribute="trailing" id="EZY-Ty-HeG"/>
-                            <constraint firstItem="84a-ei-6bq" firstAttribute="bottom" secondItem="sTB-hs-TKx" secondAttribute="bottom" constant="20" id="sEU-1E-qRM"/>
+                            <constraint firstItem="dA6-mu-5sR" firstAttribute="leading" secondItem="84a-ei-6bq" secondAttribute="leading" constant="20" id="IjN-9z-0hE"/>
+                            <constraint firstItem="dA6-mu-5sR" firstAttribute="top" secondItem="Hme-9h-5fA" secondAttribute="bottom" constant="20" id="R6s-4h-LtV"/>
+                            <constraint firstItem="84a-ei-6bq" firstAttribute="bottom" secondItem="dA6-mu-5sR" secondAttribute="bottom" constant="20" id="bau-eX-uO6"/>
                             <constraint firstItem="Hme-9h-5fA" firstAttribute="top" secondItem="84a-ei-6bq" secondAttribute="top" constant="20" id="str-03-Nb1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="84a-ei-6bq"/>
@@ -412,6 +429,7 @@ Announcer Timetable works by having you select your class and when you want your
                         <outlet property="separatorView" destination="bUN-yf-X69" id="LYy-ON-wYf"/>
                         <outlet property="settingDateStackView" destination="BP0-ra-Ogb" id="Qsp-tm-ExD"/>
                         <outlet property="timetableTableView" destination="I16-aa-ztJ" id="Z2I-TI-glO"/>
+                        <outlet property="todayButton" destination="xIi-Ph-ASg" id="Oo3-3X-zGN"/>
                         <outlet property="updateTimetable" destination="sTB-hs-TKx" id="9v4-zd-Qw7"/>
                     </connections>
                 </viewController>
