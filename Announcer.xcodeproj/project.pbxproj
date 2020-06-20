@@ -121,6 +121,7 @@
 		327524CD249215EC008EA814 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953E238C068F00208D25 /* Assets.xcassets */; };
 		327524CE2492296D008EA814 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Constants.swift */; };
 		327524D024922D4E008EA814 /* SubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524CF24922D4E008EA814 /* SubjectView.swift */; };
+		3286667A249DCEAA007CC75E /* TodayWeekend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32866679249DCEAA007CC75E /* TodayWeekend.swift */; };
 		328BFFE42493EBBF00132EB4 /* UIImage Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */; };
 		328BFFE82496275100132EB4 /* TimetableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE72496275100132EB4 /* TimetableStruct.swift */; };
 		328BFFEA24964F0400132EB4 /* TTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE924964F0400132EB4 /* TTViewController.swift */; };
@@ -130,10 +131,13 @@
 		329B6B48248BF25900ED4428 /* FilterPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B6B47248BF25900ED4428 /* FilterPreview.swift */; };
 		329CE2282489B713002022A6 /* AnnouncementPointers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329CE2272489B713002022A6 /* AnnouncementPointers.swift */; };
 		329DCBCA249703FC00018D32 /* UITableView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DCBC9249703FC00018D32 /* UITableView Extension.swift */; };
+		329DCBCB2497E11500018D32 /* TimetableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE72496275100132EB4 /* TimetableStruct.swift */; };
 		329E3B1D23F979CC00524901 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 329E3B1C23F979CC00524901 /* Settings.bundle */; };
 		329E3B1F23FEA47500524901 /* ReadAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */; };
 		32A27B9B2493072F00786B03 /* TodayOngoingUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A27B9A2493072F00786B03 /* TodayOngoingUI.swift */; };
 		32A27B9D2493078800786B03 /* TodaySetUpUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A27B9C2493078800786B03 /* TodaySetUpUI.swift */; };
+		32A4B10124984EF1007A1F5C /* PinnedAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C65273239017E500C698F2 /* PinnedAnnouncements.swift */; };
+		32A4B10224984F0E007A1F5C /* PostStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA6810247FFAC20077E030 /* PostStruct.swift */; };
 		32B7C4442488BBE0009D160F /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7C4432488BBE0009D160F /* SplitViewController.swift */; };
 		32B7C4462488F047009D160F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7C4452488F047009D160F /* LoadingViewController.swift */; };
 		32C2531F244EA5D40015085A /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2531E244EA5D40015085A /* UIColor Extension.swift */; };
@@ -308,11 +312,13 @@
 		327524C4249213D8008EA814 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		327524C6249213D8008EA814 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		327524CF24922D4E008EA814 /* SubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectView.swift; sourceTree = "<group>"; };
+		32866679249DCEAA007CC75E /* TodayWeekend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeekend.swift; sourceTree = "<group>"; };
 		328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage Extension.swift"; sourceTree = "<group>"; };
 		328BFFE72496275100132EB4 /* TimetableStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableStruct.swift; sourceTree = "<group>"; };
 		328BFFE924964F0400132EB4 /* TTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTViewController.swift; sourceTree = "<group>"; };
 		328BFFED24965E3E00132EB4 /* TTTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTTableViewCell.swift; sourceTree = "<group>"; };
 		3292B75C2489DD7C005749CB /* ContentPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPointer.swift; sourceTree = "<group>"; };
+		3294ABEC249863F200A70538 /* Timetable.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timetable.entitlements; sourceTree = "<group>"; };
 		329B6B45248BAAC100ED4428 /* ContentPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPreviewing.swift; sourceTree = "<group>"; };
 		329B6B47248BF25900ED4428 /* FilterPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPreview.swift; sourceTree = "<group>"; };
 		329CE2272489B713002022A6 /* AnnouncementPointers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementPointers.swift; sourceTree = "<group>"; };
@@ -645,9 +651,11 @@
 		327524C0249213D8008EA814 /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
+				3294ABEC249863F200A70538 /* Timetable.entitlements */,
 				327524C1249213D8008EA814 /* TodayViewController.swift */,
 				32A27B9A2493072F00786B03 /* TodayOngoingUI.swift */,
 				32A27B9C2493078800786B03 /* TodaySetUpUI.swift */,
+				32866679249DCEAA007CC75E /* TodayWeekend.swift */,
 				327524CF24922D4E008EA814 /* SubjectView.swift */,
 				327524C3249213D8008EA814 /* MainInterface.storyboard */,
 				327524C6249213D8008EA814 /* Info.plist */,
@@ -1027,11 +1035,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				329DCBCB2497E11500018D32 /* TimetableStruct.swift in Sources */,
+				32A4B10124984EF1007A1F5C /* PinnedAnnouncements.swift in Sources */,
 				327524C2249213D8008EA814 /* TodayViewController.swift in Sources */,
 				32A27B9B2493072F00786B03 /* TodayOngoingUI.swift in Sources */,
 				327524D024922D4E008EA814 /* SubjectView.swift in Sources */,
 				327524CE2492296D008EA814 /* Constants.swift in Sources */,
+				32A4B10224984F0E007A1F5C /* PostStruct.swift in Sources */,
 				32A27B9D2493078800786B03 /* TodaySetUpUI.swift in Sources */,
+				3286667A249DCEAA007CC75E /* TodayWeekend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1230,6 +1242,7 @@
 		327524CB249213D8008EA814 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Timetable/Timetable.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Timetable/Info.plist;
@@ -1250,6 +1263,7 @@
 		327524CC249213D8008EA814 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Timetable/Timetable.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Timetable/Info.plist;

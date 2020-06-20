@@ -92,6 +92,7 @@ class SubjectView: UIView {
         // Setting up subtitleLabel
         subtitleLabel.text = subtitle
         subtitleLabel.font = UIFont.systemFont(ofSize: subtitleTextSize, weight: .regular)
+        subtitleLabel.numberOfLines = 0
         
         // Setting up iconImageView
         iconImageView.image = iconImage

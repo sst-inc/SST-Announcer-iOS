@@ -258,6 +258,9 @@ struct Assets {
                             "adv/assb" : ["smiley", "Advisory/Assembly"],                  // 􀎸
                             "cce"      : ["smiley", "CCE"],                                // 􀎸
                             "other"    : ["studentdesk", identifier],                      // 􀑔
+            
+                            "weekend"  : ["calendar",
+                                          "It's \(Calendar.current.component(.weekday, from: Date()) == 1 ? "Sunday" : "Saturday")"] // 􀉉
         ]
         
         let subject = subjectIcons[identifier] ?? subjectIcons["other"]!

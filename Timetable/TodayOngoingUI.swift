@@ -201,4 +201,26 @@ extension TodayViewController {
         return headerLabel
     }
 
+    @objc func daysChanged() {
+        switch Calendar.current.component(.weekday, from: Date()) {
+        case 2:
+            lessons = timetable?.monday ?? []
+            
+        case 3:
+            lessons = timetable?.tuesday ?? []
+            
+        case 4:
+            lessons = timetable?.wednesday ?? []
+            
+        case 5:
+            lessons = timetable?.thursday ?? []
+            
+        case 6:
+            lessons = timetable?.friday ?? []
+            
+        default:
+            // No what, why are u using Announcer Timetable on weekends
+            lessons = []
+        }
+    }
 }

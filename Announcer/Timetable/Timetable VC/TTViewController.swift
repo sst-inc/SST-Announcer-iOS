@@ -32,7 +32,6 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-    @IBOutlet weak var timetableTableView: UITableView!
     
     @IBOutlet weak var updateTimetable: UIButton!
     
@@ -51,6 +50,11 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var laterView: UIStackView!
     
     @IBOutlet weak var dateLabel: UILabel!
+    
+    // StackView Items
+    @IBOutlet weak var bottomSeparatorView: UIView!
+    @IBOutlet weak var settingDateStackView: UIStackView!
+    @IBOutlet weak var timetableTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,7 +97,11 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                                        Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
                                        Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)])
         
-//        timetable = UserDefaults.standard.object(forKey: "timetable") as? Timetable
+        // If not using dummy data
+        // Let's see if this works
+//        timetable = Timetable.get()
+        
+        timetable.save()
         
         // Set up selected date to be the current date, this is to call the didSet there to update the labels and all
         selectedDate = Date()
@@ -104,14 +112,30 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         // Add an observer to handle when the day gets changed
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(dayChanged),
-                                               name: .NSCalendarDayChanged, object: nil)
+                                               name: .NSCalendarDayChanged,
+                                               object: nil)
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(dayChanged),
+                                               name: UIApplication.significantTimeChangeNotification,
+                                               object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        // Check for updates to the timing every second to handle when a new lesson starts or an old one ends
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (_) in
-            self.timeUpdated()
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if UIDevice.current.orientation.isLandscape {
+            // Hide everything
+            bottomSeparatorView.isHidden = true
+            settingDateStackView.isHidden = true
+            timetableTableView.isHidden = true
+        } else {
+            // Show everything
+            bottomSeparatorView.isHidden = false
+            settingDateStackView.isHidden = false
+            timetableTableView.isHidden = false
+            
+            
         }
     }
     
@@ -192,7 +216,9 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             lessons = []
         }
         
-        todayLessons = lessons
+        if Calendar.current.isDateInToday(selectedDate) {
+            todayLessons = lessons
+        }
         
         // After updating the lessons, update the timings
         // This will allow it to update the UI
@@ -279,6 +305,33 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         } else {
             // Hide the laterView as the lesson is probably over or there are no lessons that day
             laterView.isHidden = true
+        }
+        
+        // Get the date of the first lesson.
+        // This will be used if the ongoing lesson = nil
+        let firstLessonDate = Lesson.getTodayDate().advanced(by: todayLessons[0].startTime)
+        
+        if ongoingLesson == nil && firstLessonDate.timeIntervalSinceNow > 0 {
+            // Since there are no ongoing lessons, and it is before the first lesson
+            // The app fires the timer at the start of first lesson to update interface
+            let timer = Timer(fire: firstLessonDate, interval: 0, repeats: false) { (_) in
+                // Time updated should update the interface with the new lesson
+                self.timeUpdated()
+            }
+            
+            // Add timer to run loop
+            RunLoop.main.add(timer, forMode: .common)
+        } else if let ongoingLesson = ongoingLesson {
+            // Get the the for the ongoing lesson
+            let lessonDate = Lesson.getTodayDate().advanced(by: ongoingLesson.endTime)
+            
+            // Create timer to fire once lesson ends
+            // This will fix the 
+            let timer = Timer(fire: lessonDate, interval: 0, repeats: false) { (_) in
+                self.timeUpdated()
+            }
+            
+            RunLoop.main.add(timer, forMode: .common)
         }
         
         // Handling the separator view

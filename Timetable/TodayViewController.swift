@@ -11,7 +11,26 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     
-    var interface: InterfaceStyle!
+    var lessons: [Lesson] = []
+    
+    var interface: InterfaceStyle! {
+        didSet {
+            switch interface {
+            case .notSetUp:
+                extensionContext?.widgetLargestAvailableDisplayMode = .compact
+                createNotSetUpUI()
+            case .ongoing:
+                extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+                createUI()
+            case .lessonOver:
+                extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+            case .weekend:
+                extensionContext?.widgetLargestAvailableDisplayMode = .compact
+                setUpWeekend()
+            case .none: break
+            }
+        }
+    }
     
     // Interface elements for ongoing
     var nowLabel: UILabel?
@@ -19,35 +38,66 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     var ongoingSubject: SubjectView?
     var laterSubjects: [SubjectView]?
     
+    var timetable: Timetable?
+    
     enum InterfaceStyle {
         case notSetUp
         case lessonOver
         case ongoing
+        case weekend
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        interface = .ongoing
-        
-        switch interface {
-        case .notSetUp:
-            extensionContext?.widgetLargestAvailableDisplayMode = .compact
-            createNotSetUpUI()
-        case .ongoing:
-            extensionContext?.widgetLargestAvailableDisplayMode = .expanded
-            
-            createUI()
-        case .lessonOver:
-            extensionContext?.widgetLargestAvailableDisplayMode = .expanded
-        case .none: break
+        DispatchQueue.main.async {
+            if let tt = Timetable.get() {
+                self.timetable = tt
+                
+                self.daysChanged()
+                
+                // Handling when the day changes
+                NotificationCenter.default.addObserver(self,
+                                                       selector: #selector(self.daysChanged),
+                                                       name: .NSCalendarDayChanged,
+                                                       object: nil)
+                
+                NotificationCenter.default.addObserver(self,
+                                                       selector: #selector(self.daysChanged),
+                                                       name: UIApplication.significantTimeChangeNotification,
+                                                       object: nil)
+                
+                self.interface = self.lessons == [] ? .weekend : .ongoing
+            } else {
+                self.interface = .notSetUp
+            }
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        var currentSize: CGSize = self.preferredContentSize
+        currentSize.height = 200.0
+        self.preferredContentSize = currentSize
+    }
+    
+    override func loadView() {
+        super.loadView()
         
+//        self.interface = .notSetUp
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        
+    }
+    
+    override func attemptRecovery(fromError error: Error, optionIndex recoveryOptionIndex: Int) -> Bool {
+        print(error.localizedDescription)
+        
+        return true  
     }
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
@@ -62,6 +112,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     self.view.addConstraints(newConstraints)
                 }
                 
+                preferredContentSize.height = 200
+                
             } else {
                 let newConstraints = getOngoingLessonLayout(for: .expanded, withViews: view, ongoingSubject!, nowLabel!, laterSubjects!, laterLabel!)
                 
@@ -69,6 +121,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     self.view.removeConstraints(oldConstraints)
                     self.view.addConstraints(newConstraints)
                 }
+                
+                preferredContentSize.height = 280
             }
         }
     }
