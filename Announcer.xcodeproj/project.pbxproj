@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		320816BE24534E2100024FD0 /* LinksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320816BD24534E2100024FD0 /* LinksCollectionViewCell.swift */; };
+		321C9BE9249F1F1B00088677 /* TTGetStartedAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C9BE8249F1F1B00088677 /* TTGetStartedAlerts.swift */; };
 		324576F9238D8E0E00730F17 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Constants.swift */; };
 		324576FB238E063500730F17 /* AnnouncementTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576FA238E063500730F17 /* AnnouncementTableView.swift */; };
 		324576FD238E0FB300730F17 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576FC238E0FB300730F17 /* ContentViewController.swift */; };
@@ -159,7 +160,7 @@
 		32D99542238C068F00208D25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D99540238C068F00208D25 /* LaunchScreen.storyboard */; };
 		32D9954C238D865600208D25 /* AnnouncementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954B238D865600208D25 /* AnnouncementsViewController.swift */; };
 		32D9954E238D87D200208D25 /* AnnouncementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */; };
-		32E28CF02490CB26006D623C /* TTSetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CEF2490CB26006D623C /* TTSetUpViewController.swift */; };
+		32E28CF02490CB26006D623C /* TTOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CEF2490CB26006D623C /* TTOnboardingViewController.swift */; };
 		32E28CF32490D0A5006D623C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 32E28CF22490D0A5006D623C /* Alamofire */; };
 		32E28CF62490E025006D623C /* Timetable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32E28CF42490E025006D623C /* Timetable.storyboard */; };
 		32E28CF92490EE95006D623C /* TTNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CF82490EE94006D623C /* TTNavigationViewController.swift */; };
@@ -200,6 +201,7 @@
 		245EB1D1B5C3CF86C1516F1B /* Pods-Announcer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Announcer.release.xcconfig"; path = "Target Support Files/Pods-Announcer/Pods-Announcer.release.xcconfig"; sourceTree = "<group>"; };
 		2CD293BB20EEED7B1A9804C0 /* Pods_Announcer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Announcer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		320816BD24534E2100024FD0 /* LinksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksCollectionViewCell.swift; sourceTree = "<group>"; };
+		321C9BE8249F1F1B00088677 /* TTGetStartedAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTGetStartedAlerts.swift; sourceTree = "<group>"; };
 		321CA6A7244A19420062E209 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		324576F8238D8E0E00730F17 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		324576FA238E063500730F17 /* AnnouncementTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableView.swift; sourceTree = "<group>"; };
@@ -352,7 +354,7 @@
 		32D99543238C068F00208D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32D9954B238D865600208D25 /* AnnouncementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsViewController.swift; sourceTree = "<group>"; };
 		32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableViewCell.swift; sourceTree = "<group>"; };
-		32E28CEF2490CB26006D623C /* TTSetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSetUpViewController.swift; sourceTree = "<group>"; };
+		32E28CEF2490CB26006D623C /* TTOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTOnboardingViewController.swift; sourceTree = "<group>"; };
 		32E28CF52490E025006D623C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Timetable.storyboard; sourceTree = "<group>"; };
 		32E28CF82490EE94006D623C /* TTNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTNavigationViewController.swift; sourceTree = "<group>"; };
 		32E28CFC2490F2F7006D623C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
@@ -413,6 +415,15 @@
 				3286667B249E46C8007CC75E /* TodayLessonOverUI.swift */,
 			);
 			path = "Today UI";
+			sourceTree = "<group>";
+		};
+		321C9BE7249F1EF200088677 /* Timetable Get Started VC */ = {
+			isa = PBXGroup;
+			children = (
+				327524B624910999008EA814 /* TTGetStartedViewController.swift */,
+				321C9BE8249F1F1B00088677 /* TTGetStartedAlerts.swift */,
+			);
+			path = "Timetable Get Started VC";
 			sourceTree = "<group>";
 		};
 		324576FE238E213B00730F17 /* KALoader */ = {
@@ -677,8 +688,7 @@
 		328BFFEB24964F1700132EB4 /* Setting Up Timetable */ = {
 			isa = PBXGroup;
 			children = (
-				32E28CEF2490CB26006D623C /* TTSetUpViewController.swift */,
-				327524B624910999008EA814 /* TTGetStartedViewController.swift */,
+				321C9BE7249F1EF200088677 /* Timetable Get Started VC */,
 				327524B824912470008EA814 /* TTPreviewViewController.swift */,
 			);
 			path = "Setting Up Timetable";
@@ -774,6 +784,7 @@
 		32E28CF72490EDC3006D623C /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
+				32E28CEF2490CB26006D623C /* TTOnboardingViewController.swift */,
 				328BFFEB24964F1700132EB4 /* Setting Up Timetable */,
 				328BFFEC24965E0A00132EB4 /* Timetable VC */,
 				32E28CF82490EE94006D623C /* TTNavigationViewController.swift */,
@@ -1113,6 +1124,7 @@
 				32FA6811247FFAC20077E030 /* PostStruct.swift in Sources */,
 				324577C3238E53A200730F17 /* JSONFeedItem.swift in Sources */,
 				324577B3238E53A200730F17 /* MediaCopyright.swift in Sources */,
+				321C9BE9249F1F1B00088677 /* TTGetStartedAlerts.swift in Sources */,
 				324577DC238FA77000730F17 /* FilterTableViewCell.swift in Sources */,
 				3245778B238E53A100730F17 /* RSSFeed + mapCharacters.swift in Sources */,
 				324577B8238E53A200730F17 /* MediaStatistics.swift in Sources */,
@@ -1142,7 +1154,7 @@
 				32457799238E53A100730F17 /* RSSFeedItemSource.swift in Sources */,
 				32D9954C238D865600208D25 /* AnnouncementsViewController.swift in Sources */,
 				32457791238E53A100730F17 /* RSSFeedSkipDay.swift in Sources */,
-				32E28CF02490CB26006D623C /* TTSetUpViewController.swift in Sources */,
+				32E28CF02490CB26006D623C /* TTOnboardingViewController.swift in Sources */,
 				324577CA238E53A200730F17 /* XMLFeedParser.swift in Sources */,
 				32FA6813247FFAE30077E030 /* LinksStruct.swift in Sources */,
 				324577D0238E53A200730F17 /* Date + codingStrategy.swift in Sources */,

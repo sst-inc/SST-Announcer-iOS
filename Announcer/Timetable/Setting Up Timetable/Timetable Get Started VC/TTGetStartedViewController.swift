@@ -121,36 +121,54 @@ class TTGetStartedViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func doneButtonPressed(_ sender: Any) {
         
-        let timetableNVC = navigationController as! TTNavigationViewController
-        if let pdf = timetableNVC.timetablePDF {
-            let search = pdf.findString(classTextField.text!, withOptions: .literal)
-            if search.count > 0 {
-                let pageSelection = search.first
-                
-                page = pageSelection!.pages.first
-                
-                performSegue(withIdentifier: "showPDF", sender: nil)
-            } else {
-                let alert = UIAlertController(title: "Invalid Class", message: "The class, \(classTextField.text!) is either invalid or not found.", preferredStyle: .alert)
-                
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                }))
-                
-                self.present(alert, animated: true)
-            }
-        } else {
-            let alert = UIAlertController(title: "Loading Timetables", message: "Timetables are loading. Please try again later.", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
-                self.doneButtonPressed(self)
-            }))
-            
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
-            }))
-            
-            self.present(alert, animated: true)
+        if !regexCheck(with: classTextField.text!) {
+            // Fails regular expression check
+            showFailRegexCheckAlert()
         }
         
+        // Getting the timetable navigation controller
+        let timetableNVC = navigationController as! TTNavigationViewController
+        
+        // Checking if the PDF exists
+        if let pdf = timetableNVC.timetablePDF {
+            
+            // Searcg through pdf to find the classTextField's text
+            let search = pdf.findString(classTextField.text!, withOptions: .literal)
+            
+            if search.count > 0 {
+                // If it exists, send the page over to the next viewController
+                
+                // Getting the PDF selection
+                let pageSelection = search.first
+                
+                // Setting the page that the selection came from
+                page = pageSelection!.pages.first
+                
+                // Moving over to the next view controller
+                performSegue(withIdentifier: "showPDF", sender: nil)
+            } else {
+                // Class not found
+                showClassNotFoundAlert()
+            }
+        } else {
+            // The timetable is still loading
+            showLoadingTimetableAlert()
+        }
+        
+    }
+    
+    func regexCheck(with str: String) -> Bool {
+        // Creating regex
+        let regex = try! NSRegularExpression(pattern: "S[1-9]-[0-9][0-9]")
+        
+        // Creating range for regex
+        let range = NSRange(location: 0, length: str.utf16.count)
+        
+        // Getting first match
+        let matches = regex.firstMatch(in: str, options: [], range: range)
+        
+        // Return if the matches exist
+        return matches != nil
     }
     
     // MARK: - Navigation

@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import PDFKit
 
-class TTSetUpViewController: UIViewController {
+class TTOnboardingViewController: UIViewController {
 
     @IBOutlet weak var getStartedButton: UIButton!
     

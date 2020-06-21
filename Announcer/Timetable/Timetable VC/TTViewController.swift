@@ -165,6 +165,16 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         dayChanged()
     }
     
+    @IBAction func updateTimetableButtonClicked(_ sender: Any) {
+        
+        // Getting navigation controller
+        if let ttNavigationController = navigationController as? TTNavigationViewController {
+            
+            // Run the fetchTimetables function to get the timetables
+            ttNavigationController.fetchTimetables()
+        }
+        
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if lessons.count == 0 {
