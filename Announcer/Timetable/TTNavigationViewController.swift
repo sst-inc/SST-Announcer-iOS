@@ -33,7 +33,7 @@ class TTNavigationViewController: UINavigationController {
         let setUp = storyboard.instantiateViewController(identifier: "SetUp")
         
         // Setting which viewcontrolller to present
-        if Timetable.get() != nil {
+        if Timetable.get() == nil {
             // If there are no timetables, show set up screen
             self.viewControllers = [setUp]
             
