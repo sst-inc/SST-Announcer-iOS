@@ -191,8 +191,14 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         
         // Updating and going to contentVC
         if let splitVC = splitViewController as? SplitViewController {
+            // Get contentVC from splitVC
+            let contentVC = splitVC.contentVC
+            
             // Getting the post from cell and setting it in the ContentVC
-            splitVC.contentVC.post = cell.post
+            contentVC.post = cell.post
+            
+            // Getting the attributedContent from the cell and set it in contentVC
+            contentVC.attributedContent = cell.htmlAttr
             
             // Unhighlight previous cell
             if let previousCell = tableView.cellForRow(at: selectedPath) as? AnnouncementTableViewCell {
@@ -208,7 +214,11 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             // Update the Cell's UI based on whether it is read or unread
             cell.handlePinAndRead()
         } else {
+            // Get contentVC
             let contentVC = getContentViewController(for: indexPath)
+            
+            // Getting the attributedContent from the cell and set it in contentVC
+            contentVC.attributedContent = cell.htmlAttr
             
             // Present contentVC via navigation controller
             navigationController?.pushViewController(contentVC, animated: true)

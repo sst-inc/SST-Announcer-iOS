@@ -38,6 +38,9 @@ class ContentViewController: UIViewController {
     /// Latest haptic feedback played for `ScrollSelection`
     var playedHaptic = 0
     
+    ///
+    var attributedContent: NSMutableAttributedString?
+    
     /// `ScrollSelection` multiplier used to calculate each stage
     let scrollSelectionMultiplier: CGFloat = 37.5
     
@@ -209,7 +212,8 @@ class ContentViewController: UIViewController {
             let content = post.content
             
             // Converting HTML content to NSAttributedString
-            let attr = content.htmlToAttributedString
+            // Receiving attributedContent from previous VC, if it doesnt exist, just load it
+            let attr = attributedContent ?? content.htmlToAttributedString
             
             // Adding font and background color that support dark mode
             attr?.addAttribute(.font, value: UIFont.systemFont(ofSize: currentScale, weight: .medium), range: NSRange.init(location: 0, length: (attr?.length)!))

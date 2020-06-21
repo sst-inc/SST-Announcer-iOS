@@ -24,15 +24,6 @@ extension String {
         }
     }
     
-    var htmlToString: String {
-        // MacOS Catalyst does not work properly
-        #if targetEnvironment(macCatalyst)
-            return "Unable to display preview on Mac"
-        #else
-            return (htmlToAttributedString ?? NSAttributedString(string: "")).string.condenseLinebreaks()
-        #endif
-    }
-    
     func indicesOf(string: String) -> [Int] {
         var indices = [Int]()
         var searchStartIndex = self.startIndex
@@ -93,5 +84,16 @@ extension String {
             return self
         }
         
+    }
+}
+
+extension NSMutableAttributedString {
+    var htmlToString: String {
+        // MacOS Catalyst does not work properly
+        #if targetEnvironment(macCatalyst)
+            return "Unable to display preview on Mac"
+        #else
+            return string.condenseLinebreaks()
+        #endif
     }
 }

@@ -211,6 +211,7 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.timelineIndicator.tintColor = GlobalColors.greyThree
         cell.bottomTimelineIndicator.backgroundColor = GlobalColors.greyThree
         
+        // Setting the cell's lesson
         cell.lesson = lessons[indexPath.row]
         
         return cell
@@ -252,12 +253,15 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 bottomSeparatorView.isHidden = false
             }
             
-            UIView.animate(withDuration: 0.5) {
+            // Animate the button hiding with a wipe
+            UIView.animate(withDuration: 0.3) {
                 self.todayButton.isHidden = true
             }
             
         } else {
-            UIView.animate(withDuration: 0.5) {
+            
+            // Animate the button showing with a wipe
+            UIView.animate(withDuration: 0.3) {
                 self.todayButton.isHidden = false
             }
         }

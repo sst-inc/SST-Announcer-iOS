@@ -128,7 +128,10 @@ struct Fetch {
                 UserDefaults.standard.set(posts[0].title, forKey: UserDefaultsIdentifiers.recentsTitle.rawValue)
                 UserDefaults.standard.set(posts[0].content, forKey: UserDefaultsIdentifiers.recentsContent.rawValue)
                 
-                return (title: convertFromEntries(feed: (feed?.entries!)!).first!.title, content: convertFromEntries(feed: (feed?.entries!)!).first!.content.htmlToString)
+                let title = convertFromEntries(feed: (feed?.entries!)!).first!.title
+                let content = convertFromEntries(feed: (feed?.entries!)!).first!.content.htmlToAttributedString?.htmlToString
+                
+                return (title: title, content: content!)
             }
             
         default:

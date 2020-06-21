@@ -222,7 +222,7 @@ class AnnouncementsViewController: UIViewController {
             attributeSet.keywords = post.categories
             
             /// Setting the content description so when the user previews the announcement through spotlight search, they can see the content description
-            attributeSet.contentDescription = post.content.condenseLinebreaks().htmlToString
+            attributeSet.contentDescription = post.content.condenseLinebreaks().htmlToAttributedString?.htmlToString
             
             // Creating the searchable item from the attributesSet
             let item = CSSearchableItem(uniqueIdentifier: "\(post.title)", domainIdentifier: Bundle.main.bundleIdentifier!, attributeSet: attributeSet)

@@ -10,6 +10,8 @@ import UIKit
 
 class AnnouncementTableViewCell: UITableViewCell {
 
+    var htmlAttr: NSMutableAttributedString!
+    
     var post: Post! {
         // If the post value is changed, set these values to whatever is below in didSet
         didSet {
@@ -40,7 +42,10 @@ class AnnouncementTableViewCell: UITableViewCell {
                     
                     // Convert html to string, this is the slowest part in the process
                     // Main drawback is that if there are images involved, it has to get those images from the links
-                    let previewText = self.post.content.htmlToString
+                    
+                    self.htmlAttr = self.post.content.htmlToAttributedString
+                    
+                    let previewText = self.htmlAttr.htmlToString
                     
                     // Set contentLabel's content on main thread
                     DispatchQueue.main.async {

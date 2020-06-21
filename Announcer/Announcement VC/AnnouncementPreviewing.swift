@@ -100,7 +100,15 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                             if self.splitViewController != nil {
                                                 return nil
                                             }
-                                            return self.getContentViewController(with: cell.post)
+                                            
+                                            // Getting contentVC from post
+                                            let contentVC = self.getContentViewController(with: cell.post)
+                                            
+                                            // Setting attributedContent in the contentVC
+                                            contentVC.attributedContent = cell.htmlAttr
+                                            
+                                            // Return the contentVC
+                                            return contentVC
         },
                                           actionProvider: actionProvider)
         
@@ -129,6 +137,9 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
             
             // Setting the post in the contentVC
             splitVC.contentVC.post = cell.post
+            
+            // Setting html attributed string
+            splitVC.contentVC.attributedContent = cell.htmlAttr
             
             // Highlight the selected post
             cell.highlightPost = true
