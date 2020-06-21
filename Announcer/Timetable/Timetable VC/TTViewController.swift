@@ -174,6 +174,8 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             ttNavigationController.fetchTimetables()
         }
         
+        // Perform segue to TTSetUpViewController
+        performSegue(withIdentifier: "setup", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
