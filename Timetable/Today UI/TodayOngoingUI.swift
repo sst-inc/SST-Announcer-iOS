@@ -233,7 +233,12 @@ extension TodayViewController {
             if currentLesson == 0 && Date().distance(to: todaysDate.advanced(by: lessons[0].startTime)) > 0 {
                 let lesson = lessons[currentLesson]
                 
-                ongoingSubject.update(identifier: "|before|", subtitle: "Class has not started yet. Starts at \(Lesson.convert(time: lesson.startTime))")
+                ongoingSubject.update(identifier: "|before|", subtitle: "Class has not started yet, it starts at \(Lesson.convert(time: lesson.startTime))")
+                
+                laterSubjects[0].isHidden = true
+                laterSubjects[1].isHidden = true
+                
+                extensionContext?.widgetLargestAvailableDisplayMode = .compact
                 
                 let timer = Timer(fire: todaysDate.advanced(by: lesson.startTime), interval: 0, repeats: false) { (_) in
                     self.updateLesson()
@@ -242,6 +247,11 @@ extension TodayViewController {
                 RunLoop.main.add(timer, forMode: .default)
                 
                 return
+            } else {
+                laterSubjects[0].isHidden = false
+                laterSubjects[1].isHidden = false
+                
+                extensionContext?.widgetLargestAvailableDisplayMode = .compact
             }
             
             if lessons.count > currentLesson - 1 {

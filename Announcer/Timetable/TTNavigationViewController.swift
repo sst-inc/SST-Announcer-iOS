@@ -57,7 +57,8 @@ class TTNavigationViewController: UINavigationController {
             let apiKey = Keys.driveAPI
             
             // Finding possible posts which could be timetables
-            var possiblePosts = Fetch.values().filter {                $0.categories.contains("Timetable") || $0.categories.contains("timetable")
+            var possiblePosts = Fetch.values().filter {
+                $0.categories.contains("Timetable") || $0.categories.contains("timetable")
             }
             
             // Sort the possiblePosts by date to find the latest timetable

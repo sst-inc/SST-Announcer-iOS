@@ -97,6 +97,7 @@ Announcer Timetable works by having you select your class and when you want your
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Phd-q5-41l"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <color key="tintColor" name="Background"/>
                                         <state key="normal" title="Today">
                                             <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -111,6 +112,7 @@ Announcer Timetable works by having you select your class and when you want your
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="MBK-2I-72b"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <color key="tintColor" name="Background"/>
                                         <state key="normal" title="Update Timetable"/>
                                         <connections>

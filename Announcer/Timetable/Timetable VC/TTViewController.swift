@@ -254,15 +254,18 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             }
             
             // Animate the button hiding with a wipe
-            UIView.animate(withDuration: 0.3) {
-                self.todayButton.isHidden = true
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.3) {
+                    self.todayButton.isHidden = true
+                }
             }
-            
         } else {
             
             // Animate the button showing with a wipe
-            UIView.animate(withDuration: 0.3) {
-                self.todayButton.isHidden = false
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.3) {
+                    self.todayButton.isHidden = false
+                }
             }
         }
         
