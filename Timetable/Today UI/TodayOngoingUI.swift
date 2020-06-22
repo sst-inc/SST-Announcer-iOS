@@ -251,16 +251,21 @@ extension TodayViewController {
                 laterSubjects[0].isHidden = false
                 laterSubjects[1].isHidden = false
                 
-                extensionContext?.widgetLargestAvailableDisplayMode = .compact
+                extensionContext?.widgetLargestAvailableDisplayMode = .expanded
             }
             
             if lessons.count > currentLesson - 1 {
                 
-                currentLesson += 1
-                
                 let lesson = lessons[currentLesson]
                 
-                ongoingSubject.update(identifier: lesson.identifier, withTeacher: lesson.teacher, endTime: lesson.endTime)
+                print(lesson.teacher)
+                
+                if let teacher = lesson.teacher {
+                    ongoingSubject.update(identifier: lesson.identifier, withTeacher: teacher, endTime: lesson.endTime)
+                } else {
+                    ongoingSubject.update(identifier: lesson.identifier, endTime: lesson.endTime)
+                }
+                
                 
                 let timer = Timer(fire: todaysDate.advanced(by: lesson.endTime), interval: 0, repeats: false) { (_) in
                     self.updateLesson()
@@ -284,6 +289,8 @@ extension TodayViewController {
                     laterSubjects[0].isHidden = true
                     laterSubjects[1].isHidden = true
                 }
+                
+                currentLesson += 1
             } else {
                 self.interface = .lessonOver
             }

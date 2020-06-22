@@ -218,7 +218,7 @@ class SubjectView: UIView {
     }
 
     func updateTitleLabel() {
-        let normalAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: titleTextSize, weight: .heavy)]
+        let normalAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: titleTextSize, weight: .bold)]
         let teacherAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: titleTextSize, weight: .regular)]
         
         if let teacher = teacher, teacher != "" {
@@ -247,18 +247,23 @@ class SubjectView: UIView {
         self.subject = subjectInfo.1
         self.iconImage = subjectInfo.0
         
-        if let teacher = teacher {
-            self.teacher = teacher
-        }
+        self.teacher = teacher
         
         if let subtitle = subtitle {
+            // Set subtitle to the subtitle, if there is one
             self.subtitle = subtitle
             
         } else if let endTime = endTime {
+            // Otherwise, if there is an endTime, use that
             self.subtitle = "Ends at \(Lesson.convert(time: endTime))"
             
         } else if let startTime = startTime {
+            // Otherwise, if there is a start time, use that
             self.subtitle = "Starts at \(Lesson.convert(time: startTime))"
+            
+        } else {
+            // Set it to nil when there is nothing, this prevents weird bugs like content passing over
+            self.subtitle = nil
             
         }
     }

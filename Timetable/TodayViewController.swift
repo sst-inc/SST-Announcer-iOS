@@ -76,7 +76,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 
                 self.interface = self.lessons == [] ? .weekend : .ongoing
                 
-                self.updateLesson()
+                if self.interface == .ongoing {
+                    self.updateLesson()
+                }
             } else {
                 self.interface = .notSetUp
             }
