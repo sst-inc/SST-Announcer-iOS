@@ -80,6 +80,7 @@ class AnnouncementsViewController: UIViewController {
     @IBOutlet weak var searchField: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var reloadButton: UIButton!
+    @IBOutlet weak var timetableButton: UIButton!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -109,6 +110,7 @@ class AnnouncementsViewController: UIViewController {
         if #available(iOS 13.4, *) {
             filterButton.addInteraction(UIPointerInteraction(delegate: self))
             reloadButton.addInteraction(UIPointerInteraction(delegate: self))
+            timetableButton.addInteraction(UIPointerInteraction(delegate: self))
         }
     }
     

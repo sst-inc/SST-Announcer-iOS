@@ -187,6 +187,7 @@
                         <outlet property="loadingIndicator" destination="1VZ-cv-H04" id="RRL-cO-kkr"/>
                         <outlet property="reloadButton" destination="GUE-AL-bL7" id="sh8-bU-5EM"/>
                         <outlet property="searchField" destination="Fdc-31-Cyo" id="8wt-xK-ucp"/>
+                        <outlet property="timetableButton" destination="fbe-qU-Fye" id="hjG-oz-q7w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAe-A3-FIL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

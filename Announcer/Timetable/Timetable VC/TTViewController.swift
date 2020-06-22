@@ -143,6 +143,18 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
+    override var keyCommands: [UIKeyCommand]? {
+        // Go to Next Post
+        let leftArrow = UIKeyCommand(input: UIKeyCommand.inputLeftArrow,
+                                     modifierFlags: [],
+                                     action: #selector(yesterdayButtonClicked(_:)))
+        let rightArrow = UIKeyCommand(input: UIKeyCommand.inputRightArrow,
+                                      modifierFlags: [],
+                                      action: #selector(tomorrowButtonClicked(_:)))
+        
+        return [leftArrow, rightArrow]
+    }
+    
     @IBAction func dismissButton(_ sender: Any) {
         // Dismiss directly from the navigation controller to prevent weird issues
         navigationController?.dismiss(animated: true, completion: nil)
