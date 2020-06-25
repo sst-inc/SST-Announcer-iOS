@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 14, *)
 class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var timetable: Timetable!
@@ -125,6 +126,7 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                                                object: nil)
     }
     
+     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
@@ -138,7 +140,6 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             bottomSeparatorView.isHidden = false
             settingDateStackView.isHidden = false
             timetableTableView.isHidden = false
-            
             
         }
     }

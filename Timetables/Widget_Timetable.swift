@@ -14,7 +14,7 @@ public struct Provider: TimelineProvider {
     public func snapshot(with context: Context,
                          completion: @escaping (SimpleEntry) -> ()) {
         let entry = SimpleEntry(date: Date(),
-                                currentLesson: WidgetLesson(name: "Computing", date: Date(), imageName: "chevron.left.slash.chevron.right"),
+                                currentLesson: WidgetLesson(name: "Computing", date: Date(), imageName: "cpu"),
                                 lessonTime: Date(),
                                 nextLessons: [WidgetLesson(name: "Chemistry", date: Date(), imageName: "flame"),
                                               WidgetLesson(name: "Biology", date: Date(), imageName: "hare")])
@@ -25,7 +25,7 @@ public struct Provider: TimelineProvider {
     public func timeline(with context: Context,
                          completion: @escaping (Timeline<Entry>) -> ()) {
         let entry = SimpleEntry(date: Date(),
-                                currentLesson: WidgetLesson(name: "Computing", date: Date(), imageName: "chevron.left.slash.chevron.right"),
+                                currentLesson: WidgetLesson(name: "Computing", date: Date(), imageName: "cpu"),
                                 lessonTime: Date(),
                                 nextLessons: [WidgetLesson(name: "Chemistry", date: Date(), imageName: "flame"),
                                               WidgetLesson(name: "Biology", date: Date(), imageName: "hare")])
@@ -83,7 +83,7 @@ struct PlaceholderView : View {
                     .frame(width: 60,
                            height: 10)
             }
-            .padding(.all, 10)
+            .padding(.all)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         case .systemMedium:
             VStack(alignment: .leading, spacing: 8) {
@@ -207,7 +207,7 @@ struct WidgetComponents {
         @ViewBuilder
         var body: some View {
             ZStack {
-                if isMedium {
+                if !isMedium {
                     Circle()
                         .fill(Color.blue)
                         .frame(
@@ -219,6 +219,13 @@ struct WidgetComponents {
                         .frame(
                             width: 20,
                             height: 20
+                        )
+                        .font(
+                            .system(
+                                size: 20,
+                                weight: .medium,
+                                design: .default
+                            )
                         )
                 } else {
                     Circle()
@@ -232,7 +239,14 @@ struct WidgetComponents {
                         .frame(
                             width: 8,
                             height: 8
-                        ).font(Font.system(size: 12, weight: .medium, design: .default))
+                        )
+                        .font(
+                            .system(
+                                size: 15,
+                                weight: .medium,
+                                design: .default
+                            )
+                        )
                 }
                 
             }
@@ -370,7 +384,8 @@ struct Widget_TimetableEntryView : View {
 @main
 struct Widget_Timetable: Widget {
     
-    private let kind: String = "Widget_Timetable"
+    // Bundle ID
+    private let kind: String = "sg.edu.sst.panziyue.Announcer.Widget-TImetable"
     
     public var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind,

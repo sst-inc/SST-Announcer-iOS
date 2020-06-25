@@ -51,11 +51,7 @@ class FilterTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Show network activity indicator to indicate loading
-        // This is deprecated for all non-notch devices (e.g. iPhone SE)
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
+        super.viewDidLoad()        
         // Getting the Labels asyncronously
         DispatchQueue.main.async {
             // Get labels from the Posts
@@ -63,10 +59,6 @@ class FilterTableViewController: UITableViewController {
             
             // Hide loading indicator once done
             self.loadingIndicator.stopAnimating()
-            
-            // Stop the network activity indicator in status bar
-            // This is deprecated for all non-notch devices (e.g. iPhone SE)
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             // Reloading tableView with new data
             self.tableView.reloadData()

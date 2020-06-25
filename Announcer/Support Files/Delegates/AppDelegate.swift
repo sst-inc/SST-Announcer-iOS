@@ -152,7 +152,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
-        completionHandler([.alert, .badge, .sound])
+        if #available(iOS 14.0, *) {
+            completionHandler([.badge, .sound, .banner])
+        } else {
+            completionHandler([.badge, .sound, .alert])
+        }
     }
     
     // Calls when user opens app from a notification

@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import PDFKit
 
+@available(iOS 14, *)
 class TTOnboardingViewController: UIViewController {
 
     @IBOutlet weak var getStartedButton: UIButton!

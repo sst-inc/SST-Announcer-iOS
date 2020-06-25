@@ -76,6 +76,7 @@ class AnnouncementsViewController: UIViewController {
     /// Selected Path
     var selectedPath = IndexPath(row: 0, section: 0)
     
+    @IBOutlet weak var timetableButton: UIBarButtonItem!
     @IBOutlet weak var announcementTableView: UITableView!
     @IBOutlet weak var searchField: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
@@ -108,6 +109,11 @@ class AnnouncementsViewController: UIViewController {
         if #available(iOS 13.4, *) {
             filterButton.addInteraction(UIPointerInteraction(delegate: self))
             reloadButton.addInteraction(UIPointerInteraction(delegate: self))
+        }
+        
+        // Timetable is only supported on iOS 14
+        if #available(iOS 14, *) {
+            self.navigationItem.leftBarButtonItem = nil
         }
         
         #if targetEnvironment(macCatalyst)
@@ -153,6 +159,7 @@ class AnnouncementsViewController: UIViewController {
         }
     }
     
+    @available(iOS 14, *)
     @IBAction func openTimetable(_ sender: Any) {
         let vc = Storyboards.timetable.instantiateInitialViewController() as! TTNavigationViewController
         

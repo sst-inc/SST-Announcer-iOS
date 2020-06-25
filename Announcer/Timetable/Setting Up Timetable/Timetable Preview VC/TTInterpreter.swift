@@ -10,6 +10,7 @@ import Foundation
 import Vision
 import UIKit
 
+@available(iOS 14, *)
 class TTInterpreter {
     
     var observations: [VNRecognizedTextObservation]
@@ -45,8 +46,7 @@ class TTInterpreter {
         
         let request = VNRecognizeTextRequest { (request, error) in
             if let error = error {
-//                exitCompletion(error, nil)
-                
+                print(error.localizedDescription)
                 return
             }
 

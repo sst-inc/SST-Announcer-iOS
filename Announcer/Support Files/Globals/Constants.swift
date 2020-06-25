@@ -218,10 +218,11 @@ struct Assets {
     
     // Subject icons
     // Key: Subject Name, Item: image
+    @available(iOS 14, *)
     static func getSubject(_ identifier: String, font: UIFont) -> (UIImage, String) {
         let day = Calendar.current.component(.weekday, from: Date()) == 1 ? "Sunday" : "Saturday"
         
-        let subjectIcons = ["el"       : ["book", "English"],                               // 􀉚
+        let subjectIcons = ["el"       : ["a.book.closed", "English"],                      // 􀫕
                             "math"     : ["x.squareroot", "Math"],                          // 􀓪
                             "s&w"      : ["sportscourt", "S&W"],                            // 􀝐
                             "hum"      : ["person", "Humanities"],                          // 􀉩
@@ -233,32 +234,32 @@ struct Assets {
                             "tl"       : ["globe", "Mother Tongue"],                        // 􀆪
                            
                             // Changemakers
-                            "cm(ict)"  : ["desktopcomputer", "ICT"],                        // 􀙗
+                            "cm(ict)"  : ["swift", "ICT"],                                  // 􀫊
                             "cm(ps)"   : ["mic", "Presentation Skills"],                    // 􀊰
                             "cm(admt)" : ["scribble", "ADMT"],                              // 􀓨
                             "i&e"      : ["paperplane", "I&E"],                             // 􀈟
                             "cm lesson": ["lightbulb", "Changemakers"],                     // 􀛭
                            
                             // Applied Subjects
-                            "comp"     : ["chevron.left.slash.chevron.right", "Computing"], // 􀙚
-                            "elec"     : ["bolt", "Electronics"],                           // 􀋥
-                            "design"   : ["paintbrush", "Design Studies"],                  // 􀎑
-                            "biotech"  : ["leaf.arrow.circlepath", "Biotech"],              // 􀙜
-                           
+                            "comp"     : ["cpu", "Computing"],                              // 􀫥
+                            "elec"     : ["bolt.fill.batteryblock", "Electronics"],         // 􀫮
+                            "design"   : ["paintpalette", "Design Studies"],                // 􀝥
+                            "biotech"  : ["leaf", "Biotech"],                               // 􀥲
+                            
                             // Humanities
                             "ch(ge)"   : ["mappin.and.ellipse", "Geography"],               // 􀎫
                             "ch(he)"   : ["clock", "History"],                              // 􀐫
-                            "ss"       : ["flag", "Social Studies"],                        // 􀋉
+                            "ss"       : ["building.columns", "Social Studies"],            // 􀤨
                            
                             // Science
                             "bio"      : ["hare", "Biology"],                               // 􀓎
-                            "phy"      : ["cube", "Physics"],                               // 􀐘
-                            "chem"     : ["flame", "Chemistry"],                            // 􀙬
+                            "phy"      : ["scalemass", "Physics"],                          // 􀭭
+                            "chem"     : ["atom", "Chemistry"],                             // 􀬚
                            
                             // Others
                             "break"    : ["zzz", "Break"],                                  // 􀖃
-                            "adv/assb" : ["smiley", "Advisory/Assembly"],                   // 􀎸
-                            "cce"      : ["smiley", "CCE"],                                 // 􀎸
+                            "adv/assb" : ["face.similing", "adv/assb"],                     // 􀎸
+                            "cce"      : ["face.similing", "CCE"],                          // 􀎸
                             "other"    : ["studentdesk", identifier],                       // 􀑔
              
                             // Special state icons
