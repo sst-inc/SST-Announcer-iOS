@@ -277,11 +277,15 @@ func launchPost(withTitle postTitle: String) {
                                       preferredStyle: .alert)
 
         // If user opens post in Safari, it will simply bring them to student blog home page
-        alert.addAction(UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
+        let openInSafari = UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
             let svc = SFSafariViewController(url: URL(string: GlobalLinks.blogURL)!)
             
             announcementVC.present(svc, animated: true)
-        }))
+        })
+        
+        alert.addAction(openInSafari)
+        
+        alert.preferredAction = openInSafari
         
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         

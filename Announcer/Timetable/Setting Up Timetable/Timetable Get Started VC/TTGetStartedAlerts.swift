@@ -15,8 +15,10 @@ extension TTGetStartedViewController {
         let alert = UIAlertController(title: "Incorrectly formatted class", message: "Please ensure that your class is formatted as \"SX-XX\", for example, \"S4-07\"", preferredStyle: .alert)
         
         // Add just one action that says "OK" because there is no other choice
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-        }))
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(ok)
+        
+        alert.preferredAction = ok
         
         // Present alert
         self.present(alert, animated: true)
@@ -27,15 +29,18 @@ extension TTGetStartedViewController {
         let alert = UIAlertController(title: "Loading Timetables", message: "Timetables are loading. Please try again later.", preferredStyle: .alert)
         
         // Add an action that just says try again. It should just check if it exists again
-        alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
+        let tryAgain = UIAlertAction(title: "Try Again", style: .default, handler: { action in
             
             // Running doneButtonPressed to see if it exist
             self.doneButtonPressed(self)
-        }))
+        })
+        
+        alert.addAction(tryAgain)
+        
+        alert.preferredAction = tryAgain
         
         // Add another action to cancel
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
-        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         // Present the alert
         self.present(alert, animated: true)
@@ -46,9 +51,13 @@ extension TTGetStartedViewController {
         let alert = UIAlertController(title: "Invalid Class", message: "The class, \(classTextField.text!) is either invalid or not found.", preferredStyle: .alert)
         
         // Add just one action that says "OK" because there is no other choice
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-        }))
         
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alert.addAction(ok)
+        
+        alert.preferredAction = ok
+                            
         // Present alert
         self.present(alert, animated: true)
     }
