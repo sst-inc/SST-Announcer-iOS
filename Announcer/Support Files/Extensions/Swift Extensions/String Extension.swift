@@ -89,11 +89,6 @@ extension String {
 
 extension NSMutableAttributedString {
     var htmlToString: String {
-        // MacOS Catalyst does not work properly
-        #if targetEnvironment(macCatalyst)
-            return "Unable to display preview on Mac"
-        #else
-            return string.condenseLinebreaks()
-        #endif
+        return string.condenseLinebreaks()
     }
 }

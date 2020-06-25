@@ -66,7 +66,7 @@ struct GlobalColors {
     static let borderColor              = GlobalColors.blueTint.withAlphaComponent(0.3).cgColor
     
     /// Background color for App
-    static let background               = UIColor(named: "Background")!
+    static let background               = UIColor.systemBackground
     
     /// First Grey Color
     static let greyOne                  = UIColor(named: "Grey 1")!

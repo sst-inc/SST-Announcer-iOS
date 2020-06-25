@@ -80,14 +80,12 @@ class AnnouncementsViewController: UIViewController {
     @IBOutlet weak var searchField: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var reloadButton: UIButton!
-    @IBOutlet weak var timetableButton: UIButton!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Hide navigation controller
         // Navigation controller is only used for segue animations
-        self.navigationController?.navigationBar.isHidden = true
         
         // Fetch Blog Posts
         DispatchQueue.global(qos: .background).async {
@@ -110,8 +108,12 @@ class AnnouncementsViewController: UIViewController {
         if #available(iOS 13.4, *) {
             filterButton.addInteraction(UIPointerInteraction(delegate: self))
             reloadButton.addInteraction(UIPointerInteraction(delegate: self))
-            timetableButton.addInteraction(UIPointerInteraction(delegate: self))
         }
+        
+        #if targetEnvironment(macCatalyst)
+        view.backgroundColor = .clear
+        announcementTableView.backgroundColor = .clear
+        #endif
     }
     
     // Handles changing from dark to light or vice-versa

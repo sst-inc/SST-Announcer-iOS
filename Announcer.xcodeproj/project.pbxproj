@@ -116,15 +116,10 @@
 		326210EC2452061900629CC7 /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326210EB2452061900629CC7 /* UIView Extension.swift */; };
 		327524B724910999008EA814 /* TTGetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B624910999008EA814 /* TTGetStartedViewController.swift */; };
 		327524B924912470008EA814 /* TTPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B824912470008EA814 /* TTPreviewViewController.swift */; };
-		327524BF249213D8008EA814 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321CA6A7244A19420062E209 /* NotificationCenter.framework */; };
-		327524C2249213D8008EA814 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524C1249213D8008EA814 /* TodayViewController.swift */; };
-		327524C5249213D8008EA814 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 327524C3249213D8008EA814 /* MainInterface.storyboard */; };
-		327524C9249213D8008EA814 /* Timetable.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 327524BE249213D8008EA814 /* Timetable.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		327524CD249215EC008EA814 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953E238C068F00208D25 /* Assets.xcassets */; };
-		327524CE2492296D008EA814 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Constants.swift */; };
-		327524D024922D4E008EA814 /* SubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524CF24922D4E008EA814 /* SubjectView.swift */; };
-		3286667C249E46C8007CC75E /* TodayLessonOverUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3286667B249E46C8007CC75E /* TodayLessonOverUI.swift */; };
-		32866681249E523D007CC75E /* TodayWrongDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32866680249E523D007CC75E /* TodayWrongDay.swift */; };
+		32806D2124A2EA970032A2F5 /* TimetableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE72496275100132EB4 /* TimetableStruct.swift */; };
+		32806D2224A2EA970032A2F5 /* LessonStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C9BEA249F302300088677 /* LessonStruct.swift */; };
+		32806D2324A418D00032A2F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Constants.swift */; };
+		32806D2424A419B80032A2F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953E238C068F00208D25 /* Assets.xcassets */; };
 		328BFFE42493EBBF00132EB4 /* UIImage Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */; };
 		328BFFE82496275100132EB4 /* TimetableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE72496275100132EB4 /* TimetableStruct.swift */; };
 		328BFFEA24964F0400132EB4 /* TTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE924964F0400132EB4 /* TTViewController.swift */; };
@@ -134,13 +129,15 @@
 		329B6B48248BF25900ED4428 /* FilterPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B6B47248BF25900ED4428 /* FilterPreview.swift */; };
 		329CE2282489B713002022A6 /* AnnouncementPointers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329CE2272489B713002022A6 /* AnnouncementPointers.swift */; };
 		329DCBCA249703FC00018D32 /* UITableView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DCBC9249703FC00018D32 /* UITableView Extension.swift */; };
-		329DCBCB2497E11500018D32 /* TimetableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE72496275100132EB4 /* TimetableStruct.swift */; };
 		329E3B1D23F979CC00524901 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 329E3B1C23F979CC00524901 /* Settings.bundle */; };
 		329E3B1F23FEA47500524901 /* ReadAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */; };
-		32A27B9B2493072F00786B03 /* TodayOngoingUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A27B9A2493072F00786B03 /* TodayOngoingUI.swift */; };
-		32A27B9D2493078800786B03 /* TodaySetUpUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A27B9C2493078800786B03 /* TodaySetUpUI.swift */; };
-		32A4B10124984EF1007A1F5C /* PinnedAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C65273239017E500C698F2 /* PinnedAnnouncements.swift */; };
-		32A4B10224984F0E007A1F5C /* PostStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA6810247FFAC20077E030 /* PostStruct.swift */; };
+		32AC40E924A255E80013A684 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326E65AB24A17C4800E39C6F /* WidgetKit.framework */; };
+		32AC40EA24A255E80013A684 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326E65AD24A17C4800E39C6F /* SwiftUI.framework */; };
+		32AC40ED24A255E80013A684 /* Widget_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AC40EC24A255E80013A684 /* Widget_Timetable.swift */; };
+		32AC40F024A255EA0013A684 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32AC40EF24A255EA0013A684 /* Assets.xcassets */; };
+		32AC40F224A255EA0013A684 /* Widget_Timetable.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 32AC40EE24A255E80013A684 /* Widget_Timetable.intentdefinition */; };
+		32AC40F324A255EA0013A684 /* Widget_Timetable.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 32AC40EE24A255E80013A684 /* Widget_Timetable.intentdefinition */; };
+		32AC40F624A255EA0013A684 /* Timetables.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 32AC40E824A255E80013A684 /* Timetables.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		32B7C4442488BBE0009D160F /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7C4432488BBE0009D160F /* SplitViewController.swift */; };
 		32B7C4462488F047009D160F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7C4452488F047009D160F /* LoadingViewController.swift */; };
 		32C2531F244EA5D40015085A /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2531E244EA5D40015085A /* UIColor Extension.swift */; };
@@ -152,7 +149,7 @@
 		32C2532D244EA8D00015085A /* ContentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2532C244EA8D00015085A /* ContentTextView.swift */; };
 		32C4059924534617006CA49E /* Content.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C4059824534617006CA49E /* Content.storyboard */; };
 		32C65274239017E500C698F2 /* PinnedAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C65273239017E500C698F2 /* PinnedAnnouncements.swift */; };
-		32CB3DDE249F317500E18B2F /* LessonStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C9BEA249F302300088677 /* LessonStruct.swift */; };
+		32CB3DE124A04F4F00E18B2F /* TTInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CB3DE024A04F4F00E18B2F /* TTInterpreter.swift */; };
 		32D7070524783054003DC98C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 32D7070424783053003DC98C /* README.md */; };
 		32D7070C247A894E003DC98C /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D7070B247A894E003DC98C /* Filter.storyboard */; };
 		32D99536238C068D00208D25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99535238C068D00208D25 /* AppDelegate.swift */; };
@@ -176,12 +173,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		327524C7249213D8008EA814 /* PBXContainerItemProxy */ = {
+		32AC40F424A255EA0013A684 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 32D9952A238C068D00208D25 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 327524BD249213D8008EA814;
-			remoteInfo = Timetable;
+			remoteGlobalIDString = 32AC40E724A255E80013A684;
+			remoteInfo = "Widget TImetableExtension";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -192,7 +189,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				327524C9249213D8008EA814 /* Timetable.appex in Embed App Extensions */,
+				32AC40F624A255EA0013A684 /* Timetables.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,9 +308,11 @@
 		324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		324577DB238FA77000730F17 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		326210EB2452061900629CC7 /* UIView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView Extension.swift"; sourceTree = "<group>"; };
+		326E65AB24A17C4800E39C6F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		326E65AD24A17C4800E39C6F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		326E65BB24A17C4A00E39C6F /* Timetables.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timetables.entitlements; sourceTree = "<group>"; };
 		327524B624910999008EA814 /* TTGetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTGetStartedViewController.swift; sourceTree = "<group>"; };
 		327524B824912470008EA814 /* TTPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTPreviewViewController.swift; sourceTree = "<group>"; };
-		327524BE249213D8008EA814 /* Timetable.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Timetable.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		327524C1249213D8008EA814 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		327524C4249213D8008EA814 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		327524C6249213D8008EA814 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -334,6 +333,12 @@
 		329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadAnnouncements.swift; sourceTree = "<group>"; };
 		32A27B9A2493072F00786B03 /* TodayOngoingUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayOngoingUI.swift; sourceTree = "<group>"; };
 		32A27B9C2493078800786B03 /* TodaySetUpUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySetUpUI.swift; sourceTree = "<group>"; };
+		32AC40E824A255E80013A684 /* Timetables.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Timetables.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		32AC40EC24A255E80013A684 /* Widget_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget_Timetable.swift; sourceTree = "<group>"; };
+		32AC40EE24A255E80013A684 /* Widget_Timetable.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Widget_Timetable.intentdefinition; sourceTree = "<group>"; };
+		32AC40EF24A255EA0013A684 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		32AC40F124A255EA0013A684 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32AC40F724A255EA0013A684 /* Widget TImetableExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Widget TImetableExtension.entitlements"; sourceTree = "<group>"; };
 		32B7C4432488BBE0009D160F /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		32B7C4452488F047009D160F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		32C2531E244EA5D40015085A /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
@@ -346,6 +351,7 @@
 		32C4059824534617006CA49E /* Content.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Content.storyboard; sourceTree = "<group>"; };
 		32C6527223900DC100C698F2 /* SST Announcer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SST Announcer.entitlements"; sourceTree = "<group>"; };
 		32C65273239017E500C698F2 /* PinnedAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedAnnouncements.swift; sourceTree = "<group>"; };
+		32CB3DE024A04F4F00E18B2F /* TTInterpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTInterpreter.swift; sourceTree = "<group>"; };
 		32D7070424783053003DC98C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		32D7070B247A894E003DC98C /* Filter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
 		32D99532238C068D00208D25 /* SST Announcer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SST Announcer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -370,11 +376,12 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		327524BB249213D8008EA814 /* Frameworks */ = {
+		32AC40E524A255E80013A684 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				327524BF249213D8008EA814 /* NotificationCenter.framework in Frameworks */,
+				32AC40EA24A255E80013A684 /* SwiftUI.framework in Frameworks */,
+				32AC40E924A255E80013A684 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +402,8 @@
 			children = (
 				321CA6A7244A19420062E209 /* NotificationCenter.framework */,
 				2CD293BB20EEED7B1A9804C0 /* Pods_Announcer.framework */,
+				326E65AB24A17C4800E39C6F /* WidgetKit.framework */,
+				326E65AD24A17C4800E39C6F /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -686,7 +695,7 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
-		327524C0249213D8008EA814 /* Timetable */ = {
+		327524C0249213D8008EA814 /* Legacy Timetable */ = {
 			isa = PBXGroup;
 			children = (
 				3294ABEC249863F200A70538 /* Timetable.entitlements */,
@@ -696,14 +705,14 @@
 				327524C3249213D8008EA814 /* MainInterface.storyboard */,
 				327524C6249213D8008EA814 /* Info.plist */,
 			);
-			path = Timetable;
+			path = "Legacy Timetable";
 			sourceTree = "<group>";
 		};
 		328BFFEB24964F1700132EB4 /* Setting Up Timetable */ = {
 			isa = PBXGroup;
 			children = (
 				321C9BE7249F1EF200088677 /* Timetable Get Started VC */,
-				327524B824912470008EA814 /* TTPreviewViewController.swift */,
+				32CB3DDF24A04F1500E18B2F /* Timetable Preview VC */,
 			);
 			path = "Setting Up Timetable";
 			sourceTree = "<group>";
@@ -715,6 +724,17 @@
 				328BFFED24965E3E00132EB4 /* TTTableViewCell.swift */,
 			);
 			path = "Timetable VC";
+			sourceTree = "<group>";
+		};
+		32AC40EB24A255E80013A684 /* Timetables */ = {
+			isa = PBXGroup;
+			children = (
+				32AC40EC24A255E80013A684 /* Widget_Timetable.swift */,
+				32AC40EE24A255E80013A684 /* Widget_Timetable.intentdefinition */,
+				32AC40EF24A255EA0013A684 /* Assets.xcassets */,
+				32AC40F124A255EA0013A684 /* Info.plist */,
+			);
+			path = Timetables;
 			sourceTree = "<group>";
 		};
 		32B7C44724895BD0009D160F /* Split View Controller */ = {
@@ -757,12 +777,24 @@
 			path = "Swift Extensions";
 			sourceTree = "<group>";
 		};
+		32CB3DDF24A04F1500E18B2F /* Timetable Preview VC */ = {
+			isa = PBXGroup;
+			children = (
+				327524B824912470008EA814 /* TTPreviewViewController.swift */,
+				32CB3DE024A04F4F00E18B2F /* TTInterpreter.swift */,
+			);
+			path = "Timetable Preview VC";
+			sourceTree = "<group>";
+		};
 		32D99529238C068D00208D25 = {
 			isa = PBXGroup;
 			children = (
+				32AC40F724A255EA0013A684 /* Widget TImetableExtension.entitlements */,
+				326E65BB24A17C4A00E39C6F /* Timetables.entitlements */,
 				32D7070424783053003DC98C /* README.md */,
 				32D99534238C068D00208D25 /* Announcer */,
-				327524C0249213D8008EA814 /* Timetable */,
+				327524C0249213D8008EA814 /* Legacy Timetable */,
+				32AC40EB24A255E80013A684 /* Timetables */,
 				32D99533238C068D00208D25 /* Products */,
 				F60E238002C508C5CE0166E8 /* Pods */,
 				2872A23A99F4B96DE42DB98B /* Frameworks */,
@@ -773,7 +805,7 @@
 			isa = PBXGroup;
 			children = (
 				32D99532238C068D00208D25 /* SST Announcer.app */,
-				327524BE249213D8008EA814 /* Timetable.appex */,
+				32AC40E824A255E80013A684 /* Timetables.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -886,21 +918,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		327524BD249213D8008EA814 /* Timetable */ = {
+		32AC40E724A255E80013A684 /* Timetables */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 327524CA249213D8008EA814 /* Build configuration list for PBXNativeTarget "Timetable" */;
+			buildConfigurationList = 32AC40F824A255EA0013A684 /* Build configuration list for PBXNativeTarget "Timetables" */;
 			buildPhases = (
-				327524BA249213D8008EA814 /* Sources */,
-				327524BB249213D8008EA814 /* Frameworks */,
-				327524BC249213D8008EA814 /* Resources */,
+				32AC40E424A255E80013A684 /* Sources */,
+				32AC40E524A255E80013A684 /* Frameworks */,
+				32AC40E624A255E80013A684 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Timetable;
-			productName = Timetable;
-			productReference = 327524BE249213D8008EA814 /* Timetable.appex */;
+			name = Timetables;
+			productName = "Widget TImetableExtension";
+			productReference = 32AC40E824A255E80013A684 /* Timetables.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		32D99531238C068D00208D25 /* Announcer */ = {
@@ -917,7 +949,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				327524C8249213D8008EA814 /* PBXTargetDependency */,
+				32AC40F524A255EA0013A684 /* PBXTargetDependency */,
 			);
 			name = Announcer;
 			packageProductDependencies = (
@@ -937,12 +969,12 @@
 					New,
 					"New-1",
 				);
-				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "SST Inc.";
 				TargetAttributes = {
-					327524BD249213D8008EA814 = {
-						CreatedOnToolsVersion = 11.5;
+					32AC40E724A255E80013A684 = {
+						CreatedOnToolsVersion = 12.0;
 					};
 					32D99531238C068D00208D25 = {
 						CreatedOnToolsVersion = 11.3;
@@ -991,18 +1023,18 @@
 			projectRoot = "";
 			targets = (
 				32D99531238C068D00208D25 /* Announcer */,
-				327524BD249213D8008EA814 /* Timetable */,
+				32AC40E724A255E80013A684 /* Timetables */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		327524BC249213D8008EA814 /* Resources */ = {
+		32AC40E624A255E80013A684 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				327524CD249215EC008EA814 /* Assets.xcassets in Resources */,
-				327524C5249213D8008EA814 /* MainInterface.storyboard in Resources */,
+				32806D2424A419B80032A2F5 /* Assets.xcassets in Resources */,
+				32AC40F024A255EA0013A684 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1066,21 +1098,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		327524BA249213D8008EA814 /* Sources */ = {
+		32AC40E424A255E80013A684 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				329DCBCB2497E11500018D32 /* TimetableStruct.swift in Sources */,
-				3286667C249E46C8007CC75E /* TodayLessonOverUI.swift in Sources */,
-				32A4B10124984EF1007A1F5C /* PinnedAnnouncements.swift in Sources */,
-				32CB3DDE249F317500E18B2F /* LessonStruct.swift in Sources */,
-				327524C2249213D8008EA814 /* TodayViewController.swift in Sources */,
-				32866681249E523D007CC75E /* TodayWrongDay.swift in Sources */,
-				32A27B9B2493072F00786B03 /* TodayOngoingUI.swift in Sources */,
-				327524D024922D4E008EA814 /* SubjectView.swift in Sources */,
-				327524CE2492296D008EA814 /* Constants.swift in Sources */,
-				32A4B10224984F0E007A1F5C /* PostStruct.swift in Sources */,
-				32A27B9D2493078800786B03 /* TodaySetUpUI.swift in Sources */,
+				32806D2324A418D00032A2F5 /* Constants.swift in Sources */,
+				32806D2124A2EA970032A2F5 /* TimetableStruct.swift in Sources */,
+				32AC40F224A255EA0013A684 /* Widget_Timetable.intentdefinition in Sources */,
+				32806D2224A2EA970032A2F5 /* LessonStruct.swift in Sources */,
+				32AC40ED24A255E80013A684 /* Widget_Timetable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1110,6 +1136,7 @@
 				324576F9238D8E0E00730F17 /* Constants.swift in Sources */,
 				324577CE238E53A200730F17 /* String + toDuration.swift in Sources */,
 				329DCBCA249703FC00018D32 /* UITableView Extension.swift in Sources */,
+				32AC40F324A255EA0013A684 /* Widget_Timetable.intentdefinition in Sources */,
 				324577D2238E53A200730F17 /* String + toBool.swift in Sources */,
 				32B7C4442488BBE0009D160F /* SplitViewController.swift in Sources */,
 				3245777E238E53A100730F17 /* AtomFeedContributor.swift in Sources */,
@@ -1172,6 +1199,7 @@
 				324577CA238E53A200730F17 /* XMLFeedParser.swift in Sources */,
 				32FA6813247FFAE30077E030 /* LinksStruct.swift in Sources */,
 				324577D0238E53A200730F17 /* Date + codingStrategy.swift in Sources */,
+				32CB3DE124A04F4F00E18B2F /* TTInterpreter.swift in Sources */,
 				328BFFE42493EBBF00132EB4 /* UIImage Extension.swift in Sources */,
 				324577AC238E53A100730F17 /* MediaTag.swift in Sources */,
 				32C2532B244EA8390015085A /* ContentCollectionView.swift in Sources */,
@@ -1235,10 +1263,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		327524C8249213D8008EA814 /* PBXTargetDependency */ = {
+		32AC40F524A255EA0013A684 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 327524BD249213D8008EA814 /* Timetable */;
-			targetProxy = 327524C7249213D8008EA814 /* PBXContainerItemProxy */;
+			target = 32AC40E724A255E80013A684 /* Timetables */;
+			targetProxy = 32AC40F424A255EA0013A684 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1278,43 +1306,51 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		327524CB249213D8008EA814 /* Debug */ = {
+		32AC40F924A255EA0013A684 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Timetable/Timetable.entitlements;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = Timetables.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
-				INFOPLIST_FILE = Timetable/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_FILE = Timetables/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer.Timetable;
+				PRODUCT_BUNDLE_IDENTIFIER = "sg.edu.sst.panziyue.Announcer.Widget-TImetable";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "maccatalyst.sg.edu.sst.panziyue.Announcer.Widget-TImetable";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		327524CC249213D8008EA814 /* Release */ = {
+		32AC40FA24A255EA0013A684 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Timetable/Timetable.entitlements;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = Timetables.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
-				INFOPLIST_FILE = Timetable/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_FILE = Timetables/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer.Timetable;
+				PRODUCT_BUNDLE_IDENTIFIER = "sg.edu.sst.panziyue.Announcer.Widget-TImetable";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "maccatalyst.sg.edu.sst.panziyue.Announcer.Widget-TImetable";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1347,6 +1383,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1408,6 +1445,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1451,6 +1489,7 @@
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Announcer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1462,7 +1501,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -1481,6 +1520,7 @@
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Announcer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1491,18 +1531,18 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		327524CA249213D8008EA814 /* Build configuration list for PBXNativeTarget "Timetable" */ = {
+		32AC40F824A255EA0013A684 /* Build configuration list for PBXNativeTarget "Timetables" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				327524CB249213D8008EA814 /* Debug */,
-				327524CC249213D8008EA814 /* Release */,
+				32AC40F924A255EA0013A684 /* Debug */,
+				32AC40FA24A255EA0013A684 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

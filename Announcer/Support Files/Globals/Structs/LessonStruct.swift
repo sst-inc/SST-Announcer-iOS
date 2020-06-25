@@ -51,7 +51,7 @@ struct Lesson: Equatable, Codable {
         let format = DateFormatter()
         
         // This date format will produce "12:34pm" from the date given
-        format.dateFormat = "H:mma"
+        format.dateFormat = "h:mma"
         
         // Format the date based on the format above, H:mma -> 12:34pm
         var formattedDate = format.string(from: date).lowercased()

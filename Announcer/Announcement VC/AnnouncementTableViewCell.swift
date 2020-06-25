@@ -65,7 +65,11 @@ class AnnouncementTableViewCell: UITableViewCell {
             handlePinAndRead()
             
             // Set tableViewCell background color
+            #if targetEnvironment(macCatalyst)
+            backgroundColor = .clear
+            #else
             backgroundColor = GlobalColors.background
+            #endif
             
             // Set attributes of title label
             // [Square Brackets] all red to highlight things like [Sec 2 students] etc.
@@ -96,10 +100,14 @@ class AnnouncementTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        #if targetEnvironment(macCatalyst)
+        #else
         let hover = UIHoverGestureRecognizer()
         hover.addTarget(self, action: #selector(hovered(_:)))
         
         contentView.addGestureRecognizer(hover)
+        #endif
     }
     
     // Color the brackets []
@@ -195,13 +203,20 @@ class AnnouncementTableViewCell: UITableViewCell {
         case .began, .changed:
             
             // User is hovering over post
+            #if targetEnvironment(macCatalyst)
+            contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelectionHover.withAlphaComponent(0.6) : GlobalColors.greyThree.withAlphaComponent(0.6)
+            #else
             contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelectionHover : GlobalColors.greyThree
-        case .ended:
+            #endif
             
-            // User stopped hovering over post
-            contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelection : GlobalColors.background
         default:
-            break
+            // User stopped hovering over post
+            #if targetEnvironment(macCatalyst)
+            contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelection.withAlphaComponent(0.6) : GlobalColors.background.withAlphaComponent(0.6)
+            #else
+            contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelection : GlobalColors.background
+            #endif
+
         }
     }
 }

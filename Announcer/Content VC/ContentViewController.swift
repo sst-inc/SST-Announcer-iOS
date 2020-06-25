@@ -131,6 +131,8 @@ class ContentViewController: UIViewController {
             backButton.isHidden = true
         }
         
+        navigationController?.navigationBar.isHidden = true
+        
         // Adding pointer interactions
         // Only avaliable for iOS 13.4 and up
         if #available(iOS 13.4, *) {
@@ -190,9 +192,13 @@ class ContentViewController: UIViewController {
                                               preferredStyle: .alert)
                 
                 // Open post in safari, post requires webkit
-                alert.addAction(UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
+                let openInSafari = UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
                     self.openPostInSafari(UILabel())
-                }))
+                })
+                
+                alert.addAction(openInSafari)
+                
+                alert.preferredAction = openInSafari
                 
                 // Close post
                 alert.addAction(UIAlertAction(title: "Close Post", style: .cancel, handler: { (_) in

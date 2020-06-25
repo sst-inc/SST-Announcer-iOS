@@ -258,8 +258,6 @@ extension TodayViewController {
                 
                 let lesson = lessons[currentLesson]
                 
-                print(lesson.teacher)
-                
                 if let teacher = lesson.teacher {
                     ongoingSubject.update(identifier: lesson.identifier, withTeacher: teacher, endTime: lesson.endTime)
                 } else {
