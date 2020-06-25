@@ -85,9 +85,13 @@ struct Fetch {
                                               preferredStyle: .alert)
                 
                 // Try to reload and hopefully it works
-                alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
+                let tryAgain = UIAlertAction(title: "Try Again", style: .default, handler: { action in
                     vc.reload(UILabel())
-                }))
+                })
+                
+                alert.addAction(tryAgain)
+                
+                alert.preferredAction = tryAgain
                 
                 // Open the settings app
                 alert.addAction(UIAlertAction(title: "Open Settings", style: .default, handler: { action in
