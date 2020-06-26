@@ -253,7 +253,12 @@ func launchPost(withTitle postTitle: String) {
     
     var announcementVC: AnnouncementsViewController!
     
-    if UIDevice.current.userInterfaceIdiom == .pad {
+    if UIDevice.current.userInterfaceIdiom == .pad || {
+        if #available(iOS 14.0, *) {
+            return UIDevice.current.userInterfaceIdiom == .mac
+        }
+        return false
+    }() {
         let splitVC = UIApplication.shared.windows.first?.rootViewController as! SplitViewController
         announcementVC = splitVC.announcementVC!
         

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // For iPadOS 13.4 and up, pointer support
-@available(iOS 13.4, *)
+@available(iOS 13.4, macOS 10, *)
 extension ContentViewController: UIPointerInteractionDelegate {
     
     // Adding styles for UIButton

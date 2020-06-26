@@ -185,7 +185,8 @@ class ContentViewController: UIViewController {
         
         // Render HTML from String
         // Handle WebKit requirements by showing an error
-        if post.content.contains("webkitallowfullscreen=\"true\"") {
+        
+        if post.content.contains("webkitallowfullscreen=\"true\"") || (attributedContent?.string.lowercased() ?? "").contains("error") {
             DispatchQueue.main.async {
                 let alert = UIAlertController(title: ErrorMessages.postRequiresWebKit.title,
                                               message: ErrorMessages.postRequiresWebKit.description,
@@ -209,8 +210,10 @@ class ContentViewController: UIViewController {
                     self.dismiss(animated: true)
                 }))
                 
-                // Present alert
-                self.present(alert, animated: true)
+                DispatchQueue.main.async {
+                    // Present alert
+                    self.present(alert, animated: true)
+                }
             }
             
         } else {

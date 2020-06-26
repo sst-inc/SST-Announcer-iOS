@@ -315,7 +315,12 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     
     // MARK: ScrollView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if UIDevice.current.userInterfaceIdiom == .pad {
+        if UIDevice.current.userInterfaceIdiom == .pad || {
+            if #available(iOS 14.0, *) {
+                return UIDevice.current.userInterfaceIdiom == .mac
+            }
+            return false
+        }() {
             // Dismiss keyboard at for iPads because they do not auto dismiss
             view.endEditing(true)
         }
@@ -389,7 +394,12 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     sortWithLabels(UILabel())
                     
                 } else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
-                    if UIDevice.current.userInterfaceIdiom == .pad {
+                    if UIDevice.current.userInterfaceIdiom == .pad || {
+                        if #available(iOS 14.0, *) {
+                            return UIDevice.current.userInterfaceIdiom == .mac
+                        }
+                        return false
+                    }() {
                         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_) in
                             // Select search field
                             self.searchField.becomeFirstResponder()

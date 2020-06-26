@@ -82,6 +82,8 @@ class AnnouncementTableViewCell: UITableViewCell {
     }
     var highlightPost = false {
         didSet {
+            #if targetEnvironment(macCatalyst)
+            #else
             if UIDevice.current.userInterfaceIdiom == .pad {
                 if highlightPost {
                     contentView.backgroundColor = GlobalColors.tableViewSelection
@@ -89,6 +91,7 @@ class AnnouncementTableViewCell: UITableViewCell {
                     contentView.backgroundColor = GlobalColors.background
                 }
             }
+            #endif
         }
     }
     

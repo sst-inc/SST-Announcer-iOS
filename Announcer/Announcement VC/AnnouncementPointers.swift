@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@available(iOS 13.4, *)
+@available(iOS 13.4, macOS 11, *)
 extension AnnouncementsViewController: UIPointerInteractionDelegate {
     func pointerInteraction(_ interaction: UIPointerInteraction, styleFor region: UIPointerRegion) -> UIPointerStyle? {
         

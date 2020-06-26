@@ -10,7 +10,7 @@ import Foundation
 import Vision
 import UIKit
 
-@available(iOS 14, *)
+@available(iOS 14, macOS 11, *)
 class TTInterpreter {
     
     var observations: [VNRecognizedTextObservation]

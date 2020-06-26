@@ -9,7 +9,7 @@
 import UIKit
 import PDFKit
 
-@available(iOS 14, *)
+@available(iOS 14, macOS 11, *)
 class TTGetStartedViewController: UIViewController, UITextFieldDelegate {
 
     // Time for alerts but in seconds

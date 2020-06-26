@@ -112,7 +112,9 @@ class AnnouncementsViewController: UIViewController {
         }
         
         // Timetable is only supported on iOS 14
-        if #available(iOS 14, *) {
+        if #available(iOS 14, macOS 11, *) {
+            
+        } else {
             self.navigationItem.leftBarButtonItem = nil
         }
         
@@ -159,7 +161,7 @@ class AnnouncementsViewController: UIViewController {
         }
     }
     
-    @available(iOS 14, *)
+    @available(iOS 14, macOS 11, *)
     @IBAction func openTimetable(_ sender: Any) {
         let vc = Storyboards.timetable.instantiateInitialViewController() as! TTNavigationViewController
         

@@ -218,7 +218,7 @@ struct Assets {
     
     // Subject icons
     // Key: Subject Name, Item: image
-    @available(iOS 14, *)
+    @available(iOS 14, macOS 11, *)
     static func getSubject(_ identifier: String, font: UIFont) -> (UIImage, String) {
         let day = Calendar.current.component(.weekday, from: Date()) == 1 ? "Sunday" : "Saturday"
         

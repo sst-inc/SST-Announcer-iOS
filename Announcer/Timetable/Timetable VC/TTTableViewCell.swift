@@ -13,50 +13,52 @@ class TTTableViewCell: UITableViewCell {
     var selectedDate: Date!
     var lesson: Lesson! {
         didSet {
-            let subject = Assets.getSubject(lesson.identifier, font: .systemFont(ofSize: 30, weight: .bold))
-            subjectImageView.image = subject.0
-            
-            timelineIndicator.image = UIImage(systemName: "circle.fill")
-            timelineIndicator.backgroundColor = .clear
-            
-            
-            // Setting the colors
-            if Calendar.current.isDateInToday(selectedDate) {
-                let todayTimeInterval = Date().timeIntervalSince(Lesson.getTodayDate())
+            if #available(iOS 14, *) {
+                let subject = Assets.getSubject(lesson.identifier, font: .systemFont(ofSize: 30, weight: .bold))
+                subjectImageView.image = subject.0
                 
-                if todayTimeInterval > lesson.startTime {
-                    topTimelineView.backgroundColor = GlobalColors.blueTint
-                    timelineIndicator.tintColor = GlobalColors.blueTint
+                timelineIndicator.image = UIImage(systemName: "circle.fill")
+                timelineIndicator.backgroundColor = .clear
+                
+                
+                // Setting the colors
+                if Calendar.current.isDateInToday(selectedDate) {
+                    let todayTimeInterval = Date().timeIntervalSince(Lesson.getTodayDate())
                     
-                    if todayTimeInterval < lesson.endTime {
-                        timelineIndicator.image = UIImage(systemName: "largecircle.fill.circle")
+                    if todayTimeInterval > lesson.startTime {
+                        topTimelineView.backgroundColor = GlobalColors.blueTint
+                        timelineIndicator.tintColor = GlobalColors.blueTint
                         
-                        timelineIndicator.backgroundColor = GlobalColors.background
+                        if todayTimeInterval < lesson.endTime {
+                            timelineIndicator.image = UIImage(systemName: "largecircle.fill.circle")
+                            
+                            timelineIndicator.backgroundColor = GlobalColors.background
+                        } else {
+                            bottomTimelineIndicator.backgroundColor = GlobalColors.blueTint
+                        }
                     } else {
-                        bottomTimelineIndicator.backgroundColor = GlobalColors.blueTint
+                        topTimelineView.backgroundColor = GlobalColors.greyThree
+                        timelineIndicator.tintColor = GlobalColors.greyThree
+                        bottomTimelineIndicator.backgroundColor = GlobalColors.greyThree
                     }
-                } else {
-                    topTimelineView.backgroundColor = GlobalColors.greyThree
-                    timelineIndicator.tintColor = GlobalColors.greyThree
-                    bottomTimelineIndicator.backgroundColor = GlobalColors.greyThree
                 }
+                
+                if let teacher = lesson.teacher {
+                    let defaultAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17),
+                                             NSAttributedString.Key.foregroundColor: UIColor.label]
+                    let teacherAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]
+                    
+                    let attr = NSMutableAttributedString(string: "\(subject.1) • \(teacher)", attributes: defaultAttributes)
+                    
+                    attr.addAttributes(teacherAttributes, range: NSRange(location: subject.1.count, length: teacher.count + 3))
+                    
+                    subjectTeacherLabel.attributedText = attr
+                } else {
+                    subjectTeacherLabel.text = subject.1
+                }
+                
+                timingLabel.text = "From \(Lesson.convert(time: lesson.startTime)) to \(Lesson.convert(time: lesson.endTime))"
             }
-            
-            if let teacher = lesson.teacher {
-                let defaultAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17),
-                                         NSAttributedString.Key.foregroundColor: UIColor.label]
-                let teacherAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]
-                
-                let attr = NSMutableAttributedString(string: "\(subject.1) • \(teacher)", attributes: defaultAttributes)
-                
-                attr.addAttributes(teacherAttributes, range: NSRange(location: subject.1.count, length: teacher.count + 3))
-                
-                subjectTeacherLabel.attributedText = attr
-            } else {
-                subjectTeacherLabel.text = subject.1
-            }
-            
-            timingLabel.text = "From \(Lesson.convert(time: lesson.startTime)) to \(Lesson.convert(time: lesson.endTime))"
         }
     }
     

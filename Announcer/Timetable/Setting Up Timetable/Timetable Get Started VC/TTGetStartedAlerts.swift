@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@available(iOS 14, macOS 11, *)
 extension TTGetStartedViewController {
     func showFailRegexCheckAlert() {
         // Present an alert to inform the user that their format is wrong

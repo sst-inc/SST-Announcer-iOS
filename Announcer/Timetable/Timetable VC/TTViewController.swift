@@ -8,7 +8,7 @@
 
 import UIKit
 
-@available(iOS 14, *)
+@available(iOS 14, macOS 11, *)
 class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var timetable: Timetable!

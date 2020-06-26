@@ -12,8 +12,8 @@ import SwiftUI
 public struct Provider: TimelineProvider {
     
     public func snapshot(with context: Context,
-                         completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(),
+                         completion: @escaping (WidgetEntry) -> ()) {
+        let entry = WidgetEntry(date: Date(),
                                 currentLesson: WidgetLesson(name: "Computing", date: Date(), imageName: "cpu"),
                                 lessonTime: Date(),
                                 nextLessons: [WidgetLesson(name: "Chemistry", date: Date(), imageName: "flame"),
@@ -24,7 +24,7 @@ public struct Provider: TimelineProvider {
     
     public func timeline(with context: Context,
                          completion: @escaping (Timeline<Entry>) -> ()) {
-        let entry = SimpleEntry(date: Date(),
+        let entry = WidgetEntry(date: Date(),
                                 currentLesson: WidgetLesson(name: "Computing", date: Date(), imageName: "cpu"),
                                 lessonTime: Date(),
                                 nextLessons: [WidgetLesson(name: "Chemistry", date: Date(), imageName: "flame"),
@@ -41,7 +41,7 @@ public struct WidgetLesson {
     public var imageName: String
 }
 
-public struct SimpleEntry: TimelineEntry {
+public struct WidgetEntry: TimelineEntry {
     public let date: Date
     
     public let currentLesson: WidgetLesson

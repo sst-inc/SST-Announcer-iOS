@@ -41,7 +41,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
             
             DispatchQueue.main.async {
-                announcementVC.openTimetable(self)
+                if #available(iOS 14, *) {
+                    announcementVC.openTimetable(self)
+                }
             }
             
         }
