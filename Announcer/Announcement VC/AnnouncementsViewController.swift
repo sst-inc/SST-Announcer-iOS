@@ -80,7 +80,7 @@ class AnnouncementsViewController: UIViewController {
     @IBOutlet weak var announcementTableView: UITableView!
     @IBOutlet weak var searchField: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
-    @IBOutlet weak var reloadButton: UIButton!
+    @IBOutlet weak var reloadButton: UIBarButtonItem!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -96,19 +96,15 @@ class AnnouncementsViewController: UIViewController {
         // Load Pinned Comments
         pinned = PinnedAnnouncements.loadFromFile() ?? []
         
-        // Setting the searhField's text field color
-        searchField.setTextField(color: GlobalColors.background)
-        
         // Corner radius for top buttons
         // This is for the scroll selection
         filterButton.layer.cornerRadius = 25 / 2
-        reloadButton.layer.cornerRadius = 27.5 / 2
+        reloadButton.tintColor = GlobalColors.greyOne
         
         // Pointer support
         // Add a circle when they hover over button
         if #available(iOS 13.4, *) {
             filterButton.addInteraction(UIPointerInteraction(delegate: self))
-            reloadButton.addInteraction(UIPointerInteraction(delegate: self))
         }
         
         // Timetable is only supported on iOS 14
@@ -122,11 +118,6 @@ class AnnouncementsViewController: UIViewController {
             view.backgroundColor = .clear
             announcementTableView.backgroundColor = .clear
         }
-    }
-    
-    // Handles changing from dark to light or vice-versa
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        searchField.setTextField(color: GlobalColors.background)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -148,15 +139,15 @@ class AnnouncementsViewController: UIViewController {
     // Reload announcements
     @IBAction func reload(_ sender: Any) {
         self.posts = nil
-        loadingIndicator.startAnimating()
-        reloadButton.isHidden = true
+//        loadingIndicator.startAnimating()
+//        reloadButton.isHidden = true
         
         DispatchQueue.global(qos: .background).async {
             self.pinned = PinnedAnnouncements.loadFromFile() ?? []
             self.posts = Fetch.posts(with: self)
             DispatchQueue.main.async {
-                self.loadingIndicator.stopAnimating()
-                self.reloadButton.isHidden = false
+//                self.loadingIndicator.stopAnimating()
+//                self.reloadButton.isHidden = false
             }
         }
     }

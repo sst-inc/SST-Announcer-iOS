@@ -312,29 +312,32 @@ func continueFromCoreSpotlight(with userActivity: NSUserActivity) {
 }
 
 struct ScrollSelection {
-    static func setNormalState(for item: UIView) {
-        if let button = item as? UIButton {
-            button.layer.borderWidth = 0
-            button.layer.borderColor = GlobalColors.borderColor
-        } else if let searchBar = item as? UISearchBar {
-            searchBar.getTextField()?.layer.borderWidth = 0
-            searchBar.getTextField()?.layer.borderColor = GlobalColors.borderColor
+    static func setNormalState(for item: UIView? = nil, barButton: UIBarButtonItem? = nil) {
+        if let item = item {
+            if let button = item as? UIButton {
+                        button.layer.borderWidth = 0
+                        button.layer.borderColor = GlobalColors.borderColor
+                    } else if let searchBar = item as? UISearchBar {
+                        searchBar.alpha = 1
+                    }
+        } else {
+            barButton?.tintColor = GlobalColors.greyOne
         }
     }
     
-    static func setSelectedState(for item: UIView, withOffset offset: CGFloat, andConstant constant: CGFloat) {
+    static func setSelectedState(for item: UIView? = nil, barButton: UIBarButtonItem? = nil, withOffset offset: CGFloat, andConstant constant: CGFloat) {
         let multiplier = (offset * -1 - constant) / 100
         
-        if let button = item as? UIButton {
-            
-            button.layer.borderWidth = 25 * multiplier
-            button.layer.borderColor = GlobalColors.borderColor
-        } else if let searchBar = item as? UISearchBar {
-            searchBar.getTextField()?.layer.borderWidth = 40 * multiplier
-            searchBar.getTextField()?.clipsToBounds = false
-            searchBar.getTextField()?.superview?.clipsToBounds = false
-            searchBar.clipsToBounds = false
-            searchBar.getTextField()?.layer.borderColor = GlobalColors.borderColor
+        if let item = item {
+            if let button = item as? UIButton {
+                
+                button.layer.borderWidth = 25 * multiplier
+                button.layer.borderColor = GlobalColors.borderColor
+            } else if let searchBar = item as? UISearchBar {
+                searchBar.alpha = multiplier * 2
+            }
+        } else {
+            barButton?.tintColor = GlobalColors.greyOne.withAlphaComponent(1 - (multiplier * 2))
         }
     }
 }

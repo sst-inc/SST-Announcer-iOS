@@ -133,9 +133,29 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             } else {
                 if pinned.count != 0 && indexPath.section == 0 {
                     // Pinned items
-                    cell.post = pinned[indexPath.row]
+                    if pinned.count > indexPath.row {
+                        cell.post = pinned[indexPath.row]
+                    } else {
+                        cell.post = Post(title: "Loading...",
+                                         content: "Loading...",
+                                         date: Date(),
+                                         pinned: true,
+                                         read: true,
+                                         reminderDate: nil,
+                                         categories: [])
+                    }
                 } else if posts.count != 0  {
-                    cell.post = posts[indexPath.row]
+                    if posts.count > indexPath.row {
+                        cell.post = posts[indexPath.row]
+                    } else {
+                        cell.post = Post(title: "Loading...",
+                                         content: "Loading...",
+                                         date: Date(),
+                                         pinned: true,
+                                         read: true,
+                                         reminderDate: nil,
+                                         categories: [])
+                    }
                 }
             }
             
@@ -320,15 +340,27 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             view.endEditing(true)
         }
         
-        #if targetEnvironment(macCatalyst)
-        #else
-        if !searchField.isFirstResponder && !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
+//        if scrollView.contentOffset.y > 5 {
+//            UIView.animate(withDuration: 0.5) {
+//                self.searchHeightConstraint.constant = 0
+//                self.searchStackView.translatesAutoresizingMaskIntoConstraints = false
+//            }
+//            
+//        } else {
+//            UIView.animate(withDuration: 0.5) {
+//                self.searchHeightConstraint.constant = 56
+//                self.searchStackView.translatesAutoresizingMaskIntoConstraints = false
+//            }
+//            
+//        }
+        
+        if !searchField.isFirstResponder && !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) && !I.mac {
             if scrollView.contentOffset.y <= -3 * scrollSelectionMultiplier {
                 
                 ScrollSelection.setNormalState(for: filterButton)
                 ScrollSelection.setNormalState(for: searchField)
                 
-                ScrollSelection.setSelectedState(for: reloadButton,
+                ScrollSelection.setSelectedState(barButton: reloadButton!,
                                                  withOffset: scrollView.contentOffset.y,
                                                  andConstant: 3 * scrollSelectionMultiplier)
                 
@@ -339,7 +371,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 playedHaptic = 1
             } else if scrollView.contentOffset.y <= -2 * scrollSelectionMultiplier {
                 ScrollSelection.setNormalState(for: searchField)
-                ScrollSelection.setNormalState(for: reloadButton)
+                ScrollSelection.setNormalState(barButton: reloadButton)
                 
                 ScrollSelection.setSelectedState(for: filterButton,
                                                  withOffset: scrollView.contentOffset.y,
@@ -354,7 +386,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             } else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
                 
                 ScrollSelection.setNormalState(for: filterButton)
-                ScrollSelection.setNormalState(for: reloadButton)
+                ScrollSelection.setNormalState(barButton: reloadButton)
                 
                 ScrollSelection.setSelectedState(for: searchField,
                                                  withOffset: scrollView.contentOffset.y,
@@ -371,7 +403,6 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 playedHaptic = 0
             }
         }
-        #endif
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -407,7 +438,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 }
                 
                 filterButton.tintColor = GlobalColors.greyOne
-                searchField.setTextField(color: GlobalColors.background)
+                searchField.alpha = 1
                 reloadButton.tintColor = GlobalColors.greyOne
                 
                 resetScroll()
@@ -418,6 +449,6 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     func resetScroll() {
         filterButton.layer.borderWidth = 0
         searchField.getTextField()?.layer.borderWidth = 0
-        reloadButton.layer.borderWidth = 0
+        reloadButton.tintColor = GlobalColors.greyOne
     }
 }

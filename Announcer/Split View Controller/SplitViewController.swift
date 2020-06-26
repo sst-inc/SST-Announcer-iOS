@@ -105,17 +105,11 @@ class SplitViewController: UISplitViewController {
         let downArrow = UIKeyCommand(input: UIKeyCommand.inputDownArrow,
                                      modifierFlags: [],
                                      action: #selector(nextPost))
-        let rightArrow = UIKeyCommand(input: UIKeyCommand.inputRightArrow,
-                                      modifierFlags: [],
-                                      action: #selector(nextPost))
         
         // Go to Previous Post
         let upArrow = UIKeyCommand(input: UIKeyCommand.inputUpArrow,
                                    modifierFlags: [],
                                    action: #selector(previousPost))
-        let leftArrow = UIKeyCommand(input: UIKeyCommand.inputLeftArrow,
-                                     modifierFlags: [],
-                                     action: #selector(previousPost))
 
         // Zooming Post
         let zoomIn = UIKeyCommand(title: "Zoom In",
@@ -145,7 +139,7 @@ class SplitViewController: UISplitViewController {
         return [settings, search, filter, reload,
                 share, safari, pin,
                 zoomIn, zoomOut, resetZoom,
-                downArrow, upArrow, rightArrow, leftArrow]
+                downArrow, upArrow]
     }
 
     // Selecting search bar
