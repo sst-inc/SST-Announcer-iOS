@@ -118,10 +118,10 @@ class AnnouncementsViewController: UIViewController {
             self.navigationItem.leftBarButtonItem = nil
         }
         
-        #if targetEnvironment(macCatalyst)
-        view.backgroundColor = .clear
-        announcementTableView.backgroundColor = .clear
-        #endif
+        if I.mac {
+            view.backgroundColor = .clear
+            announcementTableView.backgroundColor = .clear
+        }
     }
     
     // Handles changing from dark to light or vice-versa

@@ -179,7 +179,7 @@ extension TodayViewController {
             constraints += laterLabelConstraints
             constraints += laterSubjectConstraints
             
-        @unknown default: fatalError()
+        @unknown default: I.wantToDie
         }
         
         return constraints

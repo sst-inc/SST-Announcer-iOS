@@ -65,11 +65,11 @@ class AnnouncementTableViewCell: UITableViewCell {
             handlePinAndRead()
             
             // Set tableViewCell background color
-            #if targetEnvironment(macCatalyst)
-            backgroundColor = .clear
-            #else
-            backgroundColor = GlobalColors.background
-            #endif
+            if I.mac {
+                backgroundColor = .clear
+            } else {
+                backgroundColor = GlobalColors.background
+            }
             
             // Set attributes of title label
             // [Square Brackets] all red to highlight things like [Sec 2 students] etc.
@@ -82,16 +82,13 @@ class AnnouncementTableViewCell: UITableViewCell {
     }
     var highlightPost = false {
         didSet {
-            #if targetEnvironment(macCatalyst)
-            #else
-            if UIDevice.current.userInterfaceIdiom == .pad {
+            if I.wantToBeMac {
                 if highlightPost {
                     contentView.backgroundColor = GlobalColors.tableViewSelection
                 } else {
                     contentView.backgroundColor = GlobalColors.background
                 }
             }
-            #endif
         }
     }
     
@@ -104,13 +101,12 @@ class AnnouncementTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        #if targetEnvironment(macCatalyst)
-        #else
-        let hover = UIHoverGestureRecognizer()
-        hover.addTarget(self, action: #selector(hovered(_:)))
-        
-        contentView.addGestureRecognizer(hover)
-        #endif
+        if I.wantToBeMac {
+            let hover = UIHoverGestureRecognizer()
+            hover.addTarget(self, action: #selector(hovered(_:)))
+            
+            contentView.addGestureRecognizer(hover)
+        }
     }
     
     // Color the brackets []

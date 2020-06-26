@@ -342,7 +342,7 @@ class ContentViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         
         // Hide linksAndLabelStackView if in landscape; show if in portrait
-        linksAndLabelStackView.isHidden = UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone
+        linksAndLabelStackView.isHidden = UIDevice.current.orientation.isLandscape && I.phone
     }
     
     @IBAction func sharePost(_ sender: Any) {

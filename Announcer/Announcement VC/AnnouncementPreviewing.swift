@@ -168,7 +168,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
     // Getting contentVC from post
     func getContentViewController(with post: Post) -> ContentViewController {
         guard let contentVC = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
-            fatalError()
+            I.wantToDie
         }
         
         // Set the post in contentVC
@@ -197,7 +197,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
         
         // Getting contentVC
         guard let contentVC = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
-            fatalError()
+            I.wantToDie
         }
         
         /// The post is the `selectedItem` in this case

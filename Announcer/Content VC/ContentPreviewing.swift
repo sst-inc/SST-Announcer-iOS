@@ -48,11 +48,15 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
                                         discoverabilityTitle: nil,
                                         attributes: [],
                                         state: .off) { (_) in
-                                            // Copy link
-                                            
-                                            // Add cell's URL to pasteboard as a url
-                                            // This will make it easier for the user when they want to paste it into Safari or open it from spotlight search prompt
-                                            UIPasteboard.general.url = link
+                    // Copy link
+                    
+                    // Add cell's URL to pasteboard as a url
+                    // This will make it easier for the user when they want to paste it into Safari or open it from spotlight search prompt
+                    if I.mac {
+                        UIPasteboard.general.string = link.absoluteString
+                    } else {
+                        UIPasteboard.general.url = link
+                    }                        
                 }
                 
                 // Sharing the link

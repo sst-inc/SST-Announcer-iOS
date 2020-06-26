@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         #if DEBUG
         #else
         if GlobalLinks.blogURL != "http://studentsblog.sst.edu.sg" {
-            fatalError("incorrect URL")
+            I.wantToDie
         }
         #endif
         

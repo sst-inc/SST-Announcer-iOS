@@ -165,7 +165,7 @@ struct PlaceholderView : View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             
         default:
-            fatalError()
+            I.wantToDie
         }
     }
 }
@@ -376,7 +376,7 @@ struct Widget_TimetableEntryView : View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             
-        default: fatalError()
+        default: I.wantToDie
         }
     }
 }
