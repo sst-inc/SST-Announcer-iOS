@@ -3,7 +3,7 @@
 # SST Announcer (iOS) 
 
 [![Language](http://img.shields.io/badge/swift-5-orange.svg?style=flat)](https://developer.apple.com/swift)
-[![Xcode](http://img.shields.io/badge/xcode-11.5-red.svg?style=flat)](https://developer.apple.com/xcode)
+[![Xcode](http://img.shields.io/badge/xcode-12%20beta-red.svg?style=flat)](https://developer.apple.com/xcode)
 [![Cocoapods](http://img.shields.io/badge/pod-v1.8.4-darkgray.svg?style=flat)](https://cocoapods.org/)
 
 [![iOS](http://img.shields.io/badge/platform-iOS%2013-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
@@ -32,7 +32,7 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
 [![App Store](https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg)](https://apps.apple.com/sg/app/sst-announcer/id683929182)
 
 ## Requirements
-- Xcode 11.4 or greater
+- Xcode 12 Beta
 - Swift 5 
 - Cocoapods 1.8.4 or greater
 
@@ -40,20 +40,19 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
 #### iPadOS
 |Support        |Version |Notes                                                    |
 |---------------|--------|---------------------------------------------------------|
-|Minimum Support|13.0    |Pointer not supported, certain animations will not work  |
-|Full Support   |13.4    |Full support for iPadOS                                  |
+|Minimum Support|13.0    |Timetables are not supported                             |
+|Full Support   |14      |Full support for iPadOS                                  |
 
 #### iOS
 |Support        |Version |Notes                                                    |
 |---------------|--------|---------------------------------------------------------|
 |Minimum Support|13.0    |Certain animations may not work                          |
-|Full Support   |13.4    |Full support for iOS                                     |
+|Full Support   |14      |Full support for iOS                                     |
 
 #### MacOS
 |Support        |Version |Notes                                                    |
 |---------------|--------|---------------------------------------------------------|
-|Minimum Support|10.15.0 |Pointer and Hover interactions not supported             |
-|Full Support   |10.15.4 |Full support for MacOS                                   |
+|Minimum Support|11      |                                                         |
 
 ## Technologies/Libraries Used
 ### Open Source Libraries
@@ -64,7 +63,9 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
   - Fetching data from Students' Blog (Atom feed)
 - [KALoader](https://github.com/Kirillzzy/KALoader)
   - Loading animations while getting data from RSS feed
-  
+- [Alamofire](https://github.com/alamofire/alamofire)
+  - Getting Timetable image from Google Drive API
+
 ### Apple Technologies
 - [UIKit](https://developer.apple.com/documentation/uikit/)
   - User Interface for iOS, iPadOS and MacOS
@@ -80,6 +81,10 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
   - To send notifications to the users whenever a new post comes (works together with Background Tasks)
 - [Core Spotlight](https://developer.apple.com/documentation/corespotlight)
   - To allow users to search for announcements using spotlight search
+- [WidgetKit](https://developer.apple.com/widgets/)
+  - Adding widgets to app for Timetables.
+- [SwiftUI](https://developer.apple.com/xcode/swiftui/)
+  - For widgets interface as it does not support UIKit.
 
 ## Screenshots (iOS)
 Dark and Light mode
