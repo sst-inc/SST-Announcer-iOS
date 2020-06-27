@@ -118,11 +118,17 @@ class AnnouncementsViewController: UIViewController {
             view.backgroundColor = .clear
             announcementTableView.backgroundColor = .clear
         }
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.uturn.left")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.uturn.left")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        navigationController?.navigationBar.prefersLargeTitles = true
         reloadFilter()
     }
     

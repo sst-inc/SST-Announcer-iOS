@@ -56,7 +56,6 @@ class ContentViewController: UIViewController {
     @IBOutlet weak var safariButton: UIButton!
     @IBOutlet weak var pinButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
     
     // Links and labels section
     @IBOutlet weak var labelsView: UIView!
@@ -125,13 +124,7 @@ class ContentViewController: UIViewController {
         // This is to handle a case where the currentScale on UserDefaults is nil
         UserDefaults.standard.set(currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
         
-        // Hide back button if on splitVC
-        // Works only if there is a splitViewController
-        if splitViewController != nil {
-            backButton.isHidden = true
-        }
-        
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         
         // Adding pointer interactions
         // Only avaliable for iOS 13.4 and up
@@ -142,47 +135,13 @@ class ContentViewController: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     func updateContent() {
-        // Update labels/textview with data
-        let attrTitle = NSMutableAttributedString(string: post.title)
-        // Find the [] and just make it like red or something
-        
-        // Make square brackets colored
-        let indicesStart = attrTitle.string.indicesOf(string: "[")
-        let indicesEnd = attrTitle.string.indicesOf(string: "]")
-        
-        // Determine which one is smaller (start indices or end indices)
-        if (indicesStart.count >= (indicesEnd.count) ? indicesStart.count : indicesEnd.count) > 0 {
-            for i in 1...(indicesStart.count >= indicesEnd.count ? indicesStart.count : indicesEnd.count) {
-                
-                let start = indicesStart[i - 1]
-                let end = indicesEnd[i - 1]
-                
-                // [] colors will be Grey 1
-                // @shannen why these color names man
-                let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: GlobalColors.blueTint, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
-                
-                attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 2))
-            }
-        }
-        
-        
-        // Format date as "1 Jan 2019"
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMM yyyy"
-        
-        // Escape to main thread to update user interface
-        DispatchQueue.main.async {
-            // Update textLabel with attributed text for colored square brackets
-            self.titleLabel.attributedText = attrTitle
-            
-            // Update dateLabel with formatted date
-            self.dateLabel.text = "Posted on \(dateFormatter.string(from: self.post.date))"
-            
-            // Reload labels collection view with new data
-            self.labelsCollectionView.reloadData()
-        }
-        
         // Render HTML from String
         // Handle WebKit requirements by showing an error
         
@@ -241,6 +200,46 @@ class ContentViewController: UIViewController {
             
         }
         
+        // Update labels/textview with data
+        let attrTitle = NSMutableAttributedString(string: post.title)
+        // Find the [] and just make it like red or something
+        
+        // Make square brackets colored
+        let indicesStart = attrTitle.string.indicesOf(string: "[")
+        let indicesEnd = attrTitle.string.indicesOf(string: "]")
+        
+        // Determine which one is smaller (start indices or end indices)
+        if (indicesStart.count >= (indicesEnd.count) ? indicesStart.count : indicesEnd.count) > 0 {
+            for i in 1...(indicesStart.count >= indicesEnd.count ? indicesStart.count : indicesEnd.count) {
+                
+                let start = indicesStart[i - 1]
+                let end = indicesEnd[i - 1]
+                
+                // [] colors will be Grey 1
+                // @shannen why these color names man
+                let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: GlobalColors.blueTint, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
+                
+                attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 2))
+            }
+        }
+        
+        
+        // Format date as "1 Jan 2019"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMM yyyy"
+        
+        // Escape to main thread to update user interface
+        DispatchQueue.main.async {
+            // Update textLabel with attributed text for colored square brackets
+            self.titleLabel.attributedText = attrTitle
+            
+            // Update dateLabel with formatted date
+            self.dateLabel.text = "Posted on \(dateFormatter.string(from: self.post.date))"
+            
+            // Reload labels collection view with new data
+            self.labelsCollectionView.reloadData()
+        }
+        
         // Check if item is pinned
         // Update the button to show
         //If is in pinnned
@@ -283,7 +282,6 @@ class ContentViewController: UIViewController {
             
             // Setting corner radii for the scrollSelection buttons to allow for the circular highlight
             self.safariButton.layer.cornerRadius = 25 / 2
-            self.backButton.layer.cornerRadius = 25 / 2
             self.shareButton.layer.cornerRadius = 25 / 2
             self.pinButton.layer.cornerRadius = 25 / 2
             

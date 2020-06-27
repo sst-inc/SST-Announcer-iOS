@@ -69,7 +69,7 @@ struct PlaceholderView : View {
                 }
                 Rectangle()
                     .fill(Color.secondary)
-                    .cornerRadius(10)
+                    .cornerRadius(6)
                     .frame(width: 100,
                            height: 20)
                 Rectangle()
@@ -100,7 +100,7 @@ struct PlaceholderView : View {
                         VStack(alignment: .leading, spacing: 4) {
                             Rectangle()
                                 .fill(Color.secondary)
-                                .cornerRadius(10)
+                                .cornerRadius(6)
                                 .frame(width: 100,
                                        height: 20)
                             Rectangle()
@@ -130,20 +130,7 @@ struct PlaceholderView : View {
                         VStack(alignment: .leading, spacing: 8) {
                             Rectangle()
                                 .fill(Color.secondary)
-                                .cornerRadius(10)
-                                .frame(width: 100,
-                                       height: 20)
-                            Rectangle()
-                                .fill(Color.secondary)
-                                .cornerRadius(4)
-                                .frame(width: 100,
-                                       height: 10)
-                        }.padding([.leading, .trailing])
-                        
-                        VStack(alignment: .leading, spacing: 8) {
-                            Rectangle()
-                                .fill(Color.secondary)
-                                .cornerRadius(10)
+                                .cornerRadius(6)
                                 .frame(width: 100,
                                        height: 20)
                             Rectangle()
@@ -153,10 +140,37 @@ struct PlaceholderView : View {
                                        height: 10)
                         }
                         .padding([.leading, .trailing])
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Rectangle()
+                            .fill(Color.secondary)
+                            .frame(
+                                width: 1
+                            )
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Rectangle()
+                                .fill(Color.secondary)
+                                .cornerRadius(6)
+                                .frame(width: 100,
+                                       height: 20)
+                            Rectangle()
+                                .fill(Color.secondary)
+                                .cornerRadius(4)
+                                .frame(width: 100,
+                                       height: 10)
+                        }
+                        .padding([.leading, .trailing])
+                        .frame(maxWidth: .infinity,
+                               alignment: .leading)
                     }
-                    .frame(maxWidth: .infinity,
-                           maxHeight: .infinity,
-                           alignment: .leading)
+                    .frame(
+                        maxWidth:
+                            .infinity,
+                        maxHeight:
+                            .infinity,
+                        alignment:
+                            .leading)
                     .padding(.bottom)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -196,7 +210,7 @@ struct WidgetComponents {
                             )
                         )
                 }.padding([.leading, .trailing])
-            }
+            }.frame(maxWidth: CGFloat.infinity, alignment: .leading)
         }
     }
     
@@ -352,6 +366,11 @@ struct Widget_TimetableEntryView : View {
                             WidgetComponents.MediumContent(currentLesson: nextLesson.name, lessonTime: nextLesson.date)
                             
                             if let lastLesson = entry.nextLessons.last {
+                                Rectangle()
+                                    .fill(Color.secondary)
+                                    .frame(
+                                        width: 1
+                                    )
                                 WidgetComponents.MediumContent(currentLesson: lastLesson.name, lessonTime: lastLesson.date)
                             }
                         } else {
@@ -366,7 +385,6 @@ struct Widget_TimetableEntryView : View {
                                 )
                         }
                     }
-                    
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                     .padding(.bottom)
                 }

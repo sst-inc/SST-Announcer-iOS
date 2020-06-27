@@ -158,6 +158,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Announcer" id="7In-GO-Aui">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Kbj-NW-PN7"/>
                         <barButtonItem key="leftBarButtonItem" image="tablecells" catalog="system" id="ogd-BP-Pzh">
                             <connections>
                                 <action selector="openTimetable:" destination="aOG-ux-bHk" id="Ln4-or-IJA"/>
@@ -198,7 +199,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aYT-dT-Pjl" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="z5V-EK-zc5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backIndicatorImage="arrow.uturn.left" catalog="system" largeTitles="YES" id="z5V-EK-zc5">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -215,6 +216,7 @@
     <color key="tintColor" name="Grey 1"/>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="arrow.uturn.left" catalog="system" width="128" height="112"/>
         <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
         <image name="pin.fill" catalog="system" width="119" height="128"/>
         <image name="tablecells" catalog="system" width="128" height="93"/>

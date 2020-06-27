@@ -334,7 +334,7 @@ struct ScrollSelection {
                 button.layer.borderWidth = 25 * multiplier
                 button.layer.borderColor = GlobalColors.borderColor
             } else if let searchBar = item as? UISearchBar {
-                searchBar.alpha = multiplier * 2
+                searchBar.alpha = 1 - (multiplier * 2)
             }
         } else {
             barButton?.tintColor = GlobalColors.greyOne.withAlphaComponent(1 - (multiplier * 2))
