@@ -13,22 +13,14 @@ public struct Provider: TimelineProvider {
     
     public func snapshot(with context: Context,
                          completion: @escaping (WidgetEntry) -> ()) {
-        let entry = WidgetEntry(date: Date(),
-                                currentLesson: WidgetLesson(name: "Computing", date: Date(), imageName: "cpu"),
-                                lessonTime: Date(),
-                                nextLessons: [WidgetLesson(name: "Chemistry", date: Date(), imageName: "flame"),
-                                              WidgetLesson(name: "Biology", date: Date(), imageName: "hare")])
+        let entry = WidgetEntry(date: Date())
         
         completion(entry)
     }
     
     public func timeline(with context: Context,
                          completion: @escaping (Timeline<Entry>) -> ()) {
-        let entry = WidgetEntry(date: Date(),
-                                currentLesson: WidgetLesson(name: "Computing", date: Date(), imageName: "cpu"),
-                                lessonTime: Date(),
-                                nextLessons: [WidgetLesson(name: "Chemistry", date: Date(), imageName: "flame"),
-                                              WidgetLesson(name: "Biology", date: Date(), imageName: "hare")])
+        let entry = WidgetEntry(date: Date())
         
         let timeline = Timeline(entries: [entry, entry], policy: .atEnd)
         completion(timeline)
@@ -43,10 +35,6 @@ public struct WidgetLesson {
 
 public struct WidgetEntry: TimelineEntry {
     public let date: Date
-    
-    public let currentLesson: WidgetLesson
-    public let lessonTime: Date
-    public let nextLessons: [WidgetLesson]
 }
 
 // Create a placeholder view to show
@@ -174,7 +162,8 @@ struct PlaceholderView : View {
                     .padding(.bottom)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color(GlobalColors.greyThree)).cornerRadius(10, antialiased: true)
+                .background(Color("Grey 3"))
+                .cornerRadius(10, antialiased: true)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             
@@ -223,7 +212,9 @@ struct WidgetComponents {
             ZStack {
                 if !isMedium {
                     Circle()
-                        .fill(Color.blue)
+                        .fill(RadialGradient(gradient: Gradient(colors: [Color.blue, Color.white]),
+                                             center: .center,
+                                             startRadius: 0, endRadius: 70))
                         .frame(
                             width: 40,
                             height: 40
@@ -243,7 +234,9 @@ struct WidgetComponents {
                         )
                 } else {
                     Circle()
-                        .fill(Color.blue)
+                        .fill(RadialGradient(gradient: Gradient(colors: [Color.blue, Color.white]),
+                                             center: .center,
+                                             startRadius: 0, endRadius: 55))
                         .frame(
                             width: 30,
                             height: 30
@@ -266,21 +259,77 @@ struct WidgetComponents {
             }
         }
     }
-}
-
-struct Widget_TimetableEntryView : View {
-    var entry: Provider.Entry
     
-    @Environment(\.widgetFamily) var family: WidgetFamily
-    
-    @ViewBuilder
-    var body: some View {
+    struct NoLessonsView: View {
+        var family: WidgetFamily
         
-        switch family {
-        case .systemSmall:
+        @ViewBuilder
+        var body: some View {
+            switch family {
+            case .systemSmall:
+                VStack(alignment: .leading, spacing: 8) {
+                    ImageView(imageName: "house", isMedium: false)
+                    Text("No Lessons")
+                        .font(
+                            .system(
+                                size: 24,
+                                weight: .bold,
+                                design: .default
+                            )
+                        )
+                    Text("There are no ongoing lessons!")
+                        .font(
+                            .system(
+                                size: 16,
+                                weight: .regular,
+                                design: .default
+                            )
+                        )
+                }
+                .padding(.all, 8)
+                .frame(alignment: .leading)
+                
+            case .systemMedium:
+                VStack(alignment: .leading, spacing: 8) {
+                    VStack {
+                        HStack(spacing: 8) {
+                            ImageView(imageName: "house", isMedium: false)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("No ongoing lessons")
+                                    .font(
+                                        .system(
+                                            size: 20,
+                                            weight: .bold,
+                                            design: .default
+                                        )
+                                    )
+                                Text("There are no lessons happening now.")
+                                    .font(
+                                        .system(
+                                            size: 12,
+                                            weight: .regular,
+                                            design: .default
+                                        )
+                                    )
+                            }
+                        }
+                    }.padding([.leading, .trailing, .top])
+                }
+                    
+            default: I.wantToDie
+            }
+        }
+    }
+    
+    struct Small: View {
+        var currentLesson: WidgetLesson
+        var firstNextLesson: WidgetLesson?
+        
+        @ViewBuilder
+        var body: some View {
             VStack(alignment: .leading, spacing: 8) {
-                WidgetComponents.ImageView(imageName: entry.currentLesson.imageName, isMedium: false)
-                Text(entry.currentLesson.name)
+                ImageView(imageName: currentLesson.imageName, isMedium: false)
+                Text(currentLesson.name)
                     .font(
                         .system(
                             size: 24,
@@ -288,7 +337,7 @@ struct Widget_TimetableEntryView : View {
                             design: .default
                         )
                     )
-                Text("Ends at \(Lesson.convert(time: entry.lessonTime.timeIntervalSince(Lesson.getTodayDate())))")
+                Text("Ends at \(Lesson.convert(time: currentLesson.date.timeIntervalSince(Lesson.getTodayDate())))")
                     .font(
                         .system(
                             size: 16,
@@ -297,7 +346,7 @@ struct Widget_TimetableEntryView : View {
                         )
                     )
                 
-                if let nextLesson = entry.nextLessons.first {
+                if let nextLesson = firstNextLesson {
                     Text("Next: \(nextLesson.name)").font(
                         .system(
                             size: 16,
@@ -306,7 +355,7 @@ struct Widget_TimetableEntryView : View {
                         )
                     )
                 } else {
-                    Text("That's it for today! 🏠")
+                    Text("🏠 That's it!")
                         .font(
                             .system(
                                 size: 16,
@@ -317,16 +366,23 @@ struct Widget_TimetableEntryView : View {
                 }
                 
             }
-            .padding(.all, 8)
-            .frame(alignment: .leading)
-            
-        case .systemMedium:
+            .padding(.all)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        }
+    }
+    
+    struct Medium: View {
+        var currentLesson: WidgetLesson
+        var firstNextLesson: WidgetLesson?
+        var secondNextLesson: WidgetLesson?
+        
+        var body: some View {
             VStack(alignment: .leading, spacing: 8) {
                 VStack {
                     HStack(spacing: 8) {
-                        WidgetComponents.ImageView(imageName: entry.currentLesson.imageName, isMedium: true)
+                        ImageView(imageName: currentLesson.imageName, isMedium: true)
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(entry.currentLesson.name)
+                            Text(currentLesson.name)
                                 .font(
                                     .system(
                                         size: 20,
@@ -334,7 +390,7 @@ struct Widget_TimetableEntryView : View {
                                         design: .default
                                     )
                                 )
-                            Text("Ends at \(Lesson.convert(time: entry.lessonTime.timeIntervalSince(Lesson.getTodayDate())))")
+                            Text("Ends at \(Lesson.convert(time: currentLesson.date.timeIntervalSince(Lesson.getTodayDate())))")
                                 .font(
                                     .system(
                                         size: 12,
@@ -362,19 +418,19 @@ struct Widget_TimetableEntryView : View {
                         .padding([.leading, .trailing, .top])
                     
                     HStack {
-                        if let nextLesson = entry.nextLessons.first {
-                            WidgetComponents.MediumContent(currentLesson: nextLesson.name, lessonTime: nextLesson.date)
+                        if let nextLesson = firstNextLesson {
+                            MediumContent(currentLesson: nextLesson.name, lessonTime: nextLesson.date)
                             
-                            if let lastLesson = entry.nextLessons.last {
+                            if let lastLesson = secondNextLesson {
                                 Rectangle()
                                     .fill(Color.secondary)
                                     .frame(
                                         width: 1
                                     )
-                                WidgetComponents.MediumContent(currentLesson: lastLesson.name, lessonTime: lastLesson.date)
+                                MediumContent(currentLesson: lastLesson.name, lessonTime: lastLesson.date)
                             }
                         } else {
-                            Text("No lessons later.")
+                            Text("🏠 Well, that's it!")
                                 .font(
                                     Font
                                         .system(
@@ -383,18 +439,57 @@ struct Widget_TimetableEntryView : View {
                                             design: .default
                                         )
                                 )
+                                .padding(.leading)
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                     .padding(.bottom)
                 }
-                .background(Color(GlobalColors.greyThree))
+                .background(Color("Grey 3"))
                 .cornerRadius(10, antialiased: true)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        }
+    }
+}
+
+struct Widget_TimetableEntryView : View {
+    var entry: Provider.Entry
+    
+    @Environment(\.widgetFamily) var family: WidgetFamily
+    
+    @ViewBuilder
+    var body: some View {
+        
+        // Getting current lesson
+        var lessons: [WidgetLesson] = getOngoingLessons(entry.date)
+        let currentLesson: WidgetLesson? = lessons.first
+        
+        if let currentLesson = currentLesson {
             
-        default: I.wantToDie
+            let firstNextLesson: WidgetLesson? = {
+                lessons.removeFirst()
+                return lessons.first
+            }()
+            let secondNextLesson: WidgetLesson? = {
+                if firstNextLesson != nil {
+                    lessons.removeFirst()
+                    
+                    return lessons.first
+                }
+                return nil
+            }()
+            
+            switch family {
+            case .systemSmall:
+                WidgetComponents.Small(currentLesson: currentLesson, firstNextLesson: firstNextLesson)
+            case .systemMedium:
+                WidgetComponents.Medium(currentLesson: currentLesson, firstNextLesson: firstNextLesson, secondNextLesson: secondNextLesson)
+            default: I.wantToDie
+            }
+        } else {
+            WidgetComponents.NoLessonsView(family: family)
         }
     }
 }
@@ -408,6 +503,7 @@ struct Widget_Timetable: Widget {
     public var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind,
                             provider: Provider(),
+                            // Widget_TimetableEntryView(entry: WidgetEntry(date: Date()))
                             placeholder: PlaceholderView()) { entry in
             Widget_TimetableEntryView(entry: entry)
         }
@@ -415,4 +511,11 @@ struct Widget_Timetable: Widget {
         .configurationDisplayName("Timetables")
         .description("Keep track of your lessons and find out what's next.")
     }
+}
+
+func getOngoingLessons(_ date: Date) -> [WidgetLesson] {
+    
+    return [WidgetLesson(name: "Computing", date: date, imageName: "cpu"),
+            WidgetLesson(name: "Guan", date: date, imageName: "cpu"),
+            WidgetLesson(name: "Qin Guan", date: date, imageName: "cpu")]
 }

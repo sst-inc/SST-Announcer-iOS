@@ -51,8 +51,9 @@ struct I {
         } else {
             #if targetEnvironment(macCatalyst)
             return true
-            #endif
+            #else
             return false
+            #endif
         }
     }()
     
