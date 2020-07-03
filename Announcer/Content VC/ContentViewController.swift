@@ -69,6 +69,8 @@ class ContentViewController: UIViewController {
     // - Overall stack view
     @IBOutlet weak var linksAndLabelStackView: UIStackView!
     
+    @IBOutlet weak var hardToSeeButton: UIButton!
+    
     /// Getting the post
     var post: Post! {
         didSet {
@@ -133,12 +135,22 @@ class ContentViewController: UIViewController {
             pinButton.addInteraction(UIPointerInteraction(delegate: self))
             safariButton.addInteraction(UIPointerInteraction(delegate: self))
         }
+        
+        if traitCollection.userInterfaceStyle == .dark {
+            hardToSeeButton.isHidden = false
+        } else {
+            hardToSeeButton.isHidden = true
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        
     }
     
     func updateContent() {
@@ -364,6 +376,18 @@ class ContentViewController: UIViewController {
         self.present(shareViewController, animated: true, completion: nil)
     }
     
+    @IBAction func hardToSeeButtonPressed(_ sender: Any) {
+        if self.hardToSeeButton.title(for: .normal) == "   Reset" {
+            self.overrideUserInterfaceStyle = .dark
+            self.hardToSeeButton.setTitle("   Hard to Read?", for: .normal)
+            self.hardToSeeButton.setImage(UIImage(systemName: "lightbulb"), for: .normal)
+        } else {
+            self.overrideUserInterfaceStyle = .light
+            self.hardToSeeButton.setTitle("   Reset", for: .normal)
+            self.hardToSeeButton.setImage(UIImage(systemName: "lightbulb.slash"), for: .normal)
+        }
+    }
+    
     // Go back to previous view controller
     @IBAction func dismiss(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -451,11 +475,15 @@ class ContentViewController: UIViewController {
         // Getting shareURL from post
         let link = LinkFunctions.getShareURL(with: post)
         
-        // Creating SafariVC
-        let vc = SFSafariViewController(url: link)
-        
-        // Presenting SafariVC
-        present(vc, animated: true, completion: nil)
+        if I.mac {
+            UIApplication.shared.open(link)
+        } else {
+            // Creating SafariVC
+            let vc = SFSafariViewController(url: link)
+            
+            // Presenting SafariVC
+            present(vc, animated: true, completion: nil)
+        }
     }
     
     @IBAction func pinchedTextField(_ sender: UIPinchGestureRecognizer) {

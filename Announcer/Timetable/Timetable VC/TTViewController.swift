@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WidgetKit
 
 @available(iOS 14, macOS 11, *)
 class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -124,6 +125,8 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                                                selector: #selector(dayChanged),
                                                name: UIApplication.significantTimeChangeNotification,
                                                object: nil)
+        
+        WidgetCenter.shared.reloadAllTimelines()
     }
     
      

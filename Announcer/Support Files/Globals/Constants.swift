@@ -283,58 +283,56 @@ struct Assets {
     static let cross                    = UIImage(systemName: "xmark")!
     static let home                     = UIImage(systemName: "house")!
     
+    static let subjectIcons = ["el"       : ["a.book.closed", "English"],                      // 􀫕
+                               "math"     : ["x.squareroot", "Math"],                          // 􀓪
+                               "s&w"      : ["sportscourt", "S&W"],                            // 􀝐
+                               "hum"      : ["person", "Humanities"],                          // 􀉩
+                               "sci"      : ["thermometer", "Science"],                        // 􀇬
+                               
+                               // Mother tongue
+                               "cl"       : ["globe", "Mother Tongue"],                        // 􀆪
+                               "ml"       : ["globe", "Mother Tongue"],                        // 􀆪
+                               "tl"       : ["globe", "Mother Tongue"],                        // 􀆪
+                               
+                               // Changemakers
+                               "cm(ict)"  : ["swift", "ICT"],                                  // 􀫊
+                               "cm(ps)"   : ["mic", "Presentation Skills"],                    // 􀊰
+                               "cm(admt)" : ["scribble", "ADMT"],                              // 􀓨
+                               "i&e"      : ["paperplane", "I&E"],                             // 􀈟
+                               "cm lesson": ["lightbulb", "Changemakers"],                     // 􀛭
+                               
+                               // Applied Subjects
+                               "comp"     : ["cpu", "Computing"],                              // 􀫥
+                               "elec"     : ["bolt.fill.batteryblock", "Electronics"],         // 􀫮
+                               "design"   : ["paintpalette", "Design Studies"],                // 􀝥
+                               "biotech"  : ["leaf", "Biotech"],                               // 􀥲
+                               
+                               // Humanities
+                               "ch(ge)"   : ["mappin.and.ellipse", "Geography"],               // 􀎫
+                               "ch(he)"   : ["clock", "History"],                              // 􀐫
+                               "ss"       : ["building.columns", "Social Studies"],            // 􀤨
+                               
+                               // Science
+                               "bio"      : ["hare", "Biology"],                               // 􀓎
+                               "phy"      : ["scalemass", "Physics"],                          // 􀭭
+                               "chem"     : ["atom", "Chemistry"],                             // 􀬚
+                               
+                               // Others
+                               "break"    : ["zzz", "Break"],                                  // 􀖃
+                               "adv/assb" : ["face.smiling", "adv/assb"],                      // 􀎸
+                               "cce"      : ["face.smiling", "CCE"],                           // 􀎸
+                               "other"    : ["studentdesk", "(null)"],                         // 􀑔
+                               
+                               // Special state icons
+                               "|weekend|": ["calendar", "It's \(Calendar.current.component(.weekday, from: Date()) == 1 ? "Sunday" : "Saturday")!"],                      // 􀉉
+                               "|before|" : ["clock", "Starting Soon"],                        // 􀐫
+                               "|over|"   : ["Class Dismissed!", "house"]                      // 􀎞
+    ]
+    
     // Subject icons
     // Key: Subject Name, Item: image
     @available(iOS 14, macOS 11, *)
     static func getSubject(_ identifier: String, font: UIFont) -> (UIImage, String) {
-        let day = Calendar.current.component(.weekday, from: Date()) == 1 ? "Sunday" : "Saturday"
-        
-        let subjectIcons = ["el"       : ["a.book.closed", "English"],                      // 􀫕
-                            "math"     : ["x.squareroot", "Math"],                          // 􀓪
-                            "s&w"      : ["sportscourt", "S&W"],                            // 􀝐
-                            "hum"      : ["person", "Humanities"],                          // 􀉩
-                            "sci"      : ["thermometer", "Science"],                        // 􀇬
-                           
-                            // Mother tongue
-                            "cl"       : ["globe", "Mother Tongue"],                        // 􀆪
-                            "ml"       : ["globe", "Mother Tongue"],                        // 􀆪
-                            "tl"       : ["globe", "Mother Tongue"],                        // 􀆪
-                           
-                            // Changemakers
-                            "cm(ict)"  : ["swift", "ICT"],                                  // 􀫊
-                            "cm(ps)"   : ["mic", "Presentation Skills"],                    // 􀊰
-                            "cm(admt)" : ["scribble", "ADMT"],                              // 􀓨
-                            "i&e"      : ["paperplane", "I&E"],                             // 􀈟
-                            "cm lesson": ["lightbulb", "Changemakers"],                     // 􀛭
-                           
-                            // Applied Subjects
-                            "comp"     : ["cpu", "Computing"],                              // 􀫥
-                            "elec"     : ["bolt.fill.batteryblock", "Electronics"],         // 􀫮
-                            "design"   : ["paintpalette", "Design Studies"],                // 􀝥
-                            "biotech"  : ["leaf", "Biotech"],                               // 􀥲
-                            
-                            // Humanities
-                            "ch(ge)"   : ["mappin.and.ellipse", "Geography"],               // 􀎫
-                            "ch(he)"   : ["clock", "History"],                              // 􀐫
-                            "ss"       : ["building.columns", "Social Studies"],            // 􀤨
-                           
-                            // Science
-                            "bio"      : ["hare", "Biology"],                               // 􀓎
-                            "phy"      : ["scalemass", "Physics"],                          // 􀭭
-                            "chem"     : ["atom", "Chemistry"],                             // 􀬚
-                           
-                            // Others
-                            "break"    : ["zzz", "Break"],                                  // 􀖃
-                            "adv/assb" : ["face.similing", "adv/assb"],                     // 􀎸
-                            "cce"      : ["face.similing", "CCE"],                          // 􀎸
-                            "other"    : ["studentdesk", identifier],                       // 􀑔
-             
-                            // Special state icons
-                            "|weekend|": ["calendar", "It's \(day)!"],                      // 􀉉
-                            "|before|" : ["clock", "Starting Soon"],                        // 􀐫
-                            "|over|"   : ["Class Dismissed!", "house"]                      // 􀎞
-        ]
-        
         let subject = subjectIcons[identifier] ?? subjectIcons["other"]!
         let icon = UIImage(systemName: subject[0], withConfiguration: UIImage.SymbolConfiguration(font: font))!
         

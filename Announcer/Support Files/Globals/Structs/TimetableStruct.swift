@@ -30,6 +30,7 @@ struct Timetable: Equatable, Codable {
     }
     
     static func get() -> Timetable? {
+        
         let defaults = UserDefaults(suiteName: "group.SST-singapore.Timetables")
         
         guard let jsonStr = defaults?.string(forKey: "TT") else { return nil }

@@ -20,9 +20,19 @@ public struct Provider: TimelineProvider {
     
     public func timeline(with context: Context,
                          completion: @escaping (Timeline<Entry>) -> ()) {
-        let entry = WidgetEntry(date: Date())
+        var items: [WidgetEntry] = getLessonDates(date: Date()).map {
+            WidgetEntry(date: $0)
+        }
         
-        let timeline = Timeline(entries: [entry, entry], policy: .atEnd)
+        if items.count == 0 {
+            items.append(WidgetEntry(date: Lesson.getTodayDate().advanced(by: 86400)))
+        }
+        
+        // Reload right now to get the latest data
+        items.append(WidgetEntry(date: Date()))
+        
+        let timeline = Timeline(entries: items, policy: .atEnd)
+        
         completion(timeline)
     }
 }
@@ -101,7 +111,7 @@ struct PlaceholderView : View {
                 }.padding([.leading, .trailing, .top])
                 
                 VStack(alignment: .leading) {
-                    Text("Later:")
+                    Text("Next:")
                         .font(
                             Font
                                 .system(
@@ -220,6 +230,7 @@ struct WidgetComponents {
                             height: 40
                         )
                     Image(systemName: imageName)
+//                        .imageScale(.large)
                         .foregroundColor(.white)
                         .frame(
                             width: 20,
@@ -390,7 +401,7 @@ struct WidgetComponents {
                                         design: .default
                                     )
                                 )
-                            Text("Ends at \(Lesson.convert(time: currentLesson.date.timeIntervalSince(Lesson.getTodayDate())))")
+                            Text("Ends in \(currentLesson.date, style: .relative)")
                                 .font(
                                     .system(
                                         size: 12,
@@ -400,22 +411,42 @@ struct WidgetComponents {
                                 )
                         }
                     }
-                }.padding([.leading, .trailing, .top])
+                }
+                .padding([.leading, .trailing, .top])
                 
                 VStack(alignment: .leading) {
-                    Text("Later:")
-                        .font(
-                            Font
-                                .system(
-                                    size: 16,
-                                    weight: .bold,
-                                    design: .default
-                                )
-                        )
-                        .foregroundColor(
-                            .blue
-                        )
-                        .padding([.leading, .trailing, .top])
+                    HStack {
+                        Text("Later:")
+                            .font(
+                                Font
+                                    .system(
+                                        size: 16,
+                                        weight: .bold,
+                                        design: .default
+                                    )
+                            )
+                            .foregroundColor(
+                                .blue
+                            )
+                            .padding([.leading, .trailing, .top])
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+//                        if firstNextLesson != nil {
+//                            Text("In \(currentLesson.date, style: .relative)")
+//                                .font(
+//                                    Font
+//                                        .system(
+//                                            size: 16,
+//                                            weight: .medium,
+//                                            design: .default
+//                                        )
+//                                )
+//                                .padding([.leading,
+//                                          .trailing,
+//                                          .top])
+//                                .frame(maxWidth: .infinity, alignment: .trailing)
+//                        }
+                    }
                     
                     HStack {
                         if let nextLesson = firstNextLesson {
@@ -427,6 +458,7 @@ struct WidgetComponents {
                                     .frame(
                                         width: 1
                                     )
+                                
                                 MediumContent(currentLesson: lastLesson.name, lessonTime: lastLesson.date)
                             }
                         } else {
@@ -465,7 +497,7 @@ struct Widget_TimetableEntryView : View {
         // Getting current lesson
         var lessons: [WidgetLesson] = getOngoingLessons(entry.date)
         let currentLesson: WidgetLesson? = lessons.first
-        
+
         if let currentLesson = currentLesson {
             
             let firstNextLesson: WidgetLesson? = {
@@ -498,12 +530,11 @@ struct Widget_TimetableEntryView : View {
 struct Widget_Timetable: Widget {
     
     // Bundle ID
-    private let kind: String = "sg.edu.sst.panziyue.Announcer.Widget-TImetable"
+    private let kind: String = "sg.edu.sst.panziyue.Announcer.Timetable"
     
     public var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind,
                             provider: Provider(),
-                            // Widget_TimetableEntryView(entry: WidgetEntry(date: Date()))
                             placeholder: PlaceholderView()) { entry in
             Widget_TimetableEntryView(entry: entry)
         }
@@ -515,7 +546,98 @@ struct Widget_Timetable: Widget {
 
 func getOngoingLessons(_ date: Date) -> [WidgetLesson] {
     
-    return [WidgetLesson(name: "Computing", date: date, imageName: "cpu"),
-            WidgetLesson(name: "Guan", date: date, imageName: "cpu"),
-            WidgetLesson(name: "Qin Guan", date: date, imageName: "cpu")]
+    guard let timetable = Timetable.get() else {
+        return []
+    }
+    
+    
+    let lessons = todaysLessons(date, timetable: timetable)
+    
+    if lessons.count == 0 { return [] }
+    
+    for i in 0...lessons.count - 1 {
+        
+        if Lesson.getTodayDate().advanced(by: lessons[i].startTime).distance(to: date) > 0
+            && date.distance(to: Lesson.getTodayDate().advanced(by: lessons[i].endTime)) > 0 {
+            
+            // Generating Widget Lessons
+            var widgetLessons: [WidgetLesson] = []
+            
+            let currentSubject = Assets.subjectIcons[lessons[i].identifier] ?? Assets.subjectIcons["other"]!
+            
+            widgetLessons.append(WidgetLesson(name: currentSubject[1],
+                                              date: Lesson.getTodayDate().advanced(by: lessons[i].endTime),
+                                              imageName: currentSubject[0]))
+            
+            if lessons.count >= i + 2 {
+                let firstSubject = Assets.subjectIcons[lessons[i + 1].identifier] ?? Assets.subjectIcons["other"]!
+                
+                widgetLessons.append(WidgetLesson(name: firstSubject[1],
+                                                  date: Lesson.getTodayDate().advanced(by: lessons[i + 1].startTime),
+                                                  imageName: firstSubject[0]))
+                
+                if lessons.count >= i + 3 {
+                    let secondSubject = Assets.subjectIcons[lessons[i + 2].identifier] ?? Assets.subjectIcons["other"]!
+                    
+                    widgetLessons.append(WidgetLesson(name: secondSubject[1],
+                                                      date: Lesson.getTodayDate().advanced(by: lessons[i + 2].startTime),
+                                                      imageName: secondSubject[0]))
+                }
+            }
+            
+            
+            
+            return widgetLessons
+        }
+    }
+    
+    return []
+}
+
+func todaysLessons(_ date: Date, timetable: Timetable) -> [Lesson] {
+    
+    switch Calendar.current.component(.weekday, from: date) {
+    case 2:
+        return timetable.monday
+    case 3:
+        return timetable.tuesday
+    case 4:
+        return timetable.wednesday
+    case 5:
+        return timetable.thursday
+    case 6:
+        return timetable.friday
+    default:
+        return []
+    }
+}
+
+func getLessonDates(date: Date) -> [Date] {
+    
+    guard let timetable = Timetable.get() else {
+        return []
+    }
+    
+    let todayLessons = todaysLessons(date, timetable: timetable)
+    
+    var lessons = todayLessons.map {
+        date.addingTimeInterval($0.startTime)
+    }
+    
+    lessons.append(date.advanced(by: todayLessons.last!.endTime))
+    
+    lessons = lessons.filter {
+        date.distance(to: $0) < 0
+    }
+    
+    return lessons
+}
+
+struct WidgetTimetable_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            Widget_TimetableEntryView(entry: WidgetEntry(date: Date()))
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+        }
+    }
 }

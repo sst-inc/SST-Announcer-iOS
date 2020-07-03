@@ -120,6 +120,7 @@
 		32806D2224A2EA970032A2F5 /* LessonStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C9BEA249F302300088677 /* LessonStruct.swift */; };
 		32806D2324A418D00032A2F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Constants.swift */; };
 		32806D2424A419B80032A2F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953E238C068F00208D25 /* Assets.xcassets */; };
+		328B829E24AC2F9F00CAB2EB /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328B829D24AC2F9F00CAB2EB /* Emoji.swift */; };
 		328BFFE42493EBBF00132EB4 /* UIImage Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */; };
 		328BFFE82496275100132EB4 /* TimetableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE72496275100132EB4 /* TimetableStruct.swift */; };
 		328BFFEA24964F0400132EB4 /* TTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE924964F0400132EB4 /* TTViewController.swift */; };
@@ -313,26 +314,18 @@
 		326E65BB24A17C4A00E39C6F /* Timetables.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timetables.entitlements; sourceTree = "<group>"; };
 		327524B624910999008EA814 /* TTGetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTGetStartedViewController.swift; sourceTree = "<group>"; };
 		327524B824912470008EA814 /* TTPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTPreviewViewController.swift; sourceTree = "<group>"; };
-		327524C1249213D8008EA814 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		327524C4249213D8008EA814 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		327524C6249213D8008EA814 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		327524CF24922D4E008EA814 /* SubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectView.swift; sourceTree = "<group>"; };
-		3286667B249E46C8007CC75E /* TodayLessonOverUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayLessonOverUI.swift; sourceTree = "<group>"; };
-		32866680249E523D007CC75E /* TodayWrongDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWrongDay.swift; sourceTree = "<group>"; };
+		328B829D24AC2F9F00CAB2EB /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage Extension.swift"; sourceTree = "<group>"; };
 		328BFFE72496275100132EB4 /* TimetableStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableStruct.swift; sourceTree = "<group>"; };
 		328BFFE924964F0400132EB4 /* TTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTViewController.swift; sourceTree = "<group>"; };
 		328BFFED24965E3E00132EB4 /* TTTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTTableViewCell.swift; sourceTree = "<group>"; };
 		3292B75C2489DD7C005749CB /* ContentPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPointer.swift; sourceTree = "<group>"; };
-		3294ABEC249863F200A70538 /* Timetable.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timetable.entitlements; sourceTree = "<group>"; };
 		329B6B45248BAAC100ED4428 /* ContentPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPreviewing.swift; sourceTree = "<group>"; };
 		329B6B47248BF25900ED4428 /* FilterPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPreview.swift; sourceTree = "<group>"; };
 		329CE2272489B713002022A6 /* AnnouncementPointers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementPointers.swift; sourceTree = "<group>"; };
 		329DCBC9249703FC00018D32 /* UITableView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView Extension.swift"; sourceTree = "<group>"; };
 		329E3B1C23F979CC00524901 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadAnnouncements.swift; sourceTree = "<group>"; };
-		32A27B9A2493072F00786B03 /* TodayOngoingUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayOngoingUI.swift; sourceTree = "<group>"; };
-		32A27B9C2493078800786B03 /* TodaySetUpUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySetUpUI.swift; sourceTree = "<group>"; };
 		32AC40E824A255E80013A684 /* Timetables.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Timetables.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		32AC40EC24A255E80013A684 /* Widget_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget_Timetable.swift; sourceTree = "<group>"; };
 		32AC40EE24A255E80013A684 /* Widget_Timetable.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Widget_Timetable.intentdefinition; sourceTree = "<group>"; };
@@ -416,17 +409,6 @@
 				320816BD24534E2100024FD0 /* LinksCollectionViewCell.swift */,
 			);
 			path = CollectionView;
-			sourceTree = "<group>";
-		};
-		321C9BE6249E5E6A00088677 /* Today UI */ = {
-			isa = PBXGroup;
-			children = (
-				32A27B9A2493072F00786B03 /* TodayOngoingUI.swift */,
-				32A27B9C2493078800786B03 /* TodaySetUpUI.swift */,
-				32866680249E523D007CC75E /* TodayWrongDay.swift */,
-				3286667B249E46C8007CC75E /* TodayLessonOverUI.swift */,
-			);
-			path = "Today UI";
 			sourceTree = "<group>";
 		};
 		321C9BE7249F1EF200088677 /* Timetable Get Started VC */ = {
@@ -695,19 +677,6 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
-		327524C0249213D8008EA814 /* Legacy Timetable */ = {
-			isa = PBXGroup;
-			children = (
-				3294ABEC249863F200A70538 /* Timetable.entitlements */,
-				327524C1249213D8008EA814 /* TodayViewController.swift */,
-				321C9BE6249E5E6A00088677 /* Today UI */,
-				327524CF24922D4E008EA814 /* SubjectView.swift */,
-				327524C3249213D8008EA814 /* MainInterface.storyboard */,
-				327524C6249213D8008EA814 /* Info.plist */,
-			);
-			path = "Legacy Timetable";
-			sourceTree = "<group>";
-		};
 		328BFFEB24964F1700132EB4 /* Setting Up Timetable */ = {
 			isa = PBXGroup;
 			children = (
@@ -793,7 +762,6 @@
 				326E65BB24A17C4A00E39C6F /* Timetables.entitlements */,
 				32D7070424783053003DC98C /* README.md */,
 				32D99534238C068D00208D25 /* Announcer */,
-				327524C0249213D8008EA814 /* Legacy Timetable */,
 				32AC40EB24A255E80013A684 /* Timetables */,
 				32D99533238C068D00208D25 /* Products */,
 				F60E238002C508C5CE0166E8 /* Pods */,
@@ -901,6 +869,7 @@
 				32E28CFC2490F2F7006D623C /* Keys.swift */,
 				32FA680C247FF9420077E030 /* Variables.swift */,
 				32FA680E247FF95B0077E030 /* Functions.swift */,
+				328B829D24AC2F9F00CAB2EB /* Emoji.swift */,
 				321C9BEC249F306300088677 /* Structs */,
 			);
 			path = Globals;
@@ -1252,6 +1221,7 @@
 				3245777B238E53A100730F17 /* AtomFeed.swift in Sources */,
 				326210EC2452061900629CC7 /* UIView Extension.swift in Sources */,
 				3245779F238E53A100730F17 /* iTunesNamespace.swift in Sources */,
+				328B829E24AC2F9F00CAB2EB /* Emoji.swift in Sources */,
 				32457778238E53A100730F17 /* ISO8601DateFormatter.swift in Sources */,
 				3245778C238E53A100730F17 /* RSSFeedCategory.swift in Sources */,
 				324577B0238E53A100730F17 /* MediaCommunity.swift in Sources */,
@@ -1271,14 +1241,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		327524C3249213D8008EA814 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				327524C4249213D8008EA814 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 		32D9953B238C068D00208D25 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1312,6 +1274,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = Timetables.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Timetables/Info.plist;
@@ -1321,9 +1285,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "sg.edu.sst.panziyue.Announcer.Widget-TImetable";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "maccatalyst.sg.edu.sst.panziyue.Announcer.Widget-TImetable";
+				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer.Timetable;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = maccatalyst.sg.edu.sst.panziyue.Announcer.Timetable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -1337,6 +1303,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = Timetables.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Timetables/Info.plist;
@@ -1346,9 +1314,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "sg.edu.sst.panziyue.Announcer.Widget-TImetable";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "maccatalyst.sg.edu.sst.panziyue.Announcer.Widget-TImetable";
+				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer.Timetable;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = maccatalyst.sg.edu.sst.panziyue.Announcer.Timetable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;

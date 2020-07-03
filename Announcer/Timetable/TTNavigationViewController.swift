@@ -42,7 +42,6 @@ class TTNavigationViewController: UINavigationController {
         } else {
             // Otherwise, show the timetable screen
             self.viewControllers = [timetable]
-            
         }
     }
     
