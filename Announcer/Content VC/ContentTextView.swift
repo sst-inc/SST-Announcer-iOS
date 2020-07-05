@@ -95,6 +95,12 @@ extension ContentViewController: UITextViewDelegate {
         
     }
     
+    func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        print(textAttachment)
+        
+        return true
+    }
+    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) && !I.mac {
             resetScroll()

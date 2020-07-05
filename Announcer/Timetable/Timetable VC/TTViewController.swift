@@ -198,7 +198,7 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         if lessons.count == 0 {
             let defaultAttr = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .semibold)]
             
-            let attrString = NSMutableAttributedString(string: "😴\n\nThere are no lessons on \(Calendar.current.component(.weekday, from: selectedDate) == 1 ? "Sunday" : "Saturday").", attributes: defaultAttr)
+            let attrString = NSMutableAttributedString(string: "😴\n\nThere are no lessons on \(selectedDate.day()).", attributes: defaultAttr)
             
             attrString.addAttribute(.font, value: UIFont.systemFont(ofSize: 48, weight: .bold), range: NSRange(location: 0, length: 3))
             

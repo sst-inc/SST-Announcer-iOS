@@ -23,32 +23,20 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rvY-1i-u3H">
                                 <rect key="frame" x="16" y="134.5" width="382" height="711.5"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vPQ-jB-rKa">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSK-5e-xNz">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSK-5e-xNz">
-                                                <rect key="frame" x="4" y="0.0" width="374" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="qJc-TX-Q3x"/>
-                                                </constraints>
-                                                <color key="tintColor" systemColor="systemBlueColor"/>
-                                                <state key="normal" title="   Hard to Read?">
-                                                    <color key="titleColor" systemColor="systemBlueColor"/>
-                                                    <imageReference key="image" image="lightbulb" catalog="system" symbolScale="medium" renderingMode="template"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="hardToSeeButtonPressed:" destination="MQo-jn-rdj" eventType="touchUpInside" id="yBt-Zq-lAj"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="NSK-5e-xNz" secondAttribute="bottom" id="Fok-QQ-CJA"/>
-                                            <constraint firstItem="NSK-5e-xNz" firstAttribute="top" secondItem="vPQ-jB-rKa" secondAttribute="top" id="b2y-yt-h2p"/>
-                                            <constraint firstItem="NSK-5e-xNz" firstAttribute="leading" secondItem="vPQ-jB-rKa" secondAttribute="leading" constant="4" id="hyK-1p-bYe"/>
-                                            <constraint firstAttribute="trailing" secondItem="NSK-5e-xNz" secondAttribute="trailing" constant="4" id="jLL-bh-bBz"/>
+                                            <constraint firstAttribute="height" constant="30" id="qJc-TX-Q3x"/>
                                         </constraints>
-                                    </view>
+                                        <color key="tintColor" systemColor="systemBlueColor"/>
+                                        <state key="normal" title="   Hard to Read?">
+                                            <color key="titleColor" systemColor="systemBlueColor"/>
+                                            <imageReference key="image" image="lightbulb" catalog="system" symbolScale="medium" renderingMode="template"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="hardToSeeButtonPressed:" destination="MQo-jn-rdj" eventType="touchUpInside" id="yBt-Zq-lAj"/>
+                                        </connections>
+                                    </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" editable="NO" text="Unable to load contents of post" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rym-Zu-BLo">
                                         <rect key="frame" x="0.0" y="46" width="382" height="446.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

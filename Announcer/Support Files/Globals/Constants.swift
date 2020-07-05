@@ -324,7 +324,7 @@ struct Assets {
                                "other"    : ["studentdesk", "(null)"],                         // 􀑔
                                
                                // Special state icons
-                               "|weekend|": ["calendar", "It's \(Calendar.current.component(.weekday, from: Date()) == 1 ? "Sunday" : "Saturday")!"],                      // 􀉉
+                               "|weekend|": ["calendar", "It's \(Date().day())!"],             // 􀉉
                                "|before|" : ["clock", "Starting Soon"],                        // 􀐫
                                "|over|"   : ["Class Dismissed!", "house"]                      // 􀎞
     ]

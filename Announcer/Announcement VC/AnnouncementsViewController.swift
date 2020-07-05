@@ -9,6 +9,7 @@
 import UIKit
 import CoreSpotlight
 import MobileCoreServices
+import SwiftUI
 
 class AnnouncementsViewController: UIViewController {
     

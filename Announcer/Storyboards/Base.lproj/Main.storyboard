@@ -180,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAe-A3-FIL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1757.9710144927537" y="138.61607142857142"/>
+            <point key="canvasLocation" x="1745" y="169"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="J5O-Hu-bPl">
@@ -210,7 +210,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rDo-4Q-Anc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="847.82608695652175" y="138.61607142857142"/>
+            <point key="canvasLocation" x="832" y="169"/>
         </scene>
     </scenes>
     <color key="tintColor" name="Grey 1"/>

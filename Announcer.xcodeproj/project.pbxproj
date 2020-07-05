@@ -113,6 +113,9 @@
 		324577D8238F8CC100730F17 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577D7238F8CC100730F17 /* FilterTableViewController.swift */; };
 		324577DA238FA48300730F17 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */; };
 		324577DC238FA77000730F17 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577DB238FA77000730F17 /* FilterTableViewCell.swift */; };
+		325B5B2F24B0E4B000620D4A /* WidgetComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325B5B2E24B0E4B000620D4A /* WidgetComponents.swift */; };
+		325B5B3124B19FAC00620D4A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325B5B3024B19FAC00620D4A /* Date.swift */; };
+		325B5B3224B1A17100620D4A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325B5B3024B19FAC00620D4A /* Date.swift */; };
 		326210EC2452061900629CC7 /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326210EB2452061900629CC7 /* UIView Extension.swift */; };
 		327524B724910999008EA814 /* TTGetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B624910999008EA814 /* TTGetStartedViewController.swift */; };
 		327524B924912470008EA814 /* TTPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B824912470008EA814 /* TTPreviewViewController.swift */; };
@@ -308,6 +311,8 @@
 		324577D7238F8CC100730F17 /* FilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		324577DB238FA77000730F17 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		325B5B2E24B0E4B000620D4A /* WidgetComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetComponents.swift; sourceTree = "<group>"; };
+		325B5B3024B19FAC00620D4A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		326210EB2452061900629CC7 /* UIView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView Extension.swift"; sourceTree = "<group>"; };
 		326E65AB24A17C4800E39C6F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		326E65AD24A17C4800E39C6F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -699,6 +704,7 @@
 			isa = PBXGroup;
 			children = (
 				32AC40EC24A255E80013A684 /* Widget_Timetable.swift */,
+				325B5B2E24B0E4B000620D4A /* WidgetComponents.swift */,
 				32AC40EE24A255E80013A684 /* Widget_Timetable.intentdefinition */,
 				32AC40EF24A255EA0013A684 /* Assets.xcassets */,
 				32AC40F124A255EA0013A684 /* Info.plist */,
@@ -742,6 +748,7 @@
 			children = (
 				32C25324244EA63C0015085A /* Array Extension.swift */,
 				32C25326244EA6D70015085A /* String Extension.swift */,
+				325B5B3024B19FAC00620D4A /* Date.swift */,
 			);
 			path = "Swift Extensions";
 			sourceTree = "<group>";
@@ -1073,9 +1080,11 @@
 			files = (
 				32806D2324A418D00032A2F5 /* Constants.swift in Sources */,
 				32806D2124A2EA970032A2F5 /* TimetableStruct.swift in Sources */,
+				325B5B3224B1A17100620D4A /* Date.swift in Sources */,
 				32AC40F224A255EA0013A684 /* Widget_Timetable.intentdefinition in Sources */,
 				32806D2224A2EA970032A2F5 /* LessonStruct.swift in Sources */,
 				32AC40ED24A255E80013A684 /* Widget_Timetable.swift in Sources */,
+				325B5B2F24B0E4B000620D4A /* WidgetComponents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,6 +1095,7 @@
 				329CE2282489B713002022A6 /* AnnouncementPointers.swift in Sources */,
 				32457776238E53A100730F17 /* RFC3339DateFormatter.swift in Sources */,
 				32457780238E53A100730F17 /* AtomFeedEntrySummary.swift in Sources */,
+				325B5B3124B19FAC00620D4A /* Date.swift in Sources */,
 				324577AA238E53A100730F17 /* MediaRights.swift in Sources */,
 				32D9954E238D87D200208D25 /* AnnouncementTableViewCell.swift in Sources */,
 				32C25325244EA63C0015085A /* Array Extension.swift in Sources */,
@@ -1285,6 +1295,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 11.2;
 				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer.Timetable;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = maccatalyst.sg.edu.sst.panziyue.Announcer.Timetable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1314,6 +1325,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 11.2;
 				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer.Timetable;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = maccatalyst.sg.edu.sst.panziyue.Announcer.Timetable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
