@@ -62,7 +62,7 @@ struct PlaceholderView : View {
 struct Widget_TimetableEntryView : View {
     var entry: Provider.Entry
     
-    private let announcerURL = URL(string: "sstannouncer://")
+    private let announcerURL = URL(string: "sstannouncer://")!
     
     @Environment(\.widgetFamily) var family: WidgetFamily
     

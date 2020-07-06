@@ -33,7 +33,7 @@ struct NotSetUpItem {
                             design: .default
                         )
                     )
-            }.padding()
+            }.padding([.all])
         }
     }
 }

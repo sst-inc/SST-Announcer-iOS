@@ -37,7 +37,7 @@ extension NotSetUpItem {
                         }
                     }
                 }
-                .padding([.leading, .trailing, .top])
+                .padding()
             }
 
         }
