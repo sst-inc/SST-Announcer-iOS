@@ -150,6 +150,7 @@
 		328E07CD24B2F07C005CDD1E /* Not Set Up Medium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328E07CC24B2F07C005CDD1E /* Not Set Up Medium.swift */; };
 		3292B75D2489DD7C005749CB /* ContentPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3292B75C2489DD7C005749CB /* ContentPointer.swift */; };
 		32951A7F24B305730008F6BF /* MediumContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32951A7E24B305730008F6BF /* MediumContent.swift */; };
+		32951A8124B3409C0008F6BF /* Icons.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32951A8024B3409C0008F6BF /* Icons.txt */; };
 		329B6B46248BAAC100ED4428 /* ContentPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B6B45248BAAC100ED4428 /* ContentPreviewing.swift */; };
 		329B6B48248BF25900ED4428 /* FilterPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329B6B47248BF25900ED4428 /* FilterPreview.swift */; };
 		329CE2282489B713002022A6 /* AnnouncementPointers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329CE2272489B713002022A6 /* AnnouncementPointers.swift */; };
@@ -160,8 +161,6 @@
 		32AC40EA24A255E80013A684 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326E65AD24A17C4800E39C6F /* SwiftUI.framework */; };
 		32AC40ED24A255E80013A684 /* Widget_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AC40EC24A255E80013A684 /* Widget_Timetable.swift */; };
 		32AC40F024A255EA0013A684 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32AC40EF24A255EA0013A684 /* Assets.xcassets */; };
-		32AC40F224A255EA0013A684 /* Widget_Timetable.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 32AC40EE24A255E80013A684 /* Widget_Timetable.intentdefinition */; };
-		32AC40F324A255EA0013A684 /* Widget_Timetable.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 32AC40EE24A255E80013A684 /* Widget_Timetable.intentdefinition */; };
 		32AC40F624A255EA0013A684 /* Timetables.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 32AC40E824A255E80013A684 /* Timetables.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		32B7C4442488BBE0009D160F /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7C4432488BBE0009D160F /* SplitViewController.swift */; };
 		32B7C4462488F047009D160F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7C4452488F047009D160F /* LoadingViewController.swift */; };
@@ -188,12 +187,12 @@
 		32E28CF32490D0A5006D623C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 32E28CF22490D0A5006D623C /* Alamofire */; };
 		32E28CF62490E025006D623C /* Timetable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32E28CF42490E025006D623C /* Timetable.storyboard */; };
 		32E28CF92490EE95006D623C /* TTNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CF82490EE94006D623C /* TTNavigationViewController.swift */; };
-		32E28CFD2490F2F7006D623C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CFC2490F2F7006D623C /* Keys.swift */; };
 		32E9B4D923A3D86F000F769F /* AnnouncementPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */; };
 		32FA680D247FF9420077E030 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA680C247FF9420077E030 /* Variables.swift */; };
 		32FA680F247FF95B0077E030 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA680E247FF95B0077E030 /* Functions.swift */; };
 		32FA6811247FFAC20077E030 /* PostStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA6810247FFAC20077E030 /* PostStruct.swift */; };
 		32FA6813247FFAE30077E030 /* LinksStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA6812247FFAE30077E030 /* LinksStruct.swift */; };
+		32FCE6F624B40F6E00A2F16F /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FCE6F524B40F6E00A2F16F /* Keys.swift */; };
 		57932F273AA9112D178ED0D9 /* Pods_Announcer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD293BB20EEED7B1A9804C0 /* Pods_Announcer.framework */; };
 /* End PBXBuildFile section */
 
@@ -367,6 +366,7 @@
 		328E07CC24B2F07C005CDD1E /* Not Set Up Medium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Not Set Up Medium.swift"; sourceTree = "<group>"; };
 		3292B75C2489DD7C005749CB /* ContentPointer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPointer.swift; sourceTree = "<group>"; };
 		32951A7E24B305730008F6BF /* MediumContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumContent.swift; sourceTree = "<group>"; };
+		32951A8024B3409C0008F6BF /* Icons.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Icons.txt; sourceTree = "<group>"; };
 		329B6B45248BAAC100ED4428 /* ContentPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPreviewing.swift; sourceTree = "<group>"; };
 		329B6B47248BF25900ED4428 /* FilterPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPreview.swift; sourceTree = "<group>"; };
 		329CE2272489B713002022A6 /* AnnouncementPointers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementPointers.swift; sourceTree = "<group>"; };
@@ -375,7 +375,6 @@
 		329E3B1E23FEA47400524901 /* ReadAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadAnnouncements.swift; sourceTree = "<group>"; };
 		32AC40E824A255E80013A684 /* Timetables.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Timetables.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		32AC40EC24A255E80013A684 /* Widget_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget_Timetable.swift; sourceTree = "<group>"; };
-		32AC40EE24A255E80013A684 /* Widget_Timetable.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Widget_Timetable.intentdefinition; sourceTree = "<group>"; };
 		32AC40EF24A255EA0013A684 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32AC40F124A255EA0013A684 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32AC40F724A255EA0013A684 /* Widget TImetableExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Widget TImetableExtension.entitlements"; sourceTree = "<group>"; };
@@ -406,12 +405,12 @@
 		32E28CEF2490CB26006D623C /* TTOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTOnboardingViewController.swift; sourceTree = "<group>"; };
 		32E28CF52490E025006D623C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Timetable.storyboard; sourceTree = "<group>"; };
 		32E28CF82490EE94006D623C /* TTNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTNavigationViewController.swift; sourceTree = "<group>"; };
-		32E28CFC2490F2F7006D623C /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementPreviewing.swift; sourceTree = "<group>"; };
 		32FA680C247FF9420077E030 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		32FA680E247FF95B0077E030 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		32FA6810247FFAC20077E030 /* PostStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStruct.swift; sourceTree = "<group>"; };
 		32FA6812247FFAE30077E030 /* LinksStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksStruct.swift; sourceTree = "<group>"; };
+		32FCE6F524B40F6E00A2F16F /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		F4C5EAB4AAEB7A89D10EAAB0 /* Pods-Announcer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Announcer.debug.xcconfig"; path = "Target Support Files/Pods-Announcer/Pods-Announcer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -912,7 +911,6 @@
 				32AC40EC24A255E80013A684 /* Widget_Timetable.swift */,
 				328E07C624B2EDF3005CDD1E /* Lesson */,
 				328E07B624B2E435005CDD1E /* Views */,
-				32AC40EE24A255E80013A684 /* Widget_Timetable.intentdefinition */,
 				32AC40EF24A255EA0013A684 /* Assets.xcassets */,
 				32AC40F124A255EA0013A684 /* Info.plist */,
 			);
@@ -1036,6 +1034,7 @@
 			isa = PBXGroup;
 			children = (
 				324577DB238FA77000730F17 /* FilterTableViewCell.swift */,
+				32951A8024B3409C0008F6BF /* Icons.txt */,
 				324577D7238F8CC100730F17 /* FilterTableViewController.swift */,
 				329B6B47248BF25900ED4428 /* FilterPreview.swift */,
 			);
@@ -1080,7 +1079,7 @@
 			isa = PBXGroup;
 			children = (
 				324576F8238D8E0E00730F17 /* Constants.swift */,
-				32E28CFC2490F2F7006D623C /* Keys.swift */,
+				32FCE6F524B40F6E00A2F16F /* Keys.swift */,
 				32FA680C247FF9420077E030 /* Variables.swift */,
 				32FA680E247FF95B0077E030 /* Functions.swift */,
 				328B829D24AC2F9F00CAB2EB /* Emoji.swift */,
@@ -1231,6 +1230,7 @@
 				329E3B1D23F979CC00524901 /* Settings.bundle in Resources */,
 				32D9953F238C068F00208D25 /* Assets.xcassets in Resources */,
 				32D9953D238C068D00208D25 /* Main.storyboard in Resources */,
+				32951A8124B3409C0008F6BF /* Icons.txt in Resources */,
 				32D7070C247A894E003DC98C /* Filter.storyboard in Resources */,
 				32C4059924534617006CA49E /* Content.storyboard in Resources */,
 			);
@@ -1296,7 +1296,6 @@
 				32377E5124B2E0080057CE6C /* No Lesson Medium.swift in Sources */,
 				32377E4F24B2DFC20057CE6C /* No Lesson Small.swift in Sources */,
 				328E07C124B2E9A1005CDD1E /* MediumPlaceholder.swift in Sources */,
-				32AC40F224A255EA0013A684 /* Widget_Timetable.intentdefinition in Sources */,
 				32377E4A24B2DE200057CE6C /* WeekendMedium.swift in Sources */,
 				328E07B524B2E30D005CDD1E /* ImageViewMedium.swift in Sources */,
 				328E07BC24B2E834005CDD1E /* PlaceholderSmall.swift in Sources */,
@@ -1343,7 +1342,6 @@
 				324576F9238D8E0E00730F17 /* Constants.swift in Sources */,
 				324577CE238E53A200730F17 /* String + toDuration.swift in Sources */,
 				329DCBCA249703FC00018D32 /* UITableView Extension.swift in Sources */,
-				32AC40F324A255EA0013A684 /* Widget_Timetable.intentdefinition in Sources */,
 				324577D2238E53A200730F17 /* String + toBool.swift in Sources */,
 				32B7C4442488BBE0009D160F /* SplitViewController.swift in Sources */,
 				3245777E238E53A100730F17 /* AtomFeedContributor.swift in Sources */,
@@ -1362,7 +1360,6 @@
 				327524B924912470008EA814 /* TTPreviewViewController.swift in Sources */,
 				32457789238E53A100730F17 /* AtomFeedSubtitle.swift in Sources */,
 				32457788238E53A100730F17 /* AtomFeed + mapAttributes.swift in Sources */,
-				32E28CFD2490F2F7006D623C /* Keys.swift in Sources */,
 				324577A0238E53A100730F17 /* iTunesSubCategory.swift in Sources */,
 				3245777C238E53A100730F17 /* AtomFeedEntryContributor.swift in Sources */,
 				324577C6238E53A200730F17 /* XMLFeedType.swift in Sources */,
@@ -1419,6 +1416,7 @@
 				324577CD238E53A200730F17 /* URL + replacingScheme.swift in Sources */,
 				3245778D238E53A100730F17 /* RDFPath.swift in Sources */,
 				32B7C4462488F047009D160F /* LoadingViewController.swift in Sources */,
+				32FCE6F624B40F6E00A2F16F /* Keys.swift in Sources */,
 				324577B2238E53A200730F17 /* MediaPeerLink.swift in Sources */,
 				324577BC238E53A200730F17 /* MediaStatus.swift in Sources */,
 				324577B5238E53A200730F17 /* MediaDescription.swift in Sources */,

@@ -13,7 +13,8 @@ extension String {
     var htmlToAttributedString: NSMutableAttributedString? {
         do {
             let attributedString = try NSMutableAttributedString(data: Data(utf8),
-                                                                 options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: 4],
+                                                                 options: [.documentType: NSAttributedString.DocumentType.html,
+                                                                           .characterEncoding: 4], // UTF-8 encoding
                                                                  documentAttributes: nil)
             
             attributedString.append(NSAttributedString(string: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"))

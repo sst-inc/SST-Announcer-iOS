@@ -12,17 +12,24 @@ import SwiftUI
 extension Components {
     struct MediumPlaceholder: View {
         var body: some View {
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(
+                alignment: .leading,
+                spacing: 8
+            ) {
                 Rectangle()
                     .fill(Color.secondary)
                     .cornerRadius(6)
-                    .frame(width: 100,
-                           height: 20)
+                    .frame(
+                        width: 100,
+                        height: 20
+                    )
                 Rectangle()
                     .fill(Color.secondary)
                     .cornerRadius(4)
-                    .frame(width: 100,
-                           height: 10)
+                    .frame(
+                        width: 100,
+                        height: 10
+                    )
             }
             .padding(
                 [
