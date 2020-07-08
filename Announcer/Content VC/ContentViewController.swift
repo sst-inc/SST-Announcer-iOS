@@ -143,16 +143,6 @@ class ContentViewController: UIViewController {
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        
-    }
-    
     func updateContent() {
         // Render HTML from String
         // Handle WebKit requirements by showing an error

@@ -331,6 +331,7 @@ struct Assets {
     
     // Subject icons
     // Key: Subject Name, Item: image
+    // Some of the icons being used are only available on SF Symbols iOS 14/MacOS 11
     @available(iOS 14, macOS 11, *)
     static func getSubject(_ identifier: String, font: UIFont) -> (UIImage, String) {
         let subject = subjectIcons[identifier] ?? subjectIcons["other"]!

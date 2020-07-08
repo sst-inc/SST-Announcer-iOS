@@ -52,6 +52,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save images from posts to device</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>sg.edu.sst.panziyue.Announcer.content</string>
@@ -99,7 +101,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Save images from posts to device</string>
 </dict>
 </plist>

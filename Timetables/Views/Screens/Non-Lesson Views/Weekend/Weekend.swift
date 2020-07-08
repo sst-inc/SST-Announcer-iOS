@@ -24,3 +24,9 @@ extension Screens {
         }
     }
 }
+
+struct Weekend_Previews: PreviewProvider {
+    static var previews: some View {
+        Screens.WeekendView(family: .systemMedium)
+    }
+}

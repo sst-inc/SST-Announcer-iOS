@@ -32,8 +32,8 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
 [![App Store](https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg)](https://apps.apple.com/sg/app/sst-announcer/id683929182)
 
 ## Requirements
-- Xcode 12 Beta
-- Swift 5 
+- Xcode 12 Beta 2
+- Swift 5.2
 - Cocoapods 1.8.4 or greater
 
 ### Device Requirements
@@ -41,18 +41,18 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
 |Support        |Version |Notes                                                    |
 |---------------|--------|---------------------------------------------------------|
 |Minimum Support|13.0    |Timetables are not supported                             |
-|Full Support   |14      |Full support for iPadOS                                  |
+|Full Support   |14 (beta)|Full support for iPadOS                                  |
 
 #### iOS
 |Support        |Version |Notes                                                    |
 |---------------|--------|---------------------------------------------------------|
 |Minimum Support|13.0    |Certain animations may not work                          |
-|Full Support   |14      |Full support for iOS                                     |
+|Full Support   |14 (beta)|Full support for iOS                                     |
 
 #### MacOS
 |Support        |Version |Notes                                                    |
 |---------------|--------|---------------------------------------------------------|
-|Minimum Support|11      |                                                         |
+|Minimum Support|11 (beta) |                                                         |
 
 ## Technologies/Libraries Used
 ### Open Source Libraries
@@ -148,8 +148,8 @@ These colors are used for loading content using KALoader
 ### Navigation
 |Command          |Key (Symbols) |Key (Description)            |
 |-----------------|--------------|-----------------------------|
-|Next Post        |`▶︎` or `▼`    |Arrow Right or Arrow Down    |
-|Previous Post    |`◀︎` or `▲`    |Arrow Left or Arrow Up       |
+|Next Post        | `▼`    |Arrow Right or Arrow Down    |
+|Previous Post    |`▲`    |Arrow Left or Arrow Up       |
 
 ### Getting Announcements
 |Command          |Key (Symbols) |Key (Description)            |

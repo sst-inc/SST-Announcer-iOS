@@ -224,7 +224,8 @@ class AnnouncementsViewController: UIViewController {
         
         /// `posts` converted to `CSSearchableItems`
         let items: [CSSearchableItem] = posts.map({ post in
-            let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeHTML as String)
+            let attributeSet =  CSSearchableItemAttributeSet(itemContentType: kUTTypeHTML as String)
+            
             
             /// Setting the title of the post
             attributeSet.title = post.title
