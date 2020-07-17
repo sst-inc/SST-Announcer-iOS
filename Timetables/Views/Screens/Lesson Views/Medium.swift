@@ -46,7 +46,7 @@ extension Screens {
                 
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Later:")
+                        Text("Next:")
                             .font(
                                 Font
                                     .system(

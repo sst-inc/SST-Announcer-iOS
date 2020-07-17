@@ -131,7 +131,6 @@
 		32806D2224A2EA970032A2F5 /* LessonStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C9BEA249F302300088677 /* LessonStruct.swift */; };
 		32806D2324A418D00032A2F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Constants.swift */; };
 		32806D2424A419B80032A2F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953E238C068F00208D25 /* Assets.xcassets */; };
-		328B829E24AC2F9F00CAB2EB /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328B829D24AC2F9F00CAB2EB /* Emoji.swift */; };
 		328BFFE42493EBBF00132EB4 /* UIImage Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */; };
 		328BFFE82496275100132EB4 /* TimetableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE72496275100132EB4 /* TimetableStruct.swift */; };
 		328BFFEA24964F0400132EB4 /* TTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE924964F0400132EB4 /* TTViewController.swift */; };
@@ -347,7 +346,6 @@
 		326E65BB24A17C4A00E39C6F /* Timetables.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timetables.entitlements; sourceTree = "<group>"; };
 		327524B624910999008EA814 /* TTGetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTGetStartedViewController.swift; sourceTree = "<group>"; };
 		327524B824912470008EA814 /* TTPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTPreviewViewController.swift; sourceTree = "<group>"; };
-		328B829D24AC2F9F00CAB2EB /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage Extension.swift"; sourceTree = "<group>"; };
 		328BFFE72496275100132EB4 /* TimetableStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableStruct.swift; sourceTree = "<group>"; };
 		328BFFE924964F0400132EB4 /* TTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTViewController.swift; sourceTree = "<group>"; };
@@ -1082,7 +1080,6 @@
 				32FCE6F524B40F6E00A2F16F /* Keys.swift */,
 				32FA680C247FF9420077E030 /* Variables.swift */,
 				32FA680E247FF95B0077E030 /* Functions.swift */,
-				328B829D24AC2F9F00CAB2EB /* Emoji.swift */,
 				321C9BEC249F306300088677 /* Structs */,
 			);
 			path = Globals;
@@ -1457,7 +1454,6 @@
 				3245777B238E53A100730F17 /* AtomFeed.swift in Sources */,
 				326210EC2452061900629CC7 /* UIView Extension.swift in Sources */,
 				3245779F238E53A100730F17 /* iTunesNamespace.swift in Sources */,
-				328B829E24AC2F9F00CAB2EB /* Emoji.swift in Sources */,
 				32457778238E53A100730F17 /* ISO8601DateFormatter.swift in Sources */,
 				3245778C238E53A100730F17 /* RSSFeedCategory.swift in Sources */,
 				324577B0238E53A100730F17 /* MediaCommunity.swift in Sources */,
