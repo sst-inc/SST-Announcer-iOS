@@ -28,12 +28,15 @@ extension SplitViewController: NSTouchBarDelegate {
 
         let safari = NSButtonTouchBarItem(identifier: NSTouchBarItem.Identifier("safari"), image: Assets.safari, target: self, action: #selector(openSafari))
         
-        let flexibleSpacing = NSTouchBarItem(identifier: .flexibleSpace)
+        let spacing = NSTouchBarItem(identifier: .fixedSpaceLarge)
 
         let next = NSButtonTouchBarItem(identifier: NSTouchBarItem.Identifier("next"), image: UIImage(systemName: "chevron.right")!, target: self, action: #selector(nextPost))
         
         let prev = NSButtonTouchBarItem(identifier: NSTouchBarItem.Identifier("prev"), image: UIImage(systemName: "chevron.left")!, target: self, action: #selector(previousPost))
         
-        return NSGroupTouchBarItem(identifier: identifier, items: [pin, share, safari, flexibleSpacing, prev, next])
+        let search = NSButtonTouchBarItem(identifier: NSTouchBarItem.Identifier("search"), image: UIImage(systemName: "magnifyingglass")!, target: self, action: #selector(startSearching))
+        
+        
+        return NSGroupTouchBarItem(identifier: identifier, items: [search, spacing, prev, next, spacing, pin, share, safari])
     }
 }
