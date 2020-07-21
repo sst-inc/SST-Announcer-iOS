@@ -10,7 +10,11 @@ import Foundation
 import UIKit
 
 class ReadAnnouncements: Codable {
+    /** Max amount of read posts
+     Ensures that it does not get too huge
+     */
     static let maxPosts = 40
+    
     /**
      Gets archive URL for Read Announcements
      

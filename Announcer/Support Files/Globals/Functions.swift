@@ -260,9 +260,16 @@ func launchPost(withTitle postTitle: String) {
     } else {
         let navigationController = UIApplication.shared.windows.first?.rootViewController as! UINavigationController
         announcementVC = navigationController.topViewController as? AnnouncementsViewController
+        
     }
     
     if let post = post {
+        // Marking post as read
+        var readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
+        
+        readAnnouncements.append(post)
+        ReadAnnouncements.saveToFile(posts: readAnnouncements)
+        
         // Handles when post is found
         announcementVC.receivePost(with: post)
         

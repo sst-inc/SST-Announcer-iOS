@@ -397,6 +397,16 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             }
             
             RunLoop.main.add(timer, forMode: .common)
+        } else if ongoingLesson == lessons.last {
+            let lessonDate = Lesson.getTodayDate().advanced(by: lessons.last!.endTime)
+            
+            // Create timer to fire once lesson ends
+            // This will fix the
+            let timer = Timer(fire: lessonDate, interval: 0, repeats: false) { (_) in
+                self.timeUpdated()
+            }
+            
+            RunLoop.main.add(timer, forMode: .common)
         }
         
         // Handling the separator view
