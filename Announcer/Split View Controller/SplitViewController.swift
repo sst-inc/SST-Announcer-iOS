@@ -86,7 +86,7 @@ class SplitViewController: UISplitViewController {
         // Open announcement in Safari using Cmd Shift S
         let safari = UIKeyCommand(title: "Open in Safari",
                                   image: Assets.safari,
-                                  action: #selector(pinPost),
+                                  action: #selector(openSafari),
                                   input: "s",
                                   modifierFlags: [.command, .shift],
                                   discoverabilityTitle: "Open in Safari",
@@ -174,6 +174,13 @@ class SplitViewController: UISplitViewController {
         // Get contentVC and call the pinPost @IBAction function
         /// Set the sender to `SplitViewController`, aka `self`
         contentVC.pinnedItem(self)
+    }
+    
+    // Pin post
+    @objc func openSafari() {
+        // Get contentVC and call the safari @IBAction function
+        /// Set the sender to `SplitViewController`, aka `self`
+        contentVC.openPostInSafari(self)
     }
     
     // Reset zoom

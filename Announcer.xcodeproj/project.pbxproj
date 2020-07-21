@@ -187,6 +187,7 @@
 		32E28CF62490E025006D623C /* Timetable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32E28CF42490E025006D623C /* Timetable.storyboard */; };
 		32E28CF92490EE95006D623C /* TTNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CF82490EE94006D623C /* TTNavigationViewController.swift */; };
 		32E9B4D923A3D86F000F769F /* AnnouncementPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */; };
+		32F513D224C6A11100FAE1DE /* SplitTouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F513D124C6A11100FAE1DE /* SplitTouchBar.swift */; };
 		32FA680D247FF9420077E030 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA680C247FF9420077E030 /* Variables.swift */; };
 		32FA680F247FF95B0077E030 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA680E247FF95B0077E030 /* Functions.swift */; };
 		32FA6811247FFAC20077E030 /* PostStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA6810247FFAC20077E030 /* PostStruct.swift */; };
@@ -404,6 +405,7 @@
 		32E28CF52490E025006D623C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Timetable.storyboard; sourceTree = "<group>"; };
 		32E28CF82490EE94006D623C /* TTNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTNavigationViewController.swift; sourceTree = "<group>"; };
 		32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementPreviewing.swift; sourceTree = "<group>"; };
+		32F513D124C6A11100FAE1DE /* SplitTouchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTouchBar.swift; sourceTree = "<group>"; };
 		32FA680C247FF9420077E030 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		32FA680E247FF95B0077E030 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		32FA6810247FFAC20077E030 /* PostStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStruct.swift; sourceTree = "<group>"; };
@@ -920,6 +922,7 @@
 			children = (
 				32B7C4452488F047009D160F /* LoadingViewController.swift */,
 				32B7C4432488BBE0009D160F /* SplitViewController.swift */,
+				32F513D124C6A11100FAE1DE /* SplitTouchBar.swift */,
 			);
 			path = "Split View Controller";
 			sourceTree = "<group>";
@@ -1367,6 +1370,7 @@
 				324577B3238E53A200730F17 /* MediaCopyright.swift in Sources */,
 				321C9BE9249F1F1B00088677 /* TTGetStartedAlerts.swift in Sources */,
 				324577DC238FA77000730F17 /* FilterTableViewCell.swift in Sources */,
+				32F513D224C6A11100FAE1DE /* SplitTouchBar.swift in Sources */,
 				3245778B238E53A100730F17 /* RSSFeed + mapCharacters.swift in Sources */,
 				324577B8238E53A200730F17 /* MediaStatistics.swift in Sources */,
 				324577BF238E53A200730F17 /* MediaPlayer.swift in Sources */,

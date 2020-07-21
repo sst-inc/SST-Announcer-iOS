@@ -44,6 +44,12 @@ class ContentViewController: UIViewController {
     /// `ScrollSelection` multiplier used to calculate each stage
     let scrollSelectionMultiplier: CGFloat = 37.5
     
+    var isDark = false {
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
@@ -136,6 +142,7 @@ class ContentViewController: UIViewController {
             safariButton.addInteraction(UIPointerInteraction(delegate: self))
         }
         
+        // If user is in dark mode, ask user if they want to switch to light to see the post clearly
         if traitCollection.userInterfaceStyle == .dark {
             hardToSeeButton.isHidden = false
         } else {
@@ -348,6 +355,10 @@ class ContentViewController: UIViewController {
         linksAndLabelStackView.isHidden = UIDevice.current.orientation.isLandscape && I.phone
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return isDark ? .lightContent : .default
+    }
+    
     @IBAction func sharePost(_ sender: Any) {
         
         // Get share URL
@@ -375,7 +386,9 @@ class ContentViewController: UIViewController {
             self.overrideUserInterfaceStyle = .light
             self.hardToSeeButton.setTitle("   Reset", for: .normal)
             self.hardToSeeButton.setImage(UIImage(systemName: "lightbulb.slash"), for: .normal)
+            
         }
+        isDark.toggle()
     }
     
     // Go back to previous view controller

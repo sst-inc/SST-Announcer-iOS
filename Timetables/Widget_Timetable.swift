@@ -131,7 +131,6 @@ struct Widget_Timetable: Widget {
     }
 }
 
-
 struct WidgetTimetable_Previews: PreviewProvider {
     static var previews: some View {
         Group {

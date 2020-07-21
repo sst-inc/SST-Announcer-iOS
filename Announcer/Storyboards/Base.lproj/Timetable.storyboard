@@ -26,7 +26,7 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TT7-t0-JmK">
                                 <rect key="frame" x="16" y="93" width="382" height="683"/>
-                                <color key="backgroundColor" name="Background"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Announcer Timetable is a beta feature that allows you to keep track of your timetable simply using Announcer. 
 
 Stay on top of your day with notifications on which class is happening next. 
@@ -52,7 +52,7 @@ Announcer Timetable works by having you select your class and when you want your
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BFV-Oq-cEf"/>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="TT7-t0-JmK" firstAttribute="leading" secondItem="BFV-Oq-cEf" secondAttribute="leading" constant="16" id="4fW-f5-Qqc"/>
                             <constraint firstItem="BFV-Oq-cEf" firstAttribute="trailing" secondItem="RpD-jZ-fiL" secondAttribute="trailing" constant="20" id="7gz-8r-jdM"/>
@@ -662,7 +662,7 @@ Announcer Timetable works by having you select your class and when you want your
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="52u-3k-arj"/>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="q28-ED-wPv" firstAttribute="leading" secondItem="52u-3k-arj" secondAttribute="leading" constant="20" id="1K2-TM-LtQ"/>
@@ -736,7 +736,7 @@ Announcer Timetable works by having you select your class and when you want your
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uTP-aK-9DY"/>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="uTP-aK-9DY" firstAttribute="trailing" secondItem="U70-Nj-1Dw" secondAttribute="trailing" constant="20" id="7wD-WN-cGD"/>
                             <constraint firstItem="uTP-aK-9DY" firstAttribute="trailing" secondItem="ZOO-UN-MdJ" secondAttribute="trailing" constant="20" id="8Dg-pq-mjM"/>
