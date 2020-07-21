@@ -354,5 +354,4 @@ class SplitViewController: UISplitViewController {
         // Open settings url (in the Settings app)
         UIApplication.shared.open(URL(string: settings)!)
     }
-
 }

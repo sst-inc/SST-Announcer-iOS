@@ -410,6 +410,7 @@
 		32F513D124C6A11100FAE1DE /* SplitTouchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTouchBar.swift; sourceTree = "<group>"; };
 		32F513D324C6C03500FAE1DE /* ContentDrag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDrag.swift; sourceTree = "<group>"; };
 		32F513D524C716F200FAE1DE /* AnnouncementDrag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementDrag.swift; sourceTree = "<group>"; };
+		32F513D724C738F800FAE1DE /* RELEASES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RELEASES.md; sourceTree = "<group>"; };
 		32FA680C247FF9420077E030 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		32FA680E247FF95B0077E030 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		32FA6810247FFAC20077E030 /* PostStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStruct.swift; sourceTree = "<group>"; };
@@ -979,6 +980,7 @@
 				32AC40F724A255EA0013A684 /* Widget TImetableExtension.entitlements */,
 				326E65BB24A17C4A00E39C6F /* Timetables.entitlements */,
 				32D7070424783053003DC98C /* README.md */,
+				32F513D724C738F800FAE1DE /* RELEASES.md */,
 				32D99534238C068D00208D25 /* Announcer */,
 				32AC40EB24A255E80013A684 /* Timetables */,
 				32D99533238C068D00208D25 /* Products */,
@@ -1040,8 +1042,8 @@
 		32E9B4D223A38D4E000F769F /* Filter VC */ = {
 			isa = PBXGroup;
 			children = (
-				324577DB238FA77000730F17 /* FilterTableViewCell.swift */,
 				32951A8024B3409C0008F6BF /* Icons.txt */,
+				324577DB238FA77000730F17 /* FilterTableViewCell.swift */,
 				324577D7238F8CC100730F17 /* FilterTableViewController.swift */,
 				329B6B47248BF25900ED4428 /* FilterPreview.swift */,
 			);
