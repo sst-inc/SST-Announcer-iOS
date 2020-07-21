@@ -108,6 +108,10 @@ class AnnouncementsViewController: UIViewController {
             filterButton.addInteraction(UIPointerInteraction(delegate: self))
         }
         
+        // Adding drag and drop support for announcements
+        announcementTableView.dragInteractionEnabled = true
+        announcementTableView.dragDelegate = self
+        
         // Timetable is only supported on iOS 14
         if #available(iOS 14, macOS 11, *) {
             

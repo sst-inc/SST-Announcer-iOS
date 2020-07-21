@@ -137,6 +137,9 @@ class ContentViewController: UIViewController {
         linksCollectionView.dragDelegate = self
         linksCollectionView.dragInteractionEnabled = true
         
+        labelsCollectionView.dragDelegate = self
+        labelsCollectionView.dragInteractionEnabled = true
+        
         // Adding pointer interactions
         // Only avaliable for iOS 13.4 and up
         if #available(iOS 13.4, *) {
@@ -151,6 +154,12 @@ class ContentViewController: UIViewController {
         } else {
             hardToSeeButton.isHidden = true
         }
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateSize),
+                                               name: UserDefaults.didChangeNotification,
+                                               object: nil)
+        
     }
     
     func updateContent() {
@@ -372,10 +381,7 @@ class ContentViewController: UIViewController {
         
         // Remove unneeded actions
         shareViewController.excludedActivityTypes = [.saveToCameraRoll]
-        
-        // Setting the source view
-        shareViewController.popoverPresentationController?.sourceView = self.view
-        
+
         // Present share sheet
         self.present(shareViewController, animated: true, completion: nil)
     }
@@ -526,6 +532,22 @@ class ContentViewController: UIViewController {
                 defaultFontSizeButton.isHidden = true
             }
         }
+    }
+    
+    @objc func updateSize() {
+        currentScale = UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue) == 0 ? GlobalIdentifier.defaultFontSize : CGFloat(UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue))
+        
+        // New font size and style
+        let font = UIFont.systemFont(ofSize: currentScale, weight: .medium)
+        
+        // Creating attributed text
+        let attr = NSMutableAttributedString(attributedString: contentTextView.attributedText)
+        
+        // Setting text color using NSAttributedString
+        attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
+        
+        // Setting attributedText on contentTextView
+        contentTextView.attributedText = attr
     }
     
     // Tapped reset to default font size button

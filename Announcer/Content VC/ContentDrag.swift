@@ -11,12 +11,27 @@ import UIKit
 
 extension ContentViewController: UICollectionViewDragDelegate {
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        let cell = collectionView.cellForItem(at: indexPath) as? LinksCollectionViewCell
-        
-        let provider = NSItemProvider(object: URL(string: (cell?.link.link)!)! as NSItemProviderWriting)
-        let item = UIDragItem(itemProvider: provider)
-        item.localObject = URL(string: (cell?.link.link)!)!
-        
-        return [item]
+        if let cell = collectionView.cellForItem(at: indexPath) as? LinksCollectionViewCell {
+            
+            let link = URL(string: cell.link.link)!
+            
+            let provider = NSItemProvider(object: link as NSItemProviderWriting)
+            let item = UIDragItem(itemProvider: provider)
+            item.localObject = link
+            
+            return [item]
+        } else if let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCollectionViewCell {
+            
+            let value = cell.titleLabel.text!
+            
+            let provider = NSItemProvider()
+            
+            let item = UIDragItem(itemProvider: provider)
+            item.localObject = value
+            
+            return [item]
+        } else {
+            fatalError()
+        }
     }
 }

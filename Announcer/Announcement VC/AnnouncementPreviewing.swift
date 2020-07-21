@@ -64,15 +64,13 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                  discoverabilityTitle: nil,
                                  attributes: [],
                                  state: .off) { (_) in
-                                    //Create Activity View Controller (Share screen)
-                                    let shareViewController = UIActivityViewController.init(activityItems: [LinkFunctions.getShareURL(with: cell.post)], applicationActivities: nil)
-                                    
-                                    //Remove unneeded actions
-                                    shareViewController.excludedActivityTypes = [.saveToCameraRoll, .addToReadingList]
-                                    
-                                    //Present share sheet
-                                    shareViewController.popoverPresentationController?.sourceView = cell
-                                    self.present(shareViewController, animated: true, completion: nil)
+                // Create Activity View Controller (Share screen)
+                let shareViewController = UIActivityViewController.init(activityItems: [LinkFunctions.getShareURL(with: cell.post)], applicationActivities: nil)
+                
+                // Remove unneeded actions
+                shareViewController.excludedActivityTypes = [.saveToCameraRoll, .addToReadingList]
+                
+                self.present(shareViewController, animated: true, completion: nil)
             }
             
             let open = UIAction(title: "Open Announcement",
