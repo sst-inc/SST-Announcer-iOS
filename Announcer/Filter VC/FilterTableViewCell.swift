@@ -31,19 +31,10 @@ class FilterTableViewCell: UITableViewCell {
             
         }
     }
-    
-    // Just a view with color and a corner radius
-//    @IBOutlet weak var primaryView: UIView!
-    
-    // Contains the filter
-//    @IBOutlet weak var titleLabel: UILabel!
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        // Curve the primary view
-//        primaryView.layer.cornerRadius = 10
     }
     
     func getImage(_ title: String) -> UIImage {

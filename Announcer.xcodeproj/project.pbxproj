@@ -188,6 +188,7 @@
 		32E28CF92490EE95006D623C /* TTNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E28CF82490EE94006D623C /* TTNavigationViewController.swift */; };
 		32E9B4D923A3D86F000F769F /* AnnouncementPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */; };
 		32F513D224C6A11100FAE1DE /* SplitTouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F513D124C6A11100FAE1DE /* SplitTouchBar.swift */; };
+		32F513D424C6C03500FAE1DE /* ContentDrag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F513D324C6C03500FAE1DE /* ContentDrag.swift */; };
 		32FA680D247FF9420077E030 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA680C247FF9420077E030 /* Variables.swift */; };
 		32FA680F247FF95B0077E030 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA680E247FF95B0077E030 /* Functions.swift */; };
 		32FA6811247FFAC20077E030 /* PostStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA6810247FFAC20077E030 /* PostStruct.swift */; };
@@ -406,6 +407,7 @@
 		32E28CF82490EE94006D623C /* TTNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTNavigationViewController.swift; sourceTree = "<group>"; };
 		32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementPreviewing.swift; sourceTree = "<group>"; };
 		32F513D124C6A11100FAE1DE /* SplitTouchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTouchBar.swift; sourceTree = "<group>"; };
+		32F513D324C6C03500FAE1DE /* ContentDrag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDrag.swift; sourceTree = "<group>"; };
 		32FA680C247FF9420077E030 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		32FA680E247FF95B0077E030 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		32FA6810247FFAC20077E030 /* PostStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStruct.swift; sourceTree = "<group>"; };
@@ -1023,6 +1025,7 @@
 			isa = PBXGroup;
 			children = (
 				324576FC238E0FB300730F17 /* ContentViewController.swift */,
+				32F513D324C6C03500FAE1DE /* ContentDrag.swift */,
 				32C2532C244EA8D00015085A /* ContentTextView.swift */,
 				3292B75C2489DD7C005749CB /* ContentPointer.swift */,
 				329B6B45248BAAC100ED4428 /* ContentPreviewing.swift */,
@@ -1438,6 +1441,7 @@
 				328BFFEA24964F0400132EB4 /* TTViewController.swift in Sources */,
 				324577AE238E53A100730F17 /* MediaLocation.swift in Sources */,
 				32457779238E53A100730F17 /* AtomFeedGenerator.swift in Sources */,
+				32F513D424C6C03500FAE1DE /* ContentDrag.swift in Sources */,
 				324577A6238E53A100730F17 /* MediaHash.swift in Sources */,
 				3245777D238E53A100730F17 /* AtomFeedEntryCategory.swift in Sources */,
 				32FA680D247FF9420077E030 /* Variables.swift in Sources */,

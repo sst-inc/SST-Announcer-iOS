@@ -134,6 +134,9 @@ class ContentViewController: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = false
         
+        linksCollectionView.dragDelegate = self
+        linksCollectionView.dragInteractionEnabled = true
+        
         // Adding pointer interactions
         // Only avaliable for iOS 13.4 and up
         if #available(iOS 13.4, *) {

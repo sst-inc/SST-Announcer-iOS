@@ -112,15 +112,18 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             let scheme = url.scheme
             
             // Only use safari view controller when scheme is http or https
-            if scheme == "https" || scheme == "http" {
+            if (scheme == "https" || scheme == "http") && !I.mac {
+                // Launch Safari View Controller
+                // Only when user is on iPhone/iPad
+                
                 // Create safari view controller
                 let svc = SFSafariViewController(url: url)
                 
                 // Present safari vc
                 present(svc, animated: true)
             } else {
-                // This does not seem to work on simulator with mailto schemes
-                // test on actual device
+                // Handle if scheme is not HTTP or HTTPS
+                // Handle if user is using a Mac, Safari Services does not work well on MacOS
                 UIApplication.shared.open(url)
             }
         }

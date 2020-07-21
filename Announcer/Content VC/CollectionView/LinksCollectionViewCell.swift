@@ -80,9 +80,12 @@ class LinksCollectionViewCell: UICollectionViewCell {
         } else {
             // Hopefully getting a preview image
             if let img = defaultImage {
+                
+                // Check if there is an image, if so, just return that
                 return img
             } else {
-                // Getting Favicon from Domain
+                
+                // Getting Favicon from Domain, using Google's Favicon thing
                 let data = (try? Data(contentsOf: URL(string: "https://www.google.com/s2/favicons?domain=\(title)")!)) ?? Assets.defaultLinkIcon.pngData()!
                 
                 // If there are no images, just use a Link icon
@@ -92,5 +95,4 @@ class LinksCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    
 }
