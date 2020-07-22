@@ -130,7 +130,7 @@ struct GlobalColors {
     static let blueTint                 = UIColor.systemBlue
     
     /// Border Color for Scroll Selection
-    static let borderColor              = GlobalColors.blueTint.withAlphaComponent(0.3).cgColor
+    static let borderColor              = blueTint.withAlphaComponent(0.3).cgColor
     
     /// Background color for App
     static let background               = UIColor.systemBackground
