@@ -379,7 +379,6 @@
 		32AC40EC24A255E80013A684 /* Widget_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget_Timetable.swift; sourceTree = "<group>"; };
 		32AC40EF24A255EA0013A684 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32AC40F124A255EA0013A684 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		32AC40F724A255EA0013A684 /* Widget TImetableExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Widget TImetableExtension.entitlements"; sourceTree = "<group>"; };
 		32B7C4432488BBE0009D160F /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		32B7C4452488F047009D160F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		32C2531E244EA5D40015085A /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
@@ -980,7 +979,6 @@
 		32D99529238C068D00208D25 = {
 			isa = PBXGroup;
 			children = (
-				32AC40F724A255EA0013A684 /* Widget TImetableExtension.entitlements */,
 				326E65BB24A17C4A00E39C6F /* Timetables.entitlements */,
 				32D7070424783053003DC98C /* README.md */,
 				32F513D724C738F800FAE1DE /* RELEASES.md */,
