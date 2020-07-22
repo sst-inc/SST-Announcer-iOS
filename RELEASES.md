@@ -8,7 +8,7 @@
 
 ---
 
-### Version Timeline
+### Version History
 | Version | Minimum Support             | Full Support                | 
 |---------|-----------------------------|-----------------------------|
 |11.2     |iOS/iPadOS 13.0, MacOS 11.0  |iOS/iPadOS 14.0, MacOS 11.0  |
@@ -49,6 +49,11 @@
 
 #### Hard to Read?
 - Added a Hard to Read? button when viewing posts with dark mode
+
+#### Feedback Reporting
+- Any suggestions on how we can improve SST Announcer? Any crashes or unexpected behaviours you experienced? 
+- Use the Feedback Reporting tool in SST Announcer to report an issue. 
+- When reporting issues, please provide instructions on how to recreate it so we can look into the issue.
 
 ---
 
