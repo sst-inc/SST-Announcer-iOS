@@ -9,17 +9,18 @@
 ---
 
 ### Version History
-| Version | Minimum Support             | Full Support                | 
-|---------|-----------------------------|-----------------------------|
-|11.2     |iOS/iPadOS 13.0, MacOS 11.0  |iOS/iPadOS 14.0, MacOS 11.0  |
-|11.1     |iOS/iPadOS 13.0              |iOS/iPadOS 13.0              |
-|11.0.1   |iOS/iPadOS 13.0              |iOS/iPadOS 13.0              |
-|11.0     |iOS/iPadOS 13.0              |iOS/iPadOS 13.0              |
+| Version | Minimum Support             | Full Support                | Release Status                                                                 |
+|---------|-----------------------------|-----------------------------|--------------------------------------------------------------------------------|
+|11.2     |iOS/iPadOS 13.0, MacOS 11.0  |iOS/iPadOS 14.0, MacOS 11.0  |![Pre-Release](https://img.shields.io/badge/Pre--Release-yellow.svg?style=flat) |
+|11.1     |iOS/iPadOS 13.0              |iOS/iPadOS 13.0              |![Released](https://img.shields.io/badge/Released-blue.svg?style=flat)          |
+|11.0.1   |iOS/iPadOS 13.0              |iOS/iPadOS 13.0              |                                                                                |
+|11.0     |iOS/iPadOS 13.0              |iOS/iPadOS 13.0              |                                                                                |
 
 ## Release Notes
 <details>
-<summary><strong>11.2 (Pre-Release)</strong></summary>
+<summary><strong>11.2 </strong></summary>
 
+![Pre-Release](https://img.shields.io/badge/Pre--Release-yellow.svg?style=flat)
 ### Bug Fixes
 - Fixed encoding errors which caused inverted commas and other symbols to be encoded as a bunch of strange symbols
 - Fixed bug which caused app to crash when saving images from posts
@@ -83,6 +84,7 @@
 <details>
 <summary><strong>11.1</strong></summary>    
 
+![Released](https://img.shields.io/badge/Released-blue.svg?style=flat)
 ### Bug Fixes
 - Fixed the bug which caused the labels on posts to be hidden
 
