@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+#if targetEnvironment(macCatalyst)
 extension SplitViewController: NSTouchBarDelegate {
     override func makeTouchBar() -> NSTouchBar? {
         let touchBar = NSTouchBar()
@@ -40,3 +41,4 @@ extension SplitViewController: NSTouchBarDelegate {
         return NSGroupTouchBarItem(identifier: identifier, items: [search, spacing, prev, next, spacing, pin, share, safari])
     }
 }
+#endif

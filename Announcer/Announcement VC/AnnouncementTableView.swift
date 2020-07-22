@@ -340,6 +340,12 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             view.endEditing(true)
         }
         
+        if scrollView.contentOffset.y > 5 {
+            feedback.close()
+        } else {
+            feedback.open()
+        }
+        
 //        if scrollView.contentOffset.y > 5 {
 //            UIView.animate(withDuration: 0.5) {
 //                self.searchHeightConstraint.constant = 0

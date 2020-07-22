@@ -77,6 +77,8 @@ class AnnouncementsViewController: UIViewController {
     /// Selected Path
     var selectedPath = IndexPath(row: 0, section: 0)
     
+    var feedback: FeedbackButton!
+    
     @IBOutlet weak var timetableButton: UIBarButtonItem!
     @IBOutlet weak var announcementTableView: UITableView!
     @IBOutlet weak var searchField: UISearchBar!
@@ -128,6 +130,28 @@ class AnnouncementsViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.uturn.left")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.uturn.left")
+        
+        let feedback = FeedbackButton(frame: .zero)
+        
+        feedback.translatesAutoresizingMaskIntoConstraints = false
+
+        let feedbackConstraints = [NSLayoutConstraint(item: feedback,
+                                                      attribute: .trailing,
+                                                      relatedBy: .equal,
+                                                      toItem: view,
+                                                      attribute: .trailing,
+                                                      multiplier: 1,
+                                                      constant: -20),
+                                   NSLayoutConstraint(item: feedback, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottomMargin, multiplier: 1, constant: 0),
+                                   NSLayoutConstraint(item: feedback, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)]
+        
+        feedback.parent = self
+        
+        view.addSubview(feedback)
+        view.addConstraints(feedbackConstraints)
+        
+        self.feedback = feedback
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

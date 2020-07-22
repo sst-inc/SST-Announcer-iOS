@@ -190,6 +190,7 @@
 		32F513D224C6A11100FAE1DE /* SplitTouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F513D124C6A11100FAE1DE /* SplitTouchBar.swift */; };
 		32F513D424C6C03500FAE1DE /* ContentDrag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F513D324C6C03500FAE1DE /* ContentDrag.swift */; };
 		32F513D624C716F200FAE1DE /* AnnouncementDrag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F513D524C716F200FAE1DE /* AnnouncementDrag.swift */; };
+		32F513D924C816D200FAE1DE /* FeedbackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F513D824C816D200FAE1DE /* FeedbackButton.swift */; };
 		32FA680D247FF9420077E030 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA680C247FF9420077E030 /* Variables.swift */; };
 		32FA680F247FF95B0077E030 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA680E247FF95B0077E030 /* Functions.swift */; };
 		32FA6811247FFAC20077E030 /* PostStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA6810247FFAC20077E030 /* PostStruct.swift */; };
@@ -411,6 +412,7 @@
 		32F513D324C6C03500FAE1DE /* ContentDrag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDrag.swift; sourceTree = "<group>"; };
 		32F513D524C716F200FAE1DE /* AnnouncementDrag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementDrag.swift; sourceTree = "<group>"; };
 		32F513D724C738F800FAE1DE /* RELEASES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RELEASES.md; sourceTree = "<group>"; };
+		32F513D824C816D200FAE1DE /* FeedbackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackButton.swift; sourceTree = "<group>"; };
 		32FA680C247FF9420077E030 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		32FA680E247FF95B0077E030 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		32FA6810247FFAC20077E030 /* PostStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStruct.swift; sourceTree = "<group>"; };
@@ -777,6 +779,7 @@
 			isa = PBXGroup;
 			children = (
 				32D9954B238D865600208D25 /* AnnouncementsViewController.swift */,
+				32F513D824C816D200FAE1DE /* FeedbackButton.swift */,
 				32F513D524C716F200FAE1DE /* AnnouncementDrag.swift */,
 				32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */,
 				32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */,
@@ -1425,6 +1428,7 @@
 				324577CD238E53A200730F17 /* URL + replacingScheme.swift in Sources */,
 				3245778D238E53A100730F17 /* RDFPath.swift in Sources */,
 				32B7C4462488F047009D160F /* LoadingViewController.swift in Sources */,
+				32F513D924C816D200FAE1DE /* FeedbackButton.swift in Sources */,
 				32FCE6F624B40F6E00A2F16F /* Keys.swift in Sources */,
 				324577B2238E53A200730F17 /* MediaPeerLink.swift in Sources */,
 				32F513D624C716F200FAE1DE /* AnnouncementDrag.swift in Sources */,
