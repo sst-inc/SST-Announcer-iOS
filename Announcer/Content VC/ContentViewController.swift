@@ -539,17 +539,19 @@ class ContentViewController: UIViewController {
     @objc func updateSize() {
         currentScale = UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue) == 0 ? GlobalIdentifier.defaultFontSize : CGFloat(UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue))
         
-        // New font size and style
-        let font = UIFont.systemFont(ofSize: currentScale, weight: .medium)
-        
-        // Creating attributed text
-        let attr = NSMutableAttributedString(attributedString: contentTextView.attributedText)
-        
-        // Setting text color using NSAttributedString
-        attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
-        
-        // Setting attributedText on contentTextView
-        contentTextView.attributedText = attr
+        DispatchQueue.main.async {
+            // New font size and style
+            let font = UIFont.systemFont(ofSize: self.currentScale, weight: .medium)
+            
+            // Creating attributed text
+            let attr = NSMutableAttributedString(attributedString: self.contentTextView.attributedText)
+            
+            // Setting text color using NSAttributedString
+            attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
+            
+            // Setting attributedText on contentTextView
+            self.contentTextView.attributedText = attr
+        }
     }
     
     // Tapped reset to default font size button
