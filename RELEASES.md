@@ -1,15 +1,20 @@
 #  Releases
 ## Overview
-Latest Release : 11.1
+### SST Announcer Release Information
+| Release Information    | Version Number |
+|------------------------|:--------------:|
+| Released on App Store  | 11.1           |
+| Pre-Release            | 11.2           |
 
-Pre-Release : 11.2
+---
 
-| Version | Minimum Support                 | Full Support                    | 
-|---------|---------------------------------|---------------------------------|
-|11.2     |iOS 13.0, iPadOS 13.0, MacOS 11.0|iOS 14.0, iPadOS 14.0, MacOS 11.0|
-|11.1     |iOS 13.0, iPadOS 13.0            |iOS 13.0, iPadOS 13.0            |
-|11.0.1   |iOS 13.0, iPadOS 13.0            |iOS 13.0, iPadOS 13.0            |
-|11.0     |iOS 13.0, iPadOS 13.0            |iOS 13.0, iPadOS 13.0            |
+### Version Timeline
+| Version | Minimum Support             | Full Support                | 
+|---------|-----------------------------|-----------------------------|
+|11.2     |iOS/iPadOS 13.0, MacOS 11.0  |iOS/iPadOS 14.0, MacOS 11.0  |
+|11.1     |iOS/iPadOS 13.0              |iOS/iPadOS 13.0              |
+|11.0.1   |iOS/iPadOS 13.0              |iOS/iPadOS 13.0              |
+|11.0     |iOS/iPadOS 13.0              |iOS/iPadOS 13.0              |
 
 ## Release Notes
 <details>
@@ -19,31 +24,54 @@ Pre-Release : 11.2
 - Fixed encoding errors which caused inverted commas and other symbols to be encoded as a bunch of strange symbols
 - Fixed bug which caused app to crash when saving images from posts
 
+---
+
 ### New Features
 #### Announcer Timetables*
 - Check your timetables from a iOS 14 widget
 - Set it up by pressing the table button
 
-#### iPadOS & MacOS support*
-- Redesigned to take full advantage of the iPad’s/Mac’s screen size with a split-screen design
-- Added pointer** support, keyboard shortcuts and more
-	- Navigate posts with arrow keys, and use ⌘F to search for posts
-	- Find all the keyboard shortcuts in Announcer settings 
-	- Support for secondary/right clicks 
-	- Improved animations with pointers** such as hovering over buttons 
-- Touch Bar support
+#### Contextual menu previewing support
+- Added contextual menu to areas such as Filters and more
+- 3D Touch, Right Click or Long Press on filters, links and more to copy or open it
 
-#### General interface changes
-- Improved peek and pop previewing support
-- Links and Labels now hide when scrolling down to allow for more space for content
-- Added a "Close Post" button if the post is not supported by SST Announcer or if an error occurred
-- Improved Spotlight Search support
-- Drag and drop support
-- New Hard to Read? button when viewing posts with dark mode
+#### Links and Labels section
+- It will automatically hide when scrolling down. This provides more space for content.
+- It will show up again when you scroll up to top
+
+#### Error Handling 
+- If there is an error when opening the post, it will now ask if you want to close the post
+- Posts that require Javascript, or on MacOS, posts with images, may throw errors
+
+#### Drag and Drop
+- Drag posts, links and fliters around to share them
+- Works best on iPadOS and MacOS
+
+#### Hard to Read?
+- Added a Hard to Read? button when viewing posts with dark mode
+
+---
+
+### iPadOS & MacOS support*
+#### Redesigned 
+- Takes full advantage of the screen size with a new split-screen design
+
+#### [iPadOS/MacOS] Pointer/Cursor Support
+- New animations when hovering over buttons and more
+- Secondary/Right Click support
+
+#### [iPadOS/MacOS] Keyboard Shortcuts
+- Navigate posts with up and down arrow keys
+- Use ⌘F to search for posts
+- Find all the keyboard shortcuts in Announcer settings or by holding down ⌘ on iPad
+
+#### [MacOS] Touch Bar support*
+- Announcer now supports Touch Bar
+- Use it to pin, share and navigate around posts
 
 *Requires iOS 14, iPadOS 14 or MacOS Big Sur
 
-**Requires iPadOS 13.4 or MacOS Big Sur
+**Requires iOS 13.4, iPadOS 13.4 or MacOS Big Sur
 
 </details>
 
