@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 class ReadAnnouncements: Codable {
-    /** Max amount of read posts
+    /**
+     Max amount of read posts
      Ensures that it does not get too huge
      */
     static let maxPosts = 40

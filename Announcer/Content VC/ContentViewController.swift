@@ -83,6 +83,8 @@ class ContentViewController: UIViewController {
             // Escaping to main thread to update user interface with new content
             DispatchQueue.main.async {
                 
+                self.contentTextView.setContentOffset(.zero, animated: true)
+                
                 // Updating content
                 self.updateContent()
             }
