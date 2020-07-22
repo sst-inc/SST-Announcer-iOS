@@ -340,7 +340,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             view.endEditing(true)
         }
         
-        if scrollView.contentOffset.y > 5 {
+        // Opening and closing feedback reporting button
+        if scrollView.contentOffset.y > 25 {
             feedback.close()
         } else {
             feedback.open()
