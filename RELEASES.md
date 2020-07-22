@@ -13,8 +13,8 @@
 |---------|-----------------------------|-----------------------------|--------------------------------------------------------------------------------|
 |11.2     |iOS/iPadOS 13.0, MacOS 11.0  |iOS/iPadOS 14.0, MacOS 11.0  |![Pre-Release](https://img.shields.io/badge/Pre--Release-yellow.svg?style=flat) |
 |11.1     |iOS/iPadOS 13.0              |iOS/iPadOS 13.0              |![Released](https://img.shields.io/badge/Released-blue.svg?style=flat)          |
-|11.0.1   |iOS/iPadOS 13.0              |iOS/iPadOS 13.0              |                                                                                |
-|11.0     |iOS/iPadOS 13.0              |iOS/iPadOS 13.0              |                                                                                |
+|11.0.1   |iOS/iPadOS 13.0              |iOS/iPadOS 13.0              |![EOL](https://img.shields.io/badge/End--Of--Life-critical.svg?style=flat)      |
+|11.0     |iOS/iPadOS 13.0              |iOS/iPadOS 13.0              |![EOL](https://img.shields.io/badge/End--Of--Life-critical.svg?style=flat)      |
 
 ## Release Notes
 <details>
@@ -98,6 +98,7 @@
 <details>
 <summary><strong>11.0.1</strong></summary>
 
+![EOL](https://img.shields.io/badge/End--Of--Life-critical.svg?style=flat)
 ### Bug fixes
 - Fixed bug where certain notifications would not be sent to the user
 - Fixed bug where the content of the post would not show up on the notification
@@ -110,7 +111,8 @@
 
 <details>
 <summary><strong>11.0</strong></summary>
-    
+
+![EOL](https://img.shields.io/badge/End--Of--Life-critical.svg?style=flat)
 ### New Features
 #### Dark mode*
 - Announcer now has dark mode! Experience dark mode on Announcer by turning it on in Settings app > Display & Brightness > select Dark
