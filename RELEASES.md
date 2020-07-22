@@ -30,7 +30,11 @@
 ### New Features
 #### Announcer Timetables*
 - Check your timetables from a iOS 14 widget
-- Set it up by pressing the table button
+- Set it up by pressing the table button in the corner and type your class
+- This feature uses on-device intelligence to generate a timetable.
+- Generating Timetables takes about 5 minutes.
+	- Please do not turn off the device while the app is generating.
+	- The app will display logs based on what it is doing.
 
 #### Contextual menu previewing support
 - Added contextual menu to areas such as Filters and more
