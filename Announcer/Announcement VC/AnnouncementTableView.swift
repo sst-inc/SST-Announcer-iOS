@@ -196,8 +196,10 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         // Otherwise, it is whatever cell is previously highlighted
         cell.highlightPost = indexPath == selectedPath
         
-        // Deselect the row so as to avoid weird animation issues
-        tableView.deselectRow(at: indexPath, animated: false)
+        if I.phone {
+            // Deselect the row so as to avoid weird animation issues
+            tableView.deselectRow(at: indexPath, animated: false)
+        }
         
         // Appending posts to read posts
         // - Getting read announcements from file

@@ -196,11 +196,13 @@ class ContentViewController: UIViewController {
                 
                 // Close post
                 alert.addAction(UIAlertAction(title: "Close Post", style: .cancel, handler: { (_) in
-                    // Handling dismissing from Navigation Controller
-                    self.navigationController?.popViewController(animated: true)
-                    
-                    // Handling dismissing from Peek and Pop
-                    self.dismiss(animated: true)
+                    if I.phone {
+                        // Handling dismissing from Navigation Controller
+                        self.navigationController?.popViewController(animated: true)
+                        
+                        // Handling dismissing from Peek and Pop
+                        self.dismiss(animated: true)
+                    }
                 }))
                 
                 DispatchQueue.main.async {
@@ -420,7 +422,9 @@ class ContentViewController: UIViewController {
     
     // Go back to previous view controller
     @IBAction func dismiss(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        if I.phone {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func pinnedItem(_ sender: Any) {

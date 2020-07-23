@@ -31,6 +31,8 @@ class AnnouncementsViewController: UIViewController {
                         // Get first or selected cell
                         let cell = self.tableView(self.announcementTableView, cellForRowAt: self.selectedPath) as? AnnouncementTableViewCell
                         
+                        cell?.setSelected(true, animated: true)
+                        
                         // Set content of posts
                         splitVC.contentVC.post = cell?.post
                         
