@@ -101,12 +101,10 @@ class AnnouncementTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        if I.wantToBeMac {
-            let hover = UIHoverGestureRecognizer()
-            hover.addTarget(self, action: #selector(hovered(_:)))
-            
-            contentView.addGestureRecognizer(hover)
-        }
+        let hover = UIHoverGestureRecognizer()
+        hover.addTarget(self, action: #selector(hovered(_:)))
+        
+        contentView.addGestureRecognizer(hover)
     }
     
     // Color the brackets []
@@ -203,7 +201,7 @@ class AnnouncementTableViewCell: UITableViewCell {
             
             // User is hovering over post
             #if targetEnvironment(macCatalyst)
-            contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelectionHover.withAlphaComponent(0.6) : GlobalColors.greyThree.withAlphaComponent(0.6)
+            contentView.backgroundColor = GlobalColors.greyTwo
             #else
             contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelectionHover : GlobalColors.greyThree
             #endif
@@ -211,7 +209,7 @@ class AnnouncementTableViewCell: UITableViewCell {
         default:
             // User stopped hovering over post
             #if targetEnvironment(macCatalyst)
-            contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelection.withAlphaComponent(0.6) : GlobalColors.background.withAlphaComponent(0.6)
+            contentView.backgroundColor = .clear
             #else
             contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelection : GlobalColors.background
             #endif
