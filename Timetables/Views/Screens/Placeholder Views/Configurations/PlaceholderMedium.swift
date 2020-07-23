@@ -75,7 +75,6 @@ extension PlaceholderItem {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color("Grey 3"))
-                .cornerRadius(10, antialiased: true)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         }

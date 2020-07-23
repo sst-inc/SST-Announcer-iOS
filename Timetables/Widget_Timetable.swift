@@ -121,8 +121,7 @@ struct Widget_Timetable: Widget {
     
     public var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind,
-                            provider: Provider(),
-                            placeholder: PlaceholderView()) { entry in
+                            provider: Provider()) { entry in
             Widget_TimetableEntryView(entry: entry)
         }
         .supportedFamilies([.systemSmall, .systemMedium])

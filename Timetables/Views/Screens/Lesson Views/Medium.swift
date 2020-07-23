@@ -92,7 +92,6 @@ extension Screens {
                     .padding(.bottom)
                 }
                 .background(Color("Grey 3"))
-                .cornerRadius(10, antialiased: true)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
