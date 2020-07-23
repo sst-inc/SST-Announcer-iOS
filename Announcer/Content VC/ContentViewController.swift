@@ -506,7 +506,9 @@ class ContentViewController: UIViewController {
     }
     
     @IBAction func showSideBar(_ sender: Any) {
-        splitViewController?.show(.primary)
+        if #available(iOS 14.0, *) {
+            splitViewController?.show(.primary)
+        }
     }
     
     @IBAction func openPostInSafari(_ sender: Any) {
