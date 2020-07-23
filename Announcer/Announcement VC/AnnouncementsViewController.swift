@@ -142,8 +142,20 @@ class AnnouncementsViewController: UIViewController {
                                                       attribute: .trailing,
                                                       multiplier: 1,
                                                       constant: -20),
-                                   NSLayoutConstraint(item: feedback, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottomMargin, multiplier: 1, constant: 0),
-                                   NSLayoutConstraint(item: feedback, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)]
+                                   NSLayoutConstraint(item: feedback,
+                                                      attribute: .bottom,
+                                                      relatedBy: .equal,
+                                                      toItem: view,
+                                                      attribute: .bottomMargin,
+                                                      multiplier: 1,
+                                                      constant: -20),
+                                   NSLayoutConstraint(item: feedback,
+                                                      attribute: .height,
+                                                      relatedBy: .equal,
+                                                      toItem: nil,
+                                                      attribute: .notAnAttribute,
+                                                      multiplier: 1,
+                                                      constant: 50)]
         
         feedback.parent = self
         

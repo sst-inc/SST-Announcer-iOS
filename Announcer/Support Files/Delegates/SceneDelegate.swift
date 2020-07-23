@@ -45,7 +45,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     announcementVC.openTimetable(self)
                 }
             }
-            
         }
     }
     

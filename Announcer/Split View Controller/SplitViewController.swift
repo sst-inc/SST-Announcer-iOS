@@ -11,7 +11,7 @@ import UIKit
 class SplitViewController: UISplitViewController {
 
     // Getting contentVC from storyboards
-    let contentVC = Storyboards.content.instantiateInitialViewController() as! ContentViewController
+    var contentVC = Storyboards.content.instantiateInitialViewController() as! ContentViewController
     
     // announcementVC is set through viewDidLoad
     var announcementVC: AnnouncementsViewController!
@@ -30,7 +30,9 @@ class SplitViewController: UISplitViewController {
         show(LoadingViewController(), sender: nil)
         
         // Setting the display mode to be automatic
-        self.preferredDisplayMode = .automatic
+        self.preferredDisplayMode = .twoBesideSecondary
+        
+        contentVC = self.children[1].children.first as! ContentViewController
         
         // Set background style as sidebar
         self.primaryBackgroundStyle = .sidebar

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aYT-dT-Pjl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aYT-dT-Pjl">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -187,12 +187,21 @@
             <objects>
                 <splitViewController storyboardIdentifier="master" id="G6T-FP-Cgc" customClass="SplitViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="aYT-dT-Pjl" kind="relationship" relationship="masterViewController" id="3eZ-cB-OhQ"/>
+                        <segue destination="aYT-dT-Pjl" kind="relationship" relationship="masterViewController" id="hs8-fb-FNd"/>
+                        <segue destination="23Y-UU-1HR" kind="relationship" relationship="detailViewController" id="KQ1-BG-Gg8"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fpY-r4-69b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-103" y="170"/>
+        </scene>
+        <!--Content-->
+        <scene sceneID="44A-b6-X8A">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Content" id="23Y-UU-1HR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9gQ-SV-vod" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="589" y="-222"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6s9-lU-M57">

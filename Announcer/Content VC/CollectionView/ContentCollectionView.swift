@@ -15,11 +15,17 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
     // Setting the number of items in the collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == labelsCollectionView {
-            // Getting the number of items, aka the number of categories in the post
-            let numberOfItems = post.categories.count
             
-            // Return the number of categories in the post
-            return numberOfItems
+            if post == nil {
+                return 0
+            } else {
+                // Getting the number of items, aka the number of categories in the post
+                let numberOfItems = post.categories.count
+                
+                // Return the number of categories in the post
+                return numberOfItems
+            }
+            
         } else {
             // Handling linksCollectionView
             

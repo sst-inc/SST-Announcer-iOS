@@ -537,8 +537,11 @@ class ContentViewController: UIViewController {
     }
     
     @objc func updateSize() {
+        
+        // Updating the current scale of the text
         currentScale = UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue) == 0 ? GlobalIdentifier.defaultFontSize : CGFloat(UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue))
         
+        // 
         DispatchQueue.main.async {
             // New font size and style
             let font = UIFont.systemFont(ofSize: self.currentScale, weight: .medium)
