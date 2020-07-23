@@ -77,6 +77,10 @@ class ContentViewController: UIViewController {
     
     @IBOutlet weak var hardToSeeButton: UIButton!
     
+    @IBOutlet weak var loadingContentButton: UIButton!
+    
+    var fullScreen = true
+    
     /// Getting the post
     var post: Post! {
         didSet {
@@ -161,6 +165,10 @@ class ContentViewController: UIViewController {
                                                selector: #selector(updateSize),
                                                name: UserDefaults.didChangeNotification,
                                                object: nil)
+        
+        if !I.phone {
+            loadingContentButton.isHidden = true
+        }
         
     }
     
@@ -365,8 +373,16 @@ class ContentViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        // Hide linksAndLabelStackView if in landscape; show if in portrait
-        linksAndLabelStackView.isHidden = UIDevice.current.orientation.isLandscape && I.phone
+        if I.phone {
+            // Hide linksAndLabelStackView if in landscape; show if in portrait
+            linksAndLabelStackView.isHidden = UIDevice.current.orientation.isLandscape && I.phone
+        } else {
+            if loadingContentButton != nil {
+                fullScreen.toggle()
+                loadingContentButton.isHidden = fullScreen
+            }
+            
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -483,6 +499,10 @@ class ContentViewController: UIViewController {
         }
         
         onDismiss?()
+    }
+    
+    @IBAction func showSideBar(_ sender: Any) {
+        splitViewController?.show(.primary)
     }
     
     @IBAction func openPostInSafari(_ sender: Any) {

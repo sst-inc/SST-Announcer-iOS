@@ -14,7 +14,7 @@ class FeedbackButton: UIView {
     let feedbackButton = UIImageView()
     
     // Parent View Controller used to display the feedback form
-    var parent: UIViewController?
+    var parent: AnnouncementsViewController?
     
     // Stack View
     var stack: UIStackView!
@@ -45,8 +45,12 @@ class FeedbackButton: UIView {
         let label = UILabel()
         let imageView = UIImageView()
         
+        // - Gesture recognizer
         // Handling when user taps the Feedback Button
         let tap = UITapGestureRecognizer(target: self, action: #selector(onClick))
+        
+        // Handling when user hovers over button on iPadOS and MacOS
+        let hover = UIHoverGestureRecognizer(target: self, action: #selector(onHover(sender:)))
         
         // Setting up "Feedback" label
         // - Setting the feedback title
@@ -160,6 +164,9 @@ class FeedbackButton: UIView {
         // - Because it is a button
         addGestureRecognizer(tap)
         
+        // - Add hover gesture recognizer to make things more... animated on MacOS and iPadOS
+        addGestureRecognizer(hover)
+        
         // Setting the variables
         self.label = label
         self.stack = stack
@@ -182,6 +189,43 @@ class FeedbackButton: UIView {
             
             // Present the Safari view controller using the parent
             parent?.present(svc, animated: true, completion: nil)
+        }
+    }
+    
+    /// Handling when feedback button is hovered upon
+    @objc func onHover(sender: UIHoverGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            // When the hover begins
+            
+            if parent!.announcementTableView.contentOffset.y > 25 {
+                // Make sure we can open (it's not already opened)
+                open()
+            }
+            
+            // Set the background color to show the highlight,
+            // mostly for dark mode users
+            backgroundColor = .systemGray5
+            
+            // Make a subtle change in the shadows,
+            // mostly for light mode users
+            layer.shadowRadius = 6
+            
+        case .cancelled, .ended:
+            // When user stops hovering over feedback button
+            
+            if parent!.announcementTableView.contentOffset.y > 25 {
+                // Make sure that it can close to ensure consistency
+                close()
+            }
+            
+            // Resetting the background color, for dark mode users
+            backgroundColor = .systemBackground
+            
+            // Resetting the shadows, for light mode users
+            layer.shadowRadius = 10
+        default:
+            break
         }
     }
     

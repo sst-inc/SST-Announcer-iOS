@@ -35,7 +35,7 @@ class AnnouncementsViewController: UIViewController {
                         splitVC.contentVC.post = cell?.post
                         
                         // Show contentVC
-                        splitVC.show(splitVC.contentVC, sender: nil)
+                        splitVC.showDetailViewController(splitVC.contentVC, sender: nil)
                     }
                 }
             }

@@ -27,12 +27,10 @@ class SplitViewController: UISplitViewController {
         
         // Show loading vc
         // Loading VC will be replaced by contentVC when the data has finished loading in AnnouncementVC
-        show(LoadingViewController(), sender: nil)
+        self.showDetailViewController(LoadingViewController(), sender: nil)
         
         // Setting the display mode to be automatic
-        self.preferredDisplayMode = .twoBesideSecondary
-        
-        contentVC = self.children[1].children.first as! ContentViewController
+        self.preferredDisplayMode = .oneBesideSecondary
         
         // Set background style as sidebar
         self.primaryBackgroundStyle = .sidebar
