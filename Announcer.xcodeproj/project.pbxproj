@@ -22,8 +22,6 @@
 		324576F9238D8E0E00730F17 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Constants.swift */; };
 		324576FB238E063500730F17 /* AnnouncementTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576FA238E063500730F17 /* AnnouncementTableView.swift */; };
 		324576FD238E0FB300730F17 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576FC238E0FB300730F17 /* ContentViewController.swift */; };
-		32457703238E213B00730F17 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576FF238E213B00730F17 /* UIView+Extensions.swift */; };
-		32457704238E213B00730F17 /* KALoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457700238E213B00730F17 /* KALoader.swift */; };
 		32457775238E53A100730F17 /* DateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32457709238E53A100730F17 /* DateSpec.swift */; };
 		32457776238E53A100730F17 /* RFC3339DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245770A238E53A100730F17 /* RFC3339DateFormatter.swift */; };
 		32457777238E53A100730F17 /* RFC822DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3245770B238E53A100730F17 /* RFC822DateFormatter.swift */; };
@@ -242,9 +240,6 @@
 		324576F8238D8E0E00730F17 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		324576FA238E063500730F17 /* AnnouncementTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementTableView.swift; sourceTree = "<group>"; };
 		324576FC238E0FB300730F17 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
-		324576FF238E213B00730F17 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		32457700238E213B00730F17 /* KALoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KALoader.swift; sourceTree = "<group>"; };
-		32457701238E213B00730F17 /* KALoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KALoader.h; sourceTree = "<group>"; };
 		32457709238E53A100730F17 /* DateSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSpec.swift; sourceTree = "<group>"; };
 		3245770A238E53A100730F17 /* RFC3339DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFC3339DateFormatter.swift; sourceTree = "<group>"; };
 		3245770B238E53A100730F17 /* RFC822DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFC822DateFormatter.swift; sourceTree = "<group>"; };
@@ -557,16 +552,6 @@
 				328E07B124B2E250005CDD1E /* ImageView */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		324576FE238E213B00730F17 /* KALoader */ = {
-			isa = PBXGroup;
-			children = (
-				324576FF238E213B00730F17 /* UIView+Extensions.swift */,
-				32457700238E213B00730F17 /* KALoader.swift */,
-				32457701238E213B00730F17 /* KALoader.h */,
-			);
-			path = KALoader;
 			sourceTree = "<group>";
 		};
 		32457707238E53A100730F17 /* FeedKit */ = {
@@ -1080,7 +1065,6 @@
 			isa = PBXGroup;
 			children = (
 				32457707238E53A100730F17 /* FeedKit */,
-				324576FE238E213B00730F17 /* KALoader */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -1418,7 +1402,6 @@
 				324577AC238E53A100730F17 /* MediaTag.swift in Sources */,
 				32C2532B244EA8390015085A /* ContentCollectionView.swift in Sources */,
 				327524B724910999008EA814 /* TTGetStartedViewController.swift in Sources */,
-				32457704238E213B00730F17 /* KALoader.swift in Sources */,
 				324577AB238E53A100730F17 /* MediaContent.swift in Sources */,
 				324577CF238E53A200730F17 /* Array + Equatable.swift in Sources */,
 				3245777A238E53A100730F17 /* AtomFeedEntryContent.swift in Sources */,
@@ -1453,7 +1436,6 @@
 				324577A6238E53A100730F17 /* MediaHash.swift in Sources */,
 				3245777D238E53A100730F17 /* AtomFeedEntryCategory.swift in Sources */,
 				32FA680D247FF9420077E030 /* Variables.swift in Sources */,
-				32457703238E213B00730F17 /* UIView+Extensions.swift in Sources */,
 				3245779C238E53A100730F17 /* SyndicationNamespace.swift in Sources */,
 				329B6B46248BAAC100ED4428 /* ContentPreviewing.swift in Sources */,
 				324577D8238F8CC100730F17 /* FilterTableViewController.swift in Sources */,
