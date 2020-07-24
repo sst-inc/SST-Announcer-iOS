@@ -7,5 +7,6 @@ target 'Announcer' do
 
   # Pods for Announcer
   pod "URLEmbeddedView"
+  pod "SkeletonView"
 
 end

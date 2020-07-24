@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class AnnouncementTableViewCell: UITableViewCell {
 
@@ -105,6 +106,11 @@ class AnnouncementTableViewCell: UITableViewCell {
         hover.addTarget(self, action: #selector(hovered(_:)))
         
         contentView.addGestureRecognizer(hover)
+        
+        // Set up SkeletonView
+        announcementTitleLabel.isSkeletonable = true
+        announcementContentLabel.isSkeletonable = true
+        announcementDateLabel.isSkeletonable = true
     }
     
     // Color the brackets []
@@ -143,25 +149,20 @@ class AnnouncementTableViewCell: UITableViewCell {
         announcementTitleLabel.attributedText = attrTitle
     }
     
-    // Using the KALoader for loading animations
+    // Using the SkeletonView loading animations
     // Similar to YouTube
     // Set text as " " so as to maintain proper constraints
     func startLoader() {
-        announcementTitleLabel.showLoader()
-        announcementTitleLabel.text = " "
-        
-        announcementContentLabel.showLoader()
-        announcementContentLabel.text = " "
-        
-        announcementDateLabel.showLoader()
-        announcementDateLabel.text = " "
+        announcementTitleLabel.showAnimatedSkeleton()
+        announcementContentLabel.showAnimatedSkeleton()
+        announcementDateLabel.showAnimatedSkeleton()
     }
     
     // Hide all loaders when content is present for user
     func endLoader() {
-        announcementTitleLabel.hideLoader()
-        announcementContentLabel.hideLoader()
-        announcementDateLabel.hideLoader()
+        announcementTitleLabel.hideSkeleton()
+        announcementContentLabel.hideSkeleton()
+        announcementDateLabel.hideSkeleton()
     }
     
     func handlePinAndRead() {
