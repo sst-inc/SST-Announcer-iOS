@@ -281,7 +281,7 @@
                                             <constraint firstAttribute="width" constant="35" id="Kbn-3B-API"/>
                                         </constraints>
                                         <state key="normal">
-                                            <imageReference key="image" image="sidebar.left" catalog="system" symbolScale="default"/>
+                                            <imageReference key="image" image="chevron.left" catalog="system" symbolScale="default"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                             </preferredSymbolConfiguration>
@@ -429,11 +429,11 @@
     </scenes>
     <color key="tintColor" name="Grey 1"/>
     <resources>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="lightbulb" catalog="system" width="113" height="128"/>
         <image name="link" catalog="system" width="128" height="122"/>
         <image name="pin" catalog="system" width="119" height="128"/>
         <image name="safari" catalog="system" width="128" height="121"/>
-        <image name="sidebar.left" catalog="system" width="128" height="93"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="tag.fill" catalog="system" width="128" height="119"/>
         <image name="textformat.size" catalog="system" width="128" height="80"/>

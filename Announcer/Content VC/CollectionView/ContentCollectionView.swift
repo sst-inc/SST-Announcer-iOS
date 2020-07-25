@@ -57,6 +57,9 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
                 cell.addInteraction(UIPointerInteraction(delegate: self))
             }
             
+            /// - Hover interactions for MacOS
+            cell.loadView()
+            
             /// - Preview with context menu
             ///       Press & Hold or use 3D touch to open up context menu
             ///       Also works with pointer's secondary (right) click
@@ -75,6 +78,8 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             // Setting up links
             cell.link = links[indexPath.row]
+            
+            cell.loadView()
             
             // Setting Cell Corner Radius
             cell.layer.cornerRadius = 5

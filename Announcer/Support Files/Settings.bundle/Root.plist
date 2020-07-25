@@ -4,6 +4,8 @@
 <dict>
 	<key>StringsTable</key>
 	<string>Root</string>
+	<key>Title</key>
+	<string>Main</string>
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
@@ -91,8 +93,6 @@ Content Size</string>
 			<string>Keyboard Shortcuts</string>
 			<key>Key</key>
 			<string>Keyboard Shortcuts</string>
-			<key>Icon</key>
-			<string>command.png</string>
 		</dict>
 	</array>
 </dict>

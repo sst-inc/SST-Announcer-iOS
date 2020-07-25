@@ -110,13 +110,13 @@ class LinksCollectionViewCell: UICollectionViewCell {
             
             // Set the background color to show the highlight,
             // mostly for dark mode users
-            backgroundColor = .systemGray4
+            contentView.backgroundColor = .systemGray4
             
         case .cancelled, .ended:
             // When user stops hovering over feedback button
             
             // Resetting the background color, for dark mode users
-            backgroundColor = GlobalColors.greyTwo
+            contentView.backgroundColor = GlobalColors.greyTwo
         default:
             break
         }
