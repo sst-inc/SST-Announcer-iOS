@@ -153,16 +153,16 @@ class AnnouncementTableViewCell: UITableViewCell {
     // Similar to YouTube
     // Set text as " " so as to maintain proper constraints
     func startLoader() {
-        announcementTitleLabel.showAnimatedSkeleton()
-        announcementContentLabel.showAnimatedSkeleton()
-        announcementDateLabel.showAnimatedSkeleton()
+        announcementTitleLabel.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        announcementContentLabel.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        announcementDateLabel.showAnimatedSkeleton(transition: .crossDissolve(0.25))
     }
     
     // Hide all loaders when content is present for user
     func endLoader() {
-        announcementTitleLabel.hideSkeleton()
-        announcementContentLabel.hideSkeleton()
-        announcementDateLabel.hideSkeleton()
+        announcementTitleLabel.hideSkeleton(transition: .crossDissolve(0.25))
+        announcementContentLabel.hideSkeleton(transition: .crossDissolve(0.25))
+        announcementDateLabel.hideSkeleton(transition: .crossDissolve(0.25))
     }
     
     func handlePinAndRead() {
