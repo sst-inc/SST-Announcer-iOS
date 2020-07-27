@@ -26,17 +26,26 @@ public struct Provider: TimelineProvider {
         if !Calendar.current.isDateInWeekend(Date()) {
             if let lessonDates = getLessonDates(date: Date()) {
                 items = lessonDates.map {
-                    WidgetEntry(date: $0)
+                    // Keep it relevant for 10 minutes
+                    WidgetEntry(date: $0, relevance: TimelineEntryRelevance(score: 100, duration: 600))
                 }
             } else {
-                items = [WidgetEntry(date: Date()), WidgetEntry(date: Date())]
+                items = [WidgetEntry(date: Date(),
+                                     relevance: TimelineEntryRelevance(score: 0, duration: 0)),
+                         WidgetEntry(date: Date(),
+                                     relevance: TimelineEntryRelevance(score: 0, duration: 0))]
             }
         }
         
-        items.append(WidgetEntry(date: Lesson.getTodayDate().advanced(by: 86400)))
+        // Ensure smart stacks will not show Announcer widgets on weekends and at midnight
+        items.append(WidgetEntry(date: Lesson.getTodayDate().advanced(by: 86400),
+                                 relevance: TimelineEntryRelevance(score: 0, duration: 0)))
+        
         
         // Reload right now to get the latest data
-        items.append(WidgetEntry(date: Date()))
+        // Just make it relevant for the next 10 minutes... as a safe guard
+        items.append(WidgetEntry(date: Date(),
+                                 relevance: TimelineEntryRelevance(score: 100, duration: 600)))
         
         let timeline = Timeline(entries: items, policy: .atEnd)
         
@@ -46,6 +55,7 @@ public struct Provider: TimelineProvider {
 
 public struct WidgetEntry: TimelineEntry {
     public let date: Date
+    public var relevance: TimelineEntryRelevance?
 }
 
 // Create a placeholder view to show

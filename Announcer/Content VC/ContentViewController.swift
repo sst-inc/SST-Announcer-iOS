@@ -266,6 +266,9 @@ class ContentViewController: UIViewController {
             // Update textLabel with attributed text for colored square brackets
             self.titleLabel.attributedText = attrTitle
             
+            // Update the page title
+            UIApplication.shared.connectedScenes.first?.title = self.post.title
+            
             // Update dateLabel with formatted date
             self.dateLabel.text = "Posted on \(dateFormatter.string(from: self.post.date))"
             
