@@ -8,7 +8,7 @@
 
 [![iOS](http://img.shields.io/badge/platform-iOS%2013-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
 [![iPadOS](http://img.shields.io/badge/platform-iPadOS%2013-blue.svg?style=flat)](https://developer.apple.com/ipad/)
-[![Mac Catalyst](http://img.shields.io/badge/platform-MacOS%2010.15-blue.svg?style=flat)](https://developer.apple.com/mac-catalyst/)
+[![Mac Catalyst](http://img.shields.io/badge/platform-MacOS%2011-blue.svg?style=flat)](https://developer.apple.com/mac-catalyst/)
 
 [![Gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat)](https://gitmoji.carloscuesta.me/)
 
@@ -63,7 +63,7 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
   - Installed using Cocoapods
 - [FeedKit](https://github.com/nmdias/FeedKit)
   - Fetching data from Students' Blog (Atom feed)
-- [KALoader](https://github.com/Kirillzzy/KALoader)
+- [SkeletonView](https://github.com/Juanpe/SkeletonView)
   - Loading animations while getting data from RSS feed
 - [Alamofire](https://github.com/alamofire/alamofire)
   - Getting Timetable image from Google Drive API
@@ -150,8 +150,8 @@ These colors are used for loading content using KALoader
 ### Navigation
 |Command          |Key (Symbols) |Key (Description)            |
 |-----------------|--------------|-----------------------------|
-|Next Post        | `▼`    |Arrow Right or Arrow Down    |
-|Previous Post    |`▲`    |Arrow Left or Arrow Up       |
+|Next Post        | `▼`          |Arrow Right or Arrow Down    |
+|Previous Post    |`▲`           |Arrow Left or Arrow Up       |
 
 ### Getting Announcements
 |Command          |Key (Symbols) |Key (Description)            |
@@ -170,6 +170,6 @@ These colors are used for loading content using KALoader
 ### Content Size
 |Command          |Key (Symbols) |Key (Description)            |
 |-----------------|--------------|-----------------------------|
-|Zoom In          |`⌘ =` or `⌘ +`|Command-Equal or Command-Plus|
+|Zoom In          |`⌘ =`         |Command-Equal                |
 |Zoom Out         |`⌘ -`         |Command-Minus                |
 |Reset to Default |`⌘ 1`         |Command-One                  |
