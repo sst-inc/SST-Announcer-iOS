@@ -20,6 +20,9 @@
 <details>
 <summary><strong>11.2 </strong></summary>
 
+![Pre-Release](https://img.shields.io/badge/Pre--Release-yellow.svg?style=flat)
+
+---
 <details>
 <summary><strong>Beta 1</strong></summary>
 
@@ -35,7 +38,8 @@
 
 </details>
 
-![Pre-Release](https://img.shields.io/badge/Pre--Release-yellow.svg?style=flat)
+---
+
 ### Bug Fixes
 - Fixed encoding errors which caused inverted commas and other symbols to be encoded as a bunch of strange symbols
 - Fixed bug which caused app to crash when saving images from posts
