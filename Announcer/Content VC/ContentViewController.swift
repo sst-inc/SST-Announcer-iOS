@@ -38,8 +38,17 @@ class ContentViewController: UIViewController {
     /// Latest haptic feedback played for `ScrollSelection`
     var playedHaptic = 0
     
+    ///
+    var attributedContent: NSMutableAttributedString?
+    
     /// `ScrollSelection` multiplier used to calculate each stage
     let scrollSelectionMultiplier: CGFloat = 37.5
+    
+    var isDark = false {
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -53,7 +62,6 @@ class ContentViewController: UIViewController {
     @IBOutlet weak var safariButton: UIButton!
     @IBOutlet weak var pinButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
-    @IBOutlet weak var backButton: UIButton!
     
     // Links and labels section
     @IBOutlet weak var labelsView: UIView!
@@ -67,11 +75,19 @@ class ContentViewController: UIViewController {
     // - Overall stack view
     @IBOutlet weak var linksAndLabelStackView: UIStackView!
     
+    @IBOutlet weak var hardToSeeButton: UIButton!
+    
+    @IBOutlet weak var loadingContentButton: UIButton!
+    
+    var fullScreen = true
+    
     /// Getting the post
     var post: Post! {
         didSet {
             // Escaping to main thread to update user interface with new content
             DispatchQueue.main.async {
+                
+                self.contentTextView.setContentOffset(.zero, animated: true)
                 
                 // Updating content
                 self.updateContent()
@@ -122,11 +138,13 @@ class ContentViewController: UIViewController {
         // This is to handle a case where the currentScale on UserDefaults is nil
         UserDefaults.standard.set(currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)
         
-        // Hide back button if on splitVC
-        // Works only if there is a splitViewController
-        if splitViewController != nil {
-            backButton.isHidden = true
-        }
+        navigationController?.navigationBar.prefersLargeTitles = false
+        
+        linksCollectionView.dragDelegate = self
+        linksCollectionView.dragInteractionEnabled = true
+        
+        labelsCollectionView.dragDelegate = self
+        labelsCollectionView.dragInteractionEnabled = true
         
         // Adding pointer interactions
         // Only avaliable for iOS 13.4 and up
@@ -135,9 +153,86 @@ class ContentViewController: UIViewController {
             pinButton.addInteraction(UIPointerInteraction(delegate: self))
             safariButton.addInteraction(UIPointerInteraction(delegate: self))
         }
+        
+        // If user is in dark mode, ask user if they want to switch to light to see the post clearly
+        if traitCollection.userInterfaceStyle == .dark {
+            hardToSeeButton.isHidden = false
+        } else {
+            hardToSeeButton.isHidden = true
+        }
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateSize),
+                                               name: UserDefaults.didChangeNotification,
+                                               object: nil)
+        
+        if !I.phone {
+            loadingContentButton.isHidden = true
+        }
+        
     }
     
     func updateContent() {
+        // Render HTML from String
+        // Handle WebKit requirements by showing an error
+        
+        // Check if need to show message
+        let showError = I.phone || (splitViewController as? SplitViewController)?.announcementVC.searchField.text == ""
+        
+        if post.content.contains("webkitallowfullscreen=\"true\"") || (attributedContent?.string.lowercased() ?? "").contains("error") && showError {
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: ErrorMessages.postRequiresWebKit.title,
+                                              message: ErrorMessages.postRequiresWebKit.description,
+                                              preferredStyle: .alert)
+                
+                // Open post in safari, post requires webkit
+                let openInSafari = UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
+                    self.openPostInSafari(UILabel())
+                })
+                
+                alert.addAction(openInSafari)
+                
+                alert.preferredAction = openInSafari
+                
+                // Close post
+                alert.addAction(UIAlertAction(title: "Close Post", style: .cancel, handler: { (_) in
+                    if I.phone {
+                        // Handling dismissing from Navigation Controller
+                        self.navigationController?.popViewController(animated: true)
+                        
+                        // Handling dismissing from Peek and Pop
+                        self.dismiss(animated: true)
+                    }
+                }))
+                
+                DispatchQueue.main.async {
+                    // Present alert
+                    self.present(alert, animated: true)
+                }
+            }
+            
+        } else {
+            // Getting HTML content
+            let content = post.content
+            
+            // Converting HTML content to NSAttributedString
+            // Receiving attributedContent from previous VC, if it doesnt exist, just load it
+            let attr = attributedContent ?? content.htmlToAttributedString
+            
+            // Adding font and background color that support dark mode
+            attr?.addAttribute(.font, value: UIFont.systemFont(ofSize: currentScale, weight: .medium), range: NSRange.init(location: 0, length: (attr?.length)!))
+            attr?.addAttribute(.backgroundColor, value: UIColor.clear, range: NSRange(location: 0, length: (attr?.length)!))
+            
+            // Optimising for iOS 13 dark mode
+            attr?.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: (attr?.length)!))
+            
+            DispatchQueue.main.async {
+                // Set the attributed text
+                self.contentTextView.attributedText = attr
+            }
+            
+        }
+        
         // Update labels/textview with data
         let attrTitle = NSMutableAttributedString(string: post.title)
         // Find the [] and just make it like red or something
@@ -171,6 +266,9 @@ class ContentViewController: UIViewController {
             // Update textLabel with attributed text for colored square brackets
             self.titleLabel.attributedText = attrTitle
             
+            // Update the page title
+            UIApplication.shared.connectedScenes.first?.title = self.post.title
+            
             // Update dateLabel with formatted date
             self.dateLabel.text = "Posted on \(dateFormatter.string(from: self.post.date))"
             
@@ -178,98 +276,55 @@ class ContentViewController: UIViewController {
             self.labelsCollectionView.reloadData()
         }
         
-        // Render HTML from String
-        // Handle WebKit requirements by showing an error
-        if post.content.contains("webkitallowfullscreen=\"true\"") {
-            DispatchQueue.main.async {
-                let alert = UIAlertController(title: ErrorMessages.postRequiresWebKit.title,
-                                              message: ErrorMessages.postRequiresWebKit.description,
-                                              preferredStyle: .alert)
-                
-                // Open post in safari, post requires webkit
-                alert.addAction(UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
-                    self.openPostInSafari(UILabel())
-                }))
-                
-                // Close post
-                alert.addAction(UIAlertAction(title: "Close Post", style: .cancel, handler: { (_) in
-                    // Handling dismissing from Navigation Controller
-                    self.navigationController?.popViewController(animated: true)
-                    
-                    // Handling dismissing from Peek and Pop
-                    self.dismiss(animated: true)
-                }))
-                
-                // Present alert
-                self.present(alert, animated: true)
-            }
-            
-        } else {
-            // Getting HTML content
-            let content = post.content
-            
-            // Converting HTML content to NSAttributedString
-            let attr = content.htmlToAttributedString
-            
-            // Adding font and background color that support dark mode
-            attr?.addAttribute(.font, value: UIFont.systemFont(ofSize: currentScale, weight: .medium), range: NSRange.init(location: 0, length: (attr?.length)!))
-            attr?.addAttribute(.backgroundColor, value: UIColor.clear, range: NSRange(location: 0, length: (attr?.length)!))
-            
-            // Optimising for iOS 13 dark mode
-            attr?.addAttribute(.foregroundColor, value: UIColor.label, range: NSRange(location: 0, length: (attr?.length)!))
-            
-            // Set the attributed text
-            contentTextView.attributedText = attr
-        }
-        
         // Check if item is pinned
         // Update the button to show
         //If is in pinnned
         let pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
         
-        // Fill/Don't fill pin
-        if pinnedItems.contains(post) {
-            // Set the isPinned variable
-            isPinned = true
+        DispatchQueue.main.async {
+            // Fill/Don't fill pin
+            if pinnedItems.contains(self.post) {
+                // Set the isPinned variable
+                self.isPinned = true
+                
+                // Updating the pinButton image to unpin
+                self.pinButton.setImage(Assets.unpin, for: .normal)
+            } else {
+                // Set the isPinned variable
+                self.isPinned = false
+                
+                // Updating the pinButton image to pin
+                self.pinButton.setImage(Assets.pin, for: .normal)
+            }
             
-            // Updating the pinButton image to unpin
-            pinButton.setImage(Assets.unpin, for: .normal)
-        } else {
-            // Set the isPinned variable
-            isPinned = false
+            // Set textField delegate
+            self.contentTextView.delegate = self
             
-            // Updating the pinButton image to pin
-            pinButton.setImage(Assets.pin, for: .normal)
+            // Hide the labels if there are none
+            if self.post.categories.count == 0 {
+                self.labelsView.isHidden = true
+                self.seperatorView.isHidden = true
+            } else {
+                self.labelsView.isHidden = false
+            }
+            
+            // Styling default font size button
+            // Create a button of corner radius 20
+            self.defaultFontSizeButton.layer.cornerRadius = 20
+            self.defaultFontSizeButton.clipsToBounds = true
+            
+            // Hide the button until needed
+            self.defaultFontSizeButton.isHidden = true
+            
+            // Setting corner radii for the scrollSelection buttons to allow for the circular highlight
+            self.safariButton.layer.cornerRadius = 25 / 2
+            self.shareButton.layer.cornerRadius = 25 / 2
+            self.pinButton.layer.cornerRadius = 25 / 2
+            
+            // Hide links view while loading links
+            self.linksView.isHidden = true
+
         }
-        
-        // Set textField delegate
-        contentTextView.delegate = self
-        
-        // Hide the labels if there are none
-        if post.categories.count == 0 {
-            labelsView.isHidden = true
-            seperatorView.isHidden = true
-        } else {
-            labelsView.isHidden = false
-        }
-        
-        // Styling default font size button
-        // Create a button of corner radius 20
-        defaultFontSizeButton.layer.cornerRadius = 20
-        defaultFontSizeButton.clipsToBounds = true
-        
-        // Hide the button until needed
-        defaultFontSizeButton.isHidden = true
-        
-        // Setting corner radii for the scrollSelection buttons to allow for the circular highlight
-        safariButton.layer.cornerRadius = 25 / 2
-        backButton.layer.cornerRadius = 25 / 2
-        shareButton.layer.cornerRadius = 25 / 2
-        pinButton.layer.cornerRadius = 25 / 2
-        
-        // Hide links view while loading links
-        linksView.isHidden = true
-        
         // Load in links asyncronously as it takes a while to generate images etc. for images
         DispatchQueue.global(qos: .utility).async {
             self.links = []
@@ -323,8 +378,20 @@ class ContentViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        // Hide linksAndLabelStackView if in landscape; show if in portrait
-        linksAndLabelStackView.isHidden = UIDevice.current.orientation.isLandscape && UIDevice.current.userInterfaceIdiom == .phone
+        if I.phone {
+            // Hide linksAndLabelStackView if in landscape; show if in portrait
+            linksAndLabelStackView.isHidden = UIDevice.current.orientation.isLandscape && I.phone
+        } else {
+            if loadingContentButton != nil {
+                fullScreen.toggle()
+                loadingContentButton.isHidden = fullScreen
+            }
+            
+        }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return isDark ? .lightContent : .default
     }
     
     @IBAction func sharePost(_ sender: Any) {
@@ -337,17 +404,30 @@ class ContentViewController: UIViewController {
         
         // Remove unneeded actions
         shareViewController.excludedActivityTypes = [.saveToCameraRoll]
-        
-        // Setting the source view
-        shareViewController.popoverPresentationController?.sourceView = self.view
-        
+
         // Present share sheet
         self.present(shareViewController, animated: true, completion: nil)
     }
     
+    @IBAction func hardToSeeButtonPressed(_ sender: Any) {
+        if self.hardToSeeButton.title(for: .normal) == "   Reset" {
+            self.overrideUserInterfaceStyle = .dark
+            self.hardToSeeButton.setTitle("   Hard to Read?", for: .normal)
+            self.hardToSeeButton.setImage(UIImage(systemName: "lightbulb"), for: .normal)
+        } else {
+            self.overrideUserInterfaceStyle = .light
+            self.hardToSeeButton.setTitle("   Reset", for: .normal)
+            self.hardToSeeButton.setImage(UIImage(systemName: "lightbulb.slash"), for: .normal)
+            
+        }
+        isDark.toggle()
+    }
+    
     // Go back to previous view controller
     @IBAction func dismiss(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        if I.phone {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func pinnedItem(_ sender: Any) {
@@ -428,15 +508,25 @@ class ContentViewController: UIViewController {
         onDismiss?()
     }
     
+    @IBAction func showSideBar(_ sender: Any) {
+        if #available(iOS 14.0, *) {
+            splitViewController?.show(.primary)
+        }
+    }
+    
     @IBAction func openPostInSafari(_ sender: Any) {
         // Getting shareURL from post
         let link = LinkFunctions.getShareURL(with: post)
         
-        // Creating SafariVC
-        let vc = SFSafariViewController(url: link)
-        
-        // Presenting SafariVC
-        present(vc, animated: true, completion: nil)
+        if I.mac {
+            UIApplication.shared.open(link)
+        } else {
+            // Creating SafariVC
+            let vc = SFSafariViewController(url: link)
+            
+            // Presenting SafariVC
+            present(vc, animated: true, completion: nil)
+        }
     }
     
     @IBAction func pinchedTextField(_ sender: UIPinchGestureRecognizer) {
@@ -472,6 +562,27 @@ class ContentViewController: UIViewController {
                 // Show defaultFontSizeButton
                 defaultFontSizeButton.isHidden = true
             }
+        }
+    }
+    
+    @objc func updateSize() {
+        
+        // Updating the current scale of the text
+        currentScale = UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue) == 0 ? GlobalIdentifier.defaultFontSize : CGFloat(UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue))
+        
+        // 
+        DispatchQueue.main.async {
+            // New font size and style
+            let font = UIFont.systemFont(ofSize: self.currentScale, weight: .medium)
+            
+            // Creating attributed text
+            let attr = NSMutableAttributedString(attributedString: self.contentTextView.attributedText)
+            
+            // Setting text color using NSAttributedString
+            attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
+            
+            // Setting attributedText on contentTextView
+            self.contentTextView.attributedText = attr
         }
     }
     

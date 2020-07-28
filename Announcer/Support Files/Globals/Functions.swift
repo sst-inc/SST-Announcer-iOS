@@ -85,9 +85,13 @@ struct Fetch {
                                               preferredStyle: .alert)
                 
                 // Try to reload and hopefully it works
-                alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
+                let tryAgain = UIAlertAction(title: "Try Again", style: .default, handler: { action in
                     vc.reload(UILabel())
-                }))
+                })
+                
+                alert.addAction(tryAgain)
+                
+                alert.preferredAction = tryAgain
                 
                 // Open the settings app
                 alert.addAction(UIAlertAction(title: "Open Settings", style: .default, handler: { action in
@@ -128,7 +132,10 @@ struct Fetch {
                 UserDefaults.standard.set(posts[0].title, forKey: UserDefaultsIdentifiers.recentsTitle.rawValue)
                 UserDefaults.standard.set(posts[0].content, forKey: UserDefaultsIdentifiers.recentsContent.rawValue)
                 
-                return (title: convertFromEntries(feed: (feed?.entries!)!).first!.title, content: convertFromEntries(feed: (feed?.entries!)!).first!.content.htmlToString)
+                let title = convertFromEntries(feed: (feed?.entries!)!).first!.title
+                let content = convertFromEntries(feed: (feed?.entries!)!).first!.content.htmlToAttributedString?.htmlToString
+                
+                return (title: title, content: content!)
             }
             
         default:
@@ -246,16 +253,23 @@ func launchPost(withTitle postTitle: String) {
     
     var announcementVC: AnnouncementsViewController!
     
-    if UIDevice.current.userInterfaceIdiom == .pad {
+    if I.wantToBeMac || I.mac {
         let splitVC = UIApplication.shared.windows.first?.rootViewController as! SplitViewController
         announcementVC = splitVC.announcementVC!
         
     } else {
         let navigationController = UIApplication.shared.windows.first?.rootViewController as! UINavigationController
         announcementVC = navigationController.topViewController as? AnnouncementsViewController
+        
     }
     
     if let post = post {
+        // Marking post as read
+        var readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
+        
+        readAnnouncements.append(post)
+        ReadAnnouncements.saveToFile(posts: readAnnouncements)
+        
         // Handles when post is found
         announcementVC.receivePost(with: post)
         
@@ -270,11 +284,15 @@ func launchPost(withTitle postTitle: String) {
                                       preferredStyle: .alert)
 
         // If user opens post in Safari, it will simply bring them to student blog home page
-        alert.addAction(UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
+        let openInSafari = UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
             let svc = SFSafariViewController(url: URL(string: GlobalLinks.blogURL)!)
             
             announcementVC.present(svc, animated: true)
-        }))
+        })
+        
+        alert.addAction(openInSafari)
+        
+        alert.preferredAction = openInSafari
         
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         
@@ -301,29 +319,32 @@ func continueFromCoreSpotlight(with userActivity: NSUserActivity) {
 }
 
 struct ScrollSelection {
-    static func setNormalState(for item: UIView) {
-        if let button = item as? UIButton {
-            button.layer.borderWidth = 0
-            button.layer.borderColor = GlobalColors.borderColor
-        } else if let searchBar = item as? UISearchBar {
-            searchBar.getTextField()?.layer.borderWidth = 0
-            searchBar.getTextField()?.layer.borderColor = GlobalColors.borderColor
+    static func setNormalState(for item: UIView? = nil, barButton: UIBarButtonItem? = nil) {
+        if let item = item {
+            if let button = item as? UIButton {
+                        button.layer.borderWidth = 0
+                        button.layer.borderColor = GlobalColors.borderColor
+                    } else if let searchBar = item as? UISearchBar {
+                        searchBar.alpha = 1
+                    }
+        } else {
+            barButton?.tintColor = GlobalColors.greyOne
         }
     }
     
-    static func setSelectedState(for item: UIView, withOffset offset: CGFloat, andConstant constant: CGFloat) {
+    static func setSelectedState(for item: UIView? = nil, barButton: UIBarButtonItem? = nil, withOffset offset: CGFloat, andConstant constant: CGFloat) {
         let multiplier = (offset * -1 - constant) / 100
         
-        if let button = item as? UIButton {
-            
-            button.layer.borderWidth = 25 * multiplier
-            button.layer.borderColor = GlobalColors.borderColor
-        } else if let searchBar = item as? UISearchBar {
-            searchBar.getTextField()?.layer.borderWidth = 40 * multiplier
-            searchBar.getTextField()?.clipsToBounds = false
-            searchBar.getTextField()?.superview?.clipsToBounds = false
-            searchBar.clipsToBounds = false
-            searchBar.getTextField()?.layer.borderColor = GlobalColors.borderColor
+        if let item = item {
+            if let button = item as? UIButton {
+                
+                button.layer.borderWidth = 25 * multiplier
+                button.layer.borderColor = GlobalColors.borderColor
+            } else if let searchBar = item as? UISearchBar {
+                searchBar.alpha = 1 - (multiplier * 2)
+            }
+        } else {
+            barButton?.tintColor = GlobalColors.greyOne.withAlphaComponent(1 - (multiplier * 2))
         }
     }
 }

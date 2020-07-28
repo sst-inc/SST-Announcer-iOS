@@ -9,6 +9,7 @@
 import UIKit
 import CoreSpotlight
 import MobileCoreServices
+import SwiftUI
 
 class AnnouncementsViewController: UIViewController {
     
@@ -30,11 +31,13 @@ class AnnouncementsViewController: UIViewController {
                         // Get first or selected cell
                         let cell = self.tableView(self.announcementTableView, cellForRowAt: self.selectedPath) as? AnnouncementTableViewCell
                         
+                        cell?.setSelected(true, animated: true)
+                        
                         // Set content of posts
                         splitVC.contentVC.post = cell?.post
                         
                         // Show contentVC
-                        splitVC.show(splitVC.contentVC, sender: nil)
+                        splitVC.showDetailViewController(splitVC.contentVC, sender: nil)
                     }
                 }
             }
@@ -76,17 +79,19 @@ class AnnouncementsViewController: UIViewController {
     /// Selected Path
     var selectedPath = IndexPath(row: 0, section: 0)
     
+    var feedback: FeedbackButton!
+    
+    @IBOutlet weak var timetableButton: UIBarButtonItem!
     @IBOutlet weak var announcementTableView: UITableView!
     @IBOutlet weak var searchField: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
-    @IBOutlet weak var reloadButton: UIButton!
+    @IBOutlet weak var reloadButton: UIBarButtonItem!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Hide navigation controller
         // Navigation controller is only used for segue animations
-        self.navigationController?.navigationBar.isHidden = true
         
         // Fetch Blog Posts
         DispatchQueue.global(qos: .background).async {
@@ -96,30 +101,77 @@ class AnnouncementsViewController: UIViewController {
         // Load Pinned Comments
         pinned = PinnedAnnouncements.loadFromFile() ?? []
         
-        // Setting the searhField's text field color
-        searchField.setTextField(color: GlobalColors.background)
-        
         // Corner radius for top buttons
         // This is for the scroll selection
         filterButton.layer.cornerRadius = 25 / 2
-        reloadButton.layer.cornerRadius = 27.5 / 2
+        reloadButton.tintColor = GlobalColors.greyOne
         
         // Pointer support
         // Add a circle when they hover over button
         if #available(iOS 13.4, *) {
             filterButton.addInteraction(UIPointerInteraction(delegate: self))
-            reloadButton.addInteraction(UIPointerInteraction(delegate: self))
         }
-    }
-    
-    // Handles changing from dark to light or vice-versa
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        searchField.setTextField(color: GlobalColors.background)
+        
+        // Adding drag and drop support for announcements
+        announcementTableView.dragInteractionEnabled = true
+        announcementTableView.dragDelegate = self
+        
+        // Timetable is only supported on iOS 14
+        if #available(iOS 14, macOS 11, *) {
+            
+        } else {
+            self.navigationItem.leftBarButtonItem = nil
+        }
+        
+        if I.mac {
+            view.backgroundColor = .clear
+            announcementTableView.backgroundColor = .clear
+        }
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.uturn.left")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.uturn.left")
+        
+        let feedback = FeedbackButton(frame: .zero)
+        
+        feedback.translatesAutoresizingMaskIntoConstraints = false
+
+        let feedbackConstraints = [NSLayoutConstraint(item: feedback,
+                                                      attribute: .trailing,
+                                                      relatedBy: .equal,
+                                                      toItem: view,
+                                                      attribute: .trailing,
+                                                      multiplier: 1,
+                                                      constant: -20),
+                                   NSLayoutConstraint(item: feedback,
+                                                      attribute: .bottom,
+                                                      relatedBy: .equal,
+                                                      toItem: view,
+                                                      attribute: .bottomMargin,
+                                                      multiplier: 1,
+                                                      constant: -20),
+                                   NSLayoutConstraint(item: feedback,
+                                                      attribute: .height,
+                                                      relatedBy: .equal,
+                                                      toItem: nil,
+                                                      attribute: .notAnAttribute,
+                                                      multiplier: 1,
+                                                      constant: 50)]
+        
+        feedback.parent = self
+        
+        view.addSubview(feedback)
+        view.addConstraints(feedbackConstraints)
+        
+        self.feedback = feedback
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        navigationController?.navigationBar.prefersLargeTitles = true
         reloadFilter()
     }
     
@@ -136,17 +188,24 @@ class AnnouncementsViewController: UIViewController {
     // Reload announcements
     @IBAction func reload(_ sender: Any) {
         self.posts = nil
-        loadingIndicator.startAnimating()
-        reloadButton.isHidden = true
+//        loadingIndicator.startAnimating()
+//        reloadButton.isHidden = true
         
         DispatchQueue.global(qos: .background).async {
             self.pinned = PinnedAnnouncements.loadFromFile() ?? []
             self.posts = Fetch.posts(with: self)
             DispatchQueue.main.async {
-                self.loadingIndicator.stopAnimating()
-                self.reloadButton.isHidden = false
+//                self.loadingIndicator.stopAnimating()
+//                self.reloadButton.isHidden = false
             }
         }
+    }
+    
+    @available(iOS 14, macOS 11, *)
+    @IBAction func openTimetable(_ sender: Any) {
+        let vc = Storyboards.timetable.instantiateInitialViewController() as! TTNavigationViewController
+        
+        present(vc, animated: true)
     }
     
     /// Receiving post from push notifications
@@ -207,7 +266,8 @@ class AnnouncementsViewController: UIViewController {
         
         /// `posts` converted to `CSSearchableItems`
         let items: [CSSearchableItem] = posts.map({ post in
-            let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeHTML as String)
+            let attributeSet =  CSSearchableItemAttributeSet(itemContentType: kUTTypeHTML as String)
+            
             
             /// Setting the title of the post
             attributeSet.title = post.title
@@ -216,7 +276,7 @@ class AnnouncementsViewController: UIViewController {
             attributeSet.keywords = post.categories
             
             /// Setting the content description so when the user previews the announcement through spotlight search, they can see the content description
-            attributeSet.contentDescription = post.content.condenseLinebreaks().htmlToString
+            attributeSet.contentDescription = post.content.condenseLinebreaks().htmlToAttributedString?.htmlToString
             
             // Creating the searchable item from the attributesSet
             let item = CSSearchableItem(uniqueIdentifier: "\(post.title)", domainIdentifier: Bundle.main.bundleIdentifier!, attributeSet: attributeSet)

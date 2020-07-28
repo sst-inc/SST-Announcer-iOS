@@ -13,6 +13,73 @@ import UIKit
 import BackgroundTasks
 import SafariServices
 
+/**
+Checking platform, this handles iOS 13 and 14.
+
+# Check if user is on MacOS
+```swift
+if I.mac {
+    // run code just for Mac
+}
+```
+
+# Check if user is on iPadOS
+```swift
+if I.wantToBeMac {
+    // run code just for iPad
+}
+```
+
+# Check if user is on iOS
+```swift
+if I.Phone {
+    // run code just for iPhone
+}
+```
+
+# Better way to crash
+Let's be real, this is the best way to terminate a program
+```swift
+I.wantToDie
+```
+*/
+struct I {
+    /// Check if device is a Mac
+    static let mac: Bool = {
+        if #available(iOS 14.0, *) {
+            return UIDevice.current.userInterfaceIdiom == .mac
+        } else {
+            #if targetEnvironment(macCatalyst)
+            return true
+            #else
+            return false
+            #endif
+        }
+    }()
+    
+    /// Check if device is an iPad
+    static let wantToBeMac: Bool = {
+        #if targetEnvironment(macCatalyst)
+        return false
+        #else
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return true
+        }
+        return false
+        #endif
+    }()
+    
+    /// Check if device is an iPhone
+    static let phone: Bool = {
+        UIDevice.current.userInterfaceIdiom == .phone
+    }()
+    
+    /// I want to die
+    static var wantToDie: Never {
+        fatalError()
+    }
+}
+
 struct GlobalLinks {
     /**
      Source URL for the Blog
@@ -63,10 +130,10 @@ struct GlobalColors {
     static let blueTint                 = UIColor.systemBlue
     
     /// Border Color for Scroll Selection
-    static let borderColor              = GlobalColors.blueTint.withAlphaComponent(0.3).cgColor
+    static let borderColor              = blueTint.withAlphaComponent(0.3).cgColor
     
     /// Background color for App
-    static let background               = UIColor(named: "Background")!
+    static let background               = UIColor.systemBackground
     
     /// First Grey Color
     static let greyOne                  = UIColor(named: "Grey 1")!
@@ -211,10 +278,73 @@ struct Assets {
     static let zoomIn                   = UIImage(systemName: "plus.magnifyingglass")!
     static let zoomOut                  = UIImage(systemName: "minus.magnifyingglass")!
     static let resetZoom                = UIImage(systemName: "1.magnifyingglass")!
+    
+    static let checkmark                = UIImage(systemName: "checkmark")!
+    static let cross                    = UIImage(systemName: "xmark")!
+    static let home                     = UIImage(systemName: "house")!
+    
+    static let subjectIcons = ["el"       : ["a.book.closed", "English"],                      // 􀫕
+                               "math"     : ["x.squareroot", "Math"],                          // 􀓪
+                               "s&w"      : ["sportscourt", "S&W"],                            // 􀝐
+                               "hum"      : ["person", "Humanities"],                          // 􀉩
+                               "sci"      : ["thermometer", "Science"],                        // 􀇬
+                               
+                               // Mother tongue
+                               "cl"       : ["globe", "Mother Tongue"],                        // 􀆪
+                               "ml"       : ["globe", "Mother Tongue"],                        // 􀆪
+                               "tl"       : ["globe", "Mother Tongue"],                        // 􀆪
+                               
+                               // Changemakers
+                               "cm(ict)"  : ["swift", "ICT"],                                  // 􀫊
+                               "cm(ps)"   : ["mic", "Presentation Skills"],                    // 􀊰
+                               "cm(admt)" : ["scribble", "ADMT"],                              // 􀓨
+                               "i&e"      : ["paperplane", "I&E"],                             // 􀈟
+                               "cm lesson": ["lightbulb", "Changemakers"],                     // 􀛭
+                               
+                               // Applied Subjects
+                               "comp"     : ["cpu", "Computing"],                              // 􀫥
+                               "elec"     : ["bolt.fill.batteryblock", "Electronics"],         // 􀫮
+                               "design"   : ["paintpalette", "Design Studies"],                // 􀝥
+                               "biotech"  : ["leaf", "Biotech"],                               // 􀥲
+                               
+                               // Humanities
+                               "ch(ge)"   : ["mappin.and.ellipse", "Geography"],               // 􀎫
+                               "ch(he)"   : ["clock", "History"],                              // 􀐫
+                               "ss"       : ["building.columns", "Social Studies"],            // 􀤨
+                               
+                               // Science
+                               "bio"      : ["hare", "Biology"],                               // 􀓎
+                               "phy"      : ["scalemass", "Physics"],                          // 􀭭
+                               "chem"     : ["atom", "Chemistry"],                             // 􀬚
+                               
+                               // Others
+                               "break"    : ["zzz", "Break"],                                  // 􀖃
+                               "adv/assb" : ["face.smiling", "adv/assb"],                      // 􀎸
+                               "cce"      : ["face.smiling", "CCE"],                           // 􀎸
+                               "other"    : ["studentdesk", "(null)"],                         // 􀑔
+                               
+                               // Special state icons
+                               "|weekend|": ["calendar", "It's \(Date().day())!"],             // 􀉉
+                               "|before|" : ["clock", "Starting Soon"],                        // 􀐫
+                               "|over|"   : ["Class Dismissed!", "house"]                      // 􀎞
+    ]
+    
+    // Subject icons
+    // Key: Subject Name, Item: image
+    // Some of the icons being used are only available on SF Symbols iOS 14/MacOS 11
+    @available(iOS 14, macOS 11, *)
+    static func getSubject(_ identifier: String, font: UIFont) -> (UIImage, String) {
+        let subject = subjectIcons[identifier] ?? subjectIcons["other"]!
+        let icon = UIImage(systemName: subject[0], withConfiguration: UIImage.SymbolConfiguration(font: font))!
+        
+        return (icon, subject[1])
+    }
 }
 
 struct Storyboards {
     static let main                     = UIStoryboard(name: "Main", bundle: .main)
     static let filter                   = UIStoryboard(name: "Filter", bundle: .main)
     static let content                  = UIStoryboard(name: "Content", bundle: .main)
+    static let timetable                = UIStoryboard(name: "Timetable", bundle: .main)
+
 }

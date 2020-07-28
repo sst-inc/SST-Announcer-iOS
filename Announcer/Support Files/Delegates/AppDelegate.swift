@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         #if DEBUG
         #else
         if GlobalLinks.blogURL != "http://studentsblog.sst.edu.sg" {
-            fatalError("incorrect URL")
+            I.wantToDie
         }
         #endif
         
@@ -104,6 +104,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Then run the code above in the debugger
     }
     
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        print(url)
+        print(options)
+        
+        
+        UIApplication.shared.windows.first?.rootViewController = Storyboards.timetable.instantiateInitialViewController()
+
+        return true
+    }
+    
     // MARK: UISceneSession Lifecycle
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -117,7 +127,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-    
     
     // Push the notification to the user
     func pushNotification(with postTitle: String, content postContent: String) {
@@ -143,7 +152,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
-        completionHandler([.alert, .badge, .sound])
+        if #available(iOS 14.0, *) {
+            completionHandler([.badge, .sound, .banner])
+        } else {
+            completionHandler([.badge, .sound, .alert])
+        }
     }
     
     // Calls when user opens app from a notification

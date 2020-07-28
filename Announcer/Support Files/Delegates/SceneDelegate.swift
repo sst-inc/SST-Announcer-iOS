@@ -20,9 +20,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        if UIDevice.current.userInterfaceIdiom != .phone {
+        if !I.phone {
             window?.rootViewController = Storyboards.main.instantiateViewController(withIdentifier: "master")
         }
+        
+        // Determine who sent the URL.
+        if let urlContext = connectionOptions.urlContexts.first {
+            
+            let sendingAppID = urlContext.options.sourceApplication
+            let url = urlContext.url
+            print("source application = \(sendingAppID ?? "Unknown")")
+            print("url = \(url)")
+                        
+            var announcementVC: AnnouncementsViewController!
+            
+            if let splitVC = window?.rootViewController as? SplitViewController {
+                announcementVC = splitVC.announcementVC
+            } else {
+                announcementVC = window?.rootViewController as? AnnouncementsViewController
+            }
+            
+            DispatchQueue.main.async {
+                if #available(iOS 14, *) {
+                    announcementVC.openTimetable(self)
+                }
+            }
+        }
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        let timetableVC = Storyboards.timetable.instantiateInitialViewController()
+        UIApplication.shared.windows.first?.rootViewController?.present(timetableVC!, animated: true, completion: nil)
         
     }
     
@@ -31,4 +59,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         continueFromCoreSpotlight(with: userActivity)
     }
 }
-

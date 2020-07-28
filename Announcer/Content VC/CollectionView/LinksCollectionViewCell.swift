@@ -80,9 +80,12 @@ class LinksCollectionViewCell: UICollectionViewCell {
         } else {
             // Hopefully getting a preview image
             if let img = defaultImage {
+                
+                // Check if there is an image, if so, just return that
                 return img
             } else {
-                // Getting Favicon from Domain
+                
+                // Getting Favicon from Domain, using Google's Favicon thing
                 let data = (try? Data(contentsOf: URL(string: "https://www.google.com/s2/favicons?domain=\(title)")!)) ?? Assets.defaultLinkIcon.pngData()!
                 
                 // If there are no images, just use a Link icon
@@ -93,4 +96,30 @@ class LinksCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    func loadView() {
+        let hover = UIHoverGestureRecognizer(target: self, action: #selector(hovered(sender:)))
+        
+        contentView.addGestureRecognizer(hover)
+    }
+    
+    @objc func hovered(sender: UIHoverGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            // When the hover begins
+            
+            
+            // Set the background color to show the highlight,
+            // mostly for dark mode users
+            contentView.backgroundColor = .systemGray4
+            
+        case .cancelled, .ended:
+            // When user stops hovering over feedback button
+            
+            // Resetting the background color, for dark mode users
+            contentView.backgroundColor = GlobalColors.greyTwo
+        default:
+            break
+        }
+
+    }
 }

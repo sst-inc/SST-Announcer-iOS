@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import SkeletonView
 
 class AnnouncementTableViewCell: UITableViewCell {
 
+    var htmlAttr: NSMutableAttributedString!
+    
     var post: Post! {
         // If the post value is changed, set these values to whatever is below in didSet
         didSet {
@@ -40,7 +43,10 @@ class AnnouncementTableViewCell: UITableViewCell {
                     
                     // Convert html to string, this is the slowest part in the process
                     // Main drawback is that if there are images involved, it has to get those images from the links
-                    let previewText = self.post.content.htmlToString
+                    
+                    self.htmlAttr = self.post.content.htmlToAttributedString
+                    
+                    let previewText = self.htmlAttr.htmlToString
                     
                     // Set contentLabel's content on main thread
                     DispatchQueue.main.async {
@@ -60,7 +66,11 @@ class AnnouncementTableViewCell: UITableViewCell {
             handlePinAndRead()
             
             // Set tableViewCell background color
-            backgroundColor = GlobalColors.background
+            if I.mac {
+                backgroundColor = .clear
+            } else {
+                backgroundColor = GlobalColors.background
+            }
             
             // Set attributes of title label
             // [Square Brackets] all red to highlight things like [Sec 2 students] etc.
@@ -73,7 +83,7 @@ class AnnouncementTableViewCell: UITableViewCell {
     }
     var highlightPost = false {
         didSet {
-            if UIDevice.current.userInterfaceIdiom == .pad {
+            if I.wantToBeMac {
                 if highlightPost {
                     contentView.backgroundColor = GlobalColors.tableViewSelection
                 } else {
@@ -91,10 +101,16 @@ class AnnouncementTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
         let hover = UIHoverGestureRecognizer()
         hover.addTarget(self, action: #selector(hovered(_:)))
         
         contentView.addGestureRecognizer(hover)
+        
+        // Set up SkeletonView
+        announcementTitleLabel.isSkeletonable = true
+        announcementContentLabel.isSkeletonable = true
+        announcementDateLabel.isSkeletonable = true
     }
     
     // Color the brackets []
@@ -133,25 +149,20 @@ class AnnouncementTableViewCell: UITableViewCell {
         announcementTitleLabel.attributedText = attrTitle
     }
     
-    // Using the KALoader for loading animations
+    // Using the SkeletonView loading animations
     // Similar to YouTube
     // Set text as " " so as to maintain proper constraints
     func startLoader() {
-        announcementTitleLabel.showLoader()
-        announcementTitleLabel.text = " "
-        
-        announcementContentLabel.showLoader()
-        announcementContentLabel.text = " "
-        
-        announcementDateLabel.showLoader()
-        announcementDateLabel.text = " "
+        announcementTitleLabel.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        announcementContentLabel.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        announcementDateLabel.showAnimatedSkeleton(transition: .crossDissolve(0.25))
     }
     
     // Hide all loaders when content is present for user
     func endLoader() {
-        announcementTitleLabel.hideLoader()
-        announcementContentLabel.hideLoader()
-        announcementDateLabel.hideLoader()
+        announcementTitleLabel.hideSkeleton(transition: .crossDissolve(0.25))
+        announcementContentLabel.hideSkeleton(transition: .crossDissolve(0.25))
+        announcementDateLabel.hideSkeleton(transition: .crossDissolve(0.25))
     }
     
     func handlePinAndRead() {
@@ -182,7 +193,6 @@ class AnnouncementTableViewCell: UITableViewCell {
             announcementImageView.image = Assets.unread
             announcementImageView.tintColor = .systemBlue
         }
-        
     }
     
     // Highlights the cell when hovered
@@ -191,13 +201,20 @@ class AnnouncementTableViewCell: UITableViewCell {
         case .began, .changed:
             
             // User is hovering over post
+            #if targetEnvironment(macCatalyst)
+            contentView.backgroundColor = GlobalColors.greyTwo
+            #else
             contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelectionHover : GlobalColors.greyThree
-        case .ended:
+            #endif
             
-            // User stopped hovering over post
-            contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelection : GlobalColors.background
         default:
-            break
+            // User stopped hovering over post
+            #if targetEnvironment(macCatalyst)
+            contentView.backgroundColor = .clear
+            #else
+            contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelection : GlobalColors.background
+            #endif
+
         }
     }
 }

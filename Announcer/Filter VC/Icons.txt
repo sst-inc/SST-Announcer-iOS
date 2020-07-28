@@ -1,0 +1,33 @@
+anniversary,birthday,celebration,open house|greetingcard
+announcement|megaphone
+timetable|tablecells
+total defence day,tdd,congress,national|building.columns
+walk,obs,oee,s&w,outdoor,sport,wellness,game,ihg,icg|sportscourt
+attire,grooming|figure.walk
+astronomy,aogs,science,astro|moon.stars
+mtl,chinese,malay|translate
+sst inc,inc,icttdp,ict tdp|inc
+noi,hackathon,code,ict|chevron.left.slash.chevron.right
+temp,thermometer|thermometer
+parents,parental,spm,talk|bubble.left.and.bubble.right
+money,financial,finance|dollarsign.circle
+gcp,ole,overseas,travel,journey|airplane
+ace,leadership,investiture|person
+career,ecg,course,skill|briefcase
+day,event,exhibition,month,hour|calendar
+email,mail,gmail,letter.|envelope
+recycle,green,environment|arrow.3.trianglepath
+sstuino,stem,online,it,cwsap,digital|cpu
+geography,geog,earth,world|globe
+innofest,sunburst,entrepreneur,changemakers,innovation,i&e|lightbulb
+home,hbl,house|house
+health,vaccination|cross.case
+vote,election|rectangle.and.pencil.and.ellipsis
+exam,revision,examination,olevel,assessment|highlighter
+infohub,discussion,disussion,info hub,book,read,ssp|books.vertical
+appreciation,audition,service,cca,tdp|face.smiling
+award|rosette
+design,maker,makeathon|scribble
+groups,friend,kindness|person.3
+quiz,survey|questionmark
+recruitment,registration|hand.wave

@@ -48,11 +48,17 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
                                         discoverabilityTitle: nil,
                                         attributes: [],
                                         state: .off) { (_) in
-                                            // Copy link
-                                            
-                                            // Add cell's URL to pasteboard as a url
-                                            // This will make it easier for the user when they want to paste it into Safari or open it from spotlight search prompt
-                                            UIPasteboard.general.url = link
+                    // Copy link
+                    
+                    // Add cell's URL to pasteboard as a url
+                    // This will make it easier for the user when they want to paste it into Safari or open it from spotlight search prompt
+                    if I.mac {
+                        // MacOS does not copy URLs too well, so copy string for Macs
+                        UIPasteboard.general.string = link.absoluteString
+                    } else {
+                        // Copy as URL
+                        UIPasteboard.general.url = link
+                    }                        
                 }
                 
                 // Sharing the link
@@ -63,7 +69,7 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
                                      attributes: [],
                                      state: .off) { (_) in
                                         // Create Activity View Controller (Share screen)
-                                        let shareViewController = UIActivityViewController.init(activityItems: [URL(string: cell.link.link)!], applicationActivities: nil)
+                                        let shareViewController = UIActivityViewController(activityItems: [URL(string: cell.link.link)!], applicationActivities: nil)
                                         
                                         // Remove unneeded actions
                                         // You do not need to save a link to camera roll - i think

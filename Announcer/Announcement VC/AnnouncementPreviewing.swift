@@ -64,15 +64,13 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                  discoverabilityTitle: nil,
                                  attributes: [],
                                  state: .off) { (_) in
-                                    //Create Activity View Controller (Share screen)
-                                    let shareViewController = UIActivityViewController.init(activityItems: [LinkFunctions.getShareURL(with: cell.post)], applicationActivities: nil)
-                                    
-                                    //Remove unneeded actions
-                                    shareViewController.excludedActivityTypes = [.saveToCameraRoll, .addToReadingList]
-                                    
-                                    //Present share sheet
-                                    shareViewController.popoverPresentationController?.sourceView = cell
-                                    self.present(shareViewController, animated: true, completion: nil)
+                // Create Activity View Controller (Share screen)
+                let shareViewController = UIActivityViewController.init(activityItems: [LinkFunctions.getShareURL(with: cell.post)], applicationActivities: nil)
+                
+                // Remove unneeded actions
+                shareViewController.excludedActivityTypes = [.saveToCameraRoll, .addToReadingList]
+                
+                self.present(shareViewController, animated: true, completion: nil)
             }
             
             let open = UIAction(title: "Open Announcement",
@@ -100,7 +98,15 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
                                             if self.splitViewController != nil {
                                                 return nil
                                             }
-                                            return self.getContentViewController(with: cell.post)
+                                            
+                                            // Getting contentVC from post
+                                            let contentVC = self.getContentViewController(with: cell.post)
+                                            
+                                            // Setting attributedContent in the contentVC
+                                            contentVC.attributedContent = cell.htmlAttr
+                                            
+                                            // Return the contentVC
+                                            return contentVC
         },
                                           actionProvider: actionProvider)
         
@@ -130,6 +136,9 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
             // Setting the post in the contentVC
             splitVC.contentVC.post = cell.post
             
+            // Setting html attributed string
+            splitVC.contentVC.attributedContent = cell.htmlAttr
+            
             // Highlight the selected post
             cell.highlightPost = true
             
@@ -157,7 +166,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
     // Getting contentVC from post
     func getContentViewController(with post: Post) -> ContentViewController {
         guard let contentVC = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
-            fatalError()
+            I.wantToDie
         }
         
         // Set the post in contentVC
@@ -186,7 +195,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
         
         // Getting contentVC
         guard let contentVC = Storyboards.content.instantiateInitialViewController() as? ContentViewController else {
-            fatalError()
+            I.wantToDie
         }
         
         /// The post is the `selectedItem` in this case

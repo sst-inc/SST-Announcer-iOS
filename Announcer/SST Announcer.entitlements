@@ -6,6 +6,12 @@
 	<string>development</string>
 	<key>com.apple.security.app-sandbox</key>
 	<true/>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.CY-ECE48EEA-05BB-11E8-B453-60F81DB48A22.com.cydia.Extender</string>
+		<string>group.SST-singapore.Timetables</string>
+		<string>group.Announcer</string>
+	</array>
 	<key>com.apple.security.network.client</key>
 	<true/>
 	<key>com.apple.security.network.server</key>

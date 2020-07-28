@@ -15,11 +15,17 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
     // Setting the number of items in the collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == labelsCollectionView {
-            // Getting the number of items, aka the number of categories in the post
-            let numberOfItems = post.categories.count
             
-            // Return the number of categories in the post
-            return numberOfItems
+            if post == nil {
+                return 0
+            } else {
+                // Getting the number of items, aka the number of categories in the post
+                let numberOfItems = post.categories.count
+                
+                // Return the number of categories in the post
+                return numberOfItems
+            }
+            
         } else {
             // Handling linksCollectionView
             
@@ -51,6 +57,9 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
                 cell.addInteraction(UIPointerInteraction(delegate: self))
             }
             
+            /// - Hover interactions for MacOS
+            cell.loadView()
+            
             /// - Preview with context menu
             ///       Press & Hold or use 3D touch to open up context menu
             ///       Also works with pointer's secondary (right) click
@@ -69,6 +78,8 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             // Setting up links
             cell.link = links[indexPath.row]
+            
+            cell.loadView()
             
             // Setting Cell Corner Radius
             cell.layer.cornerRadius = 5
@@ -112,15 +123,18 @@ extension ContentViewController: UICollectionViewDelegate, UICollectionViewDataS
             let scheme = url.scheme
             
             // Only use safari view controller when scheme is http or https
-            if scheme == "https" || scheme == "http" {
+            if (scheme == "https" || scheme == "http") && !I.mac {
+                // Launch Safari View Controller
+                // Only when user is on iPhone/iPad
+                
                 // Create safari view controller
                 let svc = SFSafariViewController(url: url)
                 
                 // Present safari vc
                 present(svc, animated: true)
             } else {
-                // This does not seem to work on simulator with mailto schemes
-                // test on actual device
+                // Handle if scheme is not HTTP or HTTPS
+                // Handle if user is using a Mac, Safari Services does not work well on MacOS
                 UIApplication.shared.open(url)
             }
         }

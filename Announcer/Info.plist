@@ -30,7 +30,16 @@
 				<string>App-Prefs</string>
 			</array>
 		</dict>
-		<dict/>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>sg.edu.sst.panziyue.Announcer</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>sstannouncer</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
@@ -43,6 +52,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save images from posts to device</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>sg.edu.sst.panziyue.Announcer.content</string>
@@ -89,6 +100,8 @@
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 </dict>
 </plist>

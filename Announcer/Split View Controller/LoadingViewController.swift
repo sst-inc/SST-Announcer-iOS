@@ -49,6 +49,9 @@ class LoadingViewController: UIViewController {
                                                 constant: 0)
         ])
         
+        // Hide navigation
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
         // Add as a subview
         view.addSubview(loadingIndicator)
         

@@ -133,9 +133,29 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             } else {
                 if pinned.count != 0 && indexPath.section == 0 {
                     // Pinned items
-                    cell.post = pinned[indexPath.row]
+                    if pinned.count > indexPath.row {
+                        cell.post = pinned[indexPath.row]
+                    } else {
+                        cell.post = Post(title: "Loading...",
+                                         content: "Loading...",
+                                         date: Date(),
+                                         pinned: true,
+                                         read: true,
+                                         reminderDate: nil,
+                                         categories: [])
+                    }
                 } else if posts.count != 0  {
-                    cell.post = posts[indexPath.row]
+                    if posts.count > indexPath.row {
+                        cell.post = posts[indexPath.row]
+                    } else {
+                        cell.post = Post(title: "Loading...",
+                                         content: "Loading...",
+                                         date: Date(),
+                                         pinned: true,
+                                         read: true,
+                                         reminderDate: nil,
+                                         categories: [])
+                    }
                 }
             }
             
@@ -176,8 +196,10 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         // Otherwise, it is whatever cell is previously highlighted
         cell.highlightPost = indexPath == selectedPath
         
-        // Deselect the row so as to avoid weird animation issues
-        tableView.deselectRow(at: indexPath, animated: false)
+        if I.phone {
+            // Deselect the row so as to avoid weird animation issues
+            tableView.deselectRow(at: indexPath, animated: false)
+        }
         
         // Appending posts to read posts
         // - Getting read announcements from file
@@ -191,8 +213,14 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         
         // Updating and going to contentVC
         if let splitVC = splitViewController as? SplitViewController {
+            // Get contentVC from splitVC
+            let contentVC = splitVC.contentVC
+            
             // Getting the post from cell and setting it in the ContentVC
-            splitVC.contentVC.post = cell.post
+            contentVC.post = cell.post
+            
+            // Getting the attributedContent from the cell and set it in contentVC
+            contentVC.attributedContent = cell.htmlAttr
             
             // Unhighlight previous cell
             if let previousCell = tableView.cellForRow(at: selectedPath) as? AnnouncementTableViewCell {
@@ -208,7 +236,11 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             // Update the Cell's UI based on whether it is read or unread
             cell.handlePinAndRead()
         } else {
+            // Get contentVC
             let contentVC = getContentViewController(for: indexPath)
+            
+            // Getting the attributedContent from the cell and set it in contentVC
+            contentVC.attributedContent = cell.htmlAttr
             
             // Present contentVC via navigation controller
             navigationController?.pushViewController(contentVC, animated: true)
@@ -305,20 +337,39 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     
     // MARK: ScrollView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if UIDevice.current.userInterfaceIdiom == .pad {
+        if I.wantToBeMac || I.mac {
             // Dismiss keyboard at for iPads because they do not auto dismiss
             view.endEditing(true)
         }
         
-        #if targetEnvironment(macCatalyst)
-        #else
-        if !searchField.isFirstResponder && !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
+        // Opening and closing feedback reporting button
+        if scrollView.contentOffset.y > 25 {
+            feedback.close()
+        } else {
+            feedback.open()
+        }
+        
+//        if scrollView.contentOffset.y > 5 {
+//            UIView.animate(withDuration: 0.5) {
+//                self.searchHeightConstraint.constant = 0
+//                self.searchStackView.translatesAutoresizingMaskIntoConstraints = false
+//            }
+//            
+//        } else {
+//            UIView.animate(withDuration: 0.5) {
+//                self.searchHeightConstraint.constant = 56
+//                self.searchStackView.translatesAutoresizingMaskIntoConstraints = false
+//            }
+//            
+//        }
+        
+        if !searchField.isFirstResponder && !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) && !I.mac {
             if scrollView.contentOffset.y <= -3 * scrollSelectionMultiplier {
                 
                 ScrollSelection.setNormalState(for: filterButton)
                 ScrollSelection.setNormalState(for: searchField)
                 
-                ScrollSelection.setSelectedState(for: reloadButton,
+                ScrollSelection.setSelectedState(barButton: reloadButton!,
                                                  withOffset: scrollView.contentOffset.y,
                                                  andConstant: 3 * scrollSelectionMultiplier)
                 
@@ -329,7 +380,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 playedHaptic = 1
             } else if scrollView.contentOffset.y <= -2 * scrollSelectionMultiplier {
                 ScrollSelection.setNormalState(for: searchField)
-                ScrollSelection.setNormalState(for: reloadButton)
+                ScrollSelection.setNormalState(barButton: reloadButton)
                 
                 ScrollSelection.setSelectedState(for: filterButton,
                                                  withOffset: scrollView.contentOffset.y,
@@ -344,7 +395,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             } else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
                 
                 ScrollSelection.setNormalState(for: filterButton)
-                ScrollSelection.setNormalState(for: reloadButton)
+                ScrollSelection.setNormalState(barButton: reloadButton)
                 
                 ScrollSelection.setSelectedState(for: searchField,
                                                  withOffset: scrollView.contentOffset.y,
@@ -361,7 +412,6 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 playedHaptic = 0
             }
         }
-        #endif
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -379,7 +429,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     sortWithLabels(UILabel())
                     
                 } else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
-                    if UIDevice.current.userInterfaceIdiom == .pad {
+                    if I.wantToBeMac || I.mac {
                         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_) in
                             // Select search field
                             self.searchField.becomeFirstResponder()
@@ -397,7 +447,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 }
                 
                 filterButton.tintColor = GlobalColors.greyOne
-                searchField.setTextField(color: GlobalColors.background)
+                searchField.alpha = 1
                 reloadButton.tintColor = GlobalColors.greyOne
                 
                 resetScroll()
@@ -408,6 +458,6 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     func resetScroll() {
         filterButton.layer.borderWidth = 0
         searchField.getTextField()?.layer.borderWidth = 0
-        reloadButton.layer.borderWidth = 0
+        reloadButton.tintColor = GlobalColors.greyOne
     }
 }

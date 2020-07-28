@@ -11,7 +11,7 @@ import UIKit
 class SplitViewController: UISplitViewController {
 
     // Getting contentVC from storyboards
-    let contentVC = Storyboards.content.instantiateInitialViewController() as! ContentViewController
+    var contentVC = Storyboards.content.instantiateInitialViewController() as! ContentViewController
     
     // announcementVC is set through viewDidLoad
     var announcementVC: AnnouncementsViewController!
@@ -27,10 +27,10 @@ class SplitViewController: UISplitViewController {
         
         // Show loading vc
         // Loading VC will be replaced by contentVC when the data has finished loading in AnnouncementVC
-        show(LoadingViewController(), sender: nil)
+        self.showDetailViewController(LoadingViewController(), sender: nil)
         
         // Setting the display mode to be automatic
-        self.preferredDisplayMode = .automatic
+        self.preferredDisplayMode = .oneBesideSecondary
         
         // Set background style as sidebar
         self.primaryBackgroundStyle = .sidebar
@@ -86,7 +86,7 @@ class SplitViewController: UISplitViewController {
         // Open announcement in Safari using Cmd Shift S
         let safari = UIKeyCommand(title: "Open in Safari",
                                   image: Assets.safari,
-                                  action: #selector(pinPost),
+                                  action: #selector(openSafari),
                                   input: "s",
                                   modifierFlags: [.command, .shift],
                                   discoverabilityTitle: "Open in Safari",
@@ -105,17 +105,11 @@ class SplitViewController: UISplitViewController {
         let downArrow = UIKeyCommand(input: UIKeyCommand.inputDownArrow,
                                      modifierFlags: [],
                                      action: #selector(nextPost))
-        let rightArrow = UIKeyCommand(input: UIKeyCommand.inputRightArrow,
-                                      modifierFlags: [],
-                                      action: #selector(nextPost))
         
         // Go to Previous Post
         let upArrow = UIKeyCommand(input: UIKeyCommand.inputUpArrow,
                                    modifierFlags: [],
                                    action: #selector(previousPost))
-        let leftArrow = UIKeyCommand(input: UIKeyCommand.inputLeftArrow,
-                                     modifierFlags: [],
-                                     action: #selector(previousPost))
 
         // Zooming Post
         let zoomIn = UIKeyCommand(title: "Zoom In",
@@ -145,7 +139,7 @@ class SplitViewController: UISplitViewController {
         return [settings, search, filter, reload,
                 share, safari, pin,
                 zoomIn, zoomOut, resetZoom,
-                downArrow, upArrow, rightArrow, leftArrow]
+                downArrow, upArrow]
     }
 
     // Selecting search bar
@@ -180,6 +174,13 @@ class SplitViewController: UISplitViewController {
         // Get contentVC and call the pinPost @IBAction function
         /// Set the sender to `SplitViewController`, aka `self`
         contentVC.pinnedItem(self)
+    }
+    
+    // Pin post
+    @objc func openSafari() {
+        // Get contentVC and call the safari @IBAction function
+        /// Set the sender to `SplitViewController`, aka `self`
+        contentVC.openPostInSafari(self)
     }
     
     // Reset zoom
@@ -353,5 +354,4 @@ class SplitViewController: UISplitViewController {
         // Open settings url (in the Settings app)
         UIApplication.shared.open(URL(string: settings)!)
     }
-
 }

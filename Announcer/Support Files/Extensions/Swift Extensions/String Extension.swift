@@ -13,7 +13,8 @@ extension String {
     var htmlToAttributedString: NSMutableAttributedString? {
         do {
             let attributedString = try NSMutableAttributedString(data: Data(utf8),
-                                                                 options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: 4],
+                                                                 options: [.documentType: NSAttributedString.DocumentType.html,
+                                                                           .characterEncoding: 4], // UTF-8 encoding
                                                                  documentAttributes: nil)
             
             attributedString.append(NSAttributedString(string: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"))
@@ -22,15 +23,6 @@ extension String {
             print("error: ", error.localizedDescription)
             return NSMutableAttributedString(string: "error: " + error.localizedDescription)
         }
-    }
-    
-    var htmlToString: String {
-        // MacOS Catalyst does not work properly
-        #if targetEnvironment(macCatalyst)
-            return "Unable to display preview on Mac"
-        #else
-            return (htmlToAttributedString ?? NSAttributedString(string: "")).string.condenseLinebreaks()
-        #endif
     }
     
     func indicesOf(string: String) -> [Int] {
@@ -93,5 +85,11 @@ extension String {
             return self
         }
         
+    }
+}
+
+extension NSMutableAttributedString {
+    var htmlToString: String {
+        return string.condenseLinebreaks()
     }
 }
