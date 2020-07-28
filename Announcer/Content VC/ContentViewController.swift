@@ -166,10 +166,8 @@ class ContentViewController: UIViewController {
                                                name: UserDefaults.didChangeNotification,
                                                object: nil)
         
-        if !I.phone {
-            loadingContentButton.isHidden = true
-        }
         
+        loadingContentButton.isHidden = true
     }
     
     func updateContent() {
@@ -382,9 +380,12 @@ class ContentViewController: UIViewController {
             // Hide linksAndLabelStackView if in landscape; show if in portrait
             linksAndLabelStackView.isHidden = UIDevice.current.orientation.isLandscape && I.phone
         } else {
+            
             if loadingContentButton != nil {
-                fullScreen.toggle()
+                
+                fullScreen = !(UIApplication.shared.windows.first?.frame.size == size)
                 loadingContentButton.isHidden = fullScreen
+                
             }
             
         }

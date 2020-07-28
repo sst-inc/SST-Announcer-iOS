@@ -23,8 +23,15 @@
 <details>
 <summary><strong>Beta 1</strong></summary>
 
+- Xcode and iOS Beta 3 does not support WidgetKit yet.
+
 ### Known Issues
-- When setting timetable, it always defaults to S4-07
+#### Investigating
+- When setting timetable, it always defaults to S4-07 [MacOS, iOS, iPadOS]
+
+#### Resolved Issues
+- Back button shows and disappears non-stop when resizing window [MacOS]
+- Back button is now properly hidden [iOS]
 
 </details>
 
