@@ -20,6 +20,14 @@
 <details>
 <summary><strong>11.2 </strong></summary>
 
+<details>
+<summary><strong>Beta 1</strong></summary>
+
+### Known Issues
+- When setting timetable, it always defaults to S4-07
+
+</details>
+
 ![Pre-Release](https://img.shields.io/badge/Pre--Release-yellow.svg?style=flat)
 ### Bug Fixes
 - Fixed encoding errors which caused inverted commas and other symbols to be encoded as a bunch of strange symbols
@@ -82,7 +90,6 @@
 *Requires iOS 14, iPadOS 14 or MacOS Big Sur
 
 **Requires iOS 13.4, iPadOS 13.4 or MacOS Big Sur
-
 </details>
 
 <details>

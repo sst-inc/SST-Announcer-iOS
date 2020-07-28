@@ -28,24 +28,24 @@ class TTGetStartedViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         doneButton.layer.cornerRadius = 10
         
-        for i in 0...timeOfAlerts.count - 1 {
-            let optionView =  formStackView.arrangedSubviews[i + 7]
-            let imageView = optionView.subviews.first as! UIImageView
-            
-            imageView.image = UIImage(systemName: "circle")
-            
-            optionView.tag = i
-            
-            // Adding a gesture recognizer
-            let gestureRecognizer = UITapGestureRecognizer()
-            
-            // Adding the target to handle tap on the options
-            gestureRecognizer.addTarget(self, action: #selector(tappedOnOptions(sender:)))
-            
-            // Adding the gesture recognizer
-            optionView.addGestureRecognizer(gestureRecognizer)
-        }
-        
+//        for i in 0...timeOfAlerts.count - 1 {
+//            let optionView =  formStackView.arrangedSubviews[i + 7]
+//            let imageView = optionView.subviews.first as! UIImageView
+//            
+//            imageView.image = UIImage(systemName: "circle")
+//            
+//            optionView.tag = i
+//            
+//            // Adding a gesture recognizer
+//            let gestureRecognizer = UITapGestureRecognizer()
+//            
+//            // Adding the target to handle tap on the options
+//            gestureRecognizer.addTarget(self, action: #selector(tappedOnOptions(sender:)))
+//            
+//            // Adding the gesture recognizer
+//            optionView.addGestureRecognizer(gestureRecognizer)
+//        }
+//        
     }
     
     override func viewDidAppear(_ animated: Bool) {

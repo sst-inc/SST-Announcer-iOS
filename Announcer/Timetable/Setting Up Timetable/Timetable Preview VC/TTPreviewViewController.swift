@@ -166,13 +166,50 @@ class TTPreviewViewController: UIViewController {
             self.timetableImage = image
             
             DispatchQueue.main.async {
-                self.timetableImageView.image = image
+                self.timetableImageView.image = self.timetableImage
             }
         }
         
         request.recognitionLevel = recognitionLevel
 
         try? requestHandler.perform([request])
+    }
+    
+    @IBAction func doneButtonPressed(_ sender: Any) {
+        // Byee
+        Timetable(class: "S4-07",
+                  timetableImage: Data(),
+                  monday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
+                           Lesson(identifier: "break", startTime: 36000, endTime: 38400),
+                           Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
+                           Lesson(identifier: "math", teacher: "Janet Tan", startTime: 42000, endTime: 45600),
+                           Lesson(identifier: "chem", teacher: "Praveena", startTime: 45600, endTime: 49200),
+                           Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 49200, endTime: 52800)],
+                  tuesday: [Lesson(identifier: "ss", teacher: "Seth Tan", startTime: 28800, endTime: 32400),
+                            Lesson(identifier: "break", startTime: 32400, endTime: 34800),
+                            Lesson(identifier: "cl", startTime: 34800, endTime: 38400),
+                            Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 38400, endTime: 43200),
+                            Lesson(identifier: "break", startTime: 43200, endTime: 45600),
+                            Lesson(identifier: "chem", teacher: "Praveena", startTime: 45600, endTime: 49200),
+                            Lesson(identifier: "math", teacher: "Janet Tan", startTime: 49200, endTime: 52800),
+                            Lesson(identifier: "ch(ge)", teacher: "Alvin Tan", startTime: 52800, endTime: 56400)],
+                  wednesday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
+                              Lesson(identifier: "break", startTime: 36000, endTime: 38400),
+                              Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
+                              Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
+                              Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)],
+                  thursday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
+                             Lesson(identifier: "break", startTime: 36000, endTime: 38400),
+                             Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
+                             Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
+                             Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)],
+                  friday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
+                           Lesson(identifier: "break", startTime: 36000, endTime: 38400),
+                           Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
+                           Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
+                           Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)]).save()
+        
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     /*

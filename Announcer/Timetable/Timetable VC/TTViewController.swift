@@ -86,12 +86,7 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                                         Lesson(identifier: "chem", teacher: "Praveena", startTime: 45600, endTime: 49200),
                                         Lesson(identifier: "math", teacher: "Janet Tan", startTime: 49200, endTime: 52800),
                                         Lesson(identifier: "ch(ge)", teacher: "Alvin Tan", startTime: 52800, endTime: 56400)],
-                              wednesday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 2400, endTime: 3000),
-//                                          Lesson(identifier: "break", startTime: 36000, endTime: 38400),
-//                                          Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
-//                                          Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
-//                                          Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)
-            ],
+                              wednesday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 2400, endTime: 3000)],
                               thursday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
                                          Lesson(identifier: "break", startTime: 36000, endTime: 38400),
                                          Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
