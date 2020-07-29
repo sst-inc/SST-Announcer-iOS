@@ -32,6 +32,7 @@
 #### Investigating
 - When setting timetable, it always defaults to S4-07 [MacOS, iOS, iPadOS]
 - App crashes when copying an image from contextual menu [iOS, iPadOS]
+- Loading bug where it shows "Label" instead of actual content [MacOS, iOS, iPadOS]
 
 #### Resolved Issues
 - Back button shows and disappears non-stop when resizing window [MacOS]

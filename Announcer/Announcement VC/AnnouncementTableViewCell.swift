@@ -46,11 +46,39 @@ class AnnouncementTableViewCell: UITableViewCell {
                     
                     self.htmlAttr = self.post.content.htmlToAttributedString
                     
-                    let previewText = self.htmlAttr.htmlToString
+                    var previewText = self.htmlAttr.htmlToString
                     
                     // Set contentLabel's content on main thread
                     DispatchQueue.main.async {
-                        self.announcementContentLabel.text = previewText
+                        
+                        if previewText.filter({ $0.isLetter || $0.isNumber }).count == 0 {
+                            // Handle if post contains no text
+                            
+                            let str = NSMutableAttributedString(string: "")
+                            
+                            str.append(NSAttributedString(attachment: NSTextAttachment(image: Assets.photo)))
+                            
+                            str.append(NSAttributedString(string: "  Preview unavailable, post contains no text.",
+                                                          attributes: [NSAttributedString.Key.font : UIFont.italicSystemFont(ofSize: self.announcementContentLabel.font.pointSize)]))
+                            
+                            
+                            self.announcementContentLabel.attributedText = str
+                        } else if previewText.hasPrefix("error: ") {
+                            // Handle if an error occurred when getting post preview
+                            let str = NSMutableAttributedString(string: "")
+                            
+                            str.append(NSAttributedString(attachment: NSTextAttachment(image: (UIImage(systemName: "xmark.octagon.fill")!))))
+                            
+                            previewText.removeFirst(7)
+                            
+                            str.append(NSAttributedString(string: "  \(previewText)",
+                                                          attributes: [NSAttributedString.Key.font : UIFont.italicSystemFont(ofSize: self.announcementContentLabel.font.pointSize)]))
+                            
+                            
+                            self.announcementContentLabel.attributedText = str
+                        } else {
+                            self.announcementContentLabel.text = previewText
+                        }
                     }
                     
                 }
