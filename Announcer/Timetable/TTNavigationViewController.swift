@@ -84,7 +84,7 @@ class TTNavigationViewController: UINavigationController {
             let url = URL(string: "https://www.googleapis.com/drive/v3/files/\(fileID)?prettyPrint=true&key=\(apiKey)")!
             
             // Using Alamofire to get the PDF documents from Google Drive
-            AF.request(url, method: .get, parameters: ["alt":"media"]).validate().responseJSON { response in
+            AF.request(url, method: .get, parameters: ["alt": "media"]).validate().responseJSON { response in
                 
                 // Setting the timetablePDF
                 self.timetablePDF = PDFDocument(data: response.data!)
@@ -96,7 +96,6 @@ class TTNavigationViewController: UINavigationController {
         super.viewDidAppear(animated)
     }
     
-
     /*
     // MARK: - Navigation
 

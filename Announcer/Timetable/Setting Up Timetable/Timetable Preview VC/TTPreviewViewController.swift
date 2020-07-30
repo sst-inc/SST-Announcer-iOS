@@ -71,7 +71,6 @@ class TTPreviewViewController: UIViewController {
         }
     }
     
-    
     // Dumping the reading code here temporarily
     func getData() {
         
@@ -90,8 +89,8 @@ class TTPreviewViewController: UIViewController {
                                                      y: y,
                                                      width: width,
                                                      height: height)))!
-        
-        let attributedString = selection.attributedString
+        print(selection)
+//        let attrString = selection.attributedString
     }
     
     func crop() {
@@ -100,15 +99,17 @@ class TTPreviewViewController: UIViewController {
         performOCR(on: cgImage, recognitionLevel: .accurate)
     }
     
-    func performOCR(on cgImage: CGImage, recognitionLevel: VNRequestTextRecognitionLevel)  {
+    func performOCR(on cgImage: CGImage, recognitionLevel: VNRequestTextRecognitionLevel) {
         
         print("starting OCR")
         
         let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
         
-        let request = VNRecognizeTextRequest  { (request, error) in
+        let request = VNRecognizeTextRequest { (request, error) in
             if let error = error {
-                let alert = UIAlertController(title: "An Error Occurred", message: error.localizedDescription, preferredStyle: .alert)
+                let alert = UIAlertController(title: "An Error Occurred",
+                                              message: error.localizedDescription,
+                                              preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (_) in
                     self.crop()
@@ -127,7 +128,7 @@ class TTPreviewViewController: UIViewController {
 
             guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
 
-            
+            // swiftlint:disable all
             let timetableSize = self.timetableImage.size
             
             for currentObservation in observations {
@@ -157,7 +158,7 @@ class TTPreviewViewController: UIViewController {
                                    y: ratio * self.croppingOffsets.top,
                                    width: ratio * (timetableSize.width - self.croppingOffsets.leading - self.croppingOffsets.trailing),
                                    height: ratio * (timetableSize.height - self.croppingOffsets.top - self.croppingOffsets.bottom))
-            
+            // swiftlint:enable all
             self.cropFrame = cropFrame
             
             // Updating the imageView with the new image
@@ -177,6 +178,7 @@ class TTPreviewViewController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: Any) {
         // Byee
+        // swiftlint:disable all
         Timetable(class: "S4-07",
                   timetableImage: Data(),
                   monday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
@@ -208,7 +210,7 @@ class TTPreviewViewController: UIViewController {
                            Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
                            Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
                            Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)]).save()
-        
+        // swiftlint:enable all
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
     

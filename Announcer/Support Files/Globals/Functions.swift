@@ -60,7 +60,8 @@ struct Fetch {
      - parameters:
         - vc: Takes in Announcement View Controller to present an alert in a case of an error
       
-     This method fetches the blog post from the blogURL and will alert the user if an error occurs and it is unable to get the announcements
+     This method fetches the blog post from the blogURL and will alert the
+     user if an error occurs and it is unable to get the announcements
      */
     static func posts(with vc: AnnouncementsViewController) -> [Post] {
         let parser = FeedParser(URL: GlobalLinks.rssURL)
@@ -85,7 +86,7 @@ struct Fetch {
                                               preferredStyle: .alert)
                 
                 // Try to reload and hopefully it works
-                let tryAgain = UIAlertAction(title: "Try Again", style: .default, handler: { action in
+                let tryAgain = UIAlertAction(title: "Try Again", style: .default, handler: { _ in
                     vc.reload(UILabel())
                 })
                 
@@ -94,7 +95,7 @@ struct Fetch {
                 alert.preferredAction = tryAgain
                 
                 // Open the settings app
-                alert.addAction(UIAlertAction(title: "Open Settings", style: .default, handler: { action in
+                alert.addAction(UIAlertAction(title: "Open Settings", style: .default, handler: { _ in
                     UIApplication.shared.open(GlobalLinks.settingsURL, options: [:]) { (success) in
                         print(success)
                     }
@@ -115,7 +116,8 @@ struct Fetch {
      
      - returns: A tuple with the title and content of the post or `nil` if no new content has been posted
      
-     This method will fetch the latest posts from the RSS feed and if it is a new post, it will return the title and content for notifications, otherwise, it will return nil.
+     This method will fetch the latest posts from the RSS feed and if it is a new post,
+     it will return the title and content for notifications, otherwise, it will return nil.
      */
     static func latestNotification() -> (title: String, content: String)? {
         let parser = FeedParser(URL: GlobalLinks.rssURL)
@@ -127,15 +129,20 @@ struct Fetch {
             
             let posts = convertFromEntries(feed: (feed?.entries)!)
             
-            if posts[0].title != UserDefaults.standard.string(forKey: UserDefaultsIdentifiers.recentsTitle.rawValue) && posts[0].content != UserDefaults.standard.string(forKey: UserDefaultsIdentifiers.recentsContent.rawValue) {
+            let defaultsTitle = UserDefaults.standard.string(forKey: UserDefaultsIdentifiers.recentsTitle.rawValue)
+            let defaultsContent = UserDefaults.standard.string(forKey: UserDefaultsIdentifiers.recentsContent.rawValue)
+            
+            if posts[0].title != defaultsTitle && posts[0].content != defaultsContent {
                 
                 UserDefaults.standard.set(posts[0].title, forKey: UserDefaultsIdentifiers.recentsTitle.rawValue)
                 UserDefaults.standard.set(posts[0].content, forKey: UserDefaultsIdentifiers.recentsContent.rawValue)
                 
                 let title = convertFromEntries(feed: (feed?.entries!)!).first!.title
-                let content = convertFromEntries(feed: (feed?.entries!)!).first!.content.htmlToAttributedString?.htmlToString
+                let content = convertFromEntries(feed: (feed?.entries!)!).first!.content
+                    
+                let formattedContent = content.htmlToAttributedString?.htmlToString
                 
-                return (title: title, content: content!)
+                return (title: title, content: formattedContent!)
             }
             
         default:
@@ -203,7 +210,6 @@ struct Fetch {
     }
 }
 
-
 /**
  Gets the labels from search queries
  
@@ -242,25 +248,25 @@ func launchPost(withTitle postTitle: String) {
     var post: Post?
     
     // Finding the post to present
-    for item in posts {
-        if item.title == postTitle {
-            
-            post = item
-            
-            break
-        }
+    for item in posts where item.title == postTitle {
+        post = item
+        
+        break
     }
     
     var announcementVC: AnnouncementsViewController!
     
     if I.wantToBeMac || I.mac {
-        let splitVC = UIApplication.shared.windows.first?.rootViewController as! SplitViewController
-        announcementVC = splitVC.announcementVC!
+        if let splitVC = UIApplication.shared.windows.first?.rootViewController as? SplitViewController {
+            announcementVC = splitVC.announcementVC!
+        }
         
     } else {
-        let navigationController = UIApplication.shared.windows.first?.rootViewController as! UINavigationController
-        announcementVC = navigationController.topViewController as? AnnouncementsViewController
+        let window = UIApplication.shared.windows.first
         
+        if let navigationController = window?.rootViewController as? UINavigationController {
+            announcementVC = navigationController.topViewController as? AnnouncementsViewController
+        }
     }
     
     if let post = post {
@@ -332,12 +338,15 @@ struct ScrollSelection {
         }
     }
     
-    static func setSelectedState(for item: UIView? = nil, barButton: UIBarButtonItem? = nil, withOffset offset: CGFloat, andConstant constant: CGFloat) {
+    static func setSelectedState(for item: UIView? = nil,
+                                 barButton: UIBarButtonItem? = nil,
+                                 withOffset offset: CGFloat,
+                                 andConstant constant: CGFloat) {
         let multiplier = (offset * -1 - constant) / 100
-        
+
         if let item = item {
             if let button = item as? UIButton {
-                
+
                 button.layer.borderWidth = 25 * multiplier
                 button.layer.borderColor = GlobalColors.borderColor
             } else if let searchBar = item as? UISearchBar {
@@ -370,8 +379,8 @@ struct LinkFunctions {
         
         var shareLink = ""
         
-        let formatted = post.title.filter { (a) -> Bool in
-            a.isLetter || a.isNumber || a.isWhitespace
+        let formatted = post.title.filter { (char) -> Bool in
+            char.isLetter || char.isNumber || char.isWhitespace
         }.lowercased()
         let split = formatted.split(separator: " ")
         
@@ -415,9 +424,11 @@ struct LinkFunctions {
      - parameters:
         - post: The selected post
      
-     - important: This process takes a bit so it is better to do it asyncronously so the app will not freeze while searching for URLs.
+     - important: This process takes a bit so it is better to do it
+     asyncronously so the app will not freeze while searching for URLs.
      
-     This method gets the URLs found within the blog post and filters out images from blogger's content delivery network because no one wants those URLs.
+     This method gets the URLs found within the blog post and filters
+     out images from blogger's content delivery network because no one wants those URLs.
     */
     static func getLinksFromPost(post: Post) -> [URL] {
         let items = post.content.components(separatedBy: "href=\"")
@@ -448,5 +459,4 @@ struct LinkFunctions {
         
         return links
     }
-
 }

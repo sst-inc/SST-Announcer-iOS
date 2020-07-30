@@ -14,7 +14,6 @@ func getOngoingLessons(_ date: Date) -> [WidgetLesson]? {
         return nil
     }
     
-    
     let lessons = todaysLessons(date, timetable: timetable)
     
     if lessons.count == 0 { return [] }
@@ -43,13 +42,12 @@ func getOngoingLessons(_ date: Date) -> [WidgetLesson]? {
                 if lessons.count >= i + 3 {
                     let secondSubject = Assets.subjectIcons[lessons[i + 2].identifier] ?? Assets.subjectIcons["other"]!
                     
+                    let date = Lesson.getTodayDate().advanced(by: lessons[i + 2].startTime)
                     widgetLessons.append(WidgetLesson(name: secondSubject[1],
-                                                      date: Lesson.getTodayDate().advanced(by: lessons[i + 2].startTime),
+                                                      date: date,
                                                       imageName: secondSubject[0]))
                 }
             }
-            
-            
             
             return widgetLessons
         }
@@ -57,7 +55,6 @@ func getOngoingLessons(_ date: Date) -> [WidgetLesson]? {
     
     return []
 }
-
 
 func todaysLessons(_ date: Date, timetable: Timetable) -> [Lesson] {
     

@@ -16,13 +16,22 @@ class AnnouncementTableViewCell: UITableViewCell {
     var post: Post! {
         // If the post value is changed, set these values to whatever is below in didSet
         didSet {
+            // Hide all the loaders
+            endLoader()
+            
+            // Set attributes of title label
+            // [Square Brackets] all red to highlight things like [Sec 2 students] etc.
+            // Set the text the label
+            DispatchQueue.main.async {
+                self.announcementTitleLabel.attributedText = self.setTitleLabelText()
+            }
             
             // Loading the content takes a while
             // Converting HTML to String is slow
             // Do conversion on different thread and update the cell when it's ready
             // Show loading to user
             // Loading for iOS 13 and above has fancy icon
-            let str = NSMutableAttributedString.init(string: "")
+            let str = NSMutableAttributedString(string: "")
             str.append(NSAttributedString(attachment: NSTextAttachment(image: Assets.loading)))
             str.append(NSAttributedString(string: "\tLoading Content...\n\n"))
             self.announcementContentLabel.attributedText = str
@@ -50,7 +59,8 @@ class AnnouncementTableViewCell: UITableViewCell {
                     
                     // Set contentLabel's content on main thread
                     DispatchQueue.main.async {
-                        
+                        let size = self.announcementContentLabel.font.pointSize
+
                         if previewText.filter({ $0.isLetter || $0.isNumber }).count == 0 {
                             // Handle if post contains no text
                             
@@ -59,21 +69,19 @@ class AnnouncementTableViewCell: UITableViewCell {
                             str.append(NSAttributedString(attachment: NSTextAttachment(image: Assets.photo)))
                             
                             str.append(NSAttributedString(string: "  Preview unavailable, post contains no text.",
-                                                          attributes: [NSAttributedString.Key.font : UIFont.italicSystemFont(ofSize: self.announcementContentLabel.font.pointSize)]))
-                            
+                                                          attributes: [.font: UIFont.italicSystemFont(ofSize: size)]))
                             
                             self.announcementContentLabel.attributedText = str
                         } else if previewText.hasPrefix("error: ") {
                             // Handle if an error occurred when getting post preview
                             let str = NSMutableAttributedString(string: "")
                             
-                            str.append(NSAttributedString(attachment: NSTextAttachment(image: (UIImage(systemName: "xmark.octagon.fill")!))))
+                            str.append(NSAttributedString(attachment: NSTextAttachment(image: (Assets.bigError))))
                             
                             previewText.removeFirst(7)
                             
                             str.append(NSAttributedString(string: "  \(previewText)",
-                                                          attributes: [NSAttributedString.Key.font : UIFont.italicSystemFont(ofSize: self.announcementContentLabel.font.pointSize)]))
-                            
+                                                          attributes: [.font: UIFont.italicSystemFont(ofSize: size)]))
                             
                             self.announcementContentLabel.attributedText = str
                         } else {
@@ -89,7 +97,9 @@ class AnnouncementTableViewCell: UITableViewCell {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "d MMM yyyy"
             
-            announcementDateLabel.text = "Posted on \(dateFormatter.string(from: post.date))"
+            DispatchQueue.main.async {
+                self.announcementDateLabel.text = "Posted on \(dateFormatter.string(from: self.post.date))"
+            }
             
             handlePinAndRead()
             
@@ -99,14 +109,6 @@ class AnnouncementTableViewCell: UITableViewCell {
             } else {
                 backgroundColor = GlobalColors.background
             }
-            
-            // Set attributes of title label
-            // [Square Brackets] all red to highlight things like [Sec 2 students] etc.
-            // Set the text the label
-            setTitleLabelText()
-            
-            // Hide all the loaders
-            endLoader()
         }
     }
     var highlightPost = false {
@@ -143,7 +145,7 @@ class AnnouncementTableViewCell: UITableViewCell {
     
     // Color the brackets []
     // Make the text set
-    func setTitleLabelText() {
+    func setTitleLabelText() -> NSAttributedString {
         // Update labels/textview with data
         let attrTitle = NSMutableAttributedString(string: post.title)
         // Find the [] and just make it like red or something
@@ -162,35 +164,39 @@ class AnnouncementTableViewCell: UITableViewCell {
                 let start = indicesStart[i - 1]
                 let end = indicesEnd[i - 1]
                 
+                let font = UIFont.systemFont(ofSize: 22, weight: .semibold)
+                
                 /// Ensuring that upper bounds is more than lower bounds
                 if end > start {
                     /// `[]` colors will be `.blueTint`
                     // Setting the bracket style
-                    let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: GlobalColors.blueTint, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
+                    let bracket: [NSAttributedString.Key: Any] = [.foregroundColor: GlobalColors.blueTint,
+                                                                  .font: font]
                     
                     /// Add the blue to the squared brackets in the title
-                    attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 2))
+                    attrTitle.addAttributes(bracket,
+                                            range: NSRange(location: start, length: end - start + 2))
                 }
             }
         }
         
-        announcementTitleLabel.attributedText = attrTitle
+        return attrTitle
     }
     
     // Using the SkeletonView loading animations
     // Similar to YouTube
     // Set text as " " so as to maintain proper constraints
     func startLoader() {
-        announcementTitleLabel.showAnimatedSkeleton(transition: .crossDissolve(0.25))
-        announcementContentLabel.showAnimatedSkeleton(transition: .crossDissolve(0.25))
-        announcementDateLabel.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        announcementTitleLabel.showAnimatedSkeleton()
+        announcementContentLabel.showAnimatedSkeleton()
+        announcementDateLabel.showAnimatedSkeleton()
     }
     
     // Hide all loaders when content is present for user
     func endLoader() {
-        announcementTitleLabel.hideSkeleton(transition: .crossDissolve(0.25))
-        announcementContentLabel.hideSkeleton(transition: .crossDissolve(0.25))
-        announcementDateLabel.hideSkeleton(transition: .crossDissolve(0.25))
+        announcementTitleLabel.hideSkeleton()
+        announcementContentLabel.hideSkeleton()
+        announcementDateLabel.hideSkeleton()
     }
     
     func handlePinAndRead() {

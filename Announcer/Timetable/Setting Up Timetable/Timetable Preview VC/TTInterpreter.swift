@@ -36,7 +36,7 @@ class TTInterpreter {
     
     func performOCR(on image: UIImage, exitCompletion: ((Error?, UIImage?) -> Void)) {
         
-        var croppingOffsets = (leading: CGFloat.zero, trailing: CGFloat.zero, top: CGFloat.zero, bottom: CGFloat.zero)
+        var offset = (leading: CGFloat.zero, trailing: CGFloat.zero, top: CGFloat.zero, bottom: CGFloat.zero)
         
         let recognitionLevel = VNRequestTextRecognitionLevel.accurate
 
@@ -52,7 +52,6 @@ class TTInterpreter {
 
             guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
 
-            
             let timetableSize = image.size
             
             for currentObservation in observations {
@@ -65,26 +64,26 @@ class TTInterpreter {
                     
                     if recognizedText.string.lowercased().contains("school of science and technology") {
                         
-                        croppingOffsets.leading = timetableSize.width * currentObservation.boundingBox.minX
-                        croppingOffsets.top = timetableSize.height - timetableSize.height * currentObservation.bottomLeft.y
+                        offset.leading = timetableSize.width * currentObservation.boundingBox.minX
+                        offset.top = timetableSize.height - timetableSize.height * currentObservation.bottomLeft.y
                         
                         print("we got the other guy")
                     } else if recognizedText.string.lowercased().contains("asc timetables") {
-                        croppingOffsets.trailing = timetableSize.width - timetableSize.width * currentObservation.boundingBox.maxX
-                        croppingOffsets.bottom = timetableSize.height * currentObservation.boundingBox.maxY + 4
+                        offset.trailing = timetableSize.width - timetableSize.width * currentObservation.boundingBox.maxX
+                        offset.bottom = timetableSize.height * currentObservation.boundingBox.maxY + 4
                     }
                 }
             }
             
             let ratio: CGFloat = 3
             
-            let cropFrame = CGRect(x: ratio * croppingOffsets.leading,
-                                   y: ratio * croppingOffsets.top,
-                                   width: ratio * (timetableSize.width - croppingOffsets.leading - croppingOffsets.trailing),
-                                   height: ratio * (timetableSize.height - croppingOffsets.top - croppingOffsets.bottom))
+            let cropFrame = CGRect(x: ratio * offset.leading,
+                                   y: ratio * offset.top,
+                                   width: ratio * (timetableSize.width - offset.leading - offset.trailing),
+                                   height: ratio * (timetableSize.height - offset.top - offset.bottom))
             
             // Updating the imageView with the new image
-            let image = image.cropImage(with: cropFrame)
+//            let image = image.cropImage(with: cropFrame)
             
 //            exitCompletion(nil, image)
         }

@@ -20,7 +20,6 @@ class TTTableViewCell: UITableViewCell {
                 timelineIndicator.image = UIImage(systemName: "circle.fill")
                 timelineIndicator.backgroundColor = .clear
                 
-                
                 // Setting the colors
                 if Calendar.current.isDateInToday(selectedDate) {
                     let todayTimeInterval = Date().timeIntervalSince(Lesson.getTodayDate())
@@ -48,16 +47,20 @@ class TTTableViewCell: UITableViewCell {
                                              NSAttributedString.Key.foregroundColor: UIColor.label]
                     let teacherAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]
                     
-                    let attr = NSMutableAttributedString(string: "\(subject.1) • \(teacher)", attributes: defaultAttributes)
+                    let attr = NSMutableAttributedString(string: "\(subject.1) • \(teacher)",
+                                                         attributes: defaultAttributes)
                     
-                    attr.addAttributes(teacherAttributes, range: NSRange(location: subject.1.count, length: teacher.count + 3))
+                    attr.addAttributes(teacherAttributes,
+                                       range: NSRange(location: subject.1.count,
+                                                      length: teacher.count + 3))
                     
                     subjectTeacherLabel.attributedText = attr
                 } else {
                     subjectTeacherLabel.text = subject.1
                 }
                 
-                timingLabel.text = "From \(Lesson.convert(time: lesson.startTime)) to \(Lesson.convert(time: lesson.endTime))"
+                let time = "From \(Lesson.convert(time: lesson.startTime)) to \(Lesson.convert(time: lesson.endTime))"
+                timingLabel.text = time
             }
         }
     }

@@ -29,7 +29,8 @@ class AnnouncementsViewController: UIViewController {
                     if let splitVC = self.splitViewController as? SplitViewController {
                         
                         // Get first or selected cell
-                        let cell = self.tableView(self.announcementTableView, cellForRowAt: self.selectedPath) as? AnnouncementTableViewCell
+                        let cell = self.tableView(self.announcementTableView,
+                                                  cellForRowAt: self.selectedPath) as? AnnouncementTableViewCell
                         
                         cell?.setSelected(true, animated: true)
                         
@@ -118,7 +119,6 @@ class AnnouncementsViewController: UIViewController {
         
         // Timetable is only supported on iOS 14
         if #available(iOS 14, macOS 11, *) {
-            
         } else {
             self.navigationItem.leftBarButtonItem = nil
         }
@@ -133,6 +133,10 @@ class AnnouncementsViewController: UIViewController {
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.uturn.left")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.uturn.left")
         
+        setUpFeedbackButton()
+    }
+    
+    func setUpFeedbackButton() {
         let feedback = FeedbackButton(frame: .zero)
         
         feedback.translatesAutoresizingMaskIntoConstraints = false
@@ -165,7 +169,6 @@ class AnnouncementsViewController: UIViewController {
         view.addConstraints(feedbackConstraints)
         
         self.feedback = feedback
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -203,9 +206,10 @@ class AnnouncementsViewController: UIViewController {
     
     @available(iOS 14, macOS 11, *)
     @IBAction func openTimetable(_ sender: Any) {
-        let vc = Storyboards.timetable.instantiateInitialViewController() as! TTNavigationViewController
-        
-        present(vc, animated: true)
+        if let vc = Storyboards.timetable.instantiateInitialViewController() as? TTNavigationViewController {
+
+            present(vc, animated: true)
+        }
     }
     
     /// Receiving post from push notifications
@@ -213,7 +217,8 @@ class AnnouncementsViewController: UIViewController {
         selectedItem = post
         
         /// iPad uses splitVC, therefore, when recieving a post, it must handle it though splitVC
-        /// Getting contentVC from splitViewController but handling it as an optional as there is a chance user is on iPhone which will make `splitViewController`'s value `nil`
+        /// Getting contentVC from splitViewController but handling it as an optional
+        /// as there is a chance user is on iPhone which will make `splitViewController`'s value `nil`
         if let contentVC = (splitViewController as? SplitViewController)?.contentVC {
             // Setting post in contentVC to itself
             contentVC.post = post
@@ -230,29 +235,31 @@ class AnnouncementsViewController: UIViewController {
     /// Get filter view controller and open it up
     func openFilter() {
         // Getting navigation controller from filter storyboard
-        let filterNVC = Storyboards.filter.instantiateInitialViewController() as! UINavigationController
-        
-        // Get filterViewController from navigationController
-        let filterVC = filterNVC.children.first as! FilterTableViewController
-        
-        // Set onDismiss actions that will run when we dismiss the other vc
-        // this void should reload tableview etc.
-        filterVC.onDismiss = {
-            // Set search bar text
-            self.searchField.text = "[\(filter)]"
-            
-            // Reload table view with new content
-            self.announcementTableView.reloadData()
-            
-            // Run search function
-            self.searchBar(self.searchField, textDidChange: "[\(filter)]")
-            
-            // Reset filters
-            filter = ""
+        if let filterNVC = Storyboards.filter.instantiateInitialViewController() as? UINavigationController {
+
+            // Get filterViewController from navigationController
+            if let filterVC = filterNVC.children.first as? FilterTableViewController {
+
+                // Set onDismiss actions that will run when we dismiss the other vc
+                // this void should reload tableview etc.
+                filterVC.onDismiss = {
+                    // Set search bar text
+                    self.searchField.text = "[\(filter)]"
+
+                    // Reload table view with new content
+                    self.announcementTableView.reloadData()
+
+                    // Run search function
+                    self.searchBar(self.searchField, textDidChange: "[\(filter)]")
+
+                    // Reset filters
+                    filter = ""
+                }
+            }
+
+            // Present filter navigation controller
+            self.present(filterNVC, animated: true)
         }
-        
-        // Present filter navigation controller
-        self.present(filterNVC, animated: true)
     }
     
     /// Save items to spotlight search
@@ -268,18 +275,21 @@ class AnnouncementsViewController: UIViewController {
         let items: [CSSearchableItem] = posts.map({ post in
             let attributeSet =  CSSearchableItemAttributeSet(itemContentType: kUTTypeHTML as String)
             
-            
             /// Setting the title of the post
             attributeSet.title = post.title
             
             /// Set the keywords for the `CSSearchableItem` to make it easier to find on Spotlight Search
             attributeSet.keywords = post.categories
             
-            /// Setting the content description so when the user previews the announcement through spotlight search, they can see the content description
-            attributeSet.contentDescription = post.content.condenseLinebreaks().htmlToAttributedString?.htmlToString
+            /// Setting the content description so when the user previews the
+            /// announcement through spotlight search, they can see the content description
+            let content = post.content.condenseLinebreaks()
+            attributeSet.contentDescription = content.htmlToAttributedString?.htmlToString
             
             // Creating the searchable item from the attributesSet
-            let item = CSSearchableItem(uniqueIdentifier: "\(post.title)", domainIdentifier: Bundle.main.bundleIdentifier!, attributeSet: attributeSet)
+            let item = CSSearchableItem(uniqueIdentifier: "\(post.title)",
+                                        domainIdentifier: Bundle.main.bundleIdentifier!,
+                                        attributeSet: attributeSet)
             
             // Setting the expiration date to distant future
             // So that it will not expire, at least not in 2000 years
@@ -320,7 +330,7 @@ class AnnouncementsViewController: UIViewController {
             // Reset filter
             filter = ""
         } else {
-            self.announcementTableView.reloadData()
+//            self.announcementTableView.reloadData()
         }
 
     }

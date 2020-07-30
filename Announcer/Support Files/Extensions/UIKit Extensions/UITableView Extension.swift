@@ -11,7 +11,10 @@ import UIKit
 
 extension UITableView {
     func setEmptyState(_ message: NSAttributedString) {
-        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+        let messageLabel = UILabel(frame: CGRect(x: 0,
+                                                 y: 0,
+                                                 width: self.bounds.size.width,
+                                                 height: self.bounds.size.height))
         
         messageLabel.textColor = .label
         messageLabel.numberOfLines = 0

@@ -11,6 +11,7 @@ import UIKit
 class SplitViewController: UISplitViewController {
 
     // Getting contentVC from storyboards
+    // swiftlint:disable:next force_cast
     var contentVC = Storyboards.content.instantiateInitialViewController() as! ContentViewController
     
     // announcementVC is set through viewDidLoad
@@ -22,8 +23,9 @@ class SplitViewController: UISplitViewController {
         // Do any additional setup after loading the view.
         
         // Setting announcerViewController
-        let navigationController = children[0] as! UINavigationController
-        announcementVC = navigationController.visibleViewController as? AnnouncementsViewController
+        if let navigationController = children[0] as? UINavigationController {
+            announcementVC = navigationController.visibleViewController as? AnnouncementsViewController
+        }
         
         // Show loading vc
         // Loading VC will be replaced by contentVC when the data has finished loading in AnnouncementVC
@@ -45,8 +47,7 @@ class SplitViewController: UISplitViewController {
                                   modifierFlags: .command,
                                   discoverabilityTitle: "Search",
                                   state: .mixed)
-        
-        
+
         // Reload announcements using Cmd R
         let reload = UIKeyCommand(title: "Reload",
                                   image: UIImage(systemName: "arrow.clockwise"),
@@ -55,7 +56,7 @@ class SplitViewController: UISplitViewController {
                                   modifierFlags: .command,
                                   discoverabilityTitle: "Reload",
                                   state: .mixed)
-        
+
         // Filter announcements using Cmd Shift F
         let filter = UIKeyCommand(title: "Filter Posts",
                                   image: Assets.filter,
@@ -64,7 +65,7 @@ class SplitViewController: UISplitViewController {
                                   modifierFlags: [.command, .shift],
                                   discoverabilityTitle: "Filter Posts",
                                   state: .mixed)
-        
+
         // Share announcement using Cmd S
         let share = UIKeyCommand(title: "Share",
                                   image: Assets.share,
@@ -73,7 +74,7 @@ class SplitViewController: UISplitViewController {
                                   modifierFlags: .command,
                                   discoverabilityTitle: "Share Post",
                                   state: .mixed)
-        
+
         // Pin announcement using Cmd P
         let pin = UIKeyCommand(title: "Pin",
                                image: Assets.pin,
@@ -82,7 +83,7 @@ class SplitViewController: UISplitViewController {
                                modifierFlags: .command,
                                discoverabilityTitle: "Pin Post",
                                state: .mixed)
-        
+
         // Open announcement in Safari using Cmd Shift S
         let safari = UIKeyCommand(title: "Open in Safari",
                                   image: Assets.safari,
@@ -91,7 +92,7 @@ class SplitViewController: UISplitViewController {
                                   modifierFlags: [.command, .shift],
                                   discoverabilityTitle: "Open in Safari",
                                   state: .mixed)
-        
+
         // Open App's settings using Cmd ,
         let settings = UIKeyCommand(title: "Settings",
                                   image: Assets.settings,
@@ -100,12 +101,12 @@ class SplitViewController: UISplitViewController {
                                   modifierFlags: [.command],
                                   discoverabilityTitle: "Settings",
                                   state: .mixed)
-        
+
         // Go to Next Post
         let downArrow = UIKeyCommand(input: UIKeyCommand.inputDownArrow,
                                      modifierFlags: [],
                                      action: #selector(nextPost))
-        
+
         // Go to Previous Post
         let upArrow = UIKeyCommand(input: UIKeyCommand.inputUpArrow,
                                    modifierFlags: [],
@@ -119,7 +120,7 @@ class SplitViewController: UISplitViewController {
                                   modifierFlags: [.command],
                                   discoverabilityTitle: "Zoom In",
                                   state: .mixed)
-        
+
         let zoomOut = UIKeyCommand(title: "Zoom Out",
                                    image: Assets.zoomOut,
                                    action: #selector(zoomOutPost),
@@ -127,7 +128,7 @@ class SplitViewController: UISplitViewController {
                                    modifierFlags: [.command],
                                    discoverabilityTitle: "Zoom Out",
                                    state: .mixed)
-        
+
         let resetZoom = UIKeyCommand(title: "Reset Zoom",
                                      image: Assets.resetZoom,
                                      action: #selector(resetPostZoom),
@@ -135,7 +136,7 @@ class SplitViewController: UISplitViewController {
                                      modifierFlags: [.command],
                                      discoverabilityTitle: "Reset Zoom",
                                      state: .mixed)
-        
+
         return [settings, search, filter, reload,
                 share, safari, pin,
                 zoomIn, zoomOut, resetZoom,
@@ -148,7 +149,7 @@ class SplitViewController: UISplitViewController {
         // This will push the keyboard and select the search field
         announcementVC.searchField.becomeFirstResponder()
     }
-    
+
     // Reload posts
     @objc func reloadPosts() {
         // Get announcementVC and call the reload @IBAction function

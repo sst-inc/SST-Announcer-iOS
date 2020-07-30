@@ -49,7 +49,8 @@ class ReadAnnouncements: Codable {
             return mutablePosts
         }()
         
-        // Limit the read array to the latest 20 otherwise the plist will get ridiculously huge and store a bunch of old, unnecessary data
+        // Limit the read array to the latest 20 otherwise the plist
+        // will get ridiculously huge and store a bunch of old, unnecessary data
         if postsRemovedDuplicates.count > maxPosts {
             postsRemovedDuplicates.removeFirst(postsRemovedDuplicates.count - maxPosts)
         }
@@ -69,9 +70,9 @@ class ReadAnnouncements: Codable {
         let archiveURL = getArchiveURL()
         let propertyListDecoder = PropertyListDecoder()
         guard let retrievedPostData = try? Data(contentsOf: archiveURL) else { return nil }
-        guard let decodedPost = try? propertyListDecoder.decode(Array<Post>.self, from: retrievedPostData) else { return nil }
+        guard let decodedPost = try? propertyListDecoder.decode(Array<Post>.self,
+                                                                from: retrievedPostData) else { return nil }
         
         return decodedPost
     }
 }
-

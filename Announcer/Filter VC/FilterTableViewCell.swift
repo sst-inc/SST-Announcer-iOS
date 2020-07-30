@@ -88,25 +88,31 @@ class FilterTableViewCell: UITableViewCell {
     func getData() -> [([String], String)] {
         
         // Reading from Icons.txt
-        let strData = try! String(contentsOf: Bundle.main.url(forResource: "Icons", withExtension: "txt")!)
-        
-        // Spliting the data by \n
-        let data = strData.split(separator: "\n")
-        
-        // Mapping out the data to create an array of ([String], String)
-        let convertedData = data.map { value -> ([String], String) in
-            let item = value.split(separator: "|")
+        do {
+            let strData = try String(contentsOf: Bundle.main.url(forResource: "Icons", withExtension: "txt")!)
             
-            // Identifiers are the search terms used to locate the correct icon
-            let identifiers: [String] = item[0].split(separator: ",").map {
-                String($0)
+            // Spliting the data by \n
+            let data = strData.split(separator: "\n")
+            
+            // Mapping out the data to create an array of ([String], String)
+            let convertedData = data.map { value -> ([String], String) in
+                let item = value.split(separator: "|")
+                
+                // Identifiers are the search terms used to locate the correct icon
+                let identifiers: [String] = item[0].split(separator: ",").map {
+                    String($0)
+                }
+                
+                // String item[1] is the image identifier for SF Symbols
+                return (identifiers, String(item[1]))
             }
             
-            // String item[1] is the image identifier for SF Symbols
-            return (identifiers, String(item[1]))
+            // Return the converted data and we're done
+            return convertedData
+        } catch {
+            print(error.localizedDescription)
+            
+            return [([""], "")]
         }
-        
-        // Return the converted data and we're done
-        return convertedData
     }
 }

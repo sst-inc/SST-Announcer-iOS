@@ -11,12 +11,14 @@ import Foundation
 /**
  Contains attributes for each post such as date, content and title
  
- This struct is used to store Posts. The posts stored here will be used in the ReadAnnouncements and the PinnedAnnouncements for persistency. It is also used to present each post in the AnnouncementsViewController.
+ This struct is used to store Posts.
+ The posts stored here will be used in the ReadAnnouncements and the PinnedAnnouncements for persistency.
+ It is also used to present each post in the AnnouncementsViewController.
  */
 struct Post: Codable, Equatable, Hashable {
-    var title        : String
-    var content      : String // This content will be a HTML as a String
-    var date         : Date
+    var title: String
+    var content: String // This content will be a HTML as a String
+    var date: Date
     
     /**
      The following variables are obsolete as they are no longer used in the app.
@@ -44,12 +46,12 @@ struct Post: Codable, Equatable, Hashable {
      # TL;DR
      Don't use these, don't edit these either
      */
-    @available(iOS, deprecated: 13) var pinned       : Bool
-    @available(iOS, deprecated: 13) var read         : Bool
-    @available(iOS, deprecated: 13) var reminderDate : Date?
+    @available(iOS, deprecated: 13) var pinned: Bool
+    @available(iOS, deprecated: 13) var read: Bool
+    @available(iOS, deprecated: 13) var reminderDate: Date?
     
     // This variable is below the deprecated bunch because if I move it, it will break something.
     // I want to make it clear, I want to move it, but it will screw up the persistence on users' devices
-    var categories   : [String]
+    var categories: [String]
 
 }

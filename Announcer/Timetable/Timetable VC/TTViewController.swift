@@ -70,6 +70,7 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         // Commented out Dummy Data
         // Dummy Data
+        // swiftlint:disable all
         timetable = Timetable(class: "S4-07",
                               timetableImage: Data(),
                               monday: [Lesson(identifier: "el", teacher: "Eunice Lim", startTime: 32400, endTime: 36000),
@@ -97,7 +98,7 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                                        Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
                                        Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
                                        Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)])
-        
+        // swiftlint:enable all
         // If not using dummy data
         // Let's see if this works
 //        timetable = Timetable.get()
@@ -124,7 +125,6 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         WidgetCenter.shared.reloadAllTimelines()
     }
     
-     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
@@ -193,9 +193,12 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         if lessons.count == 0 {
             let defaultAttr = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .semibold)]
             
-            let attrString = NSMutableAttributedString(string: "😴\n\nThere are no lessons on \(selectedDate.day()).", attributes: defaultAttr)
+            let attrString = NSMutableAttributedString(string: "😴\n\nThere are no lessons on \(selectedDate.day()).",
+                                                       attributes: defaultAttr)
             
-            attrString.addAttribute(.font, value: UIFont.systemFont(ofSize: 48, weight: .bold), range: NSRange(location: 0, length: 3))
+            attrString.addAttribute(.font,
+                                    value: UIFont.systemFont(ofSize: 48, weight: .bold),
+                                    range: NSRange(location: 0, length: 3))
             
             tableView.setEmptyState(attrString)
         } else {
@@ -205,27 +208,32 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "time", for: indexPath) as! TTTableViewCell
-        
-        // Hide the top part of the timeline if it is the first row, this is to create a convincing timeline
-        cell.topTimelineView.isHidden = indexPath.row == 0
-        
-        // Hide the bottom of timeline when done
-        cell.bottomTimelineIndicator.isHidden = indexPath.row == lessons.count - 1
-        
-        // Set the selected date, this is going to be used to determine the current date
-        // This solves the issue of having the timeline highlighting on days that have already passed or are far in the future
-        cell.selectedDate = selectedDate
-        
-        // Resetting timeline colors
-        cell.topTimelineView.backgroundColor = GlobalColors.greyThree
-        cell.timelineIndicator.tintColor = GlobalColors.greyThree
-        cell.bottomTimelineIndicator.backgroundColor = GlobalColors.greyThree
-        
-        // Setting the cell's lesson
-        cell.lesson = lessons[indexPath.row]
-        
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "time", for: indexPath) as? TTTableViewCell {
+            // Hide the top part of the timeline if it is the first row, this is to create a convincing timeline
+            cell.topTimelineView.isHidden = indexPath.row == 0
+            
+            // Hide the bottom of timeline when done
+            cell.bottomTimelineIndicator.isHidden = indexPath.row == lessons.count - 1
+            
+            // Set the selected date, this is going to be used to determine the current date
+            //
+            // This solves the issue of having the timeline highlighting on
+            // days that have already passed or are far in the future
+            cell.selectedDate = selectedDate
+            
+            // Resetting timeline colors
+            cell.topTimelineView.backgroundColor = GlobalColors.greyThree
+            cell.timelineIndicator.tintColor = GlobalColors.greyThree
+            cell.bottomTimelineIndicator.backgroundColor = GlobalColors.greyThree
+            
+            // Setting the cell's lesson
+            cell.lesson = lessons[indexPath.row]
+            
+            return cell
+
+        } else {
+            fatalError()
+        }
     }
     
     @objc func dayChanged() {
@@ -330,7 +338,11 @@ class TTViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             nowLessonLabel.text = ongoingLessonAttr.1
             nowImageView.image = ongoingLessonAttr.0
-            nowDescriptionLabel.text = "From \(Lesson.convert(time: ongoingLesson.startTime)) to \(Lesson.convert(time: ongoingLesson.endTime))"
+            
+            let start = Lesson.convert(time: ongoingLesson.startTime)
+            let end = Lesson.convert(time: ongoingLesson.endTime)
+            
+            nowDescriptionLabel.text = "From \(start) to \(end)"
         } else {
             nowLessonLabel.text = "No Lessons"
             nowImageView.image = Assets.home

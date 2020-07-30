@@ -91,87 +91,64 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: GlobalIdentifier.announcementCell, for: indexPath) as! AnnouncementTableViewCell
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if posts == nil {
-            // Handles when posts do not exist aka it is loading or no internet
+        if let cell = tableView.dequeueReusableCell(withIdentifier: GlobalIdentifier.announcementCell,
+                                                    for: indexPath) as? AnnouncementTableViewCell {
             
-            // Start loading indicator (the fancy animations over the content)
-            cell.startLoader()
-            
-            // When loading, disable interactivity with tableView
-            // Therefore, disable scrolling and selecting
-            tableView.isScrollEnabled = false
-            tableView.allowsSelection = false
-        } else {
-            if searchField.text != "" {
-                // Display Search Results
-                switch indexPath.section {
-                case 0:
-                    if searchLabels.count > 0 {
-                        updateSearch(with: searchLabels, cell: cell, path: indexPath)
-                    } else if searchFoundInTitle.count >= 0 {
-                        updateSearch(with: searchFoundInTitle, cell: cell, path: indexPath)
-                    } else {
-                        updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
-                    }
-                case 1:
-                    if searchLabels.count > 0 {
-                        if searchFoundInTitle.count >= 0 {
-                            updateSearch(with: searchFoundInTitle, cell: cell, path: indexPath)
+            if posts == nil {
+                // Set up loading
+                setUpLoadingCell(cell, tableView: tableView)
+            } else {
+                if searchField.text != "" {
+                    // Display Search Results
+                    searchingCells(cell, indexPath: indexPath)
+                } else {
+                    if pinned.count != 0 && indexPath.section == 0 {
+                        // Pinned items
+                        if pinned.count > indexPath.row {
+                            cell.post = pinned[indexPath.row]
                         } else {
-                            updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
+                            cell.post = Post(title: "Loading...",
+                                             content: "Loading...",
+                                             date: Date(),
+                                             pinned: true,
+                                             read: true,
+                                             reminderDate: nil,
+                                             categories: [])
                         }
-                    } else {
-                        updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
+                    } else if posts.count != 0 {
+                        if posts.count > indexPath.row {
+                            cell.post = posts[indexPath.row]
+                        } else {
+                            cell.post = Post(title: "Loading...",
+                                             content: "Loading...",
+                                             date: Date(),
+                                             pinned: true,
+                                             read: true,
+                                             reminderDate: nil,
+                                             categories: [])
+                        }
                     }
-                default:
-                    updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
                 }
                 
-            } else {
-                if pinned.count != 0 && indexPath.section == 0 {
-                    // Pinned items
-                    if pinned.count > indexPath.row {
-                        cell.post = pinned[indexPath.row]
-                    } else {
-                        cell.post = Post(title: "Loading...",
-                                         content: "Loading...",
-                                         date: Date(),
-                                         pinned: true,
-                                         read: true,
-                                         reminderDate: nil,
-                                         categories: [])
-                    }
-                } else if posts.count != 0  {
-                    if posts.count > indexPath.row {
-                        cell.post = posts[indexPath.row]
-                    } else {
-                        cell.post = Post(title: "Loading...",
-                                         content: "Loading...",
-                                         date: Date(),
-                                         pinned: true,
-                                         read: true,
-                                         reminderDate: nil,
-                                         categories: [])
-                    }
+                if splitViewController != nil {
+                    cell.highlightPost = indexPath == selectedPath
                 }
+                
+                // Previewing
+                let interaction = UIContextMenuInteraction(delegate: self)
+                cell.addInteraction(interaction)
+                
+                tableView.isScrollEnabled = true
+                tableView.allowsSelection = true
             }
             
-            if splitViewController != nil {
-                cell.highlightPost = indexPath == selectedPath
-            }
-            
-            // Previewing
-            let interaction = UIContextMenuInteraction(delegate: self)
-            cell.addInteraction(interaction)
-            
-            tableView.isScrollEnabled = true
-            tableView.allowsSelection = true
+            return cell
+        } else {
+            fatalError()
         }
-        
-        return cell
     }
     
     // Function to update the search results while ensuring it does not crash
@@ -187,63 +164,64 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         // When user selects row, perform segue and send the selected row's information to next VC.
         // Send the data over to the other VC
         // Deselect row after that to ensure highlighting goes away
-        let cell = tableView.cellForRow(at: indexPath) as! AnnouncementTableViewCell
-        
-        selectedItem = cell.post
-        
-        // Highlight post if it should be highlighted
-        // On start, it would be the first cell
-        // Otherwise, it is whatever cell is previously highlighted
-        cell.highlightPost = indexPath == selectedPath
-        
-        if I.phone {
-            // Deselect the row so as to avoid weird animation issues
-            tableView.deselectRow(at: indexPath, animated: false)
-        }
-        
-        // Appending posts to read posts
-        // - Getting read announcements from file
-        var readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
-        
-        // - Adding the read announcement to the new array
-        readAnnouncements.append(cell.post)
-        
-        // - Save announcements to file
-        ReadAnnouncements.saveToFile(posts: readAnnouncements)
-        
-        // Updating and going to contentVC
-        if let splitVC = splitViewController as? SplitViewController {
-            // Get contentVC from splitVC
-            let contentVC = splitVC.contentVC
+        if let cell = tableView.cellForRow(at: indexPath) as? AnnouncementTableViewCell {
             
-            // Getting the post from cell and setting it in the ContentVC
-            contentVC.post = cell.post
+            selectedItem = cell.post
             
-            // Getting the attributedContent from the cell and set it in contentVC
-            contentVC.attributedContent = cell.htmlAttr
+            // Highlight post if it should be highlighted
+            // On start, it would be the first cell
+            // Otherwise, it is whatever cell is previously highlighted
+            cell.highlightPost = indexPath == selectedPath
             
-            // Unhighlight previous cell
-            if let previousCell = tableView.cellForRow(at: selectedPath) as? AnnouncementTableViewCell {
-                previousCell.highlightPost = false
+            if I.phone {
+                // Deselect the row so as to avoid weird animation issues
+                tableView.deselectRow(at: indexPath, animated: false)
             }
             
-            // Highlight current cell
-            cell.highlightPost = true
-                        
-            // Setting the current cell's indexPath to be selectedPath so that it can be used as previousCell
-            selectedPath = indexPath
+            // Appending posts to read posts
+            // - Getting read announcements from file
+            var readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
             
-            // Update the Cell's UI based on whether it is read or unread
-            cell.handlePinAndRead()
-        } else {
-            // Get contentVC
-            let contentVC = getContentViewController(for: indexPath)
+            // - Adding the read announcement to the new array
+            readAnnouncements.append(cell.post)
             
-            // Getting the attributedContent from the cell and set it in contentVC
-            contentVC.attributedContent = cell.htmlAttr
+            // - Save announcements to file
+            ReadAnnouncements.saveToFile(posts: readAnnouncements)
             
-            // Present contentVC via navigation controller
-            navigationController?.pushViewController(contentVC, animated: true)
+            // Updating and going to contentVC
+            if let splitVC = splitViewController as? SplitViewController {
+                // Get contentVC from splitVC
+                let contentVC = splitVC.contentVC
+                
+                // Getting the post from cell and setting it in the ContentVC
+                contentVC.post = cell.post
+                
+                // Getting the attributedContent from the cell and set it in contentVC
+                contentVC.attributedContent = cell.htmlAttr
+                
+                // Unhighlight previous cell
+                if let previousCell = tableView.cellForRow(at: selectedPath) as? AnnouncementTableViewCell {
+                    previousCell.highlightPost = false
+                }
+                
+                // Highlight current cell
+                cell.highlightPost = true
+                
+                // Setting the current cell's indexPath to be selectedPath so that it can be used as previousCell
+                selectedPath = indexPath
+                
+                // Update the Cell's UI based on whether it is read or unread
+                cell.handlePinAndRead()
+            } else {
+                // Get contentVC
+                let contentVC = getContentViewController(for: indexPath)
+                
+                // Getting the attributedContent from the cell and set it in contentVC
+                contentVC.attributedContent = cell.htmlAttr
+                
+                // Present contentVC via navigation controller
+                navigationController?.pushViewController(contentVC, animated: true)
+            }
         }
     }
     
@@ -272,7 +250,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     //Swipe <-
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let swipeConfig = UISwipeActionsConfiguration(actions: [pinPost(forRowAtIndexPath: indexPath)])
         return swipeConfig
@@ -282,11 +261,14 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     //Pin Handlers
     func pinPost(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         // Register the cell
-        let cell = announcementTableView.cellForRow(at: indexPath) as! AnnouncementTableViewCell
         
-        let pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
+        guard let cell = announcementTableView.cellForRow(at: indexPath) as? AnnouncementTableViewCell else {
+            fatalError()
+        }
         
         let post = cell.post!
+        
+        let pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
         
         var title = String()
         
@@ -300,7 +282,10 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         }
         
         //Action Builder
-        let action = UIContextualAction(style: .normal, title: title) { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+        let action = UIContextualAction(style: .normal,
+                                        title: title) { (_: UIContextualAction,
+                                                         _: UIView,
+                                                         completionHandler: (Bool) -> Void) in
             
             //Toggle pin based on context
             if title == "Unpin" {
@@ -334,7 +319,6 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         return action
     }
     
-    
     // MARK: ScrollView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if I.wantToBeMac || I.mac {
@@ -363,7 +347,9 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
 //            
 //        }
         
-        if !searchField.isFirstResponder && !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) && !I.mac {
+        let defaultsScrollSelection = UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scroll.rawValue)
+        
+        if !searchField.isFirstResponder && !defaultsScrollSelection && !I.mac {
             if scrollView.contentOffset.y <= -3 * scrollSelectionMultiplier {
                 
                 ScrollSelection.setNormalState(for: filterButton)
@@ -374,8 +360,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                                                  andConstant: 3 * scrollSelectionMultiplier)
                 
                 if playedHaptic != 1 {
-                    let generator = UIImpactFeedbackGenerator(style: .heavy)
-                    generator.impactOccurred()
+                    UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                 }
                 playedHaptic = 1
             } else if scrollView.contentOffset.y <= -2 * scrollSelectionMultiplier {
@@ -387,8 +372,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                                                  andConstant: 2 * scrollSelectionMultiplier)
                 
                 if playedHaptic != 2 {
-                    let generator = UIImpactFeedbackGenerator(style: .medium)
-                    generator.impactOccurred()
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                 }
                 
                 playedHaptic = 2
@@ -402,9 +386,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                                                  andConstant: scrollSelectionMultiplier)
                 
                 if playedHaptic != 3 {
-                    
-                    let generator = UIImpactFeedbackGenerator(style: .light)
-                    generator.impactOccurred()
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
                 }
                 playedHaptic = 3
             } else {
@@ -418,7 +400,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         #if targetEnvironment(macCatalyst)
         // Disabled scroll selection on mac catalyst
         #else
-            if !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scrollSelection.rawValue) {
+            if !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scroll.rawValue) {
                 resetScroll()
                 if scrollView.contentOffset.y <= -3 * scrollSelectionMultiplier {
                     // Reload view

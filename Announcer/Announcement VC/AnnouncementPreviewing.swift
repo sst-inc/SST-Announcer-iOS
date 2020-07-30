@@ -14,114 +14,125 @@ import UIKit
 extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
     // Set up items in the menu
     // Menu should contain Open announcements, Unpin / Pin, Share
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-        let cell = interaction.view as! AnnouncementTableViewCell
-        
-        let actionProvider: ([UIMenuElement]) -> UIMenu? = { _ in // menu elements from responder chain if any
-            // Creating actions…
-            // Checking if the current post is pinned
-            let pinned = self.pinned.contains(cell.post)
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        if let cell = interaction.view as? AnnouncementTableViewCell {
             
-            let pin = UIAction(title: {
-                // If the post is pinned, set it to unpin
-                pinned ? "Unpin" : "Pin"
-            }(),
-                               image: {
-                                // Setting different image based the state of the post (pinned or unpinned)
-                                pinned ? Assets.unpin : Assets.pin
-            }(),
-                               identifier: nil,
-                               discoverabilityTitle: nil,
-                               attributes: [],
-                               state: .off) { (_) in
-                                print("tapped")
-                                
-                                // Pin / Unpin post
-                                // Pull pinned items from the file (load the latest version)
-                                var pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
-                                
-                                if pinned {
-                                    // Unpin post
-                                    pinnedItems.remove(at: pinnedItems.firstIndex(of: cell.post)!)
-                                } else {
-                                    // Pin post
-                                    pinnedItems.append(cell.post)
-                                }
-                                
-                                // Write back to the file
-                                PinnedAnnouncements.saveToFile(posts: pinnedItems)
-                                
-                                // Reload the local pinned variable
-                                self.pinned = PinnedAnnouncements.loadFromFile() ?? []
-                                
-                                // Reload TableView to show the new pinned / unpinned post
-                                self.announcementTableView.reloadData()
+            let actionProvider: ([UIMenuElement]) -> UIMenu? = { _ in // menu elements from responder chain if any
+                self.pinMenuElement(cell)
             }
             
-            let share = UIAction(title: "Share...",
-                                 image: Assets.share,
-                                 identifier: nil,
-                                 discoverabilityTitle: nil,
-                                 attributes: [],
-                                 state: .off) { (_) in
-                // Create Activity View Controller (Share screen)
-                let shareViewController = UIActivityViewController.init(activityItems: [LinkFunctions.getShareURL(with: cell.post)], applicationActivities: nil)
-                
-                // Remove unneeded actions
-                shareViewController.excludedActivityTypes = [.saveToCameraRoll, .addToReadingList]
-                
-                self.present(shareViewController, animated: true, completion: nil)
-            }
+            return UIContextMenuConfiguration(identifier: GlobalIdentifier.openPostPreview,
+                                              previewProvider: { () -> UIViewController? in
+                                                if self.splitViewController != nil {
+                                                    return nil
+                                                }
+                                                
+                                                // Getting contentVC from post
+                                                let contentVC = self.getContentViewController(with: cell.post)
+                                                
+                                                // Setting attributedContent in the contentVC
+                                                contentVC.attributedContent = cell.htmlAttr
+                                                
+                                                // Return the contentVC
+                                                return contentVC
+                                              },
+                                              actionProvider: actionProvider)
             
-            let open = UIAction(title: "Open Announcement",
-                                image: Assets.open,
-                                identifier: nil,
-                                discoverabilityTitle: nil,
-                                attributes: [], state: .off) { (_) in
-                                    
-                                    // Setting selectedItem to the current selected item
-                                    self.selectedItem = cell.post
-                                    
-                                    // Open post
-                                    self.openPostFromPreview(with: cell)
-            }
-            
-            return UIMenu(title: "",
-                          image: nil,
-                          identifier: nil,
-                          options: [],
-                          children: [open, pin, share])
+        } else {
+            return nil
         }
-        
-        return UIContextMenuConfiguration(identifier: GlobalIdentifier.openPostPreview,
-                                          previewProvider: { () -> UIViewController? in
-                                            if self.splitViewController != nil {
-                                                return nil
-                                            }
-                                            
-                                            // Getting contentVC from post
-                                            let contentVC = self.getContentViewController(with: cell.post)
-                                            
-                                            // Setting attributedContent in the contentVC
-                                            contentVC.attributedContent = cell.htmlAttr
-                                            
-                                            // Return the contentVC
-                                            return contentVC
-        },
-                                          actionProvider: actionProvider)
-        
     }
     
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+    func pinMenuElement(_ cell: AnnouncementTableViewCell) -> UIMenu {
+        // Creating actions…
+        // Checking if the current post is pinned
+        let pinned = self.pinned.contains(cell.post)
+        
+        let pin: UIAction = UIAction(title: {
+            // If the post is pinned, set it to unpin
+            pinned ? "Unpin" : "Pin"
+        }(),
+        image: {
+            // Setting different image based the state of the post (pinned or unpinned)
+            pinned ? Assets.unpin : Assets.pin
+        }(),
+        identifier: nil,
+        discoverabilityTitle: nil,
+        attributes: [],
+        state: .off) { (_) in
+            print("tapped")
+            
+            // Pin / Unpin post
+            // Pull pinned items from the file (load the latest version)
+            var pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
+            
+            if pinned {
+                // Unpin post
+                pinnedItems.remove(at: pinnedItems.firstIndex(of: cell.post)!)
+            } else {
+                // Pin post
+                pinnedItems.append(cell.post)
+            }
+            
+            // Write back to the file
+            PinnedAnnouncements.saveToFile(posts: pinnedItems)
+            
+            // Reload the local pinned variable
+            self.pinned = PinnedAnnouncements.loadFromFile() ?? []
+            
+            // Reload TableView to show the new pinned / unpinned post
+            self.announcementTableView.reloadData()
+        }
+        
+        let share = UIAction(title: "Share...",
+                             image: Assets.share,
+                             identifier: nil,
+                             discoverabilityTitle: nil,
+                             attributes: [],
+                             state: .off) { (_) in
+            // Create Activity View Controller (Share screen)
+            let shareVC = UIActivityViewController(activityItems: [LinkFunctions.getShareURL(with: cell.post)],
+                                                   applicationActivities: nil)
+            
+            // Remove unneeded actions
+            shareVC.excludedActivityTypes = [.saveToCameraRoll, .addToReadingList]
+            
+            self.present(shareVC, animated: true, completion: nil)
+        }
+        
+        let open = UIAction(title: "Open Announcement",
+                            image: Assets.open,
+                            identifier: nil,
+                            discoverabilityTitle: nil,
+                            attributes: [], state: .off) { (_) in
+            
+            // Setting selectedItem to the current selected item
+            self.selectedItem = cell.post
+            
+            // Open post
+            self.openPostFromPreview(with: cell)
+        }
+        
+        return UIMenu(title: "",
+                      image: nil,
+                      identifier: nil,
+                      options: [],
+                      children: [open, pin, share])
+    }
+    
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+                                animator: UIContextMenuInteractionCommitAnimating) {
         
         // Getting cell from interaction
-        let cell = interaction.view as! AnnouncementTableViewCell
-        
-        // Setting selectedItem to the current selected item
-        selectedItem = cell.post
-        
-        // Open post
-        openPostFromPreview(with: cell)
+        if let cell = interaction.view as? AnnouncementTableViewCell {
+            // Setting selectedItem to the current selected item
+            selectedItem = cell.post
+            
+            // Open post
+            openPostFromPreview(with: cell)
+        }
     }
     
     func openPostFromPreview(with cell: AnnouncementTableViewCell) {
@@ -143,7 +154,8 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
             cell.highlightPost = true
             
             // Getting previous cell to remove highlight
-            if let previousCell = self.announcementTableView.cellForRow(at: self.selectedPath) as? AnnouncementTableViewCell {
+            let tableViewCell = self.announcementTableView.cellForRow(at: self.selectedPath)
+            if let previousCell = tableViewCell as? AnnouncementTableViewCell {
                 previousCell.highlightPost = false
             }
             

@@ -36,13 +36,12 @@ extension UITextField {
         }
     }
     
-    
     private class ClearButtonImage {
         static private var _image: UIImage?
         
         static private var semaphore = DispatchSemaphore(value: 1)
         
-        static func getImage(closure: @escaping (UIImage?)->()) {
+        static func getImage(closure: @escaping (UIImage?) -> Void) {
             
             DispatchQueue.global(qos: .userInteractive).async {
                 semaphore.wait()
@@ -59,7 +58,10 @@ extension UITextField {
                         semaphore.signal(); return
                     }
                     
-                    let searchBar = UISearchBar(frame: CGRect(x: 0, y: -200, width: UIScreen.main.bounds.width, height: 44))
+                    let searchBar = UISearchBar(frame: CGRect(x: 0,
+                                                              y: -200,
+                                                              width: UIScreen.main.bounds.width,
+                                                              height: 44))
                     
                     window.rootViewController?.view.addSubview(searchBar)
                     

@@ -11,8 +11,6 @@ import WidgetKit
 import SwiftUI
 
 struct NotSetUpItem {
-    
-    
     struct Small: View {
         var body: some View {
             VStack(alignment: .leading) {

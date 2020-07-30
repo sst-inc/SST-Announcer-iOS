@@ -12,13 +12,13 @@ import Foundation
 extension String {
     var htmlToAttributedString: NSMutableAttributedString? {
         do {
-            let attributedString = try NSMutableAttributedString(data: Data(utf8),
-                                                                 options: [.documentType: NSAttributedString.DocumentType.html,
-                                                                           .characterEncoding: 4], // UTF-8 encoding
-                                                                 documentAttributes: nil)
+            let attrStr = try NSMutableAttributedString(data: Data(utf8),
+                                                        options: [.documentType: NSAttributedString.DocumentType.html,
+                                                                  .characterEncoding: 4], // UTF-8 encoding
+                                                        documentAttributes: nil)
             
-            attributedString.append(NSAttributedString(string: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"))
-            return attributedString
+            attrStr.append(NSAttributedString(string: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"))
+            return attrStr
         } catch {
             print("error: ", error.localizedDescription)
             return NSMutableAttributedString(string: "error: " + error.localizedDescription)
@@ -31,8 +31,8 @@ extension String {
         
         while searchStartIndex < self.endIndex,
             let range = self.range(of: string, range: searchStartIndex..<self.endIndex),
-            !range.isEmpty
-        {
+            !range.isEmpty {
+            
             let index = distance(from: self.startIndex, to: range.lowerBound)
             indices.append(index)
             searchStartIndex = range.upperBound

@@ -33,8 +33,11 @@ extension AnnouncementsViewController: UISearchBarDelegate {
             let indicesStart = attrTitle.string.indicesOf(string: "[")
             let indicesEnd = attrTitle.string.indicesOf(string: "]")
             
+            let font = UIFont.systemFont(ofSize: UIFont.labelFontSize)
+            
             // Set default attributes
-            let defaultAttributes : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.label, NSAttributedString.Key.font: UIFont.systemFont(ofSize: UIFont.labelFontSize)]
+            let defaultAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.label,
+                                                                    .font: font]
             
             attrTitle.addAttributes(defaultAttributes, range: NSRange(location: 0, length: attrTitle.string.count))
             
@@ -52,12 +55,16 @@ extension AnnouncementsViewController: UISearchBarDelegate {
                         
                         // [] colors will be Grey 1
                         
+                        let font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+                        
                         // Setting font color and font
-                        let bracketStyle : [NSAttributedString.Key : Any] = [.foregroundColor: GlobalColors.blueTint,
-                                                                             .font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)]
+                        let bracketStyle: [NSAttributedString.Key: Any] = [.foregroundColor: GlobalColors.blueTint,
+                                                                           .font: font]
                         
                         // Add attributes
-                        attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 1))
+                        attrTitle.addAttributes(bracketStyle,
+                                                range: NSRange(location: start,
+                                                               length: end - start + 1))
                     }
                 }
                 

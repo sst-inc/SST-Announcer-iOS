@@ -60,17 +60,17 @@ class TTGetStartedViewController: UIViewController, UITextFieldDelegate {
         
         // Getting the imageView from optionView
         // The checkmark icon thing
-        let imageView = optionView.subviews.first as! UIImageView
-        
-        // Getting the time of alert from the current option
-        let time = timeOfAlerts[optionView.tag]
-        
-        if selectedAlerts.contains(time) {
-            imageView.image = UIImage(systemName: "circle")
-            selectedAlerts.removeAll { $0 == time }
-        } else {
-            imageView.image = UIImage(systemName: "checkmark.circle.fill")
-            selectedAlerts.append(time)
+        if let imageView = optionView.subviews.first as? UIImageView {
+            // Getting the time of alert from the current option
+            let time = timeOfAlerts[optionView.tag]
+            
+            if selectedAlerts.contains(time) {
+                imageView.image = UIImage(systemName: "circle")
+                selectedAlerts.removeAll { $0 == time }
+            } else {
+                imageView.image = UIImage(systemName: "checkmark.circle.fill")
+                selectedAlerts.append(time)
+            }
         }
     }
     
@@ -128,7 +128,9 @@ class TTGetStartedViewController: UIViewController, UITextFieldDelegate {
         }
         
         // Getting the timetable navigation controller
-        let timetableNVC = navigationController as! TTNavigationViewController
+        guard let timetableNVC = navigationController as? TTNavigationViewController else {
+            fatalError()
+        }
         
         // Checking if the PDF exists
         if let pdf = timetableNVC.timetablePDF {
@@ -160,7 +162,9 @@ class TTGetStartedViewController: UIViewController, UITextFieldDelegate {
     
     func regexCheck(with str: String) -> Bool {
         // Creating regex
-        let regex = try! NSRegularExpression(pattern: "S[1-9]-[0-9][0-9]")
+        guard let regex = try? NSRegularExpression(pattern: "S[1-9]-[0-9][0-9]") else {
+            fatalError()
+        }
         
         // Creating range for regex
         let range = NSRange(location: 0, length: str.utf16.count)
@@ -184,6 +188,4 @@ class TTGetStartedViewController: UIViewController, UITextFieldDelegate {
             dest.`class` = classTextField.text
         }
     }
-
-
 }

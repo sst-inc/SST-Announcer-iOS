@@ -29,8 +29,10 @@ extension AnnouncementsViewController: UIPointerInteractionDelegate {
         return nil
     }
     
-    func pointerInteraction(_ interaction: UIPointerInteraction, regionFor request: UIPointerRegionRequest, defaultRegion: UIPointerRegion) -> UIPointerRegion? {
-        var pointerRegion: UIPointerRegion? = nil
+    func pointerInteraction(_ interaction: UIPointerInteraction,
+                            regionFor request: UIPointerRegionRequest,
+                            defaultRegion: UIPointerRegion) -> UIPointerRegion? {
+        var pointerRegion: UIPointerRegion?
         
         if let view = interaction.view as? UIButton {
             // Handling UIButton (those header buttons)

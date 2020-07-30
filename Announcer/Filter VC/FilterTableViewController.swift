@@ -78,32 +78,39 @@ class FilterTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: GlobalIdentifier.labelCell, for: indexPath) as! FilterTableViewCell
+        let id = GlobalIdentifier.labelCell
         
-        // Setting the title
-        cell.title = labels[indexPath.row]
-        
-        // Creating preview interaction
-        let interaction = UIContextMenuInteraction(delegate: self)
-        
-        // Adding interaction to cell
-        cell.addInteraction(interaction)
-        
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as? FilterTableViewCell {
+
+            // Setting the title
+            cell.title = labels[indexPath.row]
+
+            // Creating preview interaction
+            let interaction = UIContextMenuInteraction(delegate: self)
+
+            // Adding interaction to cell
+            cell.addInteraction(interaction)
+
+            return cell
+        } else {
+            fatalError()
+        }
     }
     
     // Selected a label
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Get the tvc
-        let cell = tableView.cellForRow(at: indexPath) as! FilterTableViewCell
-        
-        // Pass the cell's title over to the next VC
-        filter = cell.title
-        
-        self.dismiss(animated: true) {
-            // Run an onDismiss void which is defined in the AnnouncementVC file
-            // This void tells the AnnouncementVC to filter based on the selected label
-            self.onDismiss!()
+        if let cell = tableView.cellForRow(at: indexPath) as? FilterTableViewCell {
+            // Pass the cell's title over to the next VC
+            filter = cell.title
+            
+            self.dismiss(animated: true) {
+                // Run an onDismiss void which is defined in the AnnouncementVC file
+                // This void tells the AnnouncementVC to filter based on the selected label
+                self.onDismiss!()
+            }
+        } else {
+            fatalError()
         }
     }
     

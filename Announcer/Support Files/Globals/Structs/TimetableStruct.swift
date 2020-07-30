@@ -49,10 +49,10 @@ struct Timetable: Equatable, Codable {
         
         let jsonEncoder = JSONEncoder()
         
-        let encodedTimetable = try! jsonEncoder.encode(self)
-        
-        let jsonStr = String(data: encodedTimetable, encoding: .utf8)
-        
-        defaults?.set(jsonStr!, forKey: "TT")
+        if let encodedTimetable = try? jsonEncoder.encode(self) {
+            let jsonStr = String(data: encodedTimetable, encoding: .utf8)
+            
+            defaults?.set(jsonStr!, forKey: "TT")
+        }
     }
 }

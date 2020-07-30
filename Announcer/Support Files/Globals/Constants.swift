@@ -43,6 +43,7 @@ Let's be real, this is the best way to terminate a program
 I.wantToDie
 ```
 */
+// swiftlint:disable:next type_name
 struct I {
     /// Check if device is a Mac
     static let mac: Bool = {
@@ -108,14 +109,16 @@ struct GlobalLinks {
     /**
      Error 404 website
      
-     This URL is to redirect users in a case of an error while getting the blog posts or while attempting to show the student's blog.
+     This URL is to redirect users in a case of an error while
+     getting the blog posts or while attempting to show the student's blog.
      */
     static let errorNotFoundURL         = URL(string: "https://sstinc.org/404")!
     
     /**
      Error 404 website
      
-     This URL is to redirect users in a case of an error while getting the blog posts or while attempting to show the student's blog.
+     This URL is to redirect users in a case of an error while
+     getting the blog posts or while attempting to show the student's blog.
      */
     static let settingsURL              = URL(string: "App-Prefs:root=")!
 }
@@ -200,7 +203,8 @@ struct GlobalIdentifier {
     /// Minimum font size used in the post
     static let minimumFontSize: CGFloat = 5
     
-    /// Expansion constant is a constant value added to the width and height of the button to make the cursor scale in size when hovering over button
+    /// Expansion constant is a constant value added to the width and height
+    /// of the button to make the cursor scale in size when hovering over button
     static let expansionConstant: CGFloat = 5
 }
 
@@ -210,6 +214,7 @@ struct GlobalIdentifier {
  This struct contains error messages used in the app
  */
 struct ErrorMessages {
+    // swiftlint:disable line_length
     /// When there is an error launching a post because it requires JavaScript
     static let postRequiresWebKit       = Message(title: "Unable to Open Post",
                                                   description: "An error occured when opening this post. Open this post in Safari to view its contents.")
@@ -221,6 +226,7 @@ struct ErrorMessages {
     /// Error launching post from notifications or spotlight search
     static let unableToLaunchPost       = Message(title: "Unable to launch post",
                                                   description: "Something went wrong when trying to retrieve the post. You can try to open this post in Safari.")
+    // swiftlint:enable line_length
 }
 
 struct Message {
@@ -239,7 +245,7 @@ enum UserDefaultsIdentifiers: String {
     case buildNumber                    = "buildNumber"
     
     // For User Interface
-    case scrollSelection                = "scrollSelection"
+    case scroll                         = "scrollSelection"
     case textScale                      = "textScale"
 }
 
@@ -250,6 +256,7 @@ struct Assets {
     static let unpin                    = UIImage(systemName: "pin.fill")!
     static let loading                  = UIImage(systemName: "arrow.clockwise")!
     static let error                    = UIImage(systemName: "exclamationmark.triangle.fill")!
+    static let bigError                 = UIImage(systemName: "xmark.octagon.fill")!
     static let unread                   = UIImage(systemName: "circle.fill")!
     
     // Link Icons
@@ -283,6 +290,7 @@ struct Assets {
     static let cross                    = UIImage(systemName: "xmark")!
     static let home                     = UIImage(systemName: "house")!
     
+    // swiftlint:disable colon
     static let subjectIcons = ["el"       : ["a.book.closed", "English"],                      // 􀫕
                                "math"     : ["x.squareroot", "Math"],                          // 􀓪
                                "s&w"      : ["sportscourt", "S&W"],                            // 􀝐
@@ -328,6 +336,7 @@ struct Assets {
                                "|before|" : ["clock", "Starting Soon"],                        // 􀐫
                                "|over|"   : ["Class Dismissed!", "house"]                      // 􀎞
     ]
+    // swiftlint:enable colon
     
     // Subject icons
     // Key: Subject Name, Item: image

@@ -122,9 +122,11 @@
 		324577DC238FA77000730F17 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577DB238FA77000730F17 /* FilterTableViewCell.swift */; };
 		325B5B3124B19FAC00620D4A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325B5B3024B19FAC00620D4A /* Date.swift */; };
 		325B5B3224B1A17100620D4A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325B5B3024B19FAC00620D4A /* Date.swift */; };
+		325CE83A24D295B100B060F5 /* ContentAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CE83924D295B100B060F5 /* ContentAlerts.swift */; };
 		326210EC2452061900629CC7 /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326210EB2452061900629CC7 /* UIView Extension.swift */; };
 		327524B724910999008EA814 /* TTGetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B624910999008EA814 /* TTGetStartedViewController.swift */; };
 		327524B924912470008EA814 /* TTPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B824912470008EA814 /* TTPreviewViewController.swift */; };
+		327A299224D2F839003B0046 /* AnnouncementCellConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A299124D2F839003B0046 /* AnnouncementCellConfig.swift */; };
 		32806D2124A2EA970032A2F5 /* TimetableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE72496275100132EB4 /* TimetableStruct.swift */; };
 		32806D2224A2EA970032A2F5 /* LessonStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C9BEA249F302300088677 /* LessonStruct.swift */; };
 		32806D2324A418D00032A2F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Constants.swift */; };
@@ -339,12 +341,14 @@
 		324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		324577DB238FA77000730F17 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		325B5B3024B19FAC00620D4A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		325CE83924D295B100B060F5 /* ContentAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentAlerts.swift; sourceTree = "<group>"; };
 		326210EB2452061900629CC7 /* UIView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView Extension.swift"; sourceTree = "<group>"; };
 		326E65AB24A17C4800E39C6F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		326E65AD24A17C4800E39C6F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		326E65BB24A17C4A00E39C6F /* Timetables.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timetables.entitlements; sourceTree = "<group>"; };
 		327524B624910999008EA814 /* TTGetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTGetStartedViewController.swift; sourceTree = "<group>"; };
 		327524B824912470008EA814 /* TTPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTPreviewViewController.swift; sourceTree = "<group>"; };
+		327A299124D2F839003B0046 /* AnnouncementCellConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCellConfig.swift; sourceTree = "<group>"; };
 		328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage Extension.swift"; sourceTree = "<group>"; };
 		328BFFE72496275100132EB4 /* TimetableStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableStruct.swift; sourceTree = "<group>"; };
 		328BFFE924964F0400132EB4 /* TTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTViewController.swift; sourceTree = "<group>"; };
@@ -768,6 +772,7 @@
 				32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */,
 				32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */,
 				324576FA238E063500730F17 /* AnnouncementTableView.swift */,
+				327A299124D2F839003B0046 /* AnnouncementCellConfig.swift */,
 				329CE2272489B713002022A6 /* AnnouncementPointers.swift */,
 				324577D5238F7F8600730F17 /* AnnouncementSearchBar.swift */,
 			);
@@ -1020,6 +1025,7 @@
 				32C2532C244EA8D00015085A /* ContentTextView.swift */,
 				3292B75C2489DD7C005749CB /* ContentPointer.swift */,
 				329B6B45248BAAC100ED4428 /* ContentPreviewing.swift */,
+				325CE83924D295B100B060F5 /* ContentAlerts.swift */,
 				320816BF2453515900024FD0 /* CollectionView */,
 			);
 			path = "Content VC";
@@ -1120,6 +1126,7 @@
 				32D99530238C068D00208D25 /* Resources */,
 				32E9B4E623A53F40000F769F /* Embed App Extensions */,
 				C08FA42420FFC344CB84C3F4 /* [CP] Embed Pods Frameworks */,
+				325CE83824D2927500B060F5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1232,6 +1239,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		325CE83824D2927500B060F5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		696A4D6F397144E12AECD297 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1416,9 +1440,11 @@
 				324577BC238E53A200730F17 /* MediaStatus.swift in Sources */,
 				324577B5238E53A200730F17 /* MediaDescription.swift in Sources */,
 				32C25327244EA6D70015085A /* String Extension.swift in Sources */,
+				325CE83A24D295B100B060F5 /* ContentAlerts.swift in Sources */,
 				329E3B1F23FEA47500524901 /* ReadAnnouncements.swift in Sources */,
 				32457784238E53A100730F17 /* AtomFeedEntrySource.swift in Sources */,
 				324577A7238E53A100730F17 /* MediaTitle.swift in Sources */,
+				327A299224D2F839003B0046 /* AnnouncementCellConfig.swift in Sources */,
 				324577B7238E53A200730F17 /* MediaScene.swift in Sources */,
 				324577C7238E53A200730F17 /* ParserError.swift in Sources */,
 				324577A2238E53A100730F17 /* ContentNamespace.swift in Sources */,

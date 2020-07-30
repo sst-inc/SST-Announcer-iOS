@@ -49,9 +49,9 @@ class PinnedAnnouncements: Codable {
         let archiveURL = getArchiveURL()
         let propertyListDecoder = PropertyListDecoder()
         guard let retrievedPostData = try? Data(contentsOf: archiveURL) else { return nil }
-        guard let decodedPost = try? propertyListDecoder.decode(Array<Post>.self, from: retrievedPostData) else { return nil }
+        guard let decodedPost = try? propertyListDecoder.decode(Array<Post>.self,
+                                                                from: retrievedPostData) else { return nil }
         
         return decodedPost
     }
 }
-

@@ -10,19 +10,19 @@ import WidgetKit
 import SwiftUI
 
 public struct Provider: TimelineProvider {
-    
+
     public func snapshot(with context: Context,
                          completion: @escaping (WidgetEntry) -> ()) {
         let entry = WidgetEntry(date: Date())
-        
+ 
         completion(entry)
     }
-    
+
     public func timeline(with context: Context,
                          completion: @escaping (Timeline<Entry>) -> ()) {
-        
+
         var items: [WidgetEntry] = []
-        
+
         if !Calendar.current.isDateInWeekend(Date()) {
             if let lessonDates = getLessonDates(date: Date()) {
                 items = lessonDates.map {
@@ -41,7 +41,6 @@ public struct Provider: TimelineProvider {
         items.append(WidgetEntry(date: Lesson.getTodayDate().advanced(by: 86400),
                                  relevance: TimelineEntryRelevance(score: 0, duration: 0)))
         
-        
         // Reload right now to get the latest data
         // Just make it relevant for the next 10 minutes... as a safe guard
         items.append(WidgetEntry(date: Date(),
@@ -59,7 +58,7 @@ public struct WidgetEntry: TimelineEntry {
 }
 
 // Create a placeholder view to show
-struct PlaceholderView : View {
+struct PlaceholderView: View {
     
     @Environment(\.widgetFamily) var family: WidgetFamily
     
@@ -69,7 +68,7 @@ struct PlaceholderView : View {
     }
 }
 
-struct Widget_TimetableEntryView : View {
+struct WidgetTimetableEntryView: View {
     var entry: Provider.Entry
     
     private let announcerURL = URL(string: "sstannouncer://")!
@@ -124,15 +123,15 @@ struct Widget_TimetableEntryView : View {
 }
 
 @main
-struct Widget_Timetable: Widget {
-    
+struct WidgetTimetable: Widget {
+
     // Bundle ID
     private let kind: String = "sg.edu.sst.panziyue.Announcer.Timetable"
-    
+
     public var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind,
                             provider: Provider()) { entry in
-            Widget_TimetableEntryView(entry: entry)
+            WidgetTimetableEntryView(entry: entry)
         }
         .supportedFamilies([.systemSmall, .systemMedium])
         .configurationDisplayName("Timetables")
@@ -140,10 +139,10 @@ struct Widget_Timetable: Widget {
     }
 }
 
-struct WidgetTimetable_Previews: PreviewProvider {
+struct WidgetTimetablePreviews: PreviewProvider {
     static var previews: some View {
         Group {
-            Widget_TimetableEntryView(entry: WidgetEntry(date: Date()))
+            WidgetTimetableEntryView(entry: WidgetEntry(date: Date()))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
         }
     }
