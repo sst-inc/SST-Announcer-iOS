@@ -148,6 +148,10 @@
 		327A29B824D3F260003B0046 /* ScrollSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A29B724D3F25F003B0046 /* ScrollSelection.swift */; };
 		327A29BA24D3F2D8003B0046 /* LaunchFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A29B924D3F2D8003B0046 /* LaunchFunctions.swift */; };
 		327A29BC24D3F39F003B0046 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A29BB24D3F39F003B0046 /* Search.swift */; };
+		327A29BE24D40C23003B0046 /* AnnouncementScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A29BD24D40C23003B0046 /* AnnouncementScrollView.swift */; };
+		327A29C124D40FFE003B0046 /* AnnouncementScrollSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A29C024D40FFE003B0046 /* AnnouncementScrollSelection.swift */; };
+		327A29C324D41C7A003B0046 /* ContentElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A29C224D41C7A003B0046 /* ContentElements.swift */; };
+		327A29C524D41D74003B0046 /* ContentUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A29C424D41D74003B0046 /* ContentUpdates.swift */; };
 		32806D2124A2EA970032A2F5 /* TimetableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE72496275100132EB4 /* TimetableStruct.swift */; };
 		32806D2224A2EA970032A2F5 /* LessonStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C9BEA249F302300088677 /* LessonStruct.swift */; };
 		32806D2324A418D00032A2F5 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Identifiers.swift */; };
@@ -384,6 +388,10 @@
 		327A29B724D3F25F003B0046 /* ScrollSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollSelection.swift; sourceTree = "<group>"; };
 		327A29B924D3F2D8003B0046 /* LaunchFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFunctions.swift; sourceTree = "<group>"; };
 		327A29BB24D3F39F003B0046 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		327A29BD24D40C23003B0046 /* AnnouncementScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementScrollView.swift; sourceTree = "<group>"; };
+		327A29C024D40FFE003B0046 /* AnnouncementScrollSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementScrollSelection.swift; sourceTree = "<group>"; };
+		327A29C224D41C7A003B0046 /* ContentElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentElements.swift; sourceTree = "<group>"; };
+		327A29C424D41D74003B0046 /* ContentUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentUpdates.swift; sourceTree = "<group>"; };
 		328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage Extension.swift"; sourceTree = "<group>"; };
 		328BFFE72496275100132EB4 /* TimetableStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableStruct.swift; sourceTree = "<group>"; };
 		328BFFE924964F0400132EB4 /* TTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTViewController.swift; sourceTree = "<group>"; };
@@ -802,11 +810,11 @@
 			isa = PBXGroup;
 			children = (
 				32D9954B238D865600208D25 /* AnnouncementsViewController.swift */,
-				327A299424D3E9DC003B0046 /* Feedback Button */,
-				327A299324D3E0AB003B0046 /* TableView */,
 				32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */,
 				329CE2272489B713002022A6 /* AnnouncementPointers.swift */,
-				324577D5238F7F8600730F17 /* AnnouncementSearchBar.swift */,
+				327A299424D3E9DC003B0046 /* Feedback Button */,
+				327A299324D3E0AB003B0046 /* TableView */,
+				327A29BF24D40FD4003B0046 /* Scroll Selection */,
 			);
 			path = "Announcement VC";
 			sourceTree = "<group>";
@@ -832,9 +840,10 @@
 		327A299324D3E0AB003B0046 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				324577D5238F7F8600730F17 /* AnnouncementSearchBar.swift */,
 				32F513D524C716F200FAE1DE /* AnnouncementDrag.swift */,
-				32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */,
 				324576FA238E063500730F17 /* AnnouncementTableView.swift */,
+				32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */,
 				327A299124D2F839003B0046 /* AnnouncementCellConfig.swift */,
 			);
 			path = TableView;
@@ -901,6 +910,15 @@
 				327A29B524D3F23B003B0046 /* LinkFunctions.swift */,
 			);
 			path = Functions;
+			sourceTree = "<group>";
+		};
+		327A29BF24D40FD4003B0046 /* Scroll Selection */ = {
+			isa = PBXGroup;
+			children = (
+				327A29BD24D40C23003B0046 /* AnnouncementScrollView.swift */,
+				327A29C024D40FFE003B0046 /* AnnouncementScrollSelection.swift */,
+			);
+			path = "Scroll Selection";
 			sourceTree = "<group>";
 		};
 		328BFFEB24964F1700132EB4 /* Setting Up Timetable */ = {
@@ -1128,6 +1146,8 @@
 			isa = PBXGroup;
 			children = (
 				324576FC238E0FB300730F17 /* ContentViewController.swift */,
+				327A29C224D41C7A003B0046 /* ContentElements.swift */,
+				327A29C424D41D74003B0046 /* ContentUpdates.swift */,
 				3292B75C2489DD7C005749CB /* ContentPointer.swift */,
 				329B6B45248BAAC100ED4428 /* ContentPreviewing.swift */,
 				325CE83924D295B100B060F5 /* ContentAlerts.swift */,
@@ -1457,6 +1477,7 @@
 				32C25325244EA63C0015085A /* Array Extension.swift in Sources */,
 				3245779B238E53A100730F17 /* SyndicationUpdatePeriod.swift in Sources */,
 				327A299F24D3EEEC003B0046 /* Storyboards.swift in Sources */,
+				327A29C324D41C7A003B0046 /* ContentElements.swift in Sources */,
 				328BFFE82496275100132EB4 /* TimetableStruct.swift in Sources */,
 				324577BA238E53A200730F17 /* MediaText.swift in Sources */,
 				32E9B4D923A3D86F000F769F /* AnnouncementPreviewing.swift in Sources */,
@@ -1585,6 +1606,7 @@
 				32FA680D247FF9420077E030 /* Variables.swift in Sources */,
 				3245779C238E53A100730F17 /* SyndicationNamespace.swift in Sources */,
 				327A299624D3EA12003B0046 /* FeedbackButtonElements.swift in Sources */,
+				327A29C124D40FFE003B0046 /* AnnouncementScrollSelection.swift in Sources */,
 				329B6B46248BAAC100ED4428 /* ContentPreviewing.swift in Sources */,
 				324577D8238F8CC100730F17 /* FilterTableViewController.swift in Sources */,
 				324577C1238E53A200730F17 /* JSONFeedAttachment.swift in Sources */,
@@ -1598,10 +1620,12 @@
 				32457796238E53A100730F17 /* RSSPath.swift in Sources */,
 				324576FD238E0FB300730F17 /* ContentViewController.swift in Sources */,
 				3245777B238E53A100730F17 /* AtomFeed.swift in Sources */,
+				327A29C524D41D74003B0046 /* ContentUpdates.swift in Sources */,
 				326210EC2452061900629CC7 /* UIView Extension.swift in Sources */,
 				327A29A124D3EF29003B0046 /* Colors.swift in Sources */,
 				3245779F238E53A100730F17 /* iTunesNamespace.swift in Sources */,
 				327A29BC24D3F39F003B0046 /* Search.swift in Sources */,
+				327A29BE24D40C23003B0046 /* AnnouncementScrollView.swift in Sources */,
 				327A29B624D3F23B003B0046 /* LinkFunctions.swift in Sources */,
 				32457778238E53A100730F17 /* ISO8601DateFormatter.swift in Sources */,
 				327A29A324D3EF68003B0046 /* Links.swift in Sources */,

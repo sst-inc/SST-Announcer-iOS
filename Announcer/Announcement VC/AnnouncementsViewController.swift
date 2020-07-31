@@ -75,7 +75,7 @@ class AnnouncementsViewController: UIViewController {
     var pinned = [Post]()
     
     /// Scroll selection multiplier used to control scroll height
-    let scrollSelectionMultiplier: CGFloat = 50
+    let scrollSelectionMultiplier: CGFloat = 40
     
     /// Selected Path
     var selectedPath = IndexPath(row: 0, section: 0)
@@ -182,7 +182,7 @@ class AnnouncementsViewController: UIViewController {
     @IBAction func sortWithLabels(_ sender: Any) {
         // Resetting scroll selection
         // Handles when a user selects this button through scroll selection
-        resetScroll()
+        self.resetScroll()
         
         // Open up the filter view controller
         openFilter()

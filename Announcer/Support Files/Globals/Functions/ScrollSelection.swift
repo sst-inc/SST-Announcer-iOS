@@ -13,11 +13,10 @@ struct ScrollSelection {
     static func setNormalState(for item: UIView? = nil, barButton: UIBarButtonItem? = nil) {
         if let item = item {
             if let button = item as? UIButton {
-                        button.layer.borderWidth = 0
-                        button.layer.borderColor = GlobalColors.borderColor
-                    } else if let searchBar = item as? UISearchBar {
-                        searchBar.alpha = 1
-                    }
+                button.tintColor = GlobalColors.greyOne
+            } else if let searchBar = item as? UISearchBar {
+                searchBar.alpha = 1
+            }
         } else {
             barButton?.tintColor = GlobalColors.greyOne
         }
@@ -28,12 +27,10 @@ struct ScrollSelection {
                                  withOffset offset: CGFloat,
                                  andConstant constant: CGFloat) {
         let multiplier = (offset * -1 - constant) / 100
-
+        
         if let item = item {
             if let button = item as? UIButton {
-
-                button.layer.borderWidth = 25 * multiplier
-                button.layer.borderColor = GlobalColors.borderColor
+                button.tintColor = GlobalColors.greyOne.withAlphaComponent(1 - (multiplier * 2))
             } else if let searchBar = item as? UISearchBar {
                 searchBar.alpha = 1 - (multiplier * 2)
             }

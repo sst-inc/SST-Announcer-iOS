@@ -168,76 +168,6 @@ class ContentViewController: UIViewController {
         loadingContentButton.isHidden = true
     }
 
-    func updateContent() {
-        // Render HTML from String
-        // Handle WebKit requirements by showing an error
-
-        // Check if need to show message
-        let showError = I.phone || (splitViewController as? SplitViewController)?.announcementVC.searchField.text == ""
-
-        if post.content.contains("webkitallowfullscreen=\"true\"") ||
-            (attributedContent?.string.lowercased() ?? "").contains("error") &&
-            showError {
-
-            postRequiresWebKit()
-        } else {
-            // Getting HTML content
-            let content = post.content
-            
-            // Converting HTML content to NSAttributedString
-            // Receiving attributedContent from previous VC, if it doesnt exist, just load it
-            let attr = attributedContent ?? content.htmlToAttributedString
-            
-            // Adding font and background color that support dark mode
-            attr?.addAttribute(.font,
-                               value: UIFont.systemFont(ofSize: currentScale, weight: .medium),
-                               range: NSRange(location: 0, length: (attr?.length)!))
-            
-            attr?.addAttribute(.backgroundColor,
-                               value: UIColor.clear,
-                               range: NSRange(location: 0, length: (attr?.length)!))
-            
-            // Optimising for iOS 13 dark mode
-            attr?.addAttribute(.foregroundColor,
-                               value: UIColor.label,
-                               range: NSRange(location: 0, length: (attr?.length)!))
-            
-            DispatchQueue.main.async {
-                // Set the attributed text
-                self.contentTextView.attributedText = attr
-            }
-        }
-        
-        // Update labels/textview with data
-        let attrTitle = titleAttributes(post.title)
-        // Find the [] and just make it like red or something
-        
-        // Format date as "1 Jan 2019"
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMM yyyy"
-        
-        // Escape to main thread to update user interface
-        DispatchQueue.main.async {
-            // Update textLabel with attributed text for colored square brackets
-            self.titleLabel.attributedText = attrTitle
-            
-            // Update the page title
-            UIApplication.shared.connectedScenes.first?.title = self.post.title
-            
-            // Update dateLabel with formatted date
-            self.dateLabel.text = "Posted on \(dateFormatter.string(from: self.post.date))"
-            
-            // Reload labels collection view with new data
-            self.labelsCollectionView.reloadData()
-        }
-        
-        // Handling pinned posts
-        handlePinned(with: post)
-        
-        // Load in links asyncronously as it takes a while to generate images etc. for images
-        loadLinks(from: post)
-    }
-    
     // Handle when view orientation change
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -262,7 +192,6 @@ class ContentViewController: UIViewController {
     }
     
     @IBAction func sharePost(_ sender: Any) {
-        
         // Get share URL
         let shareURL = LinkFunctions.getShareURL(with: post)
         
@@ -285,17 +214,9 @@ class ContentViewController: UIViewController {
             self.overrideUserInterfaceStyle = .light
             self.hardToSeeButton.setTitle("   Reset", for: .normal)
             self.hardToSeeButton.setImage(UIImage(systemName: "lightbulb.slash"), for: .normal)
-            
         }
         isDark.toggle()
     }
-    
-//    // Go back to previous view controller
-//    @IBAction func dismiss(_ sender: Any) {
-//        if I.phone {
-//            self.navigationController?.popViewController(animated: true)
-//        }
-//    }
     
     @IBAction func pinnedItem(_ sender: Any) {
         // Toggle pin based on context
@@ -432,28 +353,6 @@ class ContentViewController: UIViewController {
         }
     }
     
-    @objc func updateSize() {
-        
-        // Updating the current scale of the text
-        let userDefaultsScale = UserDefaults.standard.float(forKey: UserDefaultsIdentifiers.textScale.rawValue)
-        
-        currentScale = userDefaultsScale == 0 ? GlobalIdentifier.defaultFontSize : CGFloat(userDefaultsScale)
-
-        DispatchQueue.main.async {
-            // New font size and style
-            let font = UIFont.systemFont(ofSize: self.currentScale, weight: .medium)
-
-            // Creating attributed text
-            let attr = NSMutableAttributedString(attributedString: self.contentTextView.attributedText)
-
-            // Setting text color using NSAttributedString
-            attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
-
-            // Setting attributedText on contentTextView
-            self.contentTextView.attributedText = attr
-        }
-    }
-
     // Tapped reset to default font size button
     @IBAction func resetToDefaultFontSize(_ sender: Any) {
         let attr = NSMutableAttributedString(attributedString: contentTextView.attributedText)
@@ -475,155 +374,5 @@ class ContentViewController: UIViewController {
 
         // Hide the button
         defaultFontSizeButton.isHidden = true
-    }
-
-    // Updating pinned values
-    func updatePinned() {
-        let pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
-        if pinnedItems.contains(post) {
-            // Item is pinned
-            isPinned = true
-
-            // Set the image
-            pinButton.setImage(Assets.unpin, for: .normal)
-        } else {
-            // Item is not pinned
-            isPinned = false
-
-            // Set the image
-            pinButton.setImage(Assets.pin, for: .normal)
-        }
-    }
-    
-    func titleAttributes(_ string: String) -> NSAttributedString {
-        // Update labels/textview with data
-        let attrTitle = NSMutableAttributedString(string: string)
-        // Find the [] and just make it like red or something
-        
-        // Make square brackets colored
-        let indicesStart = attrTitle.string.indicesOf(string: "[")
-        let indicesEnd = attrTitle.string.indicesOf(string: "]")
-        
-        // Determine which one is smaller (start indices or end indices)
-        if (indicesStart.count >= (indicesEnd.count) ? indicesStart.count : indicesEnd.count) > 0 {
-            for i in 1...(indicesStart.count >= indicesEnd.count ? indicesStart.count : indicesEnd.count) {
-                
-                let start = indicesStart[i - 1]
-                let end = indicesEnd[i - 1]
-                
-                // [] colors will be Grey 1
-                // @shannen why these color names man
-                let bracketStyle: [NSAttributedString.Key: Any] = [.foregroundColor: GlobalColors.blueTint,
-                                                                   .font: UIFont.systemFont(ofSize: 22,
-                                                                                            weight: .semibold)]
-                
-                attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 2))
-            }
-        }
-        
-        return attrTitle
-    }
-    
-    func resetInterface() {
-        // Set textField delegate
-        self.contentTextView.delegate = self
-        
-        // Styling default font size button
-        // Create a button of corner radius 20
-        self.defaultFontSizeButton.layer.cornerRadius = 20
-        self.defaultFontSizeButton.clipsToBounds = true
-        
-        // Hide the button until needed
-        self.defaultFontSizeButton.isHidden = true
-        
-        // Setting corner radii for the scrollSelection buttons to allow for the circular highlight
-        self.safariButton.layer.cornerRadius = 25 / 2
-        self.shareButton.layer.cornerRadius = 25 / 2
-        self.pinButton.layer.cornerRadius = 25 / 2
-        
-        // Hide links view while loading links
-        self.linksView.isHidden = true
-    }
-    
-    func handlePinned(with post: Post) {
-        // Check if item is pinned
-        // Update the button to show
-        //If is in pinnned
-        let pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
-        
-        DispatchQueue.main.async {
-            // Fill/Don't fill pin
-            if pinnedItems.contains(post) {
-                // Set the isPinned variable
-                self.isPinned = true
-                
-                // Updating the pinButton image to unpin
-                self.pinButton.setImage(Assets.unpin, for: .normal)
-            } else {
-                // Set the isPinned variable
-                self.isPinned = false
-                
-                // Updating the pinButton image to pin
-                self.pinButton.setImage(Assets.pin, for: .normal)
-            }
-                        
-            // Hide the labels if there are none
-            if self.post.categories.count == 0 {
-                self.labelsView.isHidden = true
-                self.seperatorView.isHidden = true
-            } else {
-                self.labelsView.isHidden = false
-            }
-            
-            self.resetInterface()
-        }
-    }
-    
-    func loadLinks(from post: Post) {
-        DispatchQueue.global(qos: .utility).async {
-            self.links = []
-            
-            for url in LinkFunctions.getLinksFromPost(post: post) {
-                OGDataProvider.shared.fetchOGData(withURLString: url.absoluteString) { [weak self] ogData, error in
-                    if error != nil { return }
-                    
-                    // Getting sourceURL
-                    let sourceUrl: String = (ogData.sourceUrl ?? url).absoluteString
-                    
-                    // Getting page title
-                    let pageTitle: String = {
-                        // Get newURL
-                        let newURL = url.baseURL?.absoluteString ?? url.absoluteString
-                        
-                        // Handling title for Google Sites
-                        if newURL.contains("sites.google.com") {
-                            var urlItems = newURL.split(separator: "/")
-                            
-                            // Remove the first 3 items as it is "https", "sites.google.com" and the domain thing
-                            urlItems.removeFirst(3)
-                            
-                            // Return item
-                            return urlItems.joined(separator: "/")
-                        }
-                        
-                        // Setting page title, if not found, just use the URL
-                        return ogData.pageTitle ?? newURL
-                    }()
-                    
-                    // Adding thumbnail image
-                    let sourceImage: UIImage? = {
-                        
-                        // Handling imageURL
-                        if let imgUrl = ogData.imageUrl {
-                            return try? UIImage(data: Data(contentsOf: imgUrl), scale: 1)
-                        }
-                        return nil
-                    }()
-                    
-                    // Append latest link to links
-                    self?.links.append(Links(title: pageTitle, link: sourceUrl, image: sourceImage))
-                }
-            }
-        }
     }
 }
