@@ -15,42 +15,14 @@ extension ContentViewController: UITextViewDelegate {
         if !UserDefaults.standard.bool(forKey: UserDefaultsIdentifiers.scroll.rawValue) && !I.mac {
 
             if scrollView.contentOffset.y <= -3 * scrollSelectionMultiplier {
-                ScrollSelection.setNormalState(for: safariButton)
-                ScrollSelection.setNormalState(for: shareButton)
-
-                ScrollSelection.setSelectedState(for: pinButton,
-                                                 withOffset: scrollView.contentOffset.y,
-                                                 andConstant: 4 * scrollSelectionMultiplier)
-
-                if playedHaptic != 2 {
-                    UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-                }
-                playedHaptic = 2
-            } else if scrollView.contentOffset.y <= -2 * scrollSelectionMultiplier {
-                ScrollSelection.setNormalState(for: safariButton)
-                ScrollSelection.setNormalState(for: pinButton)
-
-                ScrollSelection.setSelectedState(for: shareButton,
-                                                 withOffset: scrollView.contentOffset.y,
-                                                 andConstant: 3 * scrollSelectionMultiplier)
-
-                if playedHaptic != 3 {
-                    UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-                }
-
-                playedHaptic = 3
-            } else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
-                ScrollSelection.setNormalState(for: shareButton)
-                ScrollSelection.setNormalState(for: pinButton)
+                scrollPin(scrollView)
                 
-                ScrollSelection.setSelectedState(for: safariButton,
-                                                 withOffset: scrollView.contentOffset.y,
-                                                 andConstant: 1 * scrollSelectionMultiplier)
-
-                if playedHaptic != 4 {
-                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                }
-                playedHaptic = 4
+            } else if scrollView.contentOffset.y <= -2 * scrollSelectionMultiplier {
+                scrollShare(scrollView)
+                
+            } else if scrollView.contentOffset.y <= -1 * scrollSelectionMultiplier {
+                scrollSafari(scrollView)
+                
             }
             // Reset
             else {
@@ -103,12 +75,5 @@ extension ContentViewController: UITextViewDelegate {
 
             resetScroll()
         }
-    }
-
-    // Reset scroll selection by setting borders to 0
-    func resetScroll() {
-        safariButton.layer.borderWidth = 0
-        shareButton.layer.borderWidth = 0
-        pinButton.layer.borderWidth = 0
     }
 }

@@ -100,9 +100,6 @@ class TTPreviewViewController: UIViewController {
     }
     
     func performOCR(on cgImage: CGImage, recognitionLevel: VNRequestTextRecognitionLevel) {
-        
-        print("starting OCR")
-        
         let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
         
         let request = VNRecognizeTextRequest { (request, error) in

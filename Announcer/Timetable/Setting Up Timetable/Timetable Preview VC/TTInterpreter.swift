@@ -75,12 +75,12 @@ class TTInterpreter {
                 }
             }
             
-            let ratio: CGFloat = 3
+//            let ratio: CGFloat = 3
             
-            let cropFrame = CGRect(x: ratio * offset.leading,
-                                   y: ratio * offset.top,
-                                   width: ratio * (timetableSize.width - offset.leading - offset.trailing),
-                                   height: ratio * (timetableSize.height - offset.top - offset.bottom))
+//            let cropFrame = CGRect(x: ratio * offset.leading,
+//                                   y: ratio * offset.top,
+//                                   width: ratio * (timetableSize.width - offset.leading - offset.trailing),
+//                                   height: ratio * (timetableSize.height - offset.top - offset.bottom))
             
             // Updating the imageView with the new image
 //            let image = image.cropImage(with: cropFrame)
