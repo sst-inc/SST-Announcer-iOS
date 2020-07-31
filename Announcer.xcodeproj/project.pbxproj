@@ -127,6 +127,8 @@
 		327524B724910999008EA814 /* TTGetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B624910999008EA814 /* TTGetStartedViewController.swift */; };
 		327524B924912470008EA814 /* TTPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B824912470008EA814 /* TTPreviewViewController.swift */; };
 		327A299224D2F839003B0046 /* AnnouncementCellConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A299124D2F839003B0046 /* AnnouncementCellConfig.swift */; };
+		327A299624D3EA12003B0046 /* FeedbackButtonElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A299524D3EA12003B0046 /* FeedbackButtonElements.swift */; };
+		327A299824D3EABD003B0046 /* TTVCTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A299724D3EABD003B0046 /* TTVCTableView.swift */; };
 		32806D2124A2EA970032A2F5 /* TimetableStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328BFFE72496275100132EB4 /* TimetableStruct.swift */; };
 		32806D2224A2EA970032A2F5 /* LessonStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C9BEA249F302300088677 /* LessonStruct.swift */; };
 		32806D2324A418D00032A2F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324576F8238D8E0E00730F17 /* Constants.swift */; };
@@ -349,6 +351,8 @@
 		327524B624910999008EA814 /* TTGetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTGetStartedViewController.swift; sourceTree = "<group>"; };
 		327524B824912470008EA814 /* TTPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTPreviewViewController.swift; sourceTree = "<group>"; };
 		327A299124D2F839003B0046 /* AnnouncementCellConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCellConfig.swift; sourceTree = "<group>"; };
+		327A299524D3EA12003B0046 /* FeedbackButtonElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackButtonElements.swift; sourceTree = "<group>"; };
+		327A299724D3EABD003B0046 /* TTVCTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTVCTableView.swift; sourceTree = "<group>"; };
 		328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage Extension.swift"; sourceTree = "<group>"; };
 		328BFFE72496275100132EB4 /* TimetableStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableStruct.swift; sourceTree = "<group>"; };
 		328BFFE924964F0400132EB4 /* TTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTViewController.swift; sourceTree = "<group>"; };
@@ -455,9 +459,9 @@
 		320816BF2453515900024FD0 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				32F513D324C6C03500FAE1DE /* ContentDrag.swift */,
 				32C2532A244EA8390015085A /* ContentCollectionView.swift */,
-				324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */,
-				320816BD24534E2100024FD0 /* LinksCollectionViewCell.swift */,
+				327A299924D3EC21003B0046 /* Collection View Cells */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -767,12 +771,9 @@
 			isa = PBXGroup;
 			children = (
 				32D9954B238D865600208D25 /* AnnouncementsViewController.swift */,
-				32F513D824C816D200FAE1DE /* FeedbackButton.swift */,
-				32F513D524C716F200FAE1DE /* AnnouncementDrag.swift */,
-				32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */,
+				327A299424D3E9DC003B0046 /* Feedback Button */,
+				327A299324D3E0AB003B0046 /* TableView */,
 				32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */,
-				324576FA238E063500730F17 /* AnnouncementTableView.swift */,
-				327A299124D2F839003B0046 /* AnnouncementCellConfig.swift */,
 				329CE2272489B713002022A6 /* AnnouncementPointers.swift */,
 				324577D5238F7F8600730F17 /* AnnouncementSearchBar.swift */,
 			);
@@ -797,6 +798,35 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
+		327A299324D3E0AB003B0046 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				32F513D524C716F200FAE1DE /* AnnouncementDrag.swift */,
+				32D9954D238D87D200208D25 /* AnnouncementTableViewCell.swift */,
+				324576FA238E063500730F17 /* AnnouncementTableView.swift */,
+				327A299124D2F839003B0046 /* AnnouncementCellConfig.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		327A299424D3E9DC003B0046 /* Feedback Button */ = {
+			isa = PBXGroup;
+			children = (
+				32F513D824C816D200FAE1DE /* FeedbackButton.swift */,
+				327A299524D3EA12003B0046 /* FeedbackButtonElements.swift */,
+			);
+			path = "Feedback Button";
+			sourceTree = "<group>";
+		};
+		327A299924D3EC21003B0046 /* Collection View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */,
+				320816BD24534E2100024FD0 /* LinksCollectionViewCell.swift */,
+			);
+			path = "Collection View Cells";
+			sourceTree = "<group>";
+		};
 		328BFFEB24964F1700132EB4 /* Setting Up Timetable */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,6 +840,7 @@
 			isa = PBXGroup;
 			children = (
 				328BFFE924964F0400132EB4 /* TTViewController.swift */,
+				327A299724D3EABD003B0046 /* TTVCTableView.swift */,
 				328BFFED24965E3E00132EB4 /* TTTableViewCell.swift */,
 			);
 			path = "Timetable VC";
@@ -1021,7 +1052,6 @@
 			isa = PBXGroup;
 			children = (
 				324576FC238E0FB300730F17 /* ContentViewController.swift */,
-				32F513D324C6C03500FAE1DE /* ContentDrag.swift */,
 				32C2532C244EA8D00015085A /* ContentTextView.swift */,
 				3292B75C2489DD7C005749CB /* ContentPointer.swift */,
 				329B6B45248BAAC100ED4428 /* ContentPreviewing.swift */,
@@ -1455,6 +1485,7 @@
 				32D99538238C068D00208D25 /* SceneDelegate.swift in Sources */,
 				32457777238E53A100730F17 /* RFC822DateFormatter.swift in Sources */,
 				324577AF238E53A100730F17 /* MediaGroup.swift in Sources */,
+				327A299824D3EABD003B0046 /* TTVCTableView.swift in Sources */,
 				328BFFEA24964F0400132EB4 /* TTViewController.swift in Sources */,
 				324577AE238E53A100730F17 /* MediaLocation.swift in Sources */,
 				32457779238E53A100730F17 /* AtomFeedGenerator.swift in Sources */,
@@ -1463,6 +1494,7 @@
 				3245777D238E53A100730F17 /* AtomFeedEntryCategory.swift in Sources */,
 				32FA680D247FF9420077E030 /* Variables.swift in Sources */,
 				3245779C238E53A100730F17 /* SyndicationNamespace.swift in Sources */,
+				327A299624D3EA12003B0046 /* FeedbackButtonElements.swift in Sources */,
 				329B6B46248BAAC100ED4428 /* ContentPreviewing.swift in Sources */,
 				324577D8238F8CC100730F17 /* FilterTableViewController.swift in Sources */,
 				324577C1238E53A200730F17 /* JSONFeedAttachment.swift in Sources */,

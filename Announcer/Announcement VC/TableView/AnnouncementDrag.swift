@@ -14,7 +14,7 @@ extension AnnouncementsViewController: UITableViewDragDelegate {
                    itemsForBeginning session: UIDragSession,
                    at indexPath: IndexPath) -> [UIDragItem] {
 
-        if let cell = tableView.cellForRow(at: indexPath) as?  AnnouncementTableViewCell {
+        if let cell = tableView.cellForRow(at: indexPath) as? AnnouncementTableViewCell {
             
             let link = LinkFunctions.getShareURL(with: cell.post)
             

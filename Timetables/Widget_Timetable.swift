@@ -12,14 +12,14 @@ import SwiftUI
 public struct Provider: TimelineProvider {
 
     public func snapshot(with context: Context,
-                         completion: @escaping (WidgetEntry) -> ()) {
+                         completion: @escaping (WidgetEntry) -> Void) {
         let entry = WidgetEntry(date: Date())
  
         completion(entry)
     }
 
     public func timeline(with context: Context,
-                         completion: @escaping (Timeline<Entry>) -> ()) {
+                         completion: @escaping (Timeline<Entry>) -> Void) {
 
         var items: [WidgetEntry] = []
 

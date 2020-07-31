@@ -39,7 +39,7 @@
 - Back button is now properly hidden [iOS]
 - Announcement Interface background color [iOS]
 - Loading bug where it shows "Label" instead of actual content [MacOS, iOS, iPadOS]
-    - Potential fix identified, beta 2
+- Random titles highlighted wrongly
 
 </details>
 

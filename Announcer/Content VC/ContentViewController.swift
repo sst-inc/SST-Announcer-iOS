@@ -290,12 +290,12 @@ class ContentViewController: UIViewController {
         isDark.toggle()
     }
     
-    // Go back to previous view controller
-    @IBAction func dismiss(_ sender: Any) {
-        if I.phone {
-            self.navigationController?.popViewController(animated: true)
-        }
-    }
+//    // Go back to previous view controller
+//    @IBAction func dismiss(_ sender: Any) {
+//        if I.phone {
+//            self.navigationController?.popViewController(animated: true)
+//        }
+//    }
     
     @IBAction func pinnedItem(_ sender: Any) {
         // Toggle pin based on context

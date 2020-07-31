@@ -146,8 +146,13 @@ class AnnouncementTableViewCell: UITableViewCell {
     // Color the brackets []
     // Make the text set
     func setTitleLabelText() -> NSAttributedString {
+        let font = UIFont.systemFont(ofSize: 22, weight: .semibold)
+        
+        let defaultAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.label,
+                                                                .font: font]
+        
         // Update labels/textview with data
-        let attrTitle = NSMutableAttributedString(string: post.title)
+        let attrTitle = NSMutableAttributedString(string: post.title, attributes: defaultAttributes)
         // Find the [] and just make it like red or something
         
         // Make square brackets colored
@@ -163,8 +168,6 @@ class AnnouncementTableViewCell: UITableViewCell {
                 
                 let start = indicesStart[i - 1]
                 let end = indicesEnd[i - 1]
-                
-                let font = UIFont.systemFont(ofSize: 22, weight: .semibold)
                 
                 /// Ensuring that upper bounds is more than lower bounds
                 if end > start {

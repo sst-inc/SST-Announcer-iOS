@@ -330,7 +330,7 @@ class AnnouncementsViewController: UIViewController {
             // Reset filter
             filter = ""
         } else {
-//            self.announcementTableView.reloadData()
+            self.announcementTableView.reloadData()
         }
 
     }
