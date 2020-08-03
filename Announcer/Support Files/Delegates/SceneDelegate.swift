@@ -9,6 +9,7 @@
 import UIKit
 import CoreSpotlight
 import MobileCoreServices
+import SafariServices
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -35,10 +36,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let urlContext = connectionOptions.urlContexts.first {
             
             let sendingAppID = urlContext.options.sourceApplication
+            
             let url = urlContext.url
             print("source application = \(sendingAppID ?? "Unknown")")
             print("url = \(url)")
-                        
+            
+            print(urlContext.options)
+            debugPrint(urlContext.options)
+            
             var announcementVC: AnnouncementsViewController!
             
             if let splitVC = window?.rootViewController as? SplitViewController {
@@ -57,7 +62,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         let timetableVC = Storyboards.timetable.instantiateInitialViewController()
-        UIApplication.shared.windows.first?.rootViewController?.present(timetableVC!, animated: true, completion: nil)
+        
+        if let urlContext = URLContexts.first {
+            let sendingAppID = urlContext.options.sourceApplication
+            let url = urlContext.url
+            print("source application = \(sendingAppID ?? "Unknown")")
+            print("url = \(url)")
+            
+            let rootVC = UIApplication.shared.windows.first?.rootViewController
+            
+            switch url.absoluteString {
+            case "sstannouncer://launchwidget":
+                // User launched from widget, handle from widget
+                rootVC?.present(timetableVC!,
+                                animated: true,
+                                completion: nil)
+                
+            case "sstannouncer://diagnostics":
+                let vc = Storyboards.diagnostics.instantiateInitialViewController()
+                
+                window?.rootViewController = vc
+            default:
+                // I have the best error messages.
+                
+                // Never gonna give you up
+                let svc = SFSafariViewController(url: URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ")!)
+                
+                // easter egg
+                rootVC?.present(svc, animated: true, completion: nil)
+            }
+        }
         
     }
     

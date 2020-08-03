@@ -122,6 +122,7 @@ class TTViewController: UIViewController {
                                                name: UIApplication.significantTimeChangeNotification,
                                                object: nil)
         
+        // Reload widgets
         WidgetCenter.shared.reloadAllTimelines()
     }
     

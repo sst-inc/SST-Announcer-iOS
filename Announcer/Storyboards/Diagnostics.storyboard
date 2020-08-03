@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7IT-Jk-rWM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Diagnostics-->
+        <scene sceneID="cA0-hd-C1R">
+            <objects>
+                <viewController id="K99-Kl-364" customClass="DiagnosticsViewController" customModule="SST_Announcer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="11X-20-uUO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Loading Diagnostics" translatesAutoresizingMaskIntoConstraints="NO" id="vRq-Ln-T7M">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Z8L-uE-vYd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vRq-Ln-T7M" firstAttribute="top" secondItem="Z8L-uE-vYd" secondAttribute="top" id="5h9-Eb-jcy"/>
+                            <constraint firstItem="Z8L-uE-vYd" firstAttribute="bottom" secondItem="vRq-Ln-T7M" secondAttribute="bottom" id="8E6-Ot-MoG"/>
+                            <constraint firstItem="Z8L-uE-vYd" firstAttribute="trailing" secondItem="vRq-Ln-T7M" secondAttribute="trailing" id="QN4-3d-HUR"/>
+                            <constraint firstItem="vRq-Ln-T7M" firstAttribute="leading" secondItem="Z8L-uE-vYd" secondAttribute="leading" id="cwn-kY-IXW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Diagnostics" largeTitleDisplayMode="always" id="ahS-pB-11f">
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="Alh-pG-hin">
+                            <connections>
+                                <action selector="closeApp:" destination="K99-Kl-364" id="hZw-NR-SvI"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="square.and.arrow.down" catalog="system" id="7eM-wF-mCG">
+                            <connections>
+                                <action selector="export:" destination="K99-Kl-364" id="w3q-Bd-Pj8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="diagnosticsTextView" destination="vRq-Ln-T7M" id="K5n-U4-vDh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lH5-gu-wO3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="747.82608695652175" y="-216.29464285714286"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yGA-cB-3n4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7IT-Jk-rWM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="VEU-2j-dDx">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="K99-Kl-364" kind="relationship" relationship="rootViewController" id="poP-tb-kDt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xvw-Xg-s1E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-162.31884057971016" y="-216.29464285714286"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

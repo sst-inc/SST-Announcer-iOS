@@ -181,7 +181,6 @@ class ContentViewController: UIViewController {
                 
                 fullScreen = !(UIApplication.shared.windows.first?.frame.size == size)
                 loadingContentButton.isHidden = fullScreen
-                
             }
             
         }

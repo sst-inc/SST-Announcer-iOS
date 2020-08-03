@@ -126,6 +126,7 @@
 		326210EC2452061900629CC7 /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326210EB2452061900629CC7 /* UIView Extension.swift */; };
 		327524B724910999008EA814 /* TTGetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B624910999008EA814 /* TTGetStartedViewController.swift */; };
 		327524B924912470008EA814 /* TTPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B824912470008EA814 /* TTPreviewViewController.swift */; };
+		3277130224D7DAD700D3EE42 /* DiagnosticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3277130124D7DAD700D3EE42 /* DiagnosticsViewController.swift */; };
 		327A299224D2F839003B0046 /* AnnouncementCellConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A299124D2F839003B0046 /* AnnouncementCellConfig.swift */; };
 		327A299624D3EA12003B0046 /* FeedbackButtonElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A299524D3EA12003B0046 /* FeedbackButtonElements.swift */; };
 		327A299824D3EABD003B0046 /* TTVCTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A299724D3EABD003B0046 /* TTVCTableView.swift */; };
@@ -200,6 +201,7 @@
 		32CB3DE124A04F4F00E18B2F /* TTInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CB3DE024A04F4F00E18B2F /* TTInterpreter.swift */; };
 		32D7070524783054003DC98C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 32D7070424783053003DC98C /* README.md */; };
 		32D7070C247A894E003DC98C /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D7070B247A894E003DC98C /* Filter.storyboard */; };
+		32D762E824D8056400789E0B /* Diagnostics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D762E724D8056400789E0B /* Diagnostics.storyboard */; };
 		32D99536238C068D00208D25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99535238C068D00208D25 /* AppDelegate.swift */; };
 		32D99538238C068D00208D25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D99537238C068D00208D25 /* SceneDelegate.swift */; };
 		32D9953D238C068D00208D25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D9953B238C068D00208D25 /* Main.storyboard */; };
@@ -373,6 +375,7 @@
 		326E65BB24A17C4A00E39C6F /* Timetables.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timetables.entitlements; sourceTree = "<group>"; };
 		327524B624910999008EA814 /* TTGetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTGetStartedViewController.swift; sourceTree = "<group>"; };
 		327524B824912470008EA814 /* TTPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTPreviewViewController.swift; sourceTree = "<group>"; };
+		3277130124D7DAD700D3EE42 /* DiagnosticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsViewController.swift; sourceTree = "<group>"; };
 		327A299124D2F839003B0046 /* AnnouncementCellConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCellConfig.swift; sourceTree = "<group>"; };
 		327A299524D3EA12003B0046 /* FeedbackButtonElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackButtonElements.swift; sourceTree = "<group>"; };
 		327A299724D3EABD003B0046 /* TTVCTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTVCTableView.swift; sourceTree = "<group>"; };
@@ -436,6 +439,7 @@
 		32CB3DE024A04F4F00E18B2F /* TTInterpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTInterpreter.swift; sourceTree = "<group>"; };
 		32D7070424783053003DC98C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		32D7070B247A894E003DC98C /* Filter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
+		32D762E724D8056400789E0B /* Diagnostics.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Diagnostics.storyboard; sourceTree = "<group>"; };
 		32D99532238C068D00208D25 /* SST Announcer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SST Announcer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D99535238C068D00208D25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32D99537238C068D00208D25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -837,6 +841,14 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
+		3277130024D7DAB700D3EE42 /* Diagnostics VC */ = {
+			isa = PBXGroup;
+			children = (
+				3277130124D7DAD700D3EE42 /* DiagnosticsViewController.swift */,
+			);
+			path = "Diagnostics VC";
+			sourceTree = "<group>";
+		};
 		327A299324D3E0AB003B0046 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1121,6 +1133,7 @@
 				32E9B4D323A38D7A000F769F /* Support Files */,
 				32E9B4D423A38D88000F769F /* Storyboards */,
 				32E9B4D123A38D3C000F769F /* Content VC */,
+				3277130024D7DAB700D3EE42 /* Diagnostics VC */,
 				32E9B4D223A38D4E000F769F /* Filter VC */,
 				32E28CF72490EDC3006D623C /* Timetable */,
 				32B7C44724895BD0009D160F /* Split View Controller */,
@@ -1185,6 +1198,7 @@
 			isa = PBXGroup;
 			children = (
 				32E28CF42490E025006D623C /* Timetable.storyboard */,
+				32D762E724D8056400789E0B /* Diagnostics.storyboard */,
 				32C4059824534617006CA49E /* Content.storyboard */,
 				32D7070B247A894E003DC98C /* Filter.storyboard */,
 				32D9953B238C068D00208D25 /* Main.storyboard */,
@@ -1358,6 +1372,7 @@
 				32951A8124B3409C0008F6BF /* Icons.txt in Resources */,
 				32D7070C247A894E003DC98C /* Filter.storyboard in Resources */,
 				32C4059924534617006CA49E /* Content.storyboard in Resources */,
+				32D762E824D8056400789E0B /* Diagnostics.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1499,6 +1514,7 @@
 				3245777E238E53A100730F17 /* AtomFeedContributor.swift in Sources */,
 				3245777F238E53A100730F17 /* AtomFeedCategory.swift in Sources */,
 				320816BE24534E2100024FD0 /* LinksCollectionViewCell.swift in Sources */,
+				3277130224D7DAD700D3EE42 /* DiagnosticsViewController.swift in Sources */,
 				324577B4238E53A200730F17 /* MediaRestriction.swift in Sources */,
 				32457783238E53A100730F17 /* AtomFeed + mapCharacters.swift in Sources */,
 				32457793238E53A100730F17 /* RSSFeedSkipHour.swift in Sources */,

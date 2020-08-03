@@ -14,4 +14,5 @@ struct Storyboards {
     static let filter                   = UIStoryboard(name: "Filter", bundle: .main)
     static let content                  = UIStoryboard(name: "Content", bundle: .main)
     static let timetable                = UIStoryboard(name: "Timetable", bundle: .main)
+    static let diagnostics              = UIStoryboard(name: "Diagnostics", bundle: .main)
 }
