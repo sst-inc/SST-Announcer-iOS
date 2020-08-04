@@ -56,6 +56,7 @@ class TTTableViewCell: UITableViewCell {
                     
                     subjectTeacherLabel.attributedText = attr
                 } else {
+                    subjectTeacherLabel.font = UIFont.boldSystemFont(ofSize: 17)
                     subjectTeacherLabel.text = subject.1
                 }
                 
