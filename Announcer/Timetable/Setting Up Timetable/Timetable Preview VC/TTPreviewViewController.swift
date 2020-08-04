@@ -151,10 +151,10 @@ class TTPreviewViewController: UIViewController {
             
             let ratio: CGFloat = 3
             
-            let cropFrame = CGRect(x: ratio * self.croppingOffsets.leading,
-                                   y: ratio * self.croppingOffsets.top,
-                                   width: ratio * (timetableSize.width - self.croppingOffsets.leading - self.croppingOffsets.trailing),
-                                   height: ratio * (timetableSize.height - self.croppingOffsets.top - self.croppingOffsets.bottom))
+            let cropFrame = CGRect(x: ratio * self.croppingOffsets.top,
+                                   y: ratio * self.croppingOffsets.leading,
+                                   width: ratio * (timetableSize.height - self.croppingOffsets.top - self.croppingOffsets.bottom),
+                                   height: ratio * (timetableSize.width - self.croppingOffsets.leading - self.croppingOffsets.trailing))
             // swiftlint:enable all
             self.cropFrame = cropFrame
             

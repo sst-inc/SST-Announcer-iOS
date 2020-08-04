@@ -66,28 +66,56 @@ class TTNavigationViewController: UINavigationController {
             }
             
             // Getting the first post
-            let post = possiblePosts.first
-            
-            // Getting the drive link
-            // Sort through the links and finding the first one that contains "drive.google.com"
-            let driveLink = LinkFunctions.getLinksFromPost(post: post!).filter { (link) -> Bool in
-                link.absoluteString.contains("drive.google.com")
-            }[0]
-            
-            // Getting the path components of drive URL to extract the fileID
-            let driveComponents = driveLink.pathComponents
-            
-            // Getting the fileID from the Drive URL
-            let fileID = driveComponents[driveComponents.count - 2]
-            
-            // Adding the drive URL to the Google REST API
-            let url = URL(string: "https://www.googleapis.com/drive/v3/files/\(fileID)?prettyPrint=true&key=\(apiKey)")!
-            
-            // Using Alamofire to get the PDF documents from Google Drive
-            AF.request(url, method: .get, parameters: ["alt": "media"]).validate().responseJSON { response in
+            if let post = possiblePosts.first {
+                // Getting the drive link
+                // Sort through the links and finding the first one that contains "drive.google.com"
+                let driveLink = LinkFunctions.getLinksFromPost(post: post).filter { (link) -> Bool in
+                    link.absoluteString.contains("drive.google.com")
+                }[0]
                 
-                // Setting the timetablePDF
-                self.timetablePDF = PDFDocument(data: response.data!)
+                // Getting the path components of drive URL to extract the fileID
+                let driveComponents = driveLink.pathComponents
+                
+                // Getting the fileID from the Drive URL
+                let fileID = driveComponents[driveComponents.count - 2]
+                
+                // Google Drive API URL
+                let apiURL = "https://www.googleapis.com/drive/v3/files/"
+                
+                // Adding the drive URL to the Google REST API
+                let url = URL(string: "\(apiURL)\(fileID)?prettyPrint=true&key=\(apiKey)")!
+                
+                // Using Alamofire to get the PDF documents from Google Drive
+                AF.request(url, method: .get, parameters: ["alt": "media"]).validate().responseJSON { response in
+                    
+                    // Setting the timetablePDF
+                    self.timetablePDF = PDFDocument(data: response.data!)
+                }
+            } else {
+                print("stupid code")
+                let alert = UIAlertController(title: "Timetable not found",
+                                              message: "Unable to find a post with the timetable. Please try again later, or upload your own timetable.",
+                                              preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "OK",
+                                       style: .default) { (_) in
+                    self.popToRootViewController(animated: true)
+                }
+                
+                // Allow user to input their own drive URL
+                let uploadTimetable = UIAlertAction(title: "Upload Timetable",
+                                                    style: .default) { (_) in
+                    print("yes")
+                }
+                
+                alert.addAction(ok)
+                alert.addAction(uploadTimetable)
+                alert.preferredAction = ok
+                
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
             }
         }
     }
