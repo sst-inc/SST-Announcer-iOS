@@ -31,15 +31,17 @@ class LinksCollectionViewCell: UICollectionViewCell {
 
             }
 
-            // Shortening the title because we cannot have a ridiculously long title
-            titleLabel.text = link.title.truncateBy(20)
-            thumbnailImageView.isHidden = false
+            DispatchQueue.main.async {
+                // Shortening the title because we cannot have a ridiculously long title
+                self.titleLabel.text = self.link.title.truncateBy(20)
+                self.thumbnailImageView.isHidden = false
 
-            // Special icons
-            thumbnailImageView.image = getImageFor(title: link.link, with: link.image)
+                // Special icons
+                self.thumbnailImageView.image = self.getImageFor(title: self.link.link, with: self.link.image)
 
-            // Shortening the link because we cannot have a ridiculously long link
-            linkLabel.text = link.link.truncateBy(30)
+                // Shortening the link because we cannot have a ridiculously long link
+                self.linkLabel.text = self.link.link.truncateBy(30)
+            }
         }
     }
 

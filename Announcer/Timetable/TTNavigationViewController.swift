@@ -50,11 +50,6 @@ class TTNavigationViewController: UINavigationController {
         // Do it on another thread because it is not a good idea to do it here
         DispatchQueue.global(qos: .default).async {
             
-            // Getting the apiKey from the Keys struct
-            // NOTE: The keys are just placeholders on Git
-            // because sharing keys are a terrible idea
-            let apiKey = Keys.driveAPI
-            
             // Finding possible posts which could be timetables
             var possiblePosts = Fetch.values().filter {
                 $0.categories.contains("Timetable") || $0.categories.contains("timetable")
@@ -73,28 +68,12 @@ class TTNavigationViewController: UINavigationController {
                     link.absoluteString.contains("drive.google.com")
                 }[0]
                 
-                // Getting the path components of drive URL to extract the fileID
-                let driveComponents = driveLink.pathComponents
+                self.getTimetableFrom(drive: driveLink)
                 
-                // Getting the fileID from the Drive URL
-                let fileID = driveComponents[driveComponents.count - 2]
-                
-                // Google Drive API URL
-                let apiURL = "https://www.googleapis.com/drive/v3/files/"
-                
-                // Adding the drive URL to the Google REST API
-                let url = URL(string: "\(apiURL)\(fileID)?prettyPrint=true&key=\(apiKey)")!
-                
-                // Using Alamofire to get the PDF documents from Google Drive
-                AF.request(url, method: .get, parameters: ["alt": "media"]).validate().responseJSON { response in
-                    
-                    // Setting the timetablePDF
-                    self.timetablePDF = PDFDocument(data: response.data!)
-                }
             } else {
-                print("stupid code")
                 let alert = UIAlertController(title: "Timetable not found",
-                                              message: "Unable to find a post with the timetable. Please try again later, or upload your own timetable.",
+                                              // swiftlint:disable:next line_length
+                                              message: "Unable to find timetable post.\nTry again later, or upload your own timetable.",
                                               preferredStyle: .alert)
                 
                 let ok = UIAlertAction(title: "OK",
@@ -105,7 +84,9 @@ class TTNavigationViewController: UINavigationController {
                 // Allow user to input their own drive URL
                 let uploadTimetable = UIAlertAction(title: "Upload Timetable",
                                                     style: .default) { (_) in
-                    print("yes")
+                    
+                    // Present another alert to ask user for drive url
+                    self.customDriveURLAlert()
                 }
                 
                 alert.addAction(ok)
@@ -118,6 +99,74 @@ class TTNavigationViewController: UINavigationController {
                 
             }
         }
+    }
+    
+    func customDriveURLAlert() {
+        let driveURLAlert = UIAlertController(title: "Upload Timetable",
+                                              message: "Paste the Google Drive sharing URL for the timetable",
+                                              preferredStyle: .alert)
+        
+        driveURLAlert.addTextField { (textField) in
+            textField.placeholder = "http://drive.google.com/file/d/.../view/"
+            textField.keyboardType = .URL
+        }
+        
+        let done = UIAlertAction(title: "Done",
+                                 style: .default) { (_) in
+            let text = driveURLAlert.textFields!.first!.text!
+            
+            if text.hasPrefix("http://drive.google.com/file/d/") ||
+                text.hasPrefix("https://drive.google.com/file/d/") {
+                
+                if let url = URL(string: text) {
+                    self.getTimetableFrom(drive: url)
+                } else {
+                    self.customDriveURLAlert()
+                }
+            } else {
+                self.customDriveURLAlert()
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel",
+                                 style: .cancel) { (_) in
+            self.popToRootViewController(animated: true)
+        }
+        
+        driveURLAlert.addAction(done)
+        driveURLAlert.addAction(cancel)
+        
+        driveURLAlert.preferredAction = done
+        
+        self.present(driveURLAlert, animated: true)
+    }
+    
+    func getTimetableFrom(drive driveLink: URL) {
+        
+        // Getting the apiKey from the Keys struct
+        // NOTE: The keys are just placeholders on Git
+        // because sharing keys are a terrible idea
+        let apiKey = Keys.driveAPI
+
+        // Getting the path components of drive URL to extract the fileID
+        let driveComponents = driveLink.pathComponents
+        
+        // Getting the fileID from the Drive URL
+        let fileID = driveComponents[driveComponents.count - 2]
+        
+        // Google Drive API URL
+        let apiURL = "https://www.googleapis.com/drive/v3/files/"
+        
+        // Adding the drive URL to the Google REST API
+        let url = URL(string: "\(apiURL)\(fileID)?prettyPrint=true&key=\(apiKey)")!
+        
+        // Using Alamofire to get the PDF documents from Google Drive
+        AF.request(url, method: .get, parameters: ["alt": "media"]).validate().responseJSON { response in
+            
+            // Setting the timetablePDF
+            self.timetablePDF = PDFDocument(data: response.data!)
+        }
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
