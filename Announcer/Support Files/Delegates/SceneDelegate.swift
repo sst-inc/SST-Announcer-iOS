@@ -41,9 +41,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print("source application = \(sendingAppID ?? "Unknown")")
             print("url = \(url)")
             
-            print(urlContext.options)
-            debugPrint(urlContext.options)
-            
             var announcementVC: AnnouncementsViewController!
             
             if let splitVC = window?.rootViewController as? SplitViewController {
@@ -86,7 +83,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 // I have the best error messages.
                 
                 // Never gonna give you up
-                let svc = SFSafariViewController(url: URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ")!)
+                let svc = SFSafariViewController(url: URL(string: "https://www.youtube.com/embed/dQw4w9WgXcQ")!)
                 
                 // easter egg
                 rootVC?.present(svc, animated: true, completion: nil)

@@ -138,23 +138,25 @@ class TTPreviewViewController: UIViewController {
                     
                     if recognizedText.string.lowercased().contains("school of science and technology") {
                         
-                        self.croppingOffsets.leading = timetableSize.width * currentObservation.boundingBox.minX
-                        self.croppingOffsets.top = timetableSize.height - timetableSize.height * currentObservation.bottomLeft.y
+                        self.croppingOffsets.leading = timetableSize.width * currentObservation.bottomLeft.x
+                        self.croppingOffsets.top = timetableSize.height * currentObservation.bottomLeft.y
                         
                         print("we got the other guy")
                     } else if recognizedText.string.lowercased().contains("asc timetables") {
-                        self.croppingOffsets.trailing = timetableSize.width - timetableSize.width * currentObservation.boundingBox.maxX
-                        self.croppingOffsets.bottom = timetableSize.height * currentObservation.boundingBox.maxY + 4
+                        self.croppingOffsets.trailing = timetableSize.width * currentObservation.topRight.x
+                        self.croppingOffsets.bottom = timetableSize.height * currentObservation.topRight.y
                     }
                 }
             }
             
             let ratio: CGFloat = 3
             
+            print(self.croppingOffsets)
+            
             let cropFrame = CGRect(x: ratio * self.croppingOffsets.top,
                                    y: ratio * self.croppingOffsets.leading,
-                                   width: ratio * (timetableSize.height - self.croppingOffsets.top - self.croppingOffsets.bottom),
-                                   height: ratio * (timetableSize.width - self.croppingOffsets.leading - self.croppingOffsets.trailing))
+                                   width: ratio * (self.croppingOffsets.top - self.croppingOffsets.bottom),
+                                   height: ratio * (self.croppingOffsets.leading - self.croppingOffsets.trailing))
             // swiftlint:enable all
             self.cropFrame = cropFrame
             

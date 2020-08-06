@@ -97,6 +97,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         if let cell = tableView.dequeueReusableCell(withIdentifier: GlobalIdentifier.announcementCell,
                                                     for: indexPath) as? AnnouncementTableViewCell {
             
+            let loadingString = NSLocalizedString("STATE_LOADING", comment: "Loading...")
+            
             if posts == nil {
                 // Set up loading
                 setUpLoadingCell(cell, tableView: tableView)
@@ -110,8 +112,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                         if pinned.count > indexPath.row {
                             cell.post = pinned[indexPath.row]
                         } else {
-                            cell.post = Post(title: "Loading...",
-                                             content: "Loading...",
+                            cell.post = Post(title: loadingString,
+                                             content: loadingString,
                                              date: Date(),
                                              pinned: true,
                                              read: true,
@@ -122,8 +124,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                         if posts.count > indexPath.row {
                             cell.post = posts[indexPath.row]
                         } else {
-                            cell.post = Post(title: "Loading...",
-                                             content: "Loading...",
+                            cell.post = Post(title: loadingString,
+                                             content: loadingString,
                                              date: Date(),
                                              pinned: true,
                                              read: true,
@@ -226,22 +228,29 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var headers = ["Pinned", "All Announcements"]
+        var headers = [NSLocalizedString("CATEGORIES_PINNED",
+                                         comment: "Pinned"),
+                       NSLocalizedString("CATEGORIES_ALL",
+                                         comment: "All Announcements")]
         if pinned.count == 0 {
-            headers = ["All Announcements"]
+            headers = [NSLocalizedString("CATEGORIES_ALL",
+                                         comment: "All Announcements")]
         }
         
         if searchField.text != "" {
             headers = []
             
             if searchLabels.count > 0 {
-                headers.append("Labels")
+                headers.append(NSLocalizedString("POST_LABELS",
+                                                 comment: "Labels"))
             }
             if searchFoundInTitle.count > 0 {
-                headers.append("Title")
+                headers.append(NSLocalizedString("POST_TITLE",
+                                                 comment: "Title"))
             }
             if searchFoundInBody.count > 0 {
-                headers.append("Content")
+                headers.append(NSLocalizedString("POST_CONTENT",
+                                                 comment: "Content"))
             }
             
         }
@@ -275,10 +284,12 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         //If is in pinnned
         if pinnedItems.contains(post) {
             //Unpin post
-            title = "Unpin"
+            title = NSLocalizedString("POST_UNPIN",
+                                      comment: "Unpin")
         } else {
             //Pin post
-            title = "Pin"
+            title = NSLocalizedString("POST_PIN",
+                                      comment: "Pin")
         }
         
         //Action Builder
@@ -288,7 +299,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                                                          completionHandler: (Bool) -> Void) in
             
             //Toggle pin based on context
-            if title == "Unpin" {
+            if title == NSLocalizedString("POST_UNPIN",
+                                          comment: "Unpin") {
                 var pinnedItems = PinnedAnnouncements.loadFromFile() ?? []
                 
                 pinnedItems.remove(at: pinnedItems.firstIndex(of: post)!)

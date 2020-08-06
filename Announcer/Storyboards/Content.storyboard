@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MQo-jn-rdj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MQo-jn-rdj">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17120"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -405,9 +405,11 @@
                         <outlet property="hardToSeeButton" destination="NSK-5e-xNz" id="xy7-zY-ohl"/>
                         <outlet property="increaseTextSizeGestureRecognizer" destination="38e-JE-Lg0" id="cSi-3L-ro0"/>
                         <outlet property="labelsCollectionView" destination="IkW-6N-vaR" id="Dxs-kP-BtR"/>
+                        <outlet property="labelsLabel" destination="gen-Ty-Ccj" id="SH7-jz-yeg"/>
                         <outlet property="labelsView" destination="k7H-Fv-6vl" id="WUU-Aa-MIX"/>
                         <outlet property="linksAndLabelStackView" destination="bYZ-GH-tzW" id="bhf-Wu-47C"/>
                         <outlet property="linksCollectionView" destination="0Dd-kp-zdj" id="g0B-Dm-bTR"/>
+                        <outlet property="linksLabel" destination="lZF-zE-3od" id="SeR-ND-IFU"/>
                         <outlet property="linksView" destination="h3m-fr-5AJ" id="HXH-ii-wxa"/>
                         <outlet property="loadingContentButton" destination="bCH-bZ-d67" id="thB-Qr-90O"/>
                         <outlet property="pinButton" destination="mTt-rq-DZo" id="dwE-Ej-mxn"/>

@@ -51,7 +51,8 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
         
         let pin: UIAction = UIAction(title: {
             // If the post is pinned, set it to unpin
-            pinned ? "Unpin" : "Pin"
+            NSLocalizedString(pinned ? "POST_UNPIN" : "POST_PIN",
+                              comment: "Pin/Unpin")
         }(),
         image: {
             // Setting different image based the state of the post (pinned or unpinned)
@@ -85,7 +86,10 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
             self.announcementTableView.reloadData()
         }
         
-        let share = UIAction(title: "Share...",
+        let shareLocalized = NSLocalizedString("ACTION_SHARE",
+                                               comment: "Share")
+        
+        let share = UIAction(title: shareLocalized,
                              image: Assets.share,
                              identifier: nil,
                              discoverabilityTitle: nil,
@@ -101,7 +105,10 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
             self.present(shareVC, animated: true, completion: nil)
         }
         
-        let open = UIAction(title: "Open Announcement",
+        let openLocalized = NSLocalizedString("ACTION_OPEN_POST",
+                                              comment: "Open Announcement")
+        
+        let open = UIAction(title: openLocalized,
                             image: Assets.open,
                             identifier: nil,
                             discoverabilityTitle: nil,

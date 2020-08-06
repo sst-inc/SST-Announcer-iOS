@@ -120,6 +120,7 @@
 		324577D8238F8CC100730F17 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577D7238F8CC100730F17 /* FilterTableViewController.swift */; };
 		324577DA238FA48300730F17 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */; };
 		324577DC238FA77000730F17 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577DB238FA77000730F17 /* FilterTableViewCell.swift */; };
+		32543ACD24DBC0E700D465D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32543ACF24DBC0E700D465D6 /* Localizable.strings */; };
 		325B5B3124B19FAC00620D4A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325B5B3024B19FAC00620D4A /* Date.swift */; };
 		325B5B3224B1A17100620D4A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325B5B3024B19FAC00620D4A /* Date.swift */; };
 		325CE83A24D295B100B060F5 /* ContentAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CE83924D295B100B060F5 /* ContentAlerts.swift */; };
@@ -367,6 +368,8 @@
 		324577D7238F8CC100730F17 /* FilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		324577DB238FA77000730F17 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		32543AD024DBC0F500D465D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		32543AD124DBC20300D465D6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		325B5B3024B19FAC00620D4A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		325CE83924D295B100B060F5 /* ContentAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentAlerts.swift; sourceTree = "<group>"; };
 		326210EB2452061900629CC7 /* UIView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView Extension.swift"; sourceTree = "<group>"; };
@@ -900,6 +903,7 @@
 				327A29A224D3EF68003B0046 /* Links.swift */,
 				327A29A024D3EF29003B0046 /* Colors.swift */,
 				327A299E24D3EEEC003B0046 /* Storyboards.swift */,
+				32543ACF24DBC0E700D465D6 /* Localizable.strings */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1365,6 +1369,7 @@
 			files = (
 				32D7070524783054003DC98C /* README.md in Resources */,
 				32D99542238C068F00208D25 /* LaunchScreen.storyboard in Resources */,
+				32543ACD24DBC0E700D465D6 /* Localizable.strings in Resources */,
 				32E28CF62490E025006D623C /* Timetable.storyboard in Resources */,
 				329E3B1D23F979CC00524901 /* Settings.bundle in Resources */,
 				32D9953F238C068F00208D25 /* Assets.xcassets in Resources */,
@@ -1663,6 +1668,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		32543ACF24DBC0E700D465D6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32543AD024DBC0F500D465D6 /* en */,
+				32543AD124DBC20300D465D6 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		32D9953B238C068D00208D25 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1699,6 +1713,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Timetables/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1729,6 +1744,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Timetables/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1878,7 +1894,7 @@
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "Announcer/SST Announcer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Announcer/Info.plist;
@@ -1909,7 +1925,7 @@
 				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = "Announcer/SST Announcer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 7K6ZTDFM48;
 				INFOPLIST_FILE = Announcer/Info.plist;

@@ -66,6 +66,10 @@ class ContentViewController: UIViewController {
     @IBOutlet weak var linksView: UIView!
     @IBOutlet weak var seperatorView: UIView!
 
+    // - Labels for localization
+    @IBOutlet weak var linksLabel: UILabel!
+    @IBOutlet weak var labelsLabel: UILabel!
+    
     // - Collection Views
     @IBOutlet weak var linksCollectionView: UICollectionView!
     @IBOutlet weak var labelsCollectionView: UICollectionView!
@@ -166,6 +170,20 @@ class ContentViewController: UIViewController {
                                                object: nil)
 
         loadingContentButton.isHidden = true
+        
+        loadLocalization()
+    }
+    
+    func loadLocalization() {
+        linksLabel.text = NSLocalizedString("POST_LINKS",
+                                            comment: "Links")
+        
+        labelsLabel.text = NSLocalizedString("POST_LABELS",
+                                             comment: "Labels")
+        
+        hardToSeeButton.setTitle(NSLocalizedString("POST_HARDTOREAD_DEFAULT",
+                                                   comment: "Hard to Read?"),
+                                 for: .normal)
     }
 
     // Handle when view orientation change
@@ -207,11 +225,19 @@ class ContentViewController: UIViewController {
     @IBAction func hardToSeeButtonPressed(_ sender: Any) {
         if self.hardToSeeButton.title(for: .normal) == "   Reset" {
             self.overrideUserInterfaceStyle = .dark
-            self.hardToSeeButton.setTitle("   Hard to Read?", for: .normal)
+            
+            self.hardToSeeButton.setTitle(NSLocalizedString("POST_HARDTOREAD_DEFAULT",
+                                                            comment: "Hard to Read?"),
+                                          for: .normal)
+            
             self.hardToSeeButton.setImage(UIImage(systemName: "lightbulb"), for: .normal)
         } else {
             self.overrideUserInterfaceStyle = .light
-            self.hardToSeeButton.setTitle("   Reset", for: .normal)
+            
+            self.hardToSeeButton.setTitle(NSLocalizedString("POST_HARDTOREAD_SELECTED",
+                                                            comment: "Hard to Read?"),
+                                          for: .normal)
+            
             self.hardToSeeButton.setImage(UIImage(systemName: "lightbulb.slash"), for: .normal)
         }
         isDark.toggle()
@@ -261,7 +287,13 @@ class ContentViewController: UIViewController {
             
             // Setting text and font
             popUpView.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-            popUpView.text = "Post \(isPinned ? "Pinned" : "Unpinned")"
+            
+            let localizedKey = isPinned ? "POST_PIN_LONG" : "POST_UNPIN_LONG"
+            
+            let popUpLocalized = NSLocalizedString(localizedKey,
+                                                   comment: "Unpin/pin")
+            
+            popUpView.text = popUpLocalized
             
             // Setting background styles
             popUpView.backgroundColor = GlobalColors.greyTwo

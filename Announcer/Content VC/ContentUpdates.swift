@@ -57,7 +57,8 @@ extension ContentViewController {
         
         // Format date as "1 Jan 2019"
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMM yyyy"
+        dateFormatter.dateFormat = NSLocalizedString("DATE_FORMAT",
+                                                     comment: "Posted on 6 Aug 2020")
         
         // Escape to main thread to update user interface
         DispatchQueue.main.async {
@@ -68,7 +69,7 @@ extension ContentViewController {
             UIApplication.shared.connectedScenes.first?.title = self.post.title
             
             // Update dateLabel with formatted date
-            self.dateLabel.text = "Posted on \(dateFormatter.string(from: self.post.date))"
+            self.dateLabel.text = dateFormatter.string(from: self.post.date)
             
             // Reload labels collection view with new data
             self.labelsCollectionView.reloadData()

@@ -17,7 +17,10 @@ extension FilterTableViewController: UIContextMenuInteractionDelegate {
             
             let actionProvider: ([UIMenuElement]) -> UIMenu? = { _ in // menu elements from responder chain if any
                 
-                let openFilter: UIAction = UIAction(title: "Filter Posts",
+                let openFilterLocalized = NSLocalizedString("ACTION_FILTER",
+                                                            comment: "Filter Posts")
+                
+                let openFilter: UIAction = UIAction(title: openFilterLocalized,
                                           image: Assets.filter,
                                           identifier: nil,
                                           discoverabilityTitle: nil,
@@ -33,7 +36,10 @@ extension FilterTableViewController: UIContextMenuInteractionDelegate {
                     }
                 }
                 
-                let copyFilter: UIAction = UIAction(title: "Copy Filter",
+                let copyFilterLocalized = NSLocalizedString("ACTION_COPY_FILTER",
+                                                            comment: "Copy Filter")
+                
+                let copyFilter: UIAction = UIAction(title: copyFilterLocalized,
                                           image: Assets.copy,
                                           identifier: nil,
                                           discoverabilityTitle: nil,

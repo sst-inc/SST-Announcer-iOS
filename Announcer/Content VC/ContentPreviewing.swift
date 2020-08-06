@@ -78,8 +78,11 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
                         link: URL,
                         safariVC: SFSafariViewController) -> UIMenu {
         
+        let openLinkLocalized = NSLocalizedString("ACTION_OPEN_LINK",
+                                                  comment: "Open Link")
+        
         // Adding openLink button
-        let openLink = UIAction(title: "Open Link",
+        let openLink = UIAction(title: openLinkLocalized,
                                 image: Assets.safari,
                                 identifier: nil,
                                 discoverabilityTitle: nil,
@@ -91,8 +94,11 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
                                     self.present(safariVC, animated: true)
         }
 
+        let copyLinkLocalized = NSLocalizedString("ACTION_COPY_LINK",
+                                                  comment: "Copy Link")
+
         // Adding copy link button
-        let copyLink = UIAction(title: "Copy Link",
+        let copyLink = UIAction(title: copyLinkLocalized,
                                 image: Assets.copy,
                                 identifier: nil,
                                 discoverabilityTitle: nil,
@@ -117,7 +123,10 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
         // Getting activity items
         let activityItems = [URL(string: cell.link.link)!]
 
-        let share = UIAction(title: "Share...",
+        let shareLocalized = NSLocalizedString("ACTION_SHARE",
+                                               comment: "Share...")
+
+        let share = UIAction(title: shareLocalized,
                              image: Assets.share,
                              identifier: nil,
                              discoverabilityTitle: nil,
@@ -152,8 +161,11 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
         // Filter content from cell
         let filterContent = cell.titleLabel.text!
         
+        let filterLocalized = NSLocalizedString("ACTION_FILTER",
+                                                comment: "Filter Posts")
+        
         // Filter posts
-        let filterPost = UIAction(title: "Filter Posts",
+        let filterPost = UIAction(title: filterLocalized,
                                   image: Assets.filter,
                                   identifier: nil,
                                   discoverabilityTitle: nil,
@@ -166,7 +178,10 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
 
         // Copying filter term out
         // Why? Not sure either.
-        let copyFilter = UIAction(title: "Copy Filter",
+        let copyLocalized = NSLocalizedString("ACTION_COPY_FILTER",
+                                              comment: "Copy Filter")
+        
+        let copyFilter = UIAction(title: copyLocalized,
                                   image: Assets.copy,
                                   identifier: nil,
                                   discoverabilityTitle: nil,

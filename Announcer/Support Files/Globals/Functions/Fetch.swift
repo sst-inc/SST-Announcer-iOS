@@ -82,23 +82,33 @@ struct Fetch {
                                               preferredStyle: .alert)
                 
                 // Try to reload and hopefully it works
-                let tryAgain = UIAlertAction(title: "Try Again", style: .default, handler: { _ in
-                    vc.reload(UILabel())
-                })
+                let tryAgainLocalized = NSLocalizedString("ACTION_TRYAGAIN",
+                                                          comment: "Try Again")
+                let tryAgain = UIAlertAction(title: tryAgainLocalized,
+                                             style: .default,
+                                             handler: { _ in
+                                                vc.reload(UILabel())
+                                             })
                 
                 alert.addAction(tryAgain)
                 
                 alert.preferredAction = tryAgain
                 
                 // Open the settings app
-                alert.addAction(UIAlertAction(title: "Open Settings", style: .default, handler: { _ in
-                    UIApplication.shared.open(GlobalLinks.settingsURL, options: [:]) { (success) in
-                        print(success)
-                    }
+                let settingsLocalized = NSLocalizedString("ACTION_SETTINGS",
+                                                          comment: "Open Settings")
+                
+                alert.addAction(UIAlertAction(title: settingsLocalized,
+                                              style: .default,
+                                              handler: { _ in
+                                                UIApplication.shared.open(GlobalLinks.settingsURL, options: [:])
                 }))
                 
                 // Just dismiss it
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                let okLocalized = NSLocalizedString("ACTION_OK",
+                                                          comment: "Open Settings")
+
+                alert.addAction(UIAlertAction(title: okLocalized, style: .cancel, handler: nil))
                 
                 vc.present(alert, animated: true, completion: nil)
             }

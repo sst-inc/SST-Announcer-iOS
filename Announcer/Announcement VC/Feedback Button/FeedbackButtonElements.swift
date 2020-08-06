@@ -55,7 +55,8 @@ extension FeedbackButton {
         // Setting up "Feedback" label
         let label = UILabel()
         // - Setting the feedback title
-        label.text = "Feedback"
+        label.text = NSLocalizedString("ACTION_FEEDBACK",
+                                       comment: "Feedback")
         
         // - Setting the font
         label.font = UIFont.boldSystemFont(ofSize: 20)

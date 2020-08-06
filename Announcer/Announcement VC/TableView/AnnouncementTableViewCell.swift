@@ -33,7 +33,9 @@ class AnnouncementTableViewCell: UITableViewCell {
             // Loading for iOS 13 and above has fancy icon
             let str = NSMutableAttributedString(string: "")
             str.append(NSAttributedString(attachment: NSTextAttachment(image: Assets.loading)))
-            str.append(NSAttributedString(string: "\tLoading Content...\n\n"))
+            str.append(NSAttributedString(string: NSLocalizedString("ERROR_LOADING",
+                                                                    comment: "Loading Content")))
+            
             self.announcementContentLabel.attributedText = str
             
             // Unable to preview because it requires JavaScript
@@ -42,7 +44,9 @@ class AnnouncementTableViewCell: UITableViewCell {
                 
                 // Creating error message - with icon
                 str.append(NSAttributedString(attachment: NSTextAttachment(image: Assets.error)))
-                str.append(NSAttributedString(string: "\tUnable to load preview.\n\tTap to open post."))
+                str.append(NSAttributedString(string:                 NSLocalizedString("ERROR_UNABLETOLOAD",
+                                                                                        comment: "Unable to Load preview")
+))
                 
                 // Set attributed text
                 self.announcementContentLabel.attributedText = str
@@ -68,7 +72,8 @@ class AnnouncementTableViewCell: UITableViewCell {
                             
                             str.append(NSAttributedString(attachment: NSTextAttachment(image: Assets.photo)))
                             
-                            str.append(NSAttributedString(string: "  Preview unavailable, post contains no text.",
+                            str.append(NSAttributedString(string: NSLocalizedString("ERROR_NOTEXT",
+                                                                                    comment: "No text"),
                                                           attributes: [.font: UIFont.italicSystemFont(ofSize: size)]))
                             
                             self.announcementContentLabel.attributedText = str
@@ -95,10 +100,11 @@ class AnnouncementTableViewCell: UITableViewCell {
             // Ensure date is formatted as 22 Oct 2019 using d MMM yyyy
             // The date is the date posted onto studentsblog
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "d MMM yyyy"
+            dateFormatter.dateFormat = NSLocalizedString("DATE_FORMAT",
+                                                         comment: "Posted on 6 Aug 2020")
             
             DispatchQueue.main.async {
-                self.announcementDateLabel.text = "Posted on \(dateFormatter.string(from: self.post.date))"
+                self.announcementDateLabel.text = dateFormatter.string(from: self.post.date)
             }
             
             handlePinAndRead()

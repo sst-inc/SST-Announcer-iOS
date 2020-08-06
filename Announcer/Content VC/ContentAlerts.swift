@@ -17,9 +17,14 @@ extension ContentViewController {
                                           preferredStyle: .alert)
 
             // Open post in safari, post requires webkit
-            let openInSafari = UIAlertAction(title: "Open in Safari", style: .default, handler: { (_) in
-                self.openPostInSafari(UILabel())
-            })
+            let safariLocalized = NSLocalizedString("ACTION_SAFARI",
+                                                    comment: "Open in Safari")
+            
+            let openInSafari = UIAlertAction(title: safariLocalized,
+                                             style: .default,
+                                             handler: { (_) in
+                                                self.openPostInSafari(UILabel())
+                                             })
 
             alert.addAction(openInSafari)
 
@@ -27,7 +32,10 @@ extension ContentViewController {
             alert.preferredAction = openInSafari
 
             // Close post
-            alert.addAction(UIAlertAction(title: "Close Post", style: .cancel, handler: { (_) in
+            let closeLocalized = NSLocalizedString("ACTION_CLOSE",
+                                                   comment: "Close Post")
+            
+            alert.addAction(UIAlertAction(title: closeLocalized, style: .cancel, handler: { (_) in
                 if I.phone {
                     // Handling dismissing from Navigation Controller
                     self.navigationController?.popViewController(animated: true)

@@ -134,6 +134,9 @@ class AnnouncementsViewController: UIViewController {
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.uturn.left")
         
         setUpFeedbackButton()
+        
+        title = NSLocalizedString("APP_NAME",
+                                  comment: "Announcer")
     }
     
     func setUpFeedbackButton() {

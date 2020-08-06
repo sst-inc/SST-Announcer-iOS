@@ -1,0 +1,80 @@
+/* 
+  Localizable.strings
+  Announcer
+
+  Created by JiaChen(: on 6/8/20.
+  Copyright © 2020 SST Inc. All rights reserved.
+*/
+
+// MARK: - 👻 General
+"APP_NAME" = "告知者";
+
+"DATE_FORMAT" = "'发布于'yyyy'年'M'月'd'日'";
+
+// MARK: - 📄 Posts
+"POST_LABELS" = "类别";
+"POST_LINKS" = "网址";
+"POST_TITLE" = "标题";
+"POST_CONTENT" = "内容";
+
+"POST_HARDTOREAD_DEFAULT" = "   很难读？";
+"POST_HARDTOREAD_SELECTED" = "   重启";
+
+"POST_UNPIN" = "取消固定";
+"POST_PIN" = "固定";
+
+"POST_PIN_LONG" = "帖子固定";
+"POST_UNPIN_LONG" = "取消固定";
+
+// MARK: - 🗂 Categories/Sections
+"CATEGORIES_ALL" = "所有公告";
+"CATEGORIES_PINNED" = "固定公告";
+
+// MARK: - 💾 States
+"STATE_LOADING" = "载入中…";
+"STATE_LOADING_CONTENT" = "载入内容…";
+
+// MARK: - 🎬 Actions
+"ACTION_FEEDBACK" = "反馈";
+"ACTION_OK" = "好";
+"ACTION_TRYAGAIN" = "再试一次";
+"ACTION_SETTINGS" = "打开设置";
+"ACTION_SAFARI" = "在浏览器中打开";
+"ACTION_CLOSE" = "关闭职位";
+"ACTION_OPEN_POST" = "公开帖子";
+
+"ACTION_COPY_LINK" = "复制网址";
+"ACTION_OPEN_LINK" = "打开网址";
+"ACTION_SHARE" = "分享…";
+
+"ACTION_FILTER" = "筛选器";
+"ACTION_COPY_FILTER" = "复制帖子";
+
+// MARK: - ⚠️ Alerts
+"ALERT_TITLE_WEBKIT" = "无法开启讯息";
+"ALERT_CONTENT_WEBKIT" = "打开此帖子时发生错误。 在Safari中打开此帖子以查看其内容。";
+
+"ALERT_TITLE_INTERNET" = "检查您的互联网";
+"ALERT_CONTENT_INTERNET" = "无法从学生博客中获取数据。\n请检查您的网络设置，然后重试。";
+
+"ALERT_TITLE_NOTFOUND" = "无法启动发布";
+"ALERT_CONTENT_NOTFOUND" = "尝试检索帖子时出了点问题。 您可以尝试在Safari中打开此帖。";
+
+// MARK: - 🚨 Errors
+"ERROR_LOADING" = "\t加载内容…\n\n";
+
+"ERROR_UNABLETOLOAD" = "\t无法加载预览。\n\t点击以打开帖子。";
+
+"ERROR_NOTEXT" = "无法预览，帖子中没有文字。";
+
+// MARK: - ⌨️ Key Commands
+"COMMAND_SEARCH" = "搜索";
+"COMMAND_RELOAD" = "重装";
+"COMMAND_FILTER" = "筛选帖子";
+"COMMAND_SHARE" = "分享…";
+"COMMAND_PIN" = "固定";
+"COMMAND_SAFARI" = "在浏览器中打开";
+"COMMAND_SETTINGS" = "设置";
+"COMMAND_ZOOM_IN" = "放大";
+"COMMAND_ZOOM_OUT" = "缩小";
+"COMMAND_ZOOM_RESET" = "重设缩放";

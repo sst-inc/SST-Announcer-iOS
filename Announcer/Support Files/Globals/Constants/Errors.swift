@@ -16,16 +16,22 @@ import Foundation
 struct ErrorMessages {
     // swiftlint:disable line_length
     /// When there is an error launching a post because it requires JavaScript
-    static let postRequiresWebKit       = Message(title: "Unable to Open Post",
-                                                  description: "An error occured when opening this post. Open this post in Safari to view its contents.")
+    static let postRequiresWebKit = Message(title: NSLocalizedString("ALERT_TITLE_WEBKIT",
+                                                                     comment: "Title"),
+                                            description: NSLocalizedString("ALERT_CONTENT_WEBKIT",
+                                                                           comment: "Content"))
     
     /// Error getting posts
-    static let unableToLoadPost         = Message(title: "Check your Internet",
-                                                  description: "Unable to fetch data from Students' Blog.\nPlease check your network settings and try again.")
+    static let unableToLoadPost = Message(title: NSLocalizedString("ALERT_TITLE_INTERNET",
+                                                            comment: "Title"),
+                                          description: NSLocalizedString("ALERT_CONTENT_INTERNET",
+                                                                         comment: "Content"))
     
     /// Error launching post from notifications or spotlight search
-    static let unableToLaunchPost       = Message(title: "Unable to launch post",
-                                                  description: "Something went wrong when trying to retrieve the post. You can try to open this post in Safari.")
+    static let unableToLaunchPost = Message(title: NSLocalizedString("ALERT_TITLE_NOTFOUND",
+                                                                     comment: "Title"),
+                                            description: NSLocalizedString("ALERT_CONTENT_NOTFOUND",
+                                                                           comment: "Content"))
     // swiftlint:enable line_length
 }
 

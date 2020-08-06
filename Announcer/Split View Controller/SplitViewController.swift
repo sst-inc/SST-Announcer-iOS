@@ -39,8 +39,23 @@ class SplitViewController: UISplitViewController {
     }
     
     override var keyCommands: [UIKeyCommand]? {
+        let localizedKeys = ["COMMAND_SEARCH",
+                             "COMMAND_RELOAD",
+                             "COMMAND_FILTER",
+                             "COMMAND_SHARE",
+                             "COMMAND_PIN",
+                             "COMMAND_SAFARI",
+                             "COMMAND_SETTINGS",
+                             "COMMAND_ZOOM_IN",
+                             "COMMAND_ZOOM_OUT",
+                             "COMMAND_ZOOM_RESET"]
+        
+        let localizedStrings = localizedKeys.map {
+            NSLocalizedString($0, comment: "Command")
+        }
+        
         // Search for announcements using Cmd F
-        let search = UIKeyCommand(title: "Search",
+        let search = UIKeyCommand(title: localizedStrings[0],
                                   image: UIImage(systemName: "magnifyingglass"),
                                   action: #selector(startSearching),
                                   input: "f",
@@ -49,7 +64,7 @@ class SplitViewController: UISplitViewController {
                                   state: .mixed)
 
         // Reload announcements using Cmd R
-        let reload = UIKeyCommand(title: "Reload",
+        let reload = UIKeyCommand(title: localizedStrings[1],
                                   image: UIImage(systemName: "arrow.clockwise"),
                                   action: #selector(reloadPosts),
                                   input: "r",
@@ -58,7 +73,7 @@ class SplitViewController: UISplitViewController {
                                   state: .mixed)
 
         // Filter announcements using Cmd Shift F
-        let filter = UIKeyCommand(title: "Filter Posts",
+        let filter = UIKeyCommand(title: localizedStrings[2],
                                   image: Assets.filter,
                                   action: #selector(filterPosts),
                                   input: "f",
@@ -67,7 +82,7 @@ class SplitViewController: UISplitViewController {
                                   state: .mixed)
 
         // Share announcement using Cmd S
-        let share = UIKeyCommand(title: "Share",
+        let share = UIKeyCommand(title: localizedStrings[3],
                                   image: Assets.share,
                                   action: #selector(sharePost),
                                   input: "s",
@@ -76,7 +91,7 @@ class SplitViewController: UISplitViewController {
                                   state: .mixed)
 
         // Pin announcement using Cmd P
-        let pin = UIKeyCommand(title: "Pin",
+        let pin = UIKeyCommand(title: localizedStrings[4],
                                image: Assets.pin,
                                action: #selector(pinPost),
                                input: "p",
@@ -85,7 +100,7 @@ class SplitViewController: UISplitViewController {
                                state: .mixed)
 
         // Open announcement in Safari using Cmd Shift S
-        let safari = UIKeyCommand(title: "Open in Safari",
+        let safari = UIKeyCommand(title: localizedStrings[5],
                                   image: Assets.safari,
                                   action: #selector(openSafari),
                                   input: "s",
@@ -94,7 +109,7 @@ class SplitViewController: UISplitViewController {
                                   state: .mixed)
 
         // Open App's settings using Cmd ,
-        let settings = UIKeyCommand(title: "Settings",
+        let settings = UIKeyCommand(title: localizedStrings[6],
                                   image: Assets.settings,
                                   action: #selector(openSettings),
                                   input: ",",
@@ -113,7 +128,7 @@ class SplitViewController: UISplitViewController {
                                    action: #selector(previousPost))
 
         // Zooming Post
-        let zoomIn = UIKeyCommand(title: "Zoom In",
+        let zoomIn = UIKeyCommand(title: localizedStrings[7],
                                   image: Assets.zoomIn,
                                   action: #selector(zoomInPost),
                                   input: "=",
@@ -121,7 +136,7 @@ class SplitViewController: UISplitViewController {
                                   discoverabilityTitle: "Zoom In",
                                   state: .mixed)
 
-        let zoomOut = UIKeyCommand(title: "Zoom Out",
+        let zoomOut = UIKeyCommand(title: localizedStrings[8],
                                    image: Assets.zoomOut,
                                    action: #selector(zoomOutPost),
                                    input: "-",
@@ -129,7 +144,7 @@ class SplitViewController: UISplitViewController {
                                    discoverabilityTitle: "Zoom Out",
                                    state: .mixed)
 
-        let resetZoom = UIKeyCommand(title: "Reset Zoom",
+        let resetZoom = UIKeyCommand(title: localizedStrings[9],
                                      image: Assets.resetZoom,
                                      action: #selector(resetPostZoom),
                                      input: "1",

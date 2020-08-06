@@ -1,0 +1,80 @@
+/* 
+  Localizable.strings
+  Announcer
+
+  Created by JiaChen(: on 6/8/20.
+  Copyright © 2020 SST Inc. All rights reserved.
+*/
+
+// MARK: - 👻 General
+"APP_NAME" = "Announcer";
+
+"DATE_FORMAT" = "'Posted on' d MMM yyyy";
+
+// MARK: - 📄 Posts
+"POST_LABELS" = "Labels";
+"POST_LINKS" = "Links";
+"POST_TITLE" = "Title";
+"POST_CONTENT" = "Content";
+
+"POST_HARDTOREAD_DEFAULT" = "   Hard to Read?";
+"POST_HARDTOREAD_SELECTED" = "   Reset";
+
+"POST_UNPIN" = "Unpin";
+"POST_PIN" = "Pin";
+
+"POST_PIN_LONG" = "Post Pinned";
+"POST_UNPIN_LONG" = "Post Unpinned";
+
+// MARK: - 🗂 Categories/Sections
+"CATEGORIES_ALL" = "All Announcements";
+"CATEGORIES_PINNED" = "Pinned";
+
+// MARK: - 💾 States
+"STATE_LOADING" = "Loading…";
+"STATE_LOADING_CONTENT" = "Loading Content…";
+
+// MARK: - 🎬 Actions
+"ACTION_FEEDBACK" = "Feedback";
+"ACTION_OK" = "OK";
+"ACTION_TRYAGAIN" = "Try Again";
+"ACTION_SETTINGS" = "Open Settings";
+"ACTION_SAFARI" = "Open in Safari";
+"ACTION_CLOSE" = "Close Post";
+"ACTION_OPEN_POST" = "Open Announcement";
+
+"ACTION_COPY_LINK" = "Copy Link";
+"ACTION_OPEN_LINK" = "Open Link";
+"ACTION_SHARE" = "Share…";
+
+"ACTION_FILTER" = "Filter Posts";
+"ACTION_COPY_FILTER" = "Copy Filter";
+
+// MARK: - ⚠️ Alerts
+"ALERT_TITLE_WEBKIT" = "Unable to Open Post";
+"ALERT_CONTENT_WEBKIT" = "An error occurred when opening this post. Open this post in Safari to view its contents.";
+
+"ALERT_TITLE_INTERNET" = "Check your Internet";
+"ALERT_CONTENT_INTERNET" = "Unable to fetch data from Students' Blog.\nPlease check your network settings and try again.";
+
+"ALERT_TITLE_NOTFOUND" = "Unable to launch post";
+"ALERT_CONTENT_NOTFOUND" = "Something went wrong when trying to retrieve the post. You can try to open this post in Safari.";
+
+// MARK: - 🚨 Errors
+"ERROR_LOADING" = "\tLoading Content…\n\n";
+
+"ERROR_UNABLETOLOAD" = "\tUnable to load preview.\n\tTap to open post.";
+
+"ERROR_NOTEXT" = "Preview unavailable, post contains no text.";
+
+// MARK: - ⌨️ Key Commands
+"COMMAND_SEARCH" = "Search";
+"COMMAND_RELOAD" = "Reload";
+"COMMAND_FILTER" = "Filter Posts";
+"COMMAND_SHARE" = "Share…";
+"COMMAND_PIN" = "Pin";
+"COMMAND_SAFARI" = "Open in Safari";
+"COMMAND_SETTINGS" = "Settings";
+"COMMAND_ZOOM_IN" = "Zoom In";
+"COMMAND_ZOOM_OUT" = "Zoom Out";
+"COMMAND_ZOOM_RESET" = "Reset Zoom";
