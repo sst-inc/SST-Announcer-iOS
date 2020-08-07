@@ -1,0 +1,37 @@
+/* 
+  Localizations.strings
+  Announcer
+
+  Created by JiaChen(: on 7/8/20.
+  Copyright © 2020 SST Inc. All rights reserved.
+*/
+
+// MARK: - 👻 Configurations
+"CONFIG_DISPLAY_NAME" = "Timetables";
+"CONFIG_DESCRIPTION" = "Keep track of your lessons and find out what's next.";
+
+// MARK: - 📚 Lesson States
+"LESSONS_OVER_S" = "🏠 That's it!";
+"LESSONS_OVER_M" = "🏠 Well, that's it!";
+
+"NO_LESSONS_S" = "No lessons today.";
+"NO_LESSONS_M" = "There are no lessons on weekends.";
+
+"NO_ONGOING_LESSONS_S" = "No Lessons";
+"NO_ONGOING_LESSONS_M" = "No ongoing lessons";
+
+"NO_ONGOING_LESSONS_DESCRIPTION_S" = "There are no ongoing lessons!";
+"NO_ONGOING_LESSONS_DESCRIPTION_M" = "There are no lessons happening now.";
+
+// MARK: - ⏰ Time Descriptors
+"STARTS_AT %@" = "Starts at %@";
+"ENDS_AT %@" = "Ends at %@"; // Ends at 2pm
+"ENDS_IN %@" = "Ends in %@"; // Ends in 30 minutes 50 seconds
+"NEXT_M" = "Next:";
+"NEXT_S %@" = "Next: %@";
+"TODAY_IS %@" = "It's %@!";
+
+// MARK: - ⚙️ Not Set Up
+"SETUP_TITLE_S" = "Not Set-Up";
+"SETUP_TITLE_M" = "Set-up Timetables";
+"SETUP_DESCRIPTION" = "Announcer Timetables is not set-up.\nTap to set it up.";

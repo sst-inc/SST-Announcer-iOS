@@ -18,7 +18,7 @@ extension NotSetUpItem {
                     HStack(spacing: 8) {
                         Components.ImageView(imageName: "gearshape", isMedium: false)
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("Set-up Timetables")
+                            Text(Localized.SetUp.Title.m)
                                 .font(
                                     .system(
                                         size: 20,
@@ -26,7 +26,7 @@ extension NotSetUpItem {
                                         design: .default
                                     )
                                 )
-                            Text("Announcer Timetables is not set-up.\nTap to set it up.")
+                            Text(Localized.SetUp.description)
                                 .font(
                                     .system(
                                         size: 12,

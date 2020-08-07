@@ -14,7 +14,7 @@ struct NoLesson {
         var body: some View {
             VStack(alignment: .leading, spacing: 8) {
                 Components.ImageView(imageName: "house", isMedium: false)
-                Text("No Lessons")
+                Text(Localized.No.Ongoing.Lessons.Title.s)
                     .font(
                         .system(
                             size: 24,
@@ -22,7 +22,7 @@ struct NoLesson {
                             design: .default
                         )
                     )
-                Text("There are no ongoing lessons!")
+                Text(Localized.No.Ongoing.Lessons.Description.s)
                     .font(
                         .system(
                             size: 16,

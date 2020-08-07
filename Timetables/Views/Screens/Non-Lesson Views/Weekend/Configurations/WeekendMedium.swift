@@ -18,7 +18,7 @@ extension WeekendViews {
                     HStack(spacing: 8) {
                         Components.ImageView(imageName: "calendar", isMedium: false)
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("It's \(Date().day())!")
+                            Text("TODAY_IS \(Date().day())")
                                 .font(
                                     .system(
                                         size: 20,
@@ -26,7 +26,7 @@ extension WeekendViews {
                                         design: .default
                                     )
                                 )
-                            Text("There are no lessons on weekends.")
+                            Text(Localized.No.Lessons.m)
                                 .font(
                                     .system(
                                         size: 12,

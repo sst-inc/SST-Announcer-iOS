@@ -40,7 +40,7 @@ extension PlaceholderItem {
                 }.padding([.leading, .trailing, .top])
                 
                 VStack(alignment: .leading) {
-                    Text("Next:")
+                    Text(Localized.Time.Next.m)
                         .font(
                             Font
                                 .system(

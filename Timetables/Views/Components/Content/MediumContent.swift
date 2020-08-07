@@ -27,7 +27,7 @@ struct Components {
                                 design: .default
                             )
                         )
-                    Text("Starts at \(Lesson.convert(time: lessonTime.timeIntervalSince(Lesson.getTodayDate())))")
+                    Text("STARTS_AT \(Lesson.convert(time: lessonTime.timeIntervalSince(Lesson.getTodayDate())))")
                         .font(
                             .system(
                                 size: 12,

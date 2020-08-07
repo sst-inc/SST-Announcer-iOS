@@ -18,7 +18,7 @@ extension NoLesson {
                     HStack(spacing: 8) {
                         Components.ImageView(imageName: "house", isMedium: false)
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("No ongoing lessons")
+                            Text(Localized.No.Ongoing.Lessons.Title.m)
                                 .font(
                                     .system(
                                         size: 20,
@@ -26,7 +26,7 @@ extension NoLesson {
                                         design: .default
                                     )
                                 )
-                            Text("There are no lessons happening now.")
+                            Text(Localized.No.Ongoing.Lessons.Description.m)
                                 .font(
                                     .system(
                                         size: 12,

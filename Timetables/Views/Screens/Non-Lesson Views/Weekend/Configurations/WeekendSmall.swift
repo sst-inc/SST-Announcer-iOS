@@ -25,7 +25,7 @@ struct WeekendViews {
                             design: .default
                         )
                     )
-                Text("No lessons today.")
+                Text(Localized.No.Lessons.s)
                     .font(
                         .system(
                             size: 16,

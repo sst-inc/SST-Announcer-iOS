@@ -1,0 +1,37 @@
+/* 
+  Localizations.strings
+  Announcer
+
+  Created by JiaChen(: on 7/8/20.
+  Copyright © 2020 SST Inc. All rights reserved.
+*/
+
+// MARK: - 👻 General
+"CONFIG_DISPLAY_NAME" = "时间表";
+"CONFIG_DESCRIPTION" = "追查时间表，预知下堂课。";
+
+// MARK: - 📚 Lesson States
+"LESSONS_OVER_S" = "🏠回家咯！";
+"LESSONS_OVER_M" = "🏠课上完了，能回家咯！";
+
+"NO_LESSONS_S" = "今天没上课。";
+"NO_LESSONS_M" = "周末没上课。";
+
+"NO_ONGOING_LESSONS_S" = "没上课";
+"NO_ONGOING_LESSONS_M" = "现在没上课";
+
+"NO_ONGOING_LESSONS_DESCRIPTION_S" = "现在没上课，歇息一会儿吧！";
+"NO_ONGOING_LESSONS_DESCRIPTION_M" = "现在没上课，歇息一会儿或是找东西做。";
+
+// MARK: - ⏰ Time Descriptors
+"STARTS_AT %@" = "开始于 ％@";
+"ENDS_AT %@" = "结束于％@";
+"ENDS_IN" = "剩余％@下课";
+"NEXT_M" = "下一堂课：";
+"NEXT_S %@" = "下一堂课：%@";
+"TODAY_IS %@" = "今天是%@!";
+
+// MARK: - ⚙️ Not Set Up
+"SETUP_TITLE_S" = "未设定";
+"SETUP_TITLE_M" = "设置时间表";
+"SETUP_DESCRIPTION" = "时间表没有设置。\n轻触设置时间表。";

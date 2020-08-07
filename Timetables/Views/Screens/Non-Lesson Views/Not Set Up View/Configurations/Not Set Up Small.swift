@@ -15,7 +15,7 @@ struct NotSetUpItem {
         var body: some View {
             VStack(alignment: .leading) {
                 Components.ImageView(imageName: "gearshape", isMedium: false)
-                Text("Not Set-Up")
+                Text(Localized.SetUp.Title.s)
                     .font(
                         .system(
                             size: 20,
@@ -23,7 +23,7 @@ struct NotSetUpItem {
                             design: .default
                         )
                     )
-                Text("Announcer Timetable is not set-up.\nTap to set it up.")
+                Text(Localized.SetUp.description)
                     .font(
                         .system(
                             size: 12,

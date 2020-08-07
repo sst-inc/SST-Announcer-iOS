@@ -9,6 +9,8 @@
 // MARK: - 👻 General
 "APP_NAME" = "Announcer";
 
+"FILTER_TITLE" = "Filter with Labels";
+
 "DATE_FORMAT" = "'Posted on' d MMM yyyy";
 
 // MARK: - 📄 Posts
@@ -65,7 +67,7 @@
 
 "ERROR_UNABLETOLOAD" = "\tUnable to load preview.\n\tTap to open post.";
 
-"ERROR_NOTEXT" = "Preview unavailable, post contains no text.";
+"ERROR_NOTEXT" = "\tPreview unavailable, post contains no text.";
 
 // MARK: - ⌨️ Key Commands
 "COMMAND_SEARCH" = "Search";

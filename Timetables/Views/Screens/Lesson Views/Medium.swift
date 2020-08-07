@@ -30,7 +30,7 @@ extension Screens {
                                         design: .default
                                     )
                                 )
-                            Text("Ends in \(currentLesson.date, style: .relative)")
+                            Text("ENDS_IN \(currentLesson.date, style: .relative)")
                                 .font(
                                     .system(
                                         size: 12,
@@ -46,7 +46,7 @@ extension Screens {
                 
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Next:")
+                        Text(Localized.Time.Next.m)
                             .font(
                                 Font
                                     .system(
@@ -76,7 +76,7 @@ extension Screens {
                                 Components.MediumContent(currentLesson: lastLesson.name, lessonTime: lastLesson.date)
                             }
                         } else {
-                            Text("🏠 Well, that's it!")
+                            Text(Localized.Lessons.Over.m)
                                 .font(
                                     Font
                                         .system(

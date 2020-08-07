@@ -7,17 +7,19 @@
 */
 
 // MARK: - 👻 General
-"APP_NAME" = "告知者";
+"APP_NAME" = "公告站";
+
+"FILTER_TITLE" = "Filter with Labels";
 
 "DATE_FORMAT" = "'发布于'yyyy'年'M'月'd'日'";
 
 // MARK: - 📄 Posts
-"POST_LABELS" = "类别";
+"POST_LABELS" = "标签";
 "POST_LINKS" = "网址";
 "POST_TITLE" = "标题";
 "POST_CONTENT" = "内容";
 
-"POST_HARDTOREAD_DEFAULT" = "   很难读？";
+"POST_HARDTOREAD_DEFAULT" = "   难读吗？";
 "POST_HARDTOREAD_SELECTED" = "   重启";
 
 "POST_UNPIN" = "取消固定";
@@ -39,7 +41,7 @@
 "ACTION_OK" = "好";
 "ACTION_TRYAGAIN" = "再试一次";
 "ACTION_SETTINGS" = "打开设置";
-"ACTION_SAFARI" = "在浏览器中打开";
+"ACTION_SAFARI" = "打开Safari";
 "ACTION_CLOSE" = "关闭职位";
 "ACTION_OPEN_POST" = "公开帖子";
 
@@ -65,15 +67,15 @@
 
 "ERROR_UNABLETOLOAD" = "\t无法加载预览。\n\t点击以打开帖子。";
 
-"ERROR_NOTEXT" = "无法预览，帖子中没有文字。";
+"ERROR_NOTEXT" = "无法预览，帖子中不含文字。";
 
 // MARK: - ⌨️ Key Commands
 "COMMAND_SEARCH" = "搜索";
-"COMMAND_RELOAD" = "重装";
+"COMMAND_RELOAD" = "重新载入页面";
 "COMMAND_FILTER" = "筛选帖子";
 "COMMAND_SHARE" = "分享…";
 "COMMAND_PIN" = "固定";
-"COMMAND_SAFARI" = "在浏览器中打开";
+"COMMAND_SAFARI" = "打开Safari";
 "COMMAND_SETTINGS" = "设置";
 "COMMAND_ZOOM_IN" = "放大";
 "COMMAND_ZOOM_OUT" = "缩小";

@@ -133,9 +133,14 @@ struct WidgetTimetable: Widget {
                             provider: Provider()) { entry in
             WidgetTimetableEntryView(entry: entry)
         }
-        .supportedFamilies([.systemSmall, .systemMedium])
-        .configurationDisplayName("Timetables")
-        .description("Keep track of your lessons and find out what's next.")
+        .supportedFamilies([.systemSmall,
+                            .systemMedium])
+        .configurationDisplayName(Localized
+                                    .Configurations
+                                    .displayName)
+        .description(Localized
+                        .Configurations
+                        .description)
     }
 }
 

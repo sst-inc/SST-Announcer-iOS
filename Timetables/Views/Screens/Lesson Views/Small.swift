@@ -27,7 +27,7 @@ extension Screens {
                             design: .default
                         )
                     )
-                Text("Ends at \(Lesson.convert(time: currentLesson.date.timeIntervalSince(Lesson.getTodayDate())))")
+                Text("ENDS_AT \(Lesson.convert(time: currentLesson.date.timeIntervalSince(Lesson.getTodayDate())))")
                     .font(
                         .system(
                             size: 16,
@@ -37,7 +37,7 @@ extension Screens {
                     )
                 
                 if let nextLesson = firstNextLesson {
-                    Text("Next: \(nextLesson.name)").font(
+                    Text("NEXT_S \(nextLesson.name)").font(
                         .system(
                             size: 16,
                             weight: .bold,
@@ -45,7 +45,7 @@ extension Screens {
                         )
                     )
                 } else {
-                    Text("🏠 That's it!")
+                    Text(Localized.Lessons.Over.s)
                         .font(
                             .system(
                                 size: 16,

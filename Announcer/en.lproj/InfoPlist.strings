@@ -1,0 +1,8 @@
+/* 
+  InfoPlist.strings
+  Announcer
+
+  Created by JiaChen(: on 8/8/20.
+  Copyright © 2020 SST Inc. All rights reserved.
+*/
+"CFBundleDisplayName" = "SST Announcer";
