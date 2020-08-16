@@ -9,7 +9,6 @@
 import UIKit
 import CoreSpotlight
 import MobileCoreServices
-import SwiftUI
 
 class AnnouncementsViewController: UIViewController {
     
@@ -227,11 +226,13 @@ class AnnouncementsViewController: UIViewController {
             contentVC.post = post
             
         } else {
-            /// Getting contentViewController with `post`
-            let contentVC = getContentViewController(with: post)
-            
-            // Push navigation controller
-            navigationController?.pushViewController(contentVC, animated: true)
+            DispatchQueue.main.async {
+                /// Getting contentViewController with `post`
+                let contentVC = self.getContentViewController(with: post)
+                
+                // Push navigation controller
+                self.navigationController?.pushViewController(contentVC, animated: true)
+            }
         }
     }
     

@@ -48,11 +48,14 @@ extension ContentViewController: UICollectionViewDelegate,
             cell.backgroundColor = GlobalColors.greyTwo
             
             // Adding labels to cell
-            cell.titleLabel.text = post.categories[indexPath.row]
+            cell.titleLabel.text = "\t\(post.categories[indexPath.row])"
             
             // Setting Cell Corner Radius
             cell.layer.cornerRadius = 5
             cell.clipsToBounds = true
+            
+            // Add images
+            cell.loadImages()
             
             /// INTERACTIONS
             /// - Pointer interaction

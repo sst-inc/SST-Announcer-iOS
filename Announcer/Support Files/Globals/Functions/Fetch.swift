@@ -9,6 +9,7 @@
 import Foundation
 import SystemConfiguration
 import UIKit
+import WidgetKit
 
 /// Functions meant to fetch data
 struct Fetch {
@@ -70,6 +71,25 @@ struct Fetch {
             
             UserDefaults.standard.set(posts[0].title, forKey: UserDefaultsIdentifiers.recentsTitle.rawValue)
             UserDefaults.standard.set(posts[0].content, forKey: UserDefaultsIdentifiers.recentsContent.rawValue)
+            
+            DispatchQueue.global().async {
+                let announcements: [Announcement] = posts.prefix(5).map { post in
+                    
+                    let identifiers = post.categories.map {
+                        getImageIdentifier($0)
+                    }
+                    
+                    return Announcement(title: post.title, publishDate: post.date, imageIdentifiers: identifiers)
+                }
+                
+                Announcement.save(announcements)
+                
+                if #available(iOS 14, *) {
+                    DispatchQueue.main.async {
+                        WidgetCenter.shared.reloadAllTimelines()
+                    }
+                }
+            }
             
             return posts
         case .failure(let error):
@@ -146,6 +166,17 @@ struct Fetch {
                 UserDefaults.standard.set(posts[0].content,
                                           forKey: UserDefaultsIdentifiers.recentsContent.rawValue)
                 
+                let announcements: [Announcement] = posts.prefix(5).map { post in
+                    
+                    let identifiers = post.categories.map {
+                        getImageIdentifier($0)
+                    }
+                    
+                    return Announcement(title: post.title, publishDate: post.date, imageIdentifiers: identifiers)
+                }
+                
+                Announcement.save(announcements)
+                
                 let title = convertFromEntries(feed: (feed?.entries!)!).first!.title
                 let content = convertFromEntries(feed: (feed?.entries!)!).first!.content
                 
@@ -216,5 +247,80 @@ struct Fetch {
             
         }
         return posts
+    }
+    
+    /// Getting image from filter
+    static func getImageIdentifier(_ title: String) -> String {
+        
+        // Make the title lowercased to make it easier to handle
+        let title = title.lowercased()
+        
+        // Getting image data from Icons.txt file
+        let imageData = getData()
+        
+        // Default value, if there is no icon found use the "tag" icon
+        var imageIdentifier = "tag"
+        
+        // Loop through dataset and associate each one with an image
+        for data in imageData {
+            for i in data.0 {
+                if title.contains(i) {
+                    // If the label contains the search terms,
+                    
+                    // set the image identifier and
+                    imageIdentifier = data.1
+                    
+                    // get out of loop
+                    break
+                }
+            }
+            
+            if imageIdentifier != "tag" {
+                // If the image identifier is not "tag",
+                // get out of the loop because it is found
+                break
+            }
+        }
+        
+        return imageIdentifier
+    }
+    
+    /// Getting image from filter
+    static func getImage(_ title: String) -> UIImage {
+        let imageIdentifier = getImageIdentifier(title)
+        
+        return UIImage(systemName: imageIdentifier) ?? UIImage(named: imageIdentifier) ?? UIImage(systemName: "tag")!
+    }
+    
+    /// Getting data from the Icons.txt file
+    static func getData() -> [([String], String)] {
+        
+        // Reading from Icons.txt
+        do {
+            let strData = try String(contentsOf: Bundle.main.url(forResource: "Icons", withExtension: "txt")!)
+            
+            // Spliting the data by \n
+            let data = strData.split(separator: "\n")
+            
+            // Mapping out the data to create an array of ([String], String)
+            let convertedData = data.map { value -> ([String], String) in
+                let item = value.split(separator: "|")
+                
+                // Identifiers are the search terms used to locate the correct icon
+                let identifiers: [String] = item[0].split(separator: ",").map {
+                    String($0)
+                }
+                
+                // String item[1] is the image identifier for SF Symbols
+                return (identifiers, String(item[1]))
+            }
+            
+            // Return the converted data and we're done
+            return convertedData
+        } catch {
+            print(error.localizedDescription)
+            
+            return [([""], "")]
+        }
     }
 }

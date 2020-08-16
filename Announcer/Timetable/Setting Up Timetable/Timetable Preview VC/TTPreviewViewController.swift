@@ -66,9 +66,11 @@ class TTPreviewViewController: UIViewController {
         }).rotate(radians: .pi / 2 * 3)
 
         // Start cropping timetableImage, will automatically update imageView when done
-        DispatchQueue.global(qos: .background).async {
-            self.crop()
-        }
+//        DispatchQueue.global(qos: .background).async {
+//            self.crop()
+//        }
+        
+        doneButtonPressed(UILabel())
     }
     
     // Dumping the reading code here temporarily
@@ -209,8 +211,20 @@ class TTPreviewViewController: UIViewController {
                            Lesson(identifier: "bio", teacher: "Leong WF", startTime: 38400, endTime: 42000),
                            Lesson(identifier: "chem", teacher: "Praveena", startTime: 42000, endTime: 45600),
                            Lesson(identifier: "cce", teacher: "Eunice Lim / Samuel Lee", startTime: 45600, endTime: 49200)]).save()
+        
         // swiftlint:enable all
-        self.navigationController?.dismiss(animated: true, completion: nil)
+        self.navigationController?.dismiss(animated: true, completion: {
+            let window = UIApplication.shared.windows.first
+            let rootVC = window?.rootViewController?.children.first
+            
+            if let dest = rootVC as? AnnouncementsViewController {
+                if #available(iOS 14, *) {
+                    dest.openTimetable(self)
+                } else {
+                    // Fallback on earlier versions
+                }
+            }
+        })
     }
     
     /*

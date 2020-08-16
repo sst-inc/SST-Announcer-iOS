@@ -14,7 +14,6 @@ import Foundation
  This struct contains error messages used in the app
  */
 struct ErrorMessages {
-    // swiftlint:disable line_length
     /// When there is an error launching a post because it requires JavaScript
     static let postRequiresWebKit = Message(title: NSLocalizedString("ALERT_TITLE_WEBKIT",
                                                                      comment: "Title"),
@@ -32,7 +31,6 @@ struct ErrorMessages {
                                                                      comment: "Title"),
                                             description: NSLocalizedString("ALERT_CONTENT_NOTFOUND",
                                                                            comment: "Content"))
-    // swiftlint:enable line_length
 }
 
 struct Message {

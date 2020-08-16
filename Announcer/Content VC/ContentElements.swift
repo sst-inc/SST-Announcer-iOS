@@ -41,23 +41,37 @@ extension ContentViewController {
     
     func resetInterface() {
         // Set textField delegate
-        self.contentTextView.delegate = self
+        if contentTextView != nil {
+            self.contentTextView.delegate = self
+        }
         
         // Styling default font size button
         // Create a button of corner radius 20
-        self.defaultFontSizeButton.layer.cornerRadius = 20
-        self.defaultFontSizeButton.clipsToBounds = true
-        
-        // Hide the button until needed
-        self.defaultFontSizeButton.isHidden = true
+        if defaultFontSizeButton != nil {
+            self.defaultFontSizeButton.layer.cornerRadius = 20
+            self.defaultFontSizeButton.clipsToBounds = true
+            
+            // Hide the button until needed
+            self.defaultFontSizeButton.isHidden = true
+        }
         
         // Setting corner radii for the scrollSelection buttons to allow for the circular highlight
-        self.safariButton.layer.cornerRadius = 25 / 2
-        self.shareButton.layer.cornerRadius = 25 / 2
-        self.pinButton.layer.cornerRadius = 25 / 2
+        if self.safariButton != nil {
+            self.safariButton.layer.cornerRadius = 25 / 2
+        }
+        
+        if self.shareButton != nil {
+            self.shareButton.layer.cornerRadius = 25 / 2
+        }
+        
+        if self.pinButton != nil {
+            self.pinButton.layer.cornerRadius = 25 / 2
+        }
         
         // Hide links view while loading links
-        self.linksView.isHidden = true
+        if self.linksView != nil {
+            self.linksView.isHidden = true
+        }
     }
     
     func handlePinned(with post: Post) {
@@ -73,21 +87,34 @@ extension ContentViewController {
                 self.isPinned = true
                 
                 // Updating the pinButton image to unpin
-                self.pinButton.setImage(Assets.unpin, for: .normal)
+                if self.pinButton != nil {
+                    self.pinButton.setImage(Assets.unpin, for: .normal)
+                }
             } else {
                 // Set the isPinned variable
                 self.isPinned = false
                 
                 // Updating the pinButton image to pin
-                self.pinButton.setImage(Assets.pin, for: .normal)
+                if self.pinButton != nil {
+                    self.pinButton.setImage(Assets.pin, for: .normal)
+                }
             }
                         
             // Hide the labels if there are none
             if self.post.categories.count == 0 {
-                self.labelsView.isHidden = true
-                self.seperatorView.isHidden = true
+                
+                if self.labelsView != nil {
+                    self.labelsView.isHidden = true
+                }
+                
+                if self.seperatorView != nil {
+                    self.seperatorView.isHidden = true
+                }
+                
             } else {
-                self.labelsView.isHidden = false
+                if self.labelsView != nil {
+                    self.labelsView.isHidden = false
+                }
             }
             
             self.resetInterface()

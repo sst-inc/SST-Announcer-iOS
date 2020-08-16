@@ -38,6 +38,8 @@ extension WeekendViews {
                     }
                 }.padding([.leading, .trailing, .top])
             }
+            .frame(maxWidth: .infinity,
+                   maxHeight: .infinity)
         }
     }
 }

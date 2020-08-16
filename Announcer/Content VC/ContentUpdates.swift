@@ -45,9 +45,11 @@ extension ContentViewController {
                                value: UIColor.label,
                                range: NSRange(location: 0, length: (attr?.length)!))
             
-            DispatchQueue.main.async {
-                // Set the attributed text
-                self.contentTextView.attributedText = attr
+            if contentTextView != nil {
+                DispatchQueue.main.async {
+                    // Set the attributed text
+                    self.contentTextView.attributedText = attr
+                }
             }
         }
         
@@ -62,17 +64,24 @@ extension ContentViewController {
         
         // Escape to main thread to update user interface
         DispatchQueue.main.async {
+            
             // Update textLabel with attributed text for colored square brackets
-            self.titleLabel.attributedText = attrTitle
+            if self.titleLabel != nil {
+                self.titleLabel.attributedText = attrTitle
+            }
             
             // Update the page title
             UIApplication.shared.connectedScenes.first?.title = self.post.title
             
             // Update dateLabel with formatted date
-            self.dateLabel.text = dateFormatter.string(from: self.post.date)
+            if self.dateLabel != nil {
+                self.dateLabel.text = dateFormatter.string(from: self.post.date)
+            }
             
             // Reload labels collection view with new data
-            self.labelsCollectionView.reloadData()
+            if self.labelsCollectionView != nil {
+                self.labelsCollectionView.reloadData()
+            }
         }
         
         // Handling pinned posts

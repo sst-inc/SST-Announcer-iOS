@@ -123,7 +123,9 @@ class TTViewController: UIViewController {
                                                object: nil)
         
         // Reload widgets
-        WidgetCenter.shared.reloadAllTimelines()
+        if #available(iOS 14, *) {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

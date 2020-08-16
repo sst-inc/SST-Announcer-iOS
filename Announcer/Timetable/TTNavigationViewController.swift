@@ -71,32 +71,32 @@ class TTNavigationViewController: UINavigationController {
                 self.getTimetableFrom(drive: driveLink)
                 
             } else {
-                let alert = UIAlertController(title: "Timetable not found",
-                                              // swiftlint:disable:next line_length
-                                              message: "Unable to find timetable post.\nTry again later, or upload your own timetable.",
-                                              preferredStyle: .alert)
-                
-                let ok = UIAlertAction(title: "OK",
-                                       style: .default) { (_) in
-                    self.popToRootViewController(animated: true)
-                }
-                
-                // Allow user to input their own drive URL
-                let uploadTimetable = UIAlertAction(title: "Upload Timetable",
-                                                    style: .default) { (_) in
-                    
-                    // Present another alert to ask user for drive url
-                    self.customDriveURLAlert()
-                }
-                
-                alert.addAction(ok)
-                alert.addAction(uploadTimetable)
-                alert.preferredAction = ok
-                
-                DispatchQueue.main.async {
-                    self.present(alert, animated: true, completion: nil)
-                }
-                
+//                let alert = UIAlertController(title: "Timetable not found",
+//                                              // swiftlint:disable:next line_length
+//                                              message: "Unable to find timetable post.\nTry again later, or upload your own timetable.",
+//                                              preferredStyle: .alert)
+//
+//                let ok = UIAlertAction(title: "OK",
+//                                       style: .default) { (_) in
+//                    self.popToRootViewController(animated: true)
+//                }
+//
+//                // Allow user to input their own drive URL
+//                let uploadTimetable = UIAlertAction(title: "Upload Timetable",
+//                                                    style: .default) { (_) in
+//
+//                    // Present another alert to ask user for drive url
+//                    self.customDriveURLAlert()
+//                }
+//
+//                alert.addAction(ok)
+//                alert.addAction(uploadTimetable)
+//                alert.preferredAction = ok
+//
+//                DispatchQueue.main.async {
+//                    self.present(alert, animated: true, completion: nil)
+//                }
+                self.getTimetableFrom(drive: URL(string: "https://drive.google.com/file/d/1meVxrEi7zyj8R-3BKKBctHZ_NVK5An3H/view?usp=sharing")!)
             }
         }
     }

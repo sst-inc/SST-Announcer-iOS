@@ -11,23 +11,22 @@ import SwiftUI
 
 public struct Provider: TimelineProvider {
 
-    public func snapshot(with context: Context,
-                         completion: @escaping (WidgetEntry) -> Void) {
+    public func getSnapshot(in context: Context, completion: @escaping (WidgetEntry) -> Void) {
         let entry = WidgetEntry(date: Date())
- 
+        
         completion(entry)
     }
-
-    public func timeline(with context: Context,
-                         completion: @escaping (Timeline<Entry>) -> Void) {
-
+    
+    public func getTimeline(in context: Context, completion: @escaping (Timeline<WidgetEntry>) -> Void) {
         var items: [WidgetEntry] = []
 
         if !Calendar.current.isDateInWeekend(Date()) {
             if let lessonDates = getLessonDates(date: Date()) {
                 items = lessonDates.map {
                     // Keep it relevant for 10 minutes
-                    WidgetEntry(date: $0, relevance: TimelineEntryRelevance(score: 100, duration: 600))
+                    WidgetEntry(date: $0,
+                                relevance: TimelineEntryRelevance(score: 100,
+                                                                  duration: 600))
                 }
             } else {
                 items = [WidgetEntry(date: Date(),
@@ -46,9 +45,16 @@ public struct Provider: TimelineProvider {
         items.append(WidgetEntry(date: Date(),
                                  relevance: TimelineEntryRelevance(score: 100, duration: 600)))
         
-        let timeline = Timeline(entries: items, policy: .atEnd)
+        let today = Lesson.getTodayDate()
+        let tomorrow = today.addingTimeInterval(86400)
+        
+        let timeline = Timeline(entries: items, policy: .after(tomorrow))
         
         completion(timeline)
+    }
+    
+    public func placeholder(in context: Context) -> WidgetEntry {
+        return WidgetEntry(date: .distantPast)
     }
 }
 
@@ -77,47 +83,50 @@ struct WidgetTimetableEntryView: View {
     
     @ViewBuilder
     var body: some View {
-        
-        // Getting current lesson
-        if var lessons: [WidgetLesson] = getOngoingLessons(entry.date) {
-            
-            let currentLesson: WidgetLesson? = lessons.first
-            
-            if let currentLesson = currentLesson {
-                
-                let firstNextLesson: WidgetLesson? = {
-                    lessons.removeFirst()
-                    return lessons.first
-                }()
-                
-                let secondNextLesson: WidgetLesson? = {
-                    if firstNextLesson != nil {
-                        lessons.removeFirst()
-                        
-                        return lessons.first
-                    }
-                    return nil
-                }()
-                
-                Screens.Default(family: family,
-                                currentLesson: currentLesson,
-                                firstNextLesson: firstNextLesson,
-                                secondNextLesson: secondNextLesson)
-                    .widgetURL(announcerURL)
-                
-            } else {
-                if Calendar.current.isDateInWeekend(entry.date) {
-                    Screens.WeekendView(family: family)
-                        .widgetURL(announcerURL)
-                } else {
-                    Screens.NoLessonsView(family: family)
-                        .widgetURL(announcerURL)
-                }
-            }
+        if entry.date == .distantPast {
+            PlaceholderView(family: _family)
         } else {
-            // User has not set up
-            Screens.NotSetUp(family: family)
-                .widgetURL(announcerURL)
+            // Getting current lesson
+            if var lessons: [WidgetLesson] = getOngoingLessons(entry.date) {
+                
+                let currentLesson: WidgetLesson? = lessons.first
+                
+                if let currentLesson = currentLesson {
+                    
+                    let firstNextLesson: WidgetLesson? = {
+                        lessons.removeFirst()
+                        return lessons.first
+                    }()
+                    
+                    let secondNextLesson: WidgetLesson? = {
+                        if firstNextLesson != nil {
+                            lessons.removeFirst()
+                            
+                            return lessons.first
+                        }
+                        return nil
+                    }()
+                    
+                    Screens.Default(family: family,
+                                    currentLesson: currentLesson,
+                                    firstNextLesson: firstNextLesson,
+                                    secondNextLesson: secondNextLesson)
+                        .widgetURL(announcerURL)
+                    
+                } else {
+                    if Calendar.current.isDateInWeekend(entry.date) {
+                        Screens.WeekendView(family: family)
+                            .widgetURL(announcerURL)
+                    } else {
+                        Screens.NoLessonsView(family: family)
+                            .widgetURL(announcerURL)
+                    }
+                }
+            } else {
+                // User has not set up
+                Screens.NotSetUp(family: family)
+                    .widgetURL(announcerURL)
+            }
         }
     }
 }

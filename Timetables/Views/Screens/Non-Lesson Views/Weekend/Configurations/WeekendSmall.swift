@@ -35,7 +35,9 @@ struct WeekendViews {
                     )
             }
             .padding()
-            .frame(alignment: .leading)
+            .frame(maxWidth: .infinity,
+                   maxHeight: .infinity,
+                   alignment: .leading)
         }
     }
 }

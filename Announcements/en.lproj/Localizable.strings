@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Announcer
+
+  Created by JiaChen(: on 9/8/20.
+  Copyright © 2020 SST Inc. All rights reserved.
+*/
+"DATE_FORMAT" = "'Posted on' d MMM yyyy";
+"LATEST_POSTS" = "📢 Latest Posts";
+"WIDGET_TITLE" = "Announcements";
+"WIDGET_DESCRIPTION" = "Check out the latest announcements from the Students' Blog.";
+
+"ERROR_NO_POST_TITLE" = "Unable to get posts.";
+"ERROR_NO_POST_DESCRIPTION" = "Open SST Announcer and try again.";

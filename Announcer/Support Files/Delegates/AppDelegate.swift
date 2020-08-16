@@ -189,6 +189,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         var postTitle = notificationContent.title
         postTitle.removeFirst(2)
         
-        launchPost(withTitle: postTitle)
+        launch(getPost(fromTitle: postTitle))
     }
 }

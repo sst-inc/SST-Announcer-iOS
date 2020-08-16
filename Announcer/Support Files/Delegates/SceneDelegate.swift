@@ -34,62 +34,63 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Determine who sent the URL.
         if let urlContext = connectionOptions.urlContexts.first {
-            
-            let sendingAppID = urlContext.options.sourceApplication
-            
-            let url = urlContext.url
-            print("source application = \(sendingAppID ?? "Unknown")")
-            print("url = \(url)")
-            
-            var announcementVC: AnnouncementsViewController!
-            
-            if let splitVC = window?.rootViewController as? SplitViewController {
-                announcementVC = splitVC.announcementVC
-            } else {
-                announcementVC = window?.rootViewController as? AnnouncementsViewController
-            }
-            
-            DispatchQueue.main.async {
-                if #available(iOS 14, *) {
-                    announcementVC.openTimetable(self)
-                }
-            }
+            openFrom(urlContext: urlContext)
         }
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let urlContext = URLContexts.first {
+            openFrom(urlContext: urlContext)
+        }
+        
+    }
+    
+    func openFrom(urlContext: UIOpenURLContext) {
         let timetableVC = Storyboards.timetable.instantiateInitialViewController()
         
-        if let urlContext = URLContexts.first {
-            let sendingAppID = urlContext.options.sourceApplication
-            let url = urlContext.url
-            print("source application = \(sendingAppID ?? "Unknown")")
-            print("url = \(url)")
+        let sendingAppID = urlContext.options.sourceApplication
+        let url = urlContext.url
+        print("source application = \(sendingAppID ?? "Unknown")")
+        print("url = \(url)")
+        
+        let rootVC = UIApplication.shared.windows.first?.rootViewController
+        var presentationVC: UIViewController? 
+        
+        switch url.absoluteString {
+        case "sstannouncer://launchwidget":
+            // User launched from widget, handle from widget
+            presentationVC = timetableVC!
             
-            let rootVC = UIApplication.shared.windows.first?.rootViewController
+        case "sstannouncer://diagnostics":
+            let vc = Storyboards.diagnostics.instantiateInitialViewController()
             
-            switch url.absoluteString {
-            case "sstannouncer://launchwidget":
-                // User launched from widget, handle from widget
-                rootVC?.present(timetableVC!,
-                                animated: true,
-                                completion: nil)
+            window?.rootViewController = vc
+        default:
+            if url.absoluteString.hasPrefix("sstannouncer://post/") {
+                var urlString = url.absoluteString
+                urlString.removeFirst("sstannouncer://post/".count)
                 
-            case "sstannouncer://diagnostics":
-                let vc = Storyboards.diagnostics.instantiateInitialViewController()
-                
-                window?.rootViewController = vc
-            default:
+                DispatchQueue.main.async {
+                    launch(getPost(fromLink: urlString))
+                }
+            } else {
                 // I have the best error messages.
                 
                 // Never gonna give you up
                 let svc = SFSafariViewController(url: URL(string: "https://www.youtube.com/embed/dQw4w9WgXcQ")!)
                 
                 // easter egg
-                rootVC?.present(svc, animated: true, completion: nil)
+                presentationVC = svc
             }
         }
         
+        if let presentationVC = presentationVC {
+            DispatchQueue.main.async {
+                rootVC?.present(presentationVC,
+                                animated: true,
+                                completion: nil)
+            }
+        }
     }
     
     // Handling when user opens from spotlight search

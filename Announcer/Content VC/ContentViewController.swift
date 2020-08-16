@@ -89,7 +89,9 @@ class ContentViewController: UIViewController {
             // Escaping to main thread to update user interface with new content
             DispatchQueue.main.async {
 
-                self.contentTextView.setContentOffset(.zero, animated: true)
+                if self.contentTextView != nil {
+                    self.contentTextView.setContentOffset(.zero, animated: true)
+                }
 
                 // Updating content
                 self.updateContent()
@@ -110,17 +112,26 @@ class ContentViewController: UIViewController {
             // Requires main thread
             DispatchQueue.main.async {
                 // Reload linksCollectionView
-                self.linksCollectionView.reloadData()
-
+                if self.linksCollectionView != nil {
+                    self.linksCollectionView.reloadData()
+                }
+                
                 // Ensuring that there are links
                 if self.links.count > 0 {
                     // Unhide seperators and linksView
 
-                    self.linksView.isHidden = false
-                    self.seperatorView.isHidden = self.labelsView.isHidden
+                    if self.linksView != nil {
+                        self.linksView.isHidden = false
+                    }
+                    
+                    if self.seperatorView != nil {
+                        self.seperatorView.isHidden = self.labelsView.isHidden
+                    }
                 } else {
                     // Hide seperator
-                    self.seperatorView.isHidden = true
+                    if self.seperatorView != nil {
+                        self.seperatorView.isHidden = true
+                    }
                 }
             }
         }

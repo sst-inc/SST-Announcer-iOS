@@ -44,8 +44,8 @@ class AnnouncementTableViewCell: UITableViewCell {
                 
                 // Creating error message - with icon
                 str.append(NSAttributedString(attachment: NSTextAttachment(image: Assets.error)))
-                str.append(NSAttributedString(string:                 NSLocalizedString("ERROR_UNABLETOLOAD",
-                                                                                        comment: "Unable to Load preview")
+                str.append(NSAttributedString(string: NSLocalizedString("ERROR_UNABLETOLOAD",
+                                                                        comment: "Unable to Load preview")
 ))
                 
                 // Set attributed text

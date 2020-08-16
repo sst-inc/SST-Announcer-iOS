@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Announcer
+
+  Created by JiaChen(: on 9/8/20.
+  Copyright © 2020 SST Inc. All rights reserved.
+*/
+"DATE_FORMAT" = "'发布于'yyyy'年'M'月'd'日'";
+"LATEST_POSTS" = "📢最新讯息";
+"WIDGET_TITLE" = "公告";
+"WIDGET_DESCRIPTION" = "请到SST Student’s Blog查询最新的消息。";
+
+"ERROR_NO_POST_TITLE" = "无法下载讯息";
+"ERROR_NO_POST_DESCRIPTION" = "请重新启动SST Announcer。";

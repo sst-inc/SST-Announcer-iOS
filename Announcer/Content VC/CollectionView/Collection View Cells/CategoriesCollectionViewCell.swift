@@ -16,7 +16,24 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
 
         contentView.addGestureRecognizer(hover)
     }
-
+    
+    func loadImages() {
+        let text = self.titleLabel.text!
+        
+        DispatchQueue.global().async {
+            let config = UIImage.SymbolConfiguration(scale: .small)
+            let image = Fetch.getImage(text).withConfiguration(config)
+            
+            DispatchQueue.main.async {
+                let attr = NSMutableAttributedString(string: "")
+                
+                attr.append(NSAttributedString(attachment: NSTextAttachment(image: image)))
+                attr.append(NSAttributedString(string: text))
+                self.titleLabel.attributedText = attr
+            }
+        }
+    }
+    
     @objc func hovered(sender: UIHoverGestureRecognizer) {
         switch sender.state {
         case .began:
@@ -34,7 +51,6 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         default:
             break
         }
-
     }
 
 }

@@ -16,6 +16,31 @@ import MobileCoreServices
 // Safari View Controller
 import SafariServices
 
+func getPost(fromLink link: String) -> Post? {
+    let posts = Fetch.values()
+    
+    if let castedLink = Int(link) {
+        return posts[castedLink]
+    }
+    
+    return nil
+}
+
+func getPost(fromTitle title: String) -> Post? {
+    let posts = Fetch.values()
+    
+    var post: Post?
+    
+    // Finding the post to present
+    for item in posts where item.title == title {
+        post = item
+        
+        break
+    }
+    
+    return post
+}
+
 /**
  Launches post using the post title
  
@@ -26,18 +51,7 @@ import SafariServices
  
  This method launches post using the post title and will show an open in safari button if there is an error.
 */
-func launchPost(withTitle postTitle: String) {
-    let posts = Fetch.values()
-    
-    var post: Post?
-    
-    // Finding the post to present
-    for item in posts where item.title == postTitle {
-        post = item
-        
-        break
-    }
-    
+func launch(_ post: Post?) {
     var announcementVC: AnnouncementsViewController!
     
     if I.wantToBeMac || I.mac {
@@ -50,6 +64,24 @@ func launchPost(withTitle postTitle: String) {
         
         if let navigationController = window?.rootViewController as? UINavigationController {
             announcementVC = navigationController.topViewController as? AnnouncementsViewController
+            
+            if announcementVC == nil {
+                // Handling if user is in contentVC
+                let contentVC = navigationController.topViewController as? ContentViewController
+                if let post = post {
+                    
+                    // Marking post as read
+                    var readAnnouncements = ReadAnnouncements.loadFromFile() ?? []
+                    
+                    readAnnouncements.append(post)
+                    ReadAnnouncements.saveToFile(posts: readAnnouncements)
+                    
+                    // Reset post interface
+                    contentVC?.resetInterface()
+                    contentVC?.post = post
+                }
+                return
+            }
         }
     }
     
@@ -60,8 +92,10 @@ func launchPost(withTitle postTitle: String) {
         readAnnouncements.append(post)
         ReadAnnouncements.saveToFile(posts: readAnnouncements)
         
-        // Handles when post is found
-        announcementVC.receivePost(with: post)
+        DispatchQueue.main.async {
+            // Handles when post is found
+            announcementVC.receivePost(with: post)
+        }
         
     } else {
         // Handle when unable to get post
@@ -110,7 +144,7 @@ func launchPost(withTitle postTitle: String) {
 func continueFromCoreSpotlight(with userActivity: NSUserActivity) {
     if userActivity.activityType == CSSearchableItemActionType {
         if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
-            launchPost(withTitle: uniqueIdentifier)
+            launch(getPost(fromTitle: uniqueIdentifier))
         }
     }
 }
