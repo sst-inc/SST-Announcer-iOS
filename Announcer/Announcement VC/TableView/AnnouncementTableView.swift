@@ -99,6 +99,9 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             
             let loadingString = NSLocalizedString("STATE_LOADING", comment: "Loading...")
             
+            cell.parent = self
+            cell.path = indexPath
+            
             if posts == nil {
                 // Set up loading
                 setUpLoadingCell(cell, tableView: tableView)
@@ -122,7 +125,13 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                         }
                     } else if posts.count != 0 {
                         if posts.count > indexPath.row {
+                            
+                            if let cache = cachedContent[indexPath.row] {
+                                cell.htmlAttr = NSMutableAttributedString(attributedString: cache)
+                            }
+                            
                             cell.post = posts[indexPath.row]
+                            
                         } else {
                             cell.post = Post(title: loadingString,
                                              content: loadingString,

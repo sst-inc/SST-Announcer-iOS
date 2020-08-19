@@ -12,6 +12,8 @@ import SkeletonView
 class AnnouncementTableViewCell: UITableViewCell {
 
     var htmlAttr: NSMutableAttributedString!
+    var parent: AnnouncementsViewController!
+    var path: IndexPath!
     
     var post: Post! {
         // If the post value is changed, set these values to whatever is below in didSet
@@ -50,51 +52,23 @@ class AnnouncementTableViewCell: UITableViewCell {
                 
                 // Set attributed text
                 self.announcementContentLabel.attributedText = str
-            } else {
+            } else if htmlAttr == nil && path.section != 2 {
                 // Handle this async so that the experience will not be super laggy
                 DispatchQueue.global(qos: .default).async {
                     
                     // Convert html to string, this is the slowest part in the process
                     // Main drawback is that if there are images involved, it has to get those images from the links
-                    
                     self.htmlAttr = self.post.content.htmlToAttributedString
                     
-                    var previewText = self.htmlAttr.htmlToString
-                    
-                    // Set contentLabel's content on main thread
+                    self.parent.cachedContent[self.path.row] = self.htmlAttr
+                    print(self.path.row)
+                    // Set the content
                     DispatchQueue.main.async {
-                        let size = self.announcementContentLabel.font.pointSize
-
-                        if previewText.filter({ $0.isLetter || $0.isNumber }).count == 0 {
-                            // Handle if post contains no text
-                            
-                            let str = NSMutableAttributedString(string: "")
-                            
-                            str.append(NSAttributedString(attachment: NSTextAttachment(image: Assets.photo)))
-                            
-                            str.append(NSAttributedString(string: NSLocalizedString("ERROR_NOTEXT",
-                                                                                    comment: "No text"),
-                                                          attributes: [.font: UIFont.italicSystemFont(ofSize: size)]))
-                            
-                            self.announcementContentLabel.attributedText = str
-                        } else if previewText.hasPrefix("error: ") {
-                            // Handle if an error occurred when getting post preview
-                            let str = NSMutableAttributedString(string: "")
-                            
-                            str.append(NSAttributedString(attachment: NSTextAttachment(image: (Assets.bigError))))
-                            
-                            previewText.removeFirst(7)
-                            
-                            str.append(NSAttributedString(string: "  \(previewText)",
-                                                          attributes: [.font: UIFont.italicSystemFont(ofSize: size)]))
-                            
-                            self.announcementContentLabel.attributedText = str
-                        } else {
-                            self.announcementContentLabel.text = previewText
-                        }
+                        self.setContent(with: self.htmlAttr)
                     }
-                    
                 }
+            } else {
+                self.setContent(with: htmlAttr)
             }
             
             // Ensure date is formatted as 22 Oct 2019 using d MMM yyyy
@@ -117,6 +91,7 @@ class AnnouncementTableViewCell: UITableViewCell {
             }
         }
     }
+    
     var highlightPost = false {
         didSet {
             if I.wantToBeMac {
@@ -258,6 +233,41 @@ class AnnouncementTableViewCell: UITableViewCell {
             contentView.backgroundColor = highlightPost ? GlobalColors.tableViewSelection : GlobalColors.background
             #endif
 
+        }
+    }
+    
+    func setContent(with attributedString: NSMutableAttributedString) {
+        var previewText = attributedString.htmlToString
+        
+        // Set contentLabel's content
+        let size = self.announcementContentLabel.font.pointSize
+        
+        if previewText.filter({ $0.isLetter || $0.isNumber }).count == 0 {
+            // Handle if post contains no text
+            
+            let str = NSMutableAttributedString(string: "")
+            
+            str.append(NSAttributedString(attachment: NSTextAttachment(image: Assets.photo)))
+            
+            str.append(NSAttributedString(string: NSLocalizedString("ERROR_NOTEXT",
+                                                                    comment: "No text"),
+                                          attributes: [.font: UIFont.italicSystemFont(ofSize: size)]))
+            
+            self.announcementContentLabel.attributedText = str
+        } else if previewText.hasPrefix("error: ") {
+            // Handle if an error occurred when getting post preview
+            let str = NSMutableAttributedString(string: "")
+            
+            str.append(NSAttributedString(attachment: NSTextAttachment(image: (Assets.bigError))))
+            
+            previewText.removeFirst(7)
+            
+            str.append(NSAttributedString(string: "  \(previewText)",
+                                          attributes: [.font: UIFont.italicSystemFont(ofSize: size)]))
+            
+            self.announcementContentLabel.attributedText = str
+        } else {
+            self.announcementContentLabel.text = previewText
         }
     }
 }

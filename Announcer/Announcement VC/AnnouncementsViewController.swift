@@ -73,6 +73,9 @@ class AnnouncementsViewController: UIViewController {
     /// Stores pinned posts
     var pinned = [Post]()
     
+    /// Cache Post Content
+    var cachedContent: [NSAttributedString?] = .init(repeating: nil, count: 25)
+    
     /// Scroll selection multiplier used to control scroll height
     let scrollSelectionMultiplier: CGFloat = 40
     
@@ -199,6 +202,10 @@ class AnnouncementsViewController: UIViewController {
         DispatchQueue.global(qos: .background).async {
             self.pinned = PinnedAnnouncements.loadFromFile() ?? []
             self.posts = Fetch.posts(with: self)
+            
+            // Reset cache
+            self.cachedContent = .init(repeating: nil, count: 25)
+            
             DispatchQueue.main.async {
 //                self.loadingIndicator.stopAnimating()
 //                self.reloadButton.isHidden = false
@@ -209,7 +216,6 @@ class AnnouncementsViewController: UIViewController {
     @available(iOS 14, macOS 11, *)
     @IBAction func openTimetable(_ sender: Any) {
         if let vc = Storyboards.timetable.instantiateInitialViewController() as? TTNavigationViewController {
-
             present(vc, animated: true)
         }
     }

@@ -71,9 +71,9 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
             var filterContent = cell.titleLabel.text!
             
             // Remove tabs
-            if selectedFilter.contains("\t") {
+            if filterContent.contains("\t") {
                 // Remove \t from filter
-                selectedFilter.removeFirst(2)
+                filterContent.removeFirst(2)
             }
 
             // Updating filter with new filter content
@@ -168,9 +168,9 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
         // Filter content from cell
         var filterContent = cell.titleLabel.text!
         
-        if selectedFilter.contains("\t") {
+        if filterContent.contains("\t") {
             // Remove \t from filter
-            selectedFilter.removeFirst(2)
+            filterContent.removeFirst(2)
         }
 
         let filterLocalized = NSLocalizedString("ACTION_FILTER",
