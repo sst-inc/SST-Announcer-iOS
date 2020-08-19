@@ -59,7 +59,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         switch url.absoluteString {
         case "sstannouncer://launchwidget":
             // User launched from widget, handle from widget
-            presentationVC = timetableVC!
+            if #available(iOS 14, *) {
+                presentationVC = timetableVC!
+            } else {
+                
+            }
             
         case "sstannouncer://diagnostics":
             let vc = Storyboards.diagnostics.instantiateInitialViewController()
@@ -69,9 +73,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if url.absoluteString.hasPrefix("sstannouncer://post/") {
                 var urlString = url.absoluteString
                 urlString.removeFirst("sstannouncer://post/".count)
+                let regex = try? NSRegularExpression(pattern: "[0-9]",
+                                                     options: .caseInsensitive)
                 
-                DispatchQueue.main.async {
-                    launch(getPost(fromLink: urlString))
+                // Make sure it is valid
+                if (regex?.matches(in: urlString,
+                                   options: .withTransparentBounds,
+                                   range: .init(location: 0,
+                                                length: urlString.count)).count)! > 0 {
+                    
+                    // Launch post
+                    DispatchQueue.main.async {
+                        launch(getPost(fromLink: urlString))
+                    }
                 }
             } else {
                 // I have the best error messages.

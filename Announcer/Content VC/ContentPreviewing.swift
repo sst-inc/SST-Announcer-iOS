@@ -38,6 +38,7 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
                                                 return safariVC
             },
                                               actionProvider: actionProvider)
+            
         } else if let cell = interaction.view as? CategoriesCollectionViewCell {
             // creating contextual menu for CategoriesCollectionViewCell
             // Filter post and copy filter are the actions
@@ -67,7 +68,13 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
         // All this has to do is launch a filter
         if let cell = interaction.view as? CategoriesCollectionViewCell {
             // Filter content from cell
-            let filterContent = cell.titleLabel.text!
+            var filterContent = cell.titleLabel.text!
+            
+            // Remove tabs
+            if selectedFilter.contains("\t") {
+                // Remove \t from filter
+                selectedFilter.removeFirst(2)
+            }
 
             // Updating filter with new filter content
             self.updatedFilter(newFilter: filterContent)
@@ -159,8 +166,13 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
     func categoriesMenuItems(_ cell: CategoriesCollectionViewCell) -> UIMenu {
         
         // Filter content from cell
-        let filterContent = cell.titleLabel.text!
+        var filterContent = cell.titleLabel.text!
         
+        if selectedFilter.contains("\t") {
+            // Remove \t from filter
+            selectedFilter.removeFirst(2)
+        }
+
         let filterLocalized = NSLocalizedString("ACTION_FILTER",
                                                 comment: "Filter Posts")
         

@@ -116,7 +116,16 @@ extension ContentViewController: UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCollectionViewCell {
             // Update filters
-            updatedFilter(newFilter: cell.titleLabel.text!)
+            var selectedFilter = cell.titleLabel.text!
+            
+            if selectedFilter.contains("\t") {
+                
+                // Remove \t from filter
+                selectedFilter.removeFirst(2)
+            }
+            
+            updatedFilter(newFilter: selectedFilter)
+            
         } else if let cell = collectionView.cellForItem(at: indexPath) as? LinksCollectionViewCell {
             // Handle if it is a "mailto:" or something else. Or just a normal URL.
             // When it is a normal URL, present a Safari View Controller

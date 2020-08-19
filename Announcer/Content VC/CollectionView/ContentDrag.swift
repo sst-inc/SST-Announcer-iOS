@@ -32,7 +32,13 @@ extension ContentViewController: UICollectionViewDragDelegate {
         } else if let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCollectionViewCell {
 
             // Getting the filter text from cell
-            let value = cell.titleLabel.text!
+            var value = cell.titleLabel.text!
+
+            // Remove tab
+            if value.contains("\t") {
+                // Remove \t from filter
+                value.removeFirst(2)
+            }
 
             // Creating provider
             let provider = NSItemProvider()
