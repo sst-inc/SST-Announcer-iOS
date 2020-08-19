@@ -19,19 +19,20 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             var sections = 0
             
             // Check if searchLabels has anything, if so, add 1
-            if searchLabels.count > 0 {
+            if searchResults.labels != nil {
                 sections += 1
             }
             
             // Check if search found in title has anything, if so, add 1
-            if searchFoundInTitle.count > 0 {
+            if searchResults.titles != nil {
                 sections += 1
             }
             
             // Check if search found in body has anything, if so, add 1
-            if searchFoundInBody.count > 0 {
+            if searchResults.contents != nil {
                 sections += 1
             }
+            
             return sections
         }
         
@@ -56,26 +57,30 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             // if searchterm is found in title, it appears first
             switch section {
             case 0:
-                if searchLabels.count > 0 {
-                    return searchLabels.count
-                } else if searchFoundInTitle.count >= 0 {
-                    return searchFoundInTitle.count
+                if let labels = searchResults.labels {
+                    return labels.count
+                    
+                } else if let titles = searchResults.titles {
+                    return titles.count
+                    
                 } else {
-                    return searchFoundInBody.count
+                    return searchResults.contents?.count ?? 0
                 }
             case 1:
-                if searchLabels.count > 0 {
-                    if searchFoundInTitle.count >= 0 {
-                        return searchFoundInTitle.count
+                if searchResults.labels != nil {
+                    if let titles = searchResults.titles {
+                        return titles.count
                     } else {
-                        return searchFoundInBody.count
+                        return searchResults.contents?.count ?? 0
                     }
+                    
                 } else {
-                    return searchFoundInBody.count
+                    return searchResults.contents?.count ?? 0
                 }
             default:
-                return searchFoundInBody.count
+                return searchResults.contents?.count ?? 0
             }
+            
         } else {
             // Maximum of 5 pinned items
             if section == 0 && pinned.count != 0 {
@@ -108,6 +113,10 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             } else {
                 if searchField.text != "" {
                     // Display Search Results
+                    // Make it does not show caches
+                    cell.htmlAttr = nil
+                    
+                    // Show search cells
                     searchingCells(cell, indexPath: indexPath)
                 } else {
                     if pinned.count != 0 && indexPath.section == 0 {
@@ -133,13 +142,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                             cell.post = posts[indexPath.row]
                             
                         } else {
-                            cell.post = Post(title: loadingString,
-                                             content: loadingString,
-                                             date: Date(),
-                                             pinned: true,
-                                             read: true,
-                                             reminderDate: nil,
-                                             categories: [])
+                            cell.post = Post(title: loadingString, content: loadingString, date: Date(), pinned: true, read: true, reminderDate: nil, categories: [])
+                            
                         }
                     }
                 }
@@ -159,13 +163,6 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             return cell
         } else {
             fatalError()
-        }
-    }
-    
-    // Function to update the search results while ensuring it does not crash
-    func updateSearch(with searchSource: [Post], cell: AnnouncementTableViewCell, path indexPath: IndexPath) {
-        if searchFoundInTitle.count - 1 >= indexPath.row {
-            cell.post = searchFoundInTitle[indexPath.row]
         }
     }
     
@@ -249,19 +246,22 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         if searchField.text != "" {
             headers = []
             
-            if searchLabels.count > 0 {
+            if searchResults.labels != nil {
                 headers.append(NSLocalizedString("POST_LABELS",
                                                  comment: "Labels"))
             }
-            if searchFoundInTitle.count > 0 {
+            if searchResults.titles != nil {
                 headers.append(NSLocalizedString("POST_TITLE",
                                                  comment: "Title"))
             }
-            if searchFoundInBody.count > 0 {
+            if searchResults.contents != nil {
                 headers.append(NSLocalizedString("POST_CONTENT",
                                                  comment: "Content"))
             }
-            
+        }
+        
+        if section > headers.count - 1 {
+            return ""
         }
         
         return headers[section]

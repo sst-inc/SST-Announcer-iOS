@@ -52,7 +52,7 @@ class AnnouncementTableViewCell: UITableViewCell {
                 
                 // Set attributed text
                 self.announcementContentLabel.attributedText = str
-            } else if htmlAttr == nil && path.section != 2 {
+            } else if htmlAttr == nil {
                 // Handle this async so that the experience will not be super laggy
                 DispatchQueue.global(qos: .default).async {
                     

@@ -22,28 +22,49 @@ extension AnnouncementsViewController {
         tableView.allowsSelection = false
     }
     
+    // Function to update the search results while ensuring it does not crash
+    func updateSearch(with searchSource: [Post], cell: AnnouncementTableViewCell, path indexPath: IndexPath) {
+        
+//        if (searchResults.titles?.count ?? 0) - 1 >= indexPath.row {
+//            cell.post = searchResults.titles?[indexPath.row]
+//        }
+        
+        cell.post = searchSource[indexPath.row]
+    }
+    
     func searchingCells(_ cell: AnnouncementTableViewCell, indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            if searchLabels.count > 0 {
-                updateSearch(with: searchLabels, cell: cell, path: indexPath)
-            } else if searchFoundInTitle.count >= 0 {
-                updateSearch(with: searchFoundInTitle, cell: cell, path: indexPath)
-            } else {
-                updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
+            if let labels = searchResults.labels {
+                updateSearch(with: labels, cell: cell, path: indexPath)
+                
+            } else if let titles = searchResults.titles {
+                updateSearch(with: titles, cell: cell, path: indexPath)
+                
+            } else if let content = searchResults.contents {
+                updateSearch(with: content, cell: cell, path: indexPath)
+                
             }
         case 1:
-            if searchLabels.count > 0 {
-                if searchFoundInTitle.count >= 0 {
-                    updateSearch(with: searchFoundInTitle, cell: cell, path: indexPath)
-                } else {
-                    updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
+            if searchResults.labels != nil {
+                
+                if let titles = searchResults.titles {
+                    updateSearch(with: titles, cell: cell, path: indexPath)
+                    
+                } else if let contents = searchResults.contents {
+                    updateSearch(with: contents, cell: cell, path: indexPath)
+                    
                 }
-            } else {
-                updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
+                
+            } else if let contents = searchResults.contents {
+                updateSearch(with: contents, cell: cell, path: indexPath)
+                
             }
         default:
-            updateSearch(with: searchFoundInBody, cell: cell, path: indexPath)
+            if let contents = searchResults.contents {
+                updateSearch(with: contents, cell: cell, path: indexPath)
+                
+            }
         }
     }
 }

@@ -328,6 +328,7 @@
 		32F513D424C6C03500FAE1DE /* ContentDrag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F513D324C6C03500FAE1DE /* ContentDrag.swift */; };
 		32F513D624C716F200FAE1DE /* AnnouncementDrag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F513D524C716F200FAE1DE /* AnnouncementDrag.swift */; };
 		32F513D924C816D200FAE1DE /* FeedbackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F513D824C816D200FAE1DE /* FeedbackButton.swift */; };
+		32FA1CFC24ED3AA500CAD9C7 /* AnnouncementSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA1CFB24ED3AA500CAD9C7 /* AnnouncementSearch.swift */; };
 		32FA680D247FF9420077E030 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA680C247FF9420077E030 /* Variables.swift */; };
 		32FA680F247FF95B0077E030 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA680E247FF95B0077E030 /* Fetch.swift */; };
 		32FA6811247FFAC20077E030 /* PostStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA6810247FFAC20077E030 /* PostStruct.swift */; };
@@ -593,6 +594,7 @@
 		32F513D524C716F200FAE1DE /* AnnouncementDrag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementDrag.swift; sourceTree = "<group>"; };
 		32F513D724C738F800FAE1DE /* RELEASES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RELEASES.md; sourceTree = "<group>"; };
 		32F513D824C816D200FAE1DE /* FeedbackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackButton.swift; sourceTree = "<group>"; };
+		32FA1CFB24ED3AA500CAD9C7 /* AnnouncementSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementSearch.swift; sourceTree = "<group>"; };
 		32FA680C247FF9420077E030 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		32FA680E247FF95B0077E030 /* Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
 		32FA6810247FFAC20077E030 /* PostStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStruct.swift; sourceTree = "<group>"; };
@@ -960,6 +962,7 @@
 			isa = PBXGroup;
 			children = (
 				32D9954B238D865600208D25 /* AnnouncementsViewController.swift */,
+				32FA1CFB24ED3AA500CAD9C7 /* AnnouncementSearch.swift */,
 				32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */,
 				329CE2272489B713002022A6 /* AnnouncementPointers.swift */,
 				327A299424D3E9DC003B0046 /* Feedback Button */,
@@ -1859,6 +1862,7 @@
 				324577CC238E53A200730F17 /* Feed.swift in Sources */,
 				327A29A524D3EFAA003B0046 /* Errors.swift in Sources */,
 				324577CB238E53A200730F17 /* FeedParserProtocol.swift in Sources */,
+				32FA1CFC24ED3AA500CAD9C7 /* AnnouncementSearch.swift in Sources */,
 				328BFFEE24965E3E00132EB4 /* TTTableViewCell.swift in Sources */,
 				324577D1238E53A200730F17 /* String + toDate.swift in Sources */,
 				321C9BEB249F302300088677 /* LessonStruct.swift in Sources */,
@@ -2301,6 +2305,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer;
 				PRODUCT_NAME = "SST Announcer";
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = off;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2332,6 +2337,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sg.edu.sst.panziyue.Announcer;
 				PRODUCT_NAME = "SST Announcer";
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = off;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";

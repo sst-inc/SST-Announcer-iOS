@@ -44,28 +44,7 @@ class AnnouncementsViewController: UIViewController {
         }
     }
     
-    /// Stores search results in the title
-    var searchFoundInTitle = [Post]()
-    
-    /// Stores search results in body of post
-    var searchFoundInBody = [Post]()
-    
-    /// Stores search results if searched with labels
-    var searchLabels = [Post]() {
-        didSet {
-            if searchLabels.count == 0 {
-                DispatchQueue.main.async {
-                    self.filterButton.setImage(Assets.filter, for: .normal)
-                }
-                
-            } else {
-                DispatchQueue.main.async {
-                    self.filterButton.setImage(Assets.filterFill, for: .normal)
-                }
-                
-            }
-        }
-    }
+    var searchResults = AnnouncementSearch(labelsDidSet: {})
     
     /// Haptics play at each segment when scrolling up
     var playedHaptic = 0
@@ -139,6 +118,10 @@ class AnnouncementsViewController: UIViewController {
         
         title = NSLocalizedString("APP_NAME",
                                   comment: "Announcer")
+        
+        searchResults = AnnouncementSearch(labelsDidSet: {
+            self.updateFilterButton()
+        })
     }
     
     func setUpFeedbackButton() {
@@ -174,6 +157,20 @@ class AnnouncementsViewController: UIViewController {
         view.addConstraints(feedbackConstraints)
         
         self.feedback = feedback
+    }
+    
+    func updateFilterButton() {
+        if searchResults.labels == nil {
+            DispatchQueue.main.async {
+                self.filterButton.setImage(Assets.filter, for: .normal)
+            }
+            
+        } else {
+            DispatchQueue.main.async {
+                self.filterButton.setImage(Assets.filterFill, for: .normal)
+            }
+            
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
