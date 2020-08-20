@@ -28,8 +28,18 @@ extension AnnouncementsViewController {
 //        if (searchResults.titles?.count ?? 0) - 1 >= indexPath.row {
 //            cell.post = searchResults.titles?[indexPath.row]
 //        }
+//        print(searchSource)
         
-        cell.post = searchSource[indexPath.row]
+        if searchSource.count > indexPath.row {
+            if let postIndex = posts.firstIndex(of: searchSource[indexPath.row]),
+               let cache = cachedContent[postIndex] {
+                cell.htmlAttr = NSMutableAttributedString(attributedString: cache)
+                print("hey-------")
+            }
+            
+            cell.post = searchSource[indexPath.row]
+        }
+        
     }
     
     func searchingCells(_ cell: AnnouncementTableViewCell, indexPath: IndexPath) {

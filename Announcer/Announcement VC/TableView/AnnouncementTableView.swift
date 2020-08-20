@@ -325,6 +325,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_) in
                 self.pinned = PinnedAnnouncements.loadFromFile() ?? []
+                
+                print("Pinnned")
                 self.announcementTableView.reloadData()
                 
                 // Getting the post from cell and setting it in the ContentVC

@@ -19,6 +19,7 @@ class AnnouncementsViewController: UIViewController {
     var posts: [Post]! {
         didSet {
             DispatchQueue.main.async {
+                print("Hey")
                 self.announcementTableView.reloadData()
                 
                 if self.posts != nil {
@@ -60,6 +61,9 @@ class AnnouncementsViewController: UIViewController {
     
     /// Selected Path
     var selectedPath = IndexPath(row: 0, section: 0)
+    
+    /// Search Queues
+    var searchQueue: DispatchWorkItem?
     
     var feedback: FeedbackButton!
     
@@ -324,6 +328,7 @@ class AnnouncementsViewController: UIViewController {
     /// Reload filter with new filter query
     func reloadFilter() {
         // Handling when a tag is selected from the ContentViewController
+        print("no whatttt")
         if filter != "" {
             // Setting search bar text
             self.searchField.text = "[\(filter)]"

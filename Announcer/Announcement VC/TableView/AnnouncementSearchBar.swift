@@ -22,8 +22,12 @@ extension AnnouncementsViewController: UISearchBarDelegate {
         // Handling when posts are missing because reloading
         if posts == nil { return }
         
+        if let searchQueue = searchQueue {
+            searchQueue.cancel()
+        }
+        
         // It takes a bit to search so just run it in the background
-        DispatchQueue.global(qos: .background).async {
+        searchQueue = DispatchWorkItem(qos: .userInteractive, flags: .assignCurrentContext) {
             // Set color of labels
             // Update labels/textview with data
             let attrTitle = NSMutableAttributedString(string: searchText)
@@ -90,8 +94,13 @@ extension AnnouncementsViewController: UISearchBarDelegate {
             // Escape to main thread to update tableView
             DispatchQueue.main.async {
                 // Reload tableView's data
+                print("Reloadddd")
                 self.announcementTableView.reloadData()
             }
+        }
+        
+        if let searchQueue = searchQueue {
+            DispatchQueue.global().async(execute: searchQueue)
         }
     }
     
