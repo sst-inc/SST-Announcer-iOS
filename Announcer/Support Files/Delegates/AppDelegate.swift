@@ -119,6 +119,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
+    func application(_ application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
+        if let userActivity = userActivity {
+            continueFromCoreSpotlight(with: userActivity)
+        }
+        return true
+    }
+    
     // MARK: UISceneSession Lifecycle
     
     func application(_ application: UIApplication,

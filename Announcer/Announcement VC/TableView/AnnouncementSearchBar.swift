@@ -94,7 +94,6 @@ extension AnnouncementsViewController: UISearchBarDelegate {
             // Escape to main thread to update tableView
             DispatchQueue.main.async {
                 // Reload tableView's data
-                print("Reloadddd")
                 self.announcementTableView.reloadData()
             }
         }
@@ -111,7 +110,7 @@ extension AnnouncementsViewController: UISearchBarDelegate {
     
     func getSearchTitlePosts(_ searchText: String) -> [Post]? {
         let mainQuery = searchText.lowercased().filter({
-            $0.isASCII
+            $0.isNumber || $0.isLetter
         })
         
         let queries = mainQuery.split(separator: " ")
@@ -119,11 +118,14 @@ extension AnnouncementsViewController: UISearchBarDelegate {
         let titlePosts: [Post] = self.posts.map { (postItem) -> SearchItem in
             
             // Calculating relevance
-            let postTitle = postItem.title.lowercased()
+            let postTitle = postItem.title.lowercased().filter({
+                $0.isNumber || $0.isLetter
+            })
             
             // - Calculating the match score
             var counts = 0
             var rawMatchScore = 0.0
+            var matches = 0
             
             //    - Count complete matches, where the string is exactly in there
             let completeMatches = postTitle.indicesOf(string: mainQuery).count
@@ -136,10 +138,12 @@ extension AnnouncementsViewController: UISearchBarDelegate {
                 let partialMatches = postTitle.indicesOf(string: String(query)).count
                 
                 counts += partialMatches
+                matches += partialMatches == 0 ? 0 : 1
                 rawMatchScore += Double(partialMatches) * 0.5
             }
             
-            let matchScore: Double = rawMatchScore / Double(counts * 2)
+            let uniqueMatchPercentage: Double = Double(matches) / Double(queries.count)
+            let matchScore: Double = (rawMatchScore / Double(counts * 2)) * uniqueMatchPercentage
             
             // - Calculating the time score
             let timeScore: Double = 1 / (abs(postItem.date.timeIntervalSinceNow) / 86400 + 1)
@@ -158,7 +162,7 @@ extension AnnouncementsViewController: UISearchBarDelegate {
     
     func getSearchContentPosts(_ searchText: String) -> [Post]? {
         let mainQuery = searchText.lowercased().filter({
-            $0.isASCII
+            $0.isNumber || $0.isLetter
         })
         
         let queries = mainQuery.split(separator: " ")
@@ -168,11 +172,14 @@ extension AnnouncementsViewController: UISearchBarDelegate {
             // Calculating relevance
             var postContent: String = cachedContent[n]?.string ?? postItem.content.htmlToAttributedString!.string
             
-            postContent = postContent.lowercased()
+            postContent = postContent.lowercased().filter({
+                $0.isNumber || $0.isLetter
+            })
             
             // - Calculating the match score
             var counts = 0
             var rawMatchScore = 0.0
+            var matches = 0
             
             //    - Count complete matches, where the string is exactly in there
             let completeMatches = postContent.indicesOf(string: mainQuery).count
@@ -185,10 +192,13 @@ extension AnnouncementsViewController: UISearchBarDelegate {
                 let partialMatches = postContent.indicesOf(string: String(query)).count
                 
                 counts += partialMatches
+                matches += partialMatches == 0 ? 0 : 1
                 rawMatchScore += Double(partialMatches) * 0.5
             }
             
-            let matchScore: Double = rawMatchScore / Double(counts * 4)
+            let uniqueMatchPercentage: Double = Double(matches) / Double(queries.count)
+            
+            let matchScore: Double = (rawMatchScore / Double(counts * 4)) * uniqueMatchPercentage
             
             // - Calculating the time score
             let timeScore: Double = 1 / (abs(postItem.date.timeIntervalSinceNow) / 86400 + 1)

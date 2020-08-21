@@ -61,8 +61,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // User launched from widget, handle from widget
             if #available(iOS 14, *) {
                 presentationVC = timetableVC!
-            } else {
-                
             }
             
         case "sstannouncer://diagnostics":

@@ -16,6 +16,19 @@ identifier_name:
     - I
     - ok
 
+line_length:
+  ignores_urls: true
+  ignores_function_declarations: false
+  ignores_comments: true
+  ignores_interpolated_strings: true
+
+custom_rules:
+  dont_rickroll_users:
+    name: No rickrolls
+    message: Rickrolling users is bad. We should not do it.
+    regex: dQw4w9WgXcQ
+    severity: warning
+
 excluded: 
 # paths to ignore during linting. Takes precedence over `included`.
 - build

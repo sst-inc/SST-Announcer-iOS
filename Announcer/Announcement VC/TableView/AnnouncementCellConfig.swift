@@ -34,7 +34,6 @@ extension AnnouncementsViewController {
             if let postIndex = posts.firstIndex(of: searchSource[indexPath.row]),
                let cache = cachedContent[postIndex] {
                 cell.htmlAttr = NSMutableAttributedString(attributedString: cache)
-                print("hey-------")
             }
             
             cell.post = searchSource[indexPath.row]
