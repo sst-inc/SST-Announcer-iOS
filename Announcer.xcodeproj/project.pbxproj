@@ -133,6 +133,7 @@
 		325B5B3224B1A17100620D4A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325B5B3024B19FAC00620D4A /* Date.swift */; };
 		325CE83A24D295B100B060F5 /* ContentAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CE83924D295B100B060F5 /* ContentAlerts.swift */; };
 		325DDB4B24F0D23D00273D9B /* Gedatsu in Frameworks */ = {isa = PBXBuildFile; productRef = 325DDB4A24F0D23D00273D9B /* Gedatsu */; };
+		325DDB4E24F135E500273D9B /* WhatsNewKit in Frameworks */ = {isa = PBXBuildFile; productRef = 325DDB4D24F135E500273D9B /* WhatsNewKit */; };
 		326210EC2452061900629CC7 /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326210EB2452061900629CC7 /* UIView Extension.swift */; };
 		3274DB7F24E05EFA0060817B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3274DB7D24E05CB50060817B /* Localizable.strings */; };
 		327524B724910999008EA814 /* TTGetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B624910999008EA814 /* TTGetStartedViewController.swift */; };
@@ -629,6 +630,7 @@
 			files = (
 				325DDB4B24F0D23D00273D9B /* Gedatsu in Frameworks */,
 				32D88CDC24E2FED300B5847F /* WidgetKit.framework in Frameworks */,
+				325DDB4E24F135E500273D9B /* WhatsNewKit in Frameworks */,
 				57932F273AA9112D178ED0D9 /* Pods_Announcer.framework in Frameworks */,
 				32E28CF32490D0A5006D623C /* Alamofire in Frameworks */,
 			);
@@ -1465,6 +1467,7 @@
 			packageProductDependencies = (
 				32E28CF22490D0A5006D623C /* Alamofire */,
 				325DDB4A24F0D23D00273D9B /* Gedatsu */,
+				325DDB4D24F135E500273D9B /* WhatsNewKit */,
 			);
 			productName = Announcer;
 			productReference = 32D99532238C068D00208D25 /* SST Announcer.app */;
@@ -1532,6 +1535,7 @@
 			packageReferences = (
 				32E28CF12490D0A5006D623C /* XCRemoteSwiftPackageReference "Alamofire" */,
 				325DDB4924F0D23D00273D9B /* XCRemoteSwiftPackageReference "Gedatsu" */,
+				325DDB4C24F135E500273D9B /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
 			);
 			productRefGroup = 32D99533238C068D00208D25 /* Products */;
 			projectDirPath = "";
@@ -2398,6 +2402,14 @@
 				minimumVersion = 1.2.0;
 			};
 		};
+		325DDB4C24F135E500273D9B /* XCRemoteSwiftPackageReference "WhatsNewKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SvenTiigi/WhatsNewKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.5;
+			};
+		};
 		32E28CF12490D0A5006D623C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -2413,6 +2425,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 325DDB4924F0D23D00273D9B /* XCRemoteSwiftPackageReference "Gedatsu" */;
 			productName = Gedatsu;
+		};
+		325DDB4D24F135E500273D9B /* WhatsNewKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 325DDB4C24F135E500273D9B /* XCRemoteSwiftPackageReference "WhatsNewKit" */;
+			productName = WhatsNewKit;
 		};
 		32E28CF22490D0A5006D623C /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -9,6 +9,7 @@
 import UIKit
 import CoreSpotlight
 import MobileCoreServices
+import WhatsNewKit
 
 class AnnouncementsViewController: UIViewController {
     
@@ -125,6 +126,76 @@ class AnnouncementsViewController: UIViewController {
         searchResults = AnnouncementSearch(labelsDidSet: {
             self.updateFilterButton()
         })
+        
+//        searchField.addInputAccessoryView(title: "Ha", target: nil, selector: nil)
+        
+        whatsNew()
+    }
+    
+    func whatsNew() {
+        // Initialize WhatsNewVersionStore
+        let versionStore: WhatsNewVersionStore = KeyValueWhatsNewVersionStore()
+
+        // Initialize WhatsNew
+        let whatsNew = WhatsNew(
+            // The Title
+            title: "Announcer",
+            
+            // The features you want to showcase
+            items: [
+                WhatsNew.Item(
+                    title: "Announcer Timetables",
+                    subtitle: "Find out what lesson is next and when it will end with Announcer Timetables.",
+                    image: UIImage(systemName: "table")
+                ),
+                WhatsNew.Item(
+                    title: "Latest Announcements",
+                    subtitle: "Check out the latest announcements from the home screen using the new widget.",
+                    image: UIImage(systemName: "curlybraces")
+                ),
+                WhatsNew.Item(
+                    title: "Smarter Search",
+                    subtitle: "The new Announcer search prioritises results based on the relevance of the posts to your search!",
+                    image: UIImage(systemName: "magnifyingglass")
+                ),
+                WhatsNew.Item(
+                    title: "Announcer MacOS",
+                    subtitle: "SST Announcer is now available on the Mac! (requires macOS Big Sur and up)",
+                    image: UIImage(systemName: "macwindow")
+                )
+            ]
+        )
+        
+        var config = WhatsNewViewController.Configuration()
+        
+        config.detailButton = WhatsNewViewController.DetailButton(
+            title: "Read More",
+            action: .website(url: "https://github.com/sst-inc/sst-announcer-ios")
+        )
+        
+        // Initialize CompletionButton with title and dismiss action
+        config.completionButton = WhatsNewViewController.CompletionButton(
+            title: "Continue",
+            action: .dismiss
+        )
+        
+        // Passing a WhatsNewVersionStore to the initializer
+        // will give you an optional WhatsNewViewController
+        
+        let whatsNewViewController: WhatsNewViewController? = WhatsNewViewController(
+            whatsNew: whatsNew,
+            configuration: config,
+            versionStore: versionStore
+        )
+        
+        // Verify WhatsNewViewController is available
+        guard let viewController = whatsNewViewController else {
+            // The user has already seen the WhatsNew-Screen for the current Version of your app
+            return
+        }
+
+        // Present WhatsNewViewController
+        self.present(viewController, animated: true)
     }
     
     func setUpFeedbackButton() {

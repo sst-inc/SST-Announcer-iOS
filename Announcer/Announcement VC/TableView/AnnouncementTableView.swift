@@ -75,20 +75,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     return content.count
                     
                 } else {
-                    let defaultAttr = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .semibold)]
-                    
-                    let attrString = NSMutableAttributedString(string: NSLocalizedString("STATE_NO_RESULTS",
-                                                                                         comment: "No Results"),
-                                                               attributes: defaultAttr)
-                    
-                    attrString.addAttribute(.font,
-                                            value: UIFont.systemFont(ofSize: 48, weight: .bold),
-                                            range: NSRange(location: 0, length: 3))
-                    attrString.addAttribute(.font,
-                                            value: UIFont.systemFont(ofSize: 48, weight: .bold),
-                                            range: NSRange(location: 21, length: 4))
-                    
-                    tableView.setEmptyState(attrString)
+                    noResultsFound(tableView)
                     
                     return 0
                 }
@@ -295,6 +282,23 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         }
         
         return headers[section]
+    }
+    
+    func noResultsFound(_ tableView: UITableView) {
+        let defaultAttr = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .semibold)]
+        
+        let attrString = NSMutableAttributedString(string: NSLocalizedString("STATE_NO_RESULTS",
+                                                                             comment: "No Results"),
+                                                   attributes: defaultAttr)
+        
+        attrString.addAttribute(.font,
+                                value: UIFont.systemFont(ofSize: 48, weight: .bold),
+                                range: NSRange(location: 0, length: 3))
+        attrString.addAttribute(.font,
+                                value: UIFont.systemFont(ofSize: 48, weight: .bold),
+                                range: NSRange(location: 21, length: 4))
+        
+        tableView.setEmptyState(attrString)
     }
     
     //Swipe <-

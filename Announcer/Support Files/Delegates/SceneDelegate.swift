@@ -32,6 +32,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = Storyboards.main.instantiateViewController(withIdentifier: "master")
         }
         
+        if let userActivity = userActivity {
+            continueFromCoreSpotlight(with: userActivity)
+        }
+        
         // Determine who sent the URL.
         if let urlContext = connectionOptions.urlContexts.first {
             openFrom(urlContext: urlContext)
@@ -109,4 +113,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         continueFromCoreSpotlight(with: userActivity)
     }
+    
+    func scene(_ scene: UIScene, didUpdate userActivity: NSUserActivity) {
+        continueFromCoreSpotlight(with: userActivity)
+    }
+    
 }
