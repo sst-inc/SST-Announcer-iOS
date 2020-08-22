@@ -29,12 +29,16 @@
 "POST_UNPIN_LONG" = "取消固定";
 
 // MARK: - 🗂 Categories/Sections
-"CATEGORIES_ALL" = "所有公告";
-"CATEGORIES_PINNED" = "固定公告";
+"CATEGORIES_ALL" = "🗂\t所有公告";
+"CATEGORIES_PINNED" = "📌\t固定公告";
+"CATEGORIES_LABELS" = "🏷\t标签";
+"CATEGORIES_TITLE" = "📢\t标题";
+"CATEGORIES_CONTENT" = "📄\t内容";
 
 // MARK: - 💾 States
 "STATE_LOADING" = "载入中…";
 "STATE_LOADING_CONTENT" = "载入内容…";
+"STATE_NO_RESULTS" = "😔\n\n没有发现结果。\n\n\n\n";
 
 // MARK: - 🎬 Actions
 "ACTION_FEEDBACK" = "反馈";

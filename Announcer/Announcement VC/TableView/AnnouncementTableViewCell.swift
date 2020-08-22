@@ -24,10 +24,16 @@ class AnnouncementTableViewCell: UITableViewCell {
             // Set attributes of title label
             // [Square Brackets] all red to highlight things like [Sec 2 students] etc.
             // Set the text the label
-            DispatchQueue.main.async {
-                self.announcementTitleLabel.attributedText = self.setTitleLabelText()
-            }
             
+            if Thread.current.isMainThread {
+                // If we are on the main thread, just go ahead
+                self.announcementTitleLabel.attributedText = self.setTitleLabelText()
+            } else {
+                // Otherwise go to the main thread
+                DispatchQueue.main.async {
+                    self.announcementTitleLabel.attributedText = self.setTitleLabelText()
+                }
+            }
             // Loading the content takes a while
             // Converting HTML to String is slow
             // Do conversion on different thread and update the cell when it's ready

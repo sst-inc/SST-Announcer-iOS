@@ -29,12 +29,16 @@
 "POST_UNPIN_LONG" = "Post Unpinned";
 
 // MARK: - 🗂 Categories/Sections
-"CATEGORIES_ALL" = "All Announcements";
-"CATEGORIES_PINNED" = "Pinned";
+"CATEGORIES_ALL" = "🗂\tAll Announcements";
+"CATEGORIES_PINNED" = "📌\tPinned";
+"CATEGORIES_LABELS" = "🏷\tLabels";
+"CATEGORIES_TITLE" = "📢\tTitles";
+"CATEGORIES_CONTENT" = "📄\tContent";
 
 // MARK: - 💾 States
 "STATE_LOADING" = "Loading…";
 "STATE_LOADING_CONTENT" = "Loading Content…";
+"STATE_NO_RESULTS" = "😔\n\nNo Results Found.\n\n\n\n";
 
 // MARK: - 🎬 Actions
 "ACTION_FEEDBACK" = "Feedback";

@@ -33,7 +33,9 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                 sections += 1
             }
             
-            return sections
+            return sections == 0 ? 1 : sections
+
+//            return sections
         }
         
         // If posts == nil, it is loading.
@@ -58,15 +60,40 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             switch section {
             case 0:
                 if let labels = searchResults.labels {
+                    tableView.restore()
+                    
                     return labels.count
                     
                 } else if let titles = searchResults.titles {
+                    tableView.restore()
+                    
                     return titles.count
                     
+                } else if let content = searchResults.contents {
+                    tableView.restore()
+                    
+                    return content.count
+                    
                 } else {
-                    return searchResults.contents?.count ?? 0
+                    let defaultAttr = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .semibold)]
+                    
+                    let attrString = NSMutableAttributedString(string: NSLocalizedString("STATE_NO_RESULTS",
+                                                                                         comment: "No Results"),
+                                                               attributes: defaultAttr)
+                    
+                    attrString.addAttribute(.font,
+                                            value: UIFont.systemFont(ofSize: 48, weight: .bold),
+                                            range: NSRange(location: 0, length: 3))
+                    attrString.addAttribute(.font,
+                                            value: UIFont.systemFont(ofSize: 48, weight: .bold),
+                                            range: NSRange(location: 21, length: 4))
+                    
+                    tableView.setEmptyState(attrString)
+                    
+                    return 0
                 }
             case 1:
+                tableView.restore()
                 if searchResults.labels != nil {
                     if let titles = searchResults.titles {
                         return titles.count
@@ -78,10 +105,13 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     return searchResults.contents?.count ?? 0
                 }
             default:
+                tableView.restore()
                 return searchResults.contents?.count ?? 0
             }
             
         } else {
+            tableView.restore()
+            
             // Maximum of 5 pinned items
             if section == 0 && pinned.count != 0 {
                 return pinned.count
@@ -247,15 +277,15 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             headers = []
             
             if searchResults.labels != nil {
-                headers.append(NSLocalizedString("POST_LABELS",
+                headers.append(NSLocalizedString("CATEGORIES_LABELS",
                                                  comment: "Labels"))
             }
             if searchResults.titles != nil {
-                headers.append(NSLocalizedString("POST_TITLE",
+                headers.append(NSLocalizedString("CATEGORIES_TITLE",
                                                  comment: "Title"))
             }
             if searchResults.contents != nil {
-                headers.append(NSLocalizedString("POST_CONTENT",
+                headers.append(NSLocalizedString("CATEGORIES_CONTENT",
                                                  comment: "Content"))
             }
         }

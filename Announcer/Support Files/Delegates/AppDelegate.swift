@@ -14,6 +14,10 @@ import SafariServices
 import CoreSpotlight
 import MobileCoreServices
 
+#if DEBUG
+import Gedatsu
+#endif
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
@@ -22,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Checks to ensure the URL is correct.
         // Safeguard against my 3am stupidity
         #if DEBUG
+        Gedatsu.open()
         #else
         if GlobalLinks.blogURL != "http://studentsblog.sst.edu.sg" {
             I.wantToDie
