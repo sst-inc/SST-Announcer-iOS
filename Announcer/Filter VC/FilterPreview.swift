@@ -61,7 +61,7 @@ extension FilterTableViewController: UIContextMenuInteractionDelegate {
                                               previewProvider: nil,
                                               actionProvider: actionProvider)
         } else {
-            fatalError()
+            fatalError("Unknown menu config")
         }
     }
 }

@@ -54,7 +54,7 @@ extension TTViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
 
         } else {
-            fatalError()
+            fatalError("Unknown cell")
         }
     }
 }

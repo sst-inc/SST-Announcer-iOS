@@ -84,15 +84,11 @@ struct AnnouncementsEntryView: View {
                 ViewSmall(post: firstPost)
                 
             case .systemMedium:
-                let posts: [Announcement] = entry.announcements.prefix(2).map { announcement in
-                    return announcement
-                }
+                let posts = Array(entry.announcements.prefix(2))
 
                 ViewMedium(posts: posts)
             case .systemLarge:
-                let posts: [Announcement] = entry.announcements.prefix(4).map { announcement in
-                    return announcement
-                }
+                let posts = Array(entry.announcements.prefix(4))
                 
                 ViewLarge(posts: posts)
             @unknown default:

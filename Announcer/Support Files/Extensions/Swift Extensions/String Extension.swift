@@ -7,17 +7,23 @@
 //
 
 import Foundation
-
+import UIKit
 // For displaying data previews and displaying full screen
 extension String {
     var htmlToAttributedString: NSMutableAttributedString? {
+        
+        let width: CGFloat = {
+            return UIScreen.main.bounds.width - 40
+        }()
         do {
             let attrStr = try NSMutableAttributedString(data: Data(utf8),
                                                         options: [.documentType: NSAttributedString.DocumentType.html,
                                                                   .characterEncoding: 4], // UTF-8 encoding
                                                         documentAttributes: nil)
+                .resizedImages(with: width)
             
-            attrStr.append(NSAttributedString(string: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"))
+            attrStr.append(NSAttributedString(string: String(repeating: "\n", count: 20)))
+            
             return attrStr
         } catch {
             print("error: ", error.localizedDescription)

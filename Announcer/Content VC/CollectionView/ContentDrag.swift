@@ -51,7 +51,7 @@ extension ContentViewController: UICollectionViewDragDelegate {
             return [item]
         } else {
             // Otherwise just... crash
-            fatalError()
+            fatalError("Cell not found")
         }
     }
 }

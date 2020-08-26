@@ -42,7 +42,7 @@ extension ContentViewController: UICollectionViewDelegate,
         if collectionView == labelsCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GlobalIdentifier.labelCell,
                                                                 for: indexPath) as? CategoriesCollectionViewCell
-            else { fatalError() }
+            else { fatalError("Cannot dequeue cell :(") }
             
             // Set cell background color
             cell.backgroundColor = GlobalColors.greyTwo
@@ -79,7 +79,7 @@ extension ContentViewController: UICollectionViewDelegate,
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GlobalIdentifier.linkCell,
                                                                 for: indexPath) as? LinksCollectionViewCell else {
-                fatalError()
+                fatalError("Unable to dequeue cell")
             }
             
             // Set cell background color

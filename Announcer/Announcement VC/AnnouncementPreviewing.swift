@@ -148,6 +148,8 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
         readAnnouncements.append(cell.post)
         ReadAnnouncements.saveToFile(posts: readAnnouncements)
         
+        badgeItems()
+        
         // If user is viewing the splitViewController, open in the SVC
         if let splitVC = self.splitViewController as? SplitViewController {
             
@@ -217,7 +219,7 @@ extension AnnouncementsViewController: UIContextMenuInteractionDelegate {
             I.wantToDie
         }
         
-        /// The post is the `selectedItem` in this case
+        // The post is the `selectedItem` in this case
         contentVC.post = selectedItem
         
         // Handling when contentVC is dismissed

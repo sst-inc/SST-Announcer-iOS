@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         //Ask for notification authorization
         let center = UNUserNotificationCenter.current()
-        let options: UNAuthorizationOptions = [.alert, .sound]
+        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
         center.requestAuthorization(options: options) {
             (granted, _) in
             if !granted {

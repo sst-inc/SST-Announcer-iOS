@@ -73,6 +73,6 @@ struct I {
     
     /// I want to die
     static var wantToDie: Never {
-        fatalError()
+        fatalError("I want to die")
     }
 }

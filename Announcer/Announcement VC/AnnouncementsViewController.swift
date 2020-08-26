@@ -24,6 +24,7 @@ class AnnouncementsViewController: UIViewController {
                 
                 if self.posts != nil {
                     self.addItemsToCoreSpotlight()
+                    self.badgeItems()
                     
                     // Handling iPadOS splitVC
                     if let splitVC = self.splitViewController as? SplitViewController {
@@ -87,150 +88,16 @@ class AnnouncementsViewController: UIViewController {
         // Load Pinned Comments
         pinned = PinnedAnnouncements.loadFromFile() ?? []
         
-        // Corner radius for top buttons
-        // This is for the scroll selection
-        filterButton.layer.cornerRadius = 25 / 2
-        reloadButton.tintColor = GlobalColors.greyOne
-        
-        // Pointer support
-        // Add a circle when they hover over button
-        if #available(iOS 13.4, *) {
-            filterButton.addInteraction(UIPointerInteraction(delegate: self))
-        }
-        
         // Adding drag and drop support for announcements
         announcementTableView.dragInteractionEnabled = true
         announcementTableView.dragDelegate = self
         
-        // Timetable is only supported on iOS 14
-        if #available(iOS 14, macOS 11, *) {
-        } else {
-            self.navigationItem.leftBarButtonItem = nil
-        }
-        
-        if I.mac {
-            view.backgroundColor = .clear
-            announcementTableView.backgroundColor = .clear
-        }
-        
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.uturn.left")
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.uturn.left")
-        
-        setUpFeedbackButton()
-        
-        title = NSLocalizedString("APP_NAME",
-                                  comment: "Announcer")
+        // Set up navigation controller, feedback button and preset whats new if needed
+        setUp()
         
         searchResults = AnnouncementSearch(labelsDidSet: {
             self.updateFilterButton()
         })
-        
-//        searchField.addInputAccessoryView(title: "Ha", target: nil, selector: nil)
-        
-        whatsNew()
-    }
-    
-    func whatsNew() {
-        // Initialize WhatsNewVersionStore
-        let versionStore: WhatsNewVersionStore = KeyValueWhatsNewVersionStore()
-
-        // Initialize WhatsNew
-        let whatsNew = WhatsNew(
-            // The Title
-            title: "Announcer",
-            
-            // The features you want to showcase
-            items: [
-                WhatsNew.Item(
-                    title: "Announcer Timetables",
-                    subtitle: "Find out what lesson is next and when it will end with Announcer Timetables.",
-                    image: UIImage(systemName: "table")
-                ),
-                WhatsNew.Item(
-                    title: "Latest Announcements",
-                    subtitle: "Check out the latest announcements from the home screen using the new widget.",
-                    image: UIImage(systemName: "curlybraces")
-                ),
-                WhatsNew.Item(
-                    title: "Smarter Search",
-                    subtitle: "The new Announcer search prioritises results based on the relevance of the posts to your search!",
-                    image: UIImage(systemName: "magnifyingglass")
-                ),
-                WhatsNew.Item(
-                    title: "Announcer MacOS",
-                    subtitle: "SST Announcer is now available on the Mac! (requires macOS Big Sur and up)",
-                    image: UIImage(systemName: "macwindow")
-                )
-            ]
-        )
-        
-        var config = WhatsNewViewController.Configuration()
-        
-        config.detailButton = WhatsNewViewController.DetailButton(
-            title: "Read More",
-            action: .website(url: "https://github.com/sst-inc/sst-announcer-ios")
-        )
-        
-        // Initialize CompletionButton with title and dismiss action
-        config.completionButton = WhatsNewViewController.CompletionButton(
-            title: "Continue",
-            action: .dismiss
-        )
-        
-        // Passing a WhatsNewVersionStore to the initializer
-        // will give you an optional WhatsNewViewController
-        
-        let whatsNewViewController: WhatsNewViewController? = WhatsNewViewController(
-            whatsNew: whatsNew,
-            configuration: config,
-            versionStore: versionStore
-        )
-        
-        // Verify WhatsNewViewController is available
-        guard let viewController = whatsNewViewController else {
-            // The user has already seen the WhatsNew-Screen for the current Version of your app
-            return
-        }
-
-        // Present WhatsNewViewController
-        self.present(viewController, animated: true)
-    }
-    
-    func setUpFeedbackButton() {
-        let feedback = FeedbackButton(frame: .zero)
-        
-        feedback.translatesAutoresizingMaskIntoConstraints = false
-
-        let feedbackConstraints = [NSLayoutConstraint(item: feedback,
-                                                      attribute: .trailing,
-                                                      relatedBy: .equal,
-                                                      toItem: view,
-                                                      attribute: .trailing,
-                                                      multiplier: 1,
-                                                      constant: -20),
-                                   NSLayoutConstraint(item: feedback,
-                                                      attribute: .bottom,
-                                                      relatedBy: .equal,
-                                                      toItem: view,
-                                                      attribute: .bottomMargin,
-                                                      multiplier: 1,
-                                                      constant: -20),
-                                   NSLayoutConstraint(item: feedback,
-                                                      attribute: .height,
-                                                      relatedBy: .equal,
-                                                      toItem: nil,
-                                                      attribute: .notAnAttribute,
-                                                      multiplier: 1,
-                                                      constant: 50)]
-        
-        feedback.parent = self
-        
-        view.addSubview(feedback)
-        view.addConstraints(feedbackConstraints)
-        
-        self.feedback = feedback
     }
     
     func updateFilterButton() {
@@ -267,8 +134,6 @@ class AnnouncementsViewController: UIViewController {
     // Reload announcements
     @IBAction func reload(_ sender: Any) {
         self.posts = nil
-//        loadingIndicator.startAnimating()
-//        reloadButton.isHidden = true
         
         DispatchQueue.global(qos: .background).async {
             self.pinned = PinnedAnnouncements.loadFromFile() ?? []
@@ -276,11 +141,6 @@ class AnnouncementsViewController: UIViewController {
             
             // Reset cache
             self.cachedContent = .init(repeating: nil, count: 25)
-            
-            DispatchQueue.main.async {
-//                self.loadingIndicator.stopAnimating()
-//                self.reloadButton.isHidden = false
-            }
         }
     }
     
@@ -312,110 +172,7 @@ class AnnouncementsViewController: UIViewController {
             }
         }
     }
-    
-    /// Get filter view controller and open it up
-    func openFilter() {
-        // Getting navigation controller from filter storyboard
-        if let filterNVC = Storyboards.filter.instantiateInitialViewController() as? UINavigationController {
-
-            // Get filterViewController from navigationController
-            if let filterVC = filterNVC.children.first as? FilterTableViewController {
-
-                // Set onDismiss actions that will run when we dismiss the other vc
-                // this void should reload tableview etc.
-                filterVC.onDismiss = {
-                    // Set search bar text
-                    self.searchField.text = "[\(filter)]"
-
-                    // Reload table view with new content
-                    self.announcementTableView.reloadData()
-
-                    // Run search function
-                    self.searchBar(self.searchField, textDidChange: "[\(filter)]")
-
-                    // Reset filters
-                    filter = ""
-                }
-            }
-
-            // Present filter navigation controller
-            self.present(filterNVC, animated: true)
-        }
-    }
-    
-    /// Save items to spotlight search
-    func addItemsToCoreSpotlight() {
         
-        /// So that it does not crash when `posts` gets forced unwrapped
-        /// Handles instances when `posts` is `nil`, for instance, when reloading
-        if posts == nil {
-            return
-        }
-        
-        /// `posts` converted to `CSSearchableItems`
-        let items: [CSSearchableItem] = posts.map({ post in
-            let attributeSet =  CSSearchableItemAttributeSet(itemContentType: kUTTypeHTML as String)
-            
-            /// Setting the title of the post
-            attributeSet.title = post.title
-            
-            /// Set the keywords for the `CSSearchableItem` to make it easier to find on Spotlight Search
-            attributeSet.keywords = post.categories
-            
-            /// Setting the content description so when the user previews the
-            /// announcement through spotlight search, they can see the content description
-            let content = post.content.condenseLinebreaks()
-            attributeSet.contentDescription = content.htmlToAttributedString?.htmlToString
-            
-            // Creating the searchable item from the attributesSet
-            let item = CSSearchableItem(uniqueIdentifier: "\(post.title)",
-                                        domainIdentifier: Bundle.main.bundleIdentifier!,
-                                        attributeSet: attributeSet)
-            
-            // Setting the expiration date to distant future
-            // So that it will not expire, at least not in 2000 years
-            item.expirationDate = Date.distantFuture
-            
-            // Return the item
-            return item
-        })
-        
-        // Index the items
-        CSSearchableIndex.default().indexSearchableItems(items) { error in
-            // Make sure there is no error indexing everything
-            if let error = error {
-                // An error occurred when indexing
-                // I do not exactly have a back-up plan on what to do in this case
-                // Mainly just have the spotlight search not work
-                print("Indexing error: \(error.localizedDescription)")
-            } else {
-                // Items were indexed. We did it.
-                print("Search items successfully indexed!")
-            }
-        }
-    }
-    
-    /// Reload filter with new filter query
-    func reloadFilter() {
-        // Handling when a tag is selected from the ContentViewController
-        if filter != "" {
-            // Setting search bar text
-            self.searchField.text = "[\(filter)]"
-            
-            // Reloading announcementTableView with the new search field tet
-            self.announcementTableView.reloadData()
-            
-            // Updating search bar
-            self.searchBar(self.searchField, textDidChange: "[\(filter)]")
-            
-            // Reset filter
-            filter = ""
-        } else {
-            self.announcementTableView.reloadData()
-        }
-
-    }
-    
     /// Select `searchField` to bring up keyboard
     @objc func startSearching() {
         // Set search field as first responder to bring up keyboard

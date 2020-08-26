@@ -202,7 +202,7 @@ extension ContentViewController: UIContextMenuInteractionDelegate {
                                     // Copy filter
 
                                     // Copy filter content as a string
-                                    UIPasteboard.general.string = filterContent
+                                    UIPasteboard.general.string = "[\(filterContent)]"
         }
 
         // Creating menu, children are the actions

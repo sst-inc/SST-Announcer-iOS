@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3207116124F5D5DD00B4EB63 /* AnnouncementUpdateDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3207116024F5D5DD00B4EB63 /* AnnouncementUpdateDevice.swift */; };
+		3207116324F5D67800B4EB63 /* AnnouncementSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3207116224F5D67800B4EB63 /* AnnouncementSetUp.swift */; };
 		320816BE24534E2100024FD0 /* LinksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320816BD24534E2100024FD0 /* LinksCollectionViewCell.swift */; };
+		321B6BE124F56DF3007CBB9D /* NSAttributedString + UIImage Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321B6BE024F56DF3007CBB9D /* NSAttributedString + UIImage Extension.swift */; };
 		321C9BE9249F1F1B00088677 /* TTGetStartedAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C9BE8249F1F1B00088677 /* TTGetStartedAlerts.swift */; };
 		321C9BEB249F302300088677 /* LessonStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C9BEA249F302300088677 /* LessonStruct.swift */; };
 		32377E3B24B2D8B20057CE6C /* Small.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32377E3A24B2D8B20057CE6C /* Small.swift */; };
@@ -374,7 +377,10 @@
 /* Begin PBXFileReference section */
 		245EB1D1B5C3CF86C1516F1B /* Pods-Announcer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Announcer.release.xcconfig"; path = "Target Support Files/Pods-Announcer/Pods-Announcer.release.xcconfig"; sourceTree = "<group>"; };
 		2CD293BB20EEED7B1A9804C0 /* Pods_Announcer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Announcer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3207116024F5D5DD00B4EB63 /* AnnouncementUpdateDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementUpdateDevice.swift; sourceTree = "<group>"; };
+		3207116224F5D67800B4EB63 /* AnnouncementSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementSetUp.swift; sourceTree = "<group>"; };
 		320816BD24534E2100024FD0 /* LinksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksCollectionViewCell.swift; sourceTree = "<group>"; };
+		321B6BE024F56DF3007CBB9D /* NSAttributedString + UIImage Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString + UIImage Extension.swift"; sourceTree = "<group>"; };
 		321C9BE8249F1F1B00088677 /* TTGetStartedAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTGetStartedAlerts.swift; sourceTree = "<group>"; };
 		321C9BEA249F302300088677 /* LessonStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonStruct.swift; sourceTree = "<group>"; };
 		321CA6A7244A19420062E209 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -966,6 +972,8 @@
 			isa = PBXGroup;
 			children = (
 				32D9954B238D865600208D25 /* AnnouncementsViewController.swift */,
+				3207116224F5D67800B4EB63 /* AnnouncementSetUp.swift */,
+				3207116024F5D5DD00B4EB63 /* AnnouncementUpdateDevice.swift */,
 				32FA1CFB24ED3AA500CAD9C7 /* AnnouncementSearch.swift */,
 				32E9B4D823A3D86F000F769F /* AnnouncementPreviewing.swift */,
 				329CE2272489B713002022A6 /* AnnouncementPointers.swift */,
@@ -1243,6 +1251,7 @@
 			isa = PBXGroup;
 			children = (
 				32C2531E244EA5D40015085A /* UIColor Extension.swift */,
+				321B6BE024F56DF3007CBB9D /* NSAttributedString + UIImage Extension.swift */,
 				32C25322244EA6200015085A /* UITextField Extension.swift */,
 				32C25320244EA6030015085A /* UISearchBar Extension.swift */,
 				326210EB2452061900629CC7 /* UIView Extension.swift */,
@@ -1846,6 +1855,7 @@
 				32E28CF92490EE95006D623C /* TTNavigationViewController.swift in Sources */,
 				327524B924912470008EA814 /* TTPreviewViewController.swift in Sources */,
 				32457789238E53A100730F17 /* AtomFeedSubtitle.swift in Sources */,
+				3207116124F5D5DD00B4EB63 /* AnnouncementUpdateDevice.swift in Sources */,
 				32457788238E53A100730F17 /* AtomFeed + mapAttributes.swift in Sources */,
 				324577A0238E53A100730F17 /* iTunesSubCategory.swift in Sources */,
 				3245777C238E53A100730F17 /* AtomFeedEntryContributor.swift in Sources */,
@@ -1913,6 +1923,7 @@
 				32FCE6F624B40F6E00A2F16F /* Keys.swift in Sources */,
 				324577B2238E53A200730F17 /* MediaPeerLink.swift in Sources */,
 				32F513D624C716F200FAE1DE /* AnnouncementDrag.swift in Sources */,
+				3207116324F5D67800B4EB63 /* AnnouncementSetUp.swift in Sources */,
 				324577BC238E53A200730F17 /* MediaStatus.swift in Sources */,
 				324577B5238E53A200730F17 /* MediaDescription.swift in Sources */,
 				32C25327244EA6D70015085A /* String Extension.swift in Sources */,
@@ -1960,6 +1971,7 @@
 				327A29A124D3EF29003B0046 /* Colors.swift in Sources */,
 				3245779F238E53A100730F17 /* iTunesNamespace.swift in Sources */,
 				327A29BC24D3F39F003B0046 /* Search.swift in Sources */,
+				321B6BE124F56DF3007CBB9D /* NSAttributedString + UIImage Extension.swift in Sources */,
 				327A29BE24D40C23003B0046 /* AnnouncementScrollView.swift in Sources */,
 				327A29B624D3F23B003B0046 /* LinkFunctions.swift in Sources */,
 				32457778238E53A100730F17 /* ISO8601DateFormatter.swift in Sources */,

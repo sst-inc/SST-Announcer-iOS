@@ -66,12 +66,18 @@ class AnnouncementTableViewCell: UITableViewCell {
                     // Main drawback is that if there are images involved, it has to get those images from the links
                     self.htmlAttr = self.post.content.htmlToAttributedString
                     
-                    self.parent.cachedContent[self.path.row] = self.htmlAttr
+                    if (self.parent.pinned.count != 0 && self.path.section == 1) ||
+                        self.parent.pinned.count == 0 {
+                        
+                        self.parent.cachedContent[self.path.row] = self.htmlAttr
+                    }
+                    
                     print(self.path.row)
                     // Set the content
                     DispatchQueue.main.async {
                         self.setContent(with: self.htmlAttr)
                     }
+                    
                 }
             } else {
                 self.setContent(with: htmlAttr)
@@ -156,14 +162,14 @@ class AnnouncementTableViewCell: UITableViewCell {
                 let start = indicesStart[i - 1]
                 let end = indicesEnd[i - 1]
                 
-                /// Ensuring that upper bounds is more than lower bounds
+                // Ensuring that upper bounds is more than lower bounds
                 if end > start {
-                    /// `[]` colors will be `.blueTint`
+                    // `[]` colors will be `.blueTint`
                     // Setting the bracket style
                     let bracket: [NSAttributedString.Key: Any] = [.foregroundColor: GlobalColors.blueTint,
                                                                   .font: font]
                     
-                    /// Add the blue to the squared brackets in the title
+                    // Add the blue to the squared brackets in the title
                     attrTitle.addAttributes(bracket,
                                             range: NSRange(location: start, length: end - start + 2))
                 }

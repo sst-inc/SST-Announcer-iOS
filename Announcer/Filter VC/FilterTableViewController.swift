@@ -93,7 +93,7 @@ class FilterTableViewController: UITableViewController {
 
             return cell
         } else {
-            fatalError()
+            fatalError("Unknwon cell")
         }
     }
     
@@ -110,7 +110,7 @@ class FilterTableViewController: UITableViewController {
                 self.onDismiss!()
             }
         } else {
-            fatalError()
+            fatalError("Unknwon cell")
         }
     }
     

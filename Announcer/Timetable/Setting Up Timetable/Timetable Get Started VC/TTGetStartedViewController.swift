@@ -129,7 +129,7 @@ class TTGetStartedViewController: UIViewController, UITextFieldDelegate {
         
         // Getting the timetable navigation controller
         guard let timetableNVC = navigationController as? TTNavigationViewController else {
-            fatalError()
+            fatalError("Timetable NVC doesnt exist")
         }
         
         // Checking if the PDF exists
@@ -163,7 +163,7 @@ class TTGetStartedViewController: UIViewController, UITextFieldDelegate {
     func regexCheck(with str: String) -> Bool {
         // Creating regex
         guard let regex = try? NSRegularExpression(pattern: "S[1-9]-[0-9][0-9]") else {
-            fatalError()
+            fatalError("Regular Expression Failed")
         }
         
         // Creating range for regex

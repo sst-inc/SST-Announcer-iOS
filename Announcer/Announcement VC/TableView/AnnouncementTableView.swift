@@ -124,6 +124,9 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             cell.parent = self
             cell.path = indexPath
             
+            // Reset to prevent cache conflicts
+            cell.htmlAttr = nil
+            
             if posts == nil {
                 // Set up loading
                 setUpLoadingCell(cell, tableView: tableView)
@@ -139,7 +142,17 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                     if pinned.count != 0 && indexPath.section == 0 {
                         // Pinned items
                         if pinned.count > indexPath.row {
-                            cell.post = pinned[indexPath.row]
+                            let post = pinned[indexPath.row]
+                            
+                            // Getting from cache
+                            if let postIndex = posts.firstIndex(of: post),
+                               let cache = cachedContent[postIndex] {
+                                cell.htmlAttr = NSMutableAttributedString(attributedString: cache)
+                            }
+                            
+                            // Set post
+                            cell.post = post
+                            
                         } else {
                             cell.post = Post(title: loadingString,
                                              content: loadingString,
@@ -179,7 +192,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             
             return cell
         } else {
-            fatalError()
+            fatalError("Unknown cell")
         }
     }
     
@@ -212,6 +225,8 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             
             // - Save announcements to file
             ReadAnnouncements.saveToFile(posts: readAnnouncements)
+            
+            badgeItems()
             
             // Updating and going to contentVC
             if let splitVC = splitViewController as? SplitViewController {
@@ -315,7 +330,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
         // Register the cell
         
         guard let cell = announcementTableView.cellForRow(at: indexPath) as? AnnouncementTableViewCell else {
-            fatalError()
+            fatalError("Could not dequeue cell")
         }
         
         let post = cell.post!
