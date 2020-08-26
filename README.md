@@ -4,7 +4,6 @@
 
 [![Language](http://img.shields.io/badge/swift-5-orange.svg?style=flat)](https://developer.apple.com/swift)
 [![Xcode](http://img.shields.io/badge/xcode-12%20beta-red.svg?style=flat)](https://developer.apple.com/xcode)
-[![Cocoapods](http://img.shields.io/badge/pod-v1.8.4-darkgray.svg?style=flat)](https://cocoapods.org/)
 
 [![iOS](http://img.shields.io/badge/platform-iOS%2013-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
 [![iPadOS](http://img.shields.io/badge/platform-iPadOS%2013-blue.svg?style=flat)](https://developer.apple.com/ipad/)
@@ -22,12 +21,7 @@ SST Announcer was built to help SST Students stay up to date with the school’s
 
 ---
 ## Installation
-This project uses Cocoapods. Check the Podfile for more information.
-
-0. To install Cocoapods, in terminal, run `sudo gem install cocoapods`
-1. To install the pods into the project, go to the project's directory and run `pod install` on this project
-2. Open the `Announcer.xcworkspace`
-3. Done
+This project uses Swift Package Manager. It should work right from download.
 
 or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/id683929182)
 
@@ -36,7 +30,6 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
 ## Requirements
 - Xcode 12 Beta 2
 - Swift 5.2
-- Cocoapods 1.8.4 or greater
 
 ### Device Requirements
 #### iPadOS
@@ -58,15 +51,17 @@ or just download on the [App Store](https://apps.apple.com/sg/app/sst-announcer/
 
 ## Technologies/Libraries Used
 ### Open Source Libraries
-- [URLEmbeddedView](https://github.com/marty-suzuki/URLEmbeddedView)
-  - Previewing Links in the blog posts
-  - Installed using Cocoapods
+- [Kanna](https://github.com/tid-kijyun/Kanna)
+    - Used to get images and titles from the links
+- [WhatsNewKit](https://github.com/SvenTiigi/WhatsNewKit)
+    - Whats' New interface on first launch (for each version)
 - [FeedKit](https://github.com/nmdias/FeedKit)
   - Fetching data from Students' Blog (Atom feed)
 - [SkeletonView](https://github.com/Juanpe/SkeletonView)
   - Loading animations while getting data from RSS feed
 - [Alamofire](https://github.com/alamofire/alamofire)
   - Getting Timetable image from Google Drive API
+  - Get images from URL
 
 ### Apple Technologies
 - [UIKit](https://developer.apple.com/documentation/uikit/)
