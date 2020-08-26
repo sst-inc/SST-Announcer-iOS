@@ -1,99 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q3L-bh-erf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3FW-F5-J5p">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17124"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="a6N-ie-Hbr">
+        <!--Announcer-->
+        <scene sceneID="ARc-2m-ORK">
             <objects>
-                <viewController id="q3L-bh-erf" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="I3g-1i-Qeb">
+                <viewController title="Announcer" id="ngg-Fb-gfH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ut9-kj-hTJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="la3-eh-nni">
-                                <rect key="frame" x="20" y="60" width="374" height="27.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="27.5" id="mKP-hf-oiY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" text="" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="KG6-NR-CWo">
-                                <rect key="frame" x="16" y="103.5" width="332" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="5rr-E0-bDK"/>
-                                </constraints>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="cVP-Q2-E1L">
+                                <rect key="frame" x="16" y="156" width="345" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="q3L-bh-erf" id="7bG-Or-BLx"/>
-                                </connections>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4Z-nc-8jB">
-                                <rect key="frame" x="368" y="119" width="26" height="25"/>
-                                <state key="normal" image="line.horizontal.3.decrease.circle.fill" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                    </preferredSymbolConfiguration>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NH5-K1-fsC">
+                                <rect key="frame" x="369" y="172" width="25" height="24"/>
+                                <state key="normal" image="line.horizontal.3.decrease.circle" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
-                                <connections>
-                                    <action selector="sortWithLabels:" destination="q3L-bh-erf" eventType="touchUpInside" id="7Gp-EG-94c"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcM-rT-ziF">
-                                <rect key="frame" x="371" y="60" width="23" height="27.5"/>
-                                <state key="normal" image="arrow.clockwise" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                    </preferredSymbolConfiguration>
-                                </state>
-                                <connections>
-                                    <action selector="reload:" destination="q3L-bh-erf" eventType="touchUpInside" id="xuf-1Q-TmZ"/>
-                                </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <viewLayoutGuide key="safeArea" id="Mnr-En-0hk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="D4Z-nc-8jB" firstAttribute="leading" secondItem="KG6-NR-CWo" secondAttribute="trailing" constant="20" id="AVU-0V-KN0"/>
-                            <constraint firstItem="mcM-rT-ziF" firstAttribute="centerY" secondItem="la3-eh-nni" secondAttribute="centerY" id="Cdc-Zc-Y5Z"/>
-                            <constraint firstItem="KG6-NR-CWo" firstAttribute="top" secondItem="la3-eh-nni" secondAttribute="bottom" constant="16" id="Giy-qv-0LL"/>
-                            <constraint firstItem="KG6-NR-CWo" firstAttribute="leading" secondItem="Tpo-Xd-EWp" secondAttribute="leading" constant="16" id="Lde-YS-t5d"/>
-                            <constraint firstItem="la3-eh-nni" firstAttribute="leading" secondItem="Tpo-Xd-EWp" secondAttribute="leading" constant="20" id="VME-Xh-P4q"/>
-                            <constraint firstItem="Tpo-Xd-EWp" firstAttribute="trailing" secondItem="D4Z-nc-8jB" secondAttribute="trailing" constant="20" id="a6R-fI-u0t"/>
-                            <constraint firstItem="D4Z-nc-8jB" firstAttribute="centerY" secondItem="KG6-NR-CWo" secondAttribute="centerY" id="b1v-kp-5iP"/>
-                            <constraint firstItem="la3-eh-nni" firstAttribute="top" secondItem="Tpo-Xd-EWp" secondAttribute="top" constant="16" id="cuE-dt-xsX"/>
-                            <constraint firstItem="Tpo-Xd-EWp" firstAttribute="trailing" secondItem="la3-eh-nni" secondAttribute="trailing" constant="20" id="hQv-17-wri"/>
-                            <constraint firstItem="Tpo-Xd-EWp" firstAttribute="trailing" secondItem="mcM-rT-ziF" secondAttribute="trailing" constant="20" id="qh6-Xo-Ql0"/>
+                            <constraint firstItem="cVP-Q2-E1L" firstAttribute="top" secondItem="Mnr-En-0hk" secondAttribute="top" constant="16" id="75C-vG-zzn"/>
+                            <constraint firstItem="Mnr-En-0hk" firstAttribute="trailing" secondItem="NH5-K1-fsC" secondAttribute="trailing" constant="20" id="U6s-cv-Yy4"/>
+                            <constraint firstItem="NH5-K1-fsC" firstAttribute="leading" secondItem="cVP-Q2-E1L" secondAttribute="trailing" constant="8" id="WCL-LS-Vaz"/>
+                            <constraint firstItem="NH5-K1-fsC" firstAttribute="centerY" secondItem="cVP-Q2-E1L" secondAttribute="centerY" id="dL6-re-1eK"/>
+                            <constraint firstItem="cVP-Q2-E1L" firstAttribute="leading" secondItem="Mnr-En-0hk" secondAttribute="leading" constant="16" id="rDc-PD-OHc"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Tpo-Xd-EWp"/>
                     </view>
-                    <navigationItem key="navigationItem" id="RW4-Eq-oPg"/>
-                    <connections>
-                        <outlet property="filterButton" destination="D4Z-nc-8jB" id="jDU-Po-EcU"/>
-                        <outlet property="reloadButton" destination="mcM-rT-ziF" id="97U-OJ-72v"/>
-                        <outlet property="searchField" destination="KG6-NR-CWo" id="z0z-7t-Ngh"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Announcer" id="TBd-7m-8di"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="peZ-M2-BLc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tJk-6k-q0a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="573.91304347826087" y="320.75892857142856"/>
+            <point key="canvasLocation" x="1328.985507246377" y="283.25892857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jfG-P4-zzl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3FW-F5-J5p" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="nN4-mj-DAX">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ngg-Fb-gfH" kind="relationship" relationship="rootViewController" id="sdz-IJ-dDS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="59B-zu-VgR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="418.84057971014494" y="283.92857142857139"/>
         </scene>
     </scenes>
     <color key="tintColor" name="Global Tint"/>
     <resources>
-        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
-        <image name="line.horizontal.3.decrease.circle.fill" catalog="system" width="128" height="121"/>
-        <namedColor name="Background">
-            <color red="0.96078431372549022" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
         <namedColor name="Global Tint">
             <color red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
