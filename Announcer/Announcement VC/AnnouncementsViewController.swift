@@ -89,8 +89,11 @@ class AnnouncementsViewController: UIViewController {
         pinned = PinnedAnnouncements.loadFromFile() ?? []
         
         // Adding drag and drop support for announcements
-        announcementTableView.dragInteractionEnabled = true
-        announcementTableView.dragDelegate = self
+        // Drags should not work on iPhone because that is annoying
+        if !I.phone {
+            announcementTableView.dragInteractionEnabled = true
+            announcementTableView.dragDelegate = self
+        }
         
         // Set up navigation controller, feedback button and preset whats new if needed
         setUp()

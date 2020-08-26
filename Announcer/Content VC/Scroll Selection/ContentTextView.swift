@@ -41,7 +41,6 @@ extension ContentViewController: UITextViewDelegate {
                 UIView.animate(withDuration: 0.3) {
                     self.linksAndLabelStackView.isHidden = true
                 }
-                
             }
         } else if scrollView.contentOffset.y <= 10 && linksAndLabelStackView.alpha == 0 {
             // Slowly fade the stackView into view

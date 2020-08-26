@@ -182,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAe-A3-FIL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1551" y="179"/>
+            <point key="canvasLocation" x="1567" y="175"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="J5O-Hu-bPl">
@@ -226,11 +226,11 @@
     </scenes>
     <color key="tintColor" name="Grey 1"/>
     <resources>
-        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
-        <image name="arrow.uturn.left" catalog="system" width="128" height="112"/>
-        <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
-        <image name="pin.fill" catalog="system" width="119" height="128"/>
-        <image name="tablecells" catalog="system" width="128" height="93"/>
+        <image name="arrow.clockwise" catalog="system" width="32" height="32"/>
+        <image name="arrow.uturn.left" catalog="system" width="32" height="32"/>
+        <image name="line.horizontal.3.decrease.circle" catalog="system" width="32" height="32"/>
+        <image name="pin.fill" catalog="system" width="32" height="32"/>
+        <image name="tablecells" catalog="system" width="32" height="32"/>
         <namedColor name="Grey 1">
             <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
