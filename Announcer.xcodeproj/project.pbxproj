@@ -301,6 +301,9 @@
 		32AC40ED24A255E80013A684 /* Widget_Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AC40EC24A255E80013A684 /* Widget_Timetable.swift */; };
 		32AC40F024A255EA0013A684 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32AC40EF24A255EA0013A684 /* Assets.xcassets */; };
 		32AC40F624A255EA0013A684 /* Timetables.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 32AC40E824A255E80013A684 /* Timetables.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		32AE1BE124F6972500A5D818 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 32AE1BE024F6972500A5D818 /* SkeletonView */; };
+		32AE1BE424F6984800A5D818 /* URL+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AE1BE324F6984800A5D818 /* URL+Preview.swift */; };
+		32AE1BE724F698B700A5D818 /* Kanna in Frameworks */ = {isa = PBXBuildFile; productRef = 32AE1BE624F698B700A5D818 /* Kanna */; };
 		32B7C4442488BBE0009D160F /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7C4432488BBE0009D160F /* SplitViewController.swift */; };
 		32B7C4462488F047009D160F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7C4452488F047009D160F /* LoadingViewController.swift */; };
 		32C2531F244EA5D40015085A /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2531E244EA5D40015085A /* UIColor Extension.swift */; };
@@ -339,7 +342,6 @@
 		32FA6811247FFAC20077E030 /* PostStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA6810247FFAC20077E030 /* PostStruct.swift */; };
 		32FA6813247FFAE30077E030 /* LinksStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FA6812247FFAE30077E030 /* LinksStruct.swift */; };
 		32FCE6F624B40F6E00A2F16F /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FCE6F524B40F6E00A2F16F /* Keys.swift */; };
-		57932F273AA9112D178ED0D9 /* Pods_Announcer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD293BB20EEED7B1A9804C0 /* Pods_Announcer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -375,7 +377,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		245EB1D1B5C3CF86C1516F1B /* Pods-Announcer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Announcer.release.xcconfig"; path = "Target Support Files/Pods-Announcer/Pods-Announcer.release.xcconfig"; sourceTree = "<group>"; };
 		2CD293BB20EEED7B1A9804C0 /* Pods_Announcer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Announcer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3207116024F5D5DD00B4EB63 /* AnnouncementUpdateDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementUpdateDevice.swift; sourceTree = "<group>"; };
 		3207116224F5D67800B4EB63 /* AnnouncementSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementSetUp.swift; sourceTree = "<group>"; };
@@ -567,6 +568,7 @@
 		32AC40EC24A255E80013A684 /* Widget_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget_Timetable.swift; sourceTree = "<group>"; };
 		32AC40EF24A255EA0013A684 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32AC40F124A255EA0013A684 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32AE1BE324F6984800A5D818 /* URL+Preview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Preview.swift"; sourceTree = "<group>"; };
 		32B7C4432488BBE0009D160F /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		32B7C4452488F047009D160F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		32C2531E244EA5D40015085A /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
@@ -608,7 +610,6 @@
 		32FA6810247FFAC20077E030 /* PostStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStruct.swift; sourceTree = "<group>"; };
 		32FA6812247FFAE30077E030 /* LinksStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksStruct.swift; sourceTree = "<group>"; };
 		32FCE6F524B40F6E00A2F16F /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
-		F4C5EAB4AAEB7A89D10EAAB0 /* Pods-Announcer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Announcer.debug.xcconfig"; path = "Target Support Files/Pods-Announcer/Pods-Announcer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -634,11 +635,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32AE1BE724F698B700A5D818 /* Kanna in Frameworks */,
 				325DDB4B24F0D23D00273D9B /* Gedatsu in Frameworks */,
 				32D88CDC24E2FED300B5847F /* WidgetKit.framework in Frameworks */,
 				325DDB4E24F135E500273D9B /* WhatsNewKit in Frameworks */,
-				57932F273AA9112D178ED0D9 /* Pods_Announcer.framework in Frameworks */,
 				32E28CF32490D0A5006D623C /* Alamofire in Frameworks */,
+				32AE1BE124F6972500A5D818 /* SkeletonView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1228,14 +1230,22 @@
 			path = Timetables;
 			sourceTree = "<group>";
 		};
-		32B7C44724895BD0009D160F /* Split View Controller */ = {
+		32AE1BE224F6983400A5D818 /* URL Previews */ = {
+			isa = PBXGroup;
+			children = (
+				32AE1BE324F6984800A5D818 /* URL+Preview.swift */,
+			);
+			path = "URL Previews";
+			sourceTree = "<group>";
+		};
+		32B7C44724895BD0009D160F /* Split VC */ = {
 			isa = PBXGroup;
 			children = (
 				32B7C4452488F047009D160F /* LoadingViewController.swift */,
 				32B7C4432488BBE0009D160F /* SplitViewController.swift */,
 				32F513D124C6A11100FAE1DE /* SplitTouchBar.swift */,
 			);
-			path = "Split View Controller";
+			path = "Split VC";
 			sourceTree = "<group>";
 		};
 		32C2531D244EA5C40015085A /* Extensions */ = {
@@ -1292,7 +1302,6 @@
 				32AC40EB24A255E80013A684 /* Timetables */,
 				3250B31824DFE8AC00F1F45A /* Announcements */,
 				32D99533238C068D00208D25 /* Products */,
-				F60E238002C508C5CE0166E8 /* Pods */,
 				2872A23A99F4B96DE42DB98B /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -1317,7 +1326,7 @@
 				3277130024D7DAB700D3EE42 /* Diagnostics VC */,
 				32E9B4D223A38D4E000F769F /* Filter VC */,
 				32E28CF72490EDC3006D623C /* Timetable */,
-				32B7C44724895BD0009D160F /* Split View Controller */,
+				32B7C44724895BD0009D160F /* Split VC */,
 				324577D4238F7F6D00730F17 /* Announcement VC */,
 				32E9B4D523A38D9A000F769F /* Libraries */,
 				32D99543238C068F00208D25 /* Info.plist */,
@@ -1392,6 +1401,7 @@
 		32E9B4D523A38D9A000F769F /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				32AE1BE224F6983400A5D818 /* URL Previews */,
 				32457707238E53A100730F17 /* FeedKit */,
 			);
 			path = Libraries;
@@ -1406,15 +1416,6 @@
 				321C9BEC249F306300088677 /* Structs */,
 			);
 			path = Globals;
-			sourceTree = "<group>";
-		};
-		F60E238002C508C5CE0166E8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F4C5EAB4AAEB7A89D10EAAB0 /* Pods-Announcer.debug.xcconfig */,
-				245EB1D1B5C3CF86C1516F1B /* Pods-Announcer.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1458,12 +1459,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 32D99546238C068F00208D25 /* Build configuration list for PBXNativeTarget "Announcer" */;
 			buildPhases = (
-				696A4D6F397144E12AECD297 /* [CP] Check Pods Manifest.lock */,
 				32D9952E238C068D00208D25 /* Sources */,
 				32D9952F238C068D00208D25 /* Frameworks */,
 				32D99530238C068D00208D25 /* Resources */,
 				32E9B4E623A53F40000F769F /* Embed App Extensions */,
-				C08FA42420FFC344CB84C3F4 /* [CP] Embed Pods Frameworks */,
 				325CE83824D2927500B060F5 /* ShellScript */,
 			);
 			buildRules = (
@@ -1477,6 +1476,8 @@
 				32E28CF22490D0A5006D623C /* Alamofire */,
 				325DDB4A24F0D23D00273D9B /* Gedatsu */,
 				325DDB4D24F135E500273D9B /* WhatsNewKit */,
+				32AE1BE024F6972500A5D818 /* SkeletonView */,
+				32AE1BE624F698B700A5D818 /* Kanna */,
 			);
 			productName = Announcer;
 			productReference = 32D99532238C068D00208D25 /* SST Announcer.app */;
@@ -1545,6 +1546,8 @@
 				32E28CF12490D0A5006D623C /* XCRemoteSwiftPackageReference "Alamofire" */,
 				325DDB4924F0D23D00273D9B /* XCRemoteSwiftPackageReference "Gedatsu" */,
 				325DDB4C24F135E500273D9B /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
+				32AE1BDF24F6972500A5D818 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				32AE1BE524F698B700A5D818 /* XCRemoteSwiftPackageReference "Kanna" */,
 			);
 			productRefGroup = 32D99533238C068D00208D25 /* Products */;
 			projectDirPath = "";
@@ -1615,45 +1618,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		696A4D6F397144E12AECD297 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Announcer-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C08FA42420FFC344CB84C3F4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Announcer/Pods-Announcer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Announcer/Pods-Announcer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Announcer/Pods-Announcer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1826,6 +1790,7 @@
 				324577A4238E53A100730F17 /* MediaLicence.swift in Sources */,
 				32C2531F244EA5D40015085A /* UIColor Extension.swift in Sources */,
 				32457798238E53A100730F17 /* RSSFeedItemEnclosure.swift in Sources */,
+				32AE1BE424F6984800A5D818 /* URL+Preview.swift in Sources */,
 				32C65274239017E500C698F2 /* PinnedAnnouncements.swift in Sources */,
 				32C2532D244EA8D00015085A /* ContentTextView.swift in Sources */,
 				32457781238E53A100730F17 /* AtomPath.swift in Sources */,
@@ -2303,7 +2268,6 @@
 		};
 		32D99547238C068F00208D25 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4C5EAB4AAEB7A89D10EAAB0 /* Pods-Announcer.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2335,7 +2299,6 @@
 		};
 		32D99548238C068F00208D25 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 245EB1D1B5C3CF86C1516F1B /* Pods-Announcer.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2422,6 +2385,22 @@
 				minimumVersion = 1.3.5;
 			};
 		};
+		32AE1BDF24F6972500A5D818 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.7;
+			};
+		};
+		32AE1BE524F698B700A5D818 /* XCRemoteSwiftPackageReference "Kanna" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tid-kijyun/Kanna.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.2;
+			};
+		};
 		32E28CF12490D0A5006D623C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -2442,6 +2421,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 325DDB4C24F135E500273D9B /* XCRemoteSwiftPackageReference "WhatsNewKit" */;
 			productName = WhatsNewKit;
+		};
+		32AE1BE024F6972500A5D818 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 32AE1BDF24F6972500A5D818 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
+		};
+		32AE1BE624F698B700A5D818 /* Kanna */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 32AE1BE524F698B700A5D818 /* XCRemoteSwiftPackageReference "Kanna" */;
+			productName = Kanna;
 		};
 		32E28CF22490D0A5006D623C /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

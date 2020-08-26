@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import URLEmbeddedView
 
 extension ContentViewController {
     func updateContent() {
@@ -114,11 +113,10 @@ extension ContentViewController {
             self.links = []
             
             for url in LinkFunctions.getLinksFromPost(post: post) {
-                OGDataProvider.shared.fetchOGData(withURLString: url.absoluteString) { [weak self] ogData, error in
-                    if error != nil { return }
-                    
+                
+                url.fetchPageInfo { (title, description, previewImage) -> Void in
                     // Getting sourceURL
-                    let sourceUrl: String = (ogData.sourceUrl ?? url).absoluteString
+                    let sourceUrl: String = url.absoluteString
                     
                     // Getting page title
                     let pageTitle: String = {
@@ -137,21 +135,24 @@ extension ContentViewController {
                         }
                         
                         // Setting page title, if not found, just use the URL
-                        return ogData.pageTitle ?? newURL
+                        return title ?? newURL
                     }()
                     
                     // Adding thumbnail image
                     let sourceImage: UIImage? = {
                         
                         // Handling imageURL
-                        if let imgUrl = ogData.imageUrl {
+                        if let previewImage = previewImage,
+                           let imgUrl = URL(string: previewImage) {
                             return try? UIImage(data: Data(contentsOf: imgUrl), scale: 1)
                         }
                         return nil
                     }()
                     
                     // Append latest link to links
-                    self?.links.append(Links(title: pageTitle, link: sourceUrl, image: sourceImage))
+                    self.links.append(Links(title: pageTitle, link: sourceUrl, image: sourceImage))
+                } failure: { (message) in
+                    print(message)
                 }
             }
         }

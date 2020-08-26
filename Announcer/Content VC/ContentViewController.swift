@@ -8,7 +8,6 @@
 
 import UIKit
 import SafariServices
-import URLEmbeddedView
 
 class ContentViewController: UIViewController {
     /// Handles updating AnnouncementVC when dismissing to reload tableView
