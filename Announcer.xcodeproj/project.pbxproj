@@ -44,6 +44,7 @@
 		325DDB4B24F0D23D00273D9B /* Gedatsu in Frameworks */ = {isa = PBXBuildFile; productRef = 325DDB4A24F0D23D00273D9B /* Gedatsu */; };
 		325DDB4E24F135E500273D9B /* WhatsNewKit in Frameworks */ = {isa = PBXBuildFile; productRef = 325DDB4D24F135E500273D9B /* WhatsNewKit */; };
 		326210EC2452061900629CC7 /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326210EB2452061900629CC7 /* UIView Extension.swift */; };
+		3265038024F78C870000E984 /* URL Previews in Frameworks */ = {isa = PBXBuildFile; productRef = 3265037F24F78C870000E984 /* URL Previews */; };
 		3274DB7F24E05EFA0060817B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3274DB7D24E05CB50060817B /* Localizable.strings */; };
 		327524B724910999008EA814 /* TTGetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B624910999008EA814 /* TTGetStartedViewController.swift */; };
 		327524B924912470008EA814 /* TTPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B824912470008EA814 /* TTPreviewViewController.swift */; };
@@ -114,8 +115,6 @@
 		32AC40F024A255EA0013A684 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32AC40EF24A255EA0013A684 /* Assets.xcassets */; };
 		32AC40F624A255EA0013A684 /* Timetables.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 32AC40E824A255E80013A684 /* Timetables.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		32AE1BE124F6972500A5D818 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 32AE1BE024F6972500A5D818 /* SkeletonView */; };
-		32AE1BE424F6984800A5D818 /* URL+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AE1BE324F6984800A5D818 /* URL+Preview.swift */; };
-		32AE1BE724F698B700A5D818 /* Kanna in Frameworks */ = {isa = PBXBuildFile; productRef = 32AE1BE624F698B700A5D818 /* Kanna */; };
 		32B7C4442488BBE0009D160F /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7C4432488BBE0009D160F /* SplitViewController.swift */; };
 		32B7C4462488F047009D160F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7C4452488F047009D160F /* LoadingViewController.swift */; };
 		32C2531F244EA5D40015085A /* UIColor Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C2531E244EA5D40015085A /* UIColor Extension.swift */; };
@@ -287,7 +286,6 @@
 		32AC40EC24A255E80013A684 /* Widget_Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widget_Timetable.swift; sourceTree = "<group>"; };
 		32AC40EF24A255EA0013A684 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32AC40F124A255EA0013A684 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		32AE1BE324F6984800A5D818 /* URL+Preview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Preview.swift"; sourceTree = "<group>"; };
 		32B7C4432488BBE0009D160F /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		32B7C4452488F047009D160F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		32C2531E244EA5D40015085A /* UIColor Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor Extension.swift"; sourceTree = "<group>"; };
@@ -354,10 +352,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32AE1BE724F698B700A5D818 /* Kanna in Frameworks */,
 				325DDB4B24F0D23D00273D9B /* Gedatsu in Frameworks */,
 				32D88CDC24E2FED300B5847F /* WidgetKit.framework in Frameworks */,
 				325DDB4E24F135E500273D9B /* WhatsNewKit in Frameworks */,
+				3265038024F78C870000E984 /* URL Previews in Frameworks */,
 				32E28CF32490D0A5006D623C /* Alamofire in Frameworks */,
 				32AE1BE124F6972500A5D818 /* SkeletonView in Frameworks */,
 				32F962B324F786D400B744CF /* FeedKit in Frameworks */,
@@ -745,14 +743,6 @@
 			path = Timetables;
 			sourceTree = "<group>";
 		};
-		32AE1BE224F6983400A5D818 /* URL Previews */ = {
-			isa = PBXGroup;
-			children = (
-				32AE1BE324F6984800A5D818 /* URL+Preview.swift */,
-			);
-			path = "URL Previews";
-			sourceTree = "<group>";
-		};
 		32B7C44724895BD0009D160F /* Split VC */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,7 +833,6 @@
 				32E28CF72490EDC3006D623C /* Timetable */,
 				32B7C44724895BD0009D160F /* Split VC */,
 				324577D4238F7F6D00730F17 /* Announcement VC */,
-				32E9B4D523A38D9A000F769F /* Libraries */,
 				32D99543238C068F00208D25 /* Info.plist */,
 				3250B2B924DDB6B600F1F45A /* InfoPlist.strings */,
 			);
@@ -911,14 +900,6 @@
 				32D99540238C068F00208D25 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		32E9B4D523A38D9A000F769F /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				32AE1BE224F6983400A5D818 /* URL Previews */,
-			);
-			path = Libraries;
 			sourceTree = "<group>";
 		};
 		32FA680B247FF92B0077E030 /* Globals */ = {
@@ -991,8 +972,8 @@
 				325DDB4A24F0D23D00273D9B /* Gedatsu */,
 				325DDB4D24F135E500273D9B /* WhatsNewKit */,
 				32AE1BE024F6972500A5D818 /* SkeletonView */,
-				32AE1BE624F698B700A5D818 /* Kanna */,
 				32F962B224F786D400B744CF /* FeedKit */,
+				3265037F24F78C870000E984 /* URL Previews */,
 			);
 			productName = Announcer;
 			productReference = 32D99532238C068D00208D25 /* SST Announcer.app */;
@@ -1062,8 +1043,8 @@
 				325DDB4924F0D23D00273D9B /* XCRemoteSwiftPackageReference "Gedatsu" */,
 				325DDB4C24F135E500273D9B /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
 				32AE1BDF24F6972500A5D818 /* XCRemoteSwiftPackageReference "SkeletonView" */,
-				32AE1BE524F698B700A5D818 /* XCRemoteSwiftPackageReference "Kanna" */,
 				32F962B124F786D400B744CF /* XCRemoteSwiftPackageReference "FeedKit" */,
+				3265037E24F78C870000E984 /* XCRemoteSwiftPackageReference "URL-Previews-Package" */,
 			);
 			productRefGroup = 32D99533238C068D00208D25 /* Products */;
 			projectDirPath = "";
@@ -1205,7 +1186,6 @@
 				328BFFE82496275100132EB4 /* TimetableStruct.swift in Sources */,
 				32E9B4D923A3D86F000F769F /* AnnouncementPreviewing.swift in Sources */,
 				32C2531F244EA5D40015085A /* UIColor Extension.swift in Sources */,
-				32AE1BE424F6984800A5D818 /* URL+Preview.swift in Sources */,
 				32C65274239017E500C698F2 /* PinnedAnnouncements.swift in Sources */,
 				32C2532D244EA8D00015085A /* ContentTextView.swift in Sources */,
 				32C25321244EA6030015085A /* UISearchBar Extension.swift in Sources */,
@@ -1713,20 +1693,20 @@
 				minimumVersion = 1.3.5;
 			};
 		};
+		3265037E24F78C870000E984 /* XCRemoteSwiftPackageReference "URL-Previews-Package" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jiachenyee/URL-Previews-Package";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		32AE1BDF24F6972500A5D818 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Juanpe/SkeletonView";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.8.7;
-			};
-		};
-		32AE1BE524F698B700A5D818 /* XCRemoteSwiftPackageReference "Kanna" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tid-kijyun/Kanna.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.2.2;
 			};
 		};
 		32E28CF12490D0A5006D623C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
@@ -1758,15 +1738,15 @@
 			package = 325DDB4C24F135E500273D9B /* XCRemoteSwiftPackageReference "WhatsNewKit" */;
 			productName = WhatsNewKit;
 		};
+		3265037F24F78C870000E984 /* URL Previews */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3265037E24F78C870000E984 /* XCRemoteSwiftPackageReference "URL-Previews-Package" */;
+			productName = "URL Previews";
+		};
 		32AE1BE024F6972500A5D818 /* SkeletonView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 32AE1BDF24F6972500A5D818 /* XCRemoteSwiftPackageReference "SkeletonView" */;
 			productName = SkeletonView;
-		};
-		32AE1BE624F698B700A5D818 /* Kanna */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 32AE1BE524F698B700A5D818 /* XCRemoteSwiftPackageReference "Kanna" */;
-			productName = Kanna;
 		};
 		32E28CF22490D0A5006D623C /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

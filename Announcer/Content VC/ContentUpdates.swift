@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import URL_Previews
 
 extension ContentViewController {
     func updateContent() {
