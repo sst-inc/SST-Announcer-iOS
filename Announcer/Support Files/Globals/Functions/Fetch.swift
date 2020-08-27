@@ -10,6 +10,7 @@ import Foundation
 import SystemConfiguration
 import UIKit
 import WidgetKit
+import FeedKit
 
 /// Functions meant to fetch data
 struct Fetch {

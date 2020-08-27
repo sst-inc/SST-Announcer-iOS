@@ -114,7 +114,7 @@ extension ContentViewController {
             
             for url in LinkFunctions.getLinksFromPost(post: post) {
                 
-                url.fetchPageInfo { (title, description, previewImage) -> Void in
+                url.fetchPageInfo { (title, _, previewImage) -> Void in
                     // Getting sourceURL
                     let sourceUrl: String = url.absoluteString
                     

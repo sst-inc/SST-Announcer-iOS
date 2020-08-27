@@ -17,5 +17,5 @@ struct Keys {
     // 2. Click on Credentials
     // 3. Create the API key
     
-    static let driveAPI = <#T##Insert Drive API Key##String#>
+    static let driveAPI = "AIzaSyBigEs5f50MHU_RFbnsvPJYRWHqNZ02tI8"
 }
