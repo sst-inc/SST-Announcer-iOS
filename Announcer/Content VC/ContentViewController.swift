@@ -369,7 +369,29 @@ class ContentViewController: UIViewController {
         let font = UIFont.systemFont(ofSize: currentScale, weight: .medium)
 
         // Setting text color using NSAttributedString
-        attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
+        attr.enumerateAttribute(.font,
+                                in: NSRange(location: 0, length: attr.length),
+                                options: .init(rawValue: 0)) { (value, range, _) in
+            if let font = value as? UIFont {
+                
+                if font.fontName.lowercased().contains("bold") {
+                    attr.addAttribute(.font,
+                                      value: UIFont.systemFont(ofSize: currentScale,
+                                                               weight: .bold),
+                                      range: range)
+                } else if font.fontName.lowercased().contains("italics") {
+                    attr.addAttribute(.font,
+                                      value: UIFont.italicSystemFont(ofSize: currentScale),
+                                      range: range)
+                    
+                } else {
+                    attr.addAttribute(.font,
+                                      value: UIFont.systemFont(ofSize: currentScale,
+                                                               weight: .medium),
+                                      range: range)
+                }
+            }
+        }
 
         // Setting attributedText on contentTextView
         contentTextView.attributedText = attr
@@ -401,11 +423,30 @@ class ContentViewController: UIViewController {
         // Set currentScale to default font size
         currentScale = GlobalIdentifier.defaultFontSize
 
-        // Default font style
-        let font = UIFont.systemFont(ofSize: currentScale, weight: .medium)
-
         // Setting font to the whole attributed string
-        attr.addAttribute(.font, value: font, range: NSRange(location: 0, length: attr.length))
+        attr.enumerateAttribute(.font,
+                                in: NSRange(location: 0, length: attr.length),
+                                options: .init(rawValue: 0)) { (value, range, _) in
+            if let font = value as? UIFont {
+                
+                if font.fontName.lowercased().contains("bold") {
+                    attr.addAttribute(.font,
+                                      value: UIFont.systemFont(ofSize: currentScale,
+                                                               weight: .bold),
+                                      range: range)
+                } else if font.fontName.lowercased().contains("italics") {
+                    attr.addAttribute(.font,
+                                      value: UIFont.italicSystemFont(ofSize: currentScale),
+                                      range: range)
+                    
+                } else {
+                    attr.addAttribute(.font,
+                                      value: UIFont.systemFont(ofSize: currentScale,
+                                                               weight: .medium),
+                                      range: range)
+                }
+            }
+        }
 
         // Update UserDefaults with new scale
         UserDefaults.standard.set(currentScale, forKey: UserDefaultsIdentifiers.textScale.rawValue)

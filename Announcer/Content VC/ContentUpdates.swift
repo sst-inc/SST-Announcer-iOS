@@ -32,18 +32,29 @@ extension ContentViewController {
             let attr = attributedContent ?? content.htmlToAttributedString
             
             // Adding font and background color that support dark mode
-            attr?.addAttribute(.font,
-                               value: UIFont.systemFont(ofSize: currentScale, weight: .medium),
-                               range: NSRange(location: 0, length: (attr?.length)!))
-            
-            attr?.addAttribute(.backgroundColor,
-                               value: UIColor.clear,
-                               range: NSRange(location: 0, length: (attr?.length)!))
-            
-            // Optimising for iOS 13 dark mode
-            attr?.addAttribute(.foregroundColor,
-                               value: UIColor.label,
-                               range: NSRange(location: 0, length: (attr?.length)!))
+            attr?.enumerateAttribute(.font,
+                                     in: NSRange(location: 0, length: attr!.length),
+                                     options: .init(rawValue: 0)) { (value, range, _) in
+                if let font = value as? UIFont {
+                    
+                    if font.fontName.lowercased().contains("bold") {
+                        attr?.addAttribute(.font,
+                                           value: UIFont.systemFont(ofSize: currentScale,
+                                                                    weight: .bold),
+                                           range: range)
+                    } else if font.fontName.lowercased().contains("italics") {
+                        attr?.addAttribute(.font,
+                                           value: UIFont.italicSystemFont(ofSize: currentScale),
+                                           range: range)
+                        
+                    } else {
+                        attr?.addAttribute(.font,
+                                           value: UIFont.systemFont(ofSize: currentScale,
+                                                                    weight: .medium),
+                                           range: range)
+                    }
+                }
+            }
             
             if contentTextView != nil {
                 DispatchQueue.main.async {

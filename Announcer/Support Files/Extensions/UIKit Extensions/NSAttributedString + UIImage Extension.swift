@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreText
 
 extension NSAttributedString {
     func resizedImages(with maxWidth: CGFloat) -> NSMutableAttributedString {
@@ -16,6 +17,12 @@ extension NSAttributedString {
         if I.mac {
             return text
         }
+        
+        // Adding font and background color that support dark mode
+        let attributes: [NSAttributedString.Key: UIColor] = [.backgroundColor: .clear,
+                                                             .foregroundColor: .label]
+        
+        text.addAttributes(attributes, range: NSRange(location: 0, length: text.length))
         
         text.enumerateAttribute(.attachment,
                                 in: NSRange(location: 0, length: text.length),

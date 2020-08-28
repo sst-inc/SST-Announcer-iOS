@@ -44,7 +44,7 @@
 		325DDB4B24F0D23D00273D9B /* Gedatsu in Frameworks */ = {isa = PBXBuildFile; productRef = 325DDB4A24F0D23D00273D9B /* Gedatsu */; };
 		325DDB4E24F135E500273D9B /* WhatsNewKit in Frameworks */ = {isa = PBXBuildFile; productRef = 325DDB4D24F135E500273D9B /* WhatsNewKit */; };
 		326210EC2452061900629CC7 /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326210EB2452061900629CC7 /* UIView Extension.swift */; };
-		3265038024F78C870000E984 /* URL Previews in Frameworks */ = {isa = PBXBuildFile; productRef = 3265037F24F78C870000E984 /* URL Previews */; };
+		3265038324F7E4880000E984 /* URL Previews in Frameworks */ = {isa = PBXBuildFile; productRef = 3265038224F7E4880000E984 /* URL Previews */; };
 		3274DB7F24E05EFA0060817B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3274DB7D24E05CB50060817B /* Localizable.strings */; };
 		327524B724910999008EA814 /* TTGetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B624910999008EA814 /* TTGetStartedViewController.swift */; };
 		327524B924912470008EA814 /* TTPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327524B824912470008EA814 /* TTPreviewViewController.swift */; };
@@ -352,10 +352,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3265038324F7E4880000E984 /* URL Previews in Frameworks */,
 				325DDB4B24F0D23D00273D9B /* Gedatsu in Frameworks */,
 				32D88CDC24E2FED300B5847F /* WidgetKit.framework in Frameworks */,
 				325DDB4E24F135E500273D9B /* WhatsNewKit in Frameworks */,
-				3265038024F78C870000E984 /* URL Previews in Frameworks */,
 				32E28CF32490D0A5006D623C /* Alamofire in Frameworks */,
 				32AE1BE124F6972500A5D818 /* SkeletonView in Frameworks */,
 				32F962B324F786D400B744CF /* FeedKit in Frameworks */,
@@ -973,7 +973,7 @@
 				325DDB4D24F135E500273D9B /* WhatsNewKit */,
 				32AE1BE024F6972500A5D818 /* SkeletonView */,
 				32F962B224F786D400B744CF /* FeedKit */,
-				3265037F24F78C870000E984 /* URL Previews */,
+				3265038224F7E4880000E984 /* URL Previews */,
 			);
 			productName = Announcer;
 			productReference = 32D99532238C068D00208D25 /* SST Announcer.app */;
@@ -1044,7 +1044,7 @@
 				325DDB4C24F135E500273D9B /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
 				32AE1BDF24F6972500A5D818 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 				32F962B124F786D400B744CF /* XCRemoteSwiftPackageReference "FeedKit" */,
-				3265037E24F78C870000E984 /* XCRemoteSwiftPackageReference "URL-Previews-Package" */,
+				3265038124F7E4880000E984 /* XCRemoteSwiftPackageReference "URL-Previews-Package" */,
 			);
 			productRefGroup = 32D99533238C068D00208D25 /* Products */;
 			projectDirPath = "";
@@ -1693,9 +1693,9 @@
 				minimumVersion = 1.3.5;
 			};
 		};
-		3265037E24F78C870000E984 /* XCRemoteSwiftPackageReference "URL-Previews-Package" */ = {
+		3265038124F7E4880000E984 /* XCRemoteSwiftPackageReference "URL-Previews-Package" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jiachenyee/URL-Previews-Package";
+			repositoryURL = "git@github.com:jiachenyee/URL-Previews-Package.git";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -1738,9 +1738,9 @@
 			package = 325DDB4C24F135E500273D9B /* XCRemoteSwiftPackageReference "WhatsNewKit" */;
 			productName = WhatsNewKit;
 		};
-		3265037F24F78C870000E984 /* URL Previews */ = {
+		3265038224F7E4880000E984 /* URL Previews */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3265037E24F78C870000E984 /* XCRemoteSwiftPackageReference "URL-Previews-Package" */;
+			package = 3265038124F7E4880000E984 /* XCRemoteSwiftPackageReference "URL-Previews-Package" */;
 			productName = "URL Previews";
 		};
 		32AE1BE024F6972500A5D818 /* SkeletonView */ = {
