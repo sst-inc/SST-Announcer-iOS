@@ -13,6 +13,7 @@ import SafariServices
 
 import CoreSpotlight
 import MobileCoreServices
+import PushNotifications
 
 #if DEBUG
 import Gedatsu
@@ -20,6 +21,8 @@ import Gedatsu
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+    
+    let pushNotifications = PushNotifications.shared
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -81,8 +84,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             UserDefaults.standard.set(buildNumber, forKey: UserDefaultsIdentifiers.buildNumber.rawValue)
         }
         
+        self.pushNotifications.start(instanceId: Keys.push)
+        
+        self.pushNotifications.registerForRemoteNotifications()
+        
+        try? self.pushNotifications.addDeviceInterest(interest: "all")
+        
         return true
     }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        self.pushNotifications.registerDeviceToken(deviceToken)
+    }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        self.pushNotifications.handleNotification(userInfo: userInfo)
+    }
+
     // swiftlint:disable all
     /**
     Schedules the new announcement background task

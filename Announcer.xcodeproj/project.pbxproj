@@ -127,6 +127,7 @@
 		32C4059924534617006CA49E /* Content.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C4059824534617006CA49E /* Content.storyboard */; };
 		32C65274239017E500C698F2 /* PinnedAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C65273239017E500C698F2 /* PinnedAnnouncements.swift */; };
 		32CB3DE124A04F4F00E18B2F /* TTInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32CB3DE024A04F4F00E18B2F /* TTInterpreter.swift */; };
+		32CC126524F9427D002890E3 /* PushNotifications in Frameworks */ = {isa = PBXBuildFile; productRef = 32CC126424F9427D002890E3 /* PushNotifications */; };
 		32D7070524783054003DC98C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 32D7070424783053003DC98C /* README.md */; };
 		32D7070C247A894E003DC98C /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D7070B247A894E003DC98C /* Filter.storyboard */; };
 		32D762E824D8056400789E0B /* Diagnostics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32D762E724D8056400789E0B /* Diagnostics.storyboard */; };
@@ -355,6 +356,7 @@
 				3265038324F7E4880000E984 /* URL Previews in Frameworks */,
 				325DDB4B24F0D23D00273D9B /* Gedatsu in Frameworks */,
 				32D88CDC24E2FED300B5847F /* WidgetKit.framework in Frameworks */,
+				32CC126524F9427D002890E3 /* PushNotifications in Frameworks */,
 				325DDB4E24F135E500273D9B /* WhatsNewKit in Frameworks */,
 				32E28CF32490D0A5006D623C /* Alamofire in Frameworks */,
 				32AE1BE124F6972500A5D818 /* SkeletonView in Frameworks */,
@@ -974,6 +976,7 @@
 				32AE1BE024F6972500A5D818 /* SkeletonView */,
 				32F962B224F786D400B744CF /* FeedKit */,
 				3265038224F7E4880000E984 /* URL Previews */,
+				32CC126424F9427D002890E3 /* PushNotifications */,
 			);
 			productName = Announcer;
 			productReference = 32D99532238C068D00208D25 /* SST Announcer.app */;
@@ -1045,6 +1048,7 @@
 				32AE1BDF24F6972500A5D818 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 				32F962B124F786D400B744CF /* XCRemoteSwiftPackageReference "FeedKit" */,
 				3265038124F7E4880000E984 /* XCRemoteSwiftPackageReference "URL-Previews-Package" */,
+				32CC126324F9427D002890E3 /* XCRemoteSwiftPackageReference "push-notifications-swift" */,
 			);
 			productRefGroup = 32D99533238C068D00208D25 /* Products */;
 			projectDirPath = "";
@@ -1709,6 +1713,14 @@
 				minimumVersion = 1.8.7;
 			};
 		};
+		32CC126324F9427D002890E3 /* XCRemoteSwiftPackageReference "push-notifications-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pusher/push-notifications-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.4;
+			};
+		};
 		32E28CF12490D0A5006D623C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1747,6 +1759,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 32AE1BDF24F6972500A5D818 /* XCRemoteSwiftPackageReference "SkeletonView" */;
 			productName = SkeletonView;
+		};
+		32CC126424F9427D002890E3 /* PushNotifications */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 32CC126324F9427D002890E3 /* XCRemoteSwiftPackageReference "push-notifications-swift" */;
+			productName = PushNotifications;
 		};
 		32E28CF22490D0A5006D623C /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
