@@ -365,9 +365,6 @@ class ContentViewController: UIViewController {
         // Calculating the scale
         currentScale *= sender.scale
 
-        // New font size and style
-        let font = UIFont.systemFont(ofSize: currentScale, weight: .medium)
-
         // Setting text color using NSAttributedString
         attr.enumerateAttribute(.font,
                                 in: NSRange(location: 0, length: attr.length),
@@ -375,11 +372,17 @@ class ContentViewController: UIViewController {
             if let font = value as? UIFont {
                 
                 if font.fontName.lowercased().contains("bold") {
+                    var newFont = UIFont.systemFont(ofSize: currentScale,
+                                                    weight: .bold)
+                    
+                    if font.fontName.lowercased().contains("italic") {
+                        newFont = newFont.boldItalic
+                    }
+                    
                     attr.addAttribute(.font,
-                                      value: UIFont.systemFont(ofSize: currentScale,
-                                                               weight: .bold),
+                                      value: newFont,
                                       range: range)
-                } else if font.fontName.lowercased().contains("italics") {
+                } else if font.fontName.lowercased().contains("italic") {
                     attr.addAttribute(.font,
                                       value: UIFont.italicSystemFont(ofSize: currentScale),
                                       range: range)
@@ -430,9 +433,15 @@ class ContentViewController: UIViewController {
             if let font = value as? UIFont {
                 
                 if font.fontName.lowercased().contains("bold") {
+                    var newFont = UIFont.systemFont(ofSize: currentScale,
+                                                    weight: .bold)
+                    
+                    if font.fontName.lowercased().contains("italic") {
+                        newFont = newFont.boldItalic
+                    }
+                    
                     attr.addAttribute(.font,
-                                      value: UIFont.systemFont(ofSize: currentScale,
-                                                               weight: .bold),
+                                      value: newFont,
                                       range: range)
                 } else if font.fontName.lowercased().contains("italics") {
                     attr.addAttribute(.font,

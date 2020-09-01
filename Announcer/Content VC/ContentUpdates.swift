@@ -38,9 +38,15 @@ extension ContentViewController {
                 if let font = value as? UIFont {
                     
                     if font.fontName.lowercased().contains("bold") {
+                        var newFont = UIFont.systemFont(ofSize: currentScale,
+                                                        weight: .bold)
+                        
+                        if font.fontName.lowercased().contains("italic") {
+                            newFont = newFont.boldItalic
+                        }
+                        
                         attr?.addAttribute(.font,
-                                           value: UIFont.systemFont(ofSize: currentScale,
-                                                                    weight: .bold),
+                                           value: newFont,
                                            range: range)
                     } else if font.fontName.lowercased().contains("italics") {
                         attr?.addAttribute(.font,

@@ -29,6 +29,7 @@
 		324577D8238F8CC100730F17 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577D7238F8CC100730F17 /* FilterTableViewController.swift */; };
 		324577DA238FA48300730F17 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */; };
 		324577DC238FA77000730F17 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324577DB238FA77000730F17 /* FilterTableViewCell.swift */; };
+		3247CF1D24FE9076006DABD2 /* UIFont Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3247CF1C24FE9076006DABD2 /* UIFont Extension.swift */; };
 		3250B2AF24DDA3FC00F1F45A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3250B2B124DDA3FC00F1F45A /* Localizable.strings */; };
 		3250B2B424DDAD4C00F1F45A /* Localisations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3250B2B324DDAD4C00F1F45A /* Localisations.swift */; };
 		3250B2B724DDB6B600F1F45A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3250B2B924DDB6B600F1F45A /* InfoPlist.strings */; };
@@ -214,6 +215,7 @@
 		324577D7238F8CC100730F17 /* FilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		324577D9238FA48300730F17 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		324577DB238FA77000730F17 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		3247CF1C24FE9076006DABD2 /* UIFont Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont Extension.swift"; sourceTree = "<group>"; };
 		3250B2B024DDA3FC00F1F45A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3250B2B224DDA40100F1F45A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3250B2B324DDAD4C00F1F45A /* Localisations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localisations.swift; sourceTree = "<group>"; };
@@ -774,6 +776,7 @@
 				326210EB2452061900629CC7 /* UIView Extension.swift */,
 				328BFFE32493EBBF00132EB4 /* UIImage Extension.swift */,
 				329DCBC9249703FC00018D32 /* UITableView Extension.swift */,
+				3247CF1C24FE9076006DABD2 /* UIFont Extension.swift */,
 			);
 			path = "UIKit Extensions";
 			sourceTree = "<group>";
@@ -1200,6 +1203,7 @@
 				32B7C4442488BBE0009D160F /* SplitViewController.swift in Sources */,
 				320816BE24534E2100024FD0 /* LinksCollectionViewCell.swift in Sources */,
 				3277130224D7DAD700D3EE42 /* DiagnosticsViewController.swift in Sources */,
+				3247CF1D24FE9076006DABD2 /* UIFont Extension.swift in Sources */,
 				327A29B824D3F260003B0046 /* ScrollSelection.swift in Sources */,
 				32E28CF92490EE95006D623C /* TTNavigationViewController.swift in Sources */,
 				327524B924912470008EA814 /* TTPreviewViewController.swift in Sources */,
