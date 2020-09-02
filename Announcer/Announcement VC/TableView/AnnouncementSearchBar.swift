@@ -170,7 +170,8 @@ extension AnnouncementsViewController: UISearchBarDelegate {
         // swiftlint:disable identifier_name
         let contentPosts: [Post] = self.posts.enumerated().map { (n, postItem) -> SearchItem in
             // Calculating relevance
-            var postContent: String = cachedContent[n]?.string ?? postItem.content.htmlToAttributedString!.string
+            
+            var postContent: String = cachedContent[postItem.title]??.string ?? postItem.content.htmlToAttributedString!.string
             
             postContent = postContent.lowercased().filter({
                 $0.isNumber || $0.isLetter

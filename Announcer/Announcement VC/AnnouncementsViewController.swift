@@ -55,7 +55,7 @@ class AnnouncementsViewController: UIViewController {
     var pinned = [Post]()
     
     /// Cache Post Content
-    var cachedContent: [NSAttributedString?] = .init(repeating: nil, count: 25)
+    var cachedContent: [String: NSAttributedString?] = [:]
     
     /// Scroll selection multiplier used to control scroll height
     let scrollSelectionMultiplier: CGFloat = 40
@@ -143,7 +143,7 @@ class AnnouncementsViewController: UIViewController {
             self.posts = Fetch.posts(with: self)
             
             // Reset cache
-            self.cachedContent = .init(repeating: nil, count: 25)
+            self.cachedContent = [:]
         }
     }
     

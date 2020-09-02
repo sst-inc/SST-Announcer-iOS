@@ -69,7 +69,7 @@ class AnnouncementTableViewCell: UITableViewCell {
                     if (self.parent.pinned.count != 0 && self.path.section == 1) ||
                         self.parent.pinned.count == 0 {
                         
-                        self.parent.cachedContent[self.path.row] = self.htmlAttr
+                        self.parent.cachedContent[self.post.title] = self.htmlAttr
                     }
                     
                     print(self.path.row)

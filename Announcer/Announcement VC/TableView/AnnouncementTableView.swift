@@ -145,8 +145,7 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                             let post = pinned[indexPath.row]
                             
                             // Getting from cache
-                            if let postIndex = posts.firstIndex(of: post),
-                               let cache = cachedContent[postIndex] {
+                            if let cache = cachedContent[post.title]?.unsafelyUnwrapped {
                                 cell.htmlAttr = NSMutableAttributedString(attributedString: cache)
                             }
                             
@@ -164,12 +163,13 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
                         }
                     } else if posts.count != 0 {
                         if posts.count > indexPath.row {
+                            let post = posts[indexPath.row]
                             
-                            if let cache = cachedContent[indexPath.row] {
+                            if let cache = cachedContent[post.title]?.unsafelyUnwrapped {
                                 cell.htmlAttr = NSMutableAttributedString(attributedString: cache)
                             }
                             
-                            cell.post = posts[indexPath.row]
+                            cell.post = post
                             
                         } else {
                             cell.post = Post(title: loadingString, content: loadingString, date: Date(), pinned: true, read: true, reminderDate: nil, categories: [])

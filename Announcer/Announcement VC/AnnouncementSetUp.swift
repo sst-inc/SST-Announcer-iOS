@@ -24,6 +24,7 @@ extension AnnouncementsViewController {
         let versionStore: WhatsNewVersionStore = KeyValueWhatsNewVersionStore()
 
         let versionNumber = UserDefaults.standard.string(forKey: UserDefaultsIdentifiers.versionNumber.rawValue) ?? ""
+        
         // Initialize WhatsNew
         let whatsNew = WhatsNew(
             // The Title
@@ -31,9 +32,6 @@ extension AnnouncementsViewController {
             
             // The features you want to showcase
             items: [
-                WhatsNew.Item(title: "🎂 Happy 7th Birthday!!",
-                              subtitle: "Celebrating 7 years of a… sort of working app! I'm honestly surprised we made it this far.",
-                              image: UIImage(systemName: "smiley")),
                 WhatsNew.Item(
                     title: "🕐 Announcer Timetables",
                     subtitle: "Find out what lessons are next and when it will be with Announcer Timetables.",
@@ -48,12 +46,12 @@ extension AnnouncementsViewController {
                     title: "🕵️‍♂️ Smarter Search",
                     subtitle: "The new Announcer search prioritises results based on the relevance of the posts to your search!",
                     image: UIImage(systemName: "magnifyingglass")
+                ),
+                WhatsNew.Item(
+                    title: "👨‍💻 Announcer MacOS",
+                    subtitle: "SST Announcer is now available on the Mac! (requires macOS Big Sur and up)",
+                    image: UIImage(systemName: "macwindow")
                 )
-//                WhatsNew.Item(
-//                    title: "Announcer MacOS",
-//                    subtitle: "SST Announcer is now available on the Mac! (requires macOS Big Sur and up)",
-//                    image: UIImage(systemName: "macwindow")
-//                )
             ]
         )
         

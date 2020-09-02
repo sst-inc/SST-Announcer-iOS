@@ -31,8 +31,8 @@ extension AnnouncementsViewController {
 //        print(searchSource)
         
         if searchSource.count > indexPath.row {
-            if let postIndex = posts.firstIndex(of: searchSource[indexPath.row]),
-               let cache = cachedContent[postIndex] {
+            let title = searchSource[indexPath.row].title
+            if let cache = cachedContent[title]?.unsafelyUnwrapped {
                 cell.htmlAttr = NSMutableAttributedString(attributedString: cache)
             }
             
