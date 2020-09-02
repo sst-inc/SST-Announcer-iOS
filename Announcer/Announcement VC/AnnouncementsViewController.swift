@@ -73,12 +73,16 @@ class AnnouncementsViewController: UIViewController {
     @IBOutlet weak var searchField: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var reloadButton: UIBarButtonItem!
+    @IBOutlet weak var unreadPostsButton: UIView!
+    
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Hide navigation controller
         // Navigation controller is only used for segue animations
+        
+        unreadPostsButton.isHidden = true
         
         // Fetch Blog Posts
         DispatchQueue.global(qos: .background).async {
@@ -151,6 +155,28 @@ class AnnouncementsViewController: UIViewController {
     @IBAction func openTimetable(_ sender: Any) {
         if let vc = Storyboards.timetable.instantiateInitialViewController() as? TTNavigationViewController {
             present(vc, animated: true)
+        }
+    }
+    
+    @IBAction func markAllPostsAsRead(_ sender: Any) {
+        if let posts = posts {
+            
+            let alert = UIAlertController(title: "Mark as Read", message: "Are you sure you want to mark all posts as read?", preferredStyle: .alert)
+            
+            let yes = UIAlertAction(title: "Yes", style: .default) { (_) in
+                
+                ReadAnnouncements.saveToFile(posts: posts)
+                self.announcementTableView.reloadData()
+                self.badgeItems()
+            }
+            
+            alert.addAction(yes)
+            
+            alert.preferredAction = yes
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            self.present(alert, animated: true)
         }
     }
     

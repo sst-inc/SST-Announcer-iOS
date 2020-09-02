@@ -27,6 +27,8 @@ extension AnnouncementsViewController {
         
         let badge = 25 - readCount
         
+        unreadPostsButton.isHidden = badge == 0
+        
         let options: UNAuthorizationOptions = [.alert, .sound, .badge]
         
         UNUserNotificationCenter.current().requestAuthorization(options: options) {

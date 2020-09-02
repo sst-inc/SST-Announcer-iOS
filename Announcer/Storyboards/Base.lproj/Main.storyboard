@@ -33,7 +33,7 @@
                                             </constraints>
                                         </view>
                                         <searchBar contentMode="redraw" searchBarStyle="minimal" text="" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="Fdc-31-Cyo">
-                                            <rect key="frame" x="12" y="0.0" width="346" height="56"/>
+                                            <rect key="frame" x="12" y="0.0" width="296" height="56"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="Iaw-kh-N4I"/>
@@ -44,7 +44,7 @@
                                             </connections>
                                         </searchBar>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCy-CJ-RXP">
-                                            <rect key="frame" x="358" y="0.0" width="50" height="56"/>
+                                            <rect key="frame" x="308" y="0.0" width="50" height="56"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EzQ-w5-066">
                                                     <rect key="frame" x="12" y="15" width="26" height="26"/>
@@ -68,6 +68,31 @@
                                                 <constraint firstItem="EzQ-w5-066" firstAttribute="centerY" secondItem="sCy-CJ-RXP" secondAttribute="centerY" id="ieE-KQ-hkP"/>
                                             </constraints>
                                         </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8z-Ph-qjf">
+                                            <rect key="frame" x="358" y="0.0" width="50" height="56"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noS-d5-Boh">
+                                                    <rect key="frame" x="12" y="15" width="26.5" height="26.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="noS-d5-Boh" secondAttribute="height" multiplier="1:1" id="GYc-3K-lUC"/>
+                                                    </constraints>
+                                                    <state key="normal" image="app.badge" catalog="system">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        </preferredSymbolConfiguration>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="markAllPostsAsRead:" destination="aOG-ux-bHk" eventType="touchUpInside" id="hZj-s6-IJC"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="noS-d5-Boh" firstAttribute="centerX" secondItem="O8z-Ph-qjf" secondAttribute="centerX" id="E7D-fD-CyG"/>
+                                                <constraint firstAttribute="width" constant="50" id="JfR-ML-oYR"/>
+                                                <constraint firstItem="noS-d5-Boh" firstAttribute="centerY" secondItem="O8z-Ph-qjf" secondAttribute="centerY" id="TTD-xD-lTk"/>
+                                            </constraints>
+                                        </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVM-Nt-bvB">
                                             <rect key="frame" x="408" y="0.0" width="6" height="56"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -76,9 +101,6 @@
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="56" id="oUM-vL-gYL"/>
-                                    </constraints>
                                 </stackView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="announcements" rowHeight="134" id="Lbq-1h-jZ4" customClass="AnnouncementTableViewCell" customModule="SST_Announcer" customModuleProvider="target">
@@ -178,6 +200,7 @@
                         <outlet property="reloadButton" destination="caO-CB-LiK" id="KDq-eM-Xcp"/>
                         <outlet property="searchField" destination="Fdc-31-Cyo" id="8wt-xK-ucp"/>
                         <outlet property="timetableButton" destination="ogd-BP-Pzh" id="bes-JI-nyC"/>
+                        <outlet property="unreadPostsButton" destination="O8z-Ph-qjf" id="XzZ-fj-0sv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAe-A3-FIL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -226,11 +249,12 @@
     </scenes>
     <color key="tintColor" name="Grey 1"/>
     <resources>
-        <image name="arrow.clockwise" catalog="system" width="32" height="32"/>
-        <image name="arrow.uturn.left" catalog="system" width="32" height="32"/>
-        <image name="line.horizontal.3.decrease.circle" catalog="system" width="32" height="32"/>
-        <image name="pin.fill" catalog="system" width="32" height="32"/>
-        <image name="tablecells" catalog="system" width="32" height="32"/>
+        <image name="app.badge" catalog="system" width="128" height="124"/>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="arrow.uturn.left" catalog="system" width="128" height="112"/>
+        <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
+        <image name="pin.fill" catalog="system" width="119" height="128"/>
+        <image name="tablecells" catalog="system" width="128" height="93"/>
         <namedColor name="Grey 1">
             <color red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
