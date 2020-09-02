@@ -387,7 +387,11 @@ extension AnnouncementsViewController: UITableViewDelegate, UITableViewDataSourc
             //Complete
             completionHandler(true)
         }
-        action.backgroundColor = GlobalColors.greyTwo
+        
+        action.image = UIImage(systemName: "pin.fill")
+        
+        action.backgroundColor = .systemBlue
+        
         return action
     }
 }
