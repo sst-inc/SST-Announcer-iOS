@@ -49,4 +49,7 @@ struct GlobalLinks {
      getting the blog posts or while attempting to show the student's blog.
      */
     static let settingsURL              = URL(string: "App-Prefs:root=")!
+    
+    static let sstinc                   = URL(string: "https://sstinc.org/")!
+
 }

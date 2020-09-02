@@ -10,6 +10,7 @@ import UIKit
 import CoreSpotlight
 import MobileCoreServices
 import WhatsNewKit
+import SafariServices
 
 class AnnouncementsViewController: UIViewController {
     
@@ -180,6 +181,9 @@ class AnnouncementsViewController: UIViewController {
         }
     }
     
+    @IBAction func openIncAdvertisment(_ sender: Any) {
+        self.present(SFSafariViewController(url: GlobalLinks.sstinc), animated: true)
+    }
     /// Receiving post from push notifications
     func receivePost(with post: Post) {
         selectedItem = post
