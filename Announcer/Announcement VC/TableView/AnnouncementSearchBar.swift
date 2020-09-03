@@ -33,10 +33,6 @@ extension AnnouncementsViewController: UISearchBarDelegate {
             let attrTitle = NSMutableAttributedString(string: searchText)
             // Find the [] and just make it like Grey 2
             
-            // Make square brackets colored
-            let indicesStart = attrTitle.string.indicesOf(string: "[")
-            let indicesEnd = attrTitle.string.indicesOf(string: "]")
-            
             let font = UIFont.systemFont(ofSize: UIFont.labelFontSize)
             
             // Set default attributes
@@ -48,36 +44,26 @@ extension AnnouncementsViewController: UISearchBarDelegate {
             // Get search field
             let field = searchBar.value(forKey: "searchField") as? UITextField
             
-            if indicesStart.count == 1 && indicesEnd.count == 1 {
+            let regexBracket = try! NSRegularExpression(pattern: "\\[[ \\t\\r\\n\\v\\fA-Za-z0-9_]+\\]")
+            
+            if let match = regexBracket.firstMatch(in: searchText,
+                                                   options: [],
+                                                   range: NSRange(location: 0, length: searchText.count)) {
                 
-                // Determine which one is smaller (start indices or end indices)
-                if (indicesStart.count <= (indicesEnd.count) ? indicesStart.count : indicesEnd.count) > 0 {
-                    for i in 1...(indicesStart.count >= indicesEnd.count ? indicesStart.count : indicesEnd.count) {
-                        
-                        let start = indicesStart[i - 1]
-                        let end = indicesEnd[i - 1]
-                        
-                        // [] colors will be Grey 1
-                        
-                        let font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
-                        
-                        // Setting font color and font
-                        let bracketStyle: [NSAttributedString.Key: Any] = [.foregroundColor: GlobalColors.blueTint,
-                                                                           .font: font]
-                        
-                        // Add attributes
-                        attrTitle.addAttributes(bracketStyle,
-                                                range: NSRange(location: start,
-                                                               length: end - start + 1))
-                    }
-                }
+                let font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
                 
-                // Escape to main thread to edit set attributedText to search field
-                DispatchQueue.main.async {
-                    // Add attributes to field
-                    field?.attributedText = attrTitle
-                    
-                }
+                // Setting font color and font
+                let bracketStyle: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(named: "Text Blue")!,
+                                                                   .font: font]
+                
+                // Add attributes
+                attrTitle.addAttributes(bracketStyle,
+                                        range: match.range)
+            }
+            
+            DispatchQueue.main.async {
+                // Add attributes to field
+                field?.attributedText = attrTitle
             }
             
             self.searchResults = AnnouncementSearch(labelsDidSet: {

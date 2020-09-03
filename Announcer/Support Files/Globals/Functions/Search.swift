@@ -20,12 +20,20 @@ import Foundation
 */
 func getLabelsFromSearch(with query: String) -> String {
     // Labels in search are a mess to deal with
-    if query.first == "[" {
-        let split = query.split(separator: "]")
-        var result = split[0]
-        result.removeFirst()
+    let regexBracket = try! NSRegularExpression(pattern: "\\[[ \\t\\r\\n\\v\\fA-Za-z0-9_]+\\]")
+    
+    if let match = regexBracket.firstMatch(in: query,
+                                           options: [],
+                                           range: NSRange(location: 0, length: query.count)) {
         
-        return String(result.lowercased())
+        var substring = NSString(string: query).substring(with: match.range)
+        
+        substring.removeFirst()
+        
+        substring.removeLast()
+        
+        return substring
     }
+    
     return ""
 }

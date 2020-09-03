@@ -35,12 +35,20 @@ class AnnouncementTableViewCell: UITableViewCell {
             // [Square Brackets] all red to highlight things like [Sec 2 students] etc.
             // Set the text the label
             
+            // Ensure date is formatted as 22 Oct 2019 using d MMM yyyy
+            // The date is the date posted onto studentsblog
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = NSLocalizedString("DATE_FORMAT",
+                                                         comment: "Posted on 6 Aug 2020")
+            
             if Thread.current.isMainThread {
                 // If we are on the main thread, just go ahead
+                self.announcementDateLabel.text = dateFormatter.string(from: self.post.date)
                 self.announcementTitleLabel.attributedText = self.setTitleLabelText()
             } else {
                 // Otherwise go to the main thread
                 DispatchQueue.main.async {
+                    self.announcementDateLabel.text = dateFormatter.string(from: self.post.date)
                     self.announcementTitleLabel.attributedText = self.setTitleLabelText()
                 }
             }
@@ -55,16 +63,6 @@ class AnnouncementTableViewCell: UITableViewCell {
                                                                     comment: "Loading Content")))
             
             self.announcementContentLabel.attributedText = str
-            
-            // Ensure date is formatted as 22 Oct 2019 using d MMM yyyy
-            // The date is the date posted onto studentsblog
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = NSLocalizedString("DATE_FORMAT",
-                                                         comment: "Posted on 6 Aug 2020")
-            
-            DispatchQueue.main.async {
-                self.announcementDateLabel.text = dateFormatter.string(from: self.post.date)
-            }
             
             // Unable to preview because it requires JavaScript
             if post.content.contains("webkitallowfullscreen=\"true\"") {
@@ -94,7 +92,9 @@ class AnnouncementTableViewCell: UITableViewCell {
                     
                     // Set the content
                     DispatchQueue.main.async {
-                        self.setContent(with: self.htmlAttr)
+                        if let htmlAttr = self.htmlAttr {
+                            self.setContent(with: htmlAttr)
+                        }
                     }
                     
                 }
@@ -155,34 +155,45 @@ class AnnouncementTableViewCell: UITableViewCell {
         
         // Update labels/textview with data
         let attrTitle = NSMutableAttributedString(string: post.title, attributes: defaultAttributes)
+        
         // Find the [] and just make it like red or something
+        let regexSquareBrackets = try! NSRegularExpression(pattern: "\\[[ \\t\\r\\n\\v\\fA-Za-z0-9_]+\\]")
+        let regexBracket = try! NSRegularExpression(pattern: "\\([ \\t\\r\\n\\v\\fA-Za-z0-9_]+\\)")
+
+        let squareMatches = regexSquareBrackets.matches(in: post.title,
+                                                  options: [],
+                                                  range: NSRange(location: 0, length: post.title.count)).map {
+                                                    $0.range
+                                                  }
         
-        // Make square brackets colored
-        let indicesStart = attrTitle.string.indicesOf(string: "[")
-        let indicesEnd = attrTitle.string.indicesOf(string: "]")
+        let bracketMatches = regexBracket.matches(in: post.title,
+                                                  options: [],
+                                                  range: NSRange(location: 0, length: post.title.count)).map {
+                                                    $0.range
+                                                  }
         
-        // Determine which array of indices contains more values (start indices or end indices)
-        let smallerIndicesArray = indicesStart.count >= (indicesEnd.count) ? indicesStart.count : indicesEnd.count
+        for range in squareMatches {
+            
+            // `[]` colors will be `.blueTint`
+            // Setting the bracket style
+            let bracket: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(named: "Text Red")!,
+                                                          .font: font]
+            
+            // Add the blue to the squared brackets in the title
+            attrTitle.addAttributes(bracket,
+                                    range: range)
+        }
         
-        // Ensure that there is more than 0 items in the array
-        if smallerIndicesArray > 0 {
-            for i in 1...(indicesStart.count >= indicesEnd.count ? indicesStart.count : indicesEnd.count) {
-                
-                let start = indicesStart[i - 1]
-                let end = indicesEnd[i - 1]
-                
-                // Ensuring that upper bounds is more than lower bounds
-                if end > start {
-                    // `[]` colors will be `.blueTint`
-                    // Setting the bracket style
-                    let bracket: [NSAttributedString.Key: Any] = [.foregroundColor: GlobalColors.blueTint,
-                                                                  .font: font]
-                    
-                    // Add the blue to the squared brackets in the title
-                    attrTitle.addAttributes(bracket,
-                                            range: NSRange(location: start, length: end - start + 2))
-                }
-            }
+        for range in bracketMatches {
+            
+            // `[]` colors will be `.blueTint`
+            // Setting the bracket style
+            let bracket: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(named: "Text Blue")!,
+                                                          .font: font]
+            
+            // Add the blue to the squared brackets in the title
+            attrTitle.addAttributes(bracket,
+                                    range: range)
         }
         
         return attrTitle

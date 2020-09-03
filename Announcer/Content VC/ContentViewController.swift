@@ -365,6 +365,10 @@ class ContentViewController: UIViewController {
         // Calculating the scale
         currentScale *= sender.scale
 
+        if GlobalIdentifier.defaultFontSize == currentScale {
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        }
+        
         // Setting text color using NSAttributedString
         attr.enumerateAttribute(.font,
                                 in: NSRange(location: 0, length: attr.length),

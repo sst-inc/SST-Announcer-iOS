@@ -233,14 +233,14 @@
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="labels" id="dib-BP-FGS" customClass="CategoriesCollectionViewCell" customModule="SST_Announcer" customModuleProvider="target">
-                                                                <rect key="frame" x="1" y="5.5" width="46.5" height="29.5"/>
+                                                                <rect key="frame" x="1" y="5.5" width="62.5" height="29.5"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="tTw-dC-ZAv">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="46.5" height="29.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="62.5" height="29.5"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJb-fX-Lhi">
-                                                                            <rect key="frame" x="8" y="8" width="30.5" height="13.5"/>
+                                                                            <rect key="frame" x="16" y="8" width="30.5" height="13.5"/>
                                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -249,7 +249,7 @@
                                                                     <constraints>
                                                                         <constraint firstItem="AJb-fX-Lhi" firstAttribute="centerX" secondItem="tTw-dC-ZAv" secondAttribute="centerX" id="2qi-yl-cHV"/>
                                                                         <constraint firstItem="AJb-fX-Lhi" firstAttribute="centerY" secondItem="tTw-dC-ZAv" secondAttribute="centerY" id="FK8-34-kSv"/>
-                                                                        <constraint firstItem="AJb-fX-Lhi" firstAttribute="leading" secondItem="tTw-dC-ZAv" secondAttribute="leading" constant="8" id="LOe-QL-Xzs"/>
+                                                                        <constraint firstItem="AJb-fX-Lhi" firstAttribute="leading" secondItem="tTw-dC-ZAv" secondAttribute="leading" constant="16" id="LOe-QL-Xzs"/>
                                                                         <constraint firstItem="AJb-fX-Lhi" firstAttribute="top" secondItem="tTw-dC-ZAv" secondAttribute="top" constant="8" id="hHh-hT-YYR"/>
                                                                     </constraints>
                                                                 </collectionViewCellContentView>

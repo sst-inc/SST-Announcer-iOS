@@ -11,29 +11,53 @@ import UIKit
 
 extension ContentViewController {
     func titleAttributes(_ string: String) -> NSAttributedString {
+        
+        let font = UIFont.systemFont(ofSize: 22, weight: .semibold)
+        
+        let defaultAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.label,
+                                                                .font: font]
+        
         // Update labels/textview with data
-        let attrTitle = NSMutableAttributedString(string: string)
+        let attrTitle = NSMutableAttributedString(string: post.title, attributes: defaultAttributes)
+        
         // Find the [] and just make it like red or something
+        let regexSquareBrackets = try! NSRegularExpression(pattern: "\\[[ \\t\\r\\n\\v\\fA-Za-z0-9_]+\\]")
+        let regexBracket = try! NSRegularExpression(pattern: "\\([ \\t\\r\\n\\v\\fA-Za-z0-9_]+\\)")
+
+        let squareMatches = regexSquareBrackets.matches(in: post.title,
+                                                  options: [],
+                                                  range: NSRange(location: 0, length: post.title.count)).map {
+                                                    $0.range
+                                                  }
         
-        // Make square brackets colored
-        let indicesStart = attrTitle.string.indicesOf(string: "[")
-        let indicesEnd = attrTitle.string.indicesOf(string: "]")
+        let bracketMatches = regexBracket.matches(in: post.title,
+                                                  options: [],
+                                                  range: NSRange(location: 0, length: post.title.count)).map {
+                                                    $0.range
+                                                  }
         
-        // Determine which one is smaller (start indices or end indices)
-        if (indicesStart.count >= (indicesEnd.count) ? indicesStart.count : indicesEnd.count) > 0 {
-            for i in 1...(indicesStart.count >= indicesEnd.count ? indicesStart.count : indicesEnd.count) {
-                
-                let start = indicesStart[i - 1]
-                let end = indicesEnd[i - 1]
-                
-                // [] colors will be Grey 1
-                // @shannen why these color names man
-                let bracketStyle: [NSAttributedString.Key: Any] = [.foregroundColor: GlobalColors.blueTint,
-                                                                   .font: UIFont.systemFont(ofSize: 22,
-                                                                                            weight: .semibold)]
-                
-                attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 2))
-            }
+        for range in squareMatches {
+            
+            // `[]` colors will be `.blueTint`
+            // Setting the bracket style
+            let bracket: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(named: "Text Red")!,
+                                                          .font: font]
+            
+            // Add the blue to the squared brackets in the title
+            attrTitle.addAttributes(bracket,
+                                    range: range)
+        }
+        
+        for range in bracketMatches {
+            
+            // `[]` colors will be `.blueTint`
+            // Setting the bracket style
+            let bracket: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(named: "Text Blue")!,
+                                                          .font: font]
+            
+            // Add the blue to the squared brackets in the title
+            attrTitle.addAttributes(bracket,
+                                    range: range)
         }
         
         return attrTitle
