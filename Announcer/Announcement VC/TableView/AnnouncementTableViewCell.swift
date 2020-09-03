@@ -11,7 +11,17 @@ import SkeletonView
 
 class AnnouncementTableViewCell: UITableViewCell {
 
-    var htmlAttr: NSMutableAttributedString!
+    var htmlAttr: NSMutableAttributedString! {
+        didSet {
+            if Thread.current.isMainThread {
+                announcementContentLabel.text = ""
+            } else {
+                DispatchQueue.main.async {
+                    self.announcementContentLabel.text = ""
+                }
+            }
+        }
+    }
     var parent: AnnouncementsViewController!
     var path: IndexPath!
     
@@ -46,6 +56,16 @@ class AnnouncementTableViewCell: UITableViewCell {
             
             self.announcementContentLabel.attributedText = str
             
+            // Ensure date is formatted as 22 Oct 2019 using d MMM yyyy
+            // The date is the date posted onto studentsblog
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = NSLocalizedString("DATE_FORMAT",
+                                                         comment: "Posted on 6 Aug 2020")
+            
+            DispatchQueue.main.async {
+                self.announcementDateLabel.text = dateFormatter.string(from: self.post.date)
+            }
+            
             // Unable to preview because it requires JavaScript
             if post.content.contains("webkitallowfullscreen=\"true\"") {
                 let str = NSMutableAttributedString(string: "")
@@ -72,7 +92,6 @@ class AnnouncementTableViewCell: UITableViewCell {
                         self.parent.cachedContent[self.post.title] = self.htmlAttr
                     }
                     
-                    print(self.path.row)
                     // Set the content
                     DispatchQueue.main.async {
                         self.setContent(with: self.htmlAttr)
@@ -81,16 +100,6 @@ class AnnouncementTableViewCell: UITableViewCell {
                 }
             } else {
                 self.setContent(with: htmlAttr)
-            }
-            
-            // Ensure date is formatted as 22 Oct 2019 using d MMM yyyy
-            // The date is the date posted onto studentsblog
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = NSLocalizedString("DATE_FORMAT",
-                                                         comment: "Posted on 6 Aug 2020")
-            
-            DispatchQueue.main.async {
-                self.announcementDateLabel.text = dateFormatter.string(from: self.post.date)
             }
             
             handlePinAndRead()

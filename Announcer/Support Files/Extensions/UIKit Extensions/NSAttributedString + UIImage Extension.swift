@@ -14,10 +14,6 @@ extension NSAttributedString {
     func resizedImages(with maxWidth: CGFloat) -> NSMutableAttributedString {
         let text = NSMutableAttributedString(attributedString: self)
         
-        if I.mac {
-            return text
-        }
-        
         // Adding font and background color that support dark mode
         let attributes: [NSAttributedString.Key: UIColor] = [.backgroundColor: .clear]
         
@@ -34,7 +30,7 @@ extension NSAttributedString {
                 $0.key == .foregroundColor
             }.last
             
-            if let attachement = attachmentAttr?.value as? NSTextAttachment {
+            if !I.mac, let attachement = attachmentAttr?.value as? NSTextAttachment {
                 let image = attachement.image(forBounds: attachement.bounds,
                                               textContainer: NSTextContainer(),
                                               characterIndex: range.location)!

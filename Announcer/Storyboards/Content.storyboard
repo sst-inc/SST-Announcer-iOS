@@ -83,14 +83,14 @@
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="links" id="bYu-ow-PLc" customClass="LinksCollectionViewCell" customModule="SST_Announcer" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="216" height="50"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="UV3-jH-79f">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="216" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gFe-e9-dYL">
-                                                                            <rect key="frame" x="8" y="0.0" width="192" height="50"/>
+                                                                            <rect key="frame" x="8" y="0.0" width="208" height="50"/>
                                                                             <subviews>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vb0-1A-UoI">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="34" height="50"/>
@@ -146,6 +146,13 @@
                                                                                         <constraint firstAttribute="width" constant="150" id="xKo-E9-Ick"/>
                                                                                     </constraints>
                                                                                 </stackView>
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3L8-HZ-QGu">
+                                                                                    <rect key="frame" x="200" y="0.0" width="8" height="50"/>
+                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="8" id="hkk-o4-6sy"/>
+                                                                                    </constraints>
+                                                                                </view>
                                                                             </subviews>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="50" id="3Bj-7V-sLu"/>
@@ -226,17 +233,14 @@
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="labels" id="dib-BP-FGS" customClass="CategoriesCollectionViewCell" customModule="SST_Announcer" customModuleProvider="target">
-                                                                <rect key="frame" x="1" y="6.5" width="62.5" height="27"/>
+                                                                <rect key="frame" x="1" y="5.5" width="46.5" height="29.5"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="tTw-dC-ZAv">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="62.5" height="27"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="46.5" height="29.5"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJb-fX-Lhi">
-                                                                            <rect key="frame" x="16" y="0.0" width="30.5" height="27"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="27" id="KjA-Ae-U0D"/>
-                                                                            </constraints>
+                                                                            <rect key="frame" x="8" y="8" width="30.5" height="13.5"/>
                                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -245,8 +249,8 @@
                                                                     <constraints>
                                                                         <constraint firstItem="AJb-fX-Lhi" firstAttribute="centerX" secondItem="tTw-dC-ZAv" secondAttribute="centerX" id="2qi-yl-cHV"/>
                                                                         <constraint firstItem="AJb-fX-Lhi" firstAttribute="centerY" secondItem="tTw-dC-ZAv" secondAttribute="centerY" id="FK8-34-kSv"/>
-                                                                        <constraint firstItem="AJb-fX-Lhi" firstAttribute="leading" secondItem="tTw-dC-ZAv" secondAttribute="leading" constant="16" id="LOe-QL-Xzs"/>
-                                                                        <constraint firstItem="AJb-fX-Lhi" firstAttribute="top" secondItem="tTw-dC-ZAv" secondAttribute="top" id="hHh-hT-YYR"/>
+                                                                        <constraint firstItem="AJb-fX-Lhi" firstAttribute="leading" secondItem="tTw-dC-ZAv" secondAttribute="leading" constant="8" id="LOe-QL-Xzs"/>
+                                                                        <constraint firstItem="AJb-fX-Lhi" firstAttribute="top" secondItem="tTw-dC-ZAv" secondAttribute="top" constant="8" id="hHh-hT-YYR"/>
                                                                     </constraints>
                                                                 </collectionViewCellContentView>
                                                                 <color key="backgroundColor" name="Grey 2"/>
