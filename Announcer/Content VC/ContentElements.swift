@@ -21,8 +21,8 @@ extension ContentViewController {
         let attrTitle = NSMutableAttributedString(string: post.title, attributes: defaultAttributes)
         
         // Find the [] and just make it like red or something
-        let regexSquareBrackets = try! NSRegularExpression(pattern: "\\[[ \\t\\r\\n\\v\\fA-Za-z0-9_]+\\]")
-        let regexBracket = try! NSRegularExpression(pattern: "\\([ \\t\\r\\n\\v\\fA-Za-z0-9_]+\\)")
+        let regexSquareBrackets = try! NSRegularExpression(pattern: GlobalIdentifier.regexSquarePattern)
+        let regexBracket = try! NSRegularExpression(pattern: GlobalIdentifier.regexRoundedPattern)
 
         let squareMatches = regexSquareBrackets.matches(in: post.title,
                                                   options: [],

@@ -80,6 +80,8 @@ class ContentViewController: UIViewController {
 
     @IBOutlet weak var loadingContentButton: UIButton!
 
+    var playedZoomHaptics = false
+
     var fullScreen = true
 
     /// Getting the post
@@ -365,8 +367,16 @@ class ContentViewController: UIViewController {
         // Calculating the scale
         currentScale *= sender.scale
 
-        if GlobalIdentifier.defaultFontSize == currentScale {
-            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        let defaultOffset = abs(GlobalIdentifier.defaultFontSize - currentScale)
+        if playedZoomHaptics {
+            if defaultOffset > 2.5 {
+                playedZoomHaptics = false
+            }
+        } else {
+            if defaultOffset < 2.5 {
+                UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                playedZoomHaptics = true
+            }
         }
         
         // Setting text color using NSAttributedString

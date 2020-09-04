@@ -20,7 +20,7 @@ import Foundation
 */
 func getLabelsFromSearch(with query: String) -> String {
     // Labels in search are a mess to deal with
-    let regexBracket = try! NSRegularExpression(pattern: "\\[[ \\t\\r\\n\\v\\fA-Za-z0-9_]+\\]")
+    let regexBracket = try! NSRegularExpression(pattern: GlobalIdentifier.regexSquarePattern)
     
     if let match = regexBracket.firstMatch(in: query,
                                            options: [],

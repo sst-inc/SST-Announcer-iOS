@@ -44,7 +44,7 @@ extension AnnouncementsViewController: UISearchBarDelegate {
             // Get search field
             let field = searchBar.value(forKey: "searchField") as? UITextField
             
-            let regexBracket = try! NSRegularExpression(pattern: "\\[[ \\t\\r\\n\\v\\fA-Za-z0-9_]+\\]")
+            let regexBracket = try! NSRegularExpression(pattern: GlobalIdentifier.regexSquarePattern)
             
             if let match = regexBracket.firstMatch(in: searchText,
                                                    options: [],

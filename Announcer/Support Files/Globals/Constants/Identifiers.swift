@@ -58,4 +58,7 @@ struct GlobalIdentifier {
     /// Expansion constant is a constant value added to the width and height
     /// of the button to make the cursor scale in size when hovering over button
     static let expansionConstant: CGFloat = 5
+    
+    static let regexSquarePattern = "\\[(.)+\\]"
+    static let regexRoundedPattern = "\\((.)+\\)"
 }
