@@ -19,11 +19,6 @@ class SST_Announcer_Tests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
     func testPresenceAVC() throws {
         let nvc = UIApplication.shared.windows.first?.rootViewController as? UINavigationController
         let avc: UIViewController? = { () -> UIViewController? in
@@ -96,12 +91,21 @@ class SST_Announcer_Tests: XCTestCase {
         // Fetching the page information
         url.fetchPageInfo { (title, description, previewImage) -> Void in
             
-            XCTAssertNil(title)
-            XCTAssertNil(description)
-            XCTAssertNil(previewImage)
+            XCTAssertNotNil(title)
+            XCTAssertNotNil(description)
+            XCTAssertNotNil(previewImage)
             
         } failure: { (message) in
             XCTAssert(false, message)
+        }
+    }
+    
+    func testSubjectIconPresence() throws {
+        for (key, value) in Assets.subjectIcons {
+            if !(key.hasPrefix("|") && key.hasSuffix("|")) {
+                let image = UIImage(systemName: value[0])
+                XCTAssertNotNil(image, value[0])
+            }
         }
     }
 }
