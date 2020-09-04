@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import URL_Previews
 
 class SST_Announcer_Tests: XCTestCase {
 
@@ -87,13 +88,20 @@ class SST_Announcer_Tests: XCTestCase {
         XCTAssertEqual(matches.count, 8, accuracy: 0)
     }
     
-//    func testRegularExpression() throws {
-//        // This is an example of a performance test case.
-//        
-//        measure {
-//            // Put the code you want to measure the time of here.
-//            
-//        }
-//    }
+    // Testing the URL Preview framework
+    func testURLPreviews() throws {
+        // Replace this with any URL you want
+        let url = URL(string: "https://google.com/")!
 
+        // Fetching the page information
+        url.fetchPageInfo { (title, description, previewImage) -> Void in
+            
+            XCTAssertNil(title)
+            XCTAssertNil(description)
+            XCTAssertNil(previewImage)
+            
+        } failure: { (message) in
+            XCTAssert(false, message)
+        }
+    }
 }
