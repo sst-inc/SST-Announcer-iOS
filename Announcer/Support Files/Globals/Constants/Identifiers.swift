@@ -59,6 +59,14 @@ struct GlobalIdentifier {
     /// of the button to make the cursor scale in size when hovering over button
     static let expansionConstant: CGFloat = 5
     
+    // MARK: - Regular Expression Patterns
+    /// Square bracket pattern
+    ///
+    /// Regex: `\[(.)+\]`
     static let regexSquarePattern = "\\[(.)+\\]"
+    
+    /// Rounded bracket pattern
+    ///
+    /// Regex: `\((.)+\)`
     static let regexRoundedPattern = "\\((.)+\\)"
 }

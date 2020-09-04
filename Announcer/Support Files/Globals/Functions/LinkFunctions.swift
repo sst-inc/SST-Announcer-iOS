@@ -33,18 +33,22 @@ struct LinkFunctions {
         let formatted = post.title.filter { (char) -> Bool in
             char.isLetter || char.isNumber || char.isWhitespace
         }.lowercased()
-        let split = formatted.split(separator: " ")
         
-        // Add "-" between words. Ensure that it is under 45 characters, because blogger.
-        for i in split {
-            if shareLink.count + i.count < 45 {
-                shareLink += i + "-"
-            } else {
-                break
+        if formatted.count >= 40 {
+            
+            for i in formatted.split(separator: " ") {
+                
+                if shareLink.count + i.count <= 40 {
+                    shareLink += i + "-"
+                } else {
+                    break
+                }
             }
+            
+            shareLink.removeLast()
+        } else {
+            shareLink = formatted
         }
-        
-        shareLink.removeLast()
         
         shareLink = GlobalLinks.blogURL + dateFormatter.string(from: post.date) + shareLink + ".html"
         
