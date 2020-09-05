@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import FeedKit
 import URL_Previews
 
 class SST_Announcer_Tests: XCTestCase {
@@ -100,6 +101,28 @@ class SST_Announcer_Tests: XCTestCase {
         } failure: { (message) in
             XCTAssert(false, message)
         }
+    }
+    
+    func testFeedKit() throws {
+        let parser = FeedParser(URL: GlobalLinks.rssURL)
+        let result = parser.parse()
+        
+        switch result {
+        case .success(let feed):
+            break
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+    }
+    
+    // MARK: - General Safeguards
+    func testURLs() throws {
+        
+        // Make sure not in development blog
+        let blogIsValid = GlobalLinks.blogURL == "http://studentsblog.sst.edu.sg"
+        let settingsIsValid = GlobalLinks.settingsURL == URL(string: "App-Prefs:root=")
+        
+        XCTAssertTrue(blogIsValid && settingsIsValid)
     }
     
     // MARK: - Icon Presence Testing
