@@ -5,7 +5,7 @@ total defence day,tdd,congress,national|building.columns
 walk,obs,oee,s&w,outdoor,sport,wellness,game,ihg,icg|sportscourt
 attire,grooming|figure.walk
 astronomy,aogs,science,astro|moon.stars
-mtl,chinese,malay|translate
+mtl,chinese,malay|globe
 sst inc,inc,icttdp,ict tdp|inc
 noi,hackathon,code,ict|chevron.left.slash.chevron.right
 temp,thermometer|thermometer

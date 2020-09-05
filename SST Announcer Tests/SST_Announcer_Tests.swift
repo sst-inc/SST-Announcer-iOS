@@ -32,6 +32,7 @@ class SST_Announcer_Tests: XCTestCase {
         XCTAssertNil(avc)
     }
     
+    // MARK: - Regular Expression Testing
     func testRegexSquareBrackets() throws {
         let regex = try! NSRegularExpression(pattern: GlobalIdentifier.regexSquarePattern, options: [])
         
@@ -83,6 +84,7 @@ class SST_Announcer_Tests: XCTestCase {
         XCTAssertEqual(matches.count, 8, accuracy: 0)
     }
     
+    // MARK: - Frameworks Testing
     // Testing the URL Preview framework
     func testURLPreviews() throws {
         // Replace this with any URL you want
@@ -100,12 +102,18 @@ class SST_Announcer_Tests: XCTestCase {
         }
     }
     
+    // MARK: - Icon Presence Testing
     func testSubjectIconPresence() throws {
-        for (key, value) in Assets.subjectIcons {
-            if !(key.hasPrefix("|") && key.hasSuffix("|")) {
-                let image = UIImage(systemName: value[0])
-                XCTAssertNotNil(image, value[0])
-            }
+        for value in Assets.subjectIcons.values {
+            let image = UIImage(systemName: value[0])
+            XCTAssertNotNil(image, value[0])
+        }
+    }
+    
+    func testFilterIconsPresence() throws {
+        for i in Fetch.getData() {
+            let image = UIImage(systemName: i.1) ?? UIImage(named: i.1)
+            XCTAssertNotNil(image, i.1)
         }
     }
 }

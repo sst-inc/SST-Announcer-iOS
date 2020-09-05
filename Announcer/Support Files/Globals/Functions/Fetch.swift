@@ -131,6 +131,7 @@ struct Fetch {
 
                 alert.addAction(UIAlertAction(title: okLocalized, style: .cancel, handler: nil))
                 
+                vc.unreadPostsButton.isHidden = true
                 vc.present(alert, animated: true, completion: nil)
             }
         }

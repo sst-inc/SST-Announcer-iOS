@@ -94,7 +94,7 @@ struct Assets {
                                // Special state icons
                                "|weekend|": ["calendar", "It's \(Date().day())!"],             // 􀉉
                                "|before|" : ["clock", "Starting Soon"],                        // 􀐫
-                               "|over|"   : ["Class Dismissed!", "house"]                      // 􀎞
+                               "|over|"   : ["house", "Class Dismissed!"]                      // 􀎞
     ]
     // swiftlint:enable colon
     
