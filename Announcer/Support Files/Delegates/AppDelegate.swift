@@ -30,10 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Safeguard against my 3am stupidity
         #if DEBUG
         Gedatsu.open()
-        #else
-        if GlobalLinks.blogURL != "http://studentsblog.sst.edu.sg" {
-            I.wantToDie
-        }
         #endif
         
         //Ask for notification authorization
