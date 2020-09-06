@@ -108,10 +108,9 @@ class SST_Announcer_Tests: XCTestCase {
         let result = parser.parse()
         
         switch result {
-        case .success(let feed):
-            break
         case .failure(let error):
             XCTFail(error.localizedDescription)
+        default: break
         }
     }
     
@@ -122,7 +121,8 @@ class SST_Announcer_Tests: XCTestCase {
         let blogIsValid = GlobalLinks.blogURL == "http://studentsblog.sst.edu.sg"
         let settingsIsValid = GlobalLinks.settingsURL == URL(string: "App-Prefs:root=")
         
-        XCTAssertTrue(blogIsValid && settingsIsValid)
+        XCTAssertTrue(blogIsValid, "Invalid blog URL: Make sure it is the Students' Blog URL")
+        XCTAssertTrue(settingsIsValid, "Invalid settings URL: Check settings URL.")
     }
     
     // MARK: - Icon Presence Testing
