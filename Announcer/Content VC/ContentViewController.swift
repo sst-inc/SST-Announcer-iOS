@@ -8,7 +8,7 @@
 
 import UIKit
 import SafariServices
-import URLEmbeddedView
+//import URLEmbeddedView
 
 class ContentViewController: UIViewController {
     
@@ -181,34 +181,34 @@ class ContentViewController: UIViewController {
             self.links = []
             
             for url in getLinksFromPost(post: self.post) {
-                OGDataProvider.shared.fetchOGData(withURLString: url.absoluteString) { [weak self] ogData, error in
-                    if let _ = error {
-                        return
-                    }
-                    
-                    let sourceUrl: String = (ogData.sourceUrl ?? url).absoluteString
-                    let pageTitle: String = {
-                        let newURL = url.baseURL?.absoluteString ?? url.absoluteString
-                        
-                        if newURL.contains("sites.google.com") {
-                            var urlItems = newURL.split(separator: "/")
-                            
-                            urlItems.removeFirst(3)
-                            
-                            return urlItems.joined(separator: "/")
-                        }
-                        
-                        return ogData.pageTitle ?? newURL
-                    }()
-                    let sourceImage: UIImage? = {
-                        if let imgUrl = ogData.imageUrl {
-                            return try? UIImage(data: Data(contentsOf: imgUrl), scale: 1)
-                        }
-                        return nil
-                    }()
-                    
-                    self?.links.append(Links(title: pageTitle, link: sourceUrl, image: sourceImage))
-                }
+//                OGDataProvider.shared.fetchOGData(withURLString: url.absoluteString) { [weak self] ogData, error in
+//                    if let _ = error {
+//                        return
+//                    }
+//
+//                    let sourceUrl: String = (ogData.sourceUrl ?? url).absoluteString
+//                    let pageTitle: String = {
+//                        let newURL = url.baseURL?.absoluteString ?? url.absoluteString
+//
+//                        if newURL.contains("sites.google.com") {
+//                            var urlItems = newURL.split(separator: "/")
+//
+//                            urlItems.removeFirst(3)
+//
+//                            return urlItems.joined(separator: "/")
+//                        }
+//
+//                        return ogData.pageTitle ?? newURL
+//                    }()
+//                    let sourceImage: UIImage? = {
+//                        if let imgUrl = ogData.imageUrl {
+//                            return try? UIImage(data: Data(contentsOf: imgUrl), scale: 1)
+//                        }
+//                        return nil
+//                    }()
+//
+//                    self?.links.append(Links(title: pageTitle, link: sourceUrl, image: sourceImage))
+//                }
             }
         }
 

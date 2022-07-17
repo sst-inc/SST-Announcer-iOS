@@ -133,11 +133,9 @@ class AnnouncementTableViewCell: UITableViewCell {
                 let start = indicesStart[i - 1]
                 let end = indicesEnd[i - 1]
                 
-                // [] colors will be Grey 1
-                // @shannen why these color names man
                 let bracketStyle : [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.systemBlue, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: .semibold)]
                 
-                attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 2))
+                attrTitle.addAttributes(bracketStyle, range: NSRange(location: start, length: end - start + 1))
             }
         }
         
